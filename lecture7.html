@@ -477,7 +477,7 @@ The fully developed velocity is taken to be <a id="eq-eq-duct-velocityansatz"></
 <!--l. 60--><p class="noindent" >That last condition is the key difference from the flux-freezing lecture. Because \(\mathrm {Rm}\ll 1\), the magnetic field is
 mostly imposed rather than advected. We therefore write <a id="eq-eq-duct-BandJ"></a><div class="math-display">\[\B = B_0\,\hat{x} + b_z(x)\,\hat{z} , \qquad \J = J_y(x)\,\hat{y} , \tag{7.4}\]</div>
 where \(b_z\) is a small induced correction. The governing equations are just the steady specialization of the
-momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), the resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), and Amp�re&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>).
+momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), the resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), and Amp&egrave;re&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>).
 <a 
  id="x1-117002r120"></a>
 </p>
@@ -493,7 +493,7 @@ This is the profile to compare against once the Lorentz force is turned on.
 <h3 class="sectionHead"><span class="titlemark">7.3   </span> <a 
  id="x1-1190003"></a>Hartmann flow from the steady MHD equations</h3>
 <!--l. 92--><p class="noindent" >With the ansatz (<a href="lecture7.html#eq-eq-duct-velocityansatz">7.3</a>)&#8211;(<a href="lecture7.html#eq-eq-duct-BandJ">7.4</a>), the Lorentz force points along \(\hat{z} \) because <a id="eq-eq-duct-lorentzdir"></a><div class="math-display">\[\J \times \B = J_y\,\hat{y} \times B_0\,\hat{x} = - J_y B_0\,\hat{z} . \tag{7.7}\]</div>
-and Amp�re&#8217;s law gives <a id="eq-eq-duct-ampere"></a><div class="math-display">\[J_y = - \frac {1}{\muo } \dd {b_z}{x}. \tag{7.8}\]</div>
+and Amp&egrave;re&#8217;s law gives <a id="eq-eq-duct-ampere"></a><div class="math-display">\[J_y = - \frac {1}{\muo } \dd {b_z}{x}. \tag{7.8}\]</div>
 </p><!--l. 112--><p class="noindent" >We can search for steady solutions to the resistive, viscous MHD equations for this geometry with a
 transverse magnetic field \(b_x\). Note from \(\nabla \cdot \bm B= \frac {\partial b_x}{\partial x} = 0\) so that \(B_x=B_0\) a constant. the steady momentum equation becomes <div class="math-display">\[-G + \frac {B_0}{\mu _0\rho } \frac {d b_x}{dz} + \mu \frac {d^2 u_x}{dz^2} = 0.\]</div>
                                                                                          
@@ -517,7 +517,7 @@ Applying \(u_z(\pm a)=0\) gives <a id="eq-eq-duct-Avalue"></a><div class="math-d
 so the Hartmann profile is <a id="eq-eq-duct-hartmannvelocity"></a><div class="math-display">\[\boxed { u_z(x) = \frac {G-\sigma E_y B_0}{\sigma B_0^2} \left [ 1- \frac {\cosh (\mathrm {Ha}\,x/a)}{\cosh (\mathrm {Ha})} \right ]. } \tag{7.18}\]</div>
 This is the basic textbook solution.
 </p><!--l. 216--><p class="noindent" >The current density follows immediately from Ohm&#8217;s law, <a id="eq-eq-duct-hartmanncurrent"></a><div class="math-display">\[J_y(x) = \sigma E_y + \frac {G-\sigma E_y B_0}{B_0} \left [ 1- \frac {\cosh (\mathrm {Ha}\,x/a)}{\cosh (\mathrm {Ha})} \right ]. \tag{7.19}\]</div>
-Integrating Amp�re&#8217;s law then gives the induced magnetic field, <a id="eq-eq-duct-hartmannbz"></a><div class="math-display">\[b_z(x) = -\muo \int _0^x J_y(x')\,dx', \tag{7.20}\]</div>
+Integrating Amp&egrave;re&#8217;s law then gives the induced magnetic field, <a id="eq-eq-duct-hartmannbz"></a><div class="math-display">\[b_z(x) = -\muo \int _0^x J_y(x')\,dx', \tag{7.20}\]</div>
 with the additive constant fixed by symmetry or by a chosen reference level.
 </p><!--l. 239--><p class="noindent" >The cross-sectional average of the velocity is <a id="eq-eq-duct-umean"></a><div class="math-display">\[\overline {u} \equiv \frac {1}{2a} \int _{-a}^{a} u_z(x)\,dx = \frac {G-\sigma E_y B_0}{\sigma B_0^2} \left ( 1- \frac {\tanh (\mathrm {Ha})}{\mathrm {Ha}} \right ). \tag{7.21}\]</div>
 Equation (<a href="lecture7.html#eq-eq-duct-umean">7.21</a>) is the most useful form for engineering estimates because it connects the pressure gradient
