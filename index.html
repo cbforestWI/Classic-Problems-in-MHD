@@ -376,14 +376,193 @@ div.figure .caption {
 .interactive-button:hover {
   background: #163c5d;
 }
+.hero-shell {
+  margin: 1.5rem 0 2rem 0;
+  padding: 1.5rem 1.6rem 1.35rem 1.6rem;
+  background:
+    radial-gradient(circle at top right, rgba(109, 160, 196, 0.18), transparent 28%),
+    linear-gradient(135deg, #f7fbfe 0%, #eef5fa 55%, #f9fbf6 100%);
+  border: 1px solid #d5e3ec;
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgba(31, 78, 121, 0.10);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: 1.4rem;
+  align-items: start;
+}
+.hero-kicker {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  background: #dcecf7;
+  color: #1f4e79;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.hero-title {
+  margin: 0 0 0.65rem 0;
+  font-size: 2.35rem;
+  line-height: 1.08;
+}
+.hero-copy {
+  color: #415867;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.hero-copy p {
+  margin-bottom: 0.9rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.hero-button-secondary {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #bdd0dd;
+  background: rgba(255,255,255,0.85);
+  color: #1f4e79 !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.hero-side {
+  display: grid;
+  gap: 0.9rem;
+}
+.hero-note {
+  padding: 1rem 1rem 0.95rem 1rem;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid #d5e1e8;
+  border-radius: 14px;
+}
+.hero-note h3 {
+  margin: 0 0 0.45rem 0;
+  font-size: 0.98rem;
+}
+.hero-note p,
+.hero-note ul {
+  margin: 0;
+  color: #4f6776;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+.hero-note ul {
+  padding-left: 1.1rem;
+}
+.art-strip {
+  margin: 0.5rem 0 1.8rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+.art-card {
+  padding: 0.75rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.art-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.35 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #eef4f8;
+}
+.art-card strong {
+  display: block;
+  margin-top: 0.7rem;
+  color: #163c5d;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.93rem;
+}
+.art-card span {
+  display: block;
+  margin-top: 0.22rem;
+  color: #526b7a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.path-grid {
+  margin: 0 0 1.8rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+.path-card {
+  padding: 0.95rem 1rem;
+  background: linear-gradient(180deg, #fcfefd 0%, #f5f9fc 100%);
+  border: 1px solid #d7e3ec;
+  border-top: 4px solid #5b8db1;
+  border-radius: 14px;
+}
+.path-card h3 {
+  margin: 0 0 0.42rem 0;
+  font-size: 0.96rem;
+}
+.path-card p {
+  margin: 0;
+  color: #4f6776;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+@media (max-width: 1100px) {
+  .hero-grid,
+  .path-grid,
+  .art-strip {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+}
 </style>
 
 </head><body 
-><div class="tableofcontents" style="margin-top:2rem;">
-<h1 class="partHead" style="margin-top:0;"><span class="titlemark">Classic Problems in Magnetohydrodynamics</span></h1>
-<p><strong>HTML Book</strong></p>
-<p>This stitched web edition gathers the current stable lecture previews into one continuous reader with shared navigation, shared assets, and a single table of contents.</p>
-<p><a class="interactive-button" href="Classic_Problems_in_Magnetohydrodynamics.pdf">Open the PDF edition</a></p>
+><div class="hero-shell">
+<div class="hero-grid">
+<div>
+<span class="hero-kicker">Interactive Web Edition</span>
+<h1 class="hero-title">Classic Problems in Magnetohydrodynamics</h1>
+<div class="hero-copy">
+<p>These notes grew out of graduate lectures on magnetohydrodynamics given without pretending that fusion, space physics, and astrophysics are separate intellectual worlds. One of the pleasures of MHD is that the same equations reappear in liquid-metal experiments, in tokamaks and reversed-field pinches, in the solar wind, in planetary interiors, and in accretion flows.</p>
+<p>This web edition keeps that spirit, but adds interactive explorers, movies, and stitched navigation so the classic problems can be approached from several directions at once: derivation, geometry, experiment, and physical intuition.</p>
+<p>A theoretical result does not become fully intelligible until it has been reconstructed at least once. These notes are therefore organized around problems rather than formalism alone, and the algebra is carried far enough that the approximations, balances, and experimental consequences stay visible.</p>
+</div>
+<div class="hero-actions">
+<a class="interactive-button" href="Classic_Problems_in_Magnetohydrodynamics.pdf">Open the PDF edition</a>
+<a class="hero-button-secondary" href="#preview-contents">Jump to contents</a>
+<a class="hero-button-secondary" href="lecture0.html">Start with Lecture 0</a>
+</div>
+</div>
+<div class="hero-side">
+<div class="hero-note">
+<h3>How to use these notes</h3>
+<p>They are modular by design. You can read them linearly, but they also work as a problem-driven reference. Readers interested in equilibrium and stability can move quickly into tokamak geometry and kink/ballooning theory; readers drawn to astrophysical applications may prefer dynamos, shocks, solar wind, and reconnection.</p>
+</div>
+<div class="hero-note">
+<h3>What to expect</h3>
+<ul>
+<li>historical context alongside modern derivations</li>
+<li>explicit intermediate algebra rather than only final formulas</li>
+<li>experimental perspective whenever possible</li>
+<li>interactive companion tools for selected lectures</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="callout callout-overview">
 <div class="callout-title">Overview</div>
@@ -391,6 +570,17 @@ div.figure .caption {
 <p class="noindent">The current stitched edition covers Lectures 0 through 44, from the opening foundations through equilibrium, waves, kinetic MHD, interchange, kinks, TAEs, ballooning modes, tearing, helicity, reconnection, shocks, and the late-book appendices.</p>
 <p class="noindent">If you want a stable citation target or a printable version, use the <a href="Classic_Problems_in_Magnetohydrodynamics.pdf">PDF edition</a> linked above.</p>
 </blockquote></div>
+</div>
+<div class="art-strip">
+<div class="art-card"><img src="figures/cerfon_solovev_triptych.png" alt="Shaped flux surfaces and analytic equilibrium families" /><strong>Equilibrium and shaping</strong><span>Analytic Grad-Shafranov structure, shaping, reconstruction, and the geometry of confined plasmas.</span></div>
+<div class="art-card"><img src="figures/alfven_wave_polar_branches.png" alt="Polar Alfv&eacute;n-wave branch structure" /><strong>Waves and continua</strong><span>From basic Alfv&eacute;n-wave geometry to toroidal continua, gaps, and energetic-particle-driven mode structure.</span></div>
+<div class="art-card"><img src="figures/tearing_mode_profiles.png" alt="Tearing-mode current and flux profiles" /><strong>Relaxation and reconnection</strong><span>Tearing, helicity, self-organization, and the ways magnetic topology changes when ideal constraints fail.</span></div>
+</div>
+<div class="path-grid">
+<div class="path-card"><h3>Foundations</h3><p>Begin with impedance matching, one-fluid MHD, Braginskii closure, and CGL if you want the assumptions and limits made explicit from the start.</p></div>
+<div class="path-card"><h3>Equilibrium</h3><p>Jump to the Grad-Shafranov sequence for force balance, tokamak shaping, reconstruction, and the equilibrium logic behind later stability theory.</p></div>
+<div class="path-card"><h3>Stability</h3><p>Follow the ladder from interchange and kinks through internal kink, TAE, ballooning, and resistive instabilities, with explorers attached to many of the central cases.</p></div>
+<div class="path-card"><h3>Applications</h3><p>Liquid-metal flows, solar wind, disc winds, dynamos, shocks, and reconnection show how the same equations reorganize themselves in very different physical settings.</p></div>
 </div>
 <h2 class="likechapterHead"><a id="preview-contents"></a>Contents</h2>
 <div class="tableofcontents">
