@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 42 Matched Inner Tearing-Mode Solution for \(y''=-x(1-xy)\)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture41.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture43.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;42</span><br /><a 
+ id="x1-21600042"></a>Matched Inner Tearing-Mode Solution for \(y''=-x(1-xy)\)</h2>
+<!--l. 4--><p class="noindent" >Consider the inner-layer model equation <a id="eq-eq-tm_inner_ode"></a><div class="math-display">\[\frac {d^2 y}{dx^2} = -x\left (1-xy\right ), \tag{H.1}\]</div>
+or equivalently <a id="eq-eq-tm_inner_linear"></a><div class="math-display">\[y'' - x^2 y = -x. \tag{H.2}\]</div>
+We want the odd solution that is regular at the origin and matches to the outer ideal solution,
+<a id="eq-eq-tm_inner_bc"></a><div class="math-display">\[y(0)=0, \qquad xy \to 1 \quad \text {as}\quad x\to +\infty . \tag{H.3}\]</div>
+The second condition is the usual tearing-mode matching condition: the inner solution must approach the
+odd continuation of the outer ideal behavior \(y\sim 1/x\).
+</p>
+<!--l. 25--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-21700042"></a>Homogeneous solutions.</span>
+The homogeneous equation associated with Eq.&#x00A0;(H.2) is <a id="eq-eq-tm_inner_hom"></a><div class="math-display">\[y_h'' - x^2 y_h = 0. \tag{H.4}\]</div>
+Introduce <a id="eq-eq-tm_inner_subs"></a><div class="math-display">\[z = \frac {x^2}{2}, \qquad y_h(x)=x^{1/2}W(z). \tag{H.5}\]</div>
+Then Eq.&#x00A0;(H.4) becomes <a id="eq-eq-tm_inner_bessel"></a><div class="math-display">\[z^2 W_{zz} + z W_z - \left (z^2 + \frac {1}{16}\right )W = 0, \tag{H.6}\]</div>
+which is the modified-Bessel equation of order \(1/4\). A convenient basis is therefore <a id="eq-eq-tm_inner_uv"></a><div class="math-display">\[u(x)=x^{1/2} I_{1/4}\!\left (\frac {x^2}{2}\right ), \qquad v(x)=x^{1/2} K_{1/4}\!\left (\frac {x^2}{2}\right ). \tag{H.7}\]</div>
+Using the standard modified-Bessel Wronskian <a id="eq-eq-tm_inner_bessel_wronskian"></a><div class="math-display">\[I_\nu (z)K_\nu '(z)-I_\nu '(z)K_\nu (z) = -\frac {1}{z}, \tag{H.8}\]</div>
+one finds <a id="eq-eq-tm_inner_uv_wronskian"></a><div class="math-display">\[W[u,v] \equiv u v' - u' v = -2. \tag{H.9}\]</div>
+</p>
+<!--l. 64--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-21800042"></a>Green-function representation.</span>
+Because the regular solution at the origin is built from \(u\) and the decaying solution at large \(x\) is built from \(v\),
+the matched odd solution for \(x&gt;0\) is <a id="eq-eq-tm_inner_green"></a><div class="math-display">\[y(x) = \frac {1}{2}v(x)\int _0^x s\,u(s)\,ds \;+\; \frac {1}{2}u(x)\int _x^\infty s\,v(s)\,ds. \tag{H.10}\]</div>
+The odd extension to \(x&lt;0\) is then <a id="eq-eq-tm_inner_odd_extension"></a><div class="math-display">\[y(-x)=-y(x). \tag{H.11}\]</div>
+</p>
+<!--l. 80--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-21900042"></a>Small-\(x\) behavior and the exact slope.</span>
+The small-argument expansions of the modified Bessel functions give <a id="eq-eq-tm_inner_smallz"></a><div class="math-display">\[I_{1/4}(z)\sim \frac {(z/2)^{1/4}}{\Gamma (5/4)}, \qquad K_{1/4}(z)\sim \frac {1}{2}\Gamma (1/4)\left (\frac {z}{2}\right )^{-1/4}, \qquad z\to 0, \tag{H.12}\]</div>
+so that <a id="eq-eq-tm_inner_smallx_uv"></a><div class="math-display">\[u(x)\sim \frac {2\sqrt {2}}{\Gamma (1/4)}x, \qquad v(x)\sim \frac {\Gamma (1/4)}{\sqrt {2}}, \qquad x\to 0. \tag{H.13}\]</div>
+Inserting Eq.&#x00A0;(H.13) into Eq.&#x00A0;(H.10) shows that the first term is \(O(x^2)\) near the origin, while the second term is
+linear: <a id="eq-eq-tm_inner_origin_match"></a><div class="math-display">\[y(x)\sim \frac {1}{2}u(x)\int _0^\infty s\,v(s)\,ds, \qquad x\to 0. \tag{H.14}\]</div>
+Hence <a id="eq-eq-tm_inner_slope_pre"></a><div class="math-display">\[y'(0) = \frac {u'(0)}{2}\int _0^\infty s\,v(s)\,ds = \frac {\sqrt {2}}{\Gamma (1/4)} \int _0^\infty s^{3/2}K_{1/4}\!\left (\frac {s^2}{2}\right )ds. \tag{H.15}\]</div>
+Now substitute \(t=s^2/2\). Then <a id="eq-eq-tm_inner_slope_sub"></a><div class="math-display">\[\int _0^\infty s^{3/2}K_{1/4}\!\left (\frac {s^2}{2}\right )ds = 2^{1/4}\int _0^\infty t^{1/4}K_{1/4}(t)\,dt. \tag{H.16}\]</div>
+Using the standard Mellin integral <a id="eq-eq-tm_inner_mellin"></a><div class="math-display">\[\int _0^\infty t^{\mu -1}K_\nu (t)\,dt = 2^{\mu -2} \Gamma \!\left (\frac {\mu -\nu }{2}\right ) \Gamma \!\left (\frac {\mu +\nu }{2}\right ), \qquad \Re (\mu ) &gt; |\Re (\nu )|, \tag{H.17}\]</div>
+with <a id="eq-eq-tm_inner_mellin_choice"></a><div class="math-display">\[\mu =\frac {5}{4}, \qquad \nu =\frac {1}{4}, \tag{H.18}\]</div>
+we obtain <a id="eq-eq-tm_inner_slope_eval"></a><div class="math-display">\[\int _0^\infty t^{1/4}K_{1/4}(t)\,dt = 2^{-3/4}\Gamma \!\left (\frac {1}{2}\right )\Gamma \!\left (\frac {3}{4}\right ) = 2^{-3/4}\sqrt {\pi }\,\Gamma \!\left (\frac {3}{4}\right ). \tag{H.19}\]</div>
+Therefore <a id="eq-eq-tm_inner_slope_exact"></a><div class="math-display">\[y'(0) = \frac {\sqrt {\pi }\,\Gamma (3/4)}{\Gamma (1/4)} = 0.599070117367796\ldots \tag{H.20}\]</div>
+</p>
+<!--l. 158--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-22000042"></a>Large-\(x\) asymptotics.</span>
+For matching to the outer ideal solution it is useful to construct the large-\(x\) expansion directly. Write
+<a id="eq-eq-tm_inner_asym_ansatz"></a><div class="math-display">\[y(x)\sim \sum _{n=0}^\infty a_n x^{-(4n+1)}, \qquad x\to +\infty . \tag{H.21}\]</div>
+Substituting Eq.&#x00A0;(H.21) into Eq.&#x00A0;(H.2) gives <a id="eq-eq-tm_inner_asym_recur"></a><div class="math-display">\[a_0=1, \qquad a_{n+1}=(4n+1)(4n+2)a_n. \tag{H.22}\]</div>
+The first few coefficients are <a id="eq-eq-tm_inner_asym_coeffs"></a><div class="math-display">\[a_0=1, \qquad a_1=2, \qquad a_2=60, \qquad a_3=5400, \tag{H.23}\]</div>
+so that <a id="eq-eq-tm_inner_y_asym"></a><div class="math-display">\[y(x)\sim \frac {1}{x} \frac {2}{x^5} \frac {60}{x^9} \frac {5400}{x^{13}} \cdots , \tag{H.24}\]</div>
+                                                                                         
+                                                                                         
+and therefore <a id="eq-eq-tm_inner_integrand_asym"></a><div class="math-display">\[1-xy \sim -\frac {2}{x^4} -\frac {60}{x^8} -\frac {5400}{x^{12}} \cdots . \tag{H.25}\]</div>
+This makes the matching integral absolutely convergent.
+</p>
+<!--l. 205--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-22100042"></a>Exact matching integral.</span>
+Define <a id="eq-eq-tm_inner_integral_def"></a><div class="math-display">\[\mathcal {I} \equiv 2\int _0^\infty \left (1-xy\right )\,dx. \tag{H.26}\]</div>
+Integrating the Green representation once more gives <a id="eq-eq-tm_inner_integral_to_slope"></a><div class="math-display">\[\int _0^\infty \left (1-xy\right )\,dx = \sqrt {\pi }\,y'(0). \tag{H.27}\]</div>
+Combining Eq.&#x00A0;(H.27) with Eq.&#x00A0;(H.20) yields <a id="eq-eq-tm_inner_integral_exact"></a><div class="math-display">\[\mathcal {I} = 2\pi \frac {\Gamma (3/4)}{\Gamma (1/4)} = 2.123648272981939\ldots \tag{H.28}\]</div>
+</p><!--l. 231--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 231--><p class="noindent" >This appendix reduces the inner tearing-layer matching problem to one exact number.
+     The odd solution of \(y''-x^2y=-x\) is regular at the origin, tends to \(y\sim 1/x\) at large \(x\), and has the exact central
+     slope (H.20). That slope fixes the convergent matching integral \(\mathcal I\) in Eq.&#x00A0;(H.28), which
+     is the constant that later appears in the inner-layer jump condition and in the classical
+     tearing-mode scaling laws.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 34 Shocks</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture33.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture35.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;34</span><br /><a 
+ id="x1-200034"></a>Shocks</h2>
+<!--l. 29--><p class="noindent" >In the lecture on conservative form we rewrote ideal MHD as a set of local conservation laws. Once the
+equations are written in divergence form, discontinuous weak solutions are not a pathology but a
+mathematical possibility. In the Alfvén-wave lecture we also learned that a magnetized plasma supports
+several characteristic families&#8212;fast, Alfvén, and slow. MHD shocks are the nonlinear dissipative
+descendants of those same branches.
+</p><!--l. 36--><p class="noindent" >A shock forms when a driver outruns the ability of the surrounding plasma to respond smoothly. In an
+ordinary gas the key threshold is the sound speed. In a magnetized plasma the sharper statement is that
+the flow becomes super-characteristic with respect to one of the MHD wave families. Then the disturbance
+steepens, a thin internal layer forms, and the large-scale solution is described by jump conditions rather
+than by a smooth profile.
+</p><!--l. 44--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 44--><p class="noindent" >A shock in MHD is a thin non-ideal layer whose <span 
+class="ecti-1095">thickness </span>is determined by viscosity,
+     resistivity,  heat  conduction,  or  kinetic  microphysics,  but  whose  <span 
+class="ecti-1095">jump  </span>is  determined
+     almost entirely by the conservative fluxes outside the layer. Because MHD has several
+     characteristic branches, it supports several shock families rather than only the single
+     hydrodynamic compressive shock.</p></blockquote></div></div>
+<!--l. 52--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 52--><p class="noindent" >The  modern  theory  of  shocks  begins  with  the  Rankine&#8211;Hugoniot  conditions  of
+     compressible gas dynamics. The extension to magnetized fluids was developed early
+     in plasma physics by de Hoffmann and Teller, who showed in 1950 that ideal MHD
+     admits multiple shock families rather than only the single hydrodynamic compressive
+     jump <span 
+class="ecbx-1095">?</span>. That richer structure is not an accident: it follows directly from the fact that
+     MHD has several characteristic wave branches. Since then, shocks have become central
+     in  heliophysics,  astrophysics,  and  laboratory  plasma  physics  because  they  mediate
+     the conversion of directed flow energy into heat, magnetic compression, and energetic
+     particles <span 
+class="ecbx-1095">?</span>.</p></blockquote></div></div>
+<a 
+ id="x1-2001r1"></a>
+<h3 class="sectionHead"><span class="titlemark">34.1   </span> <a 
+ id="x1-30001"></a>Why shocks matter</h3>
+<!--l. 67--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-40001"></a>Localized conversion layers.</span>
+Shocks are important because they are the natural interfaces between a fast plasma flow and a
+more slowly moving or nearly stationary ambient medium. Examples include the solar wind
+striking a planetary magnetosphere, a coronal mass ejection plowing into the interplanetary
+medium, supernova ejecta sweeping through the interstellar medium, reconnection outflows
+terminating against surrounding plasma, and laboratory pistons propagating into a target plasma
+<span 
+class="ecbx-1095">?</span>.
+                                                                                         
+                                                                                         
+</p><!--l. 75--><p class="noindent" >Across a shock, density, pressure, magnetic-field direction, and flow speed can all change on a length scale
+that is tiny compared with the macroscopic flow scale. The shock therefore acts as a highly
+localized conversion layer: ram pressure is turned into thermal pressure, magnetic pressure, and
+entropy. In a collisional fluid the required irreversibility can be supplied by viscosity and heat
+conduction. In a weakly collisional or collisionless plasma the same role is played by wave&#8211;particle
+interactions, ion reflection, phase mixing, and kinetic microstructure rather than by binary collisions
+alone.
+</p>
+<!--l. 84--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-50001"></a>Outer and inner problems.</span>
+It helps to think of a shock as two coupled problems. The <span 
+class="ecti-1095">outer problem </span>determines which
+upstream and downstream states are compatible with conservation laws. The <span 
+class="ecti-1095">inner problem</span>
+determines how the plasma actually makes the transition between those two states inside the
+thin layer. Ideal MHD is already enough for the outer problem, but not for the inner one.
+That split is why one can derive the jump conditions in a purely fluid framework while still
+needing kinetic physics to understand the detailed structure of many space and laboratory
+shocks.
+</p><!--l. 94--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 94--><p class="noindent" ><span 
+class="ecbx-1095">Conceptual warning. </span>Ideal MHD does <span 
+class="ecti-1095">not  </span>create entropy. The macroscopic jump
+     conditions  therefore  do  not  by  themselves  explain  why  a  shock  is  irreversible.  A
+     physical  shock  is  the  singular  limit  of  a  thin  internal  layer  in  which  some  small
+     non-ideal effect&#8212;viscosity, resistivity, heat transport, ion reflection, or wave&#8211;particle
+     scattering&#8212;breaks time reversibility.</p></blockquote></div></div>
+<a 
+ id="x1-5001r3"></a>
+<h3 class="sectionHead"><span class="titlemark">34.2   </span> <a 
+ id="x1-60002"></a>Jump conditions from conservative form</h3>
+<!--l. 105--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-70002"></a>A one-line derivation.</span>
+Suppose a conserved variable \(U\) satisfies <a id="eq-eq-generic_conservation_law"></a><div class="math-display">\[\pp {U}{t} + \divergence \vect {F}(U) = 0. \tag{34.1}\]</div>
+Let a planar discontinuity move with speed \(V_s\) along the unit normal \(\vect {n}\). If we integrate (<a href="lecture34.html#eq-eq-generic_conservation_law">34.1</a>) across a thin
+pillbox that straddles the layer, the side-surface contributions vanish as the pillbox thickness goes to zero
+and we obtain the jump rule <a id="eq-eq-generic_jump_rule"></a><div class="math-display">\[\bigl [\vect {n}\cdot \vect {F} - V_s U\bigr ] = 0. \tag{34.2}\]</div>
+In the shock rest frame, \(V_s=0\), so each conserved normal flux must be continuous: <a id="eq-eq-steady_flux_jump"></a><div class="math-display">\[\bigl [\vect {n}\cdot \vect {F}\bigr ]=0. \tag{34.3}\]</div>
+This is the whole logic behind the Rankine&#8211;Hugoniot conditions.
+</p>
+<!--l. 126--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-80002"></a>Planar-shock geometry.</span>
+Take a planar shock at rest, with unit normal \(\vect {n}\) directed from upstream state 1 to downstream state 2.
+Decompose the flow and field into normal and tangential pieces, <a id="eq-eq-shock_component_definitions"></a><div class="math-display">\[u_n = \uvec \cdot \vect {n}, \qquad \uvec _t = \uvec - u_n\vect {n}, \qquad B_n = \B \cdot \vect {n}, \qquad \B _t = \B - B_n\vect {n}. \tag{34.4}\]</div>
+If \([f]\equiv f_2-f_1\), then the conservative MHD laws give </p><div class="subequations"><a id="eq-eq-shock_mass_jump"></a><div class="math-display">\[[\rho u_n] = 0, \tag{34.5a}\]</div><a id="eq-eq-shock_normal_momentum_jump"></a><div class="math-display">\[\left [\rho u_n^2 + p + \frac {B_t^2-B_n^2}{2\muo }\right ] = 0, \tag{34.5b}\]</div><a id="eq-eq-shock_tangential_momentum_jump"></a><div class="math-display">\[\left [\rho u_n\uvec _t - \frac {B_n\B _t}{\muo }\right ] = 0, \tag{34.5c}\]</div><a id="eq-eq-shock_normal_field_jump"></a><div class="math-display">\[[B_n] = 0, \tag{34.5d}\]</div><a id="eq-eq-shock_tangential_field_jump"></a><div class="math-display">\[[u_n\B _t - B_n\uvec _t] = 0, \tag{34.5e}\]</div><a id="eq-eq-shock_energy_jump"></a><div class="math-display">\[\left [ u_n \left ( \frac {1}{2}\rho u^2 + \frac {\gamma }{\gamma -1}p + \frac {B^2}{\muo } \right ) - \frac {B_n(\uvec \cdot \B )}{\muo } \right ] = 0. \tag{34.5f}\]</div></div>
+                                                                                         
+                                                                                         
+<!--l. 178--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-90002"></a>What each condition means.</span>
+Equation (34.5a) says that the mass flux <a id="eq-eq-shock_mass_flux"></a><div class="math-display">\[m \equiv \rho u_n \tag{34.6}\]</div>
+is constant across the layer. Equation (34.5d) is just the statement that magnetic field lines do not begin or
+end on the shock. The momentum jump conditions show explicitly how the Maxwell stress modifies the
+hydrodynamic pressure balance, while (34.5e) is the stationary form of the induction law and is equivalent
+to continuity of the tangential electric field.
+</p><!--l. 190--><p class="noindent" >These equations are the precise mathematical sense in which shocks tie back to the conservative-form
+lecture: a shock is not a failure of the equations, but a weak solution of those same conservation
+laws.
+<a 
+ id="x1-9001r6"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">34.3   </span> <a 
+ id="x1-100003"></a>Entropy production and physical admissibility</h3>
+<!--l. 198--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-110003"></a>Entropy must increase.</span>
+The Rankine&#8211;Hugoniot conditions alone do not guarantee that a mathematical jump is a physical shock. A
+genuine shock must also satisfy the second law of thermodynamics. For specific entropy \(s\), one may write
+the entropy balance schematically as <div class="math-display">\[\pp {(\rho s)}{t} + \divergence (\rho s\uvec ) = \sigma , \qquad \sigma \ge 0,\]</div>
+where \(\sigma \) is the irreversible entropy production rate. For a steady planar shock this becomes
+<a id="eq-eq-entropy_jump_condition"></a><div class="math-display">\[m[s] = \int _{-\infty }^{+\infty } \sigma \, dn &gt; 0. \tag{34.8}\]</div>
+So the downstream state must have higher entropy than the upstream state.
+</p>
+<!--l. 215--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-120003"></a>Why ideal MHD still knows about shocks.</span>
+Ideal MHD is formally dissipationless, so the outer equations do not display the microscopic mechanism
+that creates the entropy. Nevertheless, the jump conditions are still correct outside the layer because they
+are just conservation laws. The shock should therefore be viewed as the singular limit of a thin
+internal structure in which small viscosity, resistivity, heat transport, or kinetic processes break
+reversibility. The entropy increase is then the surviving macroscopic memory of that small-scale
+physics.
+</p>
+<!--l. 223--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-130003"></a>Evolutionary conditions.</span>
+In MHD, the entropy condition still does not completely determine which discontinuities are physically
+realizable because there are several characteristic branches. One also asks whether a discontinuity is
+<span 
+class="ecti-1095">evolutionary</span>: loosely speaking, the correct number of characteristics must impinge on the layer so that the
+downstream state is determined by the upstream data together with the internal dissipative structure. In
+isotropic ideal MHD, the standard compressive evolutionary shocks are the fast and slow shocks.
+Intermediate shocks are more subtle, and their admissibility depends on the model and on the detailed
+regularization of the layer <span 
+class="ecbx-1095">?</span>.
+<a 
+ id="x1-13001r10"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">34.4   </span> <a 
+ id="x1-140004"></a>Shock families, geometry, and useful frames</h3>
+<!--l. 237--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-150004"></a>Connection to the wave lecture.</span>
+The classification of MHD shocks follows directly from the wave families derived in the Alfvén-wave
+lecture. For propagation along the shock normal, the fast and slow phase speeds are <a id="eq-eq-normal_magnetosonic_speeds"></a><div class="math-display">\[c_{\mathrm {f},\mathrm {sl}}^2 = \frac {1}{2} \left [ c_s^2 + v_A^2 \pm \sqrt {\left (c_s^2+v_A^2\right )^2 - 4c_s^2 v_{A,n}^2} \right ], \qquad v_{A,n}^2 = \frac {B_n^2}{\muo \rho }, \tag{34.9}\]</div>
+where \(c_s^2=\gamma p/\rho \) and \(v_A^2=B^2/(\muo \rho )\). A shock is called fast, slow, or intermediate according to which characteristic branch is
+crossed when going from state 1 to state 2.
+</p>
+<!--l. 258--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-160004"></a>Geometry versus family.</span>
+It is useful to separate <span 
+class="ecti-1095">geometry </span>from <span 
+class="ecti-1095">family</span>. Geometrically, one speaks of parallel, perpendicular, and
+oblique shocks according to the upstream angle between \(\B _1\) and the shock normal \(\vect {n}\). Dynamically, one speaks
+of fast, slow, and intermediate shocks according to the MHD characteristic family involved. A
+shock can therefore be, for example, an oblique fast shock or a quasi-parallel intermediate
+shock.
+</p>
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 265--><p class="noindent" ><a 
+ id="x1-160011"></a></p><hr class="float" /><div class="float" 
+>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+
+ <table id="TBL-3" class="tabular" 
+ 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1" /><col 
+id="TBL-3-2" /><col 
+id="TBL-3-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:normal; text-align:left;" id="TBL-3-1-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Type</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-1-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Relation</span>
+  <span 
+class="ecrm-1000">to</span>
+  <span 
+class="ecrm-1000">wave</span>
+  <span 
+class="ecrm-1000">branch</span>                                         </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-1-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Typical</span>
+  <span 
+class="ecrm-1000">signature</span>                                      </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:normal; text-align:left;" id="TBL-3-2-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Fast</span>
+  <span 
+class="ecrm-1000">shock</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-2-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Nonlinear</span>
+  <span 
+class="ecrm-1000">continuation</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">fast</span>
+  <span 
+class="ecrm-1000">magnetosonic</span>
+  <span 
+class="ecrm-1000">branch</span>                                         </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-2-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Compresses</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">plasma</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">typically</span>
+  <span 
+class="ecrm-1000">increases</span>
+  \(|\B _t|\)<span 
+class="ecrm-1000">;</span>
+  <span 
+class="ecrm-1000">common</span>
+  <span 
+class="ecrm-1000">at</span>
+  <span 
+class="ecrm-1000">bow</span>
+  <span 
+class="ecrm-1000">shocks</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">piston-driven</span>
+  <span 
+class="ecrm-1000">fronts.</span>                                         </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:normal; text-align:left;" id="TBL-3-3-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Slow</span>
+  <span 
+class="ecrm-1000">shock</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-3-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Nonlinear</span>
+  <span 
+class="ecrm-1000">continuation</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">slow</span>
+  <span 
+class="ecrm-1000">branch</span>                                         </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-3-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Compresses</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">plasma</span>
+  <span 
+class="ecrm-1000">while</span>
+  <span 
+class="ecrm-1000">typically</span>
+  <span 
+class="ecrm-1000">decreasing</span>
+  \(|\B _t|\)<span 
+class="ecrm-1000">;</span>
+  <span 
+class="ecrm-1000">central</span>
+  <span 
+class="ecrm-1000">in</span>
+  <span 
+class="ecrm-1000">many</span>
+  <span 
+class="ecrm-1000">reconnection-exhaust</span>
+  <span 
+class="ecrm-1000">models.</span>                                        </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:normal; text-align:left;" id="TBL-3-4-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Intermediate</span>
+  <span 
+class="ecrm-1000">shock</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-4-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Associated</span>
+  <span 
+class="ecrm-1000">with</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">Alfv</span><span 
+class="ecrm-1000">én</span>
+  <span 
+class="ecrm-1000">branch</span>                                         </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-4-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Rotates</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">tangential</span>
+  <span 
+class="ecrm-1000">magnetic</span>
+  <span 
+class="ecrm-1000">field</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">can</span>
+  <span 
+class="ecrm-1000">involve</span>
+  <span 
+class="ecrm-1000">reversal</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">one</span>
+  <span 
+class="ecrm-1000">tangential</span>
+  <span 
+class="ecrm-1000">component;</span>
+  <span 
+class="ecrm-1000">admissibility</span>
+  <span 
+class="ecrm-1000">is</span>
+  <span 
+class="ecrm-1000">more</span>
+  <span 
+class="ecrm-1000">subtle</span>
+  <span 
+class="ecrm-1000">than</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">fast</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">slow</span>
+  <span 
+class="ecrm-1000">shocks.</span>                                        </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:normal; text-align:left;" id="TBL-3-5-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Switch-on</span>
+  <span 
+class="ecrm-1000">shock</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-5-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Special</span>
+  <span 
+class="ecrm-1000">fast-shock</span>
+  <span 
+class="ecrm-1000">limit</span>                                            </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-5-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Upstream</span>
+  \(\B _{t1}=0\)
+  <span 
+class="ecrm-1000">but</span>
+  <span 
+class="ecrm-1000">downstream</span>
+  \(\B _{t2}\neq 0\)<span 
+class="ecrm-1000">.</span>                                                 </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:normal; text-align:left;" id="TBL-3-6-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Switch-off</span>
+  <span 
+class="ecrm-1000">shock</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-6-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Special</span>
+  <span 
+class="ecrm-1000">slow-shock</span>
+  <span 
+class="ecrm-1000">limit</span>                                            </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-6-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Downstream</span>
+  \(\B _{t2}=0\)<span 
+class="ecrm-1000">;</span>
+  <span 
+class="ecrm-1000">often</span>
+  <span 
+class="ecrm-1000">discussed</span>
+  <span 
+class="ecrm-1000">in</span>
+  <span 
+class="ecrm-1000">reconnection</span>
+  <span 
+class="ecrm-1000">theory.</span>                                         </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:normal; text-align:left;" id="TBL-3-7-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Rotational</span>
+  <span 
+class="ecrm-1000">discontinuity</span>          </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-7-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Alfv</span><span 
+class="ecrm-1000">énic</span>
+  <span 
+class="ecrm-1000">discontinuity,</span>
+  <span 
+class="ecrm-1000">not</span>
+  <span 
+class="ecrm-1000">a</span>
+  <span 
+class="ecrm-1000">compressive</span>
+  <span 
+class="ecrm-1000">shock</span>                                          </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-7-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Field</span>
+  <span 
+class="ecrm-1000">direction</span>
+  <span 
+class="ecrm-1000">rotates</span>
+  <span 
+class="ecrm-1000">while</span>
+  <span 
+class="ecrm-1000">density,</span>
+  <span 
+class="ecrm-1000">pressure,</span>
+  <span 
+class="ecrm-1000">and</span>
+  \(|\B |\)
+  <span 
+class="ecrm-1000">change</span>
+  <span 
+class="ecrm-1000">little.</span>                                           </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:normal; text-align:left;" id="TBL-3-8-1"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Tangential/contact</span>
+  <span 
+class="ecrm-1000">discontinuity</span>          </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-8-2"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">Non-shock</span>
+  <span 
+class="ecrm-1000">interfaces</span>                                     </p></td><td  style="white-space:normal; text-align:left;" id="TBL-3-8-3"  
+class="td11"> <!--l. 280--><p class="noindent" ><span 
+class="ecrm-1000">No</span>
+  <span 
+class="ecrm-1000">mass</span>
+  <span 
+class="ecrm-1000">flux</span>
+  <span 
+class="ecrm-1000">through</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">layer;</span>
+  <span 
+class="ecrm-1000">pressure</span>
+  <span 
+class="ecrm-1000">balance</span>
+  <span 
+class="ecrm-1000">replaces</span>
+  <span 
+class="ecrm-1000">entropy</span>
+  <span 
+class="ecrm-1000">production</span>
+  <span 
+class="ecrm-1000">as</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">main</span>
+  <span 
+class="ecrm-1000">constraint.</span>                                    </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-9-"><td  style="white-space:normal; text-align:left;" id="TBL-3-9-1"  
+class="td11"> <!--l. 280--><p class="noindent" >                 </p></td></tr></table>                                                                     
+                                                                                         
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;34.1: </span><span  
+class="content">Common MHD shock and discontinuity families.</span></div><!--tex4ht:label?: x1-160011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 285--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-170004"></a>Coplanarity.</span>
+For a steady planar ideal-MHD shock with nonzero mass flux, the upstream field, the downstream field,
+and the shock normal all lie in one plane. The flow vectors also lie in that plane. This coplanarity is one
+reason oblique shocks can often be reduced to an effective two-dimensional geometry even when they are
+embedded in a fully three-dimensional plasma configuration.
+</p>
+<!--l. 292--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-180004"></a>The de Hoffmann&#8211;Teller frame.</span>
+A particularly useful frame for analyzing oblique shocks is the <span 
+class="ecti-1095">de Hoffmann&#8211;Teller </span>frame <span 
+class="ecbx-1095">?</span>. From (34.5e)
+one sees that the combination <a id="eq-eq-vht_definition"></a><div class="math-display">\[\vect {v}_{\mathrm {HT}} \equiv \uvec _t - \frac {u_n}{B_n}\B _t \tag{34.10}\]</div>
+is the same on both sides of the shock whenever \(B_n\neq 0\). Boosting into the frame moving tangentially with
+velocity \(\vect {v}_{\mathrm {HT}}\) gives <a id="eq-eq-ht_parallel_flow"></a><div class="math-display">\[\uvec ' = \uvec - \vect {v}_{\mathrm {HT}} = \frac {u_n}{B_n}\B , \qquad \E ' = -\uvec '\times \B = 0. \tag{34.11}\]</div>
+So in the de Hoffmann&#8211;Teller frame the plasma flow is parallel to the magnetic field on both sides of the
+shock.
+</p>
+<!--l. 313--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-190004"></a>Why this frame helps.</span>
+In the de Hoffmann&#8211;Teller frame, one can think geometrically rather than algebraically. Fast shocks
+correspond to stronger bending and amplification of the tangential field, while slow shocks reduce the
+tangential field and may approach the switch-off limit. Rotational discontinuities also look
+especially simple in this frame because they are basically Alfvénic rotations of \(\B _t\) with little
+compression.
+</p>
+<!--l. 320--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-200004"></a>Important limitation.</span>
+A finite de Hoffmann&#8211;Teller frame requires \(B_n\neq 0\). For an exactly perpendicular shock, where the
+upstream field is tangent to the shock surface, the necessary tangential boost diverges and no
+finite de Hoffmann&#8211;Teller frame exists. The construction is thus most useful for oblique shocks
+and for quasi-parallel or quasi-perpendicular limits, rather than for the exactly perpendicular
+case.
+<a 
+ id="x1-20001r14"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">34.5   </span> <a 
+ id="x1-210005"></a>Worked examples: computing the downstream state</h3>
+<!--l. 331--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-220005"></a>Parallel and perpendicular limits.</span>
+The fully oblique problem is algebraically richer, but the parallel and perpendicular limits already show
+the main logic. In the parallel case the magnetic field drops out, so one sees entropy selection in exactly the
+same way as for an ordinary gas-dynamic normal shock. In the perpendicular case the field is compressed
+with the plasma, so one sees explicitly how magnetic pressure modifies the downstream state
+and why the relevant threshold is the fast magnetosonic speed rather than the sound speed
+alone.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 339--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-230005"></a>Example 1: parallel shock.</span>
+Take the shock normal parallel to the upstream magnetic field, with \(\uvec _{t1}=\uvec _{t2}=0\) and \(\B _{t1}=\B _{t2}=0\). Then \(B_n=B\) is continuous and the
+magnetic terms cancel from the momentum and energy jumps. The Rankine&#8211;Hugoniot conditions reduce
+to the hydrodynamic normal-shock equations, <a id="eq-eq-parallel_shock_energy"></a><div class="math-display">\[\begin{aligned}\rho _1 u_1 &amp;= \rho _2 u_2 \equiv m, \\ \rho _1 u_1^2 + p_1 &amp;= \rho _2 u_2^2 + p_2, \\ \frac {1}{2}u_1^2 + \frac {\gamma }{\gamma -1}\frac {p_1}{\rho _1} &amp;= \frac {1}{2}u_2^2 + \frac {\gamma }{\gamma -1}\frac {p_2}{\rho _2},\end{aligned} \tag{34.14}\]</div>
+</p><!--l. 354--><p class="noindent" >with \(B_2=B_1\).
+</p><!--l. 356--><p class="noindent" >Define the compression ratio and upstream sonic Mach number by <a id="eq-eq-parallel_shock_defs"></a><div class="math-display">\[r \equiv \frac {\rho _2}{\rho _1}, \qquad M_{s1} \equiv \frac {u_1}{c_{s1}}, \qquad c_{s1}^2 = \frac {\gamma p_1}{\rho _1}. \tag{34.15}\]</div>
+From mass conservation, <a id="eq-eq-parallel_u_ratio"></a><div class="math-display">\[\frac {u_2}{u_1} = \frac {1}{r}. \tag{34.16}\]</div>
+Substitute this into the momentum jump: <div class="math-display">\[\rho _1 u_1^2 + p_1 = \rho _1 \frac {u_1^2}{r} + p_2,\]</div>
+which gives <a id="eq-eq-parallel_pressure_ratio_intermediate"></a><div class="math-display">\[\frac {p_2}{p_1} = 1 + \gamma M_{s1}^2\left (1-\frac {1}{r}\right ). \tag{34.18}\]</div>
+Now substitute (<a href="lecture34.html#eq-eq-parallel_u_ratio">34.16</a>) and (<a href="lecture34.html#eq-eq-parallel_pressure_ratio_intermediate">34.18</a>) into the energy equation (<a href="lecture34.html#eq-eq-parallel_shock_energy">34.14</a>). After multiplying through by \(2(\gamma -1)/(u_1^2)\) and
+simplifying, one finds the factorized relation <a id="eq-eq-parallel_factorized_r"></a><div class="math-display">\[(r-1) \left [ \bigl ((\gamma -1)M_{s1}^2+2\bigr )r - (\gamma +1)M_{s1}^2 \right ] = 0. \tag{34.19}\]</div>
+Thus there are two algebraic branches: <a id="eq-eq-parallel_r_solution"></a><div class="math-display">\[r = 1 \qquad \text {or}\qquad r = \frac {(\gamma +1)M_{s1}^2}{(\gamma -1)M_{s1}^2+2}. \tag{34.20}\]</div>
+The first is the trivial no-shock solution. The second is the compressive branch when \(M_{s1}&gt;1\), but it becomes an
+expansion branch when \(M_{s1}&lt;1\).
+</p><!--l. 402--><p class="noindent" >The downstream state then follows directly: <div class="math-display">\[\begin{aligned}\frac {u_2}{u_1} &amp;= \frac {1}{r}, \\ \frac {p_2}{p_1} &amp;= \frac {2\gamma M_{s1}^2-(\gamma -1)}{\gamma +1}, \\ \frac {T_2}{T_1} &amp;= \frac {p_2/p_1}{r}, \\ M_{s2}^2 &amp;= \frac {1+\tfrac {1}{2}(\gamma -1)M_{s1}^2}{\gamma M_{s1}^2-\tfrac {1}{2}(\gamma -1)}.\end{aligned}\]</div>
+</p><!--l. 413--><p class="noindent" >For an ideal gas the entropy jump is <a id="eq-eq-parallel_entropy_jump"></a><div class="math-display">\[\frac {\Delta s}{c_v} = \ln \left (\frac {p_2/p_1}{r^{\gamma }}\right ). \tag{34.25}\]</div>
+In the strong-shock limit \(M_{s1}\gg 1\), the compression ratio approaches the familiar maximum <a id="eq-eq-parallel_strong_shock_limit"></a><div class="math-display">\[r \to \frac {\gamma +1}{\gamma -1}. \tag{34.26}\]</div>
+</p><!--l. 425--><p class="noindent" >For a concrete number, let \(\gamma =5/3\) and \(M_{s1}=3\). Then <div class="math-display">\[r = 3, \qquad \frac {u_2}{u_1} = \frac {1}{3}, \qquad \frac {p_2}{p_1} = 11, \qquad \frac {T_2}{T_1} = \frac {11}{3}, \qquad M_{s2} = \sqrt {\frac {3}{11}} \simeq 0.522.\]</div>
+The entropy rises by <div class="math-display">\[\frac {\Delta s}{c_v} = \ln \left (\frac {11}{3^{5/3}}\right ) \simeq 0.567 &gt; 0,\]</div>
+so this is a physical shock.
+</p><!--l. 446--><p class="noindent" >Now take \(\gamma =5/3\) but \(M_{s1}=0.8\). Equation (<a href="lecture34.html#eq-eq-parallel_r_solution">34.20</a>) still returns a nontrivial algebraic root, <div class="math-display">\[r \simeq 0.703, \qquad \frac {p_2}{p_1} \simeq 0.550, \qquad \frac {\Delta s}{c_v} \simeq -1.12\times 10^{-2}.\]</div>
+This is an expansion discontinuity rather than a shock. It satisfies the flux balances but violates
+the entropy condition, so it is not physically admissible. This is the clearest place to see why
+conservation laws alone are not enough: one needs entropy production to select the shock
+branch.
+</p>
+<!--l. 460--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-240005"></a>Example 2: perpendicular shock.</span>
+Now take \(B_n=0\), \(\uvec _{t1}=\uvec _{t2}=0\), and let \(B_1\) and \(B_2\) denote the upstream and downstream tangential field strengths. The induction
+jump condition gives <div class="math-display">\[u_1 B_1 = u_2 B_2,\]</div>
+so with \(r=\rho _2/\rho _1\) and \(\rho _1 u_1 = \rho _2 u_2\), <a id="eq-eq-perpendicular_kinematics"></a><div class="math-display">\[\frac {u_2}{u_1} = \frac {1}{r}, \qquad \frac {B_2}{B_1} = r. \tag{34.31}\]</div>
+Thus a perpendicular shock compresses magnetic flux and mass by the same factor.
+</p><!--l. 475--><p class="noindent" >It is convenient to use the upstream Alfvén Mach number and plasma beta, <a id="eq-eq-perpendicular_upstream_defs"></a><div class="math-display">\[M_{A1} \equiv \frac {u_1}{v_{A1}}, \qquad v_{A1}^2 = \frac {B_1^2}{\muo \rho _1}, \qquad \beta _1 \equiv \frac {2\muo p_1}{B_1^2}. \tag{34.32}\]</div>
+The normal momentum jump becomes <a id="eq-eq-perpendicular_pressure_ratio"></a><div class="math-display">\[\frac {p_2}{p_1} = 1 + \frac {2M_{A1}^2}{\beta _1}\left (1-\frac {1}{r}\right ) + \frac {1-r^2}{\beta _1}. \tag{34.33}\]</div>
+Using the energy jump then yields <a id="eq-eq-perpendicular_factorized_r"></a><div class="math-display">\[(r-1) \left [ (2-\gamma )r^2 + \Bigl ((\gamma -1)M_{A1}^2 + \gamma (\beta _1+1)\Bigr )r - (\gamma +1)M_{A1}^2 \right ] = 0. \tag{34.34}\]</div>
+Again \(r=1\) is the trivial branch, while the nontrivial root determines the shock compression. The relevant
+threshold is now the upstream fast magnetosonic speed. For strictly perpendicular propagation,
+<a id="eq-eq-perpendicular_fast_mach"></a><div class="math-display">\[c_{f1}^2 = c_{s1}^2 + v_{A1}^2, \qquad M_{f1}^2 \equiv \frac {u_1^2}{c_{f1}^2} = \frac {M_{A1}^2}{1+\gamma \beta _1/2}. \tag{34.35}\]</div>
+A compressive perpendicular shock therefore requires \(M_{f1}&gt;1\).
+</p><!--l. 521--><p class="noindent" >As an example, take \(\gamma =5/3\), \(\beta _1=1\), and \(M_{A1}=3\). Then <div class="math-display">\[M_{f1} = \frac {3}{\sqrt {1+5/6}} \simeq 2.22,\]</div>
+                                                                                         
+                                                                                         
+so the upstream flow is super-fast. Solving (<a href="lecture34.html#eq-eq-perpendicular_factorized_r">34.34</a>) gives <div class="math-display">\[r \simeq 2.371.\]</div>
+The downstream state follows immediately: <div class="math-display">\[\frac {u_2}{u_1} \simeq 0.422, \qquad \frac {B_2}{B_1} \simeq 2.371, \qquad \frac {p_2}{p_1} \simeq 6.79, \qquad \frac {T_2}{T_1} \simeq 2.86.\]</div>
+The downstream fast Mach number is <div class="math-display">\[M_{f2} = \frac {u_2}{\sqrt {c_{s2}^2+v_{A2}^2}} = \frac {M_{A1}}{\sqrt {r^3 + \tfrac {1}{2}\gamma \beta _1 (p_2/p_1) r}} \simeq 0.580,\]</div>
+so the shock has converted a super-fast upstream flow into a sub-fast downstream flow, as expected. The
+entropy rise is <div class="math-display">\[\frac {\Delta s}{c_v} = \ln \left (\frac {6.79}{2.371^{5/3}}\right ) \simeq 0.476 &gt; 0.\]</div>
+</p><!--l. 557--><p class="noindent" >It is also useful to see what happens below threshold. With the same \(\gamma =5/3\) and \(\beta _1=1\) but \(M_{A1}=1.2\), one has \(M_{f1}\simeq 0.886&lt;1\). The nontrivial
+positive root of (<a href="lecture34.html#eq-eq-perpendicular_factorized_r">34.34</a>) is then <div class="math-display">\[r \simeq 0.840, \qquad \frac {p_2}{p_1} \simeq 0.745, \qquad \frac {\Delta s}{c_v} \simeq -3.08\times 10^{-3}.\]</div>
+So the algebra again offers an expansion branch, but not a physical shock. The entropy condition and the
+requirement that the upstream flow be super-fast eliminate it.
+</p>
+<!--l. 570--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-250005"></a>Takeaway from the examples.</span>
+These two limits show the logic that survives in the more general oblique problem. First, the conservative
+laws determine a small number of algebraic branches for the downstream state. Second, not all of those
+branches are physical. The admissible shock is the one that is compressive, raises the entropy, and moves
+the flow from super-characteristic upstream to sub-characteristic downstream for the appropriate MHD
+family.
+<a 
+ id="x1-25001r22"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">34.6   </span> <a 
+ id="x1-260006"></a>Shock structure and what ideal MHD leaves out</h3>
+<!--l. 581--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-270006"></a>Collisional versus collisionless layers.</span>
+The jump conditions say nothing about the detailed width of the transition. In a collisional plasma, one
+expects a thickness controlled by viscosity, thermal transport, and possibly resistivity. In a collisionless
+plasma, the layer instead develops ion-scale or electron-scale substructure, reflected particles, and
+dispersive fields. The shock is still a large-scale MHD object in the sense that the upstream and
+downstream states obey Rankine&#8211;Hugoniot balance, but the actual dissipation is supplied by kinetic
+physics.
+</p>
+<!--l. 589--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-280006"></a>Why this matters conceptually.</span>
+This split between outer jump conditions and inner layer physics is the same structural idea
+that appears in reconnection and tearing modes. In all three problems the large-scale solution
+determines the drive, while a thin non-ideal layer determines the irreversible outcome. In shocks,
+however, the layer is usually not centered on a rational surface or a neutral line; instead it is the
+narrow conversion region required to connect two bulk states that can no longer be joined
+smoothly.
+</p><!--l. 598--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 598--><p class="noindent" ><span 
+class="ecbx-1095">Do  not  confuse  a  shock  with  every  sharp  front. </span>A  tangential  discontinuity
+     or contact discontinuity can also be thin, but it is not a shock because there is no
+     compressive transition selected by entropy production. A rotational discontinuity can
+                                                                                         
+                                                                                         
+     rotate the field sharply while remaining essentially Alfvénic. The word &#8220;shock&#8221; should
+     be reserved for the irreversible compressive layers that satisfy both jump conditions and
+     an admissibility condition.</p></blockquote></div></div>
+<a 
+ id="x1-28001r27"></a>
+<h3 class="sectionHead"><span class="titlemark">34.7   </span> <a 
+ id="x1-290007"></a>Experimental perspective</h3>
+<!--l. 610--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-300007"></a>Why shock experiments are hard.</span>
+Laboratory studies of MHD shocks are challenging because one must produce a plasma that is
+simultaneously compressible, sufficiently magnetized, and driven fast enough to cross the relevant
+characteristic speed. In that sense shock experiments are more demanding than the classic liquid-metal
+Alfvén-wave experiments discussed earlier: wave propagation only requires magnetic tension and
+conductivity, whereas shock formation also requires a strong nonlinear drive and an internal dissipation
+mechanism. Modern shock experiments therefore span laser-produced plasmas, pulsed-power devices, and
+large magnetized plasma facilities.
+</p>
+<!--l. 619--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-310007"></a>Wisconsin programme.</span>
+At Wisconsin, the WiPAL and WiPPL facilities described by Forest and collaborators provide a flexible
+setting for this programme <span 
+class="ecbx-1095">?</span>. On the Big Red Ball, Endrizzi, Egedal, Forest and co-workers resolved the
+structure of a supercritical perpendicular shock produced by a large-radius theta pinch. They
+observed magnetically driven supermagnetosonic perpendicular flows, a reflected-ion foot,
+Hall-current magnetic structure, and adiabatic electron heating, giving a particularly clear
+laboratory example of how a collisionless shock departs from the simplest single-fluid picture
+<span 
+class="ecbx-1095">?</span>.
+</p><!--l. 629--><p class="noindent" >A broader account is given in Endrizzi&#8217;s dissertation, which treated the formation of both parallel and
+perpendicular collisionless shocks in the Big Red Ball and emphasized the bridge between MHD jump
+conditions and kinetic shock substructure <span 
+class="ecbx-1095">?</span>.
+</p>
+<!--l. 634--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-320007"></a>Shocks in reconnection-driven flows.</span>
+On TREX, Olson, Egedal, Endrizzi, Forest and collaborators identified a shock interface between the
+far-upstream supersonic inflow and a region of magnetic-flux pileup during driven reconnection. There the
+shock is not merely incidental; it is part of the force balance that regulates the inflow and
+helps connect the measured layer structure to the Rankine&#8211;Hugoniot constraints derived above
+<span 
+class="ecbx-1095">?</span>.
+</p><!--l. 641--><p class="noindent" >Related Big Red Ball experiments have also characterized fast magnetosonic waves driven by
+compact-toroid injection along an applied field. Those measurements do not yet constitute a fully
+developed shock, but they isolate the fast branch that, at larger amplitude, steepens into one of the
+standard MHD shock families <span 
+class="ecbx-1095">?</span>.
+</p><!--l. 648--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+                                                                                         
+                                                                                         
+   <li class="itemize">The jump conditions for a shock come directly from the conservative fluxes of MHD.
+   </li>
+   <li class="itemize">Entropy production and evolutionary conditions are what distinguish a physical shock
+   from a merely algebraic discontinuity.
+   </li>
+   <li class="itemize">MHD supports multiple shock families because it supports multiple wave families.
+   </li>
+   <li class="itemize">Ideal  MHD  determines  the  outer  jump,  but  the  internal  shock  thickness  and
+   irreversibility come from non-ideal transport or kinetic physics.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-330007"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes généraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mémoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;équilibre et le mouvement intérieur des corps solides
+  ou fluides, élastiques ou non élastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">ét</span><span 
+class="ecti-1095">é Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-340007"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 34.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from a generic conservation law (<a href="lecture34.html#eq-eq-generic_conservation_law">34.1</a>), derive the jump rule (<a href="lecture34.html#eq-eq-generic_jump_rule">34.2</a>) for
+                a discontinuity moving with speed \(V_s\). Then show explicitly how the steady shock
+                conditions follow in the shock rest frame.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 34.2.</span>  </dt><dd 
+class="enumerate-enumitem">For the parallel shock, take the strong-shock limit \(M_{s1}\gg 1\) and show directly from (<a href="lecture34.html#eq-eq-parallel_r_solution">34.20</a>)
+                that the compression ratio approaches \((\gamma +1)/(\gamma -1)\). Evaluate this limit for \(\gamma =5/3\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 34.3.</span>  </dt><dd 
+class="enumerate-enumitem">For a perpendicular shock, use (<a href="lecture34.html#eq-eq-perpendicular_kinematics">34.31</a>) to show that the magnetic pressure jump
+                scales like \(r^2\). Explain physically why this makes the perpendicular problem different
+                from the hydrodynamic one even though both are described by Rankine&#8211;Hugoniot
+                balances.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 34.4.</span>  </dt><dd 
+class="enumerate-enumitem">Verify the de Hoffmann&#8211;Teller construction by showing that continuity of the
+                tangential electric field implies that the quantity \(\uvec _t-(u_n/B_n)\B _t\) is the same on both sides of an
+                oblique shock.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 395--><p class="noindent" >
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

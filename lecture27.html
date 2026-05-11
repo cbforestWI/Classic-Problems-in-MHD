@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 27 Bussac: The Toroidal \(n=1\) Internal Kink</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture26.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture28.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;27</span><br /><a 
+ id="x1-17200027"></a>Bussac: The Toroidal \(n=1\) Internal Kink</h2>
+<!--l. 7--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 7--><p class="noindent" >The ideal internal kink and the high-\(n\) ballooning mode are not separate uses of ideal
+     MHD. They are two different asymptotic reductions of the <tspan font-family="ecti" font-size="1095">same </tspan>axisymmetric tokamak
+     energy functional. In the ballooning appendix we started from the exact two-dimensional
+     toroidal functional, eliminated \(\xi _\parallel \) variationally, and then took a high-\(n\) field-line-localized
+     limit.  Here  we  start  from  that  same  toroidal  \(\delta W\),  keep  \(n=1\),  and  instead  carry  out  an
+     inverse-aspect-ratio expansion. The result is the Bussac picture: toroidicity couples the
+     main \(m=1\) core shift to stable sidebands, and after those sidebands are eliminated the effective
+     \(n=1\) energy is no longer the cylindrical one.</p></blockquote></div></div>
+<!--l. 19--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 19--><p class="noindent" >The cylindrical \(m=1\) internal kink was worked out by Rosenbluth, Dagazian, and Rutherford,
+     who showed that the minimizing displacement is essentially a rigid core shift cut off
+     at the \(q=1\) surface <a 
+href="#XRosenbluth1973">Rosenbluth et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XRosenbluth1973">1973</a>]. Bussac, Pellat, Edery, and Soulé then asked
+     what happens when the same mode is treated in toroidal geometry, where \(R=R_0+r\cos \theta \) and the
+     equilibrium can no longer be strictly cylindrical <a 
+href="#XBussac1975">Bussac et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBussac1975">1975</a>]. Their answer is
+     one of the classic tokamak-stability results: the true \(n=1\) internal kink can be <tspan font-family="ecti" font-size="1095">stable </tspan>at low
+     pressure because sideband coupling produces a toroidal stabilizing term that is absent
+     in the periodic cylinder.
+     </p><!--l. 29--><p class="noindent" >That is exactly why it is worth recasting the calculation in the language of the ballooning
+     appendix. One sees directly that Mercier, Bussac, and ballooning are not three unrelated
+     constructions.  They  are  three  different  reductions  of  the  same  axisymmetric  energy
+     principle.</p></blockquote></div></div>
+<!--l. 36--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 36--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Do not import the ballooning approximation into the internal-kink problem.</tspan>
+     The  first  minimization  over  \(\xi _\parallel \)  is  exact  and  is  shared  by  both  problems.  The  second
+     ballooning step, the high-\(n\) elimination of \(U\), is <tspan font-family="ecti" font-size="1095">not </tspan>appropriate here. For the internal kink
+     one must keep the low-\(n\) poloidal sideband coupling generated by toroidicity. That is the
+     entire content of the Bussac correction.</p></blockquote></div></div>
+<a 
+ id="x1-172001r174"></a>
+<h3 class="sectionHead"><span class="titlemark">27.1   </span> <a 
+ id="x1-1730001"></a>Start from the same toroidal \(\delta W\)</h3>
+<!--l. 46--><p class="noindent" >The appendix derives the exact two-dimensional tokamak energy functional in the Connor&#8211;Hastie&#8211;Taylor
+                                                                                         
+                                                                                         
+variables \(X\), \(U\), and \(Z\) and then carries out the first minimization over \(\xi _\parallel \) by eliminating \(Z\). Using the appendix
+notation dictionary <a id="eq-eq-ik-notation_dict"></a><div class="math-display">\[B_\chi \rightarrow B_p, \qquad \chi \rightarrow \theta , \tag{27.1}\]</div>
+we therefore start from <a href="lecture43.html#eq-eq-balloon-app-reduced2D">Appendix Eq.&#x00A0;(I.44)</a>, namely <a id="eq-eq-ik-toroidal_reduced_start"></a><div class="math-display">\[\delta W = \pi \int J\,d\Psi \,d\theta \, \Biggl [ \frac {B^2}{R^2B_p^2}|k_\parallel X|^2 + \frac {R^2}{J^2}\left |\frac {\partial U}{\partial \theta }-I\frac {\partial }{\partial \Psi }\left (\frac {JX}{R^2}\right )\right |^2 + B_p^2\left |inU+\frac {\partial X}{\partial \Psi }+\frac {j_\phi }{RB_p^2}X\right |^2 -2K|X|^2 \Biggr ]. \tag{27.2}\]</div>
+This is the exact low-frequency ideal-MHD functional after the parallel displacement has been minimized
+away. The internal-kink calculation is therefore not a new principle; it is a different asymptotic use of the
+same one.
+</p>
+<!--l. 75--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1740001"></a>Circular large-aspect-ratio geometry.</span>
+Take a circular tokamak with <a id="eq-eq-ik-large_aspect_ratio"></a><div class="math-display">\[R(r,\theta )=R_0+r\cos \theta , \qquad \epsilon \equiv \frac {r}{R_0}\ll 1, \qquad B_p\sim O(\epsilon B_0), \qquad \beta \sim O(\epsilon ^2). \tag{27.3}\]</div>
+With \(\chi =\theta \), the appendix metric gives <a id="eq-eq-ik-circular_metric_identities"></a><div class="math-display">\[d\Psi = RB_p\,dr, \qquad JB_p=r, \qquad J=\frac {r}{B_p}, \qquad dV = rR\,dr\,d\theta \,d\phi . \tag{27.4}\]</div>
+The appendix quantity \(\nu \) becomes the safety factor, <a id="eq-eq-ik-nu_to_q"></a><div class="math-display">\[\nu = \frac {IJ}{R^2} = \frac {rB_\phi }{RB_p}=q(r), \tag{27.5}\]</div>
+so for a single toroidal harmonic \(e^{in\phi }\), <a id="eq-eq-ik-kpar_circular"></a><div class="math-display">\[\B \cdot \nabla \longrightarrow \frac {1}{J}\left (\frac {\partial }{\partial \theta }+inq\right ), \qquad ik_\parallel = \frac {1}{JB}\left (\frac {\partial }{\partial \theta }+inq\right ). \tag{27.6}\]</div>
+Substituting Eqs.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_metric_identities">27.4</a>)&#8211;(<a href="lecture27.html#eq-eq-ik-kpar_circular">27.6</a>) into Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-toroidal_reduced_start">27.2</a>) gives <div class="math-display">\[\delta W = \pi \int _0^a dr\int _0^{2\pi } d\theta \, \Biggl [ \frac {1}{rR}\left |\left (\frac {\partial }{\partial \theta }+inq\right )X\right |^2 + \frac {R^3B_p^2}{r} \left |\frac {\partial U}{\partial \theta }-\frac {I}{RB_p}\frac {\partial }{\partial r}\left (\frac {rX}{R^2B_p}\right )\right |^2 \Biggr .\]</div>
+<a id="eq-eq-ik-circular_reduced2D"></a><div class="math-display">\[\Biggl . \qquad + rRB_p^2\left |inU+\frac {1}{RB_p}\frac {\partial X}{\partial r}+\frac {j_\phi }{RB_p^2}X\right |^2 -2rRK|X|^2 \Biggr ]. \tag{27.8}\]</div>
+Nothing has been approximated beyond axisymmetry and the circular-coordinate specialization. The low-\(n\)
+calculation begins from Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>).
+<a 
+ id="x1-174001r184"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">27.2   </span> <a 
+ id="x1-1750002"></a>Low-\(n\) harmonic bookkeeping</h3>
+<!--l. 137--><p class="noindent" >For the internal kink we take \(n=1\) and expand in poloidal harmonics using the same \(e^{in\phi }\) convention as the
+appendix, <a id="eq-eq-ik-fourier_expansion"></a><div class="math-display">\[X(r,\theta ,\phi ) = e^{i\phi }\sum _m X_m(r)e^{-im\theta }, \qquad U(r,\theta ,\phi ) = e^{i\phi }\sum _m U_m(r)e^{-im\theta }. \tag{27.9}\]</div>
+Define the field-line-pitch mismatch <a id="eq-eq-ik-Dm_def"></a><div class="math-display">\[D_m(r)\equiv q(r)-m. \tag{27.10}\]</div>
+Then the parallel operator acts diagonally on each cylindrical harmonic, <a id="eq-eq-ik-Dm_action"></a><div class="math-display">\[\left (\frac {\partial }{\partial \theta }+iq\right ) \left [e^{i\phi }X_m(r)e^{-im\theta }\right ] = iD_m(r) \,e^{i\phi }X_m(r)e^{-im\theta }. \tag{27.11}\]</div>
+Thus the dominant internal-kink harmonic is the \(m=1\) piece, <a id="eq-eq-ik-main_harmonic"></a><div class="math-display">\[X_1(r)e^{i(\phi -\theta )}, \qquad U_1(r)e^{i(\phi -\theta )}. \tag{27.12}\]</div>
+</p>
+<!--l. 171--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1760002"></a>Why toroidicity generates only neighboring sidebands at first order.</span>
+Expand the toroidal coefficients in Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>), <a id="eq-eq-ik-Rminus1_expansion"></a><div class="math-display">\[\begin{aligned}\frac {1}{R} &amp;= \frac {1}{R_0}\left (1-\epsilon \cos \theta +\epsilon ^2\cos ^2\theta +\cdots \right ),  \\ \frac {1}{R^2} &amp;= \frac {1}{R_0^2}\left (1-2\epsilon \cos \theta +3\epsilon ^2\cos ^2\theta +\cdots \right ),  \\ K(r,\theta ) &amp;= K_0(r)+\epsilon K_1(r)\cos \theta +O(\epsilon ^2).\end{aligned} \tag{27.13}\]</div>
+</p><!--l. 189--><p class="noindent" >Because <a id="eq-eq-ik-cos_sideband_identity_general"></a><div class="math-display">\[\cos \theta \,e^{-im\theta } = \frac 12 e^{-i(m-1)\theta }+\frac 12 e^{-i(m+1)\theta }, \tag{27.16}\]</div>
+all \(O(\epsilon )\) toroidal corrections acting on the \(m=1\) harmonic produce only \(m=0\) and \(m=2\) sidebands. The consistent low-\(\epsilon \) ansatz
+is therefore <a id="eq-eq-ik-X_sideband_ansatz"></a><div class="math-display">\[X = e^{i\phi }\Bigl [X_1(r)e^{-i\theta }+\epsilon X_0(r)+\epsilon X_2(r)e^{-2i\theta }+O(\epsilon ^2)\Bigr ], \tag{27.17}\]</div>
+<a id="eq-eq-ik-U_sideband_ansatz"></a><div class="math-display">\[U = e^{i\phi }\Bigl [U_1(r)e^{-i\theta }+\epsilon U_0(r)+\epsilon U_2(r)e^{-2i\theta }+O(\epsilon ^2)\Bigr ]. \tag{27.18}\]</div>
+This is the low-\(n\) analogue of the ballooning transform. The main distinction is that the internal-kink
+problem does <tspan font-family="ecti" font-size="1095">not </tspan>localize along one field line; instead it mixes a small set of neighboring poloidal
+harmonics.
+</p>
+<!--l. 214--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1770002"></a>Block structure of the quadratic form.</span>
+If one inserts Eqs.&#x00A0;(<a href="lecture27.html#eq-eq-ik-X_sideband_ansatz">27.17</a>)&#8211;(<a href="lecture27.html#eq-eq-ik-U_sideband_ansatz">27.18</a>) into Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>), expands all coefficients through \(O(\epsilon ^2)\), and integrates over \(\theta \),
+the energy takes the schematic form <a id="eq-eq-ik-block_form"></a><div class="math-display">\[\delta W = \delta W_{11}^{(0)} + \epsilon ^2 \Bigl [ \delta W_{11}^{(2)} + \delta W_{00}^{(0)} + \delta W_{22}^{(0)} + 2\Re \langle Y_0,\mathcal {M}_{01}Y_1\rangle + 2\Re \langle Y_2,\mathcal {M}_{21}Y_1\rangle \Bigr ] +O(\epsilon ^3), \tag{27.19}\]</div>
+where <a id="eq-eq-ik-Ym_def"></a><div class="math-display">\[Y_m(r)\equiv \begin {pmatrix}X_m(r)\\ U_m(r)\end {pmatrix}. \tag{27.20}\]</div>
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-block_form">27.19</a>) already contains the whole Bussac logic. The leading cylindrical \(m=1\) piece is degenerate,
+                                                                                         
+                                                                                         
+while the first nontrivial toroidal correction is quadratic in the stable sidebands. After the non-radial
+variables are minimized away, the \(m=0\) contribution can be absorbed into the same effective radial operator
+that governs the \(m=2\) sideband, so the final correction is conventionally packaged as a single sideband
+problem.
+</p><!--l. 250--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 251--><p class="noindent" >In the ballooning appendix the second reduction is driven by the ordering \(\partial /\partial \Psi \sim n\) and \(k_\parallel =O(1)\), so \(U\) is
+     slaved to \(X\) and the problem collapses to a one-dimensional field-line functional.
+     </p><!--l. 255--><p class="noindent" >For the internal kink, \(n=1\), there is no such large-\(n\) ordering. The small parameter is instead the
+     inverse aspect ratio \(\epsilon =r/R_0\). Toroidicity then appears as a weak \(\cos \theta \) modulation of the coefficients
+     in Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>). That weak modulation couples the dominant \(m=1\) harmonic to neighboring
+     sidebands. So the second reduction is now \[ \text {keep }m=1\text { and its }m\pm 1\text { sidebands,}\] \[ \text {solve the stable sideband equation,} \]
+     </p><!--l. 267--><p class="noindent" >\[ \text {substitute back into }\delta W. \] That is the low-\(n\) Bussac reduction of the same toroidal energy principle.</p></blockquote></div></div>
+<a 
+ id="x1-177001r186"></a>
+<h3 class="sectionHead"><span class="titlemark">27.3   </span> <a 
+ id="x1-1780003"></a>Recover the cylindrical Rosenbluth problem from the same functional</h3>
+<!--l. 273--><p class="noindent" >If one drops all \(O(\epsilon )\) toroidal pieces in Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>), the Fourier harmonics decouple. After variation with respect
+to the in-surface component \(U_m\), the diagonal \(m\) sector reduces to the usual Newcomb functional,
+<a id="eq-eq-ik-newcomb_functional"></a><div class="math-display">\[\delta W_m^{\rm cyl} = \frac {2\pi ^2R_0}{\mu _0} \int _0^a dr\, \Bigl [f_m(r)|\xi _m'|^2+g_m(r)|\xi _m|^2\Bigr ], \tag{27.21}\]</div>
+with <a id="eq-eq-ik-f_m"></a><div class="math-display">\[\begin{aligned}f_m(r) &amp;= \frac {B_0^2r^3}{m^2R_0^2}\left (1-\frac {m}{q(r)}\right )^2,  \\ g_m(r) &amp;= \frac {B_0^2r}{m^2R_0^2}(m^2-1)\left (1-\frac {m}{q(r)}\right )^2 + \frac {2r^2}{m^2R_0^2}\mu _0p'(r).\end{aligned} \tag{27.22}\]</div>
+</p><!--l. 299--><p class="noindent" >Here \(\xi _m\) is the radial displacement harmonic defined by <a id="eq-eq-ik-X_to_xi"></a><div class="math-display">\[X_m = R_0B_p\,\xi _m + O(\epsilon ). \tag{27.24}\]</div>
+For \(m=1\), the explicit line-bending part of \(g_m\) vanishes, <a id="eq-eq-ik-g1"></a><div class="math-display">\[g_1(r)=\frac {2r^2}{R_0^2}\mu _0p'(r)+O(\epsilon ^4), \tag{27.25}\]</div>
+so at the leading cylindrical order the energy depends only on the narrow region where \(\xi _1\) changes across the \(q=1\)
+surface. Thus the minimizing sequence is the rigid core shift <a id="eq-eq-ik-top_hat"></a><div class="math-display">\[\xi _1(r)\longrightarrow \xi _0 H(r_1-r), \qquad q(r_1)=1, \tag{27.26}\]</div>
+which is exactly the Rosenbluth&#8211;Dagazian&#8211;Rutherford result.
+</p>
+<!--l. 319--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1790003"></a>Why the cylindrical contribution becomes singularly weak.</span>
+For the top-hat family, <a id="eq-eq-ik-cyl_degeneracy"></a><div class="math-display">\[\delta W_1^{\rm cyl} \propto \int _{r_1-\delta /2}^{r_1+\delta /2} \left (1-\frac {1}{q}\right )^2 r^3\left |\frac {d\xi _1}{dr}\right |^2dr \sim O(\delta ) \rightarrow 0, \tag{27.27}\]</div>
+so the \(O(\epsilon ^2)\) cylindrical functional has an infimum rather than a smooth minimizer. This is the degeneracy that
+toroidicity resolves.
+</p>
+<!--l. 333--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1800003"></a>The resolved cylindrical layer.</span>
+To turn the minimizing sequence into an actual eigenfunction, one retains the small inertial term that
+resolves the singular layer at \(q=1\). Let <a id="eq-eq-ik-layer_linearization"></a><div class="math-display">\[x\equiv r-r_1, \qquad \mathbf {k}\cdot \mathbf {B}\approx (\mathbf {k}\cdot \mathbf {B})'_1 x, \tag{27.28}\]</div>
+so the local ideal layer equation becomes <a id="eq-eq-ik-internal_kink_layer_ode"></a><div class="math-display">\[\frac {d}{dx} \left [ \left (4\pi \rho _1\gamma ^2+(\mathbf {k}\cdot \mathbf {B})_1'^2x^2\right ) \frac {d\xi }{dx} \right ] =0. \tag{27.29}\]</div>
+Integrating once and imposing <a id="eq-eq-ik-layer_bc"></a><div class="math-display">\[\xi \to \xi _0 \quad (x\to -\infty ), \qquad \xi \to 0 \quad (x\to +\infty ), \tag{27.30}\]</div>
+leads to the arctangent-smoothed top hat <a id="eq-eq-ik-internal_kink_arctan"></a><div class="math-display">\[\xi (x) = \frac {\xi _0}{2} \left [ 1- \frac {2}{\pi } \tan ^{-1} \left ( \frac {(\mathbf {k}\cdot \mathbf {B})'_1x}{\gamma (4\pi \rho _1)^{1/2}} \right ) \right ]. \tag{27.31}\]</div>
+As the inertial width tends to zero, Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-internal_kink_arctan">27.31</a>) reduces back to Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-top_hat">27.26</a>). So the cylindrical Rosenbluth
+solution is already contained in the same toroidal functional; one simply suppresses the toroidal
+sidebands.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-180001r189"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">27.4   </span> <a 
+ id="x1-1810004"></a>Toroidal sideband elimination</h3>
+<!--l. 380--><p class="noindent" >The practical low-\(\epsilon \) calculation is obtained by substituting the sideband ansatz, Eqs.&#x00A0;(<a href="lecture27.html#eq-eq-ik-X_sideband_ansatz">27.17</a>)&#8211;(<a href="lecture27.html#eq-eq-ik-U_sideband_ansatz">27.18</a>), into
+Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>), expanding through \(O(\epsilon ^2)\), and varying with respect to the sideband amplitudes. After the
+non-radial pieces are eliminated, the remaining radial sideband problem can be written in terms of
+<a id="eq-eq-ik-iota_def"></a><div class="math-display">\[\iota (r)\equiv \frac {1}{q(r)} \tag{27.32}\]</div>
+and the stable cylindrical operators <a id="eq-eq-ik-Lm"></a><div class="math-display">\[L_m[\xi ] \equiv \frac {d}{dr}\left [r^3\bigl (m\iota -1\bigr )^2\frac {d\xi }{dr}\right ] - r(m^2-1)\bigl (m\iota -1\bigr )^2\xi . \tag{27.33}\]</div>
+The toroidally forced \(m=2\) sideband obeys <a id="eq-eq-ik-sideband_eq"></a><div class="math-display">\[L_2[\xi _2] + \frac {d}{dr}\left [r^3T_1(r)\frac {d\xi _1}{dr}\right ] + r^2T_2(r)\frac {d\xi _1}{dr} =0. \tag{27.34}\]</div>
+The coefficients \(T_1\) and \(T_2\) are the explicit \(O(\epsilon )\) sideband couplings, <a id="eq-eq-ik-T1"></a><div class="math-display">\[\begin{aligned}T_1(r) &amp;= \bigl (-6\iota ^2+6\iota -1\bigr )\Delta _S'(r) + \left (-4\iota ^2+10\iota -\frac {11}{2}\right )\frac {r}{R_0},  \\ T_2(r) &amp;= \bigl (6\iota ^2-6\iota +3\bigr )\Delta _S'(r) + \left (2\iota ^2-4\iota +\frac {7}{2}\right )\frac {r}{R_0},\end{aligned} \tag{27.35}\]</div>
+</p><!--l. 424--><p class="noindent" >with the Shafranov-shift derivative written in the standard circular form <a id="eq-eq-ik-shaf_shift_prime"></a><div class="math-display">\[\Delta _S'(r) = -\frac {r}{R_0}\left [\beta _p(r)+\frac {l_i(r)}{2}\right ], \tag{27.37}\]</div>
+where <a id="eq-eq-ik-beta_p_li_def"></a><div class="math-display">\[\beta _p(r) \equiv \frac {4\mu _0}{r^2B_p^2(r)}\int _0^r p(r')\,r'\,dr', \qquad l_i(r) \equiv \frac {2}{r^2B_p^2(r)}\int _0^r B_p^2(r')\,r'\,dr'. \tag{27.38}\]</div>
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_eq">27.34</a>) is the low-\(n\) analogue of the ballooning \(U\)-equation: it tells us how the stable neighboring
+harmonic is slaved to the main \(m=1\) displacement.
+</p>
+<!--l. 446--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1820004"></a>The quadratic sideband form.</span>
+The \(m=2\) part of the expanded energy can be written as <a id="eq-eq-ik-sideband_quadratic_form"></a><div class="math-display">\[\delta W_{\rm sb}[\xi _1,\xi _2] = \mathcal {N} \int _0^a dr\, \Bigl [ \xi _2^*L_2\xi _2 + \xi _2^*\mathcal {F}[\xi _1] + \mathcal {F}[\xi _1]^*\xi _2 \Bigr ], \tag{27.39}\]</div>
+where \(\mathcal {N}&gt;0\) is an overall normalization and <a id="eq-eq-ik-F_operator"></a><div class="math-display">\[\mathcal {F}[\xi _1] \equiv \frac {d}{dr}\left [r^3T_1(r)\frac {d\xi _1}{dr}\right ] + r^2T_2(r)\frac {d\xi _1}{dr}. \tag{27.40}\]</div>
+Varying Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_quadratic_form">27.39</a>) with respect to \(\xi _2^*\) gives Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_eq">27.34</a>). Because the \(m=2\) cylindrical sector is stable, \(L_2\) is positive
+on the relevant domain and the minimizing sideband is therefore <a id="eq-eq-ik-formal_sideband_elim"></a><div class="math-display">\[\xi _2 = - L_2^{-1}\mathcal {F}[\xi _1]. \tag{27.41}\]</div>
+Substituting this back into Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_quadratic_form">27.39</a>) gives the negative-definite correction <a id="eq-eq-ik-sideband_energy"></a><div class="math-display">\[\delta W_{\rm sb,min}[\xi _1] = -\mathcal {N} \int _0^a dr\,\mathcal {F}[\xi _1]^*L_2^{-1}\mathcal {F}[\xi _1]. \tag{27.42}\]</div>
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_energy">27.42</a>) is the precise variational meaning of the phrase &#8220;toroidal sideband stabilization&#8221;: the
+toroidal \(m=1\leftrightarrow 2\) coupling produces a source \(\mathcal {F}\), the stable sideband responds through \(L_2^{-1}\), and substituting that
+response back gives the effective toroidal correction to the main harmonic.
+</p>
+<!--l. 495--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1830004"></a>Green-function form.</span>
+Let the Green function of the stable sideband operator satisfy <a id="eq-eq-ik-green_def"></a><div class="math-display">\[L_2\,G_2(r,r')=\delta (r-r'), \qquad G_2(0,r')\ \text {regular}, \qquad G_2(a,r')=0. \tag{27.43}\]</div>
+Then <a id="eq-eq-ik-green_xi2"></a><div class="math-display">\[\xi _2(r) = -\int _0^a G_2(r,r')\,\mathcal {F}[\xi _1](r')\,dr', \tag{27.44}\]</div>
+and the minimizing sideband contribution becomes <a id="eq-eq-ik-green_deltaW"></a><div class="math-display">\[\delta W_{\rm sb,min}[\xi _1] = -\mathcal {N} \int _0^a\!dr\int _0^a\!dr'\, \mathcal {F}[\xi _1]^*(r) G_2(r,r') \mathcal {F}[\xi _1](r'). \tag{27.45}\]</div>
+This is the exact formal reduction. The remaining work is profile-specific: choose \(q(r)\) and \(p(r)\), solve the stable \(m=2\)
+Green-function problem, and evaluate the double integral.
+</p><!--l. 528--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 528--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">One toroidal functional, two very different second reductions.</tspan>
+     </p><!--l. 530--><p class="noindent" >For ballooning modes the second reduction is a high-\(n\) minimization over the in-surface
+     variable \(U\), leading to a local field-line ODE.
+     </p><!--l. 533--><p class="noindent" >For the internal kink the second reduction is a low-\(\epsilon \) elimination of the stable sideband \(\xi _2\),
+     leading to the effective radial energy Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-green_deltaW">27.45</a>).
+     </p><!--l. 537--><p class="noindent" >So the conceptual bridge is exact: Mercier, Bussac, and ballooning are all descendants
+     of Appendix&#x00A0;I; they simply keep different pieces of the same toroidal \(\delta W\).</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-183001r192"></a>
+<h3 class="sectionHead"><span class="titlemark">27.5   </span> <a 
+ id="x1-1840005"></a>How Bussac&#8217;s decomposition emerges</h3>
+<!--l. 544--><p class="noindent" >After the sideband has been eliminated, the effective large-aspect-ratio energy can be written in the Bussac
+form <a id="eq-eq-ik-bussac_decomp"></a><div class="math-display">\[\delta W = W_0\left [ \left (1-\frac {1}{n^2}\right )\hat {\delta W}_c + \frac {1}{n^2}\hat {\delta W}_T \right ], \tag{27.46}\]</div>
+where \(\hat {\delta W}_c\) is the normalized cylindrical contribution and \(\hat {\delta W}_T\) is the sideband-generated toroidal correction.
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_decomp">27.46</a>) is the low-\(n\) counterpart of the high-\(n\) ballooning reduction: the same toroidal \(\delta W\) has been
+reduced, but the surviving one-dimensional object is now a radial functional rather than a field-line
+functional.
+</p><!--l. 563--><p class="noindent" >The key physical consequence is immediate. For the true internal kink, \(n=1\), so <a id="eq-eq-ik-n1_only_toroidal"></a><div class="math-display">\[\delta W_{n=1} = W_0\hat {\delta W}_T, \tag{27.47}\]</div>
+that is, the cylindrical \(m=1\) contribution cancels identically. This is the sharpest possible statement of why the
+toroidal calculation matters: the actual ideal internal-kink threshold is determined entirely by the toroidal
+sideband problem.
+<a 
+ id="x1-184001r195"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">27.6   </span> <a 
+ id="x1-1850006"></a>Evaluation for the rigid core shift</h3>
+<!--l. 574--><p class="noindent" >For the ideal internal kink the dominant \(m=1\) eigenfunction is the rigid core shift, Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-top_hat">27.26</a>). In the
+sharp-layer limit, <a id="eq-eq-ik-xi1_delta"></a><div class="math-display">\[\frac {d\xi _1}{dr} = -\xi _0\,\delta (r-r_1), \tag{27.48}\]</div>
+so the sideband source in Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-F_operator">27.40</a>) is localized at the \(q=1\) radius: <a id="eq-eq-ik-localized_source"></a><div class="math-display">\[\mathcal {F}[\xi _1] = -\xi _0 \left [ \frac {d}{dr}\Bigl (r^3T_1(r)\,\delta (r-r_1)\Bigr ) + r^2T_2(r)\,\delta (r-r_1) \right ]. \tag{27.49}\]</div>
+Therefore Eqs.&#x00A0;(<a href="lecture27.html#eq-eq-ik-green_xi2">27.44</a>)&#8211;(<a href="lecture27.html#eq-eq-ik-green_deltaW">27.45</a>) collapse to a <tspan font-family="ecti" font-size="1095">localized response problem at the singular surface</tspan>. In operator
+form one may write <a id="eq-eq-ik-xi2_local_green"></a><div class="math-display">\[\xi _2(r) = \xi _0\,\mathcal {J}_{r_1}G_2(r,r_1), \tag{27.50}\]</div>
+with the source operator <a id="eq-eq-ik-Jop_def"></a><div class="math-display">\[\mathcal {J}_{r_1} \equiv -\left [\frac {d}{dr_1}\bigl (r_1^3T_1(r_1)\,\cdot \,\bigr )+r_1^2T_2(r_1)\right ], \tag{27.51}\]</div>
+and the toroidal correction becomes <a id="eq-eq-ik-local_green_result"></a><div class="math-display">\[\delta W_{n=1} = -\mathcal {N}\xi _0^2\, \mathcal {J}_{r_1}^{\dagger }G_2(r_1,r_1)\mathcal {J}_{r_1}. \tag{27.52}\]</div>
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-local_green_result">27.52</a>) is the cleanest formal statement of the Bussac calculation. Everything after this point is
+explicit but profile-dependent algebra.
+</p>
+<!--l. 620--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1860006"></a>Parabolic-profile model.</span>
+For the standard Bussac equilibrium with circular cross section, parabolic current profile, and \(|q_0-1|\ll 1\), the
+Green-function problem can be evaluated analytically. The result is <a id="eq-eq-ik-bussac_parabolic"></a><div class="math-display">\[\delta W = \frac {2\pi ^2 B_0^2}{\mu _0 R_0}\,\xi _0^2\, \frac {3r_1^4}{R_0^2} (1-q_0) \left ( \frac {13}{144}-\hat \beta _{p1}^{\,2} \right ). \tag{27.53}\]</div>
+Here \(q_0\equiv q(0)\), \(r_1\) is the \(q=1\) radius, and \(\hat \beta _{p1}\) is the poloidal beta inside that surface, <a id="eq-eq-ik-beta_p1_def"></a><div class="math-display">\[\hat \beta _{p1} \equiv \frac {4\mu _0}{r_1^2B_p^2(r_1)}\int _0^{r_1} p(r)\,r\,dr. \tag{27.54}\]</div>
+Equation&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_parabolic">27.53</a>) is the classic Bussac toroidal correction in large-aspect-ratio circular geometry.
+</p>
+<!--l. 646--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1870006"></a>Bussac&#8217;s criterion.</span>
+Because \((1-q_0)&gt;0\) when the magnetic axis lies below unity, Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_parabolic">27.53</a>) implies instability only when
+<a id="eq-eq-ik-bussac_threshold"></a><div class="math-display">\[\hat \beta _{p1} &gt; \frac {\sqrt {13}}{12}\approx 0.30. \tag{27.55}\]</div>
+So in a torus of circular cross section the ideal \(n=1\) internal kink is <tspan font-family="ecti" font-size="1095">stable </tspan>at sufficiently low pressure. This is
+the opposite of the naive cylindrical intuition.
+</p><!--l. 657--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 657--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Where the derivation becomes profile specific. </tspan>Up to Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-local_green_result">27.52</a>) the reduction
+     is completely generic: start from the appendix toroidal functional, eliminate \(\xi _\parallel \), expand in
+                                                                                         
+                                                                                         
+     low inverse aspect ratio, solve the stable sideband problem, and substitute back.
+     </p><!--l. 662--><p class="noindent" >The  final  numerical  coefficient  \(13/144\)  in  Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_parabolic">27.53</a>)  is  not  universal.  It  is  the  outcome
+     of evaluating the Green-function expression for the <tspan font-family="ecti" font-size="1095">specific </tspan>circular, parabolic-profile
+     equilibrium used by Bussac <tspan font-family="ecti" font-size="1095">et al. </tspan>That is why the final criterion changes when one
+     changes aspect ratio, shear, or shape.</p></blockquote></div></div>
+<!--l. 670--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 670--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Minimal summary. </tspan>Starting from the appendix tokamak functional,
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">eliminate \(\xi _\parallel \) exactly, giving Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-toroidal_reduced_start">27.2</a>);
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">specialize to circular, large-aspect-ratio geometry, giving Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-circular_reduced2D">27.8</a>);
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">expand in low-\(\epsilon \) sidebands about the dominant \(m=1\) harmonic;
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">recover the cylindrical Rosenbluth top-hat mode as the degenerate leading-order
+     problem;
+     </dd><dt class="enumerate-enumitem">
+  5. </dt><dd 
+class="enumerate-enumitem">solve the stable \(m=2\) sideband equation, Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-sideband_eq">27.34</a>);
+     </dd><dt class="enumerate-enumitem">
+  6. </dt><dd 
+class="enumerate-enumitem">substitute that minimizing sideband back into \(\delta W\), giving the Green-function form
+     Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-local_green_result">27.52</a>);
+     </dd><dt class="enumerate-enumitem">
+  7. </dt><dd 
+class="enumerate-enumitem">for \(n=1\), retain only the toroidal correction, Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-n1_only_toroidal">27.47</a>);
+     </dd><dt class="enumerate-enumitem">
+  8. </dt><dd 
+class="enumerate-enumitem">evaluate it for the Bussac parabolic-profile model to obtain Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_parabolic">27.53</a>) and the
+     threshold Eq.&#x00A0;(<a href="lecture27.html#eq-eq-ik-bussac_threshold">27.55</a>).</dd></dl>
+     <!--l. 687--><p class="noindent" >That is the clean one-to-one derivation of the Bussac internal-kink correction from the same
+     toroidal \(\delta W\) used in the ballooning appendix.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1880006"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xparker1958dynamics-d40"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> E&#x00A0;N Parker. Dynamics of the interplanetary gas and magnetic fields. <tspan font-family="ecti" font-size="1095">The Astrophysical Journal</tspan>,
+  128:664, 1958. doi:<a 
+href="https://doi.org/10.1086/146579" >10.1086/146579</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XWeberDavis1967SolarWind"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Edmund&#x00A0;J. Weber and Leverett Davis, Jr.  The angular momentum of the solar wind.  <tspan font-family="ecti" font-size="1095">The</tspan>
+  <tspan font-family="ecti" font-size="1095">Astrophysical Journal</tspan>, 148:217&#8211;227, 1967. doi:<a 
+href="https://doi.org/10.1086/149138" >10.1086/149138</a>.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBlandfordPayne1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  R.&#x00A0;D.  Blandford  and  D.&#x00A0;G.  Payne.    Hydromagnetic  flows  from  accretion  discs  and  the
+  production of radio jets.  <tspan font-family="ecti" font-size="1095">Monthly Notices of the Royal Astronomical Society</tspan>, 199(4):883&#8211;903,
+  1982. doi:<a 
+href="https://doi.org/10.1093/mnras/199.4.883" >10.1093/mnras/199.4.883</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XPelletierPudritz1992"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;Pelletier and R.&#x00A0;E. Pudritz. Hydromagnetic disk winds in young stellar objects and active
+  galactic nuclei. <tspan font-family="ecti" font-size="1095">The Astrophysical Journal</tspan>, 394:117&#8211;138, 1992. doi:<a 
+href="https://doi.org/10.1086/171565" >10.1086/171565</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XHeyvaertsNorman1989"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Heyvaerts and C.&#x00A0;A. Norman.  The collimation of magnetized winds.  <tspan font-family="ecti" font-size="1095">The Astrophysical</tspan>
+  <tspan font-family="ecti" font-size="1095">Journal</tspan>, 347:1055&#8211;1081, 1989. doi:<a 
+href="https://doi.org/10.1086/168195" >10.1086/168195</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpruit1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> H.&#x00A0;C. Spruit. Magnetohydrodynamic winds and jets from accretion disks. <tspan font-family="ecti" font-size="1095">arXiv e-prints</tspan>, 1996.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XOstriker1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> E.&#x00A0;C. Ostriker.  Self-similar magnetocentrifugal disk winds with cylindrical asymptotics.  <tspan font-family="ecti" font-size="1095">The</tspan>
+  <tspan font-family="ecti" font-size="1095">Astrophysical Journal</tspan>, 486:291&#8211;306, 1997. doi:<a 
+href="https://doi.org/10.1086/304513" >10.1086/304513</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XVlahakisEtAl2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> N.&#x00A0;Vlahakis, K.&#x00A0;Tsinganos, C.&#x00A0;Sauty, and E.&#x00A0;Trussoni. A disc-wind model with correct crossing
+  of all magnetohydrodynamic critical surfaces. <tspan font-family="ecti" font-size="1095">Monthly Notices of the Royal Astronomical Society</tspan>,
+  318(2):417&#8211;428, 2000. doi:<a 
+href="https://doi.org/10.1046/j.1365-8711.2000.03703.x" >10.1046/j.1365-8711.2000.03703.x</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XLyndenBell1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> D.&#x00A0;Lynden-Bell. Magnetic collimation by accretion discs of quasars and stars. <tspan font-family="ecti" font-size="1095">Monthly Notices</tspan>
+  <tspan font-family="ecti" font-size="1095">of the Royal Astronomical Society</tspan>, 279(2):389&#8211;401, 1996. doi:<a 
+href="https://doi.org/10.1093/mnras/279.2.389" >10.1093/mnras/279.2.389</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XLyndenBell2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> D.&#x00A0;Lynden-Bell. On why discs generate magnetic towers and collimate jets. <tspan font-family="ecti" font-size="1095">Monthly Notices of</tspan>
+  <tspan font-family="ecti" font-size="1095">the Royal Astronomical Society</tspan>, 341(4):1360&#8211;1372, 2003. doi:<a 
+href="https://doi.org/10.1046/j.1365-8711.2003.06506.x" >10.1046/j.1365-8711.2003.06506.x</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XLesurEtAl2013MRIJet"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Geoffroy  Lesur,  Jonathan  Ferreira,  and  Gordon&#x00A0;I.  Ogilvie.      The  magnetorotational
+  instability  as  a  jet  launching  mechanism.     <tspan font-family="ecti" font-size="1095">Astronomy  &amp;  Astrophysics</tspan>,  550:A61,  2013.
+  doi:<a 
+href="https://doi.org/10.1051/0004-6361/201220395" >10.1051/0004-6361/201220395</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSmith2012ExtragalacticJets"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Michael&#x00A0;D. Smith. Observations of extragalactic jets. In <tspan font-family="ecti" font-size="1095">Astrophysical Jets and Beams</tspan>, pages
+  50&#8211;69. Cambridge University Press, 2012. doi:<a 
+href="https://doi.org/10.1017/CBO9780511994562.005" >10.1017/CBO9780511994562.005</a>.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XReynoldsEtAl2017PWN"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Stephen&#x00A0;P. Reynolds, George&#x00A0;G. Pavlov, Oleg Kargaltsev, Noel Klingler, Matthieu Renaud,
+  and  Sandro  Mereghetti.     Pulsar-wind  nebulae  and  magnetar  outflows:  Observations  at
+  radio,  x-ray,  and  gamma-ray  wavelengths.   <tspan font-family="ecti" font-size="1095">Space  Science  Reviews</tspan>,  207(1&#8211;4):175&#8211;234,  2017.
+  doi:<a 
+href="https://doi.org/10.1007/s11214-017-0356-6" >10.1007/s11214-017-0356-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XJohnstone2017FastRotators"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  C.&#x00A0;P.  Johnstone.   On  the  fast  magnetic  rotator  regime  of  stellar  winds.   <tspan font-family="ecti" font-size="1095">Astronomy  &amp;</tspan>
+  <tspan font-family="ecti" font-size="1095">Astrophysics</tspan>, 598:A24, 2017. doi:<a 
+href="https://doi.org/10.1051/0004-6361/201629609" >10.1051/0004-6361/201629609</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkgo"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Ethan&#x00A0;E.  Peterson,  Douglass&#x00A0;A.  Endrizzi,  Matthew  Beidler,  Kyle&#x00A0;J.  Bunkers,  Michael
+  Clark,  Jan  Egedal,  Ken  Flanagan,  Karsten&#x00A0;J.  McCollam,  Jason  Milhone,  Joseph  Olson,
+  Carl&#x00A0;R.  Sovinec,  Roger  Waleffe,  John  Wallace,  and  Cary&#x00A0;B.  Forest.    A  laboratory  model
+  for the parker spiral and magnetized stellar winds.   <tspan font-family="ecti" font-size="1095">Nature Physics</tspan>, 15(10):1095&#8211;1100, 2019.
+  doi:<a 
+href="https://doi.org/10.1038/s41567-019-0592-7" >10.1038/s41567-019-0592-7</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cerfon Equilibrium Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --accent-soft: #dcecf7;
+      --target: #b64646;
+      --flux: #2d6ea8;
+      --lcfs: #17232e;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 72ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 62ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .mini-plot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      margin-top: 0.9rem;
+      color: #59707f;
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Cerfon Equilibrium Explorer</h1>
+  <p class="lede">
+    This browser-side solver uses the up-down symmetric Cerfon/Freidberg Solov&rsquo;ev basis from the Grad&ndash;Shafranov lecture. Adjust the shaping parameters, source-mix parameter, and engineering scales to compare the target boundary against the fitted <em>U = 0</em> last closed flux surface, the interior flux contours, and a few lecture-style equilibrium figures of merit.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="r0overa">Major-radius ratio <span style="font-weight:500;">R<sub>0</sub>/a</span></label>
+          <span class="value" id="r0overa-value"></span>
+        </div>
+        <input id="r0overa" type="range" min="1.20" max="3.20" step="0.01" value="1.40" />
+        <p class="help">Inverse aspect ratio is <code>&epsilon; = a/R<sub>0</sub></code>, so smaller values here produce wider plasmas.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="kappa">Elongation <span style="font-weight:500;">&kappa;</span></label>
+          <span class="value" id="kappa-value"></span>
+        </div>
+        <input id="kappa" type="range" min="1.00" max="2.80" step="0.01" value="2.20" />
+        <p class="help">Controls the vertical stretching of the target boundary.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="delta">Triangularity <span style="font-weight:500;">&delta;</span></label>
+          <span class="value" id="delta-value"></span>
+        </div>
+        <input id="delta" type="range" min="-0.70" max="0.70" step="0.005" value="0.45" />
+        <p class="help">Positive <code>&delta;</code> shifts the top point inward, while negative <code>&delta;</code> gives negative triangularity through <code>X<sub>top</sub> = 1 - &delta;&epsilon;</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="alpha-source">Source mix <span style="font-weight:500;">&alpha;</span></label>
+          <span class="value" id="alpha-source-value"></span>
+        </div>
+        <input id="alpha-source" type="range" min="0.00" max="1.00" step="0.01" value="0.00" />
+        <p class="help">Interpolates between the two pieces of the particular solution: <code>&alpha; = 1</code> is pure <code>FF&rsquo;</code>, while <code>&alpha; = 0</code> is pure <code>p&rsquo;</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="minor-radius">Minor radius <span style="font-weight:500;">a</span></label>
+          <span class="value" id="minor-radius-value"></span>
+        </div>
+        <input id="minor-radius" type="range" min="0.25" max="2.20" step="0.01" value="0.65" />
+        <p class="help">Sets the physical size in meters, which combines with <code>R<sub>0</sub>/a</code> to determine <code>R<sub>0</sub></code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="b0">Toroidal field <span style="font-weight:500;">B<sub>0</sub></span></label>
+          <span class="value" id="b0-value"></span>
+        </div>
+        <input id="b0" type="range" min="0.20" max="8.00" step="0.01" value="2.00" />
+        <p class="help">Used with <code>I<sub>p</sub></code> to form the cylindrical and shaped engineering estimates for the safety factor.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="ip">Plasma current <span style="font-weight:500;">I<sub>p</sub></span></label>
+          <span class="value" id="ip-value"></span>
+        </div>
+        <input id="ip" type="range" min="0.10" max="8.00" step="0.01" value="1.00" />
+        <p class="help">Current is in mega-amperes. The explorer uses it to evaluate the lecture&rsquo;s <code>q<sub>cyl</sub></code>, <code>q<sub>*</sub></code>, and <code>&beta;<sub>p</sub></code> summaries.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="pavg">Volume-averaged pressure <span style="font-weight:500;">&lang;p&rang;<sub>V</sub></span></label>
+          <span class="value" id="pavg-value"></span>
+        </div>
+        <input id="pavg" type="range" min="1" max="400" step="1" value="40" />
+        <p class="help">Pressure is in kPa. It feeds the lecture definitions of <code>&beta;<sub>t</sub></code> and <code>&beta;<sub>p</sub></code>.</p>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <h3>Fit Point</h3>
+          <p id="axis-summary">Magnetic axis not yet computed.</p>
+        </div>
+        <div class="status-card">
+          <h3>Residual</h3>
+          <p id="residual-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Boundary Box</h3>
+          <p id="box-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Control Point</h3>
+          <p id="top-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Engineering q</h3>
+          <p id="q-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Beta Summary</h3>
+          <p id="beta-summary">Awaiting solve.</p>
+        </div>
+      </div>
+
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        The plotted equilibrium is
+        <code>U(X,Y) = U<sub>p</sub>(X,Y) + &Sigma;<sub>j=0</sub><sup>6</sup> c<sub>j</sub> U<sub>j</sub>(X,Y)</code>,
+        with the coefficients fixed by the outer point, inner point, top point, and local-curvature constraints described in the lecture.
+      </div>
+      <div class="warning">
+        This is a teaching-focused explorer, not a production reconstruction code. It keeps the symmetric polynomial basis from the lecture and uses a simple contouring pass in the browser.
+      </div>
+      <p class="footer-note">If the fit becomes visibly poor, try easing the shape back toward moderate triangularity of either sign or larger <em>R<sub>0</sub>/a</em>. Extreme shapes can strain this seven-coefficient symmetric basis.</p>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2 style="margin:0 0 0.35rem 0;">Cross-section and Flux Geometry</h2>
+          <p>The dashed red curve is the target shaped boundary. The black contour is the fitted <em>U = 0</em> LCFS. Blue curves are interior flux surfaces generated directly from the same analytic solution.</p>
+        </div>
+      </div>
+      <ul class="legend">
+        <li style="color:var(--target);"><span class="swatch dashed"></span>Target boundary</li>
+        <li style="color:var(--lcfs);"><span class="swatch"></span>Fitted LCFS</li>
+        <li style="color:var(--flux);"><span class="swatch"></span>Interior flux surfaces</li>
+      </ul>
+      <div class="plot-frame">
+        <svg id="plot" viewBox="0 0 860 760" aria-label="Cerfon equilibrium plot"></svg>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Engineering q Estimate</h3>
+          <p>The curve uses the geometric profile shape from the fit and scales it by the lecture&rsquo;s shaped engineering estimate <em>q<sub>*</sub></em>. This is a useful interpretation aid rather than a full current-profile reconstruction.</p>
+          <svg class="mini-plot" id="q-plot" viewBox="0 0 420 250" aria-label="Normalized geometric safety-factor profile"></svg>
+        </div>
+        <div class="profile-card">
+          <h3>Magnetic-Well Proxy from V&apos;(ψ)</h3>
+          <p>The plotted quantity is the normalized flux-surface volume derivative <em>V&apos;(ψ)</em>, which is the natural geometric ingredient behind magnetic-well language in the equilibrium and stability lectures.</p>
+          <svg class="mini-plot" id="well-plot" viewBox="0 0 420 250" aria-label="Magnetic well proxy from V-prime"></svg>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const TAU = 2 * Math.PI;
+    const ns = "http://www.w3.org/2000/svg";
+
+    const sliders = {
+      r0OverA: document.getElementById("r0overa"),
+      kappa: document.getElementById("kappa"),
+      delta: document.getElementById("delta"),
+      alphaSource: document.getElementById("alpha-source"),
+      minorRadius: document.getElementById("minor-radius"),
+      b0: document.getElementById("b0"),
+      ip: document.getElementById("ip"),
+      pAvg: document.getElementById("pavg")
+    };
+
+    const labels = {
+      r0OverA: document.getElementById("r0overa-value"),
+      kappa: document.getElementById("kappa-value"),
+      delta: document.getElementById("delta-value"),
+      alphaSource: document.getElementById("alpha-source-value"),
+      minorRadius: document.getElementById("minor-radius-value"),
+      b0: document.getElementById("b0-value"),
+      ip: document.getElementById("ip-value"),
+      pAvg: document.getElementById("pavg-value")
+    };
+
+    const coeffGrid = document.getElementById("coeff-grid");
+    const axisSummary = document.getElementById("axis-summary");
+    const residualSummary = document.getElementById("residual-summary");
+    const boxSummary = document.getElementById("box-summary");
+    const topSummary = document.getElementById("top-summary");
+    const qSummary = document.getElementById("q-summary");
+    const betaSummary = document.getElementById("beta-summary");
+    const plot = document.getElementById("plot");
+    const qPlot = document.getElementById("q-plot");
+    const wellPlot = document.getElementById("well-plot");
+    const MU0 = 4e-7 * Math.PI;
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function basisValues(X, Y) {
+      const x2 = X * X;
+      const y2 = Y * Y;
+      const x4 = x2 * x2;
+      const y4 = y2 * y2;
+      const x6 = x4 * x2;
+      const y6 = y4 * y2;
+      const lnX = Math.log(Math.max(X, 1e-8));
+      return [
+        1,
+        x2,
+        y2 - x2 * lnX,
+        x4 - 4 * x2 * y2,
+        2 * y4 - 9 * x2 * y2 + 3 * x4 * lnX - 12 * x2 * y2 * lnX,
+        x6 - 12 * x4 * y2 + 8 * x2 * y4,
+        8 * y6 - 140 * x2 * y4 + 75 * x4 * y2 - 15 * x6 * lnX
+          + 180 * x4 * y2 * lnX - 120 * x2 * y4 * lnX
+      ];
+    }
+
+    function particular(X, alphaSource) {
+      const safeX = Math.max(X, 1e-8);
+      return 0.5 * alphaSource * safeX * safeX * Math.log(safeX) + 0.125 * (1 - alphaSource) * safeX ** 4;
+    }
+
+    function evaluateU(X, Y, coeffs, alphaSource) {
+      const basis = basisValues(X, Y);
+      let total = particular(X, alphaSource);
+      for (let i = 0; i < coeffs.length; i += 1) {
+        total += coeffs[i] * basis[i];
+      }
+      return total;
+    }
+
+    function derivativeOps(X, Y, alphaSource, op) {
+      const h = 1e-4;
+      if (op === "value") {
+        return (fn) => fn(X, Y);
+      }
+      if (op === "ux") {
+        return (fn) => (fn(X + h, Y) - fn(Math.max(1e-5, X - h), Y)) / (2 * h);
+      }
+      if (op === "uy") {
+        return (fn) => (fn(X, Y + h) - fn(X, Y - h)) / (2 * h);
+      }
+      if (op === "curvOuter" || op === "curvInner" || op === "curvTop") {
+        return (fn, weight) => {
+          const xMinus = Math.max(1e-5, X - h);
+          const u0 = fn(X, Y);
+          const uxx = (fn(X + h, Y) - 2 * u0 + fn(xMinus, Y)) / (h * h);
+          const uyy = (fn(X, Y + h) - 2 * u0 + fn(X, Y - h)) / (h * h);
+          const ux = (fn(X + h, Y) - fn(xMinus, Y)) / (2 * h);
+          const uy = (fn(X, Y + h) - fn(X, Y - h)) / (2 * h);
+          if (op === "curvTop") {
+            return uxx + weight * uy;
+          }
+          return uyy + weight * ux;
+        };
+      }
+      throw new Error(`Unknown operator ${op}`);
+    }
+
+    function solveLinearSystem(matrix, rhs) {
+      const n = rhs.length;
+      const a = matrix.map((row, i) => row.slice().concat(rhs[i]));
+      for (let col = 0; col < n; col += 1) {
+        let pivot = col;
+        let pivotAbs = Math.abs(a[col][col]);
+        for (let row = col + 1; row < n; row += 1) {
+          const candidate = Math.abs(a[row][col]);
+          if (candidate > pivotAbs) {
+            pivotAbs = candidate;
+            pivot = row;
+          }
+        }
+        if (pivotAbs < 1e-12) {
+          throw new Error("Singular linear system for this shape.");
+        }
+        if (pivot !== col) {
+          const temp = a[col];
+          a[col] = a[pivot];
+          a[pivot] = temp;
+        }
+        const inv = 1 / a[col][col];
+        for (let j = col; j <= n; j += 1) {
+          a[col][j] *= inv;
+        }
+        for (let row = 0; row < n; row += 1) {
+          if (row === col) continue;
+          const factor = a[row][col];
+          if (factor === 0) continue;
+          for (let j = col; j <= n; j += 1) {
+            a[row][j] -= factor * a[col][j];
+          }
+        }
+      }
+      return a.map((row) => row[n]);
+    }
+
+    function buildSolve(state) {
+      const epsilon = 1 / state.r0OverA;
+      const thetaDelta = Math.asin(Math.max(-0.98, Math.min(0.98, state.delta)));
+      const xOuter = 1 + epsilon;
+      const xInner = 1 - epsilon;
+      const xTop = 1 - state.delta * epsilon;
+      const yTop = state.kappa * epsilon;
+      const n1 = -((1 + thetaDelta) ** 2) / (epsilon * state.kappa ** 2);
+      const n2 = ((1 - thetaDelta) ** 2) / (epsilon * state.kappa ** 2);
+      const n3 = -state.kappa / (epsilon * Math.cos(thetaDelta) ** 2);
+
+      const constraints = [
+        { X: xOuter, Y: 0, op: "value" },
+        { X: xInner, Y: 0, op: "value" },
+        { X: xTop, Y: yTop, op: "value" },
+        { X: xTop, Y: yTop, op: "ux" },
+        { X: xOuter, Y: 0, op: "curvOuter", weight: n1 },
+        { X: xInner, Y: 0, op: "curvInner", weight: n2 },
+        { X: xTop, Y: yTop, op: "curvTop", weight: n3 }
+      ];
+
+      const matrix = [];
+      const rhs = [];
+      for (const constraint of constraints) {
+        const op = derivativeOps(constraint.X, constraint.Y, state.alphaSource, constraint.op);
+        const row = [];
+        for (let j = 0; j < 7; j += 1) {
+          row.push(op((X, Y) => basisValues(X, Y)[j], constraint.weight));
+        }
+        const particularValue = op((X, Y) => particular(X, state.alphaSource), constraint.weight);
+        matrix.push(row);
+        rhs.push(-particularValue);
+      }
+
+      const coeffs = solveLinearSystem(matrix, rhs);
+      const residuals = constraints.map((constraint) => {
+        const op = derivativeOps(constraint.X, constraint.Y, state.alphaSource, constraint.op);
+        return op((X, Y) => evaluateU(X, Y, coeffs, state.alphaSource), constraint.weight);
+      });
+
+      return {
+        coeffs,
+        residuals,
+        epsilon,
+        thetaDelta,
+        xOuter,
+        xInner,
+        xTop,
+        yTop
+      };
+    }
+
+    function targetBoundary(state, count = 361) {
+      const epsilon = 1 / state.r0OverA;
+      const thetaDelta = Math.asin(Math.max(-0.98, Math.min(0.98, state.delta)));
+      const pts = [];
+      for (let i = 0; i < count; i += 1) {
+        const theta = (TAU * i) / (count - 1);
+        const X = 1 + epsilon * Math.cos(theta + thetaDelta * Math.sin(theta));
+        const Y = state.kappa * epsilon * Math.sin(theta);
+        pts.push([X, Y]);
+      }
+      return pts;
+    }
+
+    function sampleAxis(state, coeffs, xInner, xOuter) {
+      let bestX = 1;
+      let bestValue = evaluateU(1, 0, coeffs, state.alphaSource);
+      const sign = bestValue >= 0 ? 1 : -1;
+      for (let i = 0; i <= 500; i += 1) {
+        const X = xInner + ((xOuter - xInner) * i) / 500;
+        const value = evaluateU(X, 0, coeffs, state.alphaSource);
+        if (sign * value > sign * bestValue) {
+          bestValue = value;
+          bestX = X;
+        }
+      }
+      return { X: bestX, value: bestValue };
+    }
+
+    function marchingSquares(xs, ys, field, level) {
+      const segments = [];
+      const ny = ys.length;
+      const nx = xs.length;
+      function interp(x1, y1, v1, x2, y2, v2) {
+        const denom = v2 - v1;
+        const t = Math.abs(denom) < 1e-14 ? 0.5 : (level - v1) / denom;
+        return [x1 + t * (x2 - x1), y1 + t * (y2 - y1)];
+      }
+      for (let j = 0; j < ny - 1; j += 1) {
+        for (let i = 0; i < nx - 1; i += 1) {
+          const x0 = xs[i];
+          const x1 = xs[i + 1];
+          const y0 = ys[j];
+          const y1 = ys[j + 1];
+          const v0 = field[j][i];
+          const v1 = field[j][i + 1];
+          const v2 = field[j + 1][i + 1];
+          const v3 = field[j + 1][i];
+
+          const points = [];
+          if ((v0 - level) * (v1 - level) < 0) points.push(interp(x0, y0, v0, x1, y0, v1));
+          if ((v1 - level) * (v2 - level) < 0) points.push(interp(x1, y0, v1, x1, y1, v2));
+          if ((v2 - level) * (v3 - level) < 0) points.push(interp(x1, y1, v2, x0, y1, v3));
+          if ((v3 - level) * (v0 - level) < 0) points.push(interp(x0, y1, v3, x0, y0, v0));
+
+          if (points.length === 2) {
+            segments.push(points);
+          } else if (points.length === 4) {
+            const center = 0.25 * (v0 + v1 + v2 + v3);
+            if (center > level) {
+              segments.push([points[0], points[3]]);
+              segments.push([points[1], points[2]]);
+            } else {
+              segments.push([points[0], points[1]]);
+              segments.push([points[2], points[3]]);
+            }
+          }
+        }
+      }
+      return segments;
+    }
+
+    function segmentsToPath(segments, transform) {
+      return segments.map((segment) => {
+        const [p0, p1] = segment.map(([x, y]) => transform(x, y));
+        return `M ${p0[0].toFixed(2)} ${p0[1].toFixed(2)} L ${p1[0].toFixed(2)} ${p1[1].toFixed(2)}`;
+      }).join(" ");
+    }
+
+    function joinSegments(segments) {
+      const key = (point) => `${point[0].toFixed(4)},${point[1].toFixed(4)}`;
+      const adjacency = new Map();
+      segments.forEach((segment, index) => {
+        segment.forEach((point, end) => {
+          const k = key(point);
+          if (!adjacency.has(k)) adjacency.set(k, []);
+          adjacency.get(k).push({ index, end });
+        });
+      });
+
+      const used = new Array(segments.length).fill(false);
+      const polylines = [];
+
+      function nextPoint(record, currentKey) {
+        const segment = segments[record.index];
+        const point = record.end === 0 ? segment[1] : segment[0];
+        return point;
+      }
+
+      for (let i = 0; i < segments.length; i += 1) {
+        if (used[i]) continue;
+        used[i] = true;
+        const polyline = [segments[i][0], segments[i][1]];
+
+        let current = segments[i][1];
+        let currentKey = key(current);
+        while (true) {
+          const options = (adjacency.get(currentKey) || []).filter((record) => !used[record.index]);
+          if (!options.length) break;
+          const record = options[0];
+          used[record.index] = true;
+          current = nextPoint(record, currentKey);
+          polyline.push(current);
+          currentKey = key(current);
+          if (currentKey === key(polyline[0])) break;
+        }
+
+        polylines.push(polyline);
+      }
+      return polylines;
+    }
+
+    function polylinePath(points, transform) {
+      return points.map((point, index) => {
+        const [x, y] = transform(point[0], point[1]);
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      }).join(" ");
+    }
+
+    function gradientU(X, Y, coeffs, alphaSource) {
+      const h = 1e-4;
+      const xMinus = Math.max(1e-5, X - h);
+      const ux = (evaluateU(X + h, Y, coeffs, alphaSource) - evaluateU(xMinus, Y, coeffs, alphaSource)) / (2 * h);
+      const uy = (evaluateU(X, Y + h, coeffs, alphaSource) - evaluateU(X, Y - h, coeffs, alphaSource)) / (2 * h);
+      return [ux, uy];
+    }
+
+    function computeFluxProfiles(levels, xs, ys, field, coeffs, alphaSource) {
+      const rows = [];
+      for (const entry of levels) {
+        const segments = marchingSquares(xs, ys, field, entry.level);
+        const polylines = joinSegments(segments);
+        if (!polylines.length) continue;
+        const curve = polylines.reduce((best, candidate) => candidate.length > best.length ? candidate : best, polylines[0]);
+        let qGeo = 0;
+        let vPrime = 0;
+        for (let i = 0; i < curve.length - 1; i += 1) {
+          const p0 = curve[i];
+          const p1 = curve[i + 1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const ds = Math.hypot(dx, dy);
+          if (ds < 1e-8) continue;
+          const xm = 0.5 * (p0[0] + p1[0]);
+          const ym = 0.5 * (p0[1] + p1[1]);
+          const [ux, uy] = gradientU(xm, ym, coeffs, alphaSource);
+          const gradMag = Math.max(Math.hypot(ux, uy), 1e-9);
+          qGeo += ds / (Math.max(xm, 1e-4) * gradMag);
+          vPrime += Math.max(xm, 1e-4) * ds / gradMag;
+        }
+        rows.push({
+          rho: entry.rho,
+          qGeo: qGeo / (2 * Math.PI),
+          vPrime: 2 * Math.PI * vPrime
+        });
+      }
+
+      if (!rows.length) return rows;
+      const qEdge = rows[rows.length - 1].qGeo || 1;
+      const vEdge = rows[rows.length - 1].vPrime || 1;
+      rows.forEach((row) => {
+        row.qNorm = row.qGeo / qEdge;
+        row.vNorm = row.vPrime / vEdge;
+      });
+      return rows;
+    }
+
+    function drawMiniProfile(svg, rows, valueKey, stroke, yLabel) {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const width = 420;
+      const height = 250;
+      const margin = { left: 52, right: 16, top: 16, bottom: 38 };
+      const plotW = width - margin.left - margin.right;
+      const plotH = height - margin.top - margin.bottom;
+
+      const yValues = rows.map((row) => row[valueKey]);
+      const yMin = Math.min(...yValues);
+      const yMax = Math.max(...yValues);
+      const pad = Math.max(0.03, 0.1 * (yMax - yMin || 1));
+      const ymin = yMin - pad;
+      const ymax = yMax + pad;
+
+      function mapX(rho) {
+        return margin.left + rho * plotW;
+      }
+      function mapY(value) {
+        return margin.top + plotH - ((value - ymin) / (ymax - ymin || 1)) * plotH;
+      }
+
+      for (let i = 0; i <= 4; i += 1) {
+        const yv = ymin + ((ymax - ymin) * i) / 4;
+        const py = mapY(yv);
+        svg.appendChild(svgElement("line", {
+          x1: margin.left,
+          y1: py,
+          x2: width - margin.right,
+          y2: py,
+          stroke: "#e2ebf1",
+          "stroke-width": "1"
+        }));
+        const label = svgElement("text", {
+          x: margin.left - 8,
+          y: py + 4,
+          "text-anchor": "end",
+          fill: "#5a7180",
+          "font-size": "12",
+          "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        label.textContent = fmt(yv, 2);
+        svg.appendChild(label);
+      }
+
+      for (let i = 0; i <= 5; i += 1) {
+        const rho = i / 5;
+        const px = mapX(rho);
+        svg.appendChild(svgElement("line", {
+          x1: px,
+          y1: margin.top,
+          x2: px,
+          y2: height - margin.bottom,
+          stroke: "#e2ebf1",
+          "stroke-width": "1"
+        }));
+        const label = svgElement("text", {
+          x: px,
+          y: height - margin.bottom + 18,
+          "text-anchor": "middle",
+          fill: "#5a7180",
+          "font-size": "12",
+          "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        label.textContent = fmt(rho, 1);
+        svg.appendChild(label);
+      }
+
+      svg.appendChild(svgElement("line", {
+        x1: margin.left,
+        y1: height - margin.bottom,
+        x2: width - margin.right,
+        y2: height - margin.bottom,
+        stroke: "#90a8b8",
+        "stroke-width": "1.1"
+      }));
+      svg.appendChild(svgElement("line", {
+        x1: margin.left,
+        y1: margin.top,
+        x2: margin.left,
+        y2: height - margin.bottom,
+        stroke: "#90a8b8",
+        "stroke-width": "1.1"
+      }));
+
+      const d = rows.map((row, index) => {
+        const x = mapX(row.rho);
+        const y = mapY(row[valueKey]);
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      }).join(" ");
+      svg.appendChild(svgElement("path", {
+        d,
+        fill: "none",
+        stroke,
+        "stroke-width": "2.4",
+        "stroke-linejoin": "round",
+        "stroke-linecap": "round"
+      }));
+
+      rows.forEach((row) => {
+        svg.appendChild(svgElement("circle", {
+          cx: mapX(row.rho),
+          cy: mapY(row[valueKey]),
+          r: 3.3,
+          fill: stroke
+        }));
+      });
+
+      const xLabel = svgElement("text", {
+        x: width / 2,
+        y: height - 8,
+        "text-anchor": "middle",
+        fill: "#486170",
+        "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      xLabel.textContent = "ρ";
+      svg.appendChild(xLabel);
+
+      const yAxisLabel = svgElement("text", {
+        x: 14,
+        y: height / 2,
+        "text-anchor": "middle",
+        fill: "#486170",
+        "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+        transform: `rotate(-90 14 ${height / 2})`
+      });
+      yAxisLabel.textContent = yLabel;
+      svg.appendChild(yAxisLabel);
+    }
+
+    function svgElement(tag, attrs = {}) {
+      const el = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attrs)) {
+        el.setAttribute(key, value);
+      }
+      return el;
+    }
+
+    function drawScene(state, solve) {
+      const coeffs = solve.coeffs;
+      const boundary = targetBoundary(state);
+      const axis = sampleAxis(state, coeffs, solve.xInner, solve.xOuter);
+
+      const padX = 0.18 + 0.12 * solve.epsilon;
+      const padY = 0.16 + 0.08 * solve.epsilon * state.kappa;
+      const xMin = Math.max(0.08, solve.xInner - padX);
+      const xMax = solve.xOuter + padX;
+      const yMin = -(solve.yTop + padY);
+      const yMax = solve.yTop + padY;
+
+      const width = 860;
+      const height = 760;
+      const margin = { left: 58, right: 22, top: 18, bottom: 38 };
+      const plotW = width - margin.left - margin.right;
+      const plotH = height - margin.top - margin.bottom;
+
+      function toSvg(X, Y) {
+        const px = margin.left + ((X - xMin) / (xMax - xMin)) * plotW;
+        const py = margin.top + plotH - ((Y - yMin) / (yMax - yMin)) * plotH;
+        return [px, py];
+      }
+
+      const xs = [];
+      const ys = [];
+      const nx = 180;
+      const ny = 180;
+      for (let i = 0; i < nx; i += 1) xs.push(xMin + ((xMax - xMin) * i) / (nx - 1));
+      for (let j = 0; j < ny; j += 1) ys.push(yMin + ((yMax - yMin) * j) / (ny - 1));
+      const field = ys.map((Y) => xs.map((X) => evaluateU(X, Y, coeffs, state.alphaSource)));
+
+      const uAxis = axis.value;
+      const profileLevels = [];
+      const plotLevels = [];
+      for (let i = 1; i <= 19; i += 1) {
+        const rho = i / 20;
+        const level = uAxis * (1 - rho * rho);
+        profileLevels.push({ rho, level });
+      }
+      for (const row of profileLevels) {
+        plotLevels.push(row.level);
+      }
+      const lcfs = marchingSquares(xs, ys, field, 0);
+      const fluxContours = plotLevels.map((level) => marchingSquares(xs, ys, field, level));
+      const profileRows = computeFluxProfiles(profileLevels, xs, ys, field, coeffs, state.alphaSource);
+      const R0 = state.minorRadius * state.r0OverA;
+      const ipA = state.ip * 1e6;
+      const pAvgPa = state.pAvg * 1e3;
+      const qCyl = (2 * Math.PI * state.minorRadius * state.minorRadius * state.b0) / (MU0 * R0 * ipA);
+      const qStar = qCyl * (1 + state.kappa * state.kappa) / 2;
+      const betaT = (2 * MU0 * pAvgPa) / (state.b0 * state.b0);
+      const betaP = (4 * Math.PI * Math.PI * state.minorRadius * state.minorRadius * (1 + state.kappa * state.kappa) * pAvgPa) / (MU0 * ipA * ipA);
+
+      while (plot.firstChild) plot.removeChild(plot.firstChild);
+
+      const bg = svgElement("rect", { x: 0, y: 0, width, height, fill: "transparent" });
+      plot.appendChild(bg);
+
+      for (let yTick = Math.ceil(yMin * 2) / 2; yTick <= yMax + 1e-9; yTick += 0.5) {
+        const [, py] = toSvg(xMin, yTick);
+        plot.appendChild(svgElement("line", {
+          x1: margin.left,
+          y1: py,
+          x2: width - margin.right,
+          y2: py,
+          stroke: "#e2ebf1",
+          "stroke-width": "1"
+        }));
+      }
+      for (let xTick = Math.ceil(xMin * 2) / 2; xTick <= xMax + 1e-9; xTick += 0.5) {
+        const [px] = toSvg(xTick, yMin);
+        plot.appendChild(svgElement("line", {
+          x1: px,
+          y1: margin.top,
+          x2: px,
+          y2: height - margin.bottom,
+          stroke: "#e2ebf1",
+          "stroke-width": "1"
+        }));
+      }
+
+      const axisY = toSvg(xMin, 0)[1];
+      const axisX = toSvg(1, yMin)[0];
+      plot.appendChild(svgElement("line", {
+        x1: margin.left,
+        y1: axisY,
+        x2: width - margin.right,
+        y2: axisY,
+        stroke: "#9fb5c5",
+        "stroke-width": "1.1"
+      }));
+      plot.appendChild(svgElement("line", {
+        x1: axisX,
+        y1: margin.top,
+        x2: axisX,
+        y2: height - margin.bottom,
+        stroke: "#9fb5c5",
+        "stroke-width": "1.1"
+      }));
+
+      for (const contour of fluxContours) {
+        if (!contour.length) continue;
+        plot.appendChild(svgElement("path", {
+          d: segmentsToPath(contour, toSvg),
+          fill: "none",
+          stroke: "#2d6ea8",
+          "stroke-width": "1.55",
+          "stroke-linecap": "round",
+          opacity: "0.9"
+        }));
+      }
+
+      if (lcfs.length) {
+        plot.appendChild(svgElement("path", {
+          d: segmentsToPath(lcfs, toSvg),
+          fill: "none",
+          stroke: "#17232e",
+          "stroke-width": "2.4",
+          "stroke-linecap": "round"
+        }));
+      }
+
+      plot.appendChild(svgElement("path", {
+        d: polylinePath(boundary, toSvg),
+        fill: "none",
+        stroke: "#b64646",
+        "stroke-width": "2.1",
+        "stroke-dasharray": "9 8"
+      }));
+
+      const [axisPx, axisPy] = toSvg(axis.X, 0);
+      plot.appendChild(svgElement("circle", {
+        cx: axisPx,
+        cy: axisPy,
+        r: 5.5,
+        fill: "#163c5d"
+      }));
+
+      const [topPx, topPy] = toSvg(solve.xTop, solve.yTop);
+      plot.appendChild(svgElement("circle", {
+        cx: topPx,
+        cy: topPy,
+        r: 4.4,
+        fill: "#b64646"
+      }));
+
+      const axisLabel = svgElement("text", {
+        x: axisPx + 10,
+        y: axisPy - 10,
+        fill: "#163c5d",
+        "font-size": "15",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      axisLabel.textContent = "magnetic axis";
+      plot.appendChild(axisLabel);
+
+      const topLabel = svgElement("text", {
+        x: topPx + 10,
+        y: topPy - 10,
+        fill: "#8c3333",
+        "font-size": "15",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      topLabel.textContent = "top control point";
+      plot.appendChild(topLabel);
+
+      plot.appendChild(svgElement("text", {
+        x: width / 2,
+        y: height - 8,
+        fill: "#486170",
+        "font-size": "15",
+        "text-anchor": "middle",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      })).textContent = "X = R / R0";
+      const yLabel = svgElement("text", {
+        x: 16,
+        y: height / 2,
+        fill: "#486170",
+        "font-size": "15",
+        "text-anchor": "middle",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+        transform: `rotate(-90 16 ${height / 2})`
+      });
+      yLabel.textContent = "Y = Z / R0";
+      plot.appendChild(yLabel);
+
+      axisSummary.textContent = `X_axis ≈ ${fmt(axis.X, 4)},  U_axis ≈ ${axis.value.toExponential(3)}.`;
+      residualSummary.textContent = `max |constraint residual| ≈ ${Math.max(...solve.residuals.map((v) => Math.abs(v))).toExponential(2)}.`;
+      boxSummary.textContent = `X ∈ [${fmt(xMin, 3)}, ${fmt(xMax, 3)}],  Y ∈ [${fmt(yMin, 3)}, ${fmt(yMax, 3)}].`;
+      topSummary.textContent = `X_top ≈ ${fmt(solve.xTop, 4)},  Y_top ≈ ${fmt(solve.yTop, 4)}.`;
+      const q95Row = profileRows.reduce((best, row) => Math.abs(row.rho - 0.95) < Math.abs(best.rho - 0.95) ? row : best, profileRows[profileRows.length - 1]);
+      qSummary.textContent = `q_cyl ≈ ${fmt(qCyl, 2)},  q* ≈ ${fmt(qStar, 2)},  q_0.95 ≈ ${fmt(q95Row.qNorm * qStar, 2)}.`;
+      betaSummary.textContent = `β_t ≈ ${(100 * betaT).toFixed(2)}%,  β_p ≈ ${fmt(betaP, 2)},  R0 ≈ ${fmt(R0, 2)} m.`;
+
+      coeffGrid.innerHTML = "";
+      solve.coeffs.forEach((value, index) => {
+        const cell = document.createElement("div");
+        cell.textContent = `c${index} = ${value.toExponential(3)}`;
+        coeffGrid.appendChild(cell);
+      });
+
+      if (profileRows.length) {
+        const qRows = profileRows.map((row) => ({ ...row, qAbs: row.qNorm * qStar }));
+        drawMiniProfile(qPlot, qRows, "qAbs", "#1f4e79", "q estimate");
+        drawMiniProfile(wellPlot, profileRows, "vNorm", "#5e8e39", "V'(ψ) / V'_edge");
+      }
+    }
+
+    function currentState() {
+      return {
+        r0OverA: parseFloat(sliders.r0OverA.value),
+        kappa: parseFloat(sliders.kappa.value),
+        delta: parseFloat(sliders.delta.value),
+        alphaSource: parseFloat(sliders.alphaSource.value),
+        minorRadius: parseFloat(sliders.minorRadius.value),
+        b0: parseFloat(sliders.b0.value),
+        ip: parseFloat(sliders.ip.value),
+        pAvg: parseFloat(sliders.pAvg.value)
+      };
+    }
+
+    function updateLabels(state) {
+      labels.r0OverA.textContent = fmt(state.r0OverA, 2);
+      labels.kappa.textContent = fmt(state.kappa, 3);
+      labels.delta.textContent = fmt(state.delta, 3);
+      labels.alphaSource.textContent = fmt(state.alphaSource, 3);
+      labels.minorRadius.textContent = `${fmt(state.minorRadius, 2)} m`;
+      labels.b0.textContent = `${fmt(state.b0, 2)} T`;
+      labels.ip.textContent = `${fmt(state.ip, 2)} MA`;
+      labels.pAvg.textContent = `${fmt(state.pAvg, 0)} kPa`;
+    }
+
+    function render() {
+      const state = currentState();
+      updateLabels(state);
+      try {
+        const solve = buildSolve(state);
+        drawScene(state, solve);
+      } catch (error) {
+        while (plot.firstChild) plot.removeChild(plot.firstChild);
+        const msg = svgElement("text", {
+          x: 430,
+          y: 360,
+          fill: "#8c3333",
+          "font-size": "20",
+          "text-anchor": "middle",
+          "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        msg.textContent = error.message;
+        plot.appendChild(msg);
+        residualSummary.textContent = error.message;
+      }
+    }
+
+    Object.values(sliders).forEach((slider) => slider.addEventListener("input", render));
+    render();
+  </script>
+</body>
+</html>

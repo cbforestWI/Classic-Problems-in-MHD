@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 3 Conservative (Divergence) Form of MHD</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture2.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture4.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;3</span><br /><a 
+ id="x1-450003"></a>Conservative (Divergence) Form of MHD</h2>
+<!--l. 62--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 62--><p class="noindent" ><span 
+class="ecbx-1095">Conservative form is the bookkeeping language of MHD.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">It rewrites the equations in terms of fluxes through surfaces.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">It makes momentum transport by the magnetic field look as concrete as momentum
+   transport by the fluid itself.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">It  is  the  natural  form  for  finite-volume  numerics,  jump  conditions,  and  integral
+   conservation laws.</dd></dl>
+     </blockquote></div></div>
+<!--l. 70--><p class="noindent" >The point of conservative form is not aesthetic. It is the form in which one can integrate over a control
+volume and read off exactly what crosses the boundary. Starting from the continuity equation (<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), the
+explicit momentum equation (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>), and the induction equation (<a href="lecture2.html#eq-eq-visc-induction">2.12</a>), we now reorganize the same physics
+into flux form.
+<a 
+ id="x1-45004r46"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-460001"></a>Mass Conservation</h3>
+
+<!--l. 85--><p class="noindent" ><a id="eq-eq-cons-mass"></a><div class="math-display">\[\boxed { \pp {\rho }{t} + \divergence (\rho \uvec ) = 0. } \tag{3.1}\]</div>
+</p><!--l. 87--><p class="noindent" >This is already conservative. It says that mass changes inside a volume only because the mass flux \(\rho \uvec \) crosses
+its boundary.
+<a 
+ id="x1-46001r48"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-470002"></a>Momentum Flux</h3>
+<!--l. 93--><p class="noindent" >Using (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>) together with (<a href="lecture3.html#eq-eq-cons-mass">3.1</a>), one obtains <a id="eq-eq-cons-fluidmomentum"></a><div class="math-display">\[\boxed { \pp {(\rho \uvec )}{t} + \divergence \left ( \rho \uvec \uvec + p\,\tens {I} - \tens {\Pi } \right ) = \J \times \B . } \tag{3.2}\]</div>
+The dyadic term \(\rho \uvec \uvec \) is advective momentum transport; \(p\,\tens {I}-\tens {\Pi }\) is the mechanical stress from Lecture&#x00A0;2.
+<a 
+ id="x1-47001r49"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-480003"></a>Lorentz Force as a Divergence</h3>
+<!--l. 117--><p class="noindent" >Using Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) and \(\divergence \B =0\) from (<a href="lecture1.html#eq-eq-intro-divb">1.12</a>), <a id="eq-eq-cons-maxwell"></a><div class="math-display">\[\J \times \B = \divergence \left [ \left ( \frac {B^2}{2\muo } \right )\tens {I} - \frac {\B \B }{\muo } \right ]. \tag{3.3}\]</div>
+Substituting (<a href="lecture3.html#eq-eq-cons-maxwell">3.3</a>) into (<a href="lecture3.html#eq-eq-cons-fluidmomentum">3.2</a>) gives the full conservative momentum equation <a id="eq-eq-cons-momentum"></a><div class="math-display">\[\boxed { \pp {(\rho \uvec )}{t} + \divergence \tens {T} = 0, } \tag{3.4}\]</div>
+with total momentum-flux tensor <a id="eq-eq-cons-stress"></a><div class="math-display">\[\boxed { \tens {T} = \rho \uvec \uvec + \left ( p+\frac {B^2}{2\muo } \right )\tens {I} - \frac {\B \B }{\muo } - \tens {\Pi }. } \tag{3.5}\]</div>
+</p><!--l. 161--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 161--><p class="noindent" >The isotropic term \((B^2/2\muo )\tens {I}\) looks like a pressure and \(-\B \B /\muo \) looks like a tension, but they should really
+     be interpreted together through (<a href="lecture3.html#eq-eq-cons-maxwell">3.3</a>) and (<a href="lecture3.html#eq-eq-cons-stress">3.5</a>). The field transports momentum as a
+     tensor, not as a scalar pressure with an optional correction.</p></blockquote></div></div>
+<a 
+ id="x1-48001r50"></a>
+<h3 class="sectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-490004"></a>Energy Densities</h3>
+<!--l. 168--><p class="noindent" >Define the total energy density <a id="eq-eq-cons-energydensity"></a><div class="math-display">\[\mathcal {E} = \frac {1}{2}\rho u^2 + \rho e + \frac {B^2}{2\muo }. \tag{3.6}\]</div>
+Its three pieces are kinetic, internal, and magnetic energy.
+<a 
+ id="x1-49001r51"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.5   </span> <a 
+ id="x1-500005"></a>Kinetic Energy Equation</h3>
+<!--l. 185--><p class="noindent" >Dotting (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>) with \(\uvec \) and using (<a href="lecture3.html#eq-eq-cons-mass">3.1</a>) gives <a id="eq-eq-cons-kinetic"></a><div class="math-display">\[\pp {}{t} \left ( \frac {1}{2}\rho u^2 \right ) + \divergence \left [ \left ( \frac {1}{2}\rho u^2 \right )\uvec + \left ( p\,\tens {I} - \tens {\Pi } \right )\cdot \uvec \right ] = p\,\divergence \uvec - \tens {\Pi }:\grad \uvec + \J \cdot \E - \eta J^2. \tag{3.7}\]</div>
+<a 
+ id="x1-50001r52"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.6   </span> <a 
+ id="x1-510006"></a>Magnetic Energy Equation</h3>
+<!--l. 219--><p class="noindent" >Starting from Faraday&#8217;s law (<a href="lecture1.html#eq-eq-intro-faraday">1.10</a>) and Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>), <a id="eq-eq-cons-magnetic"></a><div class="math-display">\[\pp {}{t} \left ( \frac {B^2}{2\muo } \right ) + \divergence \left ( \frac {\E \times \B }{\muo } \right ) = - \J \cdot \E . \tag{3.8}\]</div>
+The flux \(\E \times \B /\muo \) is the Poynting flux.
+<a 
+ id="x1-51001r53"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.7   </span> <a 
+ id="x1-520007"></a>Internal Energy Equation</h3>
+<!--l. 241--><p class="noindent" >A convenient conservative form for the internal energy is <a id="eq-eq-cons-internal"></a><div class="math-display">\[\pp {(\rho e)}{t} + \divergence (\rho e\,\uvec ) = - p\,\divergence \uvec - \divergence \vect {q} + \tens {\Pi }:\grad \uvec + \eta J^2. \tag{3.9}\]</div>
+For an ideal gas, <a id="eq-eq-cons-idealgas"></a><div class="math-display">\[e=\frac {p}{(\gamma -1)\rho }. \tag{3.10}\]</div>
+If, in addition, the flow is adiabatic and we neglect \(\tens {\Pi }\), \(\vect {q}\), and \(\eta \), then (<a href="lecture3.html#eq-eq-cons-internal">3.9</a>) reduces to <a id="eq-eq-cons-pressure"></a><div class="math-display">\[\boxed { \frac {Dp}{Dt} = -\gamma p\,\divergence \uvec , } \tag{3.11}\]</div>
+which is equivalent to the adiabatic law (<a href="lecture1.html#eq-eq-intro-adiabatic">1.14</a>).
+<a 
+ id="x1-52001r54"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.8   </span> <a 
+ id="x1-530008"></a>Total Energy Conservation</h3>
+<!--l. 277--><p class="noindent" >Adding (<a href="lecture3.html#eq-eq-cons-kinetic">3.7</a>), (<a href="lecture3.html#eq-eq-cons-magnetic">3.8</a>), and (<a href="lecture3.html#eq-eq-cons-internal">3.9</a>) gives <a id="eq-eq-cons-totalenergy"></a><div class="math-display">\[\boxed { \pp {\mathcal {E}}{t} + \divergence \left [ \left ( \frac {1}{2}\rho u^2 + \rho e + p \right )\uvec - \tens {\Pi }\cdot \uvec + \vect {q} + \frac {\E \times \B }{\muo } \right ] = 0. } \tag{3.12}\]</div>
+<a 
+ id="x1-53001r55"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.9   </span> <a 
+ id="x1-540009"></a>Why This Form Matters</h3>
+<!--l. 306--><p class="noindent" >For shocks, discontinuities, and numerical algorithms, (<a href="lecture3.html#eq-eq-cons-mass">3.1</a>), (<a href="lecture3.html#eq-eq-cons-momentum">3.4</a>), and (<a href="lecture3.html#eq-eq-cons-totalenergy">3.12</a>) are the natural starting point
+because they survive volume integration without hidden integration-by-parts steps. Conservative form is
+where the geometry of fluxes becomes algebraically explicit.
+</p><!--l. 309--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">Magnetic stresses belong in the same flux bookkeeping as fluid stresses.
+   </li>
+   <li class="itemize">The Maxwell stress in (<a href="lecture3.html#eq-eq-cons-maxwell">3.3</a>) is the cleanest way to see how magnetic fields carry
+   momentum.
+   </li>
+   <li class="itemize">The conservative pressure law (<a href="lecture3.html#eq-eq-cons-pressure">3.11</a>) is not fundamental by itself; it is the reduced
+   form that survives after a closure has been chosen.</li></ul>
+     </blockquote></div></div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

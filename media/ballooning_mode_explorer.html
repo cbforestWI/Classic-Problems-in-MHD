@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ballooning Mode Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --target: #b64646;
+      --green: #2f7d49;
+      --gold: #b98a3d;
+      --purple: #7059b8;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 76ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"], select {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      border: 1px solid #cdd8df;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      background: #fcfeff;
+      color: #254458;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.92rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 64ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .mini-plot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      margin-top: 0.9rem;
+      color: #59707f;
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Ballooning Mode Explorer</h1>
+  <p class="lede">
+    This browser-side companion to the ballooning lecture solves the local
+    <em>ŝ</em>–<em>α</em> equation on an extended field line,
+    <em>d/dθ[(1+Λ²)X′] + α(cosθ + Λ sinθ)X = λ(1+Λ²)X</em>,
+    while tying the local parameters back to a chosen <em>q(r)</em> profile and a reference
+    surface <em>q_ref</em>. The same calculation then reconstructs the sideband packet centered on
+    <em>m₀ ≈ n q_ref</em>.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="q-profile-family">q-profile family</label>
+        </div>
+        <select id="q-profile-family">
+          <option value="quadratic">Quadratic monotone</option>
+          <option value="broad">Broad-core monotone</option>
+          <option value="edge">Edge-shear monotone</option>
+        </select>
+        <p class="help">Different profile families change the local magnetic shear felt at the reference surface.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q-axis">Axis safety factor <span style="font-weight:500;">q(0)</span></label>
+          <span class="value" id="q-axis-value"></span>
+        </div>
+        <input id="q-axis" type="range" min="0.70" max="2.50" step="0.01" value="1.00" />
+        <p class="help">Sets the core safety factor of the chosen profile family.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q-edge">Edge safety factor <span style="font-weight:500;">q(a)</span></label>
+          <span class="value" id="q-edge-value"></span>
+        </div>
+        <input id="q-edge" type="range" min="1.20" max="8.00" step="0.01" value="4.50" />
+        <p class="help">Sets the edge value used to build the global q profile.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q-ref">Reference surface <span style="font-weight:500;">q_ref</span></label>
+          <span class="value" id="q-ref-value"></span>
+        </div>
+        <input id="q-ref" type="range" min="1.00" max="6.00" step="0.01" value="3.00" />
+        <p class="help">The local ballooning packet is built around the surface where <code>q(r) = q_ref</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="shear-scale">Shear scale <span style="font-weight:500;">ŝ / ŝ_profile</span></label>
+          <span class="value" id="shear-scale-value"></span>
+        </div>
+        <input id="shear-scale" type="range" min="0.40" max="1.80" step="0.01" value="1.00" />
+        <p class="help">Multiplies the local shear inferred from the q profile, so you can compare profile-driven and hand-adjusted shear.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="alpha">Pressure-gradient parameter <span style="font-weight:500;">α</span></label>
+          <span class="value" id="alpha-value"></span>
+        </div>
+        <input id="alpha" type="range" min="0.00" max="3.00" step="0.01" value="1.20" />
+        <p class="help">This is the standard local ballooning drive parameter from the lecture.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="n-mode">Toroidal mode number <span style="font-weight:500;">n</span></label>
+          <span class="value" id="n-mode-value"></span>
+        </div>
+        <input id="n-mode" type="range" min="6" max="60" step="1" value="20" />
+        <p class="help">Used only to reconstruct the sideband packet around <code>m₀ ≈ n q_ref</code>.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The default point matches the lecture example closely: <code>α = 1.20</code>, <code>q_ref = 3</code>, and a moderate positive local shear.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Field-Line Envelope and Sideband Packet</h2>
+          <p>
+            The large panel shows the dominant even field-line envelope <em>X(θ)</em>. The smaller panels connect that local mode
+            back to the global <em>q(r)</em> profile and to the neighboring poloidal sidebands that make up a finite-<em>n</em> ballooning packet.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--accent);"><span class="swatch"></span>Envelope <em>X(θ)</em></li>
+        <li style="color: var(--gold);"><span class="swatch dashed"></span>Reference surface</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="main-plot" viewBox="0 0 760 420" aria-label="Ballooning envelope"></svg>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>q Profile and Local Shear</h3>
+          <p>The local magnetic shear is read from the chosen <em>q(r)</em> family at the surface where <em>q = q_ref</em>.</p>
+          <svg id="q-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="q profile"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Poloidal Sideband Packet</h3>
+          <p>The ballooning transform reconstructs a narrow packet around the centroid <em>m₀ ≈ n q_ref</em>.</p>
+          <svg id="spectrum-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="sideband spectrum"></svg>
+        </div>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p><strong>Model summary.</strong> The app solves the lecture’s local equation with</p>
+        <p><code>Λ(θ) = ŝ θ - α sinθ</code>, <code>A(θ) = 1 + Λ²</code>, <code>V(θ) = α(cosθ + Λ sinθ)</code>, and <code>(A X′)′ + V X = λ A X</code>.</p>
+      </div>
+
+      <p class="footer-note">
+        Positive <em>λ = ν₀γ = -ω̂²</em> corresponds to a linearly unstable ballooning envelope in the lecture’s drag formulation.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const controls = {
+      family: document.getElementById("q-profile-family"),
+      qAxis: document.getElementById("q-axis"),
+      qEdge: document.getElementById("q-edge"),
+      qRef: document.getElementById("q-ref"),
+      shearScale: document.getElementById("shear-scale"),
+      alpha: document.getElementById("alpha"),
+      nMode: document.getElementById("n-mode")
+    };
+
+    const labels = {
+      qAxis: document.getElementById("q-axis-value"),
+      qEdge: document.getElementById("q-edge-value"),
+      qRef: document.getElementById("q-ref-value"),
+      shearScale: document.getElementById("shear-scale-value"),
+      alpha: document.getElementById("alpha-value"),
+      nMode: document.getElementById("n-mode-value")
+    };
+
+    const mainPlot = document.getElementById("main-plot");
+    const qPlot = document.getElementById("q-plot");
+    const spectrumPlot = document.getElementById("spectrum-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+    const warningBox = document.getElementById("warning-box");
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function trapz(x, y) {
+      let total = 0;
+      for (let i = 1; i < x.length; i += 1) {
+        total += 0.5 * (y[i] + y[i - 1]) * (x[i] - x[i - 1]);
+      }
+      return total;
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+      for (let i = 0; i <= tickCount; i += 1) {
+        const y = ymin + (i / tickCount) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function qShape(rho, family) {
+      if (family === "broad") {
+        return 0.45 * rho * rho + 0.55 * Math.pow(rho, 4);
+      }
+      if (family === "edge") {
+        return Math.pow(rho, 6);
+      }
+      return rho * rho;
+    }
+
+    function dqShapeDrho(rho, family) {
+      if (family === "broad") {
+        return 0.90 * rho + 2.20 * Math.pow(rho, 3);
+      }
+      if (family === "edge") {
+        return 6 * Math.pow(rho, 5);
+      }
+      return 2 * rho;
+    }
+
+    function findRoot(x, y, target) {
+      for (let i = 1; i < x.length; i += 1) {
+        const f0 = y[i - 1] - target;
+        const f1 = y[i] - target;
+        if (f0 === 0) {
+          return x[i - 1];
+        }
+        if (f0 * f1 <= 0) {
+          const t = f0 / (f0 - f1);
+          return x[i - 1] + t * (x[i] - x[i - 1]);
+        }
+      }
+      return null;
+    }
+
+    function interpolate(x, y, target) {
+      if (target <= x[0]) {
+        return y[0];
+      }
+      if (target >= x[x.length - 1]) {
+        return y[y.length - 1];
+      }
+      for (let i = 1; i < x.length; i += 1) {
+        if (target <= x[i]) {
+          const t = (target - x[i - 1]) / (x[i] - x[i - 1]);
+          return y[i - 1] + t * (y[i] - y[i - 1]);
+        }
+      }
+      return y[y.length - 1];
+    }
+
+    function integrateEnvelope(lambda, sHat, alpha, thetaMax, steps) {
+      const h = thetaMax / steps;
+      let theta = 0;
+      let X = 1;
+      let Y = 0;
+      const thetas = [0];
+      const xs = [X];
+
+      function rhs(thetaLocal, xLocal, yLocal) {
+        const Lambda = sHat * thetaLocal - alpha * Math.sin(thetaLocal);
+        const A = 1 + Lambda * Lambda;
+        const Aprime = 2 * Lambda * (sHat - alpha * Math.cos(thetaLocal));
+        const V = alpha * (Math.cos(thetaLocal) + Lambda * Math.sin(thetaLocal));
+        const yPrime = ((lambda * A - V) * xLocal - Aprime * yLocal) / A;
+        return [yLocal, yPrime];
+      }
+
+      let nodes = 0;
+      for (let i = 0; i < steps; i += 1) {
+        const [k1x, k1y] = rhs(theta, X, Y);
+        const [k2x, k2y] = rhs(theta + 0.5 * h, X + 0.5 * h * k1x, Y + 0.5 * h * k1y);
+        const [k3x, k3y] = rhs(theta + 0.5 * h, X + 0.5 * h * k2x, Y + 0.5 * h * k2y);
+        const [k4x, k4y] = rhs(theta + h, X + h * k3x, Y + h * k3y);
+        const nextX = X + (h / 6) * (k1x + 2 * k2x + 2 * k3x + k4x);
+        const nextY = Y + (h / 6) * (k1y + 2 * k2y + 2 * k3y + k4y);
+        if (X === 0 || nextX === 0 || X * nextX < 0) {
+          nodes += 1;
+        }
+        theta += h;
+        X = nextX;
+        Y = nextY;
+        thetas.push(theta);
+        xs.push(X);
+      }
+
+      return { residual: X, nodes, thetas, xs, edgeSlope: Y };
+    }
+
+    function solveEigenvalue(sHat, alpha) {
+      const thetaMax = 14;
+      const steps = 1400;
+      const lambdaMin = -2.0;
+      const lambdaMax = 3.0;
+      const samples = 180;
+      let bracket = null;
+      let bracketScore = Infinity;
+      let previous = integrateEnvelope(lambdaMin, sHat, alpha, thetaMax, steps);
+      let previousLambda = lambdaMin;
+
+      for (let i = 1; i <= samples; i += 1) {
+        const lambda = lambdaMin + (i / samples) * (lambdaMax - lambdaMin);
+        const current = integrateEnvelope(lambda, sHat, alpha, thetaMax, steps);
+        if (previous.residual * current.residual <= 0) {
+          const score = Math.max(previous.nodes, current.nodes);
+          if (score < bracketScore) {
+            bracket = { lo: previousLambda, hi: lambda };
+            bracketScore = score;
+          }
+        }
+        previous = current;
+        previousLambda = lambda;
+      }
+
+      if (!bracket) {
+        return null;
+      }
+
+      let lo = bracket.lo;
+      let hi = bracket.hi;
+      let flo = integrateEnvelope(lo, sHat, alpha, thetaMax, steps);
+      let fhi = integrateEnvelope(hi, sHat, alpha, thetaMax, steps);
+      let midData = null;
+
+      for (let iter = 0; iter < 42; iter += 1) {
+        const mid = 0.5 * (lo + hi);
+        midData = integrateEnvelope(mid, sHat, alpha, thetaMax, steps);
+        if (flo.residual * midData.residual <= 0) {
+          hi = mid;
+          fhi = midData;
+        } else {
+          lo = mid;
+          flo = midData;
+        }
+      }
+
+      const lambda = 0.5 * (lo + hi);
+      const solution = midData || integrateEnvelope(lambda, sHat, alpha, thetaMax, steps);
+      const mirroredTheta = [];
+      const mirroredX = [];
+      for (let i = solution.thetas.length - 1; i >= 1; i -= 1) {
+        mirroredTheta.push(-solution.thetas[i]);
+        mirroredX.push(solution.xs[i]);
+      }
+      for (let i = 0; i < solution.thetas.length; i += 1) {
+        mirroredTheta.push(solution.thetas[i]);
+        mirroredX.push(solution.xs[i]);
+      }
+      const maxAbs = Math.max(...mirroredX.map((value) => Math.abs(value))) || 1;
+      return {
+        lambda,
+        theta: mirroredTheta,
+        X: mirroredX.map((value) => value / maxAbs),
+        thetaMax,
+        nodes: solution.nodes
+      };
+    }
+
+    function computeModel() {
+      let qAxis = parseFloat(controls.qAxis.value);
+      let qEdge = parseFloat(controls.qEdge.value);
+      if (qAxis >= qEdge) {
+        qAxis = qEdge - 0.05;
+        controls.qAxis.value = qAxis.toFixed(2);
+      }
+      const qRef = parseFloat(controls.qRef.value);
+      const family = controls.family.value;
+      const alpha = parseFloat(controls.alpha.value);
+      const shearScale = parseFloat(controls.shearScale.value);
+      const nMode = parseInt(controls.nMode.value, 10);
+
+      const points = 400;
+      const rho = [];
+      const q = [];
+      for (let i = 0; i < points; i += 1) {
+        const x = i / (points - 1);
+        rho.push(x);
+        q.push(qAxis + (qEdge - qAxis) * qShape(x, family));
+      }
+
+      const qMin = Math.min(...q);
+      const qMax = Math.max(...q);
+      const tolerance = 1e-9 * Math.max(1, Math.abs(qMin), Math.abs(qMax));
+      controls.qRef.min = qMin.toFixed(2);
+      controls.qRef.max = qMax.toFixed(2);
+      let qRefEffective = qRef;
+      if (qRefEffective < qMin) {
+        qRefEffective = qMin;
+        controls.qRef.value = qRefEffective.toFixed(2);
+      } else if (qRefEffective > qMax) {
+        qRefEffective = qMax;
+        controls.qRef.value = qRefEffective.toFixed(2);
+      }
+
+      const rhoRef = findRoot(rho, q, qRefEffective);
+      if (rhoRef === null || qRefEffective < qMin - tolerance || qRefEffective > qMax + tolerance) {
+        return { valid: false, qAxis, qEdge, qMin, qMax, qRef: qRefEffective, family };
+      }
+
+      const dqdrho = (qEdge - qAxis) * dqShapeDrho(rhoRef, family);
+      const sProfile = rhoRef * dqdrho / qRefEffective;
+      const sHat = shearScale * sProfile;
+      const eigen = solveEigenvalue(sHat, alpha);
+      if (!eigen) {
+        return { valid: false, qAxis, qEdge, qMin, qMax, qRef: qRefEffective, family, rho, q, rhoRef, sProfile, sHat };
+      }
+
+      const m0 = nMode * qRefEffective;
+      const center = Math.round(m0);
+      const sidebandRadius = 8;
+      const sidebands = [];
+      for (let k = -sidebandRadius; k <= sidebandRadius; k += 1) {
+        const mValue = center + k;
+        const phase = mValue - m0;
+        const cosValues = eigen.theta.map((theta) => Math.cos(phase * theta));
+        const amplitude = Math.abs(trapz(eigen.theta, eigen.X.map((value, idx) => value * cosValues[idx])));
+        sidebands.push({ m: mValue, offset: phase, amplitude });
+      }
+      const maxAmp = Math.max(...sidebands.map((item) => item.amplitude)) || 1;
+      sidebands.forEach((item) => {
+        item.norm = item.amplitude / maxAmp;
+      });
+
+      return {
+        valid: true,
+        qAxis,
+        qEdge,
+        qMin,
+        qMax,
+        qRef: qRefEffective,
+        family,
+        rho,
+        q,
+        rhoRef,
+        sProfile,
+        sHat,
+        alpha,
+        nMode,
+        m0,
+        eigen,
+        sidebands
+      };
+    }
+
+    function drawMainPlot(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const ymin = Math.min(...model.eigen.X, -0.15);
+      const ymax = Math.max(...model.eigen.X, 1.05);
+      let markup = "";
+      markup += buildAxes(frame, "θ / θ_max shifted to [-1,1]", "X(θ)", ymin, ymax, 6);
+      const xNorm = model.eigen.theta.map((theta) => (theta + model.eigen.thetaMax) / (2 * model.eigen.thetaMax));
+      const path = makePath(xNorm.map((x, idx) => [xScale(frame, x), yScale(frame, model.eigen.X[idx], ymin, ymax)]));
+      markup += `<path d="${path}" fill="none" stroke="#1f4e79" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<line x1="${xScale(frame, 0.5)}" y1="${frame.margins.top}" x2="${xScale(frame, 0.5)}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="1.8" stroke-dasharray="6 5" />`;
+      markup += `<text x="${xScale(frame, 0.5) + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">outboard midplane</text>`;
+      mainPlot.innerHTML = markup;
+    }
+
+    function drawQPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const ymin = Math.min(...model.q) * 0.95;
+      const ymax = Math.max(...model.q) * 1.05;
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "q(r)", ymin, ymax, 4);
+      const path = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.q[idx], ymin, ymax)]));
+      markup += `<path d="${path}" fill="none" stroke="#2f7d49" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+      const xref = xScale(frame, model.rhoRef);
+      const yref = yScale(frame, model.qRef, ymin, ymax);
+      markup += `<line x1="${xref}" y1="${frame.margins.top}" x2="${xref}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="2.0" stroke-dasharray="6 5" />`;
+      markup += `<circle cx="${xref}" cy="${yref}" r="4.2" fill="#b98a3d" />`;
+      markup += `<text x="${xref + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">q_ref</text>`;
+      qPlot.innerHTML = markup;
+    }
+
+    function drawSpectrum(model) {
+      const frame = svgFrame(360, 240, { left: 52, right: 16, top: 18, bottom: 38 });
+      const ymax = 1.05;
+      let markup = "";
+      markup += buildAxes(frame, "sideband index", "|ξ_m| / max", 0, ymax, 4);
+      model.sidebands.forEach((band, index) => {
+        const x = index / Math.max(model.sidebands.length - 1, 1);
+        const px = xScale(frame, x);
+        const py = yScale(frame, band.norm, 0, ymax);
+        markup += `<line x1="${px}" y1="${yScale(frame, 0, 0, ymax)}" x2="${px}" y2="${py}" stroke="#7059b8" stroke-width="3.2" stroke-linecap="round" />`;
+      });
+      spectrumPlot.innerHTML = markup;
+    }
+
+    function updateLabels() {
+      labels.qAxis.innerHTML = fmt(parseFloat(controls.qAxis.value), 2);
+      labels.qEdge.innerHTML = fmt(parseFloat(controls.qEdge.value), 2);
+      labels.qRef.innerHTML = fmt(parseFloat(controls.qRef.value), 2);
+      labels.shearScale.innerHTML = fmt(parseFloat(controls.shearScale.value), 2);
+      labels.alpha.innerHTML = fmt(parseFloat(controls.alpha.value), 2);
+      labels.nMode.innerHTML = String(parseInt(controls.nMode.value, 10));
+    }
+
+    function renderInvalid(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const qRangeFailure = model.rhoRef === undefined || model.rhoRef === null;
+      const mainMessage = qRangeFailure
+        ? "The chosen q_ref does not lie inside the current q-profile range."
+        : "No well-resolved local ballooning eigenmode was found in the current scan window.";
+      let markup = "";
+      markup += buildAxes(frame, "θ / θ_max shifted to [-1,1]", "X(θ)", -0.5, 1.5, 6);
+      markup += `<text x="${frame.width / 2}" y="${frame.height / 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="18" fill="#78501f">${mainMessage}</text>`;
+      mainPlot.innerHTML = markup;
+      qPlot.innerHTML = "";
+      spectrumPlot.innerHTML = "";
+      if (qRangeFailure) {
+        statusGrid.innerHTML = [
+          card("Profile range", `The current profile spans q = ${fmt(model.qMin ?? model.qAxis, 3)} to ${fmt(model.qMax ?? model.qEdge, 3)}.`),
+          card("Requested q_ref", `q_ref = ${fmt(model.qRef, 3)} lies outside that interval.`)
+        ].join("");
+        warningBox.innerHTML = "Pick a reference surface that actually exists inside the chosen q profile, and the local ballooning packet will appear.";
+      } else {
+        statusGrid.innerHTML = [
+          card("Reference radius", `r_ref / a = ${fmt(model.rhoRef, 3)}`),
+          card("Effective shear", `ŝ = ${fmt(model.sHat, 3)}`),
+          card("Pressure-gradient drive", `α = ${fmt(model.alpha ?? parseFloat(controls.alpha.value), 3)}`),
+          card("Status", "The current scan did not isolate a clean dominant branch.")
+        ].join("");
+        warningBox.innerHTML = "This parameter point appears to sit outside the solver's current clean scan window. Try shifting α or the local shear slightly and the branch should reappear.";
+      }
+      coeffGrid.innerHTML = "";
+    }
+
+    function renderValid(model) {
+      drawMainPlot(model);
+      drawQPlot(model);
+      drawSpectrum(model);
+
+      statusGrid.innerHTML = [
+        card("Local profile shear", `ŝ_profile = ${fmt(model.sProfile, 3)}`),
+        card("Effective shear", `ŝ = ${fmt(model.sHat, 3)}`),
+        card("Pressure-gradient drive", `α = ${fmt(model.alpha, 3)}`),
+        card("Dominant eigenvalue", `λ = ν₀γ = ${fmt(model.eigen.lambda, 4)}`),
+        card("Reference radius", `r_ref / a = ${fmt(model.rhoRef, 3)}`),
+        card("Packet centroid", `m₀ ≈ n q_ref = ${fmt(model.m0, 3)}`)
+      ].join("");
+
+      const familyName = {
+        quadratic: "quadratic",
+        broad: "broad-core",
+        edge: "edge-shear"
+      }[model.family];
+
+      const dominantBand = model.sidebands.reduce((best, band) => (band.norm > best.norm ? band : best), model.sidebands[0]);
+      coeffGrid.innerHTML = [
+        coeff("profile family", familyName),
+        coeff("q_ref", fmt(model.qRef, 3)),
+        coeff("n", String(model.nMode)),
+        coeff("peak sideband", `m = ${dominantBand.m}`),
+        coeff("stability sign", model.eigen.lambda > 0 ? "unstable" : "stable"),
+        coeff("θ span", `|θ| ≤ ${fmt(model.eigen.thetaMax, 1)}`)
+      ].join("");
+
+      warningBox.innerHTML = model.eigen.lambda > 0
+        ? `This point lies inside the unstable region of the local ballooning problem: <code>λ = ${fmt(model.eigen.lambda, 4)} &gt; 0</code>.`
+        : `This point is locally stable in the drag formulation: <code>λ = ${fmt(model.eigen.lambda, 4)} &lt; 0</code>. Increasing α or reducing shear stabilization can move it toward marginality.`;
+    }
+
+    function render() {
+      updateLabels();
+      const model = computeModel();
+      updateLabels();
+      if (model.valid) {
+        renderValid(model);
+      } else {
+        renderInvalid(model);
+      }
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

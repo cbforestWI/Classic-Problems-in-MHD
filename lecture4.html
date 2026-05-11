@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 4 Flux Freezing and the Ideal MHD Limit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture3.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture5.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;4</span><br /><a 
+ id="x1-550004"></a>Flux Freezing and the Ideal MHD Limit</h2>
+<!--l. 63--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 63--><p class="noindent" ><span 
+class="ecbx-1095">This lecture isolates the geometric content of ideal MHD.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">It identifies the ordering that turns the resistive induction equation into the ideal
+   one.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">It derives the line-stretching form for \(\B /\rho \).
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">It states precisely what is meant by frozen-in magnetic flux, and just as importantly,
+   what is <span 
+class="ecti-1095">not </span>meant.</dd></dl>
+     </blockquote></div></div>
+<!--l. 71--><p class="noindent" >The induction equation (<a href="lecture1.html#eq-eq-intro-induction">1.13</a>) already contains the whole story in compressed form: advection tries to
+move and stretch magnetic flux, while resistivity tries to diffuse it. Lecture&#x00A0;2 exposed the dissipative term;
+here we examine the opposite asymptotic limit in which that term is negligible over the scales of
+interest.
+</p><!--l. 74--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 74--><p class="noindent" >Alfvn   emphasized   early   that   a   conducting   fluid   can   support   field-guided
+     dynamics,  and  Newcomb  later  sharpened  the  geometric  meaning  of  the  ideal
+     limit   by   relating   magnetic   evolution   to   the   motion   of   material   elements
+     [<a 
+href="lecture4.html#Xalfven1950cosmical">Alfvn</a>,&#x00A0;<a 
+href="lecture4.html#Xalfven1950cosmical">1950</a>,&#x00A0;<a 
+href="lecture4.html#Xalfven1942existence">1942</a>,&#x00A0;<a 
+href="lecture4.html#Xnewcomb1961convective">Newcomb</a>,&#x00A0;<a 
+href="lecture4.html#Xnewcomb1961convective">1961</a>,&#x00A0;<a 
+href="lecture4.html#Xnewcomb1962_lagrangian_hamiltonian_mhd">1962</a>,&#x00A0;<a 
+href="lecture4.html#Xmoffatt1978magnetic">Moffatt</a>,&#x00A0;<a 
+href="lecture4.html#Xmoffatt1978magnetic">1978</a>].</p></blockquote></div></div>
+<!--l. 78--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 78--><p class="noindent" ><span 
+class="ecbx-1095">Flux freezing is an asymptotic statement, not a mystical one. </span>Large magnetic
+     Reynolds number means resistive diffusion is weak on the scale being considered. It does
+     <span 
+class="ecti-1095">not  </span>mean that non-ideal physics is absent everywhere, nor that field lines are literal
+     material strings.</p></blockquote></div></div>
+<a 
+ id="x1-55004r56"></a>
+<h3 class="sectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-560001"></a>Resistive Induction and the Magnetic Reynolds Number</h3>
+<!--l. 86--><p class="noindent" >Starting from (<a href="lecture2.html#eq-eq-visc-induction">2.12</a>), define the magnetic diffusivity <a id="eq-eq-flux-etam"></a><div class="math-display">\[\eta _{\mathrm {m}} \equiv \frac {\eta }{\muo } = \frac {1}{\muo \sigma }. \tag{4.1}\]</div>
+The induction equation is then <a id="eq-eq-flux-resistiveinduction"></a><div class="math-display">\[\pp {\B }{t} = \curl (\uvec \times \B ) + \eta _{\mathrm {m}} \lap \B . \tag{4.2}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 105--><p class="noindent" >Comparing the advection term to the diffusion term suggests the magnetic Reynolds number
+<a id="eq-eq-flux-rm"></a><div class="math-display">\[Rm = \frac {U L}{\eta _{\mathrm {m}}}. \tag{4.3}\]</div>
+When \(Rm\gg 1\), advection dominates diffusion in the bulk. The ideal-MHD induction equation is the formal
+reduction of (<a href="lecture4.html#eq-eq-flux-resistiveinduction">4.2</a>) obtained by dropping the diffusive term.
+<a 
+ id="x1-56001r58"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-570002"></a>Convective Form of the Induction Equation</h3>
+<!--l. 118--><p class="noindent" >Using the vector identity <a id="eq-eq-flux-vectoridentity"></a><div class="math-display">\[\curl (\uvec \times \B ) = \uvec (\divergence \B ) - \B (\divergence \uvec ) + (\B \cdot \grad )\uvec - (\uvec \cdot \grad )\B \tag{4.4}\]</div>
+and the solenoidal constraint (<a href="lecture1.html#eq-eq-intro-divb">1.12</a>), equation (<a href="lecture4.html#eq-eq-flux-resistiveinduction">4.2</a>) becomes <a id="eq-eq-flux-convective"></a><div class="math-display">\[\frac {D\B }{Dt} + \B \,\divergence \uvec = (\B \cdot \grad )\uvec + \eta _{\mathrm {m}} \lap \B . \tag{4.5}\]</div>
+</p><!--l. 143--><p class="noindent" >Now combine (<a href="lecture4.html#eq-eq-flux-convective">4.5</a>) with the continuity equation (<a href="lecture3.html#eq-eq-cons-mass">3.1</a>). Since <a id="eq-eq-flux-drho"></a><div class="math-display">\[\frac {D\rho }{Dt} = -\rho \,\divergence \uvec , \tag{4.6}\]</div>
+we obtain <a id="eq-eq-flux-brho"></a><div class="math-display">\[\boxed { \frac {D}{Dt} \left ( \frac {\B }{\rho } \right ) = \left ( \frac {\B }{\rho }\cdot \grad \right )\uvec + \frac {\eta _{\mathrm {m}}}{\rho }\lap \B . } \tag{4.7}\]</div>
+</p><!--l. 167--><p class="noindent" >Equation (<a href="lecture4.html#eq-eq-flux-brho">4.7</a>) lays the geometry bare: velocity gradients stretch and rotate the field, while magnetic
+diffusion smooths it.
+<a 
+ id="x1-57001r59"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-580003"></a>Ideal MHD</h3>
+<!--l. 173--><p class="noindent" >In ideal MHD the non-ideal term in Ohm&#8217;s law is neglected, so (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) reduces to <a id="eq-eq-flux-idealohm"></a><div class="math-display">\[\boxed { \E = -\uvec \times \B . } \tag{4.8}\]</div>
+Substituting (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) into Faraday&#8217;s law (<a href="lecture1.html#eq-eq-intro-faraday">1.10</a>) gives <a id="eq-eq-flux-idealinduction"></a><div class="math-display">\[\boxed { \pp {\B }{t} = \curl (\uvec \times \B ), \qquad \divergence \B =0. } \tag{4.9}\]</div>
+Likewise, (<a href="lecture4.html#eq-eq-flux-brho">4.7</a>) becomes <a id="eq-eq-flux-brhoideal"></a><div class="math-display">\[\boxed { \frac {D}{Dt} \left ( \frac {\B }{\rho } \right ) = \left ( \frac {\B }{\rho }\cdot \grad \right )\uvec . } \tag{4.10}\]</div>
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-580011"></a>
+                                                                                         
+                                                                                         
+<!--l. 222--><p class="noindent" ><object data="main_html_mathjax_preview-1.svg" width="248.59506 " height="105.03972 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;4.1: </span><span  
+class="content">Cartoon of ideal advection: a material surface deforms with the flow while the magnetic
+flux through it remains unchanged.</span></div><!--tex4ht:label?: x1-580011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-58002r60"></a>
+<h3 class="sectionHead"><span class="titlemark">4.4   </span> <a 
+ id="x1-590004"></a>Frozen-In Flux</h3>
+<!--l. 231--><p class="noindent" >Let \(S(t)\) be a material surface bounded by a material curve \(C(t)\), and define the magnetic flux <a id="eq-eq-flux-phidef"></a><div class="math-display">\[\Phi (t) = \int _{S(t)} \B \cdot d\vect {S}. \tag{4.11}\]</div>
+For a loop moving with the fluid, Faraday&#8217;s law takes the form <a id="eq-eq-flux-movingloop"></a><div class="math-display">\[\frac {d\Phi }{dt} = - \oint _{C(t)} \left ( \E +\uvec \times \B \right )\cdot d\vect {\ell }. \tag{4.12}\]</div>
+Using the ideal Ohm law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), the integrand vanishes, and therefore <a id="eq-eq-flux-frozen"></a><div class="math-display">\[\boxed { \frac {d}{dt} \int _{S(t)} \B \cdot d\vect {S} = 0. } \tag{4.13}\]</div>
+</p><!--l. 261--><p class="noindent" >Equation (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>) is the precise statement of frozen-in magnetic flux. It means that the flux through any
+material surface is conserved under ideal evolution.
+<a 
+ id="x1-59001r62"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.5   </span> <a 
+ id="x1-600005"></a>What Frozen-In Does <tspan font-family="ecti" font-size="1095">Not </tspan>Mean</h3>
+<!--l. 267--><p class="noindent" >Three cautions matter.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">Field lines are not material strings. They are integral curves of \(\B \) drawn at an instant.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The ideal approximation may hold in the bulk and fail in thin layers. Reconnection is exactly
+   the classic example.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">Large \(Rm\) is necessary for the ideal picture, but it is not sufficient to suppress Hall physics, pressure
+   anisotropy, or electron inertia. Those are separate orderings and reappear in Lecture&#x00A0;5.</dd></dl>
+<!--l. 276--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">The ideal limit of Ohm&#8217;s law is (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), and the corresponding induction equation is
+   (<a href="lecture4.html#eq-eq-flux-idealinduction">4.9</a>).
+   </li>
+   <li class="itemize">The  line-stretching  equation  (<a href="lecture4.html#eq-eq-flux-brhoideal">4.10</a>)  is  the  local  differential  statement  behind  the
+   frozen-in picture.
+   </li>
+   <li class="itemize">Flux freezing, (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>), is exact only in ideal MHD and only as long as the assumptions
+   leading to (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) are respected.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-610005"></a>Bibliography</h3>
+  <div class="thebibliography">
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. <tspan font-family="ecti" font-size="1095">Cosmical Electrodynamics</tspan>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <tspan font-family="ecti" font-size="1095">Nature</tspan>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <tspan font-family="ecti" font-size="1095">Nuclear</tspan>
+  <tspan font-family="ecti" font-size="1095">Fusion Supplement, Part 2</tspan>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <tspan font-family="ecti" font-size="1095">Magnetic Field Generation in Electrically Conducting Fluids</tspan>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-620005"></a>Problems</h3>
+<a 
+ id="x1-62001r1"></a>
+<!--l. 288--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 4.1. Frozen-in Magnetic Flux</tspan>
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Starting from the ideal-MHD induction equation (<a href="lecture4.html#eq-eq-flux-idealinduction">4.9</a>), derive the evolution equation \[ \frac {D}{Dt}\left (\frac {\B }{\rho }\right ) = \left (\frac {\B }{\rho }\cdot \grad \right )\uvec . \]
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Consider two infinitesimally separated fluid elements connected by a magnetic field line. Show
+    that their separation vector obeys the same line-stretching law as \(\B /\rho \).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Using the moving-loop form (<a href="lecture4.html#eq-eq-flux-movingloop">4.12</a>), show that the magnetic flux through a material surface
+    moving with the fluid is conserved in ideal MHD.
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">Give two distinct physical mechanisms, beyond scalar resistivity, by which flux freezing can be
+    broken in real plasmas.</dd></dl>
+<a 
+ id="x1-62002r2"></a>
+<!--l. 312--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 4.2. When Does MHD Break Down?</tspan>
+</p><!--l. 314--><p class="noindent" >For each of the following regimes, state which MHD assumptions fail and why:
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">collisionless magnetic-reconnection layers,
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">the solar wind near 1 AU,
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">a tokamak edge pedestal,
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">a liquid-metal laboratory dynamo.</dd></dl>
+<!--l. 323--><p class="noindent" >Indicate whether the dominant correction is expected to be Hall physics, pressure anisotropy,
+finite-Larmor-radius effects, electron inertia, or essentially none.
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

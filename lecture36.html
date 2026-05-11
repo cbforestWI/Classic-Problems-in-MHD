@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 36 Inertial Confinement Fusion: Adiabatic Compression and Shock Heating</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture35.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture37.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;36</span><br /><a 
+ id="x1-6300036"></a>Inertial Confinement Fusion: Adiabatic Compression and Shock Heating</h2>
+<!--l. 4--><p class="noindent" >The Sun burns because gravity confines the fuel for times long compared with the nuclear reaction
+time. In inertial confinement fusion (ICF) one tries to achieve the same basic thermonuclear
+reaction on the opposite extreme: a sub-millimeter target is compressed so rapidly that its own
+inertia confines the hot plasma for only a very short time. The confinement mechanism changes
+completely, but the governing fluid equations do not. The same continuity, momentum, and energy
+equations that we have already used for stellar gas dynamics also describe an imploding fusion
+capsule.
+</p><!--l. 12--><p class="noindent" >That is why ICF belongs naturally in a lecture near shocks. Part of the implosion is designed to be as
+nearly adiabatic as possible, because low entropy gives high compressibility. But the entropy is set by
+shocks launched early in the laser pulse, and in some target concepts the final ignition is triggered by a
+deliberately strong late shock. In ICF, adiabatic compression and shock heating are not competing ideas.
+They are the two halves of the same design problem.
+</p><!--l. 20--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 20--><p class="noindent" >ICF is stellar hydrodynamics on a nanosecond clock. The fuel must be compressed almost
+     adiabatically after the early shocks have set its entropy, because low adiabat means
+     high compressibility and large areal density. Breakeven is reached only if the implosion
+     creates a hot spot with enough temperature, enough \(\rho R\), and enough confinement time for
+     alpha-particle self-heating to outrun losses before the target flies apart.</p></blockquote></div></div>
+<!--l. 28--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 28--><p class="noindent" >The modern ICF story begins with Lawson&#8217;s criterion for fusion power balance and
+     with the proposal by Nuckolls and collaborators to compress deuterium&#8211;tritium fuel
+     to thermonuclear conditions using intense lasers <a 
+href="#Xlawson1957_criteria">Lawson</a>&#x00A0;[<a 
+href="#Xlawson1957_criteria">1957</a>],&#x00A0;<a 
+href="#Xnuckolls1972_laser_compression">Nuckolls et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xnuckolls1972_laser_compression">1972</a>].
+     The central-hot-spot picture was developed in detail by Lindl and collaborators, who
+     made  clear  that  ignition  requires  both  strong  compression  and  careful  control  of
+     instability, shock timing, and entropy generation <a 
+href="#Xlindl1998_icf">Lindl</a>&#x00A0;[<a 
+href="#Xlindl1998_icf">1998</a>],&#x00A0;<a 
+href="#Xlindl2004_physics_basis">Lindl et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlindl2004_physics_basis">2004</a>]. A
+     complementary  idea&#8212;shock  ignition&#8212;was  later  proposed  to  separate  the  dense  fuel
+     assembly  from  the  final  heating  by  launching  a  strong  late  shock  into  an  already
+     compressed  target  <a 
+href="#Xbetti2007_shock_ignition">Betti  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbetti2007_shock_ignition">2007</a>].  The  recent  National  Ignition  Facility  results,
+     culminating  in  ignition-level  performance  and  then  target  gain  larger  than  unity,
+     have made the distinction between compression, ignition, and breakeven part of the
+     standard  language  of  the  field  rather  than  a  purely  theoretical  discussion  <a 
+href="#Xzylstra2022_ignition_signatures">Zylstra
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xzylstra2022_ignition_signatures">2022</a>],&#x00A0;<a 
+href="#Xhurricane2024_breakeven">Hurricane et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xhurricane2024_breakeven">2024</a>],&#x00A0;<a 
+href="#Xabu_shawareb2024_target_gain">Abu-Shawareb et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xabu_shawareb2024_target_gain">2024</a>].</p></blockquote></div></div>
+<a 
+ id="x1-63001r57"></a>
+<h3 class="sectionHead"><span class="titlemark">36.1   </span> <a 
+ id="x1-640001"></a>The same hydrodynamic equations as in stellar structure</h3>
+<!--l. 47--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-650001"></a>The Euler limit.</span>
+If magnetic stresses are negligible, the MHD equations reduce to the compressible Euler system together
+                                                                                         
+                                                                                         
+with an energy equation and an equation of state. For an imploding ICF plasma we may write
+<a id="eq-eq-icf_continuity"></a><div class="math-display">\[\pp {\rho }{t} + \divergence (\rho \uvec ) = 0, \tag{B.1}\]</div>
+<a id="eq-eq-icf_momentum"></a><div class="math-display">\[\rho \left (\pp {\uvec }{t} + \uvec \cdot \grad \uvec \right ) = -\grad p, \tag{B.2}\]</div>
+<a id="eq-eq-icf_energy"></a><div class="math-display">\[\rho \left (\pp {\epsilon }{t} + \uvec \cdot \grad \epsilon \right ) = -p\,\divergence \uvec - \divergence \vect {q} + Q_{\mathrm {dep}} + Q_{\alpha } - Q_{\mathrm {rad}}, \tag{B.3}\]</div>
+<a id="eq-eq-icf_eos_general"></a><div class="math-display">\[p = p(\rho ,T). \tag{B.4}\]</div>
+Here \(\rho \) is the mass density, \(\uvec \) the fluid velocity, \(p\) the pressure, \(\epsilon \) the specific internal energy, \(\vect {q}\) the
+conductive heat flux, \(Q_{\mathrm {dep}}\) the driver energy deposition, \(Q_{\alpha }\) the deposited \(3.5~\mathrm {MeV}\) alpha heating, and \(Q_{\mathrm {rad}}\) the
+radiative loss. For order-of-magnitude work it is often enough to use an ideal-gas hot-spot model,
+<a id="eq-eq-icf_ideal_gas_model"></a><div class="math-display">\[p = (\gamma -1)\rho \epsilon , \qquad c_s^2 = \frac {\gamma p}{\rho } \approx \frac {\gamma k_B T}{\bar m}, \tag{B.5}\]</div>
+where \(\bar m\) is the mean ion mass.
+</p>
+<!--l. 86--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-660001"></a>What changes from the Sun to a capsule.</span>
+In the Sun, pressure gradients are nearly balanced by gravity and one studies a slowly varying
+stratified object. In ICF, gravity is irrelevant and the inertial term is the whole story. A thin shell
+is accelerated inward by ablation pressure at its outer surface, a central hot spot forms at
+stagnation, and the confinement time is set by how long the shell inertia can resist re-expansion.
+The dominant balance at stagnation is therefore not hydrostatic but dynamic: very roughly,
+<a id="eq-eq-icf_ram_pressure_balance"></a><div class="math-display">\[p_{\mathrm {stag}} \sim \rho _d V_{\mathrm {imp}}^2, \tag{B.6}\]</div>
+where \(\rho _d\) is the shell density during the deceleration phase and \(V_{\mathrm {imp}}\) is the implosion velocity. This one-line
+scaling already tells you why adiabat matters: at fixed velocity, a denser shell gives a larger stagnation
+pressure.
+</p>
+<!--l. 101--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670001"></a>Direct drive, indirect drive, and the common fluid core.</span>
+In direct drive, the laser interacts more directly with the target surface. In indirect drive,
+the laser first heats a hohlraum and the target is compressed by x rays. Those engineering
+details matter enormously in practice, but the central fluid problem is the same in both cases:
+accelerate a shell inward, keep the entropy low enough that the fuel is compressible, and then
+create a hot spot that ignites before disassembly <a 
+href="#Xatzeni2004_physics">Atzeni and Meyer-ter Vehn</a>&#x00A0;[<a 
+href="#Xatzeni2004_physics">2004</a>],&#x00A0;<a 
+href="#Xhurricane2023_icf_review">Hurricane
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xhurricane2023_icf_review">2023</a>].
+<a 
+ id="x1-67001r65"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">36.2   </span> <a 
+ id="x1-680002"></a>Adiabatic compression and the meaning of adiabat</h3>
+<!--l. 113--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-690002"></a>Adiabatic evolution of a fluid element.</span>
+If heat fluxes and explicit source terms are small during some part of the implosion, then (B.3) reduces to
+<a id="eq-eq-icf_adiabatic_energy"></a><div class="math-display">\[\rho \left (\pp {\epsilon }{t} + \uvec \cdot \grad \epsilon \right ) = -p\,\divergence \uvec . \tag{B.7}\]</div>
+For an ideal gas this implies that the entropy of a fluid element is constant, or equivalently that
+<a id="eq-eq-icf_adiabat_constant"></a><div class="math-display">\[K \equiv p\rho ^{-\gamma }, \qquad \dd {K}{t} = 0. \tag{B.8}\]</div>
+The quantity \(K\) is an entropy label: for an ideal gas, <a id="eq-eq-icf_entropy_from_K"></a><div class="math-display">\[s = c_v \ln K + \mathrm {const}. \tag{B.9}\]</div>
+So when ICF people say that an implosion is on a low adiabat, the clean mathematical statement is that
+the shell entropy label \(K\) has been kept small.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 137--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-700002"></a>A note on ICF language.</span>
+In the ICF literature one often also sees a dimensionless adiabat \(\alpha \), defined as the ratio of the shell
+pressure to the zero-temperature Fermi pressure at the same density. That is a very useful
+engineering label for cryogenic DT shells, but the present lecture is really about the more primitive
+thermodynamic idea. The quantity \(K=p\rho ^{-\gamma }\) comes straight from the Euler equations, and it is the
+one that most clearly exposes the link between adiabatic compression and shock-generated
+entropy.
+</p>
+<!--l. 145--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710002"></a>Spherical compression scalings.</span>
+Now approximate a compressed region as a uniform sphere of fixed mass \(M\) and radius \(R\). If the initial radius
+is \(R_0\), define the convergence ratio <a id="eq-eq-icf_convergence_ratio"></a><div class="math-display">\[C \equiv \frac {R_0}{R}. \tag{B.10}\]</div>
+Mass conservation gives \(\rho \propto R^{-3}\), so <a id="eq-eq-icf_density_scaling"></a><div class="math-display">\[\rho = \rho _0 C^3. \tag{B.11}\]</div>
+Along an adiabat, <a id="eq-eq-icf_adiabatic_scalings"></a><div class="math-display">\[p = p_0 C^{3\gamma }, \qquad T = T_0 C^{3(\gamma -1)}, \qquad \rho R = (\rho _0 R_0) C^2. \tag{B.12}\]</div>
+For the ideal-gas value \(\gamma =5/3\) this becomes especially simple: <a id="eq-eq-icf_gamma53_scalings"></a><div class="math-display">\[T \propto C^2, \qquad p \propto C^5, \qquad \rho R \propto C^2. \tag{B.13}\]</div>
+That is one of the most useful back-of-the-envelope results in ICF. In the simplest model, the temperature
+and the areal density both rise like \(C^2\).
+</p>
+<!--l. 178--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720002"></a>A concrete estimate.</span>
+A cryogenic DT layer starts at a density of order \(\rho _0\approx 0.25~\mathrm {g\,cm^{-3}}\). If its characteristic initial radius is \(R_0\approx 1~\mathrm {mm}\), then \(\rho _0R_0\approx 2.5\times 10^{-2}~\mathrm {g\,cm^{-2}}\). To reach a
+hot-spot areal density of order \(0.3~\mathrm {g\,cm^{-2}}\), one therefore needs <a id="eq-eq-icf_simple_C_estimate"></a><div class="math-display">\[C \approx \sqrt {\frac {0.3}{0.025}} \approx 3.5. \tag{B.14}\]</div>
+For \(\gamma =5/3\), that same compression multiplies the temperature by about \(C^2\approx 12\). So if the material entering the final
+compression phase is already a few hundred electron volts, adiabatic compression can plausibly
+bring it into the several-keV ignition range. But if the fuel were still essentially cryogenic,
+adiabatic compression by itself would be far too weak. The early shock history and the final
+stagnation heating are therefore not optional details; they are part of the basic thermodynamic
+budget.
+</p>
+<!--l. 194--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-730002"></a>Why low adiabat matters mathematically.</span>
+Write the pressure of a uniform compressed mass \(M\) as <a id="eq-eq-icf_uniform_pressure_volume"></a><div class="math-display">\[p = K\left (\frac {M}{V}\right )^{\gamma }, \tag{B.15}\]</div>
+where \(V\) is the volume. The compressive work needed to move from \(V_0\) to \(V\) is then <a id="eq-eq-icf_compression_work"></a><div class="math-display">\[W = \int _{V}^{V_0} p\, dV' = \frac {K M^{\gamma }}{\gamma -1} \left (V^{1-\gamma } - V_0^{1-\gamma }\right ). \tag{B.16}\]</div>
+At fixed fuel mass and fixed work budget, a smaller \(K\) permits a smaller final volume and therefore a larger
+final density. This is the cleanest mathematical statement of why a low adiabat is desirable: entropy
+consumes compression work.
+</p><!--l. 215--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 215--><p class="noindent" ><span 
+class="ecbx-1095">Low adiabat is good for compression but bad for stability. </span>A shell on a low
+     adiabat is dense and highly compressible, which is exactly what one wants for large \(\rho R\).
+     But the same low pressure support makes the shell more vulnerable to hydrodynamic
+     instability and to errors in shock timing. Much of ICF design is therefore a controlled
+     compromise between compressibility and robustness.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-73001r69"></a>
+<h3 class="sectionHead"><span class="titlemark">36.3   </span> <a 
+ id="x1-740003"></a>What breakeven means for an inertially confined plasma</h3>
+<!--l. 226--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750003"></a>Ignition, scientific breakeven, and engineering gain.</span>
+The word <span 
+class="ecti-1095">breakeven </span>is dangerously slippery in ICF. There are at least three related but distinct thresholds.
+First, <span 
+class="ecti-1095">ignition </span>is a thermodynamic statement: alpha-particle self-heating must exceed the internal losses so
+that the burn amplifies itself. Second, <span 
+class="ecti-1095">scientific breakeven </span>or unity target gain means that the total fusion
+energy out exceeds the incident laser energy, <a id="eq-eq-icf_target_gain"></a><div class="math-display">\[G_{\mathrm {target}} \equiv \frac {E_{\mathrm {fusion}}}{E_L} &gt; 1. \tag{B.17}\]</div>
+Third, an actual power plant would need the wall-plug efficiency of the driver folded in, so engineering gain
+requires much more than \(G_{\mathrm {target}}=1\) <a 
+href="#Xhurricane2024_breakeven">Hurricane et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xhurricane2024_breakeven">2024</a>],&#x00A0;<a 
+href="#Xabu_shawareb2024_target_gain">Abu-Shawareb et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xabu_shawareb2024_target_gain">2024</a>]. A capsule can be very
+interesting scientifically before it is useful economically.
+</p>
+<!--l. 241--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760003"></a>Reaction rate and alpha self-heating.</span>
+For an equimolar DT plasma, <a id="eq-eq-icf_dt_rate"></a><div class="math-display">\[n_D = n_T = \frac {n}{2}, \qquad \mathcal {R}_{DT} = \frac {n^2}{4}\,\langle \sigma v \rangle _{DT}, \tag{B.18}\]</div>
+where \(n\) is the total ion density. The fusion power density is then <a id="eq-eq-icf_fusion_power_density"></a><div class="math-display">\[P_f = \mathcal {R}_{DT} E_{DT}, \qquad E_{DT}=17.6~\mathrm {MeV}, \tag{B.19}\]</div>
+while the local alpha-heating power density is <a id="eq-eq-icf_alpha_power_density"></a><div class="math-display">\[P_{\alpha } = \mathcal {R}_{DT} E_{\alpha } f_{\alpha }, \qquad E_{\alpha }=3.5~\mathrm {MeV}, \tag{B.20}\]</div>
+with \(f_{\alpha }\) the fraction of alpha energy deposited in the hot spot. Since the DT reactivity rises rapidly into the
+several-keV range and peaks in the rough neighborhood of \(10\)&#8211;\(20~\mathrm {keV}\), the temperature target for ignition is
+naturally in that range rather than at hundreds of electron volts <a 
+href="#Xbosch1992_reactivities">Bosch and Hale</a>&#x00A0;[<a 
+href="#Xbosch1992_reactivities">1992</a>],&#x00A0;<a 
+href="#Xbetti2010_thermonuclear_ignition">Betti
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbetti2010_thermonuclear_ignition">2010</a>].
+</p>
+<!--l. 268--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-770003"></a>A Lawson-like criterion in inertial form.</span>
+For a hot spot of radius \(R_h\), the hydrodynamic disassembly time is roughly <a id="eq-eq-icf_hydro_time"></a><div class="math-display">\[\tau _h \sim \frac {R_h}{c_s}. \tag{B.21}\]</div>
+If the burn fraction is still small, then over one confinement time <a id="eq-eq-icf_small_burn_fraction"></a><div class="math-display">\[f_b \sim \frac {1}{2} n\langle \sigma v \rangle _{DT} \tau _h. \tag{B.22}\]</div>
+Using \(\rho = n\bar m\), one finds <a id="eq-eq-icf_rhoR_lawson_relation"></a><div class="math-display">\[n\tau _h \sim \frac {\rho R_h}{\bar m c_s} \qquad \Longrightarrow \qquad \rho R_h \sim (n\tau _h)\sqrt {\gamma \bar m k_B T_h}. \tag{B.23}\]</div>
+This is the direct bridge between the usual Lawson product and the ICF language of areal density. In
+magnetic confinement, one talks about confinement time. In inertial confinement, the confinement time is
+geometric, so one almost inevitably talks about \(\rho R\) instead.
+</p>
+<!--l. 291--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-780003"></a>The practical ignition conditions.</span>
+The central hot spot must do three things at once. It must be hot enough for significant DT reactivity,
+dense enough that the alpha particles stop before escaping, and confined long enough that the alpha
+heating can amplify the initial burn. A useful rule of thumb is therefore a hot-spot temperature of several
+keV together with a hot-spot areal density of order \(0.2\)&#8211;\(0.4~\mathrm {g\,cm^{-2}}\) <a 
+href="#Xbetti2010_thermonuclear_ignition">Betti et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbetti2010_thermonuclear_ignition">2010</a>],&#x00A0;<a 
+href="#Xchristopherson2019_burn_onset">Christopherson et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xchristopherson2019_burn_onset">2019</a>].
+That is only the spark. Large gain also requires a surrounding dense shell with still larger total fuel
+areal density, because the major fusion energy comes from burn propagation into the cold
+compressed fuel rather than from the tiny hot spot alone <a 
+href="#Xchristopherson2019_burn_onset">Christopherson et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xchristopherson2019_burn_onset">2019</a>],&#x00A0;<a 
+href="#Xhurricane2023_icf_review">Hurricane
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xhurricane2023_icf_review">2023</a>].
+</p>
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 302--><p class="noindent" ><a 
+ id="x1-780011"></a></p><hr class="float" /><div class="float" 
+>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+
+ <table id="TBL-6" class="tabular" 
+ 
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1" /><col 
+id="TBL-6-2" /><col 
+id="TBL-6-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:normal; text-align:left;" id="TBL-6-1-1"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Quantity</span>                 </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-1-2"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Rough</span>
+  <span 
+class="ecrm-1000">target</span>                     </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-1-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Why</span>
+  <span 
+class="ecrm-1000">it</span>
+  <span 
+class="ecrm-1000">matters</span>                                                         </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:normal; text-align:left;" id="TBL-6-2-1"  
+class="td11"> <!--l. 315--><p class="noindent" >\(T_h\)                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-2-2"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">several</span>
+  <span 
+class="ecrm-1000">keV</span>                        </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-2-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Needed</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">appreciable</span>
+  <span 
+class="ecrm-1000">DT</span>
+  <span 
+class="ecrm-1000">reactivity.</span>                                                      </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:normal; text-align:left;" id="TBL-6-3-1"  
+class="td11"> <!--l. 315--><p class="noindent" >\(\rho R_h\)                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-3-2"  
+class="td11"> <!--l. 315--><p class="noindent" >\(\sim 0.3~\mathrm {g\,cm^{-2}}\)                  </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-3-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Needed</span>
+  <span 
+class="ecrm-1000">to</span>
+  <span 
+class="ecrm-1000">trap</span>
+  <span 
+class="ecrm-1000">a</span>
+  <span 
+class="ecrm-1000">substantial</span>
+  <span 
+class="ecrm-1000">fraction</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">the</span>
+  \(3.5~\mathrm {MeV}\)
+  <span 
+class="ecrm-1000">alpha</span>
+  <span 
+class="ecrm-1000">energy</span>
+  <span 
+class="ecrm-1000">in</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">hot</span>
+  <span 
+class="ecrm-1000">spot.</span>                                                            </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-4-"><td  style="white-space:normal; text-align:left;" id="TBL-6-4-1"  
+class="td11"> <!--l. 315--><p class="noindent" >\(\tau _h\sim R_h/c_s\)                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-4-2"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">as</span>
+  <span 
+class="ecrm-1000">large</span>
+  <span 
+class="ecrm-1000">as</span>
+  <span 
+class="ecrm-1000">possible</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-4-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Sets</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">time</span>
+  <span 
+class="ecrm-1000">available</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">self-heating</span>
+  <span 
+class="ecrm-1000">before</span>
+  <span 
+class="ecrm-1000">disassembly.</span>                                                   </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-5-"><td  style="white-space:normal; text-align:left;" id="TBL-6-5-1"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Shell</span>
+  <span 
+class="ecrm-1000">adiabat</span>
+  \(K\)                              </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-5-2"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">as</span>
+  <span 
+class="ecrm-1000">low</span>
+  <span 
+class="ecrm-1000">as</span>
+  <span 
+class="ecrm-1000">stability</span>
+  <span 
+class="ecrm-1000">allows</span>                     </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-5-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Low</span>
+  <span 
+class="ecrm-1000">entropy</span>
+  <span 
+class="ecrm-1000">makes</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">shell</span>
+  <span 
+class="ecrm-1000">dense</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">raises</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">achievable</span>
+  <span 
+class="ecrm-1000">stagnation</span>
+  <span 
+class="ecrm-1000">pressure</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">a</span>
+  <span 
+class="ecrm-1000">fixed</span>
+  <span 
+class="ecrm-1000">work</span>
+  <span 
+class="ecrm-1000">budget.</span>                                                         </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-6-"><td  style="white-space:normal; text-align:left;" id="TBL-6-6-1"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Total</span>
+  <span 
+class="ecrm-1000">fuel</span>
+  \(\rho R\)                              </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-6-2"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">order</span>
+  \(\mathrm {g\,cm^{-2}}\)
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">gain</span>                        </p></td><td  style="white-space:normal; text-align:left;" id="TBL-6-6-3"  
+class="td11"> <!--l. 315--><p class="noindent" ><span 
+class="ecrm-1000">Needed</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">burn</span>
+  <span 
+class="ecrm-1000">propagation</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">large</span>
+  <span 
+class="ecrm-1000">overall</span>
+  <span 
+class="ecrm-1000">yield,</span>
+  <span 
+class="ecrm-1000">not</span>
+  <span 
+class="ecrm-1000">just</span>
+  <span 
+class="ecrm-1000">ignition</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">central</span>
+  <span 
+class="ecrm-1000">spark.</span>                                                           </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-7-"><td  style="white-space:normal; text-align:left;" id="TBL-6-7-1"  
+class="td11"> <!--l. 315--><p class="noindent" >                   </p></td></tr></table>                                                                   
+                                                                                         
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;36.1: </span><span  
+class="content">Useful rule-of-thumb conditions for central-hot-spot ignition and gain.</span></div><!--tex4ht:label?: x1-780011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 320--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-790003"></a>A simple gain estimate.</span>
+The DT reaction releases a specific energy of about <a id="eq-eq-icf_specific_fusion_energy"></a><div class="math-display">\[q_{DT} \approx 339~\mathrm {MJ\,mg^{-1}}. \tag{B.24}\]</div>
+So a fuel mass \(M_{DT}\) with burn fraction \(f_b\) gives <a id="eq-eq-icf_fusion_yield_estimate"></a><div class="math-display">\[E_{\mathrm {fusion}} \approx 339~\mathrm {MJ\,mg^{-1}} \left (\frac {M_{DT}}{1~\mathrm {mg}}\right ) f_b. \tag{B.25}\]</div>
+For example, a \(0.20~\mathrm {mg}\) DT payload would release about \(68~\mathrm {MJ}\) at full burn. To exceed a laser input of about \(2~\mathrm {MJ}\) therefore
+requires only a few percent burn, which sounds easy until one remembers that obtaining even a few percent
+burn demands both ignition and enough surrounding fuel \(\rho R\) for burn propagation. The point is not that
+breakeven is trivial. The point is that once the ignition thresholds are crossed, the nuclear energy reservoir
+is enormous.
+<a 
+ id="x1-79001r75"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">36.4   </span> <a 
+ id="x1-800004"></a>Why shocks are both necessary and dangerous</h3>
+<!--l. 345--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-810004"></a>Shocks set the adiabat.</span>
+Adiabatic compression preserves the entropy label \(K\), but it does not tell us what value of \(K\) the shell started
+with. That value is set by the shock history. In the purely hydrodynamic limit of the previous shock
+lecture, a planar shock at rest satisfies <a id="eq-eq-icf_shock_mass"></a><div class="math-display">\[\begin{aligned}[\rho u_n] &amp;= 0,  \\[4pt] [\rho u_n^2 + p] &amp;= 0,  \\[4pt] \left [ u_n \left ( \frac {1}{2}\rho u_n^2 + \frac {\gamma }{\gamma -1}p \right ) \right ] &amp;= 0.\end{aligned} \tag{B.26}\]</div>
+</p><!--l. 364--><p class="noindent" >These conditions determine the downstream state. The crucial thermodynamic point is that for a genuine
+shock, <a id="eq-eq-icf_shock_adiabat_jump"></a><div class="math-display">\[\frac {K_2}{K_1} = \frac {p_2/p_1}{(\rho _2/\rho _1)^\gamma } &gt;1. \tag{B.29}\]</div>
+Every shock raises the adiabat. In ICF language, every shock that passes through the shell spends some of
+the implosion budget by converting coherent flow energy into entropy.
+</p>
+<!--l. 376--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-820004"></a>Strong-shock heating.</span>
+For a strong hydrodynamic shock in an ideal gas, <a id="eq-eq-icf_strong_shock_pressure"></a><div class="math-display">\[\frac {\rho _2}{\rho _1} \to \frac {\gamma +1}{\gamma -1}, \qquad p_2 \approx \frac {2}{\gamma +1}\rho _1 u_1^2, \tag{B.30}\]</div>
+where \(u_1\) is the upstream speed in the shock frame. The downstream temperature is then <a id="eq-eq-icf_strong_shock_temperature"></a><div class="math-display">\[k_B T_2 \approx \frac {2(\gamma -1)}{(\gamma +1)^2}\,\bar m u_1^2. \tag{B.31}\]</div>
+For \(\gamma =5/3\) this reduces to the familiar estimate <a id="eq-eq-icf_strong_shock_temperature_gamma53"></a><div class="math-display">\[k_B T_2 \approx \frac {3}{16}\bar m u_1^2. \tag{B.32}\]</div>
+If one inserts a DT mean ion mass and an upstream speed of \(300~\mathrm {km\,s^{-1}}\), the result is only about \(0.44~\mathrm {keV}\). That is enough to
+matter greatly for the entropy budget, but not enough by itself to create a conventional ignition hot spot.
+Strong shocks are therefore excellent at setting the adiabat and at producing local heating, yet the full
+several-keV ignition state still relies on geometric convergence, stagnation work, and in some designs
+additional late-time shock amplification.
+</p>
+<!--l. 403--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830004"></a>Why multishock pulse shaping matters.</span>
+A practical ICF drive launches not one shock but several. The early weak shocks are timed so that
+they coalesce at carefully chosen locations inside the shell. If they merge too early, the shell is
+preheated and the adiabat rises, making later compression less efficient. If they merge too late,
+large velocity gradients survive into the deceleration phase and the shell does not assemble
+cleanly. This is why shock timing became a classic experimental problem in its own right: it is
+a direct diagnostic of whether the pulse has put the shell on the intended adiabat <a 
+href="#Xboehly2011_shock_timing">Boehly
+                                                                                         
+                                                                                         
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xboehly2011_shock_timing">2011</a>].
+</p>
+<!--l. 412--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-840004"></a>Shock heating versus adiabatic compression.</span>
+The two processes play sharply different thermodynamic roles. </p><div class="table">
+                                                                                         
+                                                                                         
+<!--l. 414--><p class="noindent" ><a 
+ id="x1-840012"></a></p><hr class="float" /><div class="float" 
+>
+                                                                                         
+                                                                                         
+
+ <table id="TBL-9" class="tabular" 
+ 
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1" /><col 
+id="TBL-9-2" /><col 
+id="TBL-9-3" /><col 
+id="TBL-9-4" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="white-space:normal; text-align:left;" id="TBL-9-1-1"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Process</span>                  </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-1-2"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Entropy</span>
+  <span 
+class="ecrm-1000">change</span>                </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-1-3"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Characteristic</span>
+  <span 
+class="ecrm-1000">scaling</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-1-4"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">ICF</span>
+  <span 
+class="ecrm-1000">consequence</span>                        </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="white-space:normal; text-align:left;" id="TBL-9-2-1"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Adiabatic</span>
+  <span 
+class="ecrm-1000">compression</span>             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-2-2"  
+class="td11"> <!--l. 424--><p class="noindent" >\(K\)
+ <span 
+class="ecrm-1000">constant</span>              </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-2-3"  
+class="td11"> <!--l. 424--><p class="noindent" >\(T,\,\rho R \propto C^2\)
+ <span 
+class="ecrm-1000">for</span>
+  \(\gamma =5/3\)                            </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-2-4"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Efficient</span>
+  <span 
+class="ecrm-1000">way</span>
+  <span 
+class="ecrm-1000">to</span>
+  <span 
+class="ecrm-1000">turn</span>
+  <span 
+class="ecrm-1000">convergence</span>
+  <span 
+class="ecrm-1000">into</span>
+  <span 
+class="ecrm-1000">both</span>
+  <span 
+class="ecrm-1000">temperature</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">areal</span>
+  <span 
+class="ecrm-1000">density</span>
+  <span 
+class="ecrm-1000">once</span>
+  <span 
+class="ecrm-1000">the</span>
+  <span 
+class="ecrm-1000">entropy</span>
+  <span 
+class="ecrm-1000">has</span>
+  <span 
+class="ecrm-1000">already</span>
+  <span 
+class="ecrm-1000">been</span>
+  <span 
+class="ecrm-1000">set.</span>                                   </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-3-"><td  style="white-space:normal; text-align:left;" id="TBL-9-3-1"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Shock</span>
+  <span 
+class="ecrm-1000">heating</span>                   </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-3-2"  
+class="td11"> <!--l. 424--><p class="noindent" >\(K_2&gt;K_1\)                </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-3-3"  
+class="td11"> <!--l. 424--><p class="noindent" >\(T_2\propto u_1^2\)
+ <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">a</span>
+  <span 
+class="ecrm-1000">strong</span>
+  <span 
+class="ecrm-1000">shock</span>                     </p></td><td  style="white-space:normal; text-align:left;" id="TBL-9-3-4"  
+class="td11"> <!--l. 424--><p class="noindent" ><span 
+class="ecrm-1000">Rapid</span>
+  <span 
+class="ecrm-1000">local</span>
+  <span 
+class="ecrm-1000">heating</span>
+  <span 
+class="ecrm-1000">and</span>
+  <span 
+class="ecrm-1000">a</span>
+  <span 
+class="ecrm-1000">powerful</span>
+  <span 
+class="ecrm-1000">way</span>
+  <span 
+class="ecrm-1000">to</span>
+  <span 
+class="ecrm-1000">launch</span>
+  <span 
+class="ecrm-1000">or</span>
+  <span 
+class="ecrm-1000">ignite,</span>
+  <span 
+class="ecrm-1000">but</span>
+  <span 
+class="ecrm-1000">paid</span>
+  <span 
+class="ecrm-1000">for</span>
+  <span 
+class="ecrm-1000">by</span>
+  <span 
+class="ecrm-1000">an</span>
+  <span 
+class="ecrm-1000">irreversible</span>
+  <span 
+class="ecrm-1000">increase</span>
+  <span 
+class="ecrm-1000">of</span>
+  <span 
+class="ecrm-1000">entropy.</span>                             </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-4-"><td  style="white-space:normal; text-align:left;" id="TBL-9-4-1"  
+class="td11"> <!--l. 424--><p class="noindent" >                  </p></td></tr></table>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;36.2:  </span><span  
+class="content">The  essential  thermodynamic  contrast  between  adiabatic  compression  and  shock
+heating in ICF.</span></div><!--tex4ht:label?: x1-840012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 428--><p class="noindent" >In a good implosion, one wants just enough shock heating to launch the right trajectory and set the correct
+shell adiabat, followed by as much nearly adiabatic compression as possible. Too little shock control
+and the implosion is mistimed. Too much shock heating and the shell becomes too stiff to
+compress.
+</p>
+<!--l. 433--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-850004"></a>Shock ignition.</span>
+The central-hot-spot strategy tries to obtain the final temperature mainly from adiabatic compression and
+stagnation work. Shock ignition changes the division of labor. The shell is assembled at comparatively
+lower velocity and lower hot-spot temperature, and then a strong late-time shock is launched into the
+already compressed fuel to trigger ignition <a 
+href="#Xbetti2007_shock_ignition">Betti et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbetti2007_shock_ignition">2007</a>],&#x00A0;<a 
+href="#Xbaton2012_shock_ignition_experiment">Baton et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbaton2012_shock_ignition_experiment">2012</a>],&#x00A0;<a 
+href="#Xnora2015_gigabar_shock">Nora et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xnora2015_gigabar_shock">2015</a>].
+Conceptually, this is very attractive because the dense assembly and the final ignition are partially
+separated. Thermodynamically, however, the price is obvious from (B.29): the ignitor shock is a
+deliberately irreversible event. The gain comes only if the shock arrives late enough that most of the fuel
+has already been assembled at high density.
+<a 
+ id="x1-85001r82"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">36.5   </span> <a 
+ id="x1-860005"></a>Experimental perspective</h3>
+<!--l. 449--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-870005"></a>Shock timing as a diagnostic discipline.</span>
+One of the cleanest experimental realizations of the abstract shock-timing problem came from OMEGA
+measurements of multiple spherically converging shocks in liquid deuterium. Those experiments directly
+measured shock velocity and coalescence timing at pressures of relevance to ignition designs, turning an
+apparently abstract pulse-shaping problem into a quantitative hydrodynamic diagnostic <a 
+href="#Xboehly2011_shock_timing">Boehly
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xboehly2011_shock_timing">2011</a>].
+</p>
+<!--l. 456--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-880005"></a>Adiabat engineering on NIF.</span>
+The National Ignition Facility made the entropy trade-off especially visible. High-foot, high-adiabat
+implosions deliberately raised the early shock pressure to reduce instability and improve robustness, at the
+cost of lower ultimate compression <a 
+href="#Xpark2014_high_adiabat">Park et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xpark2014_high_adiabat">2014</a>]. Later adiabat-shaped pulses used a more carefully
+tailored multishock sequence to recover higher \(\rho R\) while keeping the implosion acceptably stable <a 
+href="#Xcasey2015_four_shock_adiabat">Casey
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xcasey2015_four_shock_adiabat">2015</a>]. This is exactly the design dialectic predicted by (B.16) and (B.29): stability likes a higher
+adiabat, but compression does not.
+</p>
+<!--l. 466--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-890005"></a>Shock-focused ignition studies.</span>
+Shock ignition has also developed a substantial experimental life of its own. Planar experiments
+have isolated the basic ignitor-shock physics, while spherical experiments on OMEGA have
+demonstrated the production of gigabar-class converging shocks in implosion-like geometry
+<a 
+href="#Xbaton2012_shock_ignition_experiment">Baton et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbaton2012_shock_ignition_experiment">2012</a>],&#x00A0;<a 
+href="#Xnora2015_gigabar_shock">Nora et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xnora2015_gigabar_shock">2015</a>]. These studies are valuable even when they fall short
+of ignition, because they test the part of the design where a strongly nonlinear shock must
+                                                                                         
+                                                                                         
+propagate through already compressed plasma without ruining the assembly it is supposed to
+ignite.
+</p>
+<!--l. 475--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-900005"></a>From compression to ignition to gain.</span>
+The recent NIF milestones are best understood as triumphs of the same hydrodynamic logic. The August
+2021 shot achieved ignition-level behavior and clear signatures of self-heating <a 
+href="#Xzylstra2022_ignition_signatures">Zylstra et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xzylstra2022_ignition_signatures">2022</a>]. The
+December 5, 2022 shot, reported in 2024, demonstrated target gain larger than unity and gave a clean
+laboratory example of scientific breakeven <a 
+href="#Xhurricane2024_breakeven">Hurricane et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xhurricane2024_breakeven">2024</a>],&#x00A0;<a 
+href="#Xabu_shawareb2024_target_gain">Abu-Shawareb et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xabu_shawareb2024_target_gain">2024</a>]. What
+made those implosions work was not a single magic ingredient. It was the successful coordination of drive
+symmetry, instability control, shell entropy, shock history, and stagnation confinement. In other words, the
+experimental frontier ended up validating the same simple lecture message: compression must
+be as adiabatic as possible right up until one needs shocks to do something only shocks can
+do.
+</p><!--l. 488--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">ICF uses the same compressible-fluid equations as stellar hydrodynamics, but with
+   inertia rather than gravity providing confinement.
+   </li>
+   <li class="itemize">Along an adiabatic trajectory, \(K=p\rho ^{-\gamma }\) is constant, so low entropy is the central route to high
+   compressibility and large \(\rho R\).
+   </li>
+   <li class="itemize">Breakeven  requires  more  than  a  hot  plasma:  one  needs  a  hot  spot  with  enough
+   temperature, enough alpha trapping, and enough confinement time for self-heating.
+   </li>
+   <li class="itemize">Shocks are indispensable because they launch the implosion and can ignite the hot
+   spot, but every shock also raises the adiabat and therefore reduces the maximum
+   compression available from a fixed work budget.
+   </li>
+   <li class="itemize">Much of ICF target design is the art of using shocks only where irreversibility is
+   worth the price.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-910005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XElsasser1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Walter&#x00A0;M. Elsasser. Hydromagnetic dynamo theory. <span 
+class="ecti-1095">Reviews of Modern Physics</span>, 28(2):135&#8211;163,
+  1956. doi:<a 
+href="https://doi.org/10.1103/RevModPhys.28.135" >10.1103/RevModPhys.28.135</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcowling1957mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> T.&#x00A0;G. Cowling. <span 
+class="ecti-1095">Magnetohydrodynamics</span>. Interscience Publishers, New York, 1957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchandrasekhar1961hydrodynamic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <span 
+class="ecti-1095">Advances in Applied Mechanics</span>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfreidberg1987ideal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jeffrey&#x00A0;P. Freidberg. <span 
+class="ecti-1095">Ideal Magnetohydrodynamics</span>. Plenum Press, New York, NY, USA, 1987.
+  ISBN 9780306425127.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSchnack2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dalton&#x00A0;D. Schnack. <span 
+class="ecti-1095">Lectures in Magnetohydrodynamics: With an Appendix on Extended MHD</span>,
+  volume 780 of <span 
+class="ecti-1095">Lecture Notes in Physics</span>. Springer, Berlin, Heidelberg, 2009. ISBN 9783642006876.
+  doi:<a 
+href="https://doi.org/10.1007/978-3-642-00688-3" >10.1007/978-3-642-00688-3</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-920005"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 36.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from (B.1) and (B.7), derive (B.8). Then use mass conservation for a
+                uniform sphere to derive (B.12).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 36.2.</span>  </dt><dd 
+class="enumerate-enumitem">Use (B.23) with \(\gamma =5/3\), a DT mean ion mass \(\bar m \approx 2.5 m_p\), a temperature \(T_h=10~\mathrm {keV}\), and a Lawson product \(n\tau _h = 10^{15}~\mathrm {s\,cm^{-3}}\)
+                to estimate the hot-spot areal density required for ignition. Compare your result
+                with the rule of thumb quoted in the lecture.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 36.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting  from  the  hydrodynamic  jump  conditions  (B.26)&#8211;(B.28),  derive  the
+                strong-shock  compression  ratio  and  the  temperature  estimate  (B.31).  Then
+                evaluate the post-shock temperature for \(u_1=500~\mathrm {km\,s^{-1}}\) and a DT plasma.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 36.4.</span>  </dt><dd 
+class="enumerate-enumitem">Use (B.16) to show explicitly that for fixed \(M\), \(V_0\), and \(W\), a lower adiabat \(K\) gives a
+                smaller final volume. Explain in words why this is the thermodynamic reason that
+                low-adiabat implosions are attractive.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 36.5.</span>  </dt><dd 
+class="enumerate-enumitem">Compare central-hot-spot ignition with shock ignition. In each case, identify where
+                most of the temperature rise comes from, where the entropy is generated, and why
+                the required shock timing is different.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

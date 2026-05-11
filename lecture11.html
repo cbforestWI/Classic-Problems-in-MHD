@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 11 Grad&#8217;s Equilibrium Analysis</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_equilibrium.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture10.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture12.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;11</span><br /><a 
+ id="x1-200011"></a>Grad&#8217;s Equilibrium Analysis</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" ><span 
+class="ecbx-1095">This lecture is about equilibrium with a gyrotropic stress tensor, not about a</span>
+     <span 
+class="ecbx-1095">particular closure.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">Starting from the static limit of the MHD momentum equation, we project force
+   balance parallel and perpendicular to \(\B \).
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The parallel projection gives the mirror-force constraint; the perpendicular projection
+   shows how anisotropy modifies field-line tension.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">In the isotropic limit one recovers \(p=p(\psi )\), which is the doorway to the Grad&#8211;Shafranov
+   equation derived in the next lecture; in the slender-tube limit one recovers paraxial
+   mirror balance.</dd></dl>
+     </blockquote></div></div>
+<!--l. 14--><p class="noindent" >We now stop evolving the full MHD system and instead ask what remains when the net force vanishes.
+The central point is that static equilibrium requires only a stress tensor and a magnetic field; it does <span 
+class="ecti-1095">not</span>
+require the specific CGL evolution laws. This is why it is useful to separate the present lecture from the
+earlier closure lecture. The equilibrium problem is broader: any gyrotropic distribution produces a tensor
+of the form \[ \tens {P}=p_\perp \tens {I} + (p_\parallel -p_\perp )\vect {b}\vect {b}, \qquad \vect {b}\equiv \frac {\B }{B}, \] and the question is then how this tensor can balance magnetic pressure and magnetic
+tension.
+</p><!--l. 23--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 23--><p class="noindent" >The isotropic equilibrium problem led to the great toroidal-equilibrium literature and,
+     ultimately, to the Grad&#8211;Shafranov equation. The anisotropic extension developed along
+     a somewhat different path, through guiding-center and mirror-machine physics. Grad
+     emphasized that weakly collisional plasmas should be formulated directly in terms of
+     a gyrotropic pressure tensor, while Newcomb clarified the connection between global
+     equilibrium and the paraxial mirror limit <a 
+href="#Xgqb">Grad</a>&#x00A0;[<a 
+href="#Xgqb">1967a</a>,<a 
+href="#Xpxl">?</a>],&#x00A0;<a 
+href="#Xnewcomb1981equilibrium-c17">Newcomb</a>&#x00A0;[<a 
+href="#Xnewcomb1981equilibrium-c17">1981</a>]. This is one
+     of the places where magnetic confinement, kinetic theory, and classical MHD visibly
+     overlap.</p></blockquote></div></div>
+<!--l. 27--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 27--><p class="noindent" ><span 
+class="ecbx-1095">A conceptual boundary. </span>This lecture treats <span 
+class="ecti-1095">static balance</span>. It is not the place to do the
+     full mirror and firehose wave calculations. Those dynamical instability problems belong
+     later, when anisotropic MHD waves and the drift-kinetic appendix are in hand.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2004r1"></a>
+<h3 class="sectionHead"><span class="titlemark">11.1   </span> <a 
+ id="x1-30001"></a>Static balance with a gyrotropic tensor</h3>
+<!--l. 35--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-40001"></a>Start from the static limit of the momentum equation.</span>
+The momentum equation stated in Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) becomes, when \(\vect {u}=0\), <a id="eq-eq-equilibrium-forceform"></a><div class="math-display">\[-\divergence \tens {P}+\J \times \B =0. \tag{11.1}\]</div>
+It is often cleaner to collect the magnetic force into the Maxwell stress tensor <div class="math-display">\[\tens {T}_B = -\frac {B^2}{2\muo }\tens {I} + \frac {\B \B }{\muo },\]</div>
+so that static equilibrium may be written as <a id="eq-eq-stress_balance"></a><div class="math-display">\[\boxed { \divergence \left (\tens {P}-\tens {T}_B\right )=0. } \tag{11.3}\]</div>
+This says that plasma stress and magnetic stress must balance exactly.
+</p>
+<!--l. 58--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-50001"></a>Write out the divergence of a gyrotropic tensor once, slowly.</span>
+Let \[ f \equiv p_\parallel -p_\perp , \qquad \tens {P}=p_\perp \tens {I}+f\,\vect {b}\vect {b}. \] Then <div class="math-display">\[\begin {aligned} \divergence \tens {P} &amp;= \grad p_\perp + \divergence \left (f\,\vect {b}\vect {b}\right ) \\ &amp;= \grad p_\perp + (\vect {b}\cdot \grad f)\vect {b} + f\,\divergence \left (\vect {b}\vect {b}\right ). \end {aligned}\]</div>
+Now use <a id="eq-eq-equilibrium-divbb"></a><div class="math-display">\[\divergence \left (\vect {b}\vect {b}\right ) = (\vect {b}\cdot \grad )\vect {b} + \vect {b}\,\divergence \vect {b} \tag{11.5}\]</div>
+and define <a id="eq-eq-equilibrium-kappa_def"></a><div class="math-display">\[\vect {\kappa } \equiv (\vect {b}\cdot \grad )\vect {b}, \qquad \pp {}{\ell } \equiv \vect {b}\cdot \grad . \tag{11.6}\]</div>
+Because \(\divergence \B =0\), \[ 0=\divergence (B\vect {b})=\vect {b}\cdot \grad B + B\,\divergence \vect {b}, \] so <a id="eq-eq-equilibrium-divbhat"></a><div class="math-display">\[\divergence \vect {b}=-\frac {1}{B}\pp {B}{\ell }. \tag{11.7}\]</div>
+Substituting Eqs.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-divbb">11.5</a>) and (<a href="lecture11.html#eq-eq-equilibrium-divbhat">11.7</a>) gives <a id="eq-eq-divP"></a><div class="math-display">\[\begin {aligned} \divergence \tens {P} &amp;= \grad p_\perp + \vect {b}\pp {f}{\ell } + f\,\vect {\kappa } - \vect {b}\,\frac {f}{B}\pp {B}{\ell } \\ &amp;= \grad _\perp p_\perp + (p_\parallel -p_\perp )\vect {\kappa } + \vect {b} \left [ \pp {p_\parallel }{\ell } - \frac {p_\parallel -p_\perp }{B}\pp {B}{\ell } \right ]. \end {aligned} \tag{11.8}\]</div>
+The last line uses \[ \pp {f}{\ell }=\pp {p_\parallel }{\ell }-\pp {p_\perp }{\ell }, \qquad \grad p_\perp = \grad _\perp p_\perp + \vect {b}\pp {p_\perp }{\ell }. \]
+</p>
+<!--l. 143--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-60001"></a>Kinetic examples.</span>
+Appendix&#x00A0;C gives three explicit kinetic realizations of the functions \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\): a fixed-pitch sloshing-ion
+distribution, a logarithmic mirror distribution generated by pitch-angle scattering, and the isotropic
+Maxwellian limit. The appendix makes the magnetic-field dependence of these pressures completely
+explicit and provides a useful bridge between the equilibrium formulas derived here and the underlying
+kinetic physics.
+</p>
+<!--l. 152--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-70001"></a>Write the magnetic force in the same geometric language.</span>
+Using Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) together with Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-divb">1.12</a>), the Lorentz force may be written as <a id="eq-eq-equilibrium-JxBgeom"></a><div class="math-display">\[\begin {aligned} \J \times \B &amp;= \frac {1}{\muo }(\curl \B )\times \B \\ &amp;= -\grad \left (\frac {B^2}{2\muo }\right ) + \frac {1}{\muo }(\B \cdot \grad )\B \\ &amp;= -\grad _\perp \left (\frac {B^2}{2\muo }\right ) + \frac {B^2}{\muo }\vect {\kappa }. \end {aligned} \tag{11.9}\]</div>
+The first term is magnetic-pressure gradient; the second is field-line tension.
+</p>
+<!--l. 174--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-80001"></a>Now project the force balance.</span>
+Substitute Eqs.&#x00A0;(<a href="lecture11.html#eq-eq-divP">11.8</a>) and (<a href="lecture11.html#eq-eq-equilibrium-JxBgeom">11.9</a>) into Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-forceform">11.1</a>): <a id="eq-eq-equilibrium-split_balance"></a><div class="math-display">\[\begin {aligned} 0 &amp;= -\grad _\perp \left (p_\perp + \frac {B^2}{2\muo }\right ) \\ &amp;\quad + \left (\frac {B^2}{\muo }+p_\perp -p_\parallel \right )\vect {\kappa } \\ &amp;\quad - \vect {b} \left [ \pp {p_\parallel }{\ell } + \frac {p_\perp -p_\parallel }{B}\pp {B}{\ell } \right ]. \end {aligned} \tag{11.10}\]</div>
+Since \(\vect {b}\cdot \vect {\kappa }=0\) and \(\vect {b}\cdot \grad _\perp =0\), the parallel and perpendicular projections follow immediately.
+</p>
+<!--l. 197--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-90001"></a>Parallel balance.</span>
+Taking \(\vect {b}\cdot \)Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-split_balance">11.10</a>) yields <a id="eq-eq-parallel_balance"></a><div class="math-display">\[\boxed { \pp {p_\parallel }{\ell } + \frac {p_\perp -p_\parallel }{B}\pp {B}{\ell } =0. } \tag{11.11}\]</div>
+This is the static mirror-force constraint.
+</p>
+<!--l. 210--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-100001"></a>Perpendicular balance.</span>
+Projecting Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-split_balance">11.10</a>) perpendicular to \(\B \) gives <a id="eq-eq-equil-Qdef"></a><div class="math-display">\[Q \equiv \frac {B^2}{\muo }+p_\perp -p_\parallel , \tag{11.12}\]</div>
+so that <a id="eq-eq-perp_balance"></a><div class="math-display">\[\boxed { \grad _\perp \left (p_\perp +\frac {B^2}{2\muo }\right ) = Q\,\vect {\kappa }. } \tag{11.13}\]</div>
+                                                                                         
+                                                                                         
+The coefficient \(Q\) is the effective field-line tension. Pressure anisotropy changes the restoring force associated
+with curvature, which is why it later reappears in anisotropic wave theory.
+</p><!--l. 230--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 230--><p class="noindent" ><span 
+class="ecbx-1095">Why this is broader than CGL. </span>Equations (<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>) and (<a href="lecture11.html#eq-eq-perp_balance">11.13</a>) follow from static
+     force balance plus gyrotropy alone. They do <span 
+class="ecti-1095">not </span>require the CGL evolution laws. CGL
+     is one possible time-dependent closure that is compatible with these static relations, but
+     the equilibrium relations themselves are more general.</p></blockquote></div></div>
+<a 
+ id="x1-10001r3"></a>
+<h3 class="sectionHead"><span class="titlemark">11.2   </span> <a 
+ id="x1-110002"></a>Flux surfaces, sign conditions, and the isotropic bridge</h3>
+<!--l. 238--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-120002"></a>Assume flux surfaces exist.</span>
+Suppose there is a flux function \(\psi \) such that <div class="math-display">\[\B \cdot \grad \psi =0.\]</div>
+If \(p_\parallel \) and \(p_\perp \) depend on position through \((\psi ,B)\), then along a field line \[ \pp {p_\parallel }{\ell } = \left .\pp {p_\parallel }{B}\right |_{\psi }\pp {B}{\ell }, \] because \(\vect {b}\cdot \grad \psi =0\). Insert this into Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>):
+<div class="math-display">\[\left [ \left .\pp {p_\parallel }{B}\right |_{\psi } + \frac {p_\perp -p_\parallel }{B} \right ] \pp {B}{\ell }=0.\]</div>
+For a generic mirror field with \(\pp {B}{\ell }\neq 0\), the bracket must vanish. Therefore <a id="eq-eq-cgl_constraint"></a><div class="math-display">\[\boxed { p_\perp = p_\parallel - B\left .\pp {p_\parallel }{B}\right |_{\psi }. } \tag{11.16}\]</div>
+An equivalent form, often convenient in mirror geometry, is <a id="eq-eq-equilibrium-pconstraint_alt"></a><div class="math-display">\[\boxed { p_\perp = -B^2\left .\pp {}{B}\left (\frac {p_\parallel }{B}\right )\right |_{\psi }. } \tag{11.17}\]</div>
+The old label <span 
+class="ectt-1095">eq:cgl_constraint </span>is preserved for continuity in these notes, but the relation is really a
+<span 
+class="ecti-1095">gyrotropic equilibrium constraint</span>, not a specifically CGL one.
+</p>
+<!--l. 280--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-130002"></a>The isotropic limit is the bridge to Grad&#8211;Shafranov theory.</span>
+If \(p_\perp =p_\parallel =p\), then Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>) reduces to <div class="math-display">\[\pp {p}{\ell }=0.\]</div>
+Thus the scalar pressure is constant along field lines and, in axisymmetry, becomes a flux function:
+<a id="eq-eq-equilibrium-ppsi"></a><div class="math-display">\[p=p(\psi ). \tag{11.19}\]</div>
+This is the key simplification that makes the isotropic axisymmetric equilibrium problem collapse to a
+single elliptic equation for \(\psi \). The next lecture is devoted to that reduction.
+</p>
+<!--l. 292--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-140002"></a>Positive effective tension.</span>
+Equation&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>) makes it clear that a bent field line only provides a restoring force when the coefficient \(Q\)
+is positive. Thus one requires <a id="eq-eq-firehosecondition"></a><div class="math-display">\[\boxed { \frac {B^2}{\muo }+p_\perp -p_\parallel &gt;0. } \tag{11.20}\]</div>
+This is the static sign condition behind firehose behavior.
+</p>
+<!--l. 302--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-150002"></a>Include steady parallel flow if needed.</span>
+A steady field-aligned flow adds an inertial curvature term \(-\rho u_\parallel ^2\vect {\kappa }\), so the effective coefficient becomes
+<div class="math-display">\[Q_{\rm flow} = \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2.\]</div>
+The corresponding condition is <a id="eq-eq-firehoseconditionwithflow"></a><div class="math-display">\[\boxed { \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2&gt;0. } \tag{11.22}\]</div>
+This is the form that later becomes relevant in the solar-wind context when the flow approaches the Alfvn
+speed.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 318--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-160002"></a>Positive compressive response.</span>
+A second useful sign condition comes from asking how the total perpendicular pressure responds to a local
+increase in \(B\). Starting from Eq.&#x00A0;(<a href="lecture11.html#eq-eq-cgl_constraint">11.16</a>), <div class="math-display">\[Q = \frac {B^2}{\muo }+p_\perp -p_\parallel = \frac {B^2}{\muo }-B\left .\pp {p_\parallel }{B}\right |_{\psi },\]</div>
+so that <a id="eq-eq-equilibrium-mirrorstep1"></a><div class="math-display">\[\frac {Q}{B} = \frac {B}{\muo }-\left .\pp {p_\parallel }{B}\right |_{\psi }. \tag{11.24}\]</div>
+Differentiate Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-mirrorstep1">11.24</a>) with respect to \(B\) at fixed \(\psi \): <a id="eq-eq-equil-mirrorstep2"></a><div class="math-display">\[B\left .\pp {}{B}\left (\frac {Q}{B}\right )\right |_{\psi } = \frac {B}{\muo } - B\left .\pp {^2 p_\parallel }{B^2}\right |_{\psi }. \tag{11.25}\]</div>
+Now differentiate \[ p_\perp + \frac {B^2}{2\muo } = p_\parallel - B\left .\pp {p_\parallel }{B}\right |_{\psi } + \frac {B^2}{2\muo } \] with respect to \(B\): <div class="math-display">\[\begin {aligned} \left .\pp {}{B}\left (p_\perp +\frac {B^2}{2\muo }\right )\right |_{\psi } &amp;= \left .\pp {p_\parallel }{B}\right |_{\psi } - \left .\pp {p_\parallel }{B}\right |_{\psi } - B\left .\pp {^2 p_\parallel }{B^2}\right |_{\psi } + \frac {B}{\muo } \\ &amp;= \frac {B}{\muo } - B\left .\pp {^2 p_\parallel }{B^2}\right |_{\psi }. \end {aligned}\]</div>
+Comparing with Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equil-mirrorstep2">11.25</a>) gives <a id="eq-eq-mirrorcondition"></a><div class="math-display">\[\boxed { \left .\pp {}{B}\left (p_\perp +\frac {B^2}{2\muo }\right )\right |_{\psi }&gt;0. } \tag{11.27}\]</div>
+Again, this is being used here as a static sign condition, not yet as a wave-growth calculation.
+<a 
+ id="x1-16001r11"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">11.3   </span> <a 
+ id="x1-170003"></a>Simple limits and the paraxial mirror bridge</h3>
+<!--l. 381--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-180003"></a>The isotropic perpendicular balance.</span>
+When \(p_\perp =p_\parallel =p\), Eq.&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>) reduces to <a id="eq-eq-equil-isotropicperp"></a><div class="math-display">\[\grad _\perp \left (p+\frac {B^2}{2\muo }\right ) = \frac {B^2}{\muo }\vect {\kappa }. \tag{11.28}\]</div>
+This is the form from which familiar one-dimensional equilibria follow.
+</p>
+<!--l. 391--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-190003"></a>Slab equilibrium.</span>
+Take \[ \B =B(x)\,\ez , \qquad \vect {\kappa }=0. \] Then Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equil-isotropicperp">11.28</a>) becomes <a id="eq-eq-equil-slab"></a><div class="math-display">\[\frac {d}{dx}\left (p+\frac {B^2}{2\muo }\right )=0. \tag{11.29}\]</div>
+Thus total pressure is constant across the slab.
+</p>
+<!--l. 405--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-200003"></a>The Z-pinch.</span>
+For a cylindrical pinch with \[ \B =B_\theta (r)\,\etheta , \qquad \vect {\kappa }=-\frac {\er }{r}, \] Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equil-isotropicperp">11.28</a>) becomes <a id="eq-eq-zpinch_balance"></a><div class="math-display">\[\boxed { \frac {d}{dr}\left (p+\frac {B_\theta ^2}{2\muo }\right ) + \frac {B_\theta ^2}{\muo r}=0. } \tag{11.30}\]</div>
+The second term is the inward hoop stress.
+</p>
+<!--l. 423--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-210003"></a>The screw pinch.</span>
+If both \(B_\theta (r)\) and \(B_z(r)\) are present, only the azimuthal field contributes curvature. The equilibrium equation
+becomes <a id="eq-eq-screw_pinch_balance"></a><div class="math-display">\[\boxed { \frac {d}{dr}\left (p+\frac {B_z^2+B_\theta ^2}{2\muo }\right ) + \frac {B_\theta ^2}{\muo r}=0. } \tag{11.31}\]</div>
+This cylindrical prototype is the natural warm-up for toroidal equilibrium.
+</p>
+<!--l. 435--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-220003"></a>Why the paraxial mirror limit is different.</span>
+A mirror field is not really one-dimensional because the flux tube expands and contracts along the axis.
+But when the tube is slender, the geometry simplifies. Let \(a\) be the tube radius and \(Z\) the axial scale length,
+with <a id="eq-eq-equil-epsilon"></a><div class="math-display">\[\epsilon \equiv \frac {a}{Z} \ll 1. \tag{11.32}\]</div>
+Write the axisymmetric field as \[ \B =B_r(r,z)\,\er + B_z(r,z)\,\ez . \] From \(\divergence \B =0\) and the estimates \[ \pp {}{r}\sim \frac {1}{a}, \qquad \pp {}{z}\sim \frac {1}{Z}, \] one finds <a id="eq-eq-equil-BrBz"></a><div class="math-display">\[\frac {B_r}{B_z}=\mathcal O(\epsilon ). \tag{11.33}\]</div>
+If a field line is represented by \(r=a(z)\), its curvature in the meridional plane is <a id="eq-eq-paraxial_curvature"></a><div class="math-display">\[\kappa = \frac {|a''(z)|}{\left [1+(a'(z))^2\right ]^{3/2}} \simeq |a''(z)|. \tag{11.34}\]</div>
+Since \(a'\sim a/Z=\epsilon \) and \(a''\sim a/Z^2=\epsilon ^2/a\), <a id="eq-eq-equil-kappascaling"></a><div class="math-display">\[\kappa \sim \frac {\epsilon ^2}{a}. \tag{11.35}\]</div>
+So curvature is down by two powers of the slenderness parameter.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 471--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-230003"></a>Leading-order paraxial balance.</span>
+Because the curvature term is small, Eq.&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>) reduces at leading order to <a id="eq-eq-paraxial_total_pressure_balance"></a><div class="math-display">\[\boxed { \grad _\perp \left (p_\perp +\frac {B^2}{2\muo }\right )=0. } \tag{11.36}\]</div>
+Thus, on each axial slice, the sum of perpendicular plasma pressure and magnetic pressure is
+approximately constant across the tube.
+</p>
+<!--l. 481--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-240003"></a>Use the exterior field to reconstruct the tube.</span>
+If the exterior vacuum field is \(B_{\rm ext}(z)\), then Eq.&#x00A0;(<a href="lecture11.html#eq-eq-paraxial_total_pressure_balance">11.36</a>) implies <a id="eq-eq-equil-paraxialslice"></a><div class="math-display">\[p_\perp (\psi ,z)+\frac {B^2(\psi ,z)}{2\muo } = \frac {B_{\rm ext}^2(z)}{2\muo }. \tag{11.37}\]</div>
+Hence <a id="eq-eq-equil-Bfromp"></a><div class="math-display">\[B(\psi ,z) = \sqrt {B_{\rm ext}^2(z)-2\muo p_\perp (\psi ,z)}. \tag{11.38}\]</div>
+For an axisymmetric flux function, <a id="eq-eq-equil-rfrompsi"></a><div class="math-display">\[r^2(\psi ,z) = 2\int _0^{\psi }\frac {d\psi '}{B(\psi ',z)}. \tag{11.39}\]</div>
+This is the natural mirror-machine analogue of solving for flux surfaces in toroidal geometry.
+<a 
+ id="x1-24001r17"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">11.4   </span> <a 
+ id="x1-250004"></a>Anisotropic pressure equilibrium</h3>
+<!--l. 507--><p class="noindent" >Now allow gyrotropic anisotropy, <div class="math-display">\[\tens {P} = p_\perp \tens {I} + (p_\parallel - p_\perp ) {\vect {b}} {\vect {b}}, \qquad {\vect {b}} = \frac {\B }{B}.\]</div>
+</p><!--l. 519--><p class="noindent" >Force balance becomes <a id="eq-eq-anisotropic_balance"></a><div class="math-display">\[\boxed { \J \times \B = \divergence \tens {P}. } \tag{11.41}\]</div>
+</p>
+<h5 class="likesubsubsectionHead"><a 
+ id="x1-260004"></a>Parallel constraint</h5>
+<!--l. 530--><p class="noindent" >Projecting along \(\vect {b}\) gives <a id="eq-eq-parallel_constraint"></a><div class="math-display">\[\boxed { \frac {\partial p_\parallel }{\partial \ell } + \frac {p_\perp - p_\parallel }{B} \frac {\partial B}{\partial \ell } = 0, } \tag{11.42}\]</div>
+where \(\partial /\partial \ell = {\vect {b}} \cdot \grad \).
+</p><!--l. 544--><p class="noindent" >Assuming \(p_{\perp ,\parallel } = p_{\perp ,\parallel }(\psi ,B)\), <a id="eq-eq-CGL_constraint"></a><div class="math-display">\[\boxed { \pp {p_\parallel }{B} + \frac {p_\perp - p_\parallel }{B} = 0,\qquad \mbox { or } \qquad p_\perp = p_\parallel - B \frac {\partial p_\parallel }{\partial B} } \tag{11.43}\]</div>
+</p>
+<h5 class="likesubsubsectionHead"><a 
+ id="x1-270004"></a>Perpendicular balance and cancellation algebra</h5>
+<!--l. 560--><p class="noindent" >Define <div class="math-display">\[\sigma = \frac {1}{\muo } + \frac {p_\perp - p_\parallel }{B^2}.\]</div>
+</p><!--l. 569--><p class="noindent" >Consider the following slight variation on \(\vect {J}\times \vect {B}\): <div class="math-display">\[\B \times (\curl \sigma \B ) = B^2 \grad _\perp \sigma + \sigma \B \times (\curl \B ),\]</div>
+and expanding explicitly, <div class="math-display">\[\begin {aligned} B^2 \grad _\perp \sigma &amp;= \grad _\perp p_\perp - \grad _\perp p_\parallel - \frac {p_\perp - p_\parallel }{B^2} \grad _\perp B^2 , \\ \sigma \B \times (\curl \B ) &amp;= \left ( 1 + \frac {\muo (p_\perp - p_\parallel )}{B^2} \right ) \left (\grad _\perp \frac {B^2}{2 \muo } - B^2 \sigma \vect {\kappa }\right ). \end {aligned}\]</div>
+</p><!--l. 602--><p class="noindent" >Adding terms, the \(\grad _\perp B\) contributions cancel using (<a href="lecture11.html#eq-eq-CGL_constraint">11.43</a>), leaving
+</p><!--l. 630--><p class="noindent" ><div class="math-display">\[\begin {aligned} B^2 \grad _\perp \sigma + \sigma \B \times (\curl \B ) &amp;= \grad _\perp p_\perp - \grad _\perp p_\parallel - \frac {p_\perp - p_\parallel }{B^2}\grad _\perp B^2 \\ &amp;\quad + \left ( 1 + \frac {\muo (p_\perp - p_\parallel )}{B^2} \right ) \left (\grad _\perp \frac {B^2}{2 \muo } - B^2 \sigma \vect {\kappa }\right ) \\ &amp;= - \nabla _\perp p_\parallel + \pp {p_\parallel }{B}\grad _\perp B \\ &amp;= \pp {p_\parallel }{\psi }\grad _\perp \psi . \end {aligned}\]</div>
+</p><!--l. 662--><p class="noindent" >Carrying through the axisymmetric representation yields the anisotropic Grad equation:
+</p><!--l. 666--><p class="noindent" >This proof now implies <div class="math-display">\[\begin {aligned} (\nabla \times \vect {B})\times \vect {B} &amp;= \frac {1}{\sigma }\left .\pp {p_\parallel }{\psi }\right |_B\,\nabla _\perp \psi + B^2 \nabla _\perp \ln \sigma \end {aligned}\]</div>
+</p><!--l. 676--><p class="noindent" >From Eq.&#x00A0;(<a href="lecture11.html#eq-eq-GS_anisotropic">11.50</a>) we also note that <div class="math-display">\[(\curl \vect {B})\times \vect {B} = -\frac {\Delta ^\star \psi }{R^2}\nabla _\perp \psi\]</div>
+</p><!--l. 681--><p class="noindent" >Carrying this through with the axisymmetric representation yields and taking the dot product with \(\nabla \psi \)
+<a id="eq-eq-GS_anisotropic"></a><div class="math-display">\[\boxed { \Delta ^\star \psi = - \frac {R^2}{\sigma }\,\pp {p_\parallel }{\psi } \;-\; \, \nabla _\perp \psi \cdot \nabla _\perp \ln \sigma . } \tag{11.50}\]</div>
+                                                                                         
+                                                                                         
+For practical purposes it may be more useful to consider the dimensionless parameter <div class="math-display">\[\begin {aligned} \bar {\sigma } &amp; = \mu _0 \sigma \\ &amp; = 1 + \frac {\beta _\perp - \beta _\parallel }{2} \\ &amp; = 1 + \mu _0 \left (\frac {p_\perp - p_\parallel }{B^2}\right ) \\ &amp; = 1 + \mu _0 \left (\frac {p_\parallel - B dp_\parallel /dB - p_\parallel }{B^2}\right ) \\ &amp; = 1 - \frac {\mu _0}{B} \dd {p_\parallel }{B}. \end {aligned}\]</div>
+<div class="math-display">\[\boxed { \Delta ^\star \psi = - \mu _0 \frac {R^2}{\bar {\sigma }}\,\pp {p_\parallel }{\psi } \;-\; \, B^2 R^2 \frac { \partial \ln \bar {\sigma }}{\partial \psi } - \nabla _\perp \psi \cdot \nabla B \left . \frac { \partial \ln \bar {\sigma }}{\partial B}\right |_\psi . }\]</div>
+</p>
+<!--l. 713--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-280004"></a>Equivalent Form.</span>
+
+<div class="math-display">\[\vect {J}\times \vect {B} = \nabla _\perp p_\perp + (p_\parallel - p_\perp ) \vect {\kappa }\]</div>
+that leads directly to all of the following equivalent formes for \(J_\phi \): <div class="math-display">\[\begin {aligned} \mu _0 J_\phi &amp; = -\frac {\Delta ^\star \psi }{ R} \\ J_\phi &amp; = \frac {\vect {B}}{B^2} \times \left ( \nabla _\perp p_\perp + (p_\parallel - p_\perp ) \vect {\kappa } \right ) \\ \mu _0 J_\phi &amp; = \frac {\vect {B}\times \nabla _\perp p_\perp }{B^2} + \frac { \beta _\parallel - \beta _\perp }{2} \vect {B}\times \vect {\kappa } \\ \mu _0 J_\phi &amp; = - \mu _0 \frac {R}{\bar {\sigma }}\,\pp {p_\parallel }{\psi } \;-\; \, B^2 R \frac { \partial \ln \bar {\sigma }}{\partial \psi } - \frac {\nabla _\perp \psi \cdot \nabla B }{R} \left . \frac { \partial \ln \bar {\sigma }}{\partial B}\right |_\psi . \end {aligned}\]</div>
+</p>
+<!--l. 734--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-290004"></a>Checks.</span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize">If \(p_\perp =p_\parallel =p(\psi )\) then \(\bar {\sigma } \to 1 \) and \(\nabla \ln \bar {\sigma }\to 0\), and reduces to the isotropic GS structure (with the usual \(FF'\) term from the
+     toroidal field absent).
+     </li>
+     <li class="itemize">The \(\nabla \psi \cdot \nabla \ln \sigma \) term encodes the fact that anisotropy introduces additional \((R,Z)\) dependence through \(B(R,Z)\).
+     </li>
+     <li class="itemize">One must always make sure that the mirror condition (Eq.&#x00A0;(<a href="lecture11.html#eq-eq-mirrorcondition">11.27</a>)) and firehose condition
+     (Eq.&#x00A0;(<a href="lecture11.html#eq-eq-firehosecondition">11.20</a>)) are satisfied.</li></ul>
+<!--l. 744--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-300004"></a>Bridge to the next lecture.</span>
+The paraxial mirror problem is the cleanest anisotropic example because it stays close to one-dimensional
+intuition. The next lecture goes in the opposite direction: it specializes back to isotropic pressure, keeps
+full axisymmetric geometry, and derives the Grad&#8211;Shafranov equation for truly two-dimensional toroidal
+equilibria.
+</p>
+<!--l. 747--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-310004"></a>Experimental perspective.</span>
+Equilibrium is where kinetic ideas first become impossible to hide from the experimentalist. In mirror
+devices, the dependence of pressure on \(B\) is built directly into confinement geometry. In toroidal devices, the
+same stress-balance logic survives but is reorganized by flux surfaces, current closure, and shaping coils.
+The point of doing the algebra carefully is that the diagnostic questions are always the same: what is
+balancing what, where does the tension sit, and which stress term is being inferred from the
+measurements?
+</p><!--l. 751--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">Static anisotropic equilibrium begins with the gyrotropic tensor, not with a specific
+   closure law.
+   </li>
+                                                                                         
+                                                                                         
+   <li class="itemize">Parallel balance gives Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>); perpendicular balance gives Eq.&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>).
+   </li>
+   <li class="itemize">If \(p_{\perp ,\parallel }=p_{\perp ,\parallel }(\psi ,B)\), then Eq.&#x00A0;(<a href="lecture11.html#eq-eq-cgl_constraint">11.16</a>) follows. In the isotropic limit this collapses to \(p=p(\psi )\).
+   </li>
+   <li class="itemize">Slab, pinch, mirror, and toroidal equilibria are all different geometric faces of the
+   same underlying stress-balance problem.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-320004"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes gnraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mmoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;quilibre et le mouvement intrieur des corps solides
+  ou fluides, lastiques ou non lastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">t</span><span 
+class="ecti-1095"> Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-330004"></a>Problems</h3>
+<a 
+ id="x1-33001r1"></a>
+<!--l. 763--><p class="noindent" ><span 
+class="ecbx-1095">Problem 11.1. Derive the anisotropic equilibrium equations carefully</span>
+</p>
+<!--l. 765--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-340001"></a>Part A.</span>
+Starting from \(\tens {P}=p_\perp \tens {I}+(p_\parallel -p_\perp )\vect {b}\vect {b}\), reproduce Eq.&#x00A0;(<a href="lecture11.html#eq-eq-divP">11.8</a>). Do not skip the use of \(\divergence (B\vect {b})=0\).
+</p>
+<!--l. 767--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-350001"></a>Part B.</span>
+Combine Eq.&#x00A0;(<a href="lecture11.html#eq-eq-divP">11.8</a>) with Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-JxBgeom">11.9</a>) and derive Eqs.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>) and (<a href="lecture11.html#eq-eq-perp_balance">11.13</a>).
+</p>
+<!--l. 769--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-360001"></a>Part C.</span>
+Assume \(p_{\perp ,\parallel }=p_{\perp ,\parallel }(\psi ,B)\) and derive Eq.&#x00A0;(<a href="lecture11.html#eq-eq-cgl_constraint">11.16</a>) step by step. Then show that the isotropic limit implies \(p=p(\psi )\).
+</p>
+<!--l. 771--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-370001"></a>Part D.</span>
+Starting from Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equil-isotropicperp">11.28</a>), derive the slab, Z-pinch, and screw-pinch balances, Eqs.&#x00A0;(<a href="lecture11.html#eq-eq-equil-slab">11.29</a>), (<a href="lecture11.html#eq-eq-zpinch_balance">11.30</a>), and
+(<a href="lecture11.html#eq-eq-screw_pinch_balance">11.31</a>).
+</p>
+<!--l. 773--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-380001"></a>Part E.</span>
+In the paraxial ordering, show explicitly that the curvature term in Eq.&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>) is smaller than the radial
+pressure-gradient term by \(\mathcal O(\epsilon ^2)\).
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

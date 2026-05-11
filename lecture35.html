@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 35 Hydrostatic and Thermal Equilibrium of the Sun</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture34.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture36.html">Next Lecture &#8594;</a></div>
+<h1 class="partHead"><span class="titlemark">Part&#x00A0;II<br /></span><a 
+ id="x1-35000II"></a>Advanced Topics and Appendices</h1>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;35</span><br /><a 
+ id="x1-3600035"></a>Hydrostatic and Thermal Equilibrium of the Sun</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" >This appendix is the stellar analogue of several themes that recur throughout these notes.
+     Gravity replaces magnetic curvature as the confining force, nuclear burning replaces
+     external or Ohmic heating, and radiative or convective transport replaces the closures
+     used in laboratory plasmas. The same four questions organize the problem: what sets
+     equilibrium, what sets temperature, how is energy transported, and which gradients
+     are regulated by marginal stability? The static Sun is also the branch from which the
+     Parker-wind  problem  later  departs;  Lecture&#x00A0;8  begins  by  showing  why  a  hot  corona
+     cannot remain hydrostatic all the way to infinity.</p></blockquote></div></div>
+<!--l. 10--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 10--><p class="noindent" >The modern stellar-structure problem was assembled in stages. Kelvin and Helmholtz
+     emphasized gravitational binding as the global energy reservoir of a star. Eddington
+     made clear that a star is a self-gravitating gas sphere whose interior temperature is
+     fixed primarily by gravity rather than by chemistry. Schwarzschild identified convective
+     instability  as  an  entropy-ordering  problem,  and  Chandrasekhar  later  recast  stellar
+     stability in the same variational language that became so powerful in plasma physics.
+     This appendix does not attempt a precision solar model. Its purpose is narrower and
+     more useful for these notes: to isolate the simplest 1-D structure equations and show
+     how hydrostatic balance, radiative diffusion, nuclear heating, and convective marginality
+     fit together.</p></blockquote></div></div>
+<a 
+ id="x1-36001r30"></a>
+<h3 class="sectionHead"><span class="titlemark">35.1   </span> <a 
+ id="x1-370001"></a>Global Scales and Hydrostatic Support</h3>
+<!--l. 17--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-380001"></a>Basic solar parameters.</span>
+The Sun has mass, radius, and luminosity <div class="math-display">\[M_\odot \simeq 2\times 10^{30}\,\mathrm {kg}, \qquad R_\odot \simeq 7\times 10^{8}\,\mathrm {m}, \qquad L_\odot \simeq 3.8\times 10^{26}\,\mathrm {W}.\]</div>
+Treating the Sun as an ionized hydrogenic plasma, the mean number density is of order <div class="math-display">\[\bar n \sim \frac {M_\odot }{m_p V_\odot } \sim 8\times 10^{29}\,\mathrm {m^{-3}},\]</div>
+while central values are much larger, <div class="math-display">\[n(0)\sim 10^{32}\,\mathrm {m^{-3}}, \qquad T(0)\sim 1.5\,\mathrm {keV}, \qquad p(0)\sim 10^{11}\,\mathrm {atm}.\]</div>
+These are the scales one expects for a self-gravitating plasma compressed by its own weight.
+</p>
+<!--l. 43--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-390001"></a>Hydrostatic balance.</span>
+In the absence of dynamically important magnetic fields, force balance reduces to hydrostatic equilibrium,
+<a id="eq-eq-hydrostatic"></a><div class="math-display">\[\frac {dp}{dr} = -\rho (r)\frac {G M(r)}{r^2}, \tag{A.4}\]</div>
+with enclosed mass satisfying <a id="eq-eq-mass_contained"></a><div class="math-display">\[\frac {dM}{dr} = 4\pi r^2 \rho (r). \tag{A.5}\]</div>
+Equation&#x00A0;(A.4) is the spherical version of the hydrostatic balance used in Lecture&#x00A0;18; the difference is that
+the gravitational field is now generated self-consistently by the same mass distribution whose pressure it
+compresses.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 60--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-400001"></a>Pressure scale height.</span>
+A useful local measure of the stratification is the pressure scale height, <div class="math-display">\[H_p \equiv -\frac {p}{dp/dr} = \frac {p}{\rho g}, \qquad g(r)=\frac {GM(r)}{r^2}.\]</div>
+For an ideal gas, <div class="math-display">\[p=\frac {\rho }{\mu m_p}k_B T,\]</div>
+so that <a id="eq-eq-sun-Hp"></a><div class="math-display">\[H_p = \frac {k_B T}{\mu m_p g}. \tag{A.8}\]</div>
+Thus a temperature of order \(k_B T\sim \mu m_p g H_p\) is required just to support a scale height \(H_p\) against gravity.
+</p><!--l. 87--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 87--><p class="noindent" ><span 
+class="ecbx-1095">Virial estimate of the solar temperature scale. </span>For a self-gravitating sphere the virial
+     theorem gives <div class="math-display">\[2K+U=0,\]</div>
+     where \(K\) is the total thermal energy and \(U\) the gravitational potential energy. If we approximate
+     the Sun as a sphere of total mass \(M_\odot \), radius \(R_\odot \), and mean molecular weight \(\mu \), then
+     <div class="math-display">\[K \sim \frac {3}{2}\frac {M_\odot }{\mu m_p}k_B \bar T, \qquad U \sim -\frac {3}{5}\frac {G M_\odot ^2}{R_\odot }.\]</div>
+     Using \(2K+U=0\) gives the mean thermal scale <a id="eq-eq-sun-virialT"></a><div class="math-display">\[k_B \bar T \sim \frac {\mu m_p}{5}\frac {G M_\odot }{R_\odot }. \tag{A.11}\]</div>
+     This is only an <span 
+class="ecti-1095">average </span>temperature. A centrally condensed star has a significantly hotter core
+     than this global estimate, which is why the central solar temperature reaches the \(10^7\,\mathrm {K}\) or keV
+     range. The key lesson is conceptual: the basic thermal scale of a star is set by
+     gravity.</p></blockquote></div></div>
+<!--l. 108--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-410001"></a>Negative heat capacity.</span>
+Self-gravitating systems behave opposite to ordinary laboratory gases. If the star radiates energy and \(U\)
+becomes more negative, the virial theorem forces \(K\) to increase. In that sense a self-gravitating system can
+heat up as it loses energy. This is one reason why gravitational confinement is both effective and
+subtle.
+<a 
+ id="x1-41001r38"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">35.2   </span> <a 
+ id="x1-420002"></a>Energy Generation and Transport</h3>
+<!--l. 115--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-430002"></a>Nuclear power.</span>
+The solar luminosity is generated mainly by the proton&#8211;proton chain, <div class="math-display">\[4p + 2e^- \rightarrow {}^4\mathrm {He} + 2\nu _e + 26.7\,\mathrm {MeV}.\]</div>
+At the level of stellar structure, the convenient quantity is the heating rate per unit mass, \(\varepsilon (\rho ,T,X_i)\), so that the
+luminosity equation is <a id="eq-eq-luminosity"></a><div class="math-display">\[\frac {dL}{dr} = 4\pi r^2 \rho \,\varepsilon (\rho ,T,X_i). \tag{A.13}\]</div>
+This is equivalent to writing the local fusion power as a reaction rate times the energy release per reaction.
+The essential point is that \(\varepsilon \) depends very steeply on temperature, which gives stars a powerful
+self-regulation mechanism.
+</p>
+<!--l. 129--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-440002"></a>Radiative diffusion.</span>
+In the deep solar interior, energy is carried mainly by photons diffusing through an optically thick plasma.
+Using the Rosseland mean opacity \(\kappa \) (per unit mass), the radiative flux is <a id="eq-eq-sun-Frad"></a><div class="math-display">\[F_{\rm rad} = -\frac {4acT^3}{3\kappa \rho }\frac {dT}{dr}, \tag{A.14}\]</div>
+where \(a=4\sigma _{\rm SB}/c\) is the radiation constant. Since <div class="math-display">\[L(r)=4\pi r^2 F_{\rm rad},\]</div>
+                                                                                         
+                                                                                         
+we obtain <a id="eq-eq-radiative_gradient"></a><div class="math-display">\[\frac {dT}{dr} = -\frac {3\kappa \rho L(r)}{16\pi a c\,r^2 T^3}. \tag{A.16}\]</div>
+This is the standard stellar analogue of a heat-flux closure in transport theory: the luminosity fixes the
+temperature gradient required to carry that heat.
+</p><!--l. 151--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 151--><p class="noindent" ><span 
+class="ecbx-1095">Deriving the radiative temperature gradient </span>\(\nabla _{\rm rad}\)<span 
+class="ecbx-1095">. </span>Define the logarithmic temperature
+     gradient <div class="math-display">\[\nabla \equiv \frac {d\ln T}{d\ln p}.\]</div>
+     To obtain the radiative value, divide Eq.&#x00A0;(A.16) by the hydrostatic relation Eq.&#x00A0;(A.4):
+     <div class="math-display">\[\frac {dT}{dp} = \frac {\dfrac {dT}{dr}}{\dfrac {dp}{dr}} = \frac {-\dfrac {3\kappa \rho L}{16\pi a c\,r^2 T^3}}{-\rho GM/r^2} = \frac {3\kappa L}{16\pi a c\,G M\,T^3}.\]</div>
+     Multiplying by \(p/T\) gives <a id="eq-eq-nabla_rad"></a><div class="math-display">\[\nabla _{\rm rad} = \frac {p}{T}\frac {dT}{dp} = \frac {3\kappa L p}{16\pi a c\,G M\,T^4}. \tag{A.19}\]</div>
+     This quantity answers a practical question: if radiation alone is responsible for energy
+     transport, how steep must the temperature gradient be in order to carry the local luminosity \(L(r)\)?
+     When the required gradient is too steep, the stratification becomes convectively unstable and
+     the star switches to a different transport channel.</p></blockquote></div></div>
+<!--l. 178--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-450002"></a>Why stars self-regulate.</span>
+Suppose the core temperature rises slightly. Then the fusion power increases, the luminosity
+grows, and the required transport gradient steepens. That modifies the density and temperature
+profiles, which feeds back on the burning rate. The Sun is not static because nuclear physics
+is weak; it is static because gravity, transport, and burning form a tightly coupled feedback
+loop.
+<a 
+ id="x1-45001r43"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">35.3   </span> <a 
+ id="x1-460003"></a>Convective Stability and Entropy</h3>
+<!--l. 185--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-470003"></a>Entropy proxy.</span>
+As emphasized in Lecture&#x00A0;18, convective stability is an entropy-ordering problem. For an ideal gas,
+<div class="math-display">\[s=s_0+c_v\ln \!\left (\frac {p}{\rho ^\gamma }\right ),\]</div>
+so the quantity <div class="math-display">\[K\equiv \frac {p}{\rho ^\gamma }\]</div>
+is a monotonic proxy for entropy. Stable stratification requires entropy to increase outward,
+<div class="math-display">\[\frac {ds}{dr}&gt;0 \qquad \Longleftrightarrow \qquad \frac {d}{dr}\ln \!\left (\frac {p}{\rho ^\gamma }\right )&gt;0.\]</div>
+This is the spherical version of the Schwarzschild logic developed earlier in the plane-parallel
+setting.
+</p>
+<!--l. 202--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-480003"></a>Schwarzschild criterion in \(\nabla \) form.</span>
+Using the ideal-gas relation \(p\propto \rho T\), one has <div class="math-display">\[d\ln \rho =d\ln p-d\ln T=(1-\nabla )\,d\ln p.\]</div>
+Hence <div class="math-display">\[\begin{aligned}d\ln \!\left (\frac {p}{\rho ^\gamma }\right ) &amp;= d\ln p-\gamma \,d\ln \rho \nonumber \\ &amp;= \left [1-\gamma (1-\nabla )\right ]d\ln p \nonumber \\ &amp;= \gamma \left (\nabla -\nabla _{\rm ad}\right )d\ln p,\end{aligned}\]</div>
+</p><!--l. 219--><p class="noindent" >where <a id="eq-eq-sun-nablaad"></a><div class="math-display">\[\nabla _{\rm ad}=\frac {\gamma -1}{\gamma }. \tag{A.25}\]</div>
+Since pressure decreases outward, \(d\ln p/dr&lt;0\), entropy increasing outward is equivalent to <a id="eq-eq-sun-schwarzschild"></a><div class="math-display">\[\boxed {\nabla &lt;\nabla _{\rm ad}.} \tag{A.26}\]</div>
+Thus the radiative equilibrium is stable only if the gradient it requires satisfies <div class="math-display">\[\nabla _{\rm rad}&lt;\nabla _{\rm ad}.\]</div>
+                                                                                         
+                                                                                         
+If instead \(\nabla _{\rm rad}&gt;\nabla _{\rm ad}\), radiative transport alone would demand an entropy profile that overturns under buoyancy, and
+convection sets in.
+</p>
+<!--l. 235--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-490003"></a>Marginality.</span>
+Convection tends to relax the stratification toward nearly adiabatic conditions, <div class="math-display">\[\nabla \approx \nabla _{\rm ad}.\]</div>
+This is closely analogous to the way interchange or ballooning turbulence tends to regulate pressure
+gradients in magnetically confined plasmas. The mechanism differs, but the logic of marginality is the
+same.
+</p><!--l. 243--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 243--><p class="noindent" >This  appendix  deliberately  stays  at  the  level  of  a  static,  spherically  symmetric,
+     weakly  magnetized  star.  Real  solar  structure  also  involves  composition  gradients,
+     partial ionization, mixing-length convection, differential rotation, magnetic fields, and a
+     non-hydrostatic corona. The goal here is not fidelity to every solar detail. It is to isolate
+     the cleanest equilibrium and transport logic in a self-gravitating plasma.</p></blockquote></div></div>
+<a 
+ id="x1-49001r47"></a>
+<h3 class="sectionHead"><span class="titlemark">35.4   </span> <a 
+ id="x1-500004"></a>A Minimal 1-D Stellar Structure Model</h3>
+<!--l. 251--><p class="noindent" >A standard spherically symmetric stellar model is obtained by solving a coupled first-order system for the
+radial profiles of enclosed mass \(M(r)\), luminosity \(L(r)\), pressure \(p(r)\), and temperature \(T(r)\). The independent variable is
+radius \(r\in [0,R_\star ]\).
+</p>
+<!--l. 253--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-510004"></a>Unknowns.</span>
+\[ y(r) \equiv \big (M(r),\,L(r),\,p(r),\,T(r)\big ). \]
+</p>
+<!--l. 258--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-520004"></a>Closure relations.</span>
+The density is obtained from an equation of state, <div class="math-display">\[\rho =\rho (p,T,X_i),\]</div>
+where \(X_i\) denotes composition. The heating rate and opacity are then written as <div class="math-display">\[\varepsilon = \varepsilon \!\big (\rho ,T,X_i\big ), \qquad \kappa = \kappa \!\big (\rho ,T,X_i\big ).\]</div>
+Once these are specified, the structure equations close.
+</p>
+<!--l. 271--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-530004"></a>Structure equations.</span>
+The stellar-structure system is <a id="eq-eq-stellar_mass"></a><div class="math-display">\[\begin{aligned}\frac {dM}{dr} &amp;= 4\pi r^2 \rho , \\ \frac {dp}{dr} &amp;= -\rho \,\frac {G M}{r^2}, \\ \frac {dL}{dr} &amp;= 4\pi r^2 \rho \,\varepsilon (\rho ,T,X_i), \\ \frac {dT}{dr} &amp;= \nabla \,\frac {T}{p}\,\frac {dp}{dr}.\end{aligned} \tag{A.31}\]</div>
+</p><!--l. 283--><p class="noindent" >In a radiative region, <a id="eq-eq-stellar_nabla_rad"></a><div class="math-display">\[\nabla =\nabla _{\rm rad} = \frac {3\kappa L p}{16\pi a c\,G M\,T^4}, \tag{A.35}\]</div>
+while in a convective region one often approximates <div class="math-display">\[\nabla \approx \nabla _{\rm ad}=\frac {\gamma -1}{\gamma }.\]</div>
+A simple closure model is therefore <a id="eq-eq-nabla_switch"></a><div class="math-display">\[\nabla = \min \!\big (\nabla _{\rm rad},\,\nabla _{\rm ad}\big ), \tag{A.37}\]</div>
+that is, radiative where stable and adiabatic where convection sets in.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 302--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-540004"></a>Boundary conditions.</span>
+At the center, regularity requires <a id="eq-eq-bc_center"></a><div class="math-display">\[M(0)=0, \qquad L(0)=0, \tag{A.38}\]</div>
+while the central pressure and temperature, <a id="eq-eq-bc_center_shoot"></a><div class="math-display">\[p(0)=p_c, \qquad T(0)=T_c, \tag{A.39}\]</div>
+serve as shooting parameters. For numerical work it is convenient to start at a small radius \(r=r_0\ll R_\star \) using the
+series expansions <div class="math-display">\[\begin{aligned}M(r_0) &amp;\simeq \frac {4\pi }{3}\rho _c r_0^3,\\ L(r_0) &amp;\simeq \frac {4\pi }{3}\rho _c \varepsilon _c r_0^3,\\ p(r_0) &amp;\simeq p_c - \frac {2\pi }{3}G\rho _c^2 r_0^2,\\ T(r_0) &amp;\simeq T_c + \left .\frac {dT}{dr}\right |_{r_0} r_0,\end{aligned}\]</div>
+</p><!--l. 324--><p class="noindent" >with \(\rho _c=\rho (p_c,T_c)\) and \(\varepsilon _c=\varepsilon (\rho _c,T_c)\).
+</p><!--l. 326--><p class="noindent" >At the surface one imposes global targets such as <a id="eq-eq-bc_surface_global"></a><div class="math-display">\[M(R_\star )=M_\star , \qquad L(R_\star )=L_\star , \tag{A.44}\]</div>
+possibly together with a photospheric condition, <a id="eq-eq-bc_teff"></a><div class="math-display">\[T(R_\star )=T_{\rm eff}, \qquad L_\star = 4\pi R_\star ^2 \sigma _{\rm SB} T_{\rm eff}^4. \tag{A.45}\]</div>
+In the simplest model, the surface pressure is taken to be negligible compared with the interior
+pressure.
+</p>
+<!--l. 342--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-550004"></a>Shooting idea.</span>
+Given target values \((M_\star ,L_\star )\), one chooses trial central values \((p_c,T_c)\), integrates outward, and iterates on \((p_c,T_c)\) until the surface
+conditions are met. This is the same shooting logic used repeatedly in plasma equilibrium and eigenvalue
+problems.
+</p><!--l. 346--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 346--><p class="noindent" >A  static  star  is  governed  by  the  same  kind  of  intertwined  logic  that  appears
+     throughout MHD: a force balance equation, a source equation, a transport law, and
+     a marginal-stability condition. For the Sun those are hydrostatic equilibrium, nuclear
+     burning,  radiative  or  convective  energy  transport,  and  the  Schwarzschild  criterion.
+     Gravity changes the details, but not the structure of the reasoning.</p></blockquote></div></div>
+<a 
+ id="x1-55001r51"></a>
+<h3 class="sectionHead"><span class="titlemark">35.5   </span> <a 
+ id="x1-560005"></a>Homework: A Minimal Stellar Structure Model (pp burning + Kramers opacity)</h3>
+<!--l. 353--><p class="noindent" ><span 
+class="ecbx-1095">Goal. </span>Build a simple 1-D stellar model by solving the coupled ODEs for hydrostatic equilibrium, mass
+conservation, luminosity generation, and radiative energy transport. Use simplified closures for pp-chain
+burning and opacity, and identify where the model becomes convectively unstable by comparing \(\nabla _{\rm rad}\) to
+\(\nabla _{\rm ad}\).
+</p>
+<!--l. 356--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-570005"></a>Structure equations.</span>
+Solve for \(M(r),\,p(r),\,L(r),\,T(r)\) on \(r\in [0,R_\star ]\): <a id="eq-eq-HW_mass"></a><div class="math-display">\[\begin{aligned}\frac {dM}{dr} &amp;= 4\pi r^2 \rho , \\ \frac {dp}{dr} &amp;= -\rho \,\frac {G M}{r^2}, \\ \frac {dL}{dr} &amp;= 4\pi r^2 \rho \,\varepsilon (\rho ,T), \\ \frac {dT}{dr} &amp;= -\frac {3\kappa (\rho ,T)\rho L}{16\pi a c\,T^3\,r^2},\end{aligned} \tag{A.46}\]</div>
+</p><!--l. 365--><p class="noindent" >where \(a=4\sigma _{\rm SB}/c\) is the radiation constant. Assume an ideal-gas equation of state, <a id="eq-eq-HW_EOS"></a><div class="math-display">\[p=\frac {\rho }{\mu m_p}k_B T, \qquad \text {so}\qquad \rho =\frac {\mu m_p}{k_B}\frac {p}{T}, \tag{A.50}\]</div>
+with mean molecular weight \(\mu =0.6\).
+</p>
+<!--l. 374--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-580005"></a>Simplified microphysics.</span>
+Use the parameterizations <a id="eq-eq-HW_eps"></a><div class="math-display">\[\varepsilon (\rho ,T)=\varepsilon _0\,\rho \,T^4, \tag{A.51}\]</div>
+                                                                                         
+                                                                                         
+for pp burning and <a id="eq-eq-HW_kappa"></a><div class="math-display">\[\kappa (\rho ,T)=\kappa _0\,\rho \,T^{-7/2}, \tag{A.52}\]</div>
+for Kramers opacity. The constants \(\varepsilon _0\) and \(\kappa _0\) are to be calibrated.
+</p>
+<!--l. 387--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-590005"></a>Boundary conditions and numerical start.</span>
+At the center, <a id="eq-eq-HW_bc_center"></a><div class="math-display">\[M(0)=0, \qquad L(0)=0, \qquad p(0)=p_c, \qquad T(0)=T_c, \tag{A.53}\]</div>
+where \(p_c\) and \(T_c\) are shooting parameters. Start the integration at a small radius \(r=r_0\ll R_\star \) using <div class="math-display">\[\begin{aligned}\rho _c &amp;= \frac {\mu m_p}{k_B}\frac {p_c}{T_c},\\ M(r_0) &amp;\simeq \frac {4\pi }{3}\rho _c r_0^3,\\ L(r_0) &amp;\simeq \frac {4\pi }{3}\rho _c \varepsilon (\rho _c,T_c) r_0^3,\\ p(r_0) &amp;\simeq p_c-\frac {2\pi }{3}G\rho _c^2 r_0^2,\\ T(r_0) &amp;\simeq T_c + \left .\frac {dT}{dr}\right |_{r_0} r_0.\end{aligned}\]</div>
+</p><!--l. 407--><p class="noindent" >At the surface, impose <a id="eq-eq-HW_bc_surface"></a><div class="math-display">\[M(R_\star )=M_\star , \qquad L(R_\star )=L_\star , \tag{A.59}\]</div>
+and optionally define the effective temperature through <a id="eq-eq-HW_Teff"></a><div class="math-display">\[L_\star = 4\pi R_\star ^2 \sigma _{\rm SB} T_{\rm eff}^4. \tag{A.60}\]</div>
+</p>
+<!--l. 420--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-600005"></a>Tasks.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Non-dimensionalization. </span>Introduce dimensionless variables \[ \tilde r = \frac {r}{R_\star },\qquad \tilde M=\frac {M}{M_\star },\qquad \tilde L=\frac {L}{L_\star },\qquad \tilde p=\frac {p}{p_\star },\qquad \tilde T=\frac {T}{T_\star }, \] and choose convenient scales \(p_\star \)
+   and \(T_\star \). Rewrite Eqs.&#x00A0;(A.46)&#8211;(A.49) in dimensionless form and identify the dimensionless control
+   parameters.
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Calibration of </span>\(\varepsilon _0\) <span 
+class="ecbx-1095">and </span>\(\kappa _0\)<span 
+class="ecbx-1095">. </span>Choose \(R_\star =R_\odot \) and \(M_\star =M_\odot \). Pick trial values for \((p_c,T_c)\) and then tune \(\varepsilon _0\) and \(\kappa _0\) so that the
+   integrated model yields \(L(R_\odot )\approx L_\odot \) and a plausible core temperature \(T_c\sim (1\text {--}2)\,\mathrm {keV}\).
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Shooting for </span>\((p_c,T_c)\)<span 
+class="ecbx-1095">. </span>Implement a shooting method and iterate \((p_c,T_c)\) until the surface constraints (A.59)
+   are satisfied at \(R_\odot \). Report the resulting profiles \(M(r)\), \(L(r)\), \(T(r)\), \(\rho (r)\), and \(p(r)\).
+   </dd><dt class="enumerate-enumitem">
+ 4. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Convective stability check. </span>Compute the radiative gradient in the standard form <a id="eq-eq-HW_nabla_rad"></a><div class="math-display">\[\nabla _{\rm rad} = \frac {3\kappa L p}{16\pi a c\,G M\,T^4}, \tag{A.61}\]</div>
+   and compare it with <div class="math-display">\[\nabla _{\rm ad}=\frac {\gamma -1}{\gamma }, \qquad \gamma =\frac 53.\]</div>
+   Identify radii where \(\nabla _{\rm rad}&gt;\nabla _{\rm ad}\). How does the location of the convectively unstable region depend on
+   \(\kappa _0\)?
+   </dd><dt class="enumerate-enumitem">
+ 5. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Virial check. </span>Estimate the gravitational binding energy <div class="math-display">\[U\sim -\int _0^{R_\star } \frac {G M(r)}{r}\,dM,\]</div>
+   and the thermal energy <div class="math-display">\[K\sim \int _0^{R_\star } \frac {3}{2}p\,dV.\]</div>
+   Verify that the result is consistent with the virial theorem, \(K\approx -U/2\), to order unity.</dd></dl>
+<!--l. 466--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-610005"></a>Deliverables.</span>
+Submit (i) plots of \(\rho (r)\), \(T(r)\), \(M(r)\), and \(L(r)\); (ii) your fitted \(\varepsilon _0\) and \(\kappa _0\); (iii) the radius range that is convectively unstable
+according to \(\nabla _{\rm rad}&gt;\nabla _{\rm ad}\); and (iv) a short paragraph explaining what sets the core temperature and why the Sun can
+remain in long-lived equilibrium.
+</p>
+<!--l. 469--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-620005"></a>Optional extensions.</span>
+</p>
+   <ul class="itemize1">
+                                                                                         
+                                                                                         
+   <li class="itemize">Replace the simple pp-law \(\varepsilon \propto \rho T^4\) with a steeper temperature dependence, for example \(T^6\), and observe
+   how strongly the burning localizes to the core.
+   </li>
+   <li class="itemize">Implement the switch \(\nabla =\min (\nabla _{\rm rad},\nabla _{\rm ad})\) and compare the resulting temperature profile to the purely radiative
+   model.
+   </li>
+   <li class="itemize">Compare  the  static  hydrostatic  model  developed  here  with  the  hydrostatic  branch  of  the
+   Parker-wind analysis in Lecture&#x00A0;8. Where does the logic remain the same, and where does the
+   outflow fundamentally change the structure problem?</li></ul>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

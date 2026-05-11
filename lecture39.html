@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 39 The Reversed-Field Pinch</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture38.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture40.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;39</span><br /><a 
+ id="x1-13700039"></a>The Reversed-Field Pinch</h2>
+<!--l. 21--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 21--><p class="noindent" >The  reversed-field  pinch  is  one  of  the  cleanest  examples  of  a  configuration  that
+     looks rather respectable in ideal MHD and rather unforgiving in resistive MHD. In
+     cylindrical theory one can construct reversed-field diffuse pinches that are ideally stable
+     at substantial \(\beta \), provided the pitch profile is shaped carefully, the conducting wall is close,
+     and the total axial flux does not reverse. The practical difficulty is tearing. Because \(q(r)\)
+     becomes small and then changes sign near the edge, the RFP places many low-\(m\) rational
+     surfaces  into  a  narrow  radial  interval,  and  the  edge  current  roll-off  that  makes  the
+     configuration realistic also reintroduces the tearing drive.</p></blockquote></div></div>
+<!--l. 33--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 33--><p class="noindent" >Robinson&#8217;s  1971  paper  gives  the  clean  ideal-MHD  statement  of  the  diffuse-pinch
+     problem. It shows that if the pitch profile develops a minimum, the configuration is
+     generically unstable, and it explains why a stable high-\(\beta \) diffuse pinch with a vacuum
+     region  is  naturally  of  reversed-field  type  <a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>].  Robinson&#8217;s  1978  paper
+     then  adds  the  resistive  correction.  A  Taylor-like  or  Bessel-like  core  is  helpful,  but
+     not sufficient; the outer current profile must also be shaped so that both the \(m=0\) and
+     \(m=1\) tearing  branches  are  stabilized  by  the  edge  structure  and  the  nearby  conducting
+     wall <a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>]. The modern MST and simulation literature then shows what
+     happens  when  that  resistive  stability  is  not  achieved:  a  broad  tearing  spectrum,
+     nonlinear \(m=0\) participation, a self-consistent dynamo, and stochastic transport <a 
+href="#XBodin1980ReversedFieldPinchResearch">Bodin and
+     Newton</a>&#x00A0;[<a 
+href="#XBodin1980ReversedFieldPinchResearch">1980</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>]. A useful modern bridge from those classic papers to the
+     present experimental picture is the review by Marrelli <span 
+class="ecti-1095">et al.</span>, which ties together quiet
+     periods, profile control, helical states, and the confinement consequences of tearing in
+     the contemporary RFP <a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>].</p></blockquote></div></div>
+<a 
+ id="x1-137001r137"></a>
+<h3 class="sectionHead"><span class="titlemark">39.1   </span> <a 
+ id="x1-1380001"></a>Why the RFP is a special MHD problem</h3>
+<!--l. 55--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1390001"></a>Pitch, safety factor, and parallel current.</span>
+For a cylindrical equilibrium one may characterize the field either by the pitch <a id="eq-eq-rfp_pitch_def"></a><div class="math-display">\[P(r) \equiv \frac {r B_z}{B_\theta } = q(r)R, \tag{E.1}\]</div>
+or, in force-free language, by the field-aligned current parameter <a id="eq-eq-rfp_lambda_def"></a><div class="math-display">\[\lambda (r) \equiv \mu _0\frac {\J \cdot \B }{B^2}. \tag{E.2}\]</div>
+When pressure is negligible and \(\J \times \B =0\), these are equivalent ways of specifying the equilibrium, since
+<a id="eq-eq-rfp_lambda_equil"></a><div class="math-display">\[\frac {dB_z}{dr} = -\lambda B_\theta , \qquad \frac {1}{r}\frac {d}{dr}\left (r B_\theta \right )=\lambda B_z. \tag{E.3}\]</div>
+A flat-core \(\lambda \) profile therefore generates the familiar Taylor or Bessel-function core, while the edge roll-off in \(\lambda \)
+is what makes the diffuse pinch realistic.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 78--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1400001"></a>Why rational surfaces crowd the outer plasma.</span>
+For a helical perturbation \(\propto e^{i(m\theta +kz)}\), the resonance condition is <a id="eq-eq-rfp_F_def"></a><div class="math-display">\[F(r) \equiv \frac {m B_\theta }{r}+k B_z = 0. \tag{E.4}\]</div>
+Equivalently, <div class="math-display">\[q(r_s) = -\frac {m}{n}, \qquad k=-\frac {n}{R},\]</div>
+up to the sign convention for the Fourier phase. What matters geometrically is that in an RFP the safety
+factor decreases to small magnitude and then changes sign near the reversal surface. The result is an
+accumulation of low-order \(m=1\) rational surfaces in the outer plasma. In cylindrical language, one gets a dense
+ladder of resonant surfaces approaching the reversal region. That is why tearing is not a small
+correction in the RFP; it is the natural resistive-MHD problem of the configuration <a 
+href="#XBodin1980ReversedFieldPinchResearch">Bodin and
+Newton</a>&#x00A0;[<a 
+href="#XBodin1980ReversedFieldPinchResearch">1980</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>].
+</p>
+<!--l. 97--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1410001"></a>A useful one-sentence summary.</span>
+The tokamak has a few low-order rational surfaces that must be managed carefully. The RFP
+has a dense set of low-order rational surfaces that are difficult to avoid and even harder to
+ignore.
+<a 
+ id="x1-141001r144"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">39.2   </span> <a 
+ id="x1-1420002"></a>Ideal MHD: how well can the RFP do?</h3>
+<!--l. 104--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1430002"></a>A minimum in pitch is bad news.</span>
+Robinson&#8217;s ideal diffuse-pinch analysis is still the cleanest way to organize the problem. The qualitative
+result is simple and powerful: if the radial variation of the pitch develops a minimum, the configuration is
+unstable to a current-driven mode <a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>]. In RFP language this explains why a stable
+vacuum-bounded diffuse pinch is naturally of reversed-field type. Outside the plasma one has
+approximately vacuum behavior, so \(B_\theta \sim 1/r\) while the axial field changes slowly. The corresponding pitch tends to
+rise like \(P\sim r^2\). A non-reversed diffuse pinch whose pitch was already falling in the plasma would therefore have
+to turn around and create a minimum before joining the vacuum. Reversal of \(B_z\) is the natural way to avoid
+that minimum.
+</p>
+<!--l. 116--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1440002"></a>Reversed field, but not reversed total axial flux.</span>
+The subtle point in Robinson&#8217;s 1971 paper is that one wants the <span 
+class="ecti-1095">field </span>to reverse near the edge, not the
+total axial flux. The stable examples keep <a id="eq-eq-rfp_axial_flux"></a><div class="math-display">\[\Phi _z \propto \int _0^a B_z(r)\,r\,dr &gt; 0, \tag{E.6}\]</div>
+while still allowing \(B_z(a)&lt;0\) near the boundary <a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>]. This is a good ideal-MHD formulation of reversal:
+the outer layer may reverse to avoid the destabilizing pitch minimum, but the global axial flux should
+remain of one sign.
+</p>
+<!--l. 128--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1450002"></a>Local and global criteria both matter.</span>
+At finite pressure the RFP must satisfy the local Suydam criterion as well as the global Newcomb problem.
+The local statement controls pressure-gradient drive, while the global pitch variation controls the
+large-scale current-driven instability <a 
+href="#XSuydam1958StabilityLinearPinch">Suydam</a>&#x00A0;[<a 
+href="#XSuydam1958StabilityLinearPinch">1958</a>],&#x00A0;<a 
+href="#XNewcomb1960HydromagneticStabilityDiffusePinch">Newcomb</a>&#x00A0;[<a 
+href="#XNewcomb1960HydromagneticStabilityDiffusePinch">1960</a>]. Robinson&#8217;s 1971 paper
+is best read as the combination of those two ideas: the pressure gradient must be tolerable
+locally, and the pitch profile must avoid the global geometry that makes an \(m=1\) mode possible
+                                                                                         
+                                                                                         
+<a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>].
+</p>
+<!--l. 137--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1460002"></a>Newcomb&#8217;s variables in the cylindrical RFP problem.</span>
+It is worth laying out the reduced variables explicitly, because they make the logic of the ideal section
+much clearer. For a helical perturbation \(\propto e^{i(m\theta +kz)}\) one defines <a id="eq-eq-rfp_newcomb_F_k0"></a><div class="math-display">\[F(r)\equiv \frac {mB_\theta }{r}+kB_z, \qquad k_0^2(r)\equiv \frac {m^2}{r^2}+k^2, \tag{E.7}\]</div>
+and uses the radial displacement amplitude \(\xi (r)\) as the dynamical variable. After the algebraic variables are
+eliminated, Newcomb&#8217;s ideal-MHD reduction gives <a id="eq-eq-rfp_newcomb_functional"></a><div class="math-display">\[\delta W = \int _0^a \left [f(r)\,|\xi '|^2 + g(r)\,|\xi |^2\right ]dr, \qquad f(r)=\frac {rF^2}{k_0^2}, \tag{E.8}\]</div>
+with Euler&#8211;Lagrange equation <a id="eq-eq-rfp_newcomb_equation"></a><div class="math-display">\[\frac {d}{dr}\!\left (f\,\frac {d\xi }{dr}\right )-g\,\xi =0. \tag{E.9}\]</div>
+The rational surface is the radius \(r_s\) where \(F(r_s)=0\). Because \(f\propto F^2\), field-line bending vanishes at \(r_s\), which is exactly why
+both the global Newcomb problem and the local pressure-driven problem focus so sharply on rational
+surfaces.
+</p>
+<!--l. 165--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1470002"></a>Why reversed plasmas are often good from the Suydam point of view.</span>
+In pitch language, with <a id="eq-eq-rfp_pitch_again"></a><div class="math-display">\[P(r)=\frac {rB_z}{B_\theta }=q(r)R, \tag{E.10}\]</div>
+the cylindrical Suydam condition may be written schematically as <a id="eq-eq-rfp_suydam_schematic"></a><div class="math-display">\[\frac {rB_z^2}{8\mu _0}\left (\frac {P'}{P}\right )^2 + \frac {dp}{dr} &gt; 0, \tag{E.11}\]</div>
+up to conventional normalization choices <a 
+href="#XSuydam1958StabilityLinearPinch">Suydam</a>&#x00A0;[<a 
+href="#XSuydam1958StabilityLinearPinch">1958</a>],&#x00A0;<a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>]. Since \(dp/dr&lt;0\) in an ordinary plasma
+column, magnetic shear is the stabilizing term. This is one reason the RFP is more subtle
+than the caricature &#8220;low-\(q\) therefore bad.&#8221; Near reversal, \(q\) is small and varies rapidly, so the
+shear term is often large. In that limited but important sense, reversed plasmas are frequently
+<span 
+class="ecti-1095">good </span>from the Suydam point of view even while they remain vulnerable to global or resistive
+tearing.
+</p>
+<!--l. 185--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1480002"></a>Suydam, yes; Mercier mostly not in Robinson&#8217;s diffuse-pinch papers.</span>
+If one asks specifically about the Robinson diffuse-pinch papers, the natural pairing is Suydam plus the
+global Newcomb problem, not Suydam versus Mercier. Of course the Mercier correction is
+of order \(1-q_a^2\) and so when \(q_a\ll 1 \) it becomes negligible. The 1978 paper&#8217;s finite-\(\beta \) extension explicitly
+compares the Suydam and Newcomb limits for the same cylindrical reversed-field diffuse pinch
+<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>]. Mercier is the toroidal completion of the same singular local problem once
+curvature and magnetic-well terms are retained, so it enters more naturally in later toroidal high-\(\beta \)
+discussions than in Robinson&#8217;s cylindrical construction <a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. So for this appendix
+the clean statement is: the RFP&#8217;s large shear makes the cylindrical Suydam test surprisingly
+favorable, whereas Mercier is better treated as the toroidal afterword rather than the main
+actor.
+</p>
+<!--l. 199--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1490002"></a>The \(\beta \) lesson.</span>
+The ideal calculation also gives a useful bound: the beta measured against the field produced by the
+plasma current must remain below unity, and the practical optimum from Robinson&#8217;s numerical study is of
+order one-half <a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>]. More optimistically, the same paper shows that stable reversed-field diffuse
+pinches can be ideally stable at central \(\beta \) values up to about \(17\%\), corresponding to average \(\beta \) of order \(35\%\)
+<a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>]. So the fairest ideal-MHD verdict is not &#8220;the RFP is hopeless,&#8221; but rather &#8220;the RFP can
+be an honest ideal-MHD configuration if the pitch profile, pressure gradient, and wall are all used
+correctly.&#8221;
+<a 
+ id="x1-149001r148"></a>
+                                                                                         
+                                                                                         
+</p>
+<h3 class="sectionHead"><span class="titlemark">39.3   </span> <a 
+ id="x1-1500003"></a>Resistive tearing in \(\lambda (r)\) language</h3>
+<!--l. 213--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1510003"></a>Outer region: the same logic as the tearing lecture.</span>
+The resistive tearing calculation follows exactly the structure used in the tearing lecture. Outside
+the thin resistive layer one solves the ideal outer problem and summarizes its behavior by
+<a id="eq-eq-rfp_delta_prime"></a><div class="math-display">\[\Delta ' \equiv \left [\frac {\psi '}{\psi }\right ]_{r_s^-}^{r_s^+}. \tag{E.12}\]</div>
+In the constant-\(\psi \) regime the layer calculation then yields the familiar FKR statement that instability
+requires \(\Delta '&gt;0\), with growth rate scaling like \(\gamma \propto \eta ^{3/5}(\Delta ')^{4/5}\) <a 
+href="#XFurth1963FiniteResistivitySheetPinch">Furth et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivitySheetPinch">1963</a>],&#x00A0;<a 
+href="#XCoppi1966ResistiveInstabilitiesDiffusePinch">Coppi et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCoppi1966ResistiveInstabilitiesDiffusePinch">1966</a>].
+</p>
+<!--l. 226--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1520003"></a>Robinson&#8217;s outer equation.</span>
+For a pressureless force-free equilibrium, <div class="math-display">\[\J = \frac {\lambda (r)}{\mu _0}\,\B ,\]</div>
+and a helical perturbation \(\propto e^{i(m\theta +kz)}\), Robinson introduces the scaled radial-flux function <a id="eq-eq-rfp_psi_robinson"></a><div class="math-display">\[\psi (r) \equiv \frac {r^{3/2} b_r}{\sqrt {m^2+k^2 r^2}}, \tag{E.14}\]</div>
+so that the outer ideal equation becomes <a id="eq-eq-rfp_outer_eq"></a><div class="math-display">\[\frac {d^2\psi }{dr^2} + A(r)\psi = 0, \tag{E.15}\]</div>
+with <a id="eq-eq-rfp_outer_A"></a><div class="math-display">\[\begin{aligned}-A(r) ={}&amp; \frac {m^2+k^2 r^2}{r^2} - \lambda ^2 - \frac {2mk\lambda }{m^2+k^2 r^2} - \frac {m^4 + 10m^2 k^2 r^2 - 3k^4 r^4}{4r^2\left (m^2+k^2 r^2\right )^2} \notag \\ &amp;\quad + \lambda '(r) \frac {m B_z - k r B_\theta }{m B_\theta + k r B_z}.\end{aligned} \tag{E.16}\]</div>
+</p><!--l. 253--><p class="noindent" >The last term is the decisive one. Its denominator is just \(rF(r)\) with \(F\) defined in Eq.&#x00A0;(E.4), so the singular
+current-gradient drive is proportional to \(\lambda '(r_s)/F\). A constant-\(\lambda \) core removes that drive completely, while any edge
+roll-off in \(\lambda \) reintroduces it.
+</p><!--l. 259--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 259--><p class="noindent" ><span 
+class="ecbx-1095">Robinson&#8217;s comparison-equation trick, written in the language of the tearing</span>
+     <span 
+class="ecbx-1095">lecture.</span>
+     </p><!--l. 261--><p class="noindent" >The outer equation (E.15) is singular at the rational surface \(r=r_s\), exactly because the
+     current-gradient term contains \(1/F\). Robinson&#8217;s idea is to expand the coefficient near resonance by
+     writing <div class="math-display">\[A(r) = \frac {G}{x} + G_1 + \cdots , \qquad x\equiv r-r_s,\]</div>
+     and then solve a comparison equation <div class="math-display">\[u'' + Q(x)u = 0, \qquad Q(x)=\frac {G}{x}+G_1+R(x),\]</div>
+     whose two linearly independent solutions are known explicitly. In the notation used by
+     Robinson one may take <div class="math-display">\[u_1(x)=\frac {x}{1+ax+bx^2}, \qquad u_2(x)=u_1(x)\left [-\frac {1}{x}+2a\ln |x|+(a^2+2b)x+abx^2+\frac {b^2x^3}{3}\right ],\]</div>
+     with <div class="math-display">\[a=\frac {G}{2}, \qquad b=\frac {G^2+G_1}{6}.\]</div>
+     The outer solution is then written as <div class="math-display">\[\psi (x)=\alpha (x)u_1(x)+\beta (x)u_2(x),\]</div>
+     and one imposes the auxiliary condition <div class="math-display">\[\alpha ' u_1 + \beta ' u_2 = 0.\]</div>
+     This converts the second-order singular equation into the regular first-order system
+     <a id="eq-eq-rfp_alpha_beta"></a><div class="math-display">\[\alpha ' = \frac {u_2\,(Q-A)\psi }{W_0}, \qquad \beta ' = -\frac {u_1\,(Q-A)\psi }{W_0}, \tag{E.23}\]</div>
+     where \(W_0=u_1u_2'-u_2u_1'\) is the Wronskian. Because \(Q-A=O(x)\), the coefficients \(\alpha \) and \(\beta \) remain regular through the
+     singularity.
+     </p><!--l. 305--><p class="noindent" >This is the Robinson version of the same outer matching used in the tearing lecture. One
+     constructs the regular solution from the axis, the &#8220;small&#8221; solution on the outer interval, and
+     then evaluates the logarithmic-derivative jump. In Sovinec&#8217;s notation, with the wall
+     normalized to \(r=1\) and the small solution normalized to unit slope at \(r_s\), the result is
+     <a id="eq-eq-rfp_delta_robinson"></a><div class="math-display">\[\Delta ' = -\frac {y_0(1)}{y_1(1)\,y_0(r_s)}, \tag{E.24}\]</div>
+     which is just the RFP realization of the same \(\Delta '\) logic used throughout the tearing lecture
+                                                                                         
+                                                                                         
+     <a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>].</p></blockquote></div></div>
+<!--l. 318--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1530003"></a>What constant \(\lambda \) buys you.</span>
+Equation&#x00A0;(E.16) explains why the Taylor core is so attractive. If \(\lambda '=0\), then the singular current-gradient term
+disappears from the outer problem. The cylindrical Bessel or Taylor core is therefore naturally resistant to
+tearing <a 
+href="#XTaylor1974RelaxationToroidalPlasma">Taylor</a>&#x00A0;[<a 
+href="#XTaylor1974RelaxationToroidalPlasma">1974</a>],&#x00A0;<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>]. But a laboratory pinch cannot keep constant \(\lambda \) all the way to the
+wall. The edge current must decrease, so \(\lambda '\) returns in the outer plasma, and with it the tearing drive. The
+actual problem is therefore not whether the Taylor core is useful; it is how gently one can connect that core
+to a low-current edge.
+<a 
+ id="x1-153001r156"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">39.4   </span> <a 
+ id="x1-1540004"></a>A Robinson-style stable diffuse pinch in modern notation</h3>
+<!--l. 330--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1550004"></a>Core plus edge roll-off.</span>
+A simple modern restatement of Robinson&#8217;s logic is to take <a id="eq-eq-rfp_piecewise_lambda"></a><div class="math-display">\[\lambda (r) \simeq \begin {cases} \lambda _0, &amp; 0&lt;r&lt;c,\\[4pt] \text {monotone roll-off}, &amp; c&lt;r&lt;a, \end {cases} \tag{E.25}\]</div>
+with a close conducting wall at or just outside \(r=a\). In the core, Eq.&#x00A0;(E.3) then gives the Bessel-function form
+<a id="eq-eq-rfp_bessel_core"></a><div class="math-display">\[B_z \propto J_0(\lambda _0 r), \qquad B_\theta \propto J_1(\lambda _0 r), \tag{E.26}\]</div>
+which is exactly the Taylor-like core Robinson emphasizes. The edge roll-off then reduces the current
+density and makes the diffuse pinch physically plausible.
+</p>
+<!--l. 351--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1560004"></a>How the tearing calculation is actually done.</span>
+Once the equilibrium is fixed, the calculation proceeds exactly as in the tearing lecture. <div class="math-display">\[\text {equilibrium } \Longrightarrow \text {outer equation } \Longrightarrow \Delta ' \Longrightarrow \text {inner-layer dispersion relation.}\]</div>
+More explicitly:
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   1. </dt><dd 
+class="enumerate-enumitem">Integrate the regular outer solution from the axis to the rational surface.
+     </dd><dt class="enumerate-enumitem">
+   2. </dt><dd 
+class="enumerate-enumitem">Integrate the wall solution inward, imposing \(\psi (a)=0\) at the conducting wall.
+     </dd><dt class="enumerate-enumitem">
+   3. </dt><dd 
+class="enumerate-enumitem">Use Robinson&#8217;s comparison-equation construction to pass cleanly through the singularity.
+     </dd><dt class="enumerate-enumitem">
+   4. </dt><dd 
+class="enumerate-enumitem">Form \(\Delta '\) and infer stability from its sign in the constant-\(\psi \) regime.</dd></dl>
+<!--l. 365--><p class="noindent" >The physical interpretation is just as simple. A steep outer roll-off in \(\lambda \) tends to make \(\Delta '&gt;0\). A broader roll-off,
+together with a close wall, can make the same branch stable.
+</p>
+<!--l. 369--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1570004"></a>What Robinson 1978 actually showed.</span>
+The important fact is that this program succeeds. Robinson showed that tearing-mode-stable reverse-field
+diffuse pinches exist at \(\beta =0\), with a small vacuum region between plasma and wall, with pinch parameter \(\Theta \) as
+large as about three, and with the wall playing an essential role in suppressing both \(m=0\) and \(m=1\) branches
+<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>]. The key point is that the tearing problem is hard, but not trivial in the sense of being
+unsalvageable: one can stabilize it in cylindrical theory, though only with deliberate current-profile
+                                                                                         
+                                                                                         
+shaping.
+</p><!--l. 380--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 380--><p class="noindent" >Ideal stability and tearing stability are adjacent questions, not identical ones. Robinson&#8217;s
+     diffuse-pinch  work  is  valuable  precisely  because  it  shows  that  a  profile  that  looks
+     acceptable to the ideal-MHD eye may still fail once the thin resistive layer is allowed to
+     reconnect it.</p></blockquote></div></div>
+<a 
+ id="x1-157001r160"></a>
+<h3 class="sectionHead"><span class="titlemark">39.5   </span> <a 
+ id="x1-1580005"></a>External kink, resistive walls, and smart shells</h3>
+<!--l. 388--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1590005"></a>Why this is the next question once tearing is reduced.</span>
+To connect directly back to the main external-kink lecture, it is useful to keep the same free-boundary
+language. Internal modes were tested in the restricted class \(\xi _a=0\). External modes reopen the variational
+problem and allow \(\xi _a\neq 0\) at the plasma edge. In the RFP this matters as soon as the interior has been made
+more Taylor-like: once the broad internal tearing spectrum is weakened, the remaining free-boundary \(m=1\)
+branch is the next ideal-MHD obstacle. Because the edge safety factor is small, the cylindrical RFP admits
+a broader set of unstable toroidal harmonics than the tokamak case that is usually first taught <a 
+href="#XMarrelli2021RFPReview">Marrelli
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>].
+</p>
+<!--l. 399--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1600005"></a>Keep the same surface form of \(\delta W\).</span>
+Using the notation of the external-kink lecture, the free-boundary energy for a single \((m,n)\) harmonic can be
+written as <a id="eq-eq-rfp_external_surface_form"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\mu _0} = \left [ \left (\frac {F^2}{k_0^2}\frac {r\xi '}{\xi }\right )_{r=a} + \left (\frac {F F^\dagger }{k_0^2}\right )_{r=a} + a^2 F_a^2\,\Lambda _m \right ]|\xi _a|^2, \tag{E.28}\]</div>
+where <a id="eq-eq-rfp_external_Fa"></a><div class="math-display">\[F_a\equiv F(a)=\frac {B_{za}}{R_0}\left (\frac {m}{q_a}-n\right ), \qquad F_a^\dagger \equiv F^\dagger (a)=-\frac {B_{za}}{R_0}\left (n+\frac {m}{q_a}\right ), \tag{E.29}\]</div>
+and the vacuum-wall response factor is <a id="eq-eq-rfp_external_Lambda"></a><div class="math-display">\[\Lambda _m=\frac {1+\alpha _m}{1-\alpha _m}, \qquad \alpha _m\equiv \left (\frac {a}{b}\right )^{2m}. \tag{E.30}\]</div>
+Here \(b\) is the shell radius and \(q_a\) is the safety factor evaluated on the plasma side of the shell. Equation&#x00A0;(E.28)
+is just Eq.&#x00A0;(<a href="lecture24.html#eq-eq-deltaW_surface_only">24.16</a>) of the main external-kink lecture rewritten in RFP notation; the only question is what
+the RFP interior contributes through the boundary ratio \((r\xi '/\xi )_a\).
+</p>
+<!--l. 434--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1610005"></a>Constant-\(\lambda \) Taylor equilibrium at the edge.</span>
+To make the surface form completely explicit, take the simplest Taylor profile, <a id="eq-eq-rfp_taylor_fields"></a><div class="math-display">\[B_z(r)=B_0 J_0(\lambda r), \qquad B_\theta (r)=B_0 J_1(\lambda r), \tag{E.31}\]</div>
+which is just Eq.&#x00A0;(E.26) with the normalization restored. Then <a id="eq-eq-rfp_taylor_qa"></a><div class="math-display">\[q(r)=\frac {r B_z(r)}{R_0 B_\theta (r)} = \frac {r}{R_0}\frac {J_0(\lambda r)}{J_1(\lambda r)}, \qquad q_a=\frac {a}{R_0}\frac {J_0(x_a)}{J_1(x_a)}, \qquad x_a\equiv \lambda a. \tag{E.32}\]</div>
+The low-\(q\) RFP regime corresponds to \(0&lt;q_a&lt;1\) on the plasma side of the shell. If one pushes the plasma boundary
+into the already reversed zone so that \(q_a\le 0\), the unfactorized edge form (E.28) is the safer starting
+point.
+</p>
+<!--l. 459--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1620005"></a>The three terms in \(\delta W\) for the rigid \(m=1\) branch.</span>
+For a Taylor or Bessel-like core, the lowest long-pitch \(m=1\) external displacement is approximately rigid in the
+interior, so one may use <a id="eq-eq-rfp_rigid_edge_approx"></a><div class="math-display">\[\frac {a\,\xi '(a)}{\xi _a}\simeq 0. \tag{E.33}\]</div>
+Equation&#x00A0;(E.33) is the RFP analogue of the rigid \(m=1\) approximation used in Eq.&#x00A0;(<a href="lecture24.html#eq-eq-tokamak_m1_nowall">24.17</a>). In that ordering the
+                                                                                         
+                                                                                         
+interior contribution in Eq.&#x00A0;(E.28) is <a id="eq-eq-rfp_deltaW_int_constlambda"></a><div class="math-display">\[\frac {\delta W_{\rm int}}{2\pi ^2 R_0/\mu _0} = \left (\frac {F_a^2}{k_0^2}\frac {a\xi '(a)}{\xi _a}\right )|\xi _a|^2 \simeq 0, \tag{E.34}\]</div>
+while the surface and vacuum pieces become <a id="eq-eq-rfp_deltaW_surf_constlambda"></a><div class="math-display">\[\begin{aligned}\frac {\delta W_{\rm surf}}{2\pi ^2 R_0/\mu _0} &amp;= \left (\frac {F_a F_a^\dagger }{k_0^2}\right )|\xi _a|^2 \simeq -\frac {a^2 B_{za}^2}{R_0^2 q_a^2}(1-n^2 q_a^2)|\xi _a|^2,  \\ \frac {\delta W_{\rm vac}(b)}{2\pi ^2 R_0/\mu _0} &amp;= a^2 F_a^2 \Lambda _1 |\xi _a|^2 \simeq \frac {a^2 B_{za}^2}{R_0^2 q_a^2}\Lambda _1(1-nq_a)^2|\xi _a|^2,\end{aligned} \tag{E.35}\]</div>
+</p><!--l. 493--><p class="noindent" >where \(B_{za}\equiv B_z(a)\) and we have kept the same long-pitch ordering \(ka\ll 1\) used in the main external-kink lecture, so \(k_0^2 a^2\simeq 1\) and \(\Lambda _1=(1+\alpha _1)/(1-\alpha _1)\).
+Summing (E.34)&#8211;(E.36) gives <a id="eq-eq-rfp_external_band_m1"></a><div class="math-display">\[\frac {\delta W_{m=1}^{\rm RFP}}{2\pi ^2 R_0/\mu _0} \simeq \frac {2 a^2 B_{za}^2}{R_0^2 q_a^2(1-\alpha _1)} \,(n q_a-1)(n q_a-\alpha _1)\,|\xi _a|^2 = \frac {2 B_{\theta a}^2}{1-\alpha _1} \,(n q_a-1)(n q_a-\alpha _1)\,|\xi _a|^2, \tag{E.37}\]</div>
+with \(B_{\theta a}\equiv B_\theta (a)\). The second form uses \(q_a=aB_{za}/(R_0 B_{\theta a})\) and makes it clear that the \(q_a\to 0^+\) limit is not singular.
+</p>
+<!--l. 512--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1630005"></a>Why the RFP has a broad unstable band when \(q_a&lt;1\).</span>
+Equation&#x00A0;(E.37) shows that the ideal external kink is unstable in the interval <a id="eq-eq-rfp_external_band_interval"></a><div class="math-display">\[\alpha _1 &lt; n q_a &lt; 1. \tag{E.38}\]</div>
+In the no-wall limit, \(\alpha _1\to 0\), so every positive toroidal harmonic with <a id="eq-eq-rfp_external_no_wall_band"></a><div class="math-display">\[0 &lt; n q_a &lt; 1 \tag{E.39}\]</div>
+is unstable. Thus when \(0&lt;q_a&lt;1\), one does not merely inherit the tokamak&#8217;s single \(n=1\) warning; rather, the same
+long-pitch ordering admits a family of unstable harmonics, roughly <a id="eq-eq-rfp_external_broad_n"></a><div class="math-display">\[n=1,2,\dots ,\left \lfloor \frac {1}{q_a}\right \rfloor , \tag{E.40}\]</div>
+subject to the wall-shifted lower bound in Eq.&#x00A0;(E.38). For the highest \(n\) at very small \(q_a\), one
+should replace the \(ka\ll 1\) vacuum reduction by the exact modified-Bessel solution, but (E.37) is the
+right organizing formula for the low-\(n\) external branch. For a rigid core with uniform density,
+<div class="math-display">\[\mathcal K \simeq \pi ^2 \rho R_0 a^2 |\xi _a|^2,\]</div>
+so the corresponding ideal growth rate is <a id="eq-eq-rfp_external_growth_m1"></a><div class="math-display">\[\left (\frac {\gamma a}{v_{A\theta a}}\right )^2 \simeq \frac {-4 (nq_a-1)(nq_a-\alpha _1)}{1-\alpha _1}, \qquad v_{A\theta a}^2\equiv \frac {B_{\theta a}^2}{\mu _0 \rho }. \tag{E.42}\]</div>
+A plot of (E.42) versus \(q_a\) at fixed \(\alpha _1\) therefore gives the same banded structure as the tokamak
+constant-\(q\) example in the main lecture, but now several low-\(n\) branches can fit into the interval
+\(0&lt;q_a&lt;1\).
+</p>
+<!--l. 554--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1640005"></a>No-wall and wall pieces.</span>
+Exactly as in Eqs.&#x00A0;(<a href="lecture24.html#eq-eq-tokamak_deltaW_infty">24.31</a>) and (<a href="lecture24.html#eq-eq-tokamak_deltaW_b">24.32</a>) of the main lecture, it is useful to write <a id="eq-eq-rfp_deltaW_split"></a><div class="math-display">\[\delta W_{\rm ideal}^{\rm RFP}(b)=\delta W_\infty ^{\rm RFP}+\delta W_b^{\rm RFP}. \tag{E.43}\]</div>
+The no-wall and wall terms are <a id="eq-eq-rfp_deltaW_infty_m1"></a><div class="math-display">\[\begin{aligned}\frac {\delta W_\infty ^{\rm RFP}}{2\pi ^2 R_0/\mu _0} &amp;= \frac {2 a^2 B_{za}^2}{R_0^2 q_a^2} \,n q_a(n q_a-1)\,|\xi _a|^2 = 2B_{\theta a}^2\,n q_a(nq_a-1)\,|\xi _a|^2,  \\ \frac {\delta W_b^{\rm RFP}}{2\pi ^2 R_0/\mu _0} &amp;= \frac {2 a^2 B_{za}^2}{R_0^2 q_a^2} \frac {\alpha _1}{1-\alpha _1}(1-n q_a)^2\,|\xi _a|^2 = 2B_{\theta a}^2\frac {\alpha _1}{1-\alpha _1}(1-n q_a)^2\,|\xi _a|^2,\end{aligned} \tag{E.44}\]</div>
+</p><!--l. 579--><p class="noindent" >with \(\delta W_b^{\rm RFP}&gt;0\). The ideal shell therefore stabilizes the lower part of the no-wall interval, so the RWM strip is
+<a id="eq-eq-rfp_rwm_strip"></a><div class="math-display">\[0&lt;n q_a&lt;\alpha _1, \tag{E.46}\]</div>
+where \(\delta W_\infty ^{\rm RFP}&lt;0\) but \(\delta W_{\rm ideal}^{\rm RFP}(b)&gt;0\).
+</p>
+<!--l. 588--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1650005"></a>What a resistive shell changes.</span>
+An ideal shell does not add a new drive; it adds the stabilizing increment \(\delta W_b^{\rm RFP}\). Once the shell
+conductivity is finite, only a fraction of that increment is restored. The natural shell timescale is
+<a id="eq-eq-rfp_tau_w_simple"></a><div class="math-display">\[\tau _w \sim \mu _0 a\,\delta \,\sigma , \tag{E.47}\]</div>
+up to geometry factors, or more specifically for a thin cylindrical wall, <a id="eq-eq-rfp_tau_w_m"></a><div class="math-display">\[\tau _{w,m}\sim \frac {\mu _0 r_w d\,\sigma }{2m}. \tag{E.48}\]</div>
+Using the thin-wall interpolation and dispersion relation from the Kruskal&#8211;Shafranov lecture,
+Eqs.&#x00A0;(<a href="lecture22.html#eq-eq-ks-RWM_interpolation">22.107</a>) and (<a href="lecture22.html#eq-eq-ks-RWM_dispersion">22.110</a>), the RFP resistive-wall branch is <a id="eq-eq-rfp_rwm_growth"></a><div class="math-display">\[\gamma \tau _w = -\frac {2b^2}{b^2-a^2} \frac {\delta W_\infty ^{\rm RFP}}{\delta W_{\rm ideal}^{\rm RFP}(b)}. \tag{E.49}\]</div>
+In the explicit constant-\(\lambda \) \(m=1\) model this becomes <a id="eq-eq-rfp_rwm_growth_explicit"></a><div class="math-display">\[\gamma \tau _w = \frac {2b^2}{b^2-a^2} \frac {nq_a(1-\alpha _1)}{\alpha _1-nq_a}, \qquad 0&lt;nq_a&lt;\alpha _1, \tag{E.50}\]</div>
+which is the RFP counterpart of Eq.&#x00A0;(<a href="lecture24.html#eq-eq-tokamak_rwm_growth">24.42</a>) in the main lecture. Very close to \(nq_a=\alpha _1\) the separation between the
+slow RWM branch and the Alfvénic ideal branch breaks down, but away from that edge the mode satisfies
+<a id="eq-eq-rfp_rwm_scaling"></a><div class="math-display">\[\gamma \tau _w = O(1), \qquad \gamma \tau _A \ll 1. \tag{E.51}\]</div>
+That is precisely the regime explored in the thin-shell RFP experiments and in the associated
+linear and nonlinear modelling <a 
+href="#XHo1991FluctuationSuppressionDCHelicity">Ho</a>&#x00A0;[<a 
+href="#XHo1991FluctuationSuppressionDCHelicity">1991</a>],&#x00A0;<a 
+href="#XPaccagnella2002FeedbackStudiesRFP">Paccagnella et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XPaccagnella2002FeedbackStudiesRFP">2002</a>],&#x00A0;<a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. In
+fact, Marrelli <span 
+class="ecti-1095">et al. </span>summarize both the early thin-shell experiments and the nonlinear DEBS
+                                                                                         
+                                                                                         
+result that external kinks remain unstable whenever the surrounding wall is not ideal <a 
+href="#XMarrelli2021RFPReview">Marrelli
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>].
+</p>
+<!--l. 636--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1660005"></a>The smart-shell idea.</span>
+The natural response to this problem was the intelligent or &#8220;smart&#8221; shell. Bishop&#8217;s idea was to use matched
+sensor and saddle-coil arrays so that the powered coils imitate the eddy currents of an ideal conducting
+shell <a 
+href="#XBishop1989IntelligentShell">Bishop</a>&#x00A0;[<a 
+href="#XBishop1989IntelligentShell">1989</a>]. In its simplest local form one writes <a id="eq-eq-rfp_intelligent_shell_local"></a><div class="math-display">\[V^{\rm coil}_{ij} = -G_{ij}\,\frac {d\Phi ^{\rm sensor}_{ij}}{dt}, \tag{E.52}\]</div>
+so the controller attempts to keep the linked magnetic flux frozen. In Fourier language this becomes a
+mode-control law of the form <a id="eq-eq-rfp_mode_control_law"></a><div class="math-display">\[I_{m,n}=G_{m,n}\, b_{m,n}, \tag{E.53}\]</div>
+which is the natural extension when several unstable harmonics coexist.
+</p>
+<!--l. 653--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1670005"></a>Why coil number matters.</span>
+Because the RFP can have several unstable external harmonics at once, a smart shell must also contend
+with toroidal sidebands. The key criterion emerging from the linear theory is that the number of toroidal
+control locations should satisfy roughly <a id="eq-eq-rfp_smart_shell_criterion"></a><div class="math-display">\[N_c \gtrsim \Delta n, \tag{E.54}\]</div>
+where \(\Delta n\) is the span of simultaneously unstable toroidal mode numbers. Otherwise the sideband \(n+hN_c\) generated
+by the discrete actuator array can land on another unstable branch and spoil the control strategy
+<a 
+href="#XFitzpatrickYu1999FeedbackStabilizationResistiveShellModes">Fitzpatrick and Yu</a>&#x00A0;[<a 
+href="#XFitzpatrickYu1999FeedbackStabilizationResistiveShellModes">1999</a>],&#x00A0;<a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. This is a specifically RFP-flavored problem: the low-\(q\)
+edge makes a broad spectrum possible, so the shell and controller must be thought of spectrally, not mode
+by mode in isolation.
+</p>
+<!--l. 669--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1680005"></a>What was demonstrated experimentally.</span>
+The EXTRAP-T2R and RFX-mod programs turned that idea into a practical MHD control system. The
+review by Marrelli <span 
+class="ecti-1095">et al. </span>summarizes the arc nicely: thin resistive shells exposed the RWMs, and then
+active feedback with intelligent- shell or mode-control algorithms stabilized multiple RWMs over
+many wall times <a 
+href="#XBrunsell2004FeedbackStabilizationMultipleRWMs">Brunsell et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBrunsell2004FeedbackStabilizationMultipleRWMs">2004</a>,&#x00A0;<a 
+href="#XBrunsell2005ActiveControlMultipleRWMs">2005</a>,&#x00A0;<a 
+href="#XBrunsell2006EXTRAPIntelligentShell">2006</a>],&#x00A0;<a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. That history is
+worth calling out in an appendix because it shows that the RFP external-kink problem was
+not merely diagnosed; it became one of the clearest laboratories for multi-mode resistive-wall
+control.
+</p><!--l. 680--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 680--><p class="noindent" >Once  the  internal  tearing  spectrum  has  been  reduced,  the  next  question  is  the
+     free-boundary \(m=1\) branch. In a low-\(q\) RFP the no-wall interval is \(0&lt;nq_a&lt;1\), the ideal-wall external-kink
+     band is \(\alpha _1&lt;n q_a&lt;1\), and the lower strip \(0&lt;nq_a&lt;\alpha _1\) becomes the RWM branch once the shell is resistive. A
+     smart shell tries to recover the missing ideal-wall increment actively.</p></blockquote></div></div>
+<a 
+ id="x1-168001r164"></a>
+<h3 class="sectionHead"><span class="titlemark">39.6   </span> <a 
+ id="x1-1690006"></a>What this means for the operational RFP</h3>
+<!--l. 690--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1700006"></a>Why the laboratory RFP is tearing dominated.</span>
+The operational RFP does not ordinarily sit in Robinson&#8217;s optimized tearing-stable corner of profile space.
+                                                                                         
+                                                                                         
+Instead, it lives in a regime where many \(m=1\) tearing modes are resonant in the interior and couple to \(m=0\)
+activity near the reversal surface. That coupled spectrum provides the dynamo that redistributes
+current and helps sustain reversal, but it also makes the magnetic field stochastic and degrades
+confinement <a 
+href="#XSchnack1985ThreeDimensionalRFP">Schnack et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XSchnack1985ThreeDimensionalRFP">1985</a>],&#x00A0;<a 
+href="#XNebel1989RoleM0Dynamo">Nebel et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XNebel1989RoleM0Dynamo">1989</a>],&#x00A0;<a 
+href="#XKusano1990SelfSustainmentRFP">Kusano and Sato</a>&#x00A0;[<a 
+href="#XKusano1990SelfSustainmentRFP">1990</a>],&#x00A0;<a 
+href="#XHoCraddock1991FieldMaintenanceQuasiperiodicRelaxation">Ho and
+Craddock</a>&#x00A0;[<a 
+href="#XHoCraddock1991FieldMaintenanceQuasiperiodicRelaxation">1991</a>].
+</p>
+<!--l. 698--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1710006"></a>Transport is the real penalty.</span>
+Once the tearing spectrum is broad enough, the issue is no longer just the existence of islands. Field-line
+stochasticity turns the magnetic fluctuation spectrum into a transport problem. The MST-era
+measurements and simulations make this especially clear: magnetic-fluctuation-induced transport is
+directly observable, and transient current-profile control reduces both fluctuations and transport <a 
+href="#XFiksel1994MagneticFluctuationEnergyTransport">Fiksel
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFiksel1994MagneticFluctuationEnergyTransport">1994</a>],&#x00A0;<a 
+href="#XStoneking1994ParticleTransportMagneticFluctuations">Stoneking et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XStoneking1994ParticleTransportMagneticFluctuations">1994</a>],&#x00A0;<a 
+href="#XSarff1994PPCD">Sarff et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XSarff1994PPCD">1994</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>].
+</p>
+<!--l. 706--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1720006"></a>Why current-profile control is central.</span>
+This is the operational lesson of the RFP. Because the tearing drive is so tightly linked to the current
+profile, the natural control knob is the current profile itself. That is why PPCD, RF-current-drive ideas,
+and helicity-injection profile control all enter the RFP story so naturally. In the language of this appendix,
+the objective is always the same: make the core more Taylor-like, soften the edge roll-off enough that \(\Delta '\)
+becomes less dangerous, and keep the broad \(m=1\) spectrum from coupling strongly to the reversal-region \(m=0\)
+modes <a 
+href="#XHo1991FluctuationSuppressionDCHelicity">Ho</a>&#x00A0;[<a 
+href="#XHo1991FluctuationSuppressionDCHelicity">1991</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>].
+<a 
+ id="x1-172001r175"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">39.7   </span> <a 
+ id="x1-1730007"></a>From ZETA and &#8220;catching&#8221; to PPCD</h3>
+<!--l. 717--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1740007"></a>Quiet periods were already the clue.</span>
+The modern review by Marrelli <span 
+class="ecti-1095">et al.</span>, with Sarff among the coauthors, points back to the quiet periods in
+ZETA as some of the earliest evidence that an RFP-like discharge could evolve into a lower-fluctuation,
+more ordered state <a 
+href="#XButt1958ZETADesignPerformance">Butt et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XButt1958ZETADesignPerformance">1958</a>],&#x00A0;<a 
+href="#XRobinsonKing1968ZetaImprovedStability">Robinson and King</a>&#x00A0;[<a 
+href="#XRobinsonKing1968ZetaImprovedStability">1968</a>],&#x00A0;<a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. In
+hindsight that already contains the seed of the later current-profile story: the discharge is not
+uniformly turbulent, but moves through profiles that are more or less favorable to the tearing
+spectrum.
+</p>
+<!--l. 725--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1750007"></a>&#8220;Catching&#8221; as the ancestor of transient profile control.</span>
+The same review also recalls an older Culham/HBTX idea, called &#8220;catching&#8221;, in which the loop-voltage
+program during current decay was shaped so as to hold the plasma on a more favorable resistive trajectory
+<a 
+href="#XWatterson1983CatchingVoltage">Watterson and Gimblett</a>&#x00A0;[<a 
+href="#XWatterson1983CatchingVoltage">1983</a>],&#x00A0;<a 
+href="#XMarrelli2021RFPReview">Marrelli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMarrelli2021RFPReview">2021</a>]. In present language this sits very naturally beside
+self-similar current decay and other transient profile-control ideas: one exploits the fact that the
+inductively relaxing RFP is already moving through profile space on the resistive timescale <a 
+href="#XNebel2002SelfSimilarDecayingProfiles">Nebel
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XNebel2002SelfSimilarDecayingProfiles">2002</a>].
+</p>
+                                                                                         
+                                                                                         
+<!--l. 735--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1760007"></a>Why this matters for PPCD.</span>
+That historical thread makes PPCD feel less like an isolated trick and more like the mature experimental
+version of an old RFP instinct: use the inductive evolution itself as a control knob. The later OPCD work
+in RFX and the PPCD work on MST sit naturally on that lineage, even though the exact waveforms and
+hardware differ <a 
+href="#XBartiromo1999ImprovedConfinementRFX">Bartiromo et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBartiromo1999ImprovedConfinementRFX">1999</a>],&#x00A0;<a 
+href="#XSarff1994PPCD">Sarff et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XSarff1994PPCD">1994</a>],&#x00A0;<a 
+href="#XSovinec1995MHDHelicityInjection">Sovinec</a>&#x00A0;[<a 
+href="#XSovinec1995MHDHelicityInjection">1995</a>]. For a historical appendix, it
+is worth saying plainly that the later success of PPCD did not come from nowhere; it was
+prepared by earlier attempts to &#8220;catch&#8221; the plasma while its current profile was inductively
+relaxing.
+</p>
+<!--l. 746--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1770007"></a>So how does the RFP fare?</span>
+The fairest answer is nuanced. As an ideal-MHD configuration, the RFP fares better than its reputation
+suggests: reversed-field diffuse pinches can be globally stable, and even finite-\(\beta \) stable, if the pitch profile is
+chosen correctly and the wall is close <a 
+href="#XRobinson1971HighBetaDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1971HighBetaDiffusePinch">1971</a>],&#x00A0;<a 
+href="#XAntoni1986ForceFreeRFPStability">Antoni et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XAntoni1986ForceFreeRFPStability">1986</a>],&#x00A0;<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">Robinson</a>&#x00A0;[<a 
+href="#XRobinson1978TearingModeStableDiffusePinch">1978</a>]. As a
+resistive-MHD system, however, the RFP is severe. Its low-\(q\) geometry and required edge current roll-off
+make tearing modes easy to excite, numerous, and nonlinearly effective. So the operational verdict is
+simple enough: the RFP does reasonably well in ideal MHD, poorly in generic classical tearing stability,
+and best when one treats current-profile control as the central experimental task rather than as an optional
+refinement.
+</p><!--l. 759--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 759--><p class="noindent" >For the tokamak, tearing is an important defect superimposed on an otherwise good
+     ideal-MHD equilibrium. For the RFP, tearing is much closer to the organizing principle
+     of the discharge. That is precisely why it remains such a useful and classic problem in
+     MHD but also why its confinement lacks for fusion purposes.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1780007"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <span 
+class="ecti-1095">The Mathematical Theory of Non-Uniform Gases:</span>
+  <span 
+class="ecti-1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</span>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Härm.  Transport phenomena in a completely ionized gas.
+  <span 
+class="ecti-1095">Physical Review</span>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <span 
+class="ecti-1095">Soviet</span>
+  <span 
+class="ecti-1095">Physics JETP</span>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <span 
+class="ecti-1095">Reports on Progress in Physics</span>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <span 
+class="ecti-1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</span>
+  <span 
+class="ecti-1095">Research</span>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <span 
+class="ecti-1095">Proceedings  of  the  Royal</span>
+  <span 
+class="ecti-1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</span>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

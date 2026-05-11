@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 5 Braginskii Closure and the Validity of MHD</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture4.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture6.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;5</span><br /><a 
+ id="x1-630005"></a>Braginskii Closure and the Validity of MHD</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">This lecture answers a deceptively simple question: when is MHD actually</tspan>
+     <tspan font-family="ecbx" font-size="1095">trustworthy?</tspan>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">MHD is obtained by taking moments of kinetic theory and then closing the resulting
+   hierarchy.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">In a collisional, magnetized plasma that closure is anisotropic: transport along \(\B \) is not
+   transport across \(\B \).
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The  familiar  one-fluid  equations  of  Lectures&#x00A0;2&#8211;4  appear  only  after  additional
+   orderings suppress Hall, electron-inertia, and finite-Larmor-radius effects.</dd></dl>
+     </blockquote></div></div>
+<!--l. 13--><p class="noindent" >The phrase &#8220;validity of MHD&#8221; is slightly misleading, because MHD is not a yes-or-no proposition. It is a
+scale-separated description. The real question is which terms survive once the hierarchy of kinetic,
+two-fluid, and one-fluid equations has been ordered. This is why Braginskii theory is such an important
+checkpoint: it tells us what transport looks like when the plasma is collisional enough to be fluid-like but
+magnetized enough to be anisotropic.
+</p><!--l. 16--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 16--><p class="noindent" >Braginskii&#8217;s closure did not appear from nowhere. The general asymptotic strategy goes
+     back to the Chapman&#8211;Enskog expansion and its systematic kinetic-theory treatment
+     by Chapman and Cowling [<a 
+href="lecture5.html#XChapmanCowling1952">Chapman and Cowling</a>,&#x00A0;<a 
+href="lecture5.html#XChapmanCowling1952">1952</a>]. For fully ionized plasmas,
+     important transport results already existed before the 1965 review: Spitzer and Hrm
+     obtained the classic unmagnetized conductivity and heat-flow coefficients [<a 
+href="lecture5.html#XSpitzer1953TransportPhenomena">Spitzer and
+     Hrm</a>,&#x00A0;<a 
+href="lecture5.html#XSpitzer1953TransportPhenomena">1953</a>],                                                                                 Braginskii&#8217;s
+     own 1957/1958 paper extended the program to a two-temperature magnetized plasma
+     [<a 
+href="lecture5.html#XBraginskii1958TwoTemperature">Braginskii</a>,&#x00A0;<a 
+href="lecture5.html#XBraginskii1958TwoTemperature">1958</a>], and on the finite-Larmor-radius side Kaufman and later Simon and
+     Thompson  isolated  the  &#8220;magnetic  viscosity&#8221;/gyroviscous  corrections  associated  with
+     gyromotion  [<a 
+href="lecture5.html#XKaufman1960PlasmaViscosity">Kaufman</a>,&#x00A0;<a 
+href="lecture5.html#XKaufman1960PlasmaViscosity">1960</a>,&#x00A0;<a 
+href="lecture5.html#XThompson1961HighTemperature">Thompson</a>,&#x00A0;<a 
+href="lecture5.html#XThompson1961HighTemperature">1961</a>,&#x00A0;<a 
+href="lecture5.html#XSimonThompson1966Hydromagnetic">Simon  and  Thompson</a>,&#x00A0;<a 
+href="lecture5.html#XSimonThompson1966Hydromagnetic">1966</a>].  What
+     made Braginskii the standard reference was not that the subject ended there, but that
+     he assembled these strands into the first broadly complete, practically usable closed
+     fluid description of a collisional magnetized plasma&#8212;putting resistivity, thermal forces,
+     heat fluxes, anisotropic viscosity, and gyroviscosity into one notation with coefficients
+     that later MHD calculations could actually use. For weakly collisional plasmas, the
+     double-adiabatic closure of Chew, Goldberger, and Low marks another important branch
+     of the story [<a 
+href="lecture6.html#Xchew1956_boltzmann">Chew et&#x00A0;al.</a>,&#x00A0;<a 
+href="lecture6.html#Xchew1956_boltzmann">1956</a>,&#x00A0;<a 
+href="lecture5.html#Xkulsrud2005plasma">Kulsrud</a>,&#x00A0;<a 
+href="lecture5.html#Xkulsrud2005plasma">2005</a>].</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<!--l. 20--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 20--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">The important distinction is not &#8220;fluid&#8221; versus &#8220;kinetic&#8221; in the abstract. </tspan>The
+     important distinction is which length and time scales have been averaged away, and
+     which closure survives that averaging. A plasma can be well described by MHD on the
+     system scale and still require non-MHD physics in thin layers or fast transients.</p></blockquote></div></div>
+<a 
+ id="x1-63004r63"></a>
+<h3 class="sectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-640001"></a>From Kinetic Theory to Fluid Moments</h3>
+<!--l. 28--><p class="noindent" >Each species \(s\) is described by a distribution function \(f_s(\vect {x},\vect {v},t)\) satisfying <a id="eq-eq-brag-kinetic"></a><div class="math-display">\[\pp {f_s}{t} + \vect {v}\cdot \grad f_s + \frac {q_s}{m_s} \left ( \E + \vect {v}\times \B \right )\cdot \pp {f_s}{\vect {v}} = \left ( \pp {f_s}{t} \right )_{\mathrm {coll}}. \tag{5.1}\]</div>
+</p><!--l. 48--><p class="noindent" >Velocity moments define the fluid variables <a id="eq-eq-brag-moments"></a><div class="math-display">\[\begin{aligned}n_s &amp;= \int f_s\, d^3v, \\ \uvec _s &amp;= \frac {1}{n_s} \int \vect {v}\, f_s\, d^3v, \\ \tens {P}_s &amp;= m_s \int (\vect {v}-\uvec _s)(\vect {v}-\uvec _s)\, f_s\, d^3v.\end{aligned} \tag{5.4}\]</div>
+</p><!--l. 68--><p class="noindent" >Taking moments of (<a href="lecture5.html#eq-eq-brag-kinetic">5.1</a>) produces the continuity and momentum equations for each species: <a id="eq-eq-brag-speciescontinuity"></a><div class="math-display">\[\begin{aligned}\pp {n_s}{t} + \divergence (n_s \uvec _s) &amp;= 0,  \\ m_s n_s \left ( \pp {\uvec _s}{t} + \uvec _s\cdot \grad \uvec _s \right ) &amp;= q_s n_s \left ( \E +\uvec _s\times \B \right ) - \divergence \tens {P}_s + \vect {R}_s.\end{aligned} \tag{5.5}\]</div>
+</p><!--l. 94--><p class="noindent" >Here \(\vect {R}_s\) is the collisional momentum exchange with the other species.
+</p><!--l. 96--><p class="noindent" >The crucial point is that the moment hierarchy does not close by itself: the evolution of \(\tens {P}_s\) depends on higher
+moments, the heat flux depends on still higher moments, and so on. MHD only emerges after a closure has
+been chosen.
+<a 
+ id="x1-64001r67"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-650002"></a>From Two-Fluid Moments to One-Fluid MHD and Generalized Ohm&#8217;s Law</h3>
+<!--l. 102--><p class="noindent" >For a singly ionized plasma, define <a id="eq-eq-brag-onefluiddefs"></a><div class="math-display">\[n_e \approx n_i \equiv n, \qquad \J = en(\uvec _i-\uvec _e), \qquad \rho \equiv m_i n_i + m_e n_e \approx m_i n, \qquad \rho \uvec \equiv m_i n_i \uvec _i + m_e n_e \uvec _e . \tag{5.7}\]</div>
+</p><!--l. 114--><p class="noindent" >The first step toward one-fluid MHD is to add the ion and electron momentum equations. The collisional
+forces cancel between species, and after using quasi-neutrality one obtains <a id="eq-eq-brag-onefluidmomentum"></a><div class="math-display">\[\rho \left ( \pp {\uvec }{t} + \uvec \cdot \grad \uvec \right ) = \J \times \B - \grad (p_i+p_e) - \divergence (\tens {\Pi }_i+\tens {\Pi }_e), \tag{5.8}\]</div>
+up to small corrections from electron inertia and the relative drift \(\uvec _i-\uvec _e\). This is the real parent of the one-fluid
+MHD momentum equation: the Lorentz force appears only after the two species are combined into a bulk
+momentum balance.
+</p><!--l. 132--><p class="noindent" >The second step is to derive the induction-side closure. Using (<a href="lecture5.html#eq-eq-brag-onefluiddefs">5.7</a>), one may write <a id="eq-eq-brag-ueuj"></a><div class="math-display">\[\uvec _e = \uvec -\frac {\J }{en}, \qquad \uvec _i = \uvec +\mathcal {O}\!\left (\frac {m_e}{m_i}\right )\frac {\J }{en}. \tag{5.9}\]</div>
+Substituting \(\uvec _e=\uvec -\J /(en)\) into the electron momentum equation, and collecting the collisional, Hall, pressure-gradient,
+viscous, and inertia terms, yields the generalized Ohm law <a id="eq-eq-brag-genohm"></a><div class="math-display">\[\boxed { \E +\uvec \times \B = \eta \J + \frac {\J \times \B }{ne} - \frac {1}{ne}\grad p_e - \frac {1}{ne}\divergence \tens {\Pi }_e + \frac {m_e}{ne^2} \frac {d\J }{dt}. } \tag{5.10}\]</div>
+</p><!--l. 162--><p class="noindent" >Equation (<a href="lecture5.html#eq-eq-brag-onefluidmomentum">5.8</a>) is the parent of the MHD momentum equation, while (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) is the parent of both
+the resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and the ideal Ohm law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>). The single-fluid induction law of
+Lecture&#x00A0;1 is obtained by neglecting the Hall term, the electron-pressure term, the electron
+viscous term, and electron inertia relative to \(\uvec \times \B \). The ideal-MHD law of Lecture&#x00A0;4 further neglects
+\(\eta \J \).
+</p><!--l. 164--><p class="noindent" >That chain of reductions is worth keeping in mind: the momentum equation and the induction equation
+descend from different combinations of the two-fluid system, and (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) is already a reduced Ohm law, while
+(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) is a more restrictive reduction still.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-65001r68"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">5.3   </span> <a 
+ id="x1-660003"></a>Braginskii Closure</h3>
+<!--l. 170--><p class="noindent" >Braginskii theory assumes that each species remains close to a drifting Maxwellian and that collisions are
+frequent enough to justify a Chapman&#8211;Enskog-like expansion, while the magnetic field is strong enough to
+make transport anisotropic. In practice the ordering is <a id="eq-eq-brag-ordering1"></a><div class="math-display">\[\omega \tau _s \ll 1, \qquad \omega _{cs}\tau _s \gg 1, \tag{5.11}\]</div>
+with gradients long compared to the mean free path: <a id="eq-eq-brag-ordering2"></a><div class="math-display">\[\lambda _{\mathrm {mfp},s}\ll L. \tag{5.12}\]</div>
+</p><!--l. 183--><p class="noindent" >Introduce the magnetic-field unit vector \[ \vect {b} \equiv \frac {\B }{B}. \] The pressure tensor is naturally decomposed as <a id="eq-eq-brag-pressuretensor"></a><div class="math-display">\[\boxed { \tens {P}_s = p_{\perp s} \left ( \tens {I}-\vect {b}\vect {b} \right ) + p_{\parallel s}\vect {b}\vect {b} + \tens {\Pi }_s. } \tag{5.13}\]</div>
+The first two terms express anisotropic scalar pressures relative to the field; the remaining tensor \(\tens {\Pi }_s\) contains
+viscous corrections.
+</p>
+<!--l. 206--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670003"></a>Viscosity Tensor</span>
+Define the symmetric traceless strain tensor
+</p><!--l. 218--><p class="noindent" ><div class="math-display">\[W_{ij} = \pp {U_i}{x_j} + \pp {U_j}{x_i} - \frac {2}{3}\delta _{ij}\divergence \vect {U}.\]</div>
+</p><!--l. 220--><p class="noindent" >Viscous stresses:
+</p><!--l. 241--><p class="noindent" ><div class="math-display">\[\begin{aligned}\Pi _{xx} &amp;= -\frac {\eta _0}{2}(W_{xx}+W_{yy}) -\frac {\eta _1}{2}(W_{xx}-W_{yy}) -\eta _3 W_{xy}, \\ \Pi _{yy} &amp;= -\frac {\eta _0}{2}(W_{xx}+W_{yy}) +\frac {\eta _1}{2}(W_{xx}-W_{yy}) +\eta _3 W_{xy}, \\ \Pi _{xy} &amp;= -\eta _1 W_{xy} + \frac {\eta _3}{2}(W_{xx}-W_{yy}), \\ \Pi _{xz} &amp;= -\eta _2 W_{xz} - \eta _4 W_{yz}, \\ \Pi _{yz} &amp;= -\eta _2 W_{yz} + \eta _4 W_{xz}, \\ \Pi _{zz} &amp;= -\eta _0 W_{zz}.\end{aligned}\]</div>
+</p><!--l. 243--><p class="noindent" >Interpretation:
+</p>
+     <ul class="itemize1">
+     <li class="itemize">\(\eta _0\): parallel viscosity
+     </li>
+     <li class="itemize">\(\eta _{1,2}\): perpendicular viscosity
+     </li>
+     <li class="itemize">\(\eta _{3,4}\): gyroviscosity (formally viscous, but non-dissipative)</li></ul>
+<!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-675003"></a>Compact coordinate-free form of the full viscous stress</span>
+It is also useful to collect the full Braginskii stress into field-aligned tensor pieces rather than only Cartesian components. Define \[ \tens {I}_{\perp } \equiv \tens {I}-\vect {b}\vect {b}, \qquad W_{\parallel } \equiv \vect {b}\cdot \tens {W}\cdot \vect {b}, \qquad \tens {W}_{\perp } \equiv \tens {I}_{\perp }\cdot \tens {W}\cdot \tens {I}_{\perp } . \] Then one convenient decomposition is <div class="math-display">\[\begin{aligned}\tens {W}^{(0)} &amp;\equiv \frac {3}{2}\left (\vect {b}\vect {b}-\frac {\tens {I}}{3}\right )W_{\parallel }, \\ \tens {W}^{(1)} &amp;\equiv \tens {W}_{\perp } -\frac {1}{2}\tens {I}_{\perp }\,\mathrm {tr}(\tens {W}_{\perp }), \\ \tens {W}^{(2)} &amp;\equiv \tens {W}\cdot \vect {b}\vect {b} + \vect {b}\vect {b}\cdot \tens {W} - 2\vect {b}\vect {b}\,W_{\parallel }.\end{aligned}\]</div>
+With these definitions, the full viscous stress may be organized as <a id="eq-eq-brag-viscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi } = -\eta _0\,\tens {W}^{(0)} -\eta _1\,\tens {W}^{(1)} -\eta _2\,\tens {W}^{(2)} + \tens {\Pi }^{\mathrm {gv}}. } \tag{5.21}\]</div>
+where \(\tens {\Pi }^{\mathrm {gv}}\) contains the \(\eta _3\) and \(\eta _4\) finite-Larmor-radius pieces written below. For \(\vect {b}=\vect {e}_z\), \(\tens {W}^{(0)}\), \(\tens {W}^{(1)}\), and \(\tens {W}^{(2)}\) reduce exactly to the \(\eta _0\), \(\eta _1\), and \(\eta _2\) terms in the Cartesian formulas above.
+</p>
+<!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-680003"></a>Compact form of the gyroviscous stress</span>
+It is often useful to write only the non-dissipative part in coordinate-free form. Define \[ \tens {I}_{\perp } \equiv \tens {I}-\vect {b}\vect {b}, \qquad \bigl (\vect {b}\times \tens {W}\bigr )_{ij}\equiv \epsilon _{ik\ell } b_k W_{\ell j}, \qquad \bigl (\tens {W}\times \vect {b}\bigr )_{ij}\equiv W_{ik}\epsilon _{jk\ell } b_\ell . \] Then the
+gyroviscous contribution may be written as <a id="eq-eq-brag-gyroviscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi }^{\mathrm {gv}} = \frac {\eta _3}{2} \left ( \vect {b}\times \tens {W}\cdot \tens {I}_{\perp } - \tens {I}_{\perp }\cdot \tens {W}\times \vect {b} \right ) + \eta _4 \left ( \vect {b}\times \tens {W}\cdot \vect {b}\vect {b} - \vect {b}\vect {b}\cdot \tens {W}\times \vect {b} \right ). } \tag{5.21}\]</div>
+For \(\vect {b}=\hat {z}\) this reduces to the Cartesian \(\eta _3\) and \(\eta _4\) terms written above. The interesting conceptual point is that these
+terms are not ordinary collisional viscosity: they are finite-Larmor-radius corrections that redistribute
+momentum through gyromotion, and in Braginskii theory they do not produce positive-definite viscous
+heating.
+</p><!--l. 285--><p class="noindent" >Likewise the heat flux takes the schematic form <a id="eq-eq-brag-heatflux"></a><div class="math-display">\[\boxed { \vect {q}_s = -\kappa _{\parallel s}\, \vect {b}\vect {b}\cdot \grad T_s - \kappa _{\perp s} \left ( \tens {I}-\vect {b}\vect {b} \right )\cdot \grad T_s - \kappa _{\wedge s}\, \vect {b}\times \grad T_s. } \tag{5.22}\]</div>
+The last term is the cross-field or &#8220;Righi&#8211;Leduc&#8221; heat flux. Its exact coefficient is not the main point
+here; the main point is that magnetization turns scalar transport coefficients into tensorial
+ones.
+</p><!--l. 305--><p class="noindent" >The dominant transport scalings are <a id="eq-eq-brag-viscscalings"></a><div class="math-display">\[\begin{aligned}\eta _{\parallel s} &amp;\sim p_s\tau _s, &amp; \eta _{\perp s} &amp;\sim \frac {p_s\tau _s}{1+(\omega _{cs}\tau _s)^2}, &amp; \eta _{\mathrm {gv},s} &amp;\sim \frac {p_s}{\omega _{cs}},  \\ \kappa _{\parallel s} &amp;\sim \frac {n_s T_s\tau _s}{m_s}, &amp; \kappa _{\perp s} &amp;\sim \kappa _{\parallel s}(\omega _{cs}\tau _s)^{-2}.\end{aligned} \tag{5.23}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 329--><p class="noindent" >Thus parallel transport is usually much larger than perpendicular transport, while gyroviscous terms are
+nondissipative finite-Larmor-radius corrections.
+</p><!--l. 332--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 332--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Braginskii viscosity is not just Navier&#8211;Stokes viscosity with a magnetic field</tspan>
+     <tspan font-family="ecbx" font-size="1095">pasted on top. </tspan>The decomposition in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>) means that a magnetized plasma has a
+     preferred direction, so the closure retains the memory of the field geometry. That is
+     the seed of later topics such as pressure anisotropy, mirror physics, firehose limits, and
+     anisotropic damping.</p></blockquote></div></div>
+<a 
+ id="x1-68001r69"></a>
+<div class="interactive-shell"><p class="interactive-title">Interactive Braginskii Formulary Calculator</p><p class="interactive-caption">Open a browser companion to the closure lecture. The calculator estimates gyro radii, skin depths, Coulomb mean free paths, Spitzer resistivity, Braginskii transport scales, Alfv&#233;n speed, magnetic Reynolds number, Lundquist number, and the regime checks that decide whether collisional single-fluid MHD is comfortable or already breaking down.</p><p><a class="interactive-button" href="media/braginskii_formulary_explorer.html">Open the formulary calculator</a></p></div>
+<h3 class="sectionHead"><span class="titlemark">5.4   </span> <a 
+ id="x1-690004"></a>How One-Fluid MHD Emerges</h3>
+<!--l. 340--><p class="noindent" >The stress split used in Lecture&#x00A0;2, <div class="math-display">\[\tens {P}=p\,\tens {I}-\tens {\Pi },\]</div>
+is the isotropized shadow of the more general tensor structure in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>). To recover the one-fluid
+MHD equations of Lectures&#x00A0;1&#8211;4, one needs several scale-separation assumptions in addition to
+quasi-neutrality.
+</p>
+<!--l. 346--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-700004"></a>Quasi-neutrality.</span>
+The Debye length must be small compared with the system scale: <a id="eq-eq-brag-quasineutral"></a><div class="math-display">\[k\lambda _D \ll 1. \tag{5.25}\]</div>
+</p>
+<!--l. 353--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710004"></a>Fluidization.</span>
+To justify a collisional closure of Braginskii type, the ion mean free path must be short and the dynamics
+slower than the collision rate: <a id="eq-eq-brag-fluidization"></a><div class="math-display">\[\frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \omega \tau _i\ll 1. \tag{5.26}\]</div>
+</p>
+<!--l. 362--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720004"></a>Magnetization and long wavelengths.</span>
+To stay well above Larmor-radius physics, <a id="eq-eq-brag-magnetized"></a><div class="math-display">\[\frac {\rho _i}{L}\ll 1, \qquad \frac {\omega }{\Omega _i}\ll 1. \tag{5.27}\]</div>
+</p>
+<!--l. 371--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-730004"></a>Hall term.</span>
+Using Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) to estimate \(J\sim B/(\muo L)\), the Hall term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) satisfies <a id="eq-eq-brag-hallratio"></a><div class="math-display">\[\frac {|(\J \times \B )/(ne)|}{|\uvec \times \B |} \sim \frac {J}{neU} \sim \frac {d_i}{L}\frac {V_A}{U}, \tag{5.28}\]</div>
+where \[ d_i = \sqrt {\frac {m_i}{\muo n e^2}} = \frac {c}{\omega _{pi}}, \qquad V_A = \frac {B}{\sqrt {\muo \rho }}. \] If the bulk speed is Alfvnic, \(U\sim V_A\), then the Hall correction is small when \(d_i/L\ll 1\).
+</p>
+<!--l. 393--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-740004"></a>Electron-pressure term.</span>
+A similar estimate gives <a id="eq-eq-brag-eperatio"></a><div class="math-display">\[\frac {|\grad p_e|/(ne)}{U B} \sim \frac {T_e}{e B L U} \sim \frac {\rho _s}{L}\frac {c_s}{U}, \tag{5.29}\]</div>
+where \(\rho _s=\sqrt {m_i T_e}/(eB)\) and \(c_s=\sqrt {T_e/m_i}\). For order-one Mach numbers and comparable ion and electron temperatures, this is again a
+small-gyroradius ordering.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 405--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750004"></a>Electron inertia.</span>
+Estimating \(\partial _t\J \sim \omega J\) and taking \(\omega \sim U/L\) gives <a id="eq-eq-brag-einertiaratio"></a><div class="math-display">\[\frac {m_e |\partial _t\J |/(ne^2)}{U B} \sim \frac {d_e^2}{L^2}, \qquad d_e = \sqrt {\frac {m_e}{\muo n e^2}} = \frac {c}{\omega _{pe}}. \tag{5.30}\]</div>
+</p>
+<!--l. 420--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760004"></a>Resistivity.</span>
+The resistive term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) is small compared with \(\uvec \times \B \) when <a id="eq-eq-brag-resratio"></a><div class="math-display">\[\frac {\eta J}{U B} \sim \frac {\eta }{\muo U L} = \frac {1}{Rm} \ll 1, \tag{5.31}\]</div>
+where \(Rm\) is the magnetic Reynolds number from (<a href="lecture4.html#eq-eq-flux-rm">4.3</a>).
+</p><!--l. 433--><p class="noindent" >Collecting the most familiar orderings, one arrives at the heuristic MHD checklist <a id="eq-eq-brag-checklist"></a><div class="math-display">\[\boxed { k\lambda _D\ll 1, \qquad \frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \frac {\rho _i}{L}\ll 1, \qquad \frac {d_i}{L}\ll 1, \qquad \frac {d_e^2}{L^2}\ll 1, } \tag{5.32}\]</div>
+with the additional condition \(Rm\gg 1\) if one wants the ideal limit and frozen-in flux (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>).
+<a 
+ id="x1-76001r72"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">5.5   </span> <a 
+ id="x1-770005"></a>What Survives When Collisions Are Weak?</h3>
+<!--l. 454--><p class="noindent" >One subtle but important point is that MHD-like behavior can survive even when the collisional Braginskii
+ordering fails. In a collisionless but magnetized plasma, the double-adiabatic or CGL closure gives <a id="eq-eq-brag-cglperp"></a><div class="math-display">\[\begin{aligned}\frac {D}{Dt} \left ( \frac {p_\perp }{\rho B} \right ) &amp;= 0,  \\ \frac {D}{Dt} \left ( \frac {p_\parallel B^2}{\rho ^3} \right ) &amp;= 0.\end{aligned} \tag{5.33}\]</div>
+</p><!--l. 472--><p class="noindent" >These relations are already telling us that the right question is not simply whether MHD works,
+but which closure has replaced the isotropic pressure law (<a href="lecture3.html#eq-eq-cons-pressure">3.11</a>). In other words, large-scale
+magnetic evolution can still look fluid-like while thermodynamics and stability become decisively
+anisotropic.
+<a 
+ id="x1-77001r80"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">5.6   </span> <a 
+ id="x1-780006"></a>Experimental Perspective</h3>
+<!--l. 478--><p class="noindent" >This lecture is one of the places where laboratory intuition matters most. In liquid-metal experiments the
+conditions behind single-fluid resistive MHD are often satisfied so well that the model is almost the
+starting point. In magnetized plasma experiments the situation is subtler: the bulk flow may still obey the
+momentum and induction equations beautifully on the device scale, while parallel heat transport, pressure
+anisotropy, Hall corrections, or localized reconnection physics are already visible in special regions. The
+practical question is therefore not &#8220;MHD or nothing,&#8221; but rather &#8220;which reduced model is honest on the
+scale being measured?&#8221;
+</p><!--l. 480--><p class="noindent" >That perspective is especially useful for dynamos, self-organization experiments, and rotating
+plasma flows. Global evolution may be captured by MHD, but transport and topology change
+can still advertise the terms that were dropped on the way from (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) to (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and then to
+(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>).
+</p><!--l. 483--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">MHD is not fundamental; it is a reduced moment system descended from (<a href="lecture5.html#eq-eq-brag-kinetic">5.1</a>).
+                                                                                         
+                                                                                         
+   </li>
+   <li class="itemize">Braginskii  closure  explains  why  transport  in  magnetized  plasmas  is  strongly
+   anisotropic, as in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>) and (<a href="lecture5.html#eq-eq-brag-heatflux">5.22</a>).
+   </li>
+   <li class="itemize">The road from generalized Ohm&#8217;s law (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) to resistive MHD (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and ideal MHD
+   (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) is paved with explicit ordering assumptions, not wishful thinking.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-790006"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <tspan font-family="ecti" font-size="1095">The Mathematical Theory of Non-Uniform Gases:</tspan>
+  <tspan font-family="ecti" font-size="1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</tspan>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Hrm.  Transport phenomena in a completely ionized gas.
+  <tspan font-family="ecti" font-size="1095">Physical Review</tspan>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <tspan font-family="ecti" font-size="1095">Soviet</tspan>
+  <tspan font-family="ecti" font-size="1095">Physics JETP</tspan>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <tspan font-family="ecti" font-size="1095">Reports on Progress in Physics</tspan>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <tspan font-family="ecti" font-size="1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</tspan>
+  <tspan font-family="ecti" font-size="1095">Research</tspan>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <tspan font-family="ecti" font-size="1095">Proceedings  of  the  Royal</tspan>
+  <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <tspan font-family="ecti" font-size="1095">Plasma Physics for Astrophysics</tspan>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-800006"></a>Problems</h3>
+<a 
+ id="x1-80001r1"></a>
+<!--l. 495--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.1. Braginskii Viscosity &#8212; Parallel vs.</tspan><tspan font-family="ecbx" font-size="1095">&#x00A0;Perpendicular Transport</tspan>
+</p><!--l. 497--><p class="noindent" >Consider a strongly magnetized, collisional plasma with \(\omega _c \tau \gg 1\), described by Braginskii viscosity.
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Using the scalings in (<a href="lecture5.html#eq-eq-brag-viscscalings">5.23</a>), identify which transport coefficients correspond to parallel viscosity,
+    perpendicular viscosity, and gyroviscosity.
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Consider a shear flow parallel to the magnetic field, \[ \uvec = u_\parallel (x,z)\,\vect {b} , \qquad \B =B\,\vect {e}_z . \] Show that the dominant viscous stress
+    is proportional to \(\eta _{\parallel }\) and explain physically why perpendicular viscosity does not contribute at
+    leading order.
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Now consider a shear flow perpendicular to the magnetic field, \[ \uvec = u_y(x)\,\vect {e}_y , \qquad \B =B\,\vect {e}_z . \] Estimate the magnitude of the
+    dissipative viscous force and show that it is smaller than the field-aligned viscous force by a
+    factor of order \((\omega _c\tau )^{-2}\).
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">Explain qualitatively why gyroviscosity is nondissipative even though it appears in the stress
+    tensor.</dd></dl>
+<a 
+ id="x1-80002r2"></a>
+<!--l. 528--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.2. From Generalized Ohm&#8217;s Law to Ideal MHD</tspan>
+</p><!--l. 530--><p class="noindent" >Starting from (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>):
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Estimate the Hall, electron-pressure, electron-inertia, and resistive terms relative to \(\uvec \times \B \) using the
+    orderings in (<a href="lecture5.html#eq-eq-brag-hallratio">5.28</a>), (<a href="lecture5.html#eq-eq-brag-eperatio">5.29</a>), (<a href="lecture5.html#eq-eq-brag-einertiaratio">5.30</a>), and (<a href="lecture5.html#eq-eq-brag-resratio">5.31</a>).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">State the conditions under which (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) reduces first to the resistive MHD Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and
+    then to the ideal MHD law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Explain why frozen-in flux (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>) can fail even when the magnetic Reynolds number is large.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         

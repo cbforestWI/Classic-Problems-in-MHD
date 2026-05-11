@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 33 Magnetic Reconnection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_resistive.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture32.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture34.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;33</span><br /><a 
+ id="x1-9300033"></a>Magnetic Reconnection</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" >Magnetic reconnection is not merely &#8220;field lines changing partners.&#8221; It is the release of
+     magnetic stress stored in the <span 
+class="ecti-1095">outer ideal region</span>, funneled through a very thin non-ideal
+     layer that allows the topology to change. That is why reconnection, like tearing, is
+     intrinsically non-local.</p></blockquote></div></div>
+<!--l. 13--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 13--><p class="noindent" >Magnetic reconnection entered plasma astrophysics through attempts to explain solar
+     flares. Giovanelli argued in 1946 that flare activity could be powered by magnetic field
+     restructuring, Dungey sharpened the idea by emphasizing localized departures from ideal
+     behavior, and the first quantitative resistive-MHD scaling followed in the work of Parker
+     and
+     Sweet in the late 1950s [<a 
+href="#Xgiovanelli1946_flares">Giovanelli</a>,&#x00A0;<a 
+href="#Xgiovanelli1946_flares">1946</a>,&#x00A0;<a 
+href="#Xdungey1953_discharges">Dungey</a>,&#x00A0;<a 
+href="#Xdungey1953_discharges">1953</a>,&#x00A0;<a 
+href="#Xparker1957_sweet">Parker</a>,&#x00A0;<a 
+href="#Xparker1957_sweet">1957</a>,&#x00A0;<a 
+href="#Xsweet1958_neutral_point">Sweet</a>,&#x00A0;<a 
+href="#Xsweet1958_neutral_point">1958</a>].
+     Soon  afterward,  Syrovatskii  emphasized  the  spontaneous  formation  of  thin  current
+     sheets  in  frozen-in  magnetic  fields  and  the  Y-point  geometry  of  long  current  layers
+     [<a 
+href="#Xsyrovatskii1971_currentsheets">Syrovatskii</a>,&#x00A0;<a 
+href="#Xsyrovatskii1971_currentsheets">1971</a>,&#x00A0;<a 
+href="#Xsyrovatskii1981_pinchsheets">1981</a>]. Petschek then made the central question unavoidable: if a
+     collisional Sweet&#8211;Parker layer is long and thin, how can reconnection ever be fast in a
+     plasma with a huge Lundquist number? [<a 
+href="#Xpetschek1964_annihilation">Petschek</a>,&#x00A0;<a 
+href="#Xpetschek1964_annihilation">1964</a>]
+     </p><!--l. 23--><p class="noindent" >Reconnection is therefore a classic problem for the same reason the tearing mode is a
+     classic problem: a mathematically tiny non-ideal region can release free energy stored
+     on a global scale. The sheet is local. The drive is not. That local&#8211;global structure is the
+     real lesson.</p></blockquote></div></div>
+<a 
+ id="x1-93001r101"></a>
+<h3 class="sectionHead"><span class="titlemark">33.1   </span> <a 
+ id="x1-940001"></a>A thought experiment: two current-carrying flux tubes</h3>
+<!--l. 30--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-950001"></a>Why the tubes attract.</span>
+Consider two neighboring flux tubes carrying currents in the same \(z\) direction. At the crudest level one may
+idealize them as two line currents \(I\) separated by a distance \(d\). Then the magnetic force per unit length is
+<a id="eq-eq-recon-linecurrent_force"></a><div class="math-display">\[\frac {F_{\rm att}}{L} = \frac {\mu _0 I^2}{2\pi d}, \tag{33.1}\]</div>
+so parallel currents attract. That attraction is not a small detail. It is the first hint that reconnecting
+systems usually contain <span 
+class="ecti-1095">outer-region magnetic free energy</span>. If the two tubes can move toward one another
+while preserving flux, magnetic energy drops.
+</p><!--l. 43--><p class="noindent" >In a real flux-tube geometry the field is not that of two literal wires, but the same conclusion survives:
+like-directed currents attract, adjacent flux bundles are pushed together, and a reversal of the reconnecting
+field develops in the narrow gap between them. This is the quasi-static version of what later appears in
+linear tearing theory as a positive outer-region matching parameter \(\Delta '\). The thin inner layer
+does not create the attraction; it is created <span 
+class="ecti-1095">because </span>the outer ideal field wants the tubes to
+merge.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 50--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-960001"></a>The reactive current sheet between them.</span>
+Suppose the reconnecting field just above and below the midplane \(y=0\) is <div class="math-display">\[\vect {B}(y\rightarrow 0^\pm )= \pm B_0\,\hat {\vect {x}},\]</div>
+with the current flowing in the \(z\) direction. Ampère&#8217;s law for a tangential field jump gives the surface
+current <a id="eq-eq-recon-surface_current"></a><div class="math-display">\[\vect {K} = \frac {1}{\mu _0}\,\hat {\vect {y}}\times \left [\vect {B}\right ]_{0^-}^{0^+} = -\frac {2B_0}{\mu _0}\,\hat {\vect {z}}. \tag{33.3}\]</div>
+So the current induced in the thin sheet is opposite to the current carried by the two flux tubes. If the
+sheet has thickness \(\delta \), then the volume current density is of order <a id="eq-eq-recon-Jsheet_scale"></a><div class="math-display">\[J_z \sim -\frac {2B_0}{\mu _0\delta }. \tag{33.4}\]</div>
+This is the enormous, localized current that resists the merger. As the separation shrinks, \(\delta \) shrinks, and the
+required sheet current becomes very large.
+</p><!--l. 75--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 75--><p class="noindent" >The current sheet is not the reason the two flux tubes attract. It is the <span 
+class="ecti-1095">reaction layer </span>that
+     appears because the outer ideal field tries to bring them together. That point matters
+     later: the same outer attraction shows up in tearing theory as \(\Delta '\), and in Sweet&#8211;Parker
+     theory as the global field \(B_0\) and sheet length \(L\) that determine the local layer.</p></blockquote></div></div>
+<!--l. 81--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-970001"></a>Pressure created at the X line.</span>
+Now ask what holds this compressed layer in transverse force balance. Across the sheet the normal
+component of the momentum equation reduces to pressure balance, <a id="eq-eq-recon-pressure_balance"></a><div class="math-display">\[p + \frac {B^2}{2\mu _0} \simeq p_{\rm up} + \frac {B_0^2}{2\mu _0}, \tag{33.5}\]</div>
+where \(p_{\rm up}\) and \(B_0\) are the upstream pressure and reconnecting field. At the exact X line, for zero guide field, the
+magnetic field vanishes, so the pressure at the center of the sheet is <a id="eq-eq-recon-px"></a><div class="math-display">\[p_X = p_{\rm up} + \frac {B_0^2}{2\mu _0}. \tag{33.6}\]</div>
+That equation is worth pausing over. The magnetic pressure of the incoming flux is converted into a real
+plasma pressure in the middle of the sheet. The sheet is hot and overpressured because magnetic stress has
+nowhere else to go. In a collisional layer this overpressure is built by compression and Ohmic heating; in
+weaker-collisionality layers tensor pressure and kinetic effects matter, but the basic statement
+survives.
+</p><!--l. 101--><p class="noindent" >If a guide field \(B_g\) threads the layer and is nearly the same on both sides, then it simply cancels out of (<a href="lecture33.html#eq-eq-recon-pressure_balance">33.5</a>).
+It does not disappear physically, but it does not change the leading-order transverse balance set by the
+reconnecting component.
+</p>
+<!--l. 105--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-980001"></a>Why the pressure drop launches the exhaust.</span>
+Along the symmetry line of the sheet, near the X line, the magnetic field vanishes to leading order, so the
+outflow equation is initially just <a id="eq-eq-recon-xline_momentum"></a><div class="math-display">\[\rho v_x\frac {dv_x}{dx} \simeq -\frac {dp}{dx}. \tag{33.7}\]</div>
+Integrating from the X line to the exhaust gives the Bernoulli-like estimate <a id="eq-eq-recon-bernoulli"></a><div class="math-display">\[\frac {1}{2}\rho v_{\rm out}^2 + p_{\rm out} \simeq p_X. \tag{33.8}\]</div>
+Using (<a href="lecture33.html#eq-eq-recon-px">33.6</a>), <a id="eq-eq-recon-bernoulli2"></a><div class="math-display">\[\frac {1}{2}\rho v_{\rm out}^2 \simeq \left (p_{\rm up} + \frac {B_0^2}{2\mu _0}\right )-p_{\rm out}. \tag{33.9}\]</div>
+If the downstream pressure is not much larger than the upstream pressure, then <a id="eq-eq-recon-va_outflow"></a><div class="math-display">\[v_{\rm out} \sim \frac {B_0}{\sqrt {\mu _0\rho }} \equiv V_A. \tag{33.10}\]</div>
+This is the cleanest way to see where the Alfvénic exhaust comes from. Near the X line it is the pressure
+drop that starts the flow; farther downstream it is equally natural to say that magnetic tension in the bent
+reconnected field lines continues to accelerate the exhaust. The two descriptions are complementary, not
+contradictory.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 135--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-990001"></a>Why reconnection is non-local.</span>
+For a tearing-parity perturbation in slab geometry, one introduces a flux function \(\psi (x)\) and defines
+<a id="eq-eq-recon-deltaprime_def"></a><div class="math-display">\[\Delta ' \equiv \left [\frac {\psi '}{\psi }\right ]_{0^-}^{0^+}. \tag{33.11}\]</div>
+This quantity is determined entirely by the <span 
+class="ecti-1095">outer ideal solution</span>; the resistive inner layer only knows about
+it through matching. For the standard Harris sheet one finds <a id="eq-eq-recon-Delta_prime_harris"></a><div class="math-display">\[\Delta ' a = 2\left (\frac {1}{ka}-ka\right ), \tag{33.12}\]</div>
+so long-wavelength disturbances with \(ka&lt;1\) have \(\Delta '&gt;0\). That positive \(\Delta '\) is the linear version of the flux-tube-attraction
+thought experiment above: bringing like-current flux systems together lowers outer magnetic
+energy.
+</p><!--l. 151--><p class="noindent" >This is why reconnection, like tearing, is not a purely local diffusion problem. The inner layer decides <span 
+class="ecti-1095">how</span>
+rapidly topology changes. The outer ideal field decides whether there is any energy available to release and
+what macroscopic length \(L\) the layer inherits.
+<a 
+ id="x1-99001r106"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">33.2   </span> <a 
+ id="x1-1000002"></a>Sweet&#8211;Parker as a local layer controlled by global geometry</h3>
+<!--l. 158--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010002"></a>Ohm&#8217;s law, induction, and the Lundquist number.</span>
+We now pass from the thought experiment to the textbook steady 2D reconnecting sheet. Let the sheet
+have length \(L\) and thickness \(\delta \ll L\), with a slow inflow \(v_{\rm in}\) and a fast outflow \(v_{\rm out}\). Using the resistive form of Ohm&#8217;s law,
+<a id="eq-eq-recon-ohm_resistive"></a><div class="math-display">\[\vect {E} + \vect {v}\times \vect {B} = \eta _\Omega \vect {J}, \tag{33.13}\]</div>
+and defining the magnetic diffusivity <a id="eq-eq-recon-eta_m_def"></a><div class="math-display">\[\eta _m \equiv \frac {\eta _\Omega }{\mu _0}, \tag{33.14}\]</div>
+the induction equation is <a id="eq-eq-recon-induction"></a><div class="math-display">\[\partial _t \vect {B} = \nabla \times (\vect {v}\times \vect {B}) + \eta _m\nabla ^2\vect {B}. \tag{33.15}\]</div>
+The Lundquist number based on the global length \(L\) is <a id="eq-eq-recon-S_def"></a><div class="math-display">\[S \equiv \frac {LV_A}{\eta _m} = \frac {\mu _0 L V_A}{\eta _\Omega }. \tag{33.16}\]</div>
+</p>
+<!--l. 184--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1020002"></a>The uniform reconnection electric field.</span>
+In steady 2D reconnection, Faraday&#8217;s law implies that the out-of-plane electric field is spatially
+uniform. So the same \(E_z\) can be evaluated in the ideal upstream region or in the non-ideal sheet:
+<a id="eq-eq-recon-E_match"></a><div class="math-display">\[E_z \simeq v_{\rm in} B_0 \qquad \text {(upstream)}, \qquad E_z \simeq \eta _\Omega J_z \qquad \text {(sheet)}. \tag{33.17}\]</div>
+With (<a href="lecture33.html#eq-eq-recon-Jsheet_scale">33.4</a>), or equivalently \(J_z\sim B_0/(\mu _0\delta )\) up to factors of order unity, this gives <a id="eq-eq-recon-vin_eta"></a><div class="math-display">\[v_{\rm in} B_0 \sim \eta _\Omega \frac {B_0}{\mu _0\delta } \quad \Rightarrow \quad v_{\rm in} \sim \frac {\eta _m}{\delta }. \tag{33.18}\]</div>
+So inflow can only proceed as fast as flux diffuses across the sheet thickness.
+</p>
+<!--l. 205--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1030002"></a>Mass conservation and the outflow speed.</span>
+For the incompressible textbook estimate, <a id="eq-eq-recon-mass_cons"></a><div class="math-display">\[v_{\rm in} L \sim v_{\rm out}\,\delta . \tag{33.19}\]</div>
+Using the outflow estimate (<a href="lecture33.html#eq-eq-recon-va_outflow">33.10</a>), <a id="eq-eq-recon-vin_delta"></a><div class="math-display">\[v_{\rm in} \sim V_A\frac {\delta }{L}. \tag{33.20}\]</div>
+Combining (<a href="lecture33.html#eq-eq-recon-vin_eta">33.18</a>) and (<a href="lecture33.html#eq-eq-recon-vin_delta">33.20</a>) gives <div class="math-display">\[V_A\frac {\delta }{L} \sim \frac {\eta _m}{\delta } \quad \Rightarrow \quad \delta ^2 \sim \frac {\eta _m L}{V_A},\]</div>
+so that <a id="eq-eq-recon-delta_SP"></a><div class="math-display">\[\boxed {\delta \sim L S^{-1/2}} \tag{33.22}\]</div>
+and therefore <a id="eq-eq-recon-vin_SP"></a><div class="math-display">\[\boxed {v_{\rm in} \sim V_A S^{-1/2}.} \tag{33.23}\]</div>
+The dimensionless reconnection rate is then <a id="eq-eq-recon-rate_SP"></a><div class="math-display">\[\boxed {\mathcal R \equiv \frac {v_{\rm in}}{V_A} \sim S^{-1/2}.} \tag{33.24}\]</div>
+</p>
+                                                                                         
+                                                                                         
+<!--l. 238--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040002"></a>What is really slow about Sweet&#8211;Parker.</span>
+The global reconnection time is <a id="eq-eq-recon-tau_rec"></a><div class="math-display">\[\tau _{\rm rec} \sim \frac {L}{v_{\rm in}} \sim \frac {L}{V_A}S^{1/2}. \tag{33.25}\]</div>
+So the problem is not that the non-ideal term is tiny in the sheet; that is true in many plasmas. The
+problem is that a long thin current layer forces a tiny inflow speed. The geometry itself creates the
+bottleneck.
+</p><!--l. 249--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 249--><p class="noindent" >Sweet&#8211;Parker is slow because the same balance that makes the layer thin, \(\delta /L\sim S^{-1/2}\), also makes
+     it long and slender. The diffusion region is too elongated to accept flux rapidly.</p></blockquote></div></div>
+<!--l. 254--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1050002"></a>A pressure and energy interpretation.</span>
+The same result can be read as an energy-conversion statement. Magnetic energy enters as Poynting flux of
+order <a id="eq-eq-recon-poynting_in"></a><div class="math-display">\[S_{\rm mag} \sim \frac {E_z B_0}{\mu _0} \sim \frac {v_{\rm in}B_0^2}{\mu _0}. \tag{33.26}\]</div>
+That energy does not emerge purely as directed flow. Part goes into the exhaust kinetic energy, part into
+the elevated pressure (<a href="lecture33.html#eq-eq-recon-px">33.6</a>), and part into local dissipation through Joule heating \(\eta _\Omega J^2\). This is why
+experiments that measure downstream pressure, exhaust throttling, and effective resistivity are so
+informative: they are testing the same pressure-balance story that the simple scaling already
+contains.
+<a 
+ id="x1-105001r112"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">33.3   </span> <a 
+ id="x1-1060003"></a>X points, Y points, and long current layers</h3>
+<!--l. 269--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1070003"></a>Syrovatskii layers.</span>
+The Sweet&#8211;Parker picture is often drawn as a rectangular box, but real current sheets are not obligated to
+stay rectangular. Syrovatskii emphasized that a thin current layer can terminate in Y points, so that the
+reconnecting geometry consists of a long, compressed sheet joined onto the external ideal field through
+singular endpoints [<a 
+href="#Xsyrovatskii1971_currentsheets">Syrovatskii</a>,&#x00A0;<a 
+href="#Xsyrovatskii1971_currentsheets">1971</a>,&#x00A0;<a 
+href="#Xsyrovatskii1981_pinchsheets">1981</a>]. That language is useful because it reminds us that the
+diffusion region cannot be specified independently of the outer field: the sheet and its endpoints are a
+single matched structure.
+</p>
+<!--l. 276--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1080003"></a>Petschek&#8217;s objection.</span>
+Petschek&#8217;s key insight was geometrical. If the non-ideal region were short rather than of order \(L\), the severe
+Sweet&#8211;Parker bottleneck might be avoided. His solution replaced the single long resistive sheet by a much
+shorter inner diffusion region joined to standing slow shocks [<a 
+href="#Xpetschek1964_annihilation">Petschek</a>,&#x00A0;<a 
+href="#Xpetschek1964_annihilation">1964</a>]. Whether a given plasma
+actually realizes that geometry is a dynamical question, but the point of the objection has survived:
+reconnection rates are controlled as much by the <span 
+class="ecti-1095">global shape </span>of the layer as by the microscopic term that
+breaks ideal MHD.
+</p>
+<!--l. 283--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1090003"></a>Solar Y points and helmet streamers.</span>
+This is more than a historical cartoon. In the solar corona, cusp and Y-point geometries appear naturally
+                                                                                         
+                                                                                         
+above helmet streamers, and the heliospheric current sheet emerges from that global streamer topology.
+The classical Kopp&#8211;Pneuman flare cartoon is therefore valuable not because every solar flare literally
+looks like the cartoon, but because it makes the long-sheet/Y-point geometry visible [<a 
+href="#Xkopp1976_corona">Kopp
+and Pneuman</a>,&#x00A0;<a 
+href="#Xkopp1976_corona">1976</a>]. It also provides a clean bridge back to Lecture&#x00A0;8, where the Parker
+spiral and helmet-streamer geometry were introduced on the solar-wind side. The point is the
+same in both lectures: large-scale magnetic geometry creates preferred places for current-sheet
+formation.
+<a 
+ id="x1-109001r118"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">33.4   </span> <a 
+ id="x1-1100004"></a>When the Sweet&#8211;Parker sheet tears itself apart</h3>
+<!--l. 294--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1110004"></a>The current sheet as a tearing equilibrium.</span>
+The Sweet&#8211;Parker model already contains the seed of its own destruction. Because \(\delta _{\rm SP}/L\sim S^{-1/2}\), the aspect ratio grows
+like \(L/\delta _{\rm SP}\sim S^{1/2}\). At sufficiently large Lundquist number a single Sweet&#8211;Parker sheet is not a robust steady object; it is
+unstable to tearing and fragments into a chain of plasmoids [<a 
+href="#XLoureiro2005">Loureiro et&#x00A0;al.</a>,&#x00A0;<a 
+href="#XLoureiro2005">2005</a>,&#x00A0;<a 
+href="#Xloureiro2007_plasmoid_chains">2007</a>,&#x00A0;<a 
+href="#XUzdensky2010">Uzdensky
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#XUzdensky2010">2010</a>,&#x00A0;<a 
+href="#Xbhattacharjee2009_secondary_tearing">Bhattacharjee et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbhattacharjee2009_secondary_tearing">2009</a>,&#x00A0;<a 
+href="#XHuang2010">Huang and Bhattacharjee</a>,&#x00A0;<a 
+href="#XHuang2010">2010</a>].
+</p><!--l. 302--><p class="noindent" >To connect this directly with the tearing lecture, define a local half-thickness \(a\sim \delta _{\rm SP}\) and local Alfvén time
+<div class="math-display">\[\tau _{A,a}\equiv \frac {a}{V_A}, \qquad S_a \equiv \frac {aV_A}{\eta _m}.\]</div>
+Since \(a\sim L S^{-1/2}\), <a id="eq-eq-recon-Sa_from_S"></a><div class="math-display">\[S_a \sim S^{1/2}. \tag{33.28}\]</div>
+If \(\kappa \equiv kL\) is the global along-sheet wave number, then <a id="eq-eq-recon-ka_from_kappa"></a><div class="math-display">\[ka = \kappa \frac {a}{L} \sim \kappa S^{-1/2}. \tag{33.29}\]</div>
+This is the dictionary from the global Sweet&#8211;Parker layer to the local tearing variables.
+</p><!--l. 321--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 321--><p class="noindent" >The plasmoid instability is not a different phenomenon from tearing. It is the tearing
+     instability of the Sweet&#8211;Parker current sheet itself.</p></blockquote></div></div>
+<!--l. 325--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120004"></a>Constant-\(\psi \) and nonconstant-\(\psi \) limits.</span>
+For a Harris-like reversing sheet the outer ideal solution gives (<a href="lecture33.html#eq-eq-recon-Delta_prime_harris">33.12</a>) <a id="eq-eq-recon-harris_delta"></a><div class="math-display">\[\Delta ' a = 2\left (\frac {1}{ka} - ka\right ), \tag{33.30}\]</div>
+so for wavelengths longer than the current sheet thickness \(ka&lt;1\) are tearing-unstable while the short-wave
+branch \(ka&gt;1\) is stable.
+</p><!--l. 333--><p class="noindent" >The constant-\(\psi \) FKR scaling may be written schematically as <a id="eq-eq-recon-fkr_local"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-3/5}(\Delta ' a)^{4/5}(ka)^{2/5}. \tag{33.31}\]</div>
+and so <a id="eq-eq-recon-plasmoid_constantpsi"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-3/5}(ka)^{-2/5}, \qquad ka\,S_a^{1/4}\gg 1. \tag{33.32}\]</div>
+For even smaller \(k\) (longer wavelength), there is another solution, which is the so-called non constant-\(\psi \)
+branch <a 
+href="#XAra1978">Ara et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XAra1978">1978</a>]. <a id="eq-eq-recon-plasmoid_nonconstantpsi"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-1/3}(ka)^{2/3}, \qquad ka\,S_a^{1/4}\ll 1. \tag{33.33}\]</div>
+The fastest mode sits at the crossover, <div class="math-display">\[ka\,S_a^{1/4}\sim 1,\]</div>
+which implies <a id="eq-eq-recon-kmax_gamma_local"></a><div class="math-display">\[k_{\max }a \sim S_a^{-1/4}, \qquad \gamma _{\max }\tau _{A,a}\sim S_a^{-1/2}. \tag{33.35}\]</div>
+Returning to global variables using (<a href="lecture33.html#eq-eq-recon-Sa_from_S">33.28</a>), <a id="eq-eq-recon-kmax_gamma_global"></a><div class="math-display">\[k_{\max }L \sim S^{3/8}, \qquad \gamma _{\max }\tau _{A,L}\sim S^{1/4}, \qquad \tau _{A,L}\equiv \frac {L}{V_A}. \tag{33.36}\]</div>
+So the instability is fast on the <span 
+class="ecti-1095">global </span>Alfvén time even though it remains slow on the local
+sheet time. That is why high-\(S\) resistive MHD does not end in one monolithic Sweet&#8211;Parker
+layer.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 381--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1130004"></a>Self-regulation by plasmoids.</span>
+Once plasmoids appear, one should no longer think in terms of one sheet of length \(L\). Each interplasmoid
+segment of length \(\ell \) has its own local Lundquist number <div class="math-display">\[S_\ell \equiv \frac {\ell V_A}{\eta _m}.\]</div>
+If \(S_\ell \) is still too large, that segment tears again and breaks into shorter sheets. The nonlinear state therefore
+resembles a hierarchy of near-marginal current layers joined by islands or flux ropes. This is one of the
+most important modern lessons of reconnection theory: within resistive MHD itself, a sufficiently large
+Sweet&#8211;Parker sheet is driven away from the laminar \(S^{-1/2}\) bottleneck.
+<a 
+ id="x1-113001r122"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">33.5   </span> <a 
+ id="x1-1140005"></a>Experimental perspective</h3>
+<!--l. 394--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1150005"></a>Why the experiments matter.</span>
+Reconnection is an unusually good example of a problem where laboratory experiments are not just
+illustrative. They are diagnostic of the theory itself. The theory predicts a coupling of global geometry,
+local current-sheet thickness, downstream pressure, and eventually kinetic physics. A controlled experiment
+can measure all four.
+</p>
+<!--l. 400--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1160005"></a>MRX and the generalized Sweet&#8211;Parker picture.</span>
+On the collisional side, the Magnetic Reconnection Experiment (MRX) provided the classic test of the
+Sweet&#8211;Parker framework. Ji and collaborators showed that measured rates are broadly consistent with a
+<span 
+class="ecti-1095">generalized </span>Sweet&#8211;Parker model once compressibility, downstream pressure, and an effective resistivity are
+included [<a 
+href="#Xji1998_sweet_parker_test">Ji et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xji1998_sweet_parker_test">1998</a>,&#x00A0;<a 
+href="#Xji1999_sweet_parker_characteristics">1999</a>]. This connects directly to (<a href="lecture33.html#eq-eq-recon-px">33.6</a>)&#8211;(<a href="lecture33.html#eq-eq-recon-bernoulli2">33.9</a>): the pressure built in the
+center of the sheet is not a side issue. It can throttle the exhaust and thereby reduce the inflow
+rate.
+</p>
+<!--l. 407--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1170005"></a>From collisional layers to electron kinetics.</span>
+In more weakly collisional regimes the simple scalar-pressure closure fails. Experiments on VTF and
+related theory showed that trapped-electron dynamics, electrostatic potentials, and pressure anisotropy
+can enter the electron force balance directly [<a 
+href="#Xegedal2004_trapped_electron_motion">Egedal et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xegedal2004_trapped_electron_motion">2004</a>,&#x00A0;<a 
+href="#Xegedal2005_electrostatic_potential">2005</a>,&#x00A0;<a 
+href="#Xegedal2008_trapped_electrons">2008</a>,&#x00A0;<a 
+href="#Xegedal2013_pressure_anisotropy">2013</a>]. This is exactly the
+bridge from the present lecture to the generalized Ohm&#8217;s law and kinetic-MHD discussions elsewhere in the
+notes: the statement &#8220;flux freezing is broken in a tiny region&#8221; survives, but the identity of the non-ideal
+term changes.
+</p>
+<!--l. 414--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1180005"></a>TREX, asymmetric drive, and pileup.</span>
+On TREX and the Big Red Ball, strongly driven asymmetric reconnection showed that shock
+formation and magnetic pileup can regulate the normalized rate [<a 
+href="#Xolson2021_shocked_flux_pileup">Olson et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xolson2021_shocked_flux_pileup">2021</a>,&#x00A0;<a 
+href="#Xgreess2022_kinetic_trex">Greess
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgreess2022_kinetic_trex">2022</a>]. That result is conceptually important because it says the same thing as the flux-tube
+thought experiment at the start of the lecture: the outer drive matters. One cannot understand
+the local layer without understanding what the external magnetic configuration is trying to
+do. TREX also reported evidence for collisionless plasmoids and electron-scale current layers
+controlled by kinetic orbits rather than classical resistive broadening [<a 
+href="#Xolson2016_collisionless_plasmoid">Olson et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xolson2016_collisionless_plasmoid">2016</a>,&#x00A0;<a 
+href="#Xgreess2021_electron_scale_trex">Greess
+                                                                                         
+                                                                                         
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgreess2021_electron_scale_trex">2021</a>].
+</p>
+<!--l. 422--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1190005"></a>Solar-geometry experiments.</span>
+The Big Red Ball program also produced a particularly attractive bridge back to solar and heliospheric
+plasmas. Peterson <span 
+class="ecti-1095">et al. </span>observed laminar and turbulent plasmoid ejection in a laboratory Parker-spiral
+current sheet [<a 
+href="#Xpeterson2021laminar-0f5">Peterson et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpeterson2021laminar-0f5">2021</a>]. That is a laboratory realization of the same kind of long, driven
+current-sheet geometry that later appears in the heliosphere and in streamer-like structures. It is therefore
+a natural companion to the Y-point and helmet-streamer discussion above. Likewise, the line-tied
+screw-pinch experiments [<a 
+href="#XBrookhart2015">Brookhart et&#x00A0;al.</a>,&#x00A0;<a 
+href="#XBrookhart2015">2015</a>,&#x00A0;<a 
+href="#XBrookhart2017">2017</a>] make contact with coronal reconnection
+in geometries where footpoint motion, loss of equilibrium, and current-sheet formation are
+inseparable.
+<a 
+ id="x1-119001r126"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">33.6   </span> <a 
+ id="x1-1200006"></a>What to remember</h3>
+<!--l. 433--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">Two  like-current  flux  tubes  attract.  The  thin  current  sheet  between  them  is  a
+     reactive layer, not the original source of the drive.
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">The pressure at the X line is elevated to \[ p_X \simeq p_{\rm up} + \frac {B_0^2}{2\mu _0}, \] so the sheet converts incoming magnetic
+     pressure into plasma pressure.
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">The pressure drop away from the X line helps launch an Alfvénic exhaust, while
+     the uniform reconnection electric field gives the matching condition \[ E_z \sim v_{\rm in}B_0 \sim \eta _\Omega J_z. \]
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">Sweet&#8211;Parker reconnection is slow because a long thin layer forces \[ \delta /L\sim S^{-1/2}, \qquad v_{\rm in}/V_A\sim S^{-1/2}. \]
+     </dd><dt class="enumerate-enumitem">
+  5. </dt><dd 
+class="enumerate-enumitem">Reconnection is non-local. The inner layer changes topology, but the outer ideal
+     field determines the global drive, the sheet length, and in linear theory the sign of
+     \(\Delta '\).
+     </dd><dt class="enumerate-enumitem">
+  6. </dt><dd 
+class="enumerate-enumitem">At large Lundquist number the Sweet&#8211;Parker sheet is itself tearing-unstable and
+     breaks into plasmoids.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1210006"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <span 
+class="ecti-1095">The Mathematical Theory of Non-Uniform Gases:</span>
+                                                                                         
+                                                                                         
+  <span 
+class="ecti-1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</span>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Härm.  Transport phenomena in a completely ionized gas.
+  <span 
+class="ecti-1095">Physical Review</span>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <span 
+class="ecti-1095">Soviet</span>
+  <span 
+class="ecti-1095">Physics JETP</span>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <span 
+class="ecti-1095">Reports on Progress in Physics</span>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <span 
+class="ecti-1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</span>
+  <span 
+class="ecti-1095">Research</span>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <span 
+class="ecti-1095">Proceedings  of  the  Royal</span>
+  <span 
+class="ecti-1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</span>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-1220006"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 33.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture33.html#eq-eq-recon-pressure_balance">33.5</a>), repeat the X-line pressure estimate when a uniform guide
+                field \(B_g\) is present upstream and downstream. Show explicitly why \(B_g\) cancels from the
+                leading-order pressure jump.
+                </dd><dt class="enumerate-enumitem">
+                                                                                         
+                                                                                         
+<span 
+class="ecbx-1095">Problem 33.2.</span>  </dt><dd 
+class="enumerate-enumitem">Use (<a href="lecture33.html#eq-eq-recon-bernoulli2">33.9</a>) to derive the exhaust speed when the downstream pressure satisfies \(p_{\rm out}=p_{\rm up}+\alpha B_0^2/(2\mu _0)\).
+                How does the result change as \(\alpha \rightarrow 1\)?
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 33.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from the Harris-sheet expression (<a href="lecture33.html#eq-eq-recon-Delta_prime_harris">33.12</a>), show that \(\Delta '&gt;0\) for \(ka&lt;1\) and explain
+                physically why this corresponds to an attractive outer-region interaction.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 33.4.</span>  </dt><dd 
+class="enumerate-enumitem">Combine (<a href="lecture33.html#eq-eq-recon-vin_eta">33.18</a>) and (<a href="lecture33.html#eq-eq-recon-mass_cons">33.19</a>) for a compressible exhaust with density ratio \(\rho _{\rm out}/\rho _{\rm in}=C\). How
+                do the Sweet&#8211;Parker thickness and inflow rate change with \(C\)?
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 33.5.</span>  </dt><dd 
+class="enumerate-enumitem">Starting  from  (<a href="lecture33.html#eq-eq-recon-plasmoid_constantpsi">33.32</a>)  and  (<a href="lecture33.html#eq-eq-recon-plasmoid_nonconstantpsi">33.33</a>),  recover  the  scalings  (<a href="lecture33.html#eq-eq-recon-kmax_gamma_global">33.36</a>)  for  the  fastest
+                plasmoid mode.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+ 
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 18 Gravitational Interchange</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_waves.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture17.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture19.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;18</span><br /><a 
+ id="x1-7300018"></a>Gravitational Interchange</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" >This lecture is the gravitational prototype for several later stability problems. The same logic
+     appears in three increasingly rich settings:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Ordinary  buoyancy: </span>a  stratified  gas  in  gravity,  leading  to  the  Schwarzschild
+   criterion and the Brunt&#8211;Visl frequency.
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Magnetic interchange: </span>a stratified plasma supported in part by magnetic pressure,
+   with \(k_\parallel =0\) so that field lines are exchanged but not bent.
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Parker or undular instability: </span>long-wavelength motion along the magnetic field,
+   which allows plasma to drain from the crests of rising flux tubes and turns interchange
+   into the prototype of ballooning.</dd></dl>
+     <!--l. 12--><p class="noindent" >The point is not merely astrophysical. These are the cleanest settings in which to learn
+     how equilibrium profiles, compressibility, and field-line tension conspire to decide
+     stability.</p></blockquote></div></div>
+<!--l. 16--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 16--><p class="noindent" >The intellectual line behind this lecture is beautifully continuous. Rayleigh&#8217;s work on
+     convection and Schwarzschild&#8217;s criterion for stellar atmospheres gave the first modern
+     stability criteria for a stratified fluid <a 
+href="#Xrayleigh1916convection">Rayleigh</a>&#x00A0;[<a 
+href="#Xrayleigh1916convection">1916</a>],&#x00A0;<a 
+href="#Xschwarzschild1906equilibrium">Schwarzschild</a>&#x00A0;[<a 
+href="#Xschwarzschild1906equilibrium">1906</a>]. Brunt and
+     Visl identified the buoyancy oscillation frequency of a stably stratified atmosphere
+     <a 
+href="#Xvaisala1925wirkung">Visl</a>&#x00A0;[<a 
+href="#Xvaisala1925wirkung">1925</a>],&#x00A0;<a 
+href="#Xbrunt1927oscillations">Brunt</a>&#x00A0;[<a 
+href="#Xbrunt1927oscillations">1927</a>].  Kruskal  and  Schwarzschild  then  translated  the  same
+     physical  idea  into  magnetized  plasmas,  showing  how  a  magnetic  field  can  support
+     plasma against gravity and how that support can fail through interchange <a 
+href="#Xkruskal1954instability">Kruskal and
+     Schwarzschild</a>&#x00A0;[<a 
+href="#Xkruskal1954instability">1954</a>]. Newcomb recast the problem in the language of the ideal-MHD
+     energy principle <a 
+href="lecture17.html#Xnewcomb1961convective">Newcomb</a>&#x00A0;[<a 
+href="lecture17.html#Xnewcomb1961convective">1961</a>]. Parker&#8217;s later work on magnetic buoyancy in the
+     solar interior made clear that one does not need literal &#8220;heavy fluid on light fluid&#8221; in
+     the textbook sense; a magnetized atmosphere can become unstable because magnetic
+     support changes the vertical stratification and because plasma can drain along field
+     lines <a 
+href="#XParker1955">Parker</a>&#x00A0;[<a 
+href="#XParker1955">1955a</a>,<a 
+href="#Xparker1955hydromagnetic">b</a>]. That is why this lecture naturally points forward to magnetic
+     interchange, ballooning, and solar-flux-emergence problems.</p></blockquote></div></div>
+<a 
+ id="x1-73004r66"></a>
+<h3 class="sectionHead"><span class="titlemark">18.1   </span> <a 
+ id="x1-740001"></a>Buoyancy Without Magnetic Field</h3>
+<!--l. 23--><p class="noindent" >We begin with a static atmosphere in a uniform gravitational field \(\vect {g}=-g\,\ez \). Adding gravity to the momentum
+equation in Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) and setting \(\uvec _0=\vect {0}\), \(\B _0=\vect {0}\), the equilibrium condition is the usual hydrostatic balance <a id="eq-eq-grav-hydrostatic"></a><div class="math-display">\[\frac {dp_0}{dz}=-\rho _0 g. \tag{18.1}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 31--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750001"></a>Parcel derivation of the Brunt&#8211;Visl frequency.</span>
+Displace a fluid parcel upward by a small distance \(\xi _z\). Pressure adjusts rapidly enough that the parcel stays
+in pressure balance with its surroundings, but the displacement is fast enough thermodynamically that the
+parcel evolves adiabatically. Thus <div class="math-display">\[\left (\frac {p}{\rho ^\gamma }\right )_{\rm parcel}=\text {const}, \qquad p_{\rm parcel}(z+\xi _z)=p_0(z+\xi _z).\]</div>
+Expand the adiabatic relation to first order: <div class="math-display">\[\begin{aligned}\frac {p_0(z+\xi _z)}{\rho _{\rm parcel}^\gamma (z+\xi _z)} &amp;= \frac {p_0(z)}{\rho _0^\gamma (z)}, \nonumber \\ \frac {p_0+\xi _z p_0'}{\bigl (\rho _0+\rho _{\rm parcel,1}\bigr )^\gamma } &amp;= \frac {p_0}{\rho _0^\gamma }, \nonumber \\ \left (1+\xi _z\frac {p_0'}{p_0}\right ) \left (1-\gamma \frac {\rho _{\rm parcel,1}}{\rho _0}\right ) &amp;=1,\end{aligned}\]</div>
+</p><!--l. 52--><p class="noindent" >so that <a id="eq-eq-grav-parcelrho"></a><div class="math-display">\[\rho _{\rm parcel,1} = \frac {\rho _0}{\gamma p_0}\,p_0'\,\xi _z. \tag{18.4}\]</div>
+The ambient density at the displaced position is instead <div class="math-display">\[\rho _0(z+\xi _z)=\rho _0+\rho _0'\xi _z.\]</div>
+Hence the density contrast between parcel and environment is <a id="eq-eq-grav-deltarho"></a><div class="math-display">\[\Delta \rho \equiv \rho _{\rm parcel}(z+\xi _z)-\rho _0(z+\xi _z) = \left (\frac {\rho _0}{\gamma p_0}p_0'-\rho _0'\right )\xi _z. \tag{18.6}\]</div>
+The buoyancy force per unit mass is \(-g\Delta \rho /\rho _0\), so the parcel obeys <a id="eq-eq-grav-parcelmotion"></a><div class="math-display">\[\ddot {\xi }_z = -g\left (\frac {1}{\gamma p_0}\frac {dp_0}{dz}-\frac {1}{\rho _0}\frac {d\rho _0}{dz}\right )\xi _z \equiv -N^2\xi _z. \tag{18.7}\]</div>
+Therefore <a id="eq-eq-grav-BV"></a><div class="math-display">\[\boxed { N^2 = \frac {g}{\gamma }\frac {d}{dz}\ln \!\left (\frac {p_0}{\rho _0^\gamma }\right ) = g\left (\frac {1}{\gamma p_0}\frac {dp_0}{dz}-\frac {1}{\rho _0}\frac {d\rho _0}{dz}\right ). } \tag{18.8}\]</div>
+If \(N^2&gt;0\), the atmosphere supports stable buoyancy oscillations. If \(N^2&lt;0\), the displacement grows exponentially and the
+atmosphere overturns.
+</p><!--l. 95--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 95--><p class="noindent" ><span 
+class="ecbx-1095">Entropy from the Sackur&#8211;Tetrode equation and why </span>\(p/\rho ^\gamma \) <span 
+class="ecbx-1095">is an entropy proxy.</span>
+     </p><!--l. 97--><p class="noindent" >For a classical monatomic ideal gas, the Sackur&#8211;Tetrode equation gives the entropy as
+     <div class="math-display">\[S = N k_B \left [ \ln \!\left ( \frac {V}{N} \left ( \frac {4\pi m U}{3 N h^2} \right )^{3/2} \right ) +\frac {5}{2} \right ],\]</div>
+     where \(N\) is the particle number, \(V\) the volume, \(U\) the internal energy, and \(m\) the particle
+     mass.
+     </p><!--l. 114--><p class="noindent" >For a monatomic ideal gas, <div class="math-display">\[U = \frac {3}{2} N k_B T, \qquad pV = N k_B T.\]</div>
+     Substituting \(U=\tfrac 32 N k_B T\) into Sackur&#8211;Tetrode gives <div class="math-display">\[\frac {S}{N k_B} = \ln \!\left (\frac {V}{N}\right ) +\frac {3}{2}\ln T +\text {const}.\]</div>
+     Now introduce the number density \(n=N/V\), so that \(V/N=1/n\). Then <div class="math-display">\[\frac {S}{N k_B} = -\ln n + \frac {3}{2}\ln T + \text {const}.\]</div>
+     Using the ideal-gas law \(p=n k_B T\), we may write <div class="math-display">\[T = \frac {p}{n k_B},\]</div>
+     and therefore <div class="math-display">\[\begin{aligned}\frac {S}{N k_B} &amp;= -\ln n + \frac {3}{2}\ln \!\left (\frac {p}{n k_B}\right ) + \text {const} \nonumber \\ &amp;= -\ln n + \frac {3}{2}\ln p - \frac {3}{2}\ln n + \text {const} \nonumber \\ &amp;= \frac {3}{2}\ln p - \frac {5}{2}\ln n + \text {const}.\end{aligned}\]</div>
+     </p><!--l. 150--><p class="noindent" >Since a monatomic gas has <div class="math-display">\[\gamma = \frac {5}{3}, \qquad \frac {1}{\gamma -1}=\frac {3}{2},\]</div>
+     this becomes <div class="math-display">\[\frac {S}{N k_B} = \frac {1}{\gamma -1} \ln \!\left (\frac {p}{n^\gamma }\right ) +\text {const}.\]</div>
+     Finally, for a fixed species \(n=\rho /m\), so <div class="math-display">\[\frac {S}{N k_B} = \frac {1}{\gamma -1} \ln \!\left (\frac {p}{\rho ^\gamma }\right ) +\text {const},\]</div>
+     where the factor \(m^\gamma \) has been absorbed into the additive constant.
+     </p><!--l. 174--><p class="noindent" >Thus the entropy per particle is proportional to <div class="math-display">\[\boxed { \frac {S}{N} = \frac {k_B}{\gamma -1} \ln \!\left (\frac {p}{\rho ^\gamma }\right ) +\text {const} }\]</div>
+     and the specific entropy per unit mass is <div class="math-display">\[\boxed { s = \frac {k_B}{m(\gamma -1)} \ln \!\left (\frac {p}{\rho ^\gamma }\right ) +\text {const}. }\]</div>
+     </p><!--l. 195--><p class="noindent" >So \(p/\rho ^\gamma \) is not literally the entropy; rather, it is a <span 
+class="ecti-1095">monotonic proxy </span>for entropy: <div class="math-display">\[K \equiv \frac {p}{\rho ^\gamma }, \qquad s \propto \ln K.\]</div>
+     Because the logarithm is monotonic, comparing \(K\) is equivalent to comparing entropy.
+     </p><!--l. 203--><p class="noindent" >This is why buoyancy and interchange criteria are often written in terms of the gradient of \(p/\rho ^\gamma \).
+     For adiabatic motion of an ideal-gas fluid element, <div class="math-display">\[\frac {d}{dt}\left (\frac {p}{\rho ^\gamma }\right )=0 \qquad \Longleftrightarrow \qquad \frac {ds}{dt}=0.\]</div>
+     In other words, \(p/\rho ^\gamma \) is the conserved adiabatic label carried by the fluid element.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<!--l. 212--><p class="noindent" >Thus the Schwarzschild criterion can be viewed as a statement about the ordering of the entropy proxy \(K=p/\rho ^\gamma \): a
+stratification is buoyantly stable when entropy increases upward.
+</p>
+<!--l. 214--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760001"></a>Adiabatic lapse rate.</span>
+For an ideal gas, \(p_0\propto \rho _0 T_0\), so Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-BV">18.8</a>) can be rewritten as <div class="math-display">\[\begin{aligned}N^2 &amp;= \frac {g}{\gamma }\frac {d}{dz}\ln \!\left (p_0^{1-\gamma }T_0^\gamma \right ) \nonumber \\ &amp;= \frac {g}{T_0}\left (\frac {dT_0}{dz}-\left .\frac {dT}{dz}\right |_{\rm ad}\right ),\end{aligned}\]</div>
+</p><!--l. 224--><p class="noindent" >where <a id="eq-eq-grav-lapse"></a><div class="math-display">\[\left .\frac {dT}{dz}\right |_{\rm ad} = -(\gamma -1)\frac {g}{c_s^2}T_0, \qquad c_s^2=\frac {\gamma p_0}{\rho _0}. \tag{18.23}\]</div>
+Thus the atmosphere is convectively unstable when the temperature falls with height faster than the
+adiabatic lapse rate. For dry air near room temperature this gives the familiar value of roughly
+\(10\,^{\circ }{\rm C}/{\rm km}\).
+</p>
+<!--l. 236--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-770001"></a>The same result from the energy principle.</span>
+To connect directly to later lectures, it is worth deriving the Schwarzschild criterion from the
+ideal-MHD energy principle with \(\B _0=\vect {0}\). For adiabatic perturbations in a static stratified atmosphere,
+<a id="eq-eq-grav-deltaW_unmag"></a><div class="math-display">\[2\delta W = \int dV\, \left [ \gamma p_0(\divergence \vect {\xi })^2 +(\vect {\xi }\cdot \grad p_0)(\divergence \vect {\xi }) +(\vect {\xi }\cdot \vect {g})\bigl (\vect {\xi }\cdot \grad \rho _0+\rho _0\divergence \vect {\xi }\bigr ) \right ]. \tag{18.24}\]</div>
+For plane-parallel stratification, <div class="math-display">\[\vect {\xi }\cdot \grad p_0=\xi _z\frac {dp_0}{dz}, \qquad \vect {\xi }\cdot \grad \rho _0=\xi _z\frac {d\rho _0}{dz}, \qquad \vect {\xi }\cdot \vect {g}=-g\xi _z.\]</div>
+Using hydrostatic balance, Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-hydrostatic">18.1</a>), this becomes <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \left [ \gamma p_0(\divergence \vect {\xi })^2 -2\rho _0 g\,\xi _z\divergence \vect {\xi } -g\frac {d\rho _0}{dz}\,\xi _z^2 \right ].\end{aligned}\]</div>
+</p><!--l. 268--><p class="noindent" >Now complete the square: <a id="eq-eq-grav-deltaW_unmag_square"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \Biggl [ \gamma p_0\left (\divergence \vect {\xi }-\frac {\rho _0 g}{\gamma p_0}\xi _z\right )^2 +\left (-g\frac {d\rho _0}{dz}-\frac {\rho _0^2g^2}{\gamma p_0}\right )\xi _z^2 \Biggr ] \nonumber \\ &amp;= \int dV\, \Biggl [ \gamma p_0\left (\divergence \vect {\xi }-\frac {\rho _0 g}{\gamma p_0}\xi _z\right )^2 +\rho _0 N^2\xi _z^2 \Biggr ].\end{aligned} \tag{18.27}\]</div>
+</p><!--l. 286--><p class="noindent" >The first term is positive definite and will always be stabilizing. Nature will find a way around this by
+having <div class="math-display">\[\divergence \vect {\xi }=\frac {\rho _0 g}{\gamma p_0}\xi _z\]</div>
+to minimize the first term. IN this case, the sign of \(\delta W\) is controlled by \(N^2\). This is the energy-principle version of
+the Schwarzschild criterion.
+<a 
+ id="x1-77001r76"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">18.2   </span> <a 
+ id="x1-780002"></a>Plasma supported by magnetic field against gravity</h3>
+<!--l. 293--><p class="noindent" >We can start now to consider how magnetic fields change this story by considering cold fluid that is
+supported from underneath by a magnetic field. Imagine a magnetic field which is decreasing vertically
+with a density that that is rising vertically.
+</p><!--l. 295--><p class="noindent" >Assume: </p>
+     <ul class="itemize1">
+     <li class="itemize">No gas pressure: \(p_0 = 0\)
+     </li>
+     <li class="itemize">Straight magnetic field \(\vect {B}_0 = B_0(z)\vect {e}_x\)
+     </li>
+     <li class="itemize">Gravity \(\vect {g} = -g \vect {e}_z\)</li></ul>
+<!--l. 302--><p class="noindent" >The equilibrium condition becomes <div class="math-display">\[\frac {d}{dz}\frac {B_0^2(z) }{2\mu _0} = -\rho _0(z) g\]</div>
+</p><!--l. 307--><p class="noindent" >The energy variation reduces to <div class="math-display">\[\begin{aligned}2\delta W &amp; = \int dV \left [ \frac {|\vect {Q}|^2}{\mu _0} +\vect {\xi }\cdot \vect {g}\,\nabla \cdot (\rho _0\vect {\xi }) \right ].\end{aligned}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 318--><p class="noindent" >Choose interchange-type perturbations: <div class="math-display">\[\vect {k}\perp \vect {B}_0, \qquad k_\parallel = 0,\]</div>
+so that field lines are exchanged but not bent.
+</p><!--l. 327--><p class="noindent" >In this case <div class="math-display">\[\vect {Q}_\perp = i k_\parallel B \vect {\xi }_\perp = 0;\]</div>
+the perturbed magnetic field is entirely compressional and parallel to \(\vect {B}_0\), and can be minimized by careful
+choice: <div class="math-display">\[\begin{aligned}\vect {Q} &amp; = \nabla \times \bm {\xi } \times \bm {B}_0\\ &amp; = -\bm {B} \nabla \cdot \bm {\xi }_\perp -\bm {\xi }_\perp \cdot \nabla \bm {B} \\ \left | \bm {Q}^2 \right | &amp; = B_0^2 \left (\nabla \cdot \bm {\xi }_\perp + \bm \xi _\perp \cdot \frac {\nabla B_0}{B_0}\right )^2 \\ \mbox {Choose } &amp; \Rightarrow \quad \nabla \cdot \vect {\xi }_\perp = - \vect {\xi }_\perp \cdot \nabla \ln B_0.\end{aligned}\]</div>
+</p><!--l. 340--><p class="noindent" >to mimimize \(\delta W\).
+</p><!--l. 342--><p class="noindent" >Substituting into \(\delta W\) gives <a id="eq-eq-grav-deltaW_cs0"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV \, \cancel {\left |\vect {Q}^2\right |} + \vect {\xi }\cdot \vect {g} \, \left ( \vect {\xi }_\perp \cdot \nabla \rho _0 + \rho _0 \underbrace {\nabla \cdot \vect {\xi }_\perp }_{ - \vect {\xi }_\perp \cdot \nabla \ln B_0} \right ) \nonumber \\ &amp;= -\int dV \, \rho _0 g \, \xi _z \left ( \vect {\xi }_\perp \cdot \nabla \ln \frac {\rho _0}{B} \right ) \nonumber \\ &amp;= -\int dV \, \rho _0 g \, \frac {d}{dz} \left (\ln \frac {\rho _0}{B_0} \right ) \xi _z^2\end{aligned} \tag{18.37}\]</div>
+</p><!--l. 369--><p class="noindent" >\[ \boxed { \text {Magnetic interchange instability if } \frac {d}{dz}\left (\frac {\rho _0}{B_0}\right ) &gt; 0 } \]
+</p><!--l. 372--><p class="noindent" >Physically: heavy flux tubes above light ones are unstable <a 
+href="#Xkruskal1954instability">Kruskal and Schwarzschild</a>&#x00A0;[<a 
+href="#Xkruskal1954instability">1954</a>].
+<a 
+ id="x1-78001r80"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">18.3   </span> <a 
+ id="x1-790003"></a>Magnetic Buoyancy and Flute-Like Interchange</h3>
+<!--l. 379--><p class="noindent" >Now let a horizontal magnetic field help support the atmosphere, <div class="math-display">\[\vect {B}_0=B_0(z)\,\vect {e}_y, \qquad \vect {g}=-g\,\ez ,\]</div>
+where \(\vect {e}_y\) is the horizontal field direction. The static equilibrium condition is <a id="eq-eq-grav-totpress"></a><div class="math-display">\[\frac {d}{dz}\left (p_0+\frac {B_0^2}{2\mu _0}\right )=-\rho _0 g. \tag{18.39}\]</div>
+We consider <span 
+class="ecti-1095">flute </span>or <span 
+class="ecti-1095">interchange </span>perturbations with <a id="eq-eq-grav-flute"></a><div class="math-display">\[k_\parallel =0, \qquad \vect {\xi }=\xi _x\,\vect {e}_x+\xi _z\,\ez , \tag{18.40}\]</div>
+so field lines are exchanged but not bent.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-790011"></a>
+                                                                                         
+                                                                                         
+<!--l. 401--><p class="noindent" ><img 
+src="figures/gravitational_interchange.jpg" alt="PIC"  
+width="385" height="116"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;18.1: </span><span  
+class="content">Kruskal&#8211;Schwarzschild gravitational interchange: plasma supported against gravity
+by magnetic pressure. The basic question is whether exchanging neighboring flux tubes lowers or
+raises the potential energy <a 
+href="#Xkruskal1954instability">Kruskal and Schwarzschild</a>&#x00A0;[<a 
+href="#Xkruskal1954instability">1954</a>].</span></div><!--tex4ht:label?: x1-790011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 406--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-800003"></a>Field perturbation for interchange modes.</span>
+Recall the linear perturbation of the magnetic field from Eq.&#x00A0;(<a href="lecture15.html#eq-eq-B1_explicit">15.4</a>), <div class="math-display">\[\vect {Q} \equiv \B _1 = \curl (\vect {\xi }\times \B _0) = \cancel {(\B \cdot \grad )\vect {\xi }_\perp } - (\vect {\xi }_\perp \cdot \grad )\B - \B \,\divergence \vect {\xi }_\perp\]</div>
+reduces for \(k_\parallel =0\) to a purely parallel perturbation, <a id="eq-eq-grav-Qflute"></a><div class="math-display">\[\vect {Q} = -B_0\left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right )\vect {e}_y. \tag{18.42}\]</div>
+such that the field lines remain straight. The equilibrium current is <a id="eq-eq-grav-J0"></a><div class="math-display">\[\vect {J}_0 = \frac {\curl \vect {B}_0}{\mu _0} = -\frac {1}{\mu _0}\frac {dB_0}{dz}\,\vect {e}_x. \tag{18.43}\]</div>
+</p>
+<!--l. 438--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-810003"></a>Energy principle for flute modes.</span>
+The ideal-MHD potential energy including gravity is <a id="eq-eq-grav-deltaW_full"></a><div class="math-display">\[2\delta W = \int dV\, \left [ \frac {|\vect {Q}|^2}{\mu _0} +\gamma p_0(\divergence \vect {\xi })^2 +(\vect {\xi }\cdot \grad p_0)(\divergence \vect {\xi }) -\vect {\xi }\cdot (\vect {J}_0\times \vect {Q}) +(\vect {\xi }\cdot \vect {g})\bigl (\vect {\xi }\cdot \grad \rho _0+\rho _0\divergence \vect {\xi }\bigr ) \right ]. \tag{18.44}\]</div>
+Substitute Eqs.&#x00A0;(<a href="lecture18.html#eq-eq-grav-Qflute">18.42</a>) and (<a href="lecture18.html#eq-eq-grav-J0">18.43</a>). First, <div class="math-display">\[\begin{aligned}\frac {|\vect {Q}|^2}{\mu _0} &amp;= \frac {B_0^2}{\mu _0} \left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right )^2, \nonumber \\ -\vect {\xi }\cdot (\vect {J}_0\times \vect {Q}) &amp;= -\xi _z\frac {d}{dz}\left (\frac {B_0^2}{2\mu _0}\right ) \left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right ).\end{aligned}\]</div>
+</p><!--l. 465--><p class="noindent" >Therefore <a id="eq-eq-grav-deltaW_expand1"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \Biggl [ \frac {B_0^2}{\mu _0} \left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right )^2 +\gamma p_0(\divergence \vect {\xi })^2 +\xi _z\frac {dp_0}{dz}\,\divergence \vect {\xi } \nonumber \\ &amp;\hspace {7em} -\xi _z\frac {d}{dz}\left (\frac {B_0^2}{2\mu _0}\right ) \left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right ) -g\xi _z\left (\xi _z\frac {d\rho _0}{dz}+\rho _0\divergence \vect {\xi }\right ) \Biggr ].\end{aligned} \tag{18.46}\]</div>
+</p><!--l. 483--><p class="noindent" >Now expand the magnetic square: <div class="math-display">\[\begin{aligned}\frac {B_0^2}{\mu _0} \left (\divergence \vect {\xi }+\xi _z\frac {d\ln B_0}{dz}\right )^2 &amp;= \frac {B_0^2}{\mu _0}(\divergence \vect {\xi })^2 +2\frac {B_0}{\mu _0}\frac {dB_0}{dz}\,\xi _z\divergence \vect {\xi } +\frac {1}{\mu _0}\left (\frac {dB_0}{dz}\right )^2\xi _z^2.\end{aligned}\]</div>
+</p><!--l. 492--><p class="noindent" >The current term subtracts <div class="math-display">\[\frac {B_0}{\mu _0}\frac {dB_0}{dz}\,\xi _z\divergence \vect {\xi } + \frac {1}{\mu _0}\left (\frac {dB_0}{dz}\right )^2\xi _z^2,\]</div>
+so one copy of the mixed term remains and the \(\xi _z^2\) magnetic term cancels entirely. Hence <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \Biggl [ \left (\gamma p_0+\frac {B_0^2}{\mu _0}\right )(\divergence \vect {\xi })^2 +\left (\frac {dp_0}{dz}+\frac {B_0}{\mu _0}\frac {dB_0}{dz}-\rho _0 g\right )\xi _z\divergence \vect {\xi } -g\frac {d\rho _0}{dz}\,\xi _z^2 \Biggr ].\end{aligned}\]</div>
+</p><!--l. 509--><p class="noindent" >Using equilibrium, Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-totpress">18.39</a>), the mixed term becomes \(-2\rho _0 g\,\xi _z\divergence \vect {\xi }\), and therefore <a id="eq-eq-grav-deltaW_flute_compact"></a><div class="math-display">\[2\delta W = \int dV\, \Biggl [ \left (\gamma p_0+\frac {B_0^2}{\mu _0}\right )(\divergence \vect {\xi })^2 -2\rho _0 g\,\xi _z\divergence \vect {\xi } -g\frac {d\rho _0}{dz}\,\xi _z^2 \Biggr ]. \tag{18.50}\]</div>
+Define <div class="math-display">\[c_s^2=\frac {\gamma p_0}{\rho _0}, \qquad v_A^2=\frac {B_0^2}{\mu _0\rho _0}.\]</div>
+Then Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-deltaW_flute_compact">18.50</a>) becomes <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \Biggl [ \rho _0(c_s^2+v_A^2)(\divergence \vect {\xi })^2 -2\rho _0 g\,\xi _z\divergence \vect {\xi } -g\frac {d\rho _0}{dz}\,\xi _z^2 \Biggr ].\end{aligned}\]</div>
+</p><!--l. 538--><p class="noindent" >Complete the square once more: <a id="eq-eq-grav-deltaW_flute_square1"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV\, \Biggl [ \rho _0(c_s^2+v_A^2) \left (\divergence \vect {\xi }-\frac {g}{c_s^2+v_A^2}\xi _z\right )^2 +\left (-g\frac {d\rho _0}{dz}-\frac {\rho _0 g^2}{c_s^2+v_A^2}\right )\xi _z^2 \Biggr ].\end{aligned} \tag{18.53}\]</div>
+</p><!--l. 550--><p class="noindent" >The coefficient of \(\xi _z^2\) can be rewritten as <div class="math-display">\[\begin{aligned}-g\frac {d\rho _0}{dz}-\frac {\rho _0 g^2}{c_s^2+v_A^2} &amp;= \frac {g}{c_s^2+v_A^2} \left [ -(c_s^2+v_A^2)\frac {d\rho _0}{dz} +\frac {dp_0}{dz} +\frac {B_0}{\mu _0}\frac {dB_0}{dz} \right ] \nonumber \\ &amp;= \frac {g\rho _0}{c_s^2+v_A^2} \left [ v_A^2\frac {d}{dz}\ln \!\left (\frac {B_0}{\rho _0}\right ) +\frac {c_s^2}{g}N^2 \right ].\end{aligned}\]</div>
+</p><!--l. 568--><p class="noindent" >Thus <a id="eq-eq-grav-deltaW_flute_square2"></a><div class="math-display">\[2\delta W = \int dV\, \rho _0 \left [ (c_s^2+v_A^2) \left (\divergence \vect {\xi }-\frac {g}{c_s^2+v_A^2}\xi _z\right )^2 +N_M^2\xi _z^2 \right ], \tag{18.55}\]</div>
+Now <div class="math-display">\[\mbox {Choose } \qquad \divergence \vect {\xi }-\frac {g}{c_s^2+v_A^2}\xi _z \Rightarrow \quad \nabla \cdot \vect {\xi }_\perp = - \vect {\xi }_\perp \cdot \nabla \ln B_0.\]</div>
+to minimize compression so that <a id="eq-eq-grav-NM2"></a><div class="math-display">\[\boxed { N_M^2 \equiv \frac {g}{c_s^2+v_A^2} \left [ v_A^2\frac {d}{dz}\ln \!\left (\frac {B_0}{\rho _0}\right ) +\frac {c_s^2}{g}N^2 \right ]. } \tag{18.57}\]</div>
+This is the magnetic analogue of the Brunt&#8211;Visl frequency for flute modes. Stability requires
+\(N_M^2&gt;0\).
+</p>
+<!--l. 604--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-820003"></a>Cold-plasma limit.</span>
+If \(p_0\to 0\), then \(c_s^2\to 0\) and Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-NM2">18.57</a>) reduces to <div class="math-display">\[N_M^2 \longrightarrow g\frac {d}{dz}\ln \!\left (\frac {B_0}{\rho _0}\right ).\]</div>
+Therefore a cold plasma supported by magnetic pressure is unstable when <a id="eq-eq-grav-coldcriterion"></a><div class="math-display">\[\boxed { \frac {d}{dz}\left (\frac {\rho _0}{B_0}\right )&gt;0. } \tag{18.59}\]</div>
+This is the Kruskal&#8211;Schwarzschild interchange criterion: the unstable ordering is the magnetic analogue of
+putting heavy fluid on top of light fluid. Here the relevant quantity is not density alone but mass per unit
+flux.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 618--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830003"></a>Finite-\(\beta \) interpretation from a thin flux tube.</span>
+Equation&#x00A0;(<a href="lecture18.html#eq-eq-grav-NM2">18.57</a>) can be understood directly from flux freezing. Along a moving element,
+the induction and continuity equations imply the familiar frozen-in relation from Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-brho">4.7</a>),
+<a id="eq-eq-grav-Boverrho_local"></a><div class="math-display">\[\frac {B}{\rho }=\text {const along a fluid element}. \tag{18.60}\]</div>
+Hence <a id="eq-eq-grav-B1rho1"></a><div class="math-display">\[\frac {B_1}{B_0}=\frac {\rho _1}{\rho _0}. \tag{18.61}\]</div>
+From this, one can derive that <a id="eq-eq-grav-rho1tube"></a><div class="math-display">\[\begin{aligned}\delta \rho &amp; = \rho _0 \frac {\delta B^2/2 }{B_0^2} \\ &amp; \frac {1}{v_A^2} \delta (B^2/2 \mu _0)\end{aligned} \tag{18.63}\]</div>
+</p>
+<!--l. 636--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-840003"></a>Magnetic pressure as a \(\gamma =2\) fluid.</span>
+Equation&#x00A0;(<a href="lecture18.html#eq-eq-grav-Boverrho_local">18.60</a>) has an important thermodynamic reading. For these flute/interchange motions the field
+is simply carried with the mass, so along a moving element one has \(B\propto \rho \). Therefore the magnetic pressure
+<a id="eq-eq-grav-maggamma2"></a><div class="math-display">\[p_B\equiv \frac {B^2}{2\mu _0} \propto \rho ^2, \qquad \Longrightarrow \qquad \frac {p_B}{\rho ^2}=\text {const along a fluid element}. \tag{18.64}\]</div>
+In that restricted sense the magnetic field behaves like a compressive medium with an effective adiabatic
+index \(\gamma _B=2\). This is stiffer than a monatomic gas, for which \(p\propto \rho ^{5/3}\): under compression the magnetic pressure
+rises faster, and under expansion it falls faster. The corresponding incremental stiffness is
+<div class="math-display">\[\left .\frac {dp_B}{d\rho }\right |_{\text {frozen-flux}} = \frac {B^2}{\mu _0\rho } = v_A^2,\]</div>
+which is exactly why Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-rho1tube">18.63</a>) contains the combination \(c_s^2+v_A^2\). In other words, for these \(k_\parallel =0\) buoyancy motions
+the field contributes to the restoring force like an extra pressure law with \(\gamma =2\). One should not push the
+analogy too far: the field is not a true scalar gas because in general it also carries anisotropic tension. But
+for flute modes, where field lines are exchanged without being bent, this \(\gamma =2\) picture captures the essential
+magnetic compressibility. In that sense, the quantity \(p_B/\rho ^2\) plays much the same bookkeeping role for the field
+that \(p/\rho ^\gamma \) plays for an adiabatic gas parcel.
+</p>
+<!--l. 655--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-850003"></a>Physical picture.</span>
+For a tube displaced upward by \(\xi _z\), pressure balance with the surrounding atmosphere at the new height
+gives <div class="math-display">\[\begin{aligned}\delta \left ( p + \frac {B^2}{2 \mu _0} \right )_{\rm parcell} &amp; = \xi _z\frac {d}{dz}\left (p_0+\frac {B_0^2}{2\mu _0}\right ) \nonumber \\ \left ( \pp {p}{\rho } + \pp {p_B} {\rho } \right ) \rho _1 &amp; = -\rho _0 g\,\xi _z \nonumber \\ (c_s^2 + v_A^2) \rho _1 &amp; = -\rho _0 g\,\xi _z \nonumber\end{aligned}\]</div>
+</p><!--l. 667--><p class="noindent" >The surrounding atmosphere at the new height has density \(\rho _0+\xi _z\rho _0'\), so the density contrast is <div class="math-display">\[\Delta \rho = \rho _1-\xi _z\frac {d\rho _0}{dz}.\]</div>
+The vertical equation of motion is therefore <a id="eq-eq-grav-magbuoy"></a><div class="math-display">\[\begin{aligned}\ddot {\xi }_z &amp; = -g\frac {\Delta \rho }{\rho _0} \nonumber \\ &amp; =-\frac {g}{\rho _0} \left ( -\frac {\rho _0 g}{c_s^2+v_A^2}\,\xi _z -\frac {d\rho _0}{dz} \xi _z\right ) \nonumber \\ &amp; =-\frac {g}{\rho _0} \left ( \frac {1}{c_s^2+v_A^2} \left ( \dd {p_0}{z} + \frac {d}{dz} \frac {B^2}{2 \mu _0} \right ) -\frac {d\rho _0}{dz} \right ) \xi _z \nonumber \\ &amp; =- \frac {g}{c_s^2+v_A^2} \left ( \frac {1}{\rho _0} \left ( \dd {p_0}{z} + \frac {d}{dz} \frac {B^2}{2 \mu _0} \right ) - \frac {c_s^2 + v_A^2}{\rho _0} \frac {d\rho _0}{dz} \right ) \xi _z \nonumber \\ &amp; =- \frac {g}{c_s^2+v_A^2} \left ( \frac {1}{\rho _0} \frac {d}{dz} \frac {B^2}{2 \mu _0} + \frac { v_A^2}{\rho _0}\frac {d\rho _0}{dz} + c_s^2 \left ( \frac {1}{\gamma p_0} \dd {p_0}{z} - \frac {1}{\rho _0} \frac {d\rho _0}{dz} \right ) \right ) \xi _z \nonumber \\ &amp; =- \frac {g}{c_s^2+v_A^2} \left ( \frac {1}{\rho _0} \frac {d}{dz} \frac {B^2}{2 \mu _0} - \frac { v_A^2}{\rho _0}\frac {d\rho _0}{dz} + c_s^2 \left ( \frac {1}{\gamma p_0} \dd {p_0}{z} - \frac {1}{\rho _0} \frac {d\rho _0}{dz} \right ) \right ) \xi _z \nonumber \\ &amp; =- \frac {g}{c_s^2+v_A^2} \left ( v_A^2 \frac {d}{dz} \ln \frac {B}{\rho _0} + c_s^2 N^2 \right ) \xi _z \nonumber \\ &amp;= -N_M^2\xi _z,\end{aligned} \tag{18.67}\]</div>
+</p><!--l. 687--><p class="noindent" >and one recovers exactly Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-NM2">18.57</a>). The first piece of \(N_M^2\) measures how magnetic support changes with
+height; the second is the ordinary Schwarzschild buoyancy term.
+</p><!--l. 690--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 690--><p class="noindent" ><span 
+class="ecbx-1095">Flute versus Parker. </span>For \(k_\parallel =0\), field lines are exchanged but not bent, and the problem
+     is controlled by the magnetic buoyancy frequency \(N_M\). The Parker problem is qualitatively
+     different because one allows a small but finite \(k_\parallel \): field lines bend, plasma drains along
+     them, and a new competition appears between buoyancy and line tension. That is the
+     gravitational ancestor of ballooning theory.</p></blockquote></div></div>
+<a 
+ id="x1-85001r81"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">18.4   </span> <a 
+ id="x1-860004"></a>The Parker Instability</h3>
+<!--l. 697--><p class="noindent" >Magnetic buoyancy plays a central role in connecting the deep-seated solar dynamo to the magnetic
+structures observed at the solar surface. In dynamo theory, as already discussed in Lecture 10, differential
+rotation stretches poloidal field into strong toroidal field in the solar interior through the \(\Omega \)&#8211;effect.
+Once the toroidal field becomes sufficiently strong, magnetic pressure partially replaces gas
+pressure within the field concentration, reducing the plasma density relative to the surrounding
+medium.
+</p><!--l. 707--><p class="noindent" >In a gravitationally stratified atmosphere this configuration becomes buoyant. As first described by Parker,
+undular perturbations of a horizontal magnetic field allow plasma to drain along the field from the tops of
+rising arches into adjacent troughs. This drainage enhances the density deficit at the crest of the
+loop, driving the exponential growth of buoyant magnetic structures. These rising loops are
+widely believed to be the progenitors of sunspot pairs and active regions emerging through the
+photosphere.
+</p><!--l. 717--><p class="noindent" >Magnetic buoyancy therefore provides the physical mechanism that transports magnetic flux from the
+dynamo region to the solar surface. The classical theoretical framework originates in Parker&#8217;s early work
+on magnetic buoyancy and solar dynamos <a 
+href="#Xparker1955hydromagnetic">Parker</a>&#x00A0;[<a 
+href="#Xparker1955hydromagnetic">1955b</a>,&#x00A0;<a 
+href="#Xparker1966dynamical">1966</a>,&#x00A0;<a 
+href="#Xparker1979cosmical">1979</a>], together with the general
+stability theory of stratified magnetized plasmas developed by Newcomb and Chandrasekhar
+<a 
+href="lecture17.html#Xnewcomb1961convective">Newcomb</a>&#x00A0;[<a 
+href="lecture17.html#Xnewcomb1961convective">1961</a>],&#x00A0;<a 
+href="lecture16.html#Xchandrasekhar1961hydrodynamic">Chandrasekhar</a>&#x00A0;[<a 
+href="lecture16.html#Xchandrasekhar1961hydrodynamic">1961</a>]. Modern numerical work on thin flux tubes rising through the
+solar convection zone has shown that buoyant loops with strengths of order \(10^4\)&#8211;\(10^5\) G reproduce many observed
+properties of active regions, including emergence latitudes and systematic tilts consistent with Joy&#8217;s law
+<a 
+href="#Xfan1993rise">Fan et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xfan1993rise">1993</a>],&#x00A0;<a 
+href="#Xcaligari1995emerging">Caligari et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xcaligari1995emerging">1995</a>]. Despite this success, several key questions remain
+unresolved. It is still debated where the toroidal field is generated and stored (tachocline versus
+distributed convection-zone dynamos), how strong the magnetic field must be to survive turbulent
+shredding during buoyant rise, and how rotation and convection combine with magnetic tension to
+produce the observed properties of emerging sunspot pairs. Magnetic buoyancy thus remains a
+crucial nonlinear link between solar dynamo theory and the surface manifestations of solar
+activity.
+</p><!--l. 740--><p class="noindent" ><span 
+class="ecbx-1095">Basic Mechanism </span>The essence of the Parker Instability can sussed out from the energy principle
+arguments from above but now adding a very long wavelength <span 
+class="ecsl-1095">undular perturbation  </span>parallel to the
+magnetic field. Here we follow <a 
+href="lecture18.html#Xkulsrud2005plasma">Kulsrud</a>&#x00A0;[<a 
+href="lecture18.html#Xkulsrud2005plasma">2005</a>]. The idea is that the motion of a long thin flux tube is
+primarily governed by the perpendicular dynamics but that the plasma can slip along the magnetic field.
+We can use exactly the same machinery we have just developed that essentially minimized the stabilizing
+contribution of the parallel magnetic field to determine \(\nabla \cdot \vect {\xi }_\perp \). We have done both zero pressure and finite
+pressure where only transverse motion was considered. Now all we need to do is to recognize
+that \(\nabla \cdot \vect {\xi } = \nabla \cdot \vect {\xi }_\perp + ik_\parallel \xi _\parallel \) and be careful to only include the compression where appropriate (<span 
+class="ecsl-1095">not for the magnetic</span>
+<span 
+class="ecsl-1095">term</span>).
+</p><!--l. 743--><p class="noindent" >Now we need to include a stabilizing term into \(k_\parallel ^2 B_0^2 \xi _\perp ^2\) as well as a buoyancy contribution that scales from a
+non-zero divergence of the parallel motion. This term is \(i (\vect {g}\cdot \vect {\xi }_\perp ) \rho _0 k_\parallel \xi _\parallel = - i k_\parallel \xi _z g \rho _0 \xi _\parallel \). This term can always be destabilizing if the
+phase of \(k_\parallel \) is properly chosen.
+</p>
+<!--l. 747--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-870004"></a>Parker with low pressure.</span>
+(\(c_s^2=0)\) or equivalently low \(\beta =\frac {c_s^2}{v_A^2}\) case is easy. Recall that the condition chosen for minimizing the magnetic
+compression energy in Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-deltaW_cs0">18.37</a>) was <div class="math-display">\[\begin{aligned}\nabla \cdot \vect {\xi }_\perp &amp; = - \vect {\xi }_\perp \cdot \nabla \ln B \mbox { or equivalently}\\ i k_\perp \xi _\perp &amp; = -\xi _z \frac {d}{dz} \ln B_0 \mbox { that leads directly to } \\ k_\perp ^2 \xi _\perp ^2 &amp; = \frac {g^2}{v_A^4} \xi _z^2.\end{aligned}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 755--><p class="noindent" >The two additional terms needed to allow for parallel streaming and a finite \(k_\parallel \) give <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV \, \underbrace {k_\parallel ^2 \frac {B_0^2}{\mu _0} \xi _\perp ^2}_{\rm field\, line \,bending } - \rho _0 g \, \xi _z^2 \left ( \dd {}{z} \ln \frac {\rho _0}{B_0} \right ) + \underbrace {2 i \rho _0 g\xi _z k_\parallel \xi _\parallel }_{\rm parallel \, streaming} .\end{aligned}\]</div>
+</p><!--l. 764--><p class="noindent" >The factor of two comes from the \(\vect {\xi }_\parallel \cdot \vect {J}_0 \times \vect {Q}_\perp = i \rho _0 g \xi _z k_\parallel \xi _\parallel \) term. One can see there is now a competition between the additional
+buoyancy and the increased magnetic tension. Choosing \(\xi _\parallel \) to be 90 degrees out of phase with \(\xi _z\), ie. \(\xi _\parallel = i A \xi _z \) with \(\xi _z\)
+chosen to be real, the energy principle becomes <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV \, \rho _0 g \left [ \frac {k_\parallel ^2}{k_\perp ^2} \frac {g}{v_A^2} - \, \left ( \dd {}{z} \ln \frac {\rho _0}{B_0} \right ) - 2 A k_\parallel \right ] \xi _z^2\end{aligned}\]</div>
+</p><!--l. 774--><p class="noindent" >and for instability <div class="math-display">\[k_\parallel A = k_\parallel \frac {|\xi _\parallel |}{|\xi _z|} &gt; \frac {k_\parallel ^2}{k_\perp ^2} \frac {g}{v_A^2} - \, \left ( \dd {}{z} \ln \frac {\rho _0}{B_0} \right )\]</div>
+The first term can be made small by assuming \(k_\parallel ^2 \ll k_\perp ^2 \frac { v_A^2}{g}\dd {}{z} \ln \frac {\rho _0}{B_0} \) and thus the system is unstable even with \(\frac {d}{dz} \ln \frac {\rho _0}{B_0} &lt; 0 \) when it would
+be otherwise stable to interchange.
+</p>
+<!--l. 783--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-880004"></a>The Solar Tachocline</span>
+The base of the solar convection zone (near the tachocline at \(r \approx 0.71R_\odot \)) is a strongly high&#8211;\(\beta \) plasma, meaning that
+gas pressure greatly exceeds magnetic pressure. Typical thermodynamic conditions there are \(p \sim 10^{13}\)&#8211;\(10^{14}\,\mathrm {Pa}\) and \(\rho \sim 0.2\,\mathrm {kg\,m^{-3}}\).
+Even if the solar dynamo produces strong toroidal magnetic fields of order \(1\)&#8211;\(10\,\mathrm {T}\), the plasma beta
+<div class="math-display">\[\beta = \frac {2\mu _0 p}{B^2} = \frac {c_s^2}{v_A^2}\]</div>
+remains extremely large, typically \[ \beta \sim 10^{5} - 10^{7}. \] </p>
+     <ul class="itemize1">
+     <li class="itemize">Thus the equilibrium structure of the plasma is primarily determined by gas pressure and
+     gravity, while magnetic fields act as a relatively small perturbation embedded in the fluid.
+     </li>
+     <li class="itemize">In the absence of convective instability the entropy would be decreasing with height; convection
+     ensues and enforces a temperature gradient at marginality&#8211;helioseismology together with solar
+     models (including neutrinos) confirm this picture of a convection zone more or less controlled
+     by unmagnetized convection.
+     </li>
+     <li class="itemize">Magnetic fields play a very weak role in the equilibrium, and self-organized convection enforces
+     \(N^2 \approx 0\).
+     </li>
+     <li class="itemize">In the interface region between the turbulent convection zone and the rigid "core" of the Sun
+     where radiation controls heat transport (called the tachocline), the toroidal magnetic field
+     is continuously being "wound up" by differential rotation (the \(\omega \) effect mentioned already in
+     Lecture 10.</li></ul>
+<!--l. 809--><p class="noindent" >This high&#8211;\(\beta \) regime is precisely the one assumed in Parker&#8217;s theory of magnetic buoyancy <a 
+href="#XParker1955">Parker</a>&#x00A0;[<a 
+href="#XParker1955">1955a</a>,&#x00A0;<a 
+href="#Xparker1979cosmical">1979</a>],
+where a modest reduction in gas pressure inside a magnetic flux tube produces a density deficit that allows
+the tube to rise through the stratified convection zone. The question Parker addressed is how a thin long
+tube of toroidal magentic flux generated by strong differential rotation at the tachoclines might break
+away, rise up through the turbulent convection zone without being shredded by the turbulence
+and then emerge as sun spots and contribute the \(\alpha \) effect needed to close the dynamo feedback
+loop.
+</p>
+<!--l. 816--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-890004"></a><span 
+class="ecbx-1095">High</span> \(\beta \) <span 
+class="ecbx-1095">Undular Modes.</span></span>
+One can quickly see how much more complicated the energy principle becomes when the motion becomes
+                                                                                         
+                                                                                         
+fully three dimentional as pressure terms in \(\delta W\) include "total" rather than just "perpendicular" compression.
+Adding these terms in can be done piecemeal from where we left off, and the tricky part is knowing where
+and when to add magnetic buoyancy forces.
+</p>
+<!--l. 819--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-900004"></a><span 
+class="ecbx-1095">High</span> \(\beta \) <span 
+class="ecbx-1095">Undular Modes.</span></span>
+One can quickly see how much more complicated the energy principle becomes when the motion becomes
+fully three dimentional as pressure terms in \(\delta W\) include "total" rather than just "perpendicular" compression.
+Adding these terms in can be done piecemeal from where we left off, and the tricky part is knowing where
+and when to add magnetic buoyancy forces. <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV \, k_\parallel ^2 \frac {B_0^2}{\mu _0} \xi _\perp ^2 + \frac {g\rho _0}{ c_s^2 + v_A^2} \left ( v_A^2 \dd {}{z} \ln \frac {B_0}{\rho _0} + \frac {c_s^2}{g} N^2 \right ) \xi _z^2 + 2 i \rho _0 g\xi _z k_\parallel \xi _\parallel \\ &amp; + \gamma p_0 \left [ (\nabla \cdot \bm {\xi })^2 - (\nabla \cdot \bm {\xi }_\perp )^2\right ] + (\bm {\xi }_\perp \cdot \nabla p_0)(\nabla \cdot \bm {\xi }_\parallel )\end{aligned}\]</div>
+</p><!--l. 831--><p class="noindent" >and we can use <div class="math-display">\[\begin{aligned}(\nabla \cdot \bm {\xi })^2 - (\nabla \cdot \bm {\xi }_\perp )^2 &amp; = i k_\parallel \xi _\parallel \nabla \cdot \vect {\xi }_\perp ^* - i k_\parallel \xi _\parallel ^* \nabla \cdot \vect {\xi }_\perp + k_\parallel ^2 \xi _\parallel ^2 \\ \nabla \cdot \vect {\xi }_\parallel &amp; = i k_\parallel \xi _\parallel \\ \nabla \cdot \vect {\xi }_\perp = \xi _z \frac {g}{( c_s^2 + v_A^2 )} &amp; \rightarrow \xi _\perp ^2 = \frac {g^2}{k_\perp ^2 (c_s^2 + v_A^2)^2} \xi _z^2\end{aligned}\]</div>
+</p><!--l. 839--><p class="noindent" >With these pieces <div class="math-display">\[\begin{aligned}2\delta W &amp;= \int dV \, k_\parallel ^2 \frac {B_0^2}{\mu _0} \xi _\perp ^2 + \frac {g\rho _0}{ c_s^2 + v_A^2} \left ( v_A^2 \dd {}{z} \ln \frac {B_0}{\rho _0} + \frac {c_s^2}{g} N^2 \right ) \xi _z^2 \nonumber \\ + 2 i \rho _0 g\xi _z k_\parallel \xi _\parallel \nonumber \\ &amp; + \gamma p_0 \left ( i k_\parallel (\xi _\parallel \xi _z^* -\xi _\parallel ^* \xi _z) \frac {g}{( c_s^2 + v_A^2 )} + k_\parallel ^2 \xi _\parallel ^2\right ) + \xi _z \dd {p_0}{z} i k_\parallel \xi _\parallel \nonumber \\ &amp;= \int dV \, k_\parallel ^2 \frac {B_0^2}{\mu _0} \xi _\perp ^2 + \gamma p_0 k_\parallel ^2 \xi _\parallel ^2 + \frac {g\rho _0}{ c_s^2 + v_A^2} \left ( v_A^2 \dd {}{z} \ln \frac {B_0}{\rho _0} + \frac {c_s^2}{g} N^2 \right ) \xi _z^2 \nonumber \\ &amp; + i k_\parallel \left ( \left ( 2 \rho _0 g + \dd {p_0}{z} \right ) \xi _z \xi _\parallel + \rho _0 g \frac {c_s^2}{ c_s^2 + v_A^2 } (\xi _\parallel \xi _z^* -\xi _\parallel ^* \xi _z) \right ) \nonumber \\ &amp;= \int dV \, \rho _0 k_\parallel ^2 (v_A^2 \xi _\perp ^2 + c_s^2 \xi _\parallel ^2) + \frac {g\rho _0}{ c_s^2 + v_A^2} \left ( v_A^2 \dd {}{z} \ln \frac {B_0}{\rho _0} + \frac {c_s^2}{g} N^2 \right ) \xi _z^2 \nonumber \\ &amp; + i k_\parallel \left ( \left ( 2 \rho _0 g + \dd {p_0}{z} \right ) \xi _z \xi _\parallel + \rho _0 g \frac {c_s^2}{ c_s^2 + v_A^2 } (\xi _\parallel \xi _z^* -\xi _\parallel ^* \xi _z) \right ) \nonumber\end{aligned}\]</div>
+</p><!--l. 867--><p class="noindent" >The additional quadratic term from the pressure changes the stability criteria. Nonetheless it is clear that
+the last line can be made negative and large by choosing a proper phase shift between \(\xi _\parallel \) and
+\(\xi _z\).
+</p><!--l. 869--><p class="noindent" >The big difference with the low beta case is that the parallel draining along the field line is now balanced
+by pressure. Newcomb <a 
+href="lecture17.html#Xnewcomb1961convective">Newcomb</a>&#x00A0;[<a 
+href="lecture17.html#Xnewcomb1961convective">1961</a>] plowed through this form and showed that ultimate instability for
+"undular" modes was simply that <div class="math-display">\[- \frac {d\rho }{dz}&lt;\frac {\rho ^2 g}{\gamma p}\]</div>
+or equivalently <div class="math-display">\[\frac {B}{\mu _0 } \frac {d B}{dz} &lt; - \frac {\gamma p N^2}{g}\]</div>
+and for \(N^2\approx 0\) this amounts to \(\frac {dB}{dz} &lt; 0\), ie that the magnetic field decrease with height. Little information is given about
+what such an instability would look like in Newcomb&#8217;s treatment.
+</p>
+<!--l. 884--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-910004"></a>Why long-wavelength motion along the field matters.</span>
+In a flute mode the displacement has \(k_\parallel =0\), so there is no field-line bending energy and no opportunity for mass
+to drain from the crest of a rising perturbation to neighboring troughs. Once we allow a small but finite \(k_\parallel \),
+two new effects appear simultaneously:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">magnetic tension adds a stabilizing term of order \(\rho _0 v_A^2 k_\parallel ^2|\xi _z|^2\),
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">parallel motion lets plasma slip along the field, which can lighten the crest of a rising arch and
+   thereby <span 
+class="ecti-1095">increase </span>the buoyancy drive.</dd></dl>
+<!--l. 890--><p class="noindent" >The Parker instability is the statement that for sufficiently long parallel wavelength, the second effect can
+beat the first.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-910032"></a>
+                                                                                         
+                                                                                         
+<!--l. 894--><p class="noindent" ><img 
+src="figures/IMG_2936.jpeg" alt="PIC"  
+width="338" height="338"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;18.2: </span><span  
+class="content">The Parker or undular instability: a horizontal field bows upward, plasma drains from
+the crest to the valleys, and the crest becomes lighter still. This is the prototype of a ballooning
+mode in a gravitationally stratified atmosphere. The mode is localized across the field but long along
+it, so the crest can drain mass into the neighboring valleys. </span></div><!--tex4ht:label?: x1-910032 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 899--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-920004"></a>A clean long-wavelength estimate.</span>
+Take a horizontal flux tube whose crest is displaced upward by \(\xi _z\). Let <div class="math-display">\[H_B^{-1}\equiv -\frac {d\ln \rho _0}{dz}\]</div>
+be the density scale height of the background atmosphere and <div class="math-display">\[H_p\equiv \frac {c_s^2}{g}\]</div>
+the gas-pressure scale height along the field line. In a long-wavelength undular mode, pressure equilibrates
+rapidly along the field, so the crest density of the displaced tube follows the gas-pressure law rather than
+the full magnetostatic law. To first order, <div class="math-display">\[\rho _{\rm crest}\simeq \rho _0\left (1-\frac {\xi _z}{H_p}\right ), \qquad \rho _{\rm ext}\simeq \rho _0\left (1-\frac {\xi _z}{H_B}\right ).\]</div>
+Thus <a id="eq-eq-grav-parker_deltarho"></a><div class="math-display">\[\Delta \rho \equiv \rho _{\rm crest}-\rho _{\rm ext} = -\rho _0\left (\frac {1}{H_p}-\frac {1}{H_B}\right )\xi _z. \tag{18.85}\]</div>
+The buoyancy force density is \(-g\Delta \rho \), while field-line bending supplies a restoring force density \(-\rho _0 v_A^2k_\parallel ^2\xi _z\). Therefore
+<a id="eq-eq-grav-parker_local"></a><div class="math-display">\[\ddot {\xi }_z = \left [ g\left (\frac {1}{H_p}-\frac {1}{H_B}\right )-v_A^2k_\parallel ^2 \right ]\xi _z. \tag{18.86}\]</div>
+The long-wavelength undular mode is unstable when <a id="eq-eq-grav-parkercriterion"></a><div class="math-display">\[\boxed { k_\parallel ^2 &lt; \frac {g}{v_A^2}\left (\frac {1}{H_p}-\frac {1}{H_B}\right ). } \tag{18.87}\]</div>
+Equivalently, only sufficiently long parallel wavelengths are unstable: <a id="eq-eq-grav-lambdac"></a><div class="math-display">\[\lambda _\parallel &gt; \lambda _c \equiv \frac {2\pi v_A}{\sqrt {g(H_p^{-1}-H_B^{-1})}}. \tag{18.88}\]</div>
+This estimate is deliberately simple, but it captures the central Parker idea: magnetic support changes the
+background scale height, while parallel drainage makes the crest obey the gas-pressure scale height
+instead.
+</p>
+<!--l. 953--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-930004"></a>Connection with the exact energy-principle criterion.</span>
+The full Newcomb treatment is more careful than the estimate above, but it leads to the same lesson: long
+parallel wavelength and parallel drainage make the configuration easier to destabilize than a purely flute
+perturbation <a 
+href="lecture17.html#Xnewcomb1961convective">Newcomb</a>&#x00A0;[<a 
+href="lecture17.html#Xnewcomb1961convective">1961</a>]. In the high-\(\beta \) limit the instability condition can be written in the compact
+form <a id="eq-eq-grav-newcomb_parker"></a><div class="math-display">\[\boxed { \frac {B_0}{\mu _0}\frac {dB_0}{dz} &lt; -\frac {\gamma p_0}{g}N^2. } \tag{18.89}\]</div>
+If the atmosphere is close to adiabatic, so that \(N^2\approx 0\), this reduces to the simple statement that a horizontal
+field which decreases with height is Parker unstable provided the parallel wavelength is long
+enough.
+</p>
+<!--l. 965--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-940004"></a>Solar context.</span>
+This is why Parker instability sits so naturally beside the dynamo lecture. Differential rotation can wind
+poloidal flux into strong toroidal field in the solar interior, but that toroidal field is not useful
+observationally until it can rise. Magnetic buoyancy and Parker-type undular modes provide the
+classical route by which deep toroidal flux escapes magnetic burial and emerges toward the
+photosphere <a 
+href="#XParker1955">Parker</a>&#x00A0;[<a 
+href="#XParker1955">1955a</a>,<a 
+href="#Xparker1955hydromagnetic">b</a>,&#x00A0;<a 
+href="#Xparker1966dynamical">1966</a>,&#x00A0;<a 
+href="#Xparker1979cosmical">1979</a>]. Modern thin-flux-tube calculations show that this
+basic picture remains remarkably robust: buoyant loops rising through a stratified rotating
+envelope reproduce many gross properties of active-region emergence <a 
+href="#Xfan1993rise">Fan et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xfan1993rise">1993</a>],&#x00A0;<a 
+href="#Xcaligari1995emerging">Caligari
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xcaligari1995emerging">1995</a>].
+</p>
+<!--l. 968--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-950004"></a>Why this lecture matters for later stability theory.</span>
+In a torus, true gravity is no longer essential. Magnetic curvature and pressure gradient combine to
+produce an <span 
+class="ecti-1095">effective </span>buoyancy drive. In that sense, bad curvature in a tokamak or stellarator plays the role
+that gravity played here, while long parallel wavelength and localization along a field line produce the
+ballooning structure. The gravitational interchange problem is therefore the clean prototype for magnetic
+interchange and ballooning theory: first learn the buoyancy physics here, then replace gravity by curvature
+                                                                                         
+                                                                                         
+in the confinement geometry.
+</p><!--l. 972--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">The Brunt&#8211;Visl frequency \(N\) measures whether a stratified atmosphere restores or
+   amplifies a vertical displacement.
+   </li>
+   <li class="itemize">In a magnetized atmosphere with \(k_\parallel =0\), the relevant restoring quantity is the magnetic
+   buoyancy frequency \(N_M\), Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-NM2">18.57</a>).
+   </li>
+   <li class="itemize">The cold-plasma interchange criterion depends on \(\rho /B\), not on \(\rho \) alone: mass per unit
+   magnetic flux is the quantity that gets exchanged.
+   </li>
+   <li class="itemize">Allowing finite \(k_\parallel \) changes the problem qualitatively. Parallel drainage can overcome
+   line tension and produce Parker&#8217;s undular instability, the gravitational prototype of
+   ballooning.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-960004"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <span 
+class="ecti-1095">The Mathematical Theory of Non-Uniform Gases:</span>
+  <span 
+class="ecti-1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</span>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Hrm.  Transport phenomena in a completely ionized gas.
+  <span 
+class="ecti-1095">Physical Review</span>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <span 
+class="ecti-1095">Soviet</span>
+  <span 
+class="ecti-1095">Physics JETP</span>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <span 
+class="ecti-1095">Reports on Progress in Physics</span>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <span 
+class="ecti-1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</span>
+  <span 
+class="ecti-1095">Research</span>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <span 
+class="ecti-1095">Proceedings  of  the  Royal</span>
+  <span 
+class="ecti-1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</span>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-970004"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 18.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-deltaW_unmag">18.24</a>), complete the square explicitly and verify Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-deltaW_unmag_square">18.27</a>).
+                Show directly that \(\delta W\ge 0\) for all admissible perturbations if and only if \(N^2\ge 0\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 18.2.</span>  </dt><dd 
+class="enumerate-enumitem">Take the magnetic buoyancy frequency in Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-NM2">18.57</a>). Show that
+                    <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+                (a)  </dt><dd 
+class="enumerate-enumitem">in the limit \(v_A\to 0\) it reduces to the ordinary Brunt&#8211;Visl frequency;
+                    </dd><dt class="enumerate-enumitem">
+                (b)  </dt><dd 
+class="enumerate-enumitem">in the cold limit \(c_s\to 0\) it reduces to the Kruskal&#8211;Schwarzschild interchange criterion,
+                    Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-coldcriterion">18.59</a>).</dd></dl>
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 18.3.</span>  </dt><dd 
+class="enumerate-enumitem">Using the long-wavelength Parker estimate, Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-parker_local">18.86</a>), derive the critical wavelength \(\lambda _c\)
+                in Eq.&#x00A0;(<a href="lecture18.html#eq-eq-grav-lambdac">18.88</a>). Then interpret physically why <span 
+class="ecti-1095">long </span>parallel wavelength is destabilizing
+                rather than stabilizing.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

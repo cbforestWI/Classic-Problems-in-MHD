@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 2 Resistive-Viscous MHD Equations</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture1.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture3.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;2</span><br /><a 
+ id="x1-360002"></a>Resistive&#8211;Viscous MHD Equations</h2>
+<!--l. 63--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 63--><p class="noindent" ><span 
+class="ecbx-1095">This lecture turns the schematic MHD system of Lecture</span><span 
+class="ecbx-1095">&#x00A0;1 into an honest</span>
+     <span 
+class="ecbx-1095">transport model.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">It separates body forces from stresses transmitted across surfaces.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">It makes clear where viscosity and resistivity actually enter the equations.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">It identifies the two main channels of dissipation: viscous heating and Ohmic heating.</dd></dl>
+     </blockquote></div></div>
+<!--l. 71--><p class="noindent" >The equations in (<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>)&#8211;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>) look deceptively compact. Their real content depends on what is meant by
+stress, conductivity, and heat transport. In liquid metals the closures can be very close to the
+ordinary Navier&#8211;Stokes ones; in plasmas they are often anisotropic and collisionality-dependent.
+This lecture keeps the algebra at the single-fluid level but prepares the ground for that later
+distinction.
+</p><!--l. 74--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 74--><p class="noindent" >One of the oldest conceptual moves in continuum mechanics is the distinction between
+     forces that act throughout a volume and forces transmitted through its boundary. In
+     MHD this distinction becomes especially useful because the Lorentz force behaves as
+     a body force in the momentum equation, while viscosity and pressure naturally enter
+     through a stress tensor.</p></blockquote></div></div>
+<a 
+ id="x1-36004r35"></a>
+<h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-370001"></a>Body and Surface Forces</h3>
+<!--l. 81--><p class="noindent" >Let \(V\) be a material volume bounded by a surface \(S\) with outward area element \[ d\vect {S} = \hat {\vect {n}}\, dS. \] We write the total force
+density as the sum of a body-force term and a surface-force term.
+</p>
+<!--l. 87--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-380001"></a>Body forces.</span>
+Typical examples are <a id="eq-eq-visc-bodyforces"></a><div class="math-display">\[\vect {f}_{\mathrm {body}} = \rho \vect {g} + \J \times \B + \rho _e \E . \tag{2.1}\]</div>
+Under the quasi-neutral approximation, \(\rho _e \approx 0\), so the dominant electromagnetic body force is the Lorentz force \(\J \times \B \)
+already used in (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>).
+</p>
+<!--l. 101--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-390001"></a>Surface forces.</span>
+Introduce a pressure-stress tensor \(\tens {P}\) so that the force exerted on the fluid by its surroundings is
+                                                                                         
+                                                                                         
+<a id="eq-eq-visc-traction"></a><div class="math-display">\[d\vect {F}_{\mathrm {surf}} = - \tens {P}\cdot d\vect {S}. \tag{2.2}\]</div>
+The total surface force on the volume is then <a id="eq-eq-visc-surfaceforce"></a><div class="math-display">\[\vect {F}_{\mathrm {surf}} = - \oint _S \tens {P}\cdot d\vect {S} = - \int _V \divergence \tens {P}\, dV. \tag{2.3}\]</div>
+</p><!--l. 122--><p class="noindent" >Therefore the local momentum equation is <a id="eq-eq-visc-localmomentum"></a><div class="math-display">\[\rho \frac {D\uvec }{Dt} = -\divergence \tens {P} + \vect {f}_{\mathrm {body}}. \tag{2.4}\]</div>
+<a 
+ id="x1-39001r39"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-400002"></a>Symmetry and Angular Momentum</h3>
+<!--l. 136--><p class="noindent" >Angular momentum conservation requires the stress tensor to be symmetric. To see this, define
+<a id="eq-eq-visc-angularmomentum"></a><div class="math-display">\[\vect {L} = \int _V \rho \, \vect {r}\times \uvec \, dV. \tag{2.5}\]</div>
+Using (<a href="lecture2.html#eq-eq-visc-localmomentum">2.4</a>) and integrating by parts gives a surface torque plus the volume term <a id="eq-eq-visc-torquevolume"></a><div class="math-display">\[\int _V \epsilon _{ijk} P_{kj}\, dV. \tag{2.6}\]</div>
+This vanishes for arbitrary material volumes only if <a id="eq-eq-visc-symmetry"></a><div class="math-display">\[\boxed { P_{ij}=P_{ji}. } \tag{2.7}\]</div>
+</p><!--l. 156--><p class="noindent" >That result is worth remembering: the symmetry of the stress tensor is not a decorative assumption but
+the local statement of angular-momentum conservation.
+<a 
+ id="x1-40001r42"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-410003"></a>Pressure and Viscous Stress</h3>
+<!--l. 162--><p class="noindent" >We decompose the pressure-stress tensor as <a id="eq-eq-visc-stresssplit"></a><div class="math-display">\[\boxed { \tens {P} = p\,\tens {I} - \tens {\Pi }, } \tag{2.8}\]</div>
+where \(p\) is the isotropic pressure and \(\tens {\Pi }\) is the viscous stress tensor.
+</p><!--l. 175--><p class="noindent" >Substituting (<a href="lecture2.html#eq-eq-visc-stresssplit">2.8</a>) into (<a href="lecture2.html#eq-eq-visc-localmomentum">2.4</a>) gives <a id="eq-eq-visc-momentum"></a><div class="math-display">\[\boxed { \rho \frac {D\uvec }{Dt} = -\grad p + \divergence \tens {\Pi } + \J \times \B + \rho \vect {g}. } \tag{2.9}\]</div>
+Equation (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>) is the more explicit version of (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>): the pressure term and the viscous term are simply the
+divergence of the surface stress written in split form.
+</p><!--l. 192--><p class="noindent" >For an isotropic Newtonian fluid, <a id="eq-eq-visc-newtonian"></a><div class="math-display">\[\boxed { \tens {\Pi } = \mu \left [ \grad \uvec + (\grad \uvec )^T - \frac {2}{3} (\divergence \uvec )\tens {I} \right ] + \zeta (\divergence \uvec )\tens {I}, } \tag{2.10}\]</div>
+where \(\mu \) and \(\zeta \) are the shear and bulk viscosities. If the flow is incompressible and \(\mu \) is uniform, then <a id="eq-eq-visc-incompressible"></a><div class="math-display">\[\divergence \tens {\Pi } = \mu \lap \uvec . \tag{2.11}\]</div>
+</p><!--l. 221--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 221--><p class="noindent" ><span 
+class="ecbx-1095">The isotropic Newtonian closure is not the last word in plasma MHD. </span>It is a
+     very useful model for liquid metals and for introductory derivations, but in a magnetized
+     plasma the true viscous stress is generally anisotropic. That is exactly the issue revisited
+     in Lecture&#x00A0;5.</p></blockquote></div></div>
+<a 
+ id="x1-41001r43"></a>
+<h3 class="sectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-420004"></a>Resistive Induction</h3>
+<!--l. 229--><p class="noindent" >The magnetic field evolves according to the induction equation (<a href="lecture1.html#eq-eq-intro-induction">1.13</a>). For uniform resistivity, using
+Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) and \(\divergence \B =0\) from (<a href="lecture1.html#eq-eq-intro-divb">1.12</a>), one finds <a id="eq-eq-visc-induction"></a><div class="math-display">\[\boxed { \pp {\B }{t} = \curl (\uvec \times \B ) + \eta _{\mathrm {m}} \lap \B , \qquad \eta _{\mathrm {m}} \equiv \frac {\eta }{\muo }. } \tag{2.12}\]</div>
+</p><!--l. 245--><p class="noindent" >The first term on the right describes advection and stretching of magnetic field, while the second describes
+                                                                                         
+                                                                                         
+diffusion of magnetic structure. In later lectures this competition will reappear as the magnetic Reynolds
+number and the frozen-in limit.
+<a 
+ id="x1-42001r44"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.5   </span> <a 
+ id="x1-430005"></a>Dissipation and Heating</h3>
+<!--l. 251--><p class="noindent" >Two positive-definite sinks of ordered mechanical or magnetic energy appear naturally: <a id="eq-eq-visc-heating"></a><div class="math-display">\[\boxed { Q_{\mathrm {visc}} = \tens {\Pi }:\grad \uvec , \qquad Q_{\mathrm {ohm}} = \eta J^2. } \tag{2.13}\]</div>
+These are the terms that feed the internal-energy equation (<a href="lecture1.html#eq-eq-intro-adiabatic">1.14</a>). Viscosity damps velocity
+gradients; resistivity damps current gradients. Both convert organized motion or field structure into
+heat.
+<a 
+ id="x1-43001r45"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.6   </span> <a 
+ id="x1-440006"></a>Experimental Perspective</h3>
+<!--l. 268--><p class="noindent" >This lecture is one of the places where theory first starts to feel like hardware. In liquid-metal MHD, (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>)
+and (<a href="lecture2.html#eq-eq-visc-induction">2.12</a>) can be almost embarrassingly literal: pressure gradients drive the flow, the Lorentz force brakes
+or redirects it, and the diffusive coefficients can often be measured independently. In laboratory plasmas
+the same equations still organize the dynamics, but the closure hidden in \(\tens {\Pi }\) and in the conductivity is much
+more delicate. That is why the question &#8220;what is the right MHD model?&#8221; is often really a question about
+transport.
+</p><!--l. 271--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">Pressure and viscosity are best understood as parts of a stress tensor acting across
+   surfaces.
+   </li>
+   <li class="itemize">The  explicit  resistive&#8211;viscous  momentum  equation  is  (<a href="lecture2.html#eq-eq-visc-momentum">2.9</a>);  the  corresponding
+   induction equation is (<a href="lecture2.html#eq-eq-visc-induction">2.12</a>).
+   </li>
+   <li class="itemize">Viscous and Ohmic dissipation, (<a href="lecture2.html#eq-eq-visc-heating">2.13</a>), are not afterthoughts. They are the channels
+   through which ordered flow and magnetic structure are irreversibly degraded.</li></ul>
+     </blockquote></div></div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 40 Motion, Moving Walls, and Shear in MHD Stability</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture39.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture41.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;40</span><br /><a 
+ id="x1-17900040"></a>Motion, Moving Walls, and Shear in MHD Stability</h2>
+<!--l. 7--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 7--><p class="noindent" >Motion changes MHD stability in three distinct ways. First, a bulk flow Doppler-shifts
+     the spectrum, so every familiar wave and continuum is seen in the moving frame. Second,
+     velocity shear introduces a loss of coherence: neighboring flux tubes no longer stay in
+     phase, and a mode that would otherwise grow as a coherent global displacement can
+     be smeared out before it completes an e-folding. Third, the flow itself is a reservoir of
+     free energy. This is the dangerous side of the story: the same shear that can weaken
+     interchange or kink modes can also drive Kelvin&#8211;Helmholtz-type instabilities.
+     </p><!--l. 16--><p class="noindent" >This  appendix  is  meant  as  a  bridge  lecture.  It  ties  the  static  energy  principle  of
+     Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>) to moving boundaries, rotating plasmas, sheared-flow stabilization of mirrors
+     and Z pinches, and the counterexample provided by Kelvin&#8211;Helmholtz instability. The
+     common lesson is that &#8220;flow stabilization&#8221; is never a one-word theorem. One must always
+     ask: which frame, which branch, and which free-energy source?</p></blockquote></div></div>
+<!--l. 24--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 24--><p class="noindent" >The clean static story belongs to Bernstein, Frieman, Kruskal, and Kulsrud and was
+     recast  for  these  notes  in  the  energy-principle  lecture.  The  corresponding  theory  for
+     equilibria with flow was put into systematic form by Frieman and Rotenberg, who showed
+     that the linearized problem is no longer governed by a purely self-adjoint force operator
+     <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman and Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>]. At almost the same time, Chandrasekhar organized the
+     hydrodynamic and hydromagnetic stability problems into a single intellectual framework,
+     including  the  Kelvin&#8211;Helmholtz  and  rotating-flow  problems  <a 
+href="lecture36.html#Xchandrasekhar1961hydrodynamic">Chandrasekhar</a>&#x00A0;[<a 
+href="lecture36.html#Xchandrasekhar1961hydrodynamic">1961</a>].
+     Later developments split along two laboratory lines.
+     </p><!--l. 32--><p class="noindent" >One line emphasized rotating plasmas and moving walls. In toroidal confinement, the
+     classical question became whether a nearby wall and plasma rotation could stabilize
+     external modes that are otherwise unstable without a wall <a 
+href="#XBondesonWard1994">Bondeson and Ward</a>&#x00A0;[<a 
+href="#XBondesonWard1994">1994</a>].
+     In non-neutral plasma physics, the &#8220;rotating wall&#8221; became a literal control technique: a
+     rotating external perturbation transfers torque to the plasma and compresses it <a 
+href="#XHuang1997RotatingWall">Huang
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHuang1997RotatingWall">1997</a>]. The second line emphasized velocity shear inside the plasma. In mirror
+     devices it was learned that biased end plates can drive azimuthal shear strong enough
+     to suppress flute-like transport <a 
+href="#XBeklemishev2010Vortex">Beklemishev et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBeklemishev2010Vortex">2010</a>]. In Z pinches, axial shear was
+     developed into a stabilization strategy for kink-like modes, first analytically and then
+     experimentally <a 
+href="#XShumlakHartman1995">Shumlak and Hartman</a>&#x00A0;[<a 
+href="#XShumlakHartman1995">1995</a>],&#x00A0;<a 
+href="#XShumlak2003ZaP">Shumlak et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XShumlak2003ZaP">2003</a>].</p></blockquote></div></div>
+<!--l. 44--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 44--><p class="noindent" ><span 
+class="ecbx-1095">Three cautions are worth keeping in mind.</span>
+                                                                                         
+                                                                                         
+     </p><!--l. 46--><p class="noindent" >First, rigid motion is not the same as shear. Uniform rotation often does little more
+     than produce a Doppler shift, whereas differential rotation can change the underlying
+     operator and the continuum.
+     </p><!--l. 49--><p class="noindent" >Second, a moving wall is best thought of as a <span 
+class="ecti-1095">boundary condition in the wall frame</span>. The
+     wall does not magically stabilize the plasma; it changes which field lines are frozen to
+     which material points.
+     </p><!--l. 53--><p class="noindent" >Third, shear is not automatically stabilizing. Smooth shear can decorrelate a flute or
+     kink mode, but a sharp velocity jump is itself a classical free-energy source and can
+     excite the Kelvin&#8211;Helmholtz branch.</p></blockquote></div></div>
+<a 
+ id="x1-179001r179"></a>
+<h3 class="sectionHead"><span class="titlemark">40.1   </span> <a 
+ id="x1-1800001"></a>Why motion changes the stability problem</h3>
+<!--l. 60--><p class="noindent" >For a static equilibrium, the linearized ideal-MHD system can be written in the familiar form
+<a id="eq-eq-flowapp-static_operator"></a><div class="math-display">\[-\rho _0\omega ^2\,\vect {\xi }=\mathcal {F}_0[\vect {\xi }], \tag{F.1}\]</div>
+and the energy principle says that stability is determined by the sign of \(\delta W[\vect {\xi }]\), Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>). The reason this is so
+powerful is that \(\mathcal {F}_0\) is self-adjoint. The eigenvalue appears only as \(\omega ^2\), the spectrum is real, and one can
+understand stability by minimizing a quadratic form.
+</p>
+<!--l. 70--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1810001"></a>The flowing problem.</span>
+For a stationary equilibrium with background flow \(\vect {V}_0\), the corresponding displacement equation takes the
+schematic Frieman&#8211;Rotenberg form <a id="eq-eq-flowapp-FR_schematic"></a><div class="math-display">\[\rho _0\,\partial _t^2\vect {\xi } +2\rho _0\,\vect {V}_0\!\cdot \!\grad \,\partial _t\vect {\xi } +\mathcal {F}_{V}[\vect {\xi }]=0, \tag{F.2}\]</div>
+where \(\mathcal {F}_V\) reduces to \(\mathcal {F}_0\) when \(\vect {V}_0=0\) <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman and Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>]. The exact form of \(\mathcal {F}_V\) contains the equilibrium-flow
+shear and centrifugal terms, but for present purposes the main point is simpler: the linear problem is no
+longer purely variational in the static sense.
+</p><!--l. 84--><p class="noindent" >With a normal mode <div class="math-display">\[\vect {\xi }(\vect {x},t)=\hat {\vect {\xi }}(\vect {x})e^{-i\omega t},\]</div>
+Eq.&#x00A0;(F.2) becomes <a id="eq-eq-flowapp-normal_mode_flow"></a><div class="math-display">\[-\rho _0\omega ^2\hat {\vect {\xi }} -2i\omega \rho _0\,\vect {V}_0\!\cdot \!\grad \hat {\vect {\xi }} +\mathcal {F}_{V}[\hat {\vect {\xi }}]=0. \tag{F.4}\]</div>
+The middle term is anti-self-adjoint. It is the linear imprint of advection and it is why one no longer gets a
+simple &#8220;minimize \(\delta W\) and read off \(\omega ^2\)&#8221; rule.
+</p>
+<!--l. 98--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1820001"></a>The simplest limit: pure Doppler shift.</span>
+If the equilibrium flow is locally uniform, so that its gradients may be ignored over one radial
+wavelength, then perturbations of the form \(e^{i\vect {k}\cdot \vect {x}-i\omega t}\) are governed by the Doppler-shifted frequency
+<a id="eq-eq-flowapp-doppler"></a><div class="math-display">\[\omega _D \equiv \omega -\vect {k}\cdot \vect {V}_0. \tag{F.5}\]</div>
+In this limit every familiar dispersion relation is obtained from the static one by replacing \(\omega \) with \(\omega _D\). Thus the
+local Alfvén relation becomes <a id="eq-eq-flowapp-alfven_doppler"></a><div class="math-display">\[\omega _D^2 = k_\parallel ^2 v_A^2, \tag{F.6}\]</div>
+and the Alfvén continuum is simply shifted in frequency. Rigid motion therefore changes the spectrum
+without necessarily changing the sign of the restoring forces.
+</p><!--l. 116--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 117--><p class="noindent" >Take a perturbation of the usual cylindrical form <div class="math-display">\[\xi _r(r,\theta ,z,t)=\hat \xi (r)\,e^{im\theta +ikz-i\omega t}.\]</div>
+     If the equilibrium has azimuthal and axial flow, <div class="math-display">\[\vect {V}_0 = r\Omega (r)\,\etheta + V_z(r)\,\ez ,\]</div>
+                                                                                         
+                                                                                         
+     then the local Doppler-shifted frequency is <a id="eq-eq-flowapp-omegaD_r"></a><div class="math-display">\[\omega _D(r)=\omega -m\Omega (r)-kV_z(r). \tag{F.9}\]</div>
+     Across a radial layer of width \(\Delta r\), different annuli see different phase velocities, so the spread in
+     Doppler shift is <a id="eq-eq-flowapp-domega"></a><div class="math-display">\[\Delta \omega _D \simeq \left |m\Omega '(r)+kV_z'(r)\right |\Delta r. \tag{F.10}\]</div>
+     If the mode would grow without flow at a rate \(\gamma _0\), then a very crude but very useful stabilization
+     criterion is <a id="eq-eq-flowapp-shear_criterion_general"></a><div class="math-display">\[\Delta \omega _D \gtrsim \gamma _0. \tag{F.11}\]</div>
+     This is not a theorem, and it does not replace a full eigenvalue calculation. But it captures the
+     core mechanism of many &#8220;shear stabilization&#8221; results: the mode fails not because the local drive
+     is gone, but because radial locations can no longer remain phase locked long enough to build a
+     single coherent global eigenfunction.</p></blockquote></div></div>
+<!--l. 148--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1830001"></a>Where the static energy principle still helps.</span>
+Even though the flowing problem is not purely self-adjoint, the static energy principle still tells us what
+would happen in the absence of flow. That is very useful in practice. One first identifies the
+static branch &#8212; interchange, external kink, flute, ballooning, and so on &#8212; using Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>)
+or one of its reductions such as the local Suydam criterion, Eq.&#x00A0;(<a href="lecture25.html#eq-eq-suydam_criterion_shear">25.17</a>). One then asks how
+advection, wall motion, or shear alter that branch. That is the viewpoint taken in the remaining
+sections.
+<a 
+ id="x1-183001r186"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">40.2   </span> <a 
+ id="x1-1840002"></a>Moving conducting walls and the wall frame</h3>
+<!--l. 158--><p class="noindent" >The cleanest way to think about a moving wall is to start with the ideal Ohm law in the plasma,
+Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), and the perfect-conductor condition in the wall frame, <a id="eq-eq-flowapp-wall_bc_frame"></a><div class="math-display">\[\hat {\vect {n}}\times \left (\E + \vect {U}_w\times \B \right )=0, \tag{F.12}\]</div>
+where \(\vect {U}_w\) is the wall velocity. On the plasma side, <div class="math-display">\[\E + \vect {V}\times \B =0.\]</div>
+Subtracting these gives <a id="eq-eq-flowapp-plasma_wall_relative"></a><div class="math-display">\[\hat {\vect {n}}\times \left [(\vect {V}-\vect {U}_w)\times \B \right ]=0. \tag{F.14}\]</div>
+Thus field lines that intersect a perfectly conducting wall are frozen into the wall material points. If the
+equilibrium magnetic field is tangent to the wall, \(\B \cdot \hat {\vect {n}}=0\), then Eq.&#x00A0;(F.14) implies the kinematic condition
+<a id="eq-eq-flowapp-kinematic_wall"></a><div class="math-display">\[(\vect {V}-\vect {U}_w)\cdot \hat {\vect {n}}=0. \tag{F.15}\]</div>
+A fixed wall is simply the special case \(\vect {U}_w=0\).
+</p>
+<!--l. 182--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1850002"></a>Rotating boundary condition.</span>
+For a cylindrical perturbation <div class="math-display">\[\propto e^{im\theta +ikz-i\omega t},\]</div>
+a wall rotating with angular velocity \(\Omega _w\) and translating at speed \(U_{wz}\) sees the mode frequency <a id="eq-eq-flowapp-omega_wall"></a><div class="math-display">\[\omega _w = \omega - m\Omega _w - kU_{wz}. \tag{F.17}\]</div>
+This simple replacement is the boundary analogue of the Doppler shift in the plasma. It is why so
+many &#8220;moving wall&#8221; results can be interpreted as ordinary wall physics evaluated in a different
+frame.
+</p>
+<!--l. 197--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1860002"></a>Why a close wall helps.</span>
+The static wall effect was already made concrete in the diffuse-pinch and Kruskal&#8211;Shafranov lectures. A
+nearby ideal wall alters the vacuum contribution to \(\delta W\) by changing the allowable external solution, as seen
+for example in Eqs.&#x00A0;(<a href="lecture24.html#eq-eq-wall_bc">24.5</a>) and (<a href="lecture24.html#eq-eq-deltaWv_result">24.10</a>). If the wall is no longer fixed, its response carries the shifted
+frequency \(\omega _w\). In practice, this means that either a physically moving wall or a rotating plasma can change
+how quickly wall currents are induced and therefore how effectively the wall can mimic an ideal
+conductor.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 206--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1870002"></a>Two laboratory realizations.</span>
+Tokamak resistive-wall-mode theory is the obvious magnetic-confinement realization: plasma rotation can
+make a resistive wall behave more like an ideal one over the mode timescale <a 
+href="#XBondesonWard1994">Bondeson and
+Ward</a>&#x00A0;[<a 
+href="#XBondesonWard1994">1994</a>]. A very different but conceptually related realization appears in non-neutral plasma
+physics, where a rotating external perturbation literally exerts torque on the plasma column and
+compresses it; there the phrase &#8220;rotating wall&#8221; is not an analogy but a control technique <a 
+href="#XHuang1997RotatingWall">Huang
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHuang1997RotatingWall">1997</a>].
+</p><!--l. 215--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 215--><p class="noindent" ><span 
+class="ecbx-1095">Rigid rotation is often only a frame change.</span>
+     </p><!--l. 217--><p class="noindent" >If \(\Omega \) is constant across the plasma, then many branches are simply shifted by \(\omega \rightarrow \omega -m\Omega \). The
+     interesting physics begins when either the wall or the plasma introduces a <span 
+class="ecti-1095">gradient </span>in
+     the Doppler shift, because then different radii or different boundaries no longer remain
+     phase locked.</p></blockquote></div></div>
+<a 
+ id="x1-187001r190"></a>
+<h3 class="sectionHead"><span class="titlemark">40.3   </span> <a 
+ id="x1-1880003"></a>Shear as stabilization by loss of coherence</h3>
+<!--l. 225--><p class="noindent" >The broadest lesson of flow stabilization is that a global mode needs global phase coherence. A flute mode,
+an external kink, or a low-order current-driven mode grows by keeping a large radial region moving in
+roughly the same phase. Velocity shear attacks exactly that coherence.
+</p>
+<!--l. 229--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1890003"></a>A generic estimate.</span>
+Suppose a branch is unstable without flow with growth rate \(\gamma _0\) and radial width \(\Delta r\). Then Eq.&#x00A0;(F.10) suggests
+the characteristic shearing rate <a id="eq-eq-flowapp-shearing_rate"></a><div class="math-display">\[\gamma _{\rm sh} \sim \left |m\Omega '(r)+kV_z'(r)\right |\Delta r. \tag{F.18}\]</div>
+When <div class="math-display">\[\gamma _{\rm sh}\gtrsim \gamma _0,\]</div>
+one expects appreciable weakening of the coherent global eigenmode. This estimate is the common
+backbone of several otherwise rather different stabilization stories.
+</p>
+<!--l. 245--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1900003"></a>Why this is different from line bending.</span>
+Line bending raises \(\delta W\) by adding a genuine restoring force. Shear stabilization is more subtle. The local
+free-energy source may still be present; what changes is that the unstable layer no longer communicates
+efficiently with neighboring radii. In that sense shear stabilization is closer to phase mixing than to the
+creation of a new positive-definite energy term.
+</p>
+<!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1910003"></a>Why low-shear equilibria are special.</span>
+This is also why low magnetic shear and low velocity shear often appear together in discussions of
+core MHD. A low magnetic shear weakens the field-line restoring force, as in the Suydam and
+resistive-interchange lectures. If the flow shear is also low, nothing prevents a broad core mode from
+                                                                                         
+                                                                                         
+organizing itself coherently. If the flow shear is high enough, the same pressure-driven or current-driven
+branch may be blurred out before it can form a global structure.
+<a 
+ id="x1-191001r194"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">40.4   </span> <a 
+ id="x1-1920004"></a>Mirror traps, interchange, and sheared \(E\times B\) flow</h3>
+<!--l. 260--><p class="noindent" >The mirror and magnetic-interchange lectures already showed that flute-like displacements are the
+magnetic analogue of buoyant interchange. In the absence of flow one writes schematically
+<a id="eq-eq-flowapp-flute_noflow"></a><div class="math-display">\[\partial _t^2\xi _r = \gamma _0^2\,\xi _r, \tag{F.20}\]</div>
+with \(\gamma _0^2&gt;0\) when the integrated curvature/pressure drive outweighs line tying and field line bending.
+</p>
+<!--l. 269--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1930004"></a>Adding azimuthal flow.</span>
+Now let the equilibrium have an \(E\times B\) azimuthal velocity <div class="math-display">\[\vect {V}_E = r\Omega _E(r)\,\etheta .\]</div>
+For a flute perturbation \(\propto e^{im\theta -i\omega t}\), the time derivative is convected to <div class="math-display">\[\partial _t \rightarrow \partial _t + i m\Omega _E(r),\]</div>
+so the local equation becomes schematically <a id="eq-eq-flowapp-mirror_with_rotation"></a><div class="math-display">\[\left (\partial _t + i m\Omega _E\right )^2\xi _r = \gamma _0^2\,\xi _r + \cdots . \tag{F.23}\]</div>
+The dots stand for the same line-bending and compressibility terms that determined \(\gamma _0\) in the static problem.
+The new ingredient is the radial variation of \(\Omega _E\).
+</p>
+<!--l. 286--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1940004"></a>Stabilization criterion.</span>
+If the unstable eigenfunction spans a radial width \(\Delta r\), then neighboring radii drift apart in phase at the rate
+<div class="math-display">\[\Delta \omega _E \sim m\,\Omega _E'\,\Delta r.\]</div>
+The resulting stabilization estimate is <a id="eq-eq-flowapp-mirror_shear_criterion"></a><div class="math-display">\[m\,|\Omega _E'|\,\Delta r \gtrsim \gamma _0. \tag{F.25}\]</div>
+This is the mirror-trap counterpart of Eq.&#x00A0;(F.11). It says that what matters is not the absolute rotation
+rate but the radial <span 
+class="ecti-1095">shear </span>in that rotation.
+</p>
+<!--l. 300--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1950004"></a>Why rigid rotation is not enough for the rigid flute mode.</span>
+The classical \(m=1\) flute in an open system is almost a rigid displacement of the whole column. A uniform
+azimuthal drift simply convects that displacement. It does not tear the eigenfunction apart. This is why
+the experimentally successful mirror-trap strategies use end-plate biasing to create differential rotation
+rather than mere rigid spin.
+</p>
+<!--l. 306--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1960004"></a>The GDT lesson.</span>
+In the gas-dynamic trap and related mirror experiments, biased edge potentials drive strong edge rotation
+and thereby suppress flute-dominated transport. The famous &#8220;vortex confinement&#8221; regime is not a tiny
+linear correction; it is a global nonlinear operating point. But its physical seed is already visible in
+Eq.&#x00A0;(F.25): the unstable interchange branch is denied the radial phase coherence it needs <a 
+href="#XBeklemishev2010Vortex">Beklemishev
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBeklemishev2010Vortex">2010</a>].
+<a 
+ id="x1-196001r198"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">40.5   </span> <a 
+ id="x1-1970005"></a>Z pinches and axial sheared flow</h3>
+<!--l. 315--><p class="noindent" >For the Z pinch, the corresponding story is usually told with axial rather than azimuthal flow. Without
+                                                                                         
+                                                                                         
+flow, one has the current-driven branches discussed in the Kruskal&#8211;Shafranov and diffuse-
+pinch lectures. In the simplest cylindrical picture, a kink-like mode behaves schematically as
+<div class="math-display">\[\partial _t^2\xi _r = \gamma _0^2\,\xi _r,\]</div>
+where \(\gamma _0\) is set by current drive, line bending, and wall stabilization.
+</p>
+<!--l. 323--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1980005"></a>Adding axial flow.</span>
+If <div class="math-display">\[\vect {V}_0 = V_z(r)\,\ez ,\]</div>
+then a perturbation \(\propto e^{ikz-i\omega t}\) sees the Doppler shift <div class="math-display">\[\omega _D(r)=\omega -kV_z(r).\]</div>
+Across a layer of width \(\Delta r\), the phase spread is therefore <div class="math-display">\[\Delta \omega _D \sim k\,V_z'(r)\,\Delta r.\]</div>
+The crude stabilization estimate becomes <a id="eq-eq-flowapp-zpinch_shear_criterion"></a><div class="math-display">\[k\,|V_z'|\,\Delta r \gtrsim \gamma _0. \tag{F.30}\]</div>
+This is the axial-flow counterpart of Eq.&#x00A0;(F.25).
+</p>
+<!--l. 343--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1990005"></a>Why the wall still matters.</span>
+Equation (F.30) should not be read as if the magnetic geometry has disappeared. The wall location and
+vacuum solution still determine the static branch that is being sheared apart. In that sense, the
+axial-flow-stabilized Z pinch is not a new category of mode. It is the ordinary kink or sausage branch
+viewed in a plasma whose different radii are no longer locked together.
+</p>
+<!--l. 350--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2000005"></a>Connection to experiments.</span>
+This was the line followed by Shumlak and Hartman, who showed that a sheared axial flow can stabilize
+the \(m=1\) kink branch in Z-pinch geometry <a 
+href="#XShumlakHartman1995">Shumlak and Hartman</a>&#x00A0;[<a 
+href="#XShumlakHartman1995">1995</a>]. Later ZaP experiments made the
+point concrete by directly diagnosing the flow profile and correlating reduced MHD activity with sufficient
+axial shear <a 
+href="#XShumlak2003ZaP">Shumlak et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XShumlak2003ZaP">2003</a>]. The basic picture is exactly the one behind Eq.&#x00A0;(F.30): the unstable
+kink cannot remain radially coherent.
+<a 
+ id="x1-200001r203"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">40.6   </span> <a 
+ id="x1-2010006"></a>Kelvin&#8211;Helmholtz as the counterexample</h3>
+<!--l. 360--><p class="noindent" >The previous sections might tempt one to summarize everything by saying that &#8220;shear is good.&#8221;
+Kelvin&#8211;Helmholtz instability is the reason that slogan is false.
+</p>
+<!--l. 363--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2020006"></a>Planar interface.</span>
+Consider two incompressible plasmas separated by \(y=0\), with equal densities \(\rho _1=\rho _2=\rho \), equal magnetic fields \(\vect {B}_1=\vect {B}_2=B_0\,\bx \) parallel to
+the interface, and flows <div class="math-display">\[\vect {V}_1=+U\,\bx , \qquad \vect {V}_2=-U\,\bx .\]</div>
+Let the interface be displaced by <div class="math-display">\[\eta (x,t)=\hat \eta \,e^{ikx-i\omega t}.\]</div>
+The perturbation decays away from the interface as \(e^{-|k||y|}\).
+</p>
+<!--l. 378--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2030006"></a>Kinematic condition.</span>
+The normal velocity on each side must match the material motion of the interface, so <a id="eq-eq-flowapp-KH_kinematic"></a><div class="math-display">\[\left (\partial _t + U_j\partial _x\right )\eta = v_{y,j} \qquad (j=1,2). \tag{F.33}\]</div>
+</p>
+                                                                                         
+                                                                                         
+<!--l. 386--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2040006"></a>Dynamic condition.</span>
+For incompressible ideal MHD, continuity of the total pressure across the interface gives the classic
+dispersion relation <a id="eq-eq-flowapp-KH_general"></a><div class="math-display">\[\rho _1\left (\omega -kU_1\right )^2+ \rho _2\left (\omega -kU_2\right )^2 = \frac {k^2(B_1^2+B_2^2)}{\muo }. \tag{F.34}\]</div>
+For the symmetric case above this reduces to <a id="eq-eq-flowapp-KH_symmetric"></a><div class="math-display">\[\omega ^2 = k^2\left (V_A^2-U^2\right ), \qquad V_A\equiv \frac {B_0}{\sqrt {\muo \rho }}. \tag{F.35}\]</div>
+Equivalently, <a id="eq-eq-flowapp-KH_shifted"></a><div class="math-display">\[\omega = k\bar U \pm k\sqrt {V_A^2-\frac {\Delta U^2}{4}}, \qquad \bar U\equiv \frac {U_1+U_2}{2}, \quad \Delta U \equiv U_1-U_2. \tag{F.36}\]</div>
+Thus instability requires <a id="eq-eq-flowapp-KH_threshold"></a><div class="math-display">\[|\Delta U| &gt; 2V_A. \tag{F.37}\]</div>
+</p><!--l. 418--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 419--><p class="noindent" >Equation (F.37) is the cleanest possible warning sign. Shear can stabilize one branch
+     and drive another.
+     </p><!--l. 422--><p class="noindent" >In the mirror and Z-pinch examples, the shear was smooth enough that its main effect
+     was to make neighboring radii drift out of phase. The velocity profile did not itself create
+     a strong new surface free energy. In the Kelvin&#8211;Helmholtz problem, by contrast, the
+     shear <span 
+class="ecti-1095">is </span>the free energy. The magnetic field then plays the role of line tension. If it is
+     strong enough, \(|\Delta U|&lt;2V_A\), the two fluids are tied together. If it is too weak, the interface rolls up.
+     </p><!--l. 428--><p class="noindent" >That is why one should not ask merely whether a plasma is &#8220;sheared.&#8221; One must ask
+     whether the flow profile is acting like a smooth phase mixer or like a sharp free-shear
+     layer.</p></blockquote></div></div>
+<!--l. 432--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2050006"></a>Connection to earlier lectures.</span>
+The form of Eq.&#x00A0;(F.37) is the interface analogue of the firehose logic in Eq.&#x00A0;(<a href="lecture11.html#eq-eq-firehoseconditionwithflow">11.22</a>): motion weakens
+magnetic tension when it becomes too large along the field. Likewise, the rotating-cylinder story connects
+back to the MRI lecture, where the role of differential rotation is organized by the epicyclic frequency in
+Eq.&#x00A0;(<a href="lecture19.html#eq-eq-mri-dispersion">19.46</a>). The appendix point is therefore not that Kelvin&#8211;Helmholtz, firehose, and MRI are the same
+instability. It is that all three teach the same structural lesson: flow changes stability by modifying the
+balance between driving and tension.
+<a 
+ id="x1-205001r207"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">40.7   </span> <a 
+ id="x1-2060007"></a>Experimental perspective</h3>
+<!--l. 443--><p class="noindent" >A literal moving wall is rare in hot-plasma MHD. More often the wall motion is implemented indirectly:
+either the plasma rotates with respect to a fixed wall, or an external rotating field makes a fixed structure
+behave as if the boundary were moving. This is why the language of wall motion and plasma rotation
+should be regarded as complementary rather than competing.
+</p>
+<!--l. 448--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2070007"></a>Tokamaks and resistive walls.</span>
+In toroidal confinement, the main practical question is whether plasma rotation can keep a resistive wall
+from &#8220;looking resistive&#8221; on the timescale of an external mode. That is the conceptual bridge from
+the static no-wall / ideal-wall story to resistive-wall stabilization by rotation <a 
+href="#XBondesonWard1994">Bondeson and
+Ward</a>&#x00A0;[<a 
+href="#XBondesonWard1994">1994</a>].
+                                                                                         
+                                                                                         
+</p>
+<!--l. 454--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2080007"></a>Non-neutral rotating walls.</span>
+The most literal rotating-wall experiments are found in non-neutral plasmas, where an externally applied
+rotating perturbation spins up and compresses the plasma column <a 
+href="#XHuang1997RotatingWall">Huang et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHuang1997RotatingWall">1997</a>]. Although the
+magnetic geometry is different from fusion MHD, the lesson is beautiful: one can use a boundary
+condition in a chosen rotating frame as an active control tool rather than merely as a passive
+stabilizer.
+</p>
+<!--l. 461--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2090007"></a>Mirrors and GDT.</span>
+In mirror devices, biased end plates create differential \(E\times B\) rotation and thereby suppress flute-dominated
+transport. The GDT vortex-confinement program is the best-known modern example <a 
+href="#XBeklemishev2010Vortex">Beklemishev
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBeklemishev2010Vortex">2010</a>]. It is a reminder that interchange stabilization in an open system is not only a
+matter of line tying; it is also a matter of whether the unstable displacement can stay globally
+coherent.
+</p>
+<!--l. 468--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2100007"></a>Flow-stabilized Z pinches.</span>
+In Z pinches, the axial-shear program culminating in the ZaP family of experiments made it possible to
+test, in a particularly direct way, the idea that sufficiently strong internal flow shear can weaken
+current-driven global modes <a 
+href="#XShumlakHartman1995">Shumlak and Hartman</a>&#x00A0;[<a 
+href="#XShumlakHartman1995">1995</a>],&#x00A0;<a 
+href="#XShumlak2003ZaP">Shumlak et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XShumlak2003ZaP">2003</a>]. Whatever one thinks of
+the eventual reactor prospects, the value of these experiments is enormous: they are among the cleanest
+laboratory demonstrations that stability is not solely a property of a magnetic equilibrium but of the
+equilibrium together with its motion.
+</p><!--l. 477--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <ul class="itemize1">
+     <li class="itemize">The static energy principle remains the natural starting point for identifying the
+     branch  that  would  be  unstable  without  motion,  but  flowing  equilibria  are  not
+     governed by the same purely self-adjoint minimization problem.
+     </li>
+     <li class="itemize">Rigid  motion  mainly  Doppler-shifts  the  spectrum.  Differential  motion  changes
+     stability by creating a spread in Doppler shift across the eigenfunction.
+     </li>
+     <li class="itemize">A moving conducting wall is best understood through the wall-frame condition \(\hat {\vect {n}}\times (\E +\vect {U}_w\times \B )=0\):
+     boundary anchoring is evaluated in the wall frame.
+     </li>
+     <li class="itemize">Sheared  \(E\times B\)  flow  in  mirrors  and  sheared  axial  flow  in  Z  pinches  can  suppress
+     interchange- and kink-like modes when the shear-induced phase spread exceeds the
+     no-flow growth rate.
+     </li>
+     <li class="itemize">Kelvin&#8211;Helmholtz instability is the cautionary counterexample: a velocity profile
+     can be a stabilizer for one branch and the free-energy source for another.</li></ul>
+                                                                                         
+                                                                                         
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-2110007"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <span 
+class="ecti-1095">Proceedings  of  the  Royal</span>
+  <span 
+class="ecti-1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</span>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnorthrop1963adiabatic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Theodore&#x00A0;G. Northrop.  <span 
+class="ecti-1095">The Adiabatic Motion of Charged Particles</span>.  Interscience, New York,
+  1963.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud1983_mhd_description"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> R.&#x00A0;M. Kulsrud.   Mhd description of plasma.   In A.&#x00A0;A. Galeev and R.&#x00A0;N. Sudan, editors,
+  <span 
+class="ecti-1095">Handbook of Plasma Physics, Volume 1: Basic Plasma Physics I</span>, chapter 1.4, pages 115&#8211;145.
+  North-Holland, Amsterdam, 1983. Series editors: M. N. Rosenbluth and R. Z. Sagdeev.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-2120007"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 40.1.</span>  </dt><dd 
+class="enumerate-enumitem">Show directly from Eqs.&#x00A0;(F.12) and (F.14) that if \(\B \cdot \hat {\vect {n}}=0\) on a perfectly conducting wall
+                then the plasma normal velocity at the boundary must equal the wall normal
+                velocity.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 40.2.</span>  </dt><dd 
+class="enumerate-enumitem">Consider a mode with \((m,k)\) and radial width \(\Delta r\) in a plasma with \(\Omega (r)=\Omega _0+\Omega _1 r\) and \(V_z(r)=V_0+V_1 r\). Derive the
+                phase-spread estimate (F.10) and determine the condition under which shear beats
+                a no-flow growth rate \(\gamma _0\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 40.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(F.34), derive the symmetric result (F.35) and the instability
+                threshold (F.37). Repeat the derivation for unequal densities and determine how
+                the threshold changes.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 40.4.</span>  </dt><dd 
+class="enumerate-enumitem">Use Eq.&#x00A0;(F.25) to estimate the edge rotation shear needed to stabilize a flute
+                mode with \(m=1\), width \(\Delta r\), and no-flow growth rate \(\gamma _0\) in a mirror trap. Compare with the
+                corresponding Z-pinch estimate, Eq.&#x00A0;(F.30), and explain physically why the mode
+                number enters one case while the axial wavenumber enters the other.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

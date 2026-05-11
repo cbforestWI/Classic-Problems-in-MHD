@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Braginskii Formulary Calculator</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --gold: #b98a3d;
+      --teal: #2f7d79;
+      --red: #b64646;
+      --green: #2f7d49;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 82ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(315px, 360px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label,
+    .preset-row label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      width: 100%;
+      border: 1px solid #cdd8df;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      background: #fcfeff;
+      color: #254458;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.92rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .math {
+      font-style: italic;
+      white-space: nowrap;
+    }
+    .math sub,
+    .math sup {
+      font-style: normal;
+    }
+    .equations code {
+      white-space: normal;
+      line-height: 1.5;
+    }
+    .preset-row {
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #dde7ee;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 68ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem 1rem;
+      margin-top: 0.9rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-left: 5px solid #90a8b7;
+      border-radius: 10px;
+      padding: 0.72rem 0.82rem;
+    }
+    .status-card.good { border-left-color: var(--green); }
+    .status-card.warn { border-left-color: var(--gold); }
+    .status-card.bad { border-left-color: var(--red); }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.89rem;
+      color: #415a69;
+    }
+    .summary-grid,
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem 0.85rem;
+      margin-top: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .summary-grid div,
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.48rem 0.58rem;
+      color: #314957;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .warning {
+      margin-top: 0.95rem;
+      padding: 0.75rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .status-grid,
+      .profile-grid,
+      .summary-grid,
+      .coeff-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Braginskii Formulary Calculator</h1>
+  <p class="lede">
+    This browser-side companion to the Braginskii lecture turns the closure ordering into a working
+    calculator. It estimates gyro radii, skin depths, Coulomb mean free paths, magnetic diffusivity,
+    Braginskii transport scales, and the usual MHD dimensionless numbers, then summarizes whether
+    collisional single-fluid MHD is comfortable, marginal, or clearly breaking down for the chosen regime.
+  </p>
+
+  <div class="layout">
+    <section class="panel" aria-label="Controls">
+      <div class="preset-row">
+        <label for="preset">Preset regime</label>
+        <select id="preset">
+          <option value="tokamak_core">Tokamak core</option>
+          <option value="tokamak_edge">Tokamak edge / scrape-off layer</option>
+          <option value="solar_wind">Solar wind at 1 AU</option>
+          <option value="solar_corona">Solar corona</option>
+          <option value="solar_interior">Solar interior</option>
+          <option value="galaxy_cluster">Galaxy cluster plasma</option>
+          <option value="mirror_plasma">Linear mirror / basic plasma device</option>
+          <option value="z_pinch">Dense Z-pinch / pulsed plasma</option>
+          <option value="liquid_metal_kludge">Liquid metal MHD kludge</option>
+        </select>
+        <p class="help">Changing preset updates the sliders below. The liquid-metal entry is intentionally a conducting-fluid kludge, not a faithful weakly coupled plasma state.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logDensity">Ion density <span class="math">n<sub>i</sub></span></label>
+          <span class="value" id="logDensityValue"></span>
+        </div>
+        <input id="logDensity" type="range" min="0" max="33" step="0.05" value="19.7" />
+        <p class="help">Logarithmic slider for <span class="math">n<sub>i</sub></span> in m<sup>-3</sup>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logTe">Electron temperature <span class="math">T<sub>e</sub></span></label>
+          <span class="value" id="logTeValue"></span>
+        </div>
+        <input id="logTe" type="range" min="-3" max="4.3" step="0.05" value="3.6" />
+        <p class="help">Electron temperature in eV.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logTi">Ion temperature <span class="math">T<sub>i</sub></span></label>
+          <span class="value" id="logTiValue"></span>
+        </div>
+        <input id="logTi" type="range" min="-3" max="4.3" step="0.05" value="3.5" />
+        <p class="help">Ion temperature in eV.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logB">Magnetic field <span class="math">B</span></label>
+          <span class="value" id="logBValue"></span>
+        </div>
+        <input id="logB" type="range" min="-12" max="4" step="0.05" value="0.54" />
+        <p class="help">Magnetic-field strength in tesla.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logL">System scale <span class="math">L</span></label>
+          <span class="value" id="logLValue"></span>
+        </div>
+        <input id="logL" type="range" min="-4" max="23" step="0.05" value="-0.15" />
+        <p class="help">Characteristic macroscopic scale in meters.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="logU">Flow speed <span class="math">U</span></label>
+          <span class="value" id="logUValue"></span>
+        </div>
+        <input id="logU" type="range" min="-2" max="7" step="0.05" value="4.4" />
+        <p class="help">Used for <span class="math">R<sub>m</sub></span>, <span class="math">S</span>, and the dynamical ratio <span class="math">&omega;&tau;<sub>i</sub> &sim; U&tau;<sub>i</sub>/L</span>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="A">Ion mass number <span class="math">A</span></label>
+          <span class="value" id="AValue"></span>
+        </div>
+        <input id="A" type="range" min="1" max="40" step="1" value="2" />
+        <p class="help">Hydrogen <span class="math">A = 1</span>, deuterium <span class="math">A = 2</span>, helium <span class="math">A = 4</span>, carbon <span class="math">A = 12</span>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="Z">Ion charge <span class="math">Z</span></label>
+          <span class="value" id="ZValue"></span>
+        </div>
+        <input id="Z" type="range" min="1" max="10" step="1" value="1" />
+        <p class="help">Assumes a single effective ion species.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="lnLambda">Coulomb logarithm <span class="math">ln &Lambda;</span></label>
+          <span class="value" id="lnLambdaValue"></span>
+        </div>
+        <input id="lnLambda" type="range" min="2" max="25" step="0.5" value="17" />
+        <p class="help">Collision-rate estimate used in the Spitzer/Braginskii scalings.</p>
+      </div>
+
+      <div class="preset-row">
+        <label>Later-lecture benchmark scalings</label>
+        <p class="help">These extra knobs feed the simple tearing and resistive-interchange time estimates below.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="kL">Tearing wavenumber <span class="math">kL</span></label>
+          <span class="value" id="kLValue"></span>
+        </div>
+        <input id="kL" type="range" min="0.1" max="3.0" step="0.05" value="0.6" />
+        <p class="help">Used in the FKR benchmark scaling <span class="math">&gamma;&tau;<sub>A</sub> &sim; S<sup>-3/5</sup>(kL)<sup>2/5</sup>(&Delta;&prime;L)<sup>4/5</sup></span>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="deltaPrimeL">Tearing drive <span class="math">&Delta;&prime;L</span></label>
+          <span class="value" id="deltaPrimeLValue"></span>
+        </div>
+        <input id="deltaPrimeL" type="range" min="0.1" max="20" step="0.1" value="2.0" />
+        <p class="help">Dimensionless outer-layer drive for the classical FKR estimate.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="Ds">Interchange drive <span class="math">D<sub>s</sub></span></label>
+          <span class="value" id="DsValue"></span>
+        </div>
+        <input id="Ds" type="range" min="0.00" max="0.35" step="0.005" value="0.12" />
+        <p class="help">Low-&beta; resistive-interchange proxy. The classical resistive branch is most natural for <span class="math">0 &lt; D<sub>s</sub> &lt; 1/4</span>.</p>
+      </div>
+    </section>
+
+    <section class="viewer" aria-label="Computed quantities">
+      <div class="viewer-header">
+        <div>
+          <h2>Derived plasma scales and closure checks</h2>
+          <p>
+            The transport numbers below use standard order-of-magnitude Spitzer and Braginskii estimates.
+            They are meant to organize the lecture’s validity logic: quasi-neutrality, collisional closure,
+            magnetization, Hall corrections, and flux freezing.
+          </p>
+        </div>
+      </div>
+
+      <div class="status-grid" id="statusGrid"></div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Characteristic Lengths</h3>
+          <p>
+            Log-scale ladder comparing the Debye length, skin depths, Larmor radii, mean free paths, and
+            the chosen macroscopic scale <span class="math">L</span>.
+          </p>
+          <div class="plot-frame">
+            <svg id="scalePlot" viewBox="0 0 920 380" role="img" aria-label="Characteristic plasma length scales"></svg>
+          </div>
+          <p style="margin: 0.95rem 0 0.55rem 0; color: #4f6675; font-size: 0.9rem;">
+            Matching log-scale ladder for collision, cyclotron, plasma, advection, Alfv&eacute;n, and resistive rates.
+          </p>
+          <div class="plot-frame">
+            <svg id="frequencyPlot" viewBox="0 0 920 420" role="img" aria-label="Characteristic plasma frequencies"></svg>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h3>Core Regime Summary</h3>
+          <p>Characteristic speeds, dimensionless numbers, and the most useful single-fluid checkpoints.</p>
+          <div class="summary-grid" id="summaryGrid"></div>
+          <div class="warning" id="regimeNarrative"></div>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Transport and Collision Estimates</h3>
+          <p>Order-of-magnitude Braginskii / Spitzer transport scales in SI diffusivity units where possible.</p>
+          <div class="coeff-grid" id="transportGrid"></div>
+        </div>
+
+        <div class="profile-card">
+          <h3>Microscopic Scales</h3>
+          <p>Particle and collective scales that tend to signal departures from simple one-fluid MHD.</p>
+          <div class="coeff-grid" id="microGrid"></div>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Characteristic Times</h3>
+          <p>Macroscopic propagation, diffusion, and collision times built from the chosen plasma state and scale <span class="math">L</span>.</p>
+          <div class="coeff-grid" id="timeGrid"></div>
+        </div>
+
+        <div class="profile-card">
+          <h3>Benchmark Instability Times</h3>
+          <p>Simple later-lecture scaling estimates for classical tearing and resistive-interchange growth.</p>
+          <div class="coeff-grid" id="instabilityGrid"></div>
+          <div class="warning" id="instabilityNarrative"></div>
+        </div>
+      </div>
+
+      <div class="equations">
+        Collision frequencies follow standard NRL-style formulas:
+        <code>&nu;<sub>ei</sub> &prop; n<sub>e</sub> Z ln &Lambda; / T<sub>e</sub><sup>3/2</sup></code>,
+        <code>&nu;<sub>ii</sub> &prop; n<sub>i</sub> Z<sup>4</sup> ln &Lambda; / (&radic;A T<sub>i</sub><sup>3/2</sup>)</code>.
+        Transport estimates use
+        <code>&nu;<sub>&parallel;i</sub> &sim; 0.96 T<sub>i</sub>&tau;<sub>i</sub>/m<sub>i</sub></code>,
+        <code>&chi;<sub>&parallel;e</sub> &sim; 3.16 T<sub>e</sub>&tau;<sub>e</sub>/m<sub>e</sub></code>,
+        and
+        <code>&eta;<sub>M</sub> = &eta;<sub>&Omega;</sub> / &mu;<sub>0</sub></code>.
+        The later-lecture benchmark estimates use
+        <code>&tau;<sub>A</sub> = L / V<sub>A</sub></code>,
+        <code>&tau;<sub>R</sub> = L<sup>2</sup> / &eta;<sub>M</sub></code>,
+        <code>S = &tau;<sub>R</sub> / &tau;<sub>A</sub></code>,
+        <code>&gamma;<sub>FKR</sub>&tau;<sub>A</sub> &sim; S<sup>-3/5</sup>(kL)<sup>2/5</sup>(&Delta;&prime;L)<sup>4/5</sup></code>,
+        and
+        <code>&gamma;<sub>RI</sub>&tau;<sub>A</sub> &sim; D<sub>s</sub><sup>2/3</sup>S<sup>-1/3</sup></code>.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const constants = {
+      e: 1.602176634e-19,
+      me: 9.1093837015e-31,
+      mp: 1.67262192369e-27,
+      eps0: 8.8541878128e-12,
+      mu0: 4e-7 * Math.PI,
+      c: 299792458
+    };
+
+    const presets = {
+      tokamak_core: { logDensity: 19.7, logTe: 3.6, logTi: 3.5, logB: 0.54, logL: -0.15, logU: 4.4, A: 2, Z: 1, lnLambda: 17, kL: 0.6, deltaPrimeL: 2.0, Ds: 0.12 },
+      tokamak_edge: { logDensity: 19.0, logTe: 1.7, logTi: 1.5, logB: 0.48, logL: -1.0, logU: 3.7, A: 2, Z: 1, lnLambda: 14, kL: 0.9, deltaPrimeL: 4.0, Ds: 0.15 },
+      solar_wind: { logDensity: 6.7, logTe: 1.1, logTi: 1.3, logB: -8.3, logL: 9.0, logU: 5.6, A: 1, Z: 1, lnLambda: 22, kL: 0.4, deltaPrimeL: 1.0, Ds: 0.04 },
+      solar_corona: { logDensity: 15.0, logTe: 2.0, logTi: 1.9, logB: -3.3, logL: 7.2, logU: 5.0, A: 1, Z: 1, lnLambda: 20, kL: 0.5, deltaPrimeL: 1.5, Ds: 0.06 },
+      solar_interior: { logDensity: 31.5, logTe: 3.2, logTi: 3.2, logB: 1.3, logL: 8.6, logU: 1.0, A: 1, Z: 1, lnLambda: 6, kL: 0.2, deltaPrimeL: 0.8, Ds: 0.02 },
+      galaxy_cluster: { logDensity: 3.0, logTe: 3.8, logTi: 3.8, logB: -10.0, logL: 22.0, logU: 5.8, A: 1, Z: 1, lnLambda: 35, kL: 0.15, deltaPrimeL: 0.6, Ds: 0.01 },
+      mirror_plasma: { logDensity: 18.5, logTe: 2.1, logTi: 1.9, logB: -0.2, logL: 0.0, logU: 4.0, A: 1, Z: 1, lnLambda: 14, kL: 0.7, deltaPrimeL: 3.0, Ds: 0.10 },
+      z_pinch: { logDensity: 21.0, logTe: 2.8, logTi: 2.5, logB: 0.2, logL: -2.0, logU: 5.4, A: 1, Z: 1, lnLambda: 10, kL: 1.0, deltaPrimeL: 6.0, Ds: 0.20 },
+      liquid_metal_kludge: { logDensity: 28.3, logTe: -2.0, logTi: -2.0, logB: -0.3, logL: -0.7, logU: 0.0, A: 23, Z: 1, lnLambda: 2, kL: 1.5, deltaPrimeL: 5.0, Ds: 0.00 }
+    };
+
+    const inputs = {
+      preset: document.getElementById("preset"),
+      logDensity: document.getElementById("logDensity"),
+      logTe: document.getElementById("logTe"),
+      logTi: document.getElementById("logTi"),
+      logB: document.getElementById("logB"),
+      logL: document.getElementById("logL"),
+      logU: document.getElementById("logU"),
+      A: document.getElementById("A"),
+      Z: document.getElementById("Z"),
+      lnLambda: document.getElementById("lnLambda"),
+      kL: document.getElementById("kL"),
+      deltaPrimeL: document.getElementById("deltaPrimeL"),
+      Ds: document.getElementById("Ds")
+    };
+
+    const valueLabels = {
+      logDensity: document.getElementById("logDensityValue"),
+      logTe: document.getElementById("logTeValue"),
+      logTi: document.getElementById("logTiValue"),
+      logB: document.getElementById("logBValue"),
+      logL: document.getElementById("logLValue"),
+      logU: document.getElementById("logUValue"),
+      A: document.getElementById("AValue"),
+      Z: document.getElementById("ZValue"),
+      lnLambda: document.getElementById("lnLambdaValue"),
+      kL: document.getElementById("kLValue"),
+      deltaPrimeL: document.getElementById("deltaPrimeLValue"),
+      Ds: document.getElementById("DsValue")
+    };
+
+    function setPreset(name) {
+      const preset = presets[name];
+      Object.entries(preset).forEach(([key, value]) => {
+        if (inputs[key]) {
+          inputs[key].value = value;
+        }
+      });
+      update();
+    }
+
+    function pow10(x) {
+      return Math.pow(10, x);
+    }
+
+    function fmtSupExp(exp) {
+      return `10<sup>${exp}</sup>`;
+    }
+
+    function fmtExp(value, digits = 3) {
+      if (!isFinite(value) || value === 0) {
+        return "0";
+      }
+      const abs = Math.abs(value);
+      if (abs >= 1e4 || abs < 1e-3) {
+        const exp = Math.floor(Math.log10(abs));
+        const mant = value / Math.pow(10, exp);
+        return `${mant.toFixed(digits - 1)}×${fmtSupExp(exp)}`;
+      }
+      if (abs >= 100) {
+        return value.toFixed(1);
+      }
+      if (abs >= 10) {
+        return value.toFixed(2);
+      }
+      return value.toFixed(3);
+    }
+
+    function fmtMeters(value) {
+      return `${fmtExp(value)} m`;
+    }
+
+    function fmtScaledUnits(value, scales, digits = 3) {
+      if (!isFinite(value) || value === 0) {
+        return `0 ${scales[0].unit}`;
+      }
+      const abs = Math.abs(value);
+      let chosen = scales[0];
+      for (const scale of scales) {
+        if (abs >= scale.value) {
+          chosen = scale;
+        }
+      }
+      const scaled = value / chosen.value;
+      const scaledAbs = Math.abs(scaled);
+      let text;
+      if (scaledAbs >= 100) {
+        text = scaled.toFixed(1);
+      } else if (scaledAbs >= 10) {
+        text = scaled.toFixed(2);
+      } else if (scaledAbs >= 1) {
+        text = scaled.toFixed(3);
+      } else {
+        const exp = Math.floor(Math.log10(Math.max(scaledAbs, 1e-40)));
+        const mant = scaled / Math.pow(10, exp);
+        text = `${mant.toFixed(digits - 1)}×${fmtSupExp(exp)}`;
+      }
+      return `${text} ${chosen.unit}`;
+    }
+
+    function fmtLengthHuman(value) {
+      return fmtScaledUnits(value, [
+        { value: 1e-9, unit: "nm" },
+        { value: 1e-6, unit: "μm" },
+        { value: 1e-3, unit: "mm" },
+        { value: 1, unit: "m" },
+        { value: 1e3, unit: "km" },
+        { value: 1e6, unit: "Mm" },
+        { value: 1e9, unit: "Gm" }
+      ]);
+    }
+
+    function fmtFreqHuman(value) {
+      return fmtScaledUnits(value, [
+        { value: 1e-3, unit: "mHz" },
+        { value: 1, unit: "Hz" },
+        { value: 1e3, unit: "kHz" },
+        { value: 1e6, unit: "MHz" },
+        { value: 1e9, unit: "GHz" },
+        { value: 1e12, unit: "THz" },
+        { value: 1e15, unit: "PHz" }
+      ]);
+    }
+
+    function axisBandLabel(exp, kind) {
+      const bands = kind === "frequency"
+        ? {
+            "-3": "mHz",
+            "0": "Hz",
+            "3": "kHz",
+            "6": "MHz",
+            "9": "GHz",
+            "12": "THz",
+            "15": "PHz"
+          }
+        : {
+            "-9": "nm",
+            "-6": "μm",
+            "-3": "mm",
+            "0": "m",
+            "3": "km",
+            "6": "Mm",
+            "9": "Gm"
+          };
+      return bands[String(exp)] || null;
+    }
+
+    function fmtSpeed(value) {
+      return `${fmtExp(value)} m/s`;
+    }
+
+    function fmtDiffusivity(value) {
+      return `${fmtExp(value)} m²/s`;
+    }
+
+    function fmtOhm(value) {
+      return `${fmtExp(value)} Ω·m`;
+    }
+
+    function fmtDensity(value) {
+      return `${fmtExp(value)} m⁻³`;
+    }
+
+    function fmtEV(value) {
+      return `${fmtExp(value)} eV`;
+    }
+
+    function fmtRatio(value) {
+      return fmtExp(value);
+    }
+
+    function fmtRate(value) {
+      return `${fmtExp(value)} s⁻¹`;
+    }
+
+    function fmtTime(value) {
+      return `${fmtExp(value)} s`;
+    }
+
+    function physicsModel(state) {
+      const { e, me, mp, eps0, mu0, c } = constants;
+      const ni = pow10(state.logDensity);
+      const ne = state.Z * ni;
+      const Te = pow10(state.logTe);
+      const Ti = pow10(state.logTi);
+      const B = pow10(state.logB);
+      const L = pow10(state.logL);
+      const U = pow10(state.logU);
+      const mi = state.A * mp;
+      const lnLambda = state.lnLambda;
+
+      const TeJ = Te * e;
+      const TiJ = Ti * e;
+      const rhoMass = ni * mi + ne * me;
+      const pTotal = ne * TeJ + ni * TiJ;
+
+      const vthE = Math.sqrt(2 * TeJ / me);
+      const vthI = Math.sqrt(2 * TiJ / mi);
+      const omegaCe = e * B / me;
+      const omegaCi = state.Z * e * B / mi;
+      const rhoE = vthE / Math.max(omegaCe, 1e-40);
+      const rhoI = vthI / Math.max(omegaCi, 1e-40);
+
+      const omegaPe = Math.sqrt(ne * e * e / (eps0 * me));
+      const omegaPi = Math.sqrt(ni * Math.pow(state.Z * e, 2) / (eps0 * mi));
+      const dE = c / omegaPe;
+      const dI = c / omegaPi;
+      const lambdaD = Math.sqrt(eps0 * TeJ / (ne * e * e));
+
+      const neCm = ne * 1e-6;
+      const niCm = ni * 1e-6;
+      const nuEe = 2.91e-6 * neCm * lnLambda / Math.pow(Math.max(Te, 0.1), 1.5);
+      const nuEi = 2.91e-6 * neCm * state.Z * lnLambda / Math.pow(Math.max(Te, 0.1), 1.5);
+      const nuIi = 4.80e-8 * niCm * Math.pow(state.Z, 4) * lnLambda / (Math.sqrt(state.A) * Math.pow(Math.max(Ti, 0.1), 1.5));
+      const tauEe = 1 / Math.max(nuEe, 1e-60);
+      const tauE = 1 / Math.max(nuEi, 1e-60);
+      const tauI = 1 / Math.max(nuIi, 1e-60);
+      const lambdaEe = vthE * tauEe;
+      const lambdaE = vthE * tauE;
+      const lambdaI = vthI * tauI;
+
+      const etaOhm = me * nuEi / (ne * e * e);
+      const etaM = etaOhm / mu0;
+      const vA = B / Math.sqrt(mu0 * rhoMass);
+      const rm = U * L / Math.max(etaM, 1e-60);
+      const sLundquist = vA * L / Math.max(etaM, 1e-60);
+      const beta = 2 * mu0 * pTotal / (B * B);
+
+      const ionHall = omegaCi * tauI;
+      const electronHall = omegaCe * tauE;
+      const omegaTauI = U * tauI / L;
+      const omegaOverOmegaI = U / (L * Math.max(omegaCi, 1e-40));
+
+      const nuParallelI = 0.96 * TiJ * tauI / mi;
+      const nuPerpI = nuParallelI / (1 + ionHall * ionHall);
+      const nuGvI = TiJ / (mi * Math.max(omegaCi, 1e-40));
+      const chiParallelE = 3.16 * TeJ * tauE / me;
+      const chiPerpE = chiParallelE / (1 + electronHall * electronHall);
+
+      const tauA = L / Math.max(vA, 1e-40);
+      const tauR = L * L / Math.max(etaM, 1e-60);
+      const tauAdv = L / Math.max(U, 1e-40);
+      const kL = state.kL;
+      const deltaPrimeL = state.deltaPrimeL;
+      const Ds = state.Ds;
+      const gammaFKR = (1 / Math.max(tauA, 1e-60))
+        * Math.pow(Math.max(sLundquist, 1e-40), -3 / 5)
+        * Math.pow(Math.max(kL, 1e-40), 2 / 5)
+        * Math.pow(Math.max(deltaPrimeL, 1e-40), 4 / 5);
+      const tauFKR = 1 / Math.max(gammaFKR, 1e-60);
+      const gammaRI = Ds > 0
+        ? (1 / Math.max(tauA, 1e-60))
+          * Math.pow(Ds, 2 / 3)
+          * Math.pow(Math.max(sLundquist, 1e-40), -1 / 3)
+        : 0;
+      const tauRI = gammaRI > 0 ? 1 / gammaRI : Infinity;
+
+      return {
+        ni, ne, Te, Ti, B, L, U, mi, lnLambda, rhoMass, pTotal,
+        vthE, vthI, omegaCe, omegaCi, rhoE, rhoI, omegaPe, omegaPi, dE, dI, lambdaD,
+        nuEe, nuEi, nuIi, tauEe, tauE, tauI, lambdaEe, lambdaE, lambdaI,
+        etaOhm, etaM, vA, rm, sLundquist, beta,
+        ionHall, electronHall, omegaTauI, omegaOverOmegaI,
+        nuParallelI, nuPerpI, nuGvI, chiParallelE, chiPerpE,
+        tauA, tauR, tauAdv, kL, deltaPrimeL, Ds, gammaFKR, tauFKR, gammaRI, tauRI
+      };
+    }
+
+    function classify(value, goodThreshold, warnThreshold, sense = "lt") {
+      if (sense === "lt") {
+        if (value < goodThreshold) {
+          return "good";
+        }
+        if (value < warnThreshold) {
+          return "warn";
+        }
+        return "bad";
+      }
+      if (value > goodThreshold) {
+        return "good";
+      }
+      if (value > warnThreshold) {
+        return "warn";
+      }
+      return "bad";
+    }
+
+    function statusCard(title, stateClass, text) {
+      return `<div class="status-card ${stateClass}"><h3>${title}</h3><p>${text}</p></div>`;
+    }
+
+    function renderStatuses(model) {
+      const statusGrid = document.getElementById("statusGrid");
+      const cards = [];
+
+      cards.push(statusCard(
+        "Quasi-neutrality",
+        classify(model.lambdaD / model.L, 1e-3, 3e-2, "lt"),
+        `&lambda;<sub>D</sub>/L = ${fmtRatio(model.lambdaD / model.L)}`
+      ));
+
+      cards.push(statusCard(
+        "Collisional closure",
+        classify(Math.max(model.lambdaI / model.L, model.omegaTauI), 0.1, 1.0, "lt"),
+        `&lambda;<sub>i</sub>/L = ${fmtRatio(model.lambdaI / model.L)},  &omega;&tau;<sub>i</sub> &asymp; ${fmtRatio(model.omegaTauI)}`
+      ));
+
+      cards.push(statusCard(
+        "Magnetized ions",
+        model.ionHall > 10 && model.rhoI / model.L < 0.1 ? "good" : (model.ionHall > 1 && model.rhoI / model.L < 1 ? "warn" : "bad"),
+        `&Omega;<sub>i</sub>&tau;<sub>i</sub> = ${fmtRatio(model.ionHall)},  &rho;<sub>i</sub>/L = ${fmtRatio(model.rhoI / model.L)}`
+      ));
+
+      cards.push(statusCard(
+        "Hall / two-fluid importance",
+        classify(model.dI / model.L, 0.03, 0.3, "lt"),
+        `d<sub>i</sub>/L = ${fmtRatio(model.dI / model.L)}`
+      ));
+
+      cards.push(statusCard(
+        "Flux freezing",
+        classify(model.rm, 100, 10, "gt"),
+        `R<sub>m</sub> = ${fmtRatio(model.rm)}`
+      ));
+
+      cards.push(statusCard(
+        "Ideal-Alfv\u00e9nic scale separation",
+        classify(Math.max(model.omegaOverOmegaI, model.rhoI / model.L), 0.03, 0.3, "lt"),
+        `&omega;/&Omega;<sub>i</sub> &asymp; ${fmtRatio(model.omegaOverOmegaI)}`
+      ));
+
+      statusGrid.innerHTML = cards.join("");
+    }
+
+    function renderSummary(model) {
+      const summaryGrid = document.getElementById("summaryGrid");
+      summaryGrid.innerHTML = [
+        `<div>n<sub>i</sub> = ${fmtDensity(model.ni)}</div>`,
+        `<div>n<sub>e</sub> = ${fmtDensity(model.ne)}</div>`,
+        `<div>T<sub>e</sub> = ${fmtEV(model.Te)}</div>`,
+        `<div>T<sub>i</sub> = ${fmtEV(model.Ti)}</div>`,
+        `<div>B = ${fmtExp(model.B)} T</div>`,
+        `<div>L = ${fmtLengthHuman(model.L)}</div>`,
+        `<div>U = ${fmtSpeed(model.U)}</div>`,
+        `<div>V<sub>A</sub> = ${fmtSpeed(model.vA)}</div>`,
+        `<div>&beta; = ${fmtRatio(model.beta)}</div>`,
+        `<div>R<sub>m</sub> = ${fmtRatio(model.rm)}</div>`,
+        `<div>S = ${fmtRatio(model.sLundquist)}</div>`,
+        `<div>&eta;<sub>M</sub> = ${fmtDiffusivity(model.etaM)}</div>`
+      ].join("");
+
+      const narrative = document.getElementById("regimeNarrative");
+      const messages = [];
+      if (model.lambdaI / model.L > 0.3 || model.omegaTauI > 0.3) {
+        messages.push("Collisional Braginskii closure is shaky here: the ion mean free path or dynamical collision ratio is no longer small.");
+      } else {
+        messages.push("The collisional ordering behind Braginskii is at least plausible on the chosen macroscopic scale.");
+      }
+      if (model.dI / model.L > 0.1) {
+        messages.push("Hall and two-fluid corrections are likely important because the ion skin depth is not negligible.");
+      } else {
+        messages.push("The ion skin depth remains comfortably sub-macroscopic, so one-fluid induction is more plausible.");
+      }
+      if (model.rm < 10) {
+        messages.push("Magnetic diffusion is dynamically important because the magnetic Reynolds number is not large.");
+      } else {
+        messages.push("Magnetic flux should be advected much more readily than it diffuses on the chosen flow scale.");
+      }
+      narrative.textContent = messages.join(" ");
+    }
+
+    function renderTransport(model) {
+      const transportGrid = document.getElementById("transportGrid");
+      transportGrid.innerHTML = [
+        `<div>&eta;<sub>&Omega;</sub> = ${fmtOhm(model.etaOhm)}</div>`,
+        `<div>&eta;<sub>M</sub> = ${fmtDiffusivity(model.etaM)}</div>`,
+        `<div>&nu;<sub>&parallel;i</sub> &asymp; ${fmtDiffusivity(model.nuParallelI)}</div>`,
+        `<div>&nu;<sub>&perp;i</sub> &asymp; ${fmtDiffusivity(model.nuPerpI)}</div>`,
+        `<div>&nu;<sub>gv,i</sub> &asymp; ${fmtDiffusivity(model.nuGvI)}</div>`,
+        `<div>&chi;<sub>&parallel;e</sub> &asymp; ${fmtDiffusivity(model.chiParallelE)}</div>`,
+        `<div>&chi;<sub>&perp;e</sub> &asymp; ${fmtDiffusivity(model.chiPerpE)}</div>`,
+        `<div>&Omega;<sub>i</sub>&tau;<sub>i</sub> = ${fmtRatio(model.ionHall)}</div>`
+      ].join("");
+    }
+
+    function renderMicro(model) {
+      const microGrid = document.getElementById("microGrid");
+      microGrid.innerHTML = [
+        `<div>&rho;<sub>e</sub> = ${fmtLengthHuman(model.rhoE)}</div>`,
+        `<div>&rho;<sub>i</sub> = ${fmtLengthHuman(model.rhoI)}</div>`,
+        `<div>d<sub>e</sub> = ${fmtLengthHuman(model.dE)}</div>`,
+        `<div>d<sub>i</sub> = ${fmtLengthHuman(model.dI)}</div>`,
+        `<div>&lambda;<sub>ee</sub> = ${fmtLengthHuman(model.lambdaEe)}</div>`,
+        `<div>&lambda;<sub>ei</sub> = ${fmtLengthHuman(model.lambdaE)}</div>`,
+        `<div>&lambda;<sub>i</sub> = ${fmtLengthHuman(model.lambdaI)}</div>`,
+        `<div>&nu;<sub>ee</sub> = ${fmtFreqHuman(model.nuEe)}</div>`,
+        `<div>&nu;<sub>ei</sub> = ${fmtFreqHuman(model.nuEi)}</div>`,
+        `<div>&nu;<sub>ii</sub> = ${fmtFreqHuman(model.nuIi)}</div>`,
+        `<div>v<sub>th,e</sub> = ${fmtSpeed(model.vthE)}</div>`,
+        `<div>v<sub>th,i</sub> = ${fmtSpeed(model.vthI)}</div>`,
+        `<div>&Omega;<sub>e</sub> = ${fmtFreqHuman(model.omegaCe)}</div>`,
+        `<div>&Omega;<sub>i</sub> = ${fmtFreqHuman(model.omegaCi)}</div>`
+      ].join("");
+    }
+
+    function renderTimes(model) {
+      const timeGrid = document.getElementById("timeGrid");
+      timeGrid.innerHTML = [
+        `<div>&tau;<sub>A</sub> = ${fmtTime(model.tauA)}</div>`,
+        `<div>&tau;<sub>R</sub> = ${fmtTime(model.tauR)}</div>`,
+        `<div>&tau;<sub>adv</sub> = ${fmtTime(model.tauAdv)}</div>`,
+        `<div>&tau;<sub>ee</sub> = ${fmtTime(model.tauEe)}</div>`,
+        `<div>&tau;<sub>ei</sub> = ${fmtTime(model.tauE)}</div>`,
+        `<div>&tau;<sub>ii</sub> = ${fmtTime(model.tauI)}</div>`,
+        `<div>&tau;<sub>R</sub> / &tau;<sub>A</sub> = ${fmtRatio(model.tauR / model.tauA)}</div>`,
+        `<div>&tau;<sub>adv</sub> / &tau;<sub>A</sub> = ${fmtRatio(model.tauAdv / model.tauA)}</div>`,
+        `<div>&tau;<sub>ii</sub> / &tau;<sub>A</sub> = ${fmtRatio(model.tauI / model.tauA)}</div>`
+      ].join("");
+    }
+
+    function renderInstabilities(model) {
+      const instabilityGrid = document.getElementById("instabilityGrid");
+      instabilityGrid.innerHTML = [
+        `<div>S = ${fmtRatio(model.sLundquist)}</div>`,
+        `<div>kL = ${fmtRatio(model.kL)}</div>`,
+        `<div>&Delta;&prime;L = ${fmtRatio(model.deltaPrimeL)}</div>`,
+        `<div>D<sub>s</sub> = ${fmtRatio(model.Ds)}</div>`,
+        `<div>&gamma;<sub>FKR</sub> = ${fmtRate(model.gammaFKR)}</div>`,
+        `<div>&tau;<sub>FKR</sub> = ${fmtTime(model.tauFKR)}</div>`,
+        `<div>&gamma;<sub>RI</sub> &asymp; ${fmtRate(model.gammaRI)}</div>`,
+        `<div>&tau;<sub>RI</sub> &asymp; ${isFinite(model.tauRI) ? fmtTime(model.tauRI) : '&infin;'}</div>`
+      ].join("");
+
+      const note = document.getElementById("instabilityNarrative");
+      const messages = [];
+      if (model.Ds >= 0.25) {
+        messages.push("The chosen D_s is at or above the ideal-interchange threshold, so the simple resistive-interchange proxy is no longer the most honest branch description.");
+      } else if (model.Ds <= 0) {
+        messages.push("With D_s ≤ 0 the simple resistive-interchange proxy predicts no interchange drive.");
+      } else {
+        messages.push("The resistive-interchange estimate is shown as a low-β local proxy, useful for order-of-magnitude timing rather than a full parity-resolved eigenvalue calculation.");
+      }
+      messages.push("The tearing estimate is the classical FKR small-Δ′ benchmark, so it should be read as a scaling guide rather than a full nonlinear prediction.");
+      note.textContent = messages.join(" ");
+    }
+
+    function drawScalePlot(model) {
+      const svg = document.getElementById("scalePlot");
+      const items = [
+        { label: "Debye length", value: model.lambdaD, color: "#b98a3d" },
+        { label: "Electron skin depth", value: model.dE, color: "#7059b8" },
+        { label: "Ion skin depth", value: model.dI, color: "#1f4e79" },
+        { label: "Electron gyroradius", value: model.rhoE, color: "#b64646" },
+        { label: "Ion gyroradius", value: model.rhoI, color: "#2f7d49" },
+        { label: "Electron mfp", value: model.lambdaE, color: "#a85a2a" },
+        { label: "Ion mfp", value: model.lambdaI, color: "#2f7d79" },
+        { label: "System scale L", value: model.L, color: "#24343f" }
+      ];
+      const logs = items.map((item) => Math.log10(item.value));
+      const minLog = Math.floor(Math.min(...logs)) - 0.5;
+      const maxLog = Math.ceil(Math.max(...logs)) + 0.5;
+      const width = 920;
+      const height = 380;
+      const margin = { top: 28, right: 150, bottom: 42, left: 160 };
+      const innerWidth = width - margin.left - margin.right;
+      const rowGap = 36;
+      const xScale = (logv) => margin.left + (logv - minLog) / (maxLog - minLog) * innerWidth;
+
+      const parts = [];
+      parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="transparent"></rect>`);
+      const minBand = 3 * Math.floor(minLog / 3);
+      const maxBand = 3 * Math.ceil(maxLog / 3);
+      for (let exp = minBand; exp <= maxBand; exp += 3) {
+        const x = xScale(exp);
+        parts.push(`<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${height - margin.bottom}" stroke="#d6e0e7" stroke-width="1"></line>`);
+        const label = axisBandLabel(exp, "length") || `10^${exp} m`;
+        if (label.includes("^")) {
+          parts.push(`<text x="${x}" y="${height - 14}" text-anchor="middle" font-size="12" fill="#557185">10<tspan dy="-5" font-size="9">${exp}</tspan><tspan dy="5"></tspan> m</text>`);
+        } else {
+          parts.push(`<text x="${x}" y="${height - 14}" text-anchor="middle" font-size="12" fill="#557185">${label}</text>`);
+        }
+      }
+      parts.push(`<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="#8aa0af" stroke-width="1.3"></line>`);
+
+      items.forEach((item, index) => {
+        const y = margin.top + index * rowGap + 14;
+        const x = xScale(Math.log10(item.value));
+        parts.push(`<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="#edf3f7" stroke-width="1"></line>`);
+        parts.push(`<text x="${margin.left - 10}" y="${y + 4}" text-anchor="end" font-size="13" fill="#344d5d">${item.label}</text>`);
+        parts.push(`<circle cx="${x}" cy="${y}" r="6" fill="${item.color}" stroke="#ffffff" stroke-width="2"></circle>`);
+        parts.push(`<text x="${width - margin.right + 12}" y="${y + 4}" font-size="12.5" fill="#425a69">${fmtLengthHuman(item.value).replace(/<[^>]+>/g, "")}</text>`);
+      });
+
+      svg.innerHTML = parts.join("");
+    }
+
+    function drawFrequencyPlot(model) {
+      const svg = document.getElementById("frequencyPlot");
+      const items = [
+        { label: "Electron plasma ωpe", value: model.omegaPe, color: "#7059b8" },
+        { label: "Ion plasma ωpi", value: model.omegaPi, color: "#5f7fc7" },
+        { label: "Electron cyclotron Ωe", value: model.omegaCe, color: "#b64646" },
+        { label: "Ion cyclotron Ωi", value: model.omegaCi, color: "#2f7d49" },
+        { label: "Electron collisions νee", value: model.nuEe, color: "#8e6dbd" },
+        { label: "Electron collisions νei", value: model.nuEi, color: "#b98a3d" },
+        { label: "Ion collisions νii", value: model.nuIi, color: "#2f7d79" },
+        { label: "Advection rate U/L", value: model.U / model.L, color: "#1f4e79" },
+        { label: "Alfvén rate VA/L", value: model.vA / model.L, color: "#24343f" },
+        { label: "Resistive rate ηM/L²", value: model.etaM / (model.L * model.L), color: "#8a5b2f" }
+      ];
+      const logs = items.map((item) => Math.log10(Math.max(item.value, 1e-40)));
+      const minLog = Math.floor(Math.min(...logs)) - 0.5;
+      const maxLog = Math.ceil(Math.max(...logs)) + 0.5;
+      const width = 920;
+      const height = 420;
+      const margin = { top: 28, right: 155, bottom: 42, left: 170 };
+      const innerWidth = width - margin.left - margin.right;
+      const rowGap = 36;
+      const xScale = (logv) => margin.left + (logv - minLog) / (maxLog - minLog) * innerWidth;
+
+      const parts = [];
+      parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="transparent"></rect>`);
+      const minBand = 3 * Math.floor(minLog / 3);
+      const maxBand = 3 * Math.ceil(maxLog / 3);
+      for (let exp = minBand; exp <= maxBand; exp += 3) {
+        const x = xScale(exp);
+        parts.push(`<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${height - margin.bottom}" stroke="#d6e0e7" stroke-width="1"></line>`);
+        const label = axisBandLabel(exp, "frequency") || `10^${exp} Hz`;
+        if (label.includes("^")) {
+          parts.push(`<text x="${x}" y="${height - 14}" text-anchor="middle" font-size="12" fill="#557185">10<tspan dy="-5" font-size="9">${exp}</tspan><tspan dy="5"></tspan> Hz</text>`);
+        } else {
+          parts.push(`<text x="${x}" y="${height - 14}" text-anchor="middle" font-size="12" fill="#557185">${label}</text>`);
+        }
+      }
+      parts.push(`<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="#8aa0af" stroke-width="1.3"></line>`);
+
+      items.forEach((item, index) => {
+        const y = margin.top + index * rowGap + 14;
+        const x = xScale(Math.log10(Math.max(item.value, 1e-40)));
+        parts.push(`<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="#edf3f7" stroke-width="1"></line>`);
+        parts.push(`<text x="${margin.left - 10}" y="${y + 4}" text-anchor="end" font-size="13" fill="#344d5d">${item.label}</text>`);
+        parts.push(`<circle cx="${x}" cy="${y}" r="6" fill="${item.color}" stroke="#ffffff" stroke-width="2"></circle>`);
+        parts.push(`<text x="${width - margin.right + 12}" y="${y + 4}" font-size="12.5" fill="#425a69">${fmtFreqHuman(item.value).replace(/<[^>]+>/g, "")}</text>`);
+      });
+
+      svg.innerHTML = parts.join("");
+    }
+
+    function updateLabels(state) {
+      valueLabels.logDensity.innerHTML = fmtDensity(pow10(state.logDensity));
+      valueLabels.logTe.innerHTML = fmtEV(pow10(state.logTe));
+      valueLabels.logTi.innerHTML = fmtEV(pow10(state.logTi));
+      valueLabels.logB.innerHTML = `${fmtExp(pow10(state.logB))} T`;
+      valueLabels.logL.innerHTML = fmtLengthHuman(pow10(state.logL));
+      valueLabels.logU.innerHTML = fmtSpeed(pow10(state.logU));
+      valueLabels.A.innerHTML = `${state.A}`;
+      valueLabels.Z.innerHTML = `${state.Z}`;
+      valueLabels.lnLambda.innerHTML = `${state.lnLambda.toFixed(1)}`;
+      valueLabels.kL.innerHTML = `${state.kL.toFixed(2)}`;
+      valueLabels.deltaPrimeL.innerHTML = `${state.deltaPrimeL.toFixed(2)}`;
+      valueLabels.Ds.innerHTML = `${state.Ds.toFixed(3)}`;
+    }
+
+    function currentState() {
+      return {
+        logDensity: parseFloat(inputs.logDensity.value),
+        logTe: parseFloat(inputs.logTe.value),
+        logTi: parseFloat(inputs.logTi.value),
+        logB: parseFloat(inputs.logB.value),
+        logL: parseFloat(inputs.logL.value),
+        logU: parseFloat(inputs.logU.value),
+        A: parseInt(inputs.A.value, 10),
+        Z: parseInt(inputs.Z.value, 10),
+        lnLambda: parseFloat(inputs.lnLambda.value),
+        kL: parseFloat(inputs.kL.value),
+        deltaPrimeL: parseFloat(inputs.deltaPrimeL.value),
+        Ds: parseFloat(inputs.Ds.value)
+      };
+    }
+
+    function update() {
+      const state = currentState();
+      updateLabels(state);
+      const model = physicsModel(state);
+      renderStatuses(model);
+      renderSummary(model);
+      renderTransport(model);
+      renderMicro(model);
+      renderTimes(model);
+      renderInstabilities(model);
+      drawScalePlot(model);
+      drawFrequencyPlot(model);
+    }
+
+    Object.values(inputs).forEach((input) => {
+      input.addEventListener("input", update);
+    });
+    inputs.preset.addEventListener("change", (event) => setPreset(event.target.value));
+
+    setPreset("tokamak_core");
+  </script>
+</body>
+</html>

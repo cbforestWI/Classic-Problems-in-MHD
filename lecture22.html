@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 22 The Kruskal-Shafranov Kink Mode</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture21.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture23.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;22</span><br /><a 
+ id="x1-6400022"></a>The Kruskal&#8211;Shafranov Kink Mode</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">This lecture is one of the canonical current-driven stability problems in MHD. </tspan>It
+     has four jobs:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">derive  the  external  kink  in  the  surface-current  model  carefully  enough  that  the
+   Kruskal&#8211;Shafranov threshold is unmistakable;
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">show  how  an  ideal  conducting  wall  changes  the  vacuum  matching  and  why  the
+   periodic problem develops the familiar but somewhat misleading two-root structure;
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">explain how a resistive wall mode is just the slow return of a kink that was stabilized
+   only by wall currents; and
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">treat the finite-length, line-tied column explicitly, including the important ideal-wall
+   threshold \[ q_a &lt; 1-\frac {a^2}{b^2}, \] which is different from the periodic result.</dd></dl>
+     </blockquote></div></div>
+<!--l. 18--><p class="noindent" >The current-driven kink is the place where several themes of these notes finally meet: the energy principle
+of Lecture&#x00A0;15, vacuum matching, the meaning of the safety factor, and the role of conducting boundaries.
+It is also one of the problems where a seemingly small choice of boundary condition &#8212; periodic versus line
+tied &#8212; changes the answer in an instructive way. That is why the Kruskal&#8211;Shafranov problem remained
+&#8220;classic&#8221; for so long: it is simple enough to solve analytically, but subtle enough to keep revealing
+something new.
+</p><!--l. 21--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 21--><p class="noindent" >The  first  clean  surface-current  demonstration  of  the  current-driven  kink  was  the
+     Kruskal&#8211;Schwarzschild  analysis  of  the  \(Z\)  pinch  <a 
+href="#Xkruskal1954instability">Kruskal  and  Schwarzschild</a>&#x00A0;[<a 
+href="#Xkruskal1954instability">1954</a>].
+     Kruskal&#8217;s later treatment with axial field, together with Shafranov&#8217;s contemporaneous
+     work, turned that result into the screw-pinch stability limit now summarized as the
+     Kruskal&#8211;Shafranov criterion <a 
+href="#XKruskal1958">Kruskal and Tuck</a>&#x00A0;[<a 
+href="#XKruskal1958">1958</a>],&#x00A0;<a 
+href="#XShafranov1957ZhETF">Shafranov</a>&#x00A0;[<a 
+href="#XShafranov1957ZhETF">1957</a>,&#x00A0;<a 
+href="#XShafranov1970SPTP">1970</a>]. Much
+     later, it was realized that the finite-length line-tied problem is not captured correctly
+     by simply setting \(k=2\pi /L\). The missing ingredient is that the exact line-tied eigenfunction must
+     satisfy end-plate boundary conditions, and that forces one to mix more than one axial
+     harmonic. That correction is not a minor technicality: it changes the stability threshold.</p></blockquote></div></div>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-640051"></a>
+                                                                                         
+                                                                                         
+<!--l. 26--><p class="noindent" ><img 
+src="figures/KruskalKink.jpg" alt="PIC"  
+width="338" height="153"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;22.1: </span><span  
+class="content">Surface-current picture of the current-driven kink. In the simplest model the plasma
+core moves nearly as a rigid column, while the vacuum field outside the plasma must be rematched
+to the displaced interface.</span></div><!--tex4ht:label?: x1-640051 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-64006r68"></a>
+<h3 class="sectionHead"><span class="titlemark">22.1   </span> <a 
+ id="x1-650001"></a>The surface-current model and the periodic Kruskal&#8211;Shafranov limit</h3>
+<!--l. 33--><p class="noindent" >The cleanest derivation starts from the same hollow-current equilibrium used in the classic papers. The
+plasma occupies \(r&lt;a\). Inside the plasma the field is taken to be purely axial, <div class="math-display">\[\B _{\rm pl} = B_z\,\vect {e}_z,\]</div>
+while outside the plasma the vacuum field is <a id="eq-eq-ks-Bvacuum"></a><div class="math-display">\[\B _{\rm vac} = B_z\,\vect {e}_z + B_\theta (r)\,\vect {e}_\theta , \qquad B_\theta (r)=B_\theta (a)\frac {a}{r}. \tag{22.2}\]</div>
+The jump in tangential magnetic field corresponds to a surface current, <div class="math-display">\[\muo \vect {K} = \hat {\vect {n}}\times \left (\B _{\rm vac}-\B _{\rm pl}\right ),\]</div>
+so the discontinuity in \(B_\theta \) is an axial sheet current, <div class="math-display">\[K_z = \frac {B_\theta (a)}{\muo }.\]</div>
+</p>
+<!--l. 53--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-660001"></a>Equilibrium across the interface.</span>
+In static equilibrium, the normal stress must be continuous across the plasma&#8211;vacuum boundary. With
+isotropic pressure this gives <a id="eq-eq-ks-stress_balance"></a><div class="math-display">\[\left [p+\frac {B^2}{2\muo }\right ]=0. \tag{22.5}\]</div>
+If we choose the inside and outside axial fields to be equal, <div class="math-display">\[B_{z,\rm in}=B_{z,\rm out}=B_z,\]</div>
+then (<a href="lecture22.html#eq-eq-ks-stress_balance">22.5</a>) reduces to <a id="eq-eq-ks-pressure_balance"></a><div class="math-display">\[\boxed { p = \frac {B_\theta ^2(a)}{2\muo }. } \tag{22.7}\]</div>
+This is the standard hollow-current surface-current equilibrium: the plasma pressure is held in by the
+external poloidal field generated by the axial sheet current.
+</p>
+<!--l. 72--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670001"></a>Boundary condition on the perturbed radial field.</span>
+From the frozen-in relation for the perturbed magnetic field, <a id="eq-eq-ks-frozenin_ref"></a><div class="math-display">\[\B _1 = \curl (\vect {\xi }\times \B _0), \tag{22.8}\]</div>
+which was derived in Lecture&#x00A0;15 as (<a href="lecture15.html#eq-eq-B1_def">15.3</a>), one can impose that the perturbed field remain tangent to the
+perturbed surface. Write the displaced boundary as <div class="math-display">\[F(r,\theta ,z)=r-a-\xi _r(\theta ,z)=0.\]</div>
+To first order, <div class="math-display">\[\grad F = \vect {e}_r -\frac {1}{a}\pp {\xi _r}{\theta }\vect {e}_\theta -\pp {\xi _r}{z}\vect {e}_z.\]</div>
+Because <div class="math-display">\[\begin{aligned}(\B _0+\B _1)\cdot \grad F &amp; =0 \\ &amp; = \delta B_r - \frac {B_\theta }{a}\pp {\xi _r}{\theta } - B_z\pp {\xi _r}{z}.\end{aligned}\]</div>
+</p><!--l. 96--><p class="noindent" >on the perturbed surface and \(B_{0r}=0\), the linearized boundary condition is <div class="math-display">\[\delta B_r =i m \frac {B_\theta }{a} +i k B_z\]</div>
+For a helical normal mode, <div class="math-display">\[\xi _r = \xi _0 e^{i(m\theta +kz)},\]</div>
+this becomes <a id="eq-eq-ks-deltaBr_bc"></a><div class="math-display">\[\boxed { \delta B_r = i\left (\frac {mB_\theta (a)}{a}+kB_z\right ) \xi _0 e^{i(m\theta +kz)}. } \tag{22.15}\]</div>
+This single interface relation is the place where the field-line pitch enters the calculation.
+</p>
+<!--l. 119--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-680001"></a>Vacuum solution outside the plasma.</span>
+In the vacuum region the perturbed field is curl free and divergence free, so we write <div class="math-display">\[\delta \B = \grad \Phi , \qquad \nabla ^2 \Phi = 0.\]</div>
+</p><!--l. 128--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 128--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Tutorial: why modified Bessel functions appear in the vacuum field. </tspan>In vacuum there
+     is no perturbed current, so \[ \nabla \times \delta \B =0, \qquad \nabla \cdot \delta \B =0. \] That is why we can write \(\delta \B =\grad \Phi \) with \(\nabla ^2\Phi =0\). If we separate variables as \[ \Phi (r,\theta ,z)=\phi _m(r)e^{i(m\theta +kz)}, \] then
+     the radial function satisfies \[ \frac {d^2\phi _m}{dr^2} +\frac {1}{r}\frac {d\phi _m}{dr} -\left (\frac {m^2}{r^2}+k^2\right )\phi _m=0. \] With \(x\equiv |k|r\), this becomes \[ x^2\phi _m''+x\phi _m'-(x^2+m^2)\phi _m=0, \] which is the <tspan font-family="ecti" font-size="1095">modified Bessel equation</tspan>.
+     Its two independent solutions are \[ \phi _m(x)=A I_m(x)+C K_m(x). \] The geometry decides which one is physical:
+                                                                                         
+                                                                                         
+     </p>
+   <ul class="itemize1">
+   <li class="itemize">\(I_m\) is regular at \(r=0\), so it is the acceptable solution near the axis;
+   </li>
+   <li class="itemize">\(K_m\) decays as \(r\to \infty \), so it is the acceptable solution in an unbounded exterior vacuum;
+   </li>
+   <li class="itemize">in a vacuum annulus \(a&lt;r&lt;b\), one keeps <tspan font-family="ecti" font-size="1095">both</tspan> \(I_m\) and \(K_m\), then uses the wall condition to fix their
+   combination.</li></ul>
+     <!--l. 159--><p class="noindent" >Because \(\delta \B =\grad \Phi \), the matching condition on the radial field involves \(I_m'\) and \(K_m'\), not just \(I_m\) and \(K_m\) themselves.
+     In the long-wavelength limit \(|k|r\ll 1\) these reduce to the familiar harmonic-cylinder behaviors, \[ I_m(|k|r)\propto r^m, \qquad K_m(|k|r)\propto r^{-m}\quad (m\ge 1), \] while \(K_0(|k|r)\sim -\ln (|k|r)\).
+     Thus for \(m=1\) one recovers the simple form \(\Phi \sim Ar+C/r\). Figure&#x00A0;22.2 makes the roles visually obvious: \(I_n\) stays
+     finite at the axis and grows outward, whereas \(K_n\) decays outward and is singular at the axis for
+     \(n\ge 1\).</p></blockquote></div></div>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-680012"></a>
+                                                                                         
+                                                                                         
+<!--l. 170--><p class="noindent" ><img 
+src="figures/modified_bessel_overview_book.png" alt="PIC"  
+width="469" height="175"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;22.2: </span><span  
+class="content">Modified Bessel functions that appear in cylindrical vacuum matching. Left: \(I_n(x)\), which is
+regular at the axis and grows outward. Right: \(K_n(x)\), shown on a logarithmic vertical scale, which decays
+for large \(x\) and is singular as \(x\to 0\) for \(n\ge 1\); \(K_0\) has the weaker logarithmic divergence. In MHD vacuum problems,
+regularity at the axis selects \(I_m\), decay in an unbounded exterior selects \(K_m\), and a finite annulus generally
+requires both.</span></div><!--tex4ht:label?: x1-680012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 175--><p class="noindent" >For a mode \(e^{i(m\theta +kz)}\) that decays as \(r\to \infty \), <div class="math-display">\[\Phi = A K_m(|k|r)e^{i(m\theta +kz)},\]</div>
+with \(K_m\) the modified Bessel function of the second kind. Therefore <div class="math-display">\[\delta B_r^{\rm vac} = A|k|K_m'(|k|r)e^{i(m\theta +kz)}.\]</div>
+Matching to (<a href="lecture22.html#eq-eq-ks-deltaBr_bc">22.15</a>) at \(r=a\) gives <a id="eq-eq-ks-A_nowall"></a><div class="math-display">\[A = \frac {i\left (\frac {mB_\theta (a)}{a}+kB_z\right )\xi _0}{|k|K_m'(|k|a)}. \tag{22.19}\]</div>
+</p>
+<!--l. 193--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-690001"></a>Plasma term.</span>
+For \(m=1\) the plasma core moves almost rigidly, so the only important interior term is axial-field bending. Using
+(<a href="lecture15.html#eq-eq-B1_def">15.3</a>), repeated here <div class="math-display">\[\begin{aligned}\delta W_P = \frac 12\int _P dV\Bigg [ &amp; \underbrace {\frac {|\vect {Q}_\perp |^2}{\muo }}_{\text {field-line bending}} + \underbrace {\frac {B^2}{\muo } \left |\divergence \vect {\xi }_\perp + 2\,\vect {\xi }_\perp \cdot \vect {\kappa }\right |^2}_{\text {magnetic compression}} + \underbrace {\gamma p\,|\divergence \vect {\xi }|^2}_{\text {plasma compression}} \nonumber \\[0.5em] &amp; - \underbrace {2\,(\vect {\xi }_\perp \cdot \grad p) (\vect {\xi }_\perp ^{*}\cdot \vect {\kappa })}_{\text {pressure--curvature coupling}} - \underbrace {\frac {J_\parallel }{B} (\vect {\xi }_\perp ^{*}\times \B )\cdot \vect {Q}_\perp }_{\text {current-driven term}} \Bigg ].\end{aligned}\]</div>
+</p><!--l. 217--><p class="noindent" >with \(\B _0=B_z\vect {e}_z\), <div class="math-display">\[\delta \B _{\rm pl} = \curl (\vect {\xi }\times B_z\vect {e}_z), \qquad |\delta \B _{\rm pl}|^2 = k^2 B_z^2 |\xi _0|^2,\]</div>
+which gives <a id="eq-eq-ks-Wpl"></a><div class="math-display">\[\boxed { \delta W_{\rm pl} = \frac {\pi a^2L}{2\muo }k^2B_z^2|\xi _0|^2. } \tag{22.22}\]</div>
+</p>
+<!--l. 233--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-700001"></a>Surface Term.</span>
+From the surface term in the energy principle of Lecture&#x00A0;15, the interface contribution is <div class="math-display">\[\delta W_{\rm surf} = \frac {1}{2}\int _{r=a} \xi _r^2 \left [\!\left [ \dd {}{r} \left ( p+\frac {B^2}{2\muo } \right ) \right ]\!\right ]dS.\]</div>
+Because the pressure is constant inside and outside in this simple model, only \(B_\theta (r)\) contributes. Using (<a href="lecture22.html#eq-eq-ks-Bvacuum">22.2</a>),
+<div class="math-display">\[\dd {}{r}\left (\frac {B_\theta ^2}{2\muo }\right ) = -\frac {B_\theta ^2(a)}{\muo a} \qquad (r=a),\]</div>
+so <a id="eq-eq-ks-Wsurf"></a><div class="math-display">\[\boxed { \delta W_{\rm surf} = -\frac {\pi L}{2\muo }B_\theta ^2(a)|\xi _0|^2. } \tag{22.25}\]</div>
+</p>
+<!--l. 264--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710001"></a>Vacuum magnetic energy.</span>
+The vacuum contribution to the potential energy is <div class="math-display">\[\delta W_{\rm vac} = \frac {1}{2\muo }\int _{\rm vac}|\delta \B |^2\,dV.\]</div>
+Since \(\delta \B =\grad \Phi \) and \(\nabla ^2\Phi =0\), Green&#8217;s identity <div class="math-display">\[\begin{aligned}\int _V \nabla \cdot (\Phi \nabla \Phi ) dV &amp; = \int _V (\nabla \Phi )^2 dV + \int \Phi \cancelto {0}{\nabla ^2 \Phi } dV \\ \therefore \int _V (\nabla \Phi )^2 dV &amp; = \int _S \Phi \nabla \Phi \cdot d \vect {S} \\\end{aligned}\]</div>
+</p><!--l. 277--><p class="noindent" >reduces the volume integral to a boundary term, <div class="math-display">\[\delta W_{\rm vac} = -\frac {1}{4\muo }\int _{r=a} \Phi ^*\,\delta B_r^{\rm vac}\,dS,\]</div>
+where the minus sign comes from the outward normal of the vacuum region at the plasma surface.
+Carrying out the surface integral yields <a id="eq-eq-ks-Wvac_nowall"></a><div class="math-display">\[\boxed { \delta W_{\rm vac} = \frac {\pi aL}{2\muo } \Lambda _m(x) \left (\frac {mB_\theta (a)}{a}+kB_z\right )^2 |\xi _0|^2, } \tag{22.31}\]</div>
+with <div class="math-display">\[x\equiv |k|a, \qquad \Lambda _m(x)\equiv -\frac {K_m(x)}{|k|K_m'(x)}&gt;0.\]</div>
+The least stable case is \(m=1\), so from this point onward we restrict attention to the external kink.
+</p>
+<!--l. 304--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720001"></a>Total energy and the Kruskal&#8211;Shafranov threshold.</span>
+The total potential energy is the sum of the three pieces, <div class="math-display">\[\delta W = \delta W_{\rm pl}+\delta W_{\rm surf}+\delta W_{\rm vac}.\]</div>
+Using (<a href="lecture22.html#eq-eq-ks-Wvac_nowall">22.31</a>), (<a href="lecture22.html#eq-eq-ks-Wsurf">22.25</a>), and (<a href="lecture22.html#eq-eq-ks-Wpl">22.22</a>), <a id="eq-eq-ks-Wtotal_nowall"></a><div class="math-display">\[\boxed { \delta W = \frac {\pi L}{2\muo }|\xi _0|^2 \left [ a^2k^2B_z^2 -B_\theta ^2(a) +a\Lambda _1(x) \left (kB_z+\frac {B_\theta (a)}{a}\right )^2 \right ]. } \tag{22.34}\]</div>
+In the long-wavelength limit \(|k|a\ll 1\), <div class="math-display">\[K_1(x)\sim \frac {1}{x}, \qquad K_1'(x)\sim -\frac {1}{x^2}, \qquad \Lambda _1(x)\to a.\]</div>
+Then (<a href="lecture22.html#eq-eq-ks-Wtotal_nowall">22.34</a>) becomes <a id="eq-eq-ks-Wlongwave_nowall"></a><div class="math-display">\[\begin{aligned}\delta W &amp;\to \frac {\pi L}{2\muo }|\xi _0|^2 \left [ a^2k^2B_z^2 -B_\theta ^2(a) +a^2\left (kB_z+\frac {B_\theta (a)}{a}\right )^2 \right ] \\ &amp;= \frac {\pi a^2Lk^2B_z^2}{\muo }|\xi _0|^2 \left (1-\frac {1}{q_a}\right ),\end{aligned} \tag{22.37}\]</div>
+</p><!--l. 347--><p class="noindent" >where for the unstable helicity we define <a id="eq-eq-ks-qdef"></a><div class="math-display">\[q_a \equiv \frac {2\pi a B_z}{L|B_\theta (a)|}, \qquad |k|=\frac {2\pi }{L}. \tag{22.38}\]</div>
+Therefore the periodic surface-current column is marginal at <a id="eq-eq-ks-threshold_periodic_nowall"></a><div class="math-display">\[\boxed {q_a=1,} \tag{22.39}\]</div>
+and unstable for \(q_a&lt;1\).
+<a 
+ id="x1-72001r73"></a>
+                                                                                         
+                                                                                         
+</p>
+<h3 class="sectionHead"><span class="titlemark">22.2   </span> <a 
+ id="x1-730002"></a>An ideal conducting wall in the periodic problem</h3>
+<!--l. 363--><p class="noindent" >Now place a perfectly conducting cylindrical wall at \(r=b&gt;a\). The plasma and surface terms, (<a href="lecture22.html#eq-eq-ks-Wsurf">22.25</a>) and (<a href="lecture22.html#eq-eq-ks-Wpl">22.22</a>),
+do not change. Only the vacuum matching changes because the radial field must vanish at the
+wall.
+</p>
+<!--l. 365--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-740002"></a>Vacuum field in the annulus \(a&lt;r&lt;b\).</span>
+In the vacuum annulus, <div class="math-display">\[\delta \B =\grad \Phi , \qquad \nabla ^2\Phi =0,\]</div>
+and the general \(m=1\) solution is <div class="math-display">\[\Phi (r,\theta ,z) = \left [A I_1(\kappa r)+C K_1(\kappa r)\right ]e^{i(\theta +kz)}, \qquad \kappa \equiv |k|.\]</div>
+Hence <div class="math-display">\[\delta B_r^{\rm vac} = \kappa \left [A I_1'(\kappa r)+C K_1'(\kappa r)\right ]e^{i(\theta +kz)}.\]</div>
+The ideal-wall condition is <div class="math-display">\[\delta B_r^{\rm vac}(b)=0,\]</div>
+so <div class="math-display">\[A I_1'(\kappa b)+C K_1'(\kappa b)=0.\]</div>
+At the plasma boundary, <div class="math-display">\[\kappa \left [A I_1'(\kappa a)+C K_1'(\kappa a)\right ] = i\left (kB_z+\frac {B_\theta (a)}{a}\right )\xi _0.\]</div>
+It is convenient to define <div class="math-display">\[\alpha _b\equiv \frac {I_1'(\kappa b)}{K_1'(\kappa b)}, \qquad C=-\alpha _b A.\]</div>
+Then <div class="math-display">\[A = \frac {i\left (kB_z+\frac {B_\theta (a)}{a}\right )\xi _0}{\kappa \left [I_1'(\kappa a)-\alpha _b K_1'(\kappa a)\right ]},\]</div>
+and therefore <div class="math-display">\[\Phi (a) = \frac {i\left (kB_z+\frac {B_\theta (a)}{a}\right )\xi _0}{\kappa } \frac {I_1(\kappa a)-\alpha _b K_1(\kappa a)}{I_1'(\kappa a)-\alpha _b K_1'(\kappa a)}.\]</div>
+Green&#8217;s identity then gives <a id="eq-eq-ks-Wvac_wall"></a><div class="math-display">\[\boxed { \delta W_{\rm vac}(b) = \frac {\pi aL}{2\muo } \Lambda _b(\kappa a,\kappa b) \left (kB_z+\frac {B_\theta (a)}{a}\right )^2|\xi _0|^2, } \tag{22.49}\]</div>
+with <div class="math-display">\[\boxed { \Lambda _b(x,y) = -\frac {1}{\kappa } \frac {I_1(x)-\alpha _b K_1(x)}{I_1'(x)-\alpha _b K_1'(x)}, \qquad \alpha _b=\frac {I_1'(y)}{K_1'(y)}. }\]</div>
+</p>
+<!--l. 439--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750002"></a>Long-wavelength limit.</span>
+For \(\kappa a\ll 1\) and \(\kappa b\ll 1\), the modified Bessel functions reduce to the harmonic-cylinder forms, <div class="math-display">\[I_1(\kappa r)\sim \frac {\kappa r}{2}, \qquad K_1(\kappa r)\sim \frac {1}{\kappa r},\]</div>
+so the vacuum potential may be written directly as <div class="math-display">\[\Phi (r)=Ar+\frac {C}{r}.\]</div>
+The wall condition \(\delta B_r(b)=0\) gives <div class="math-display">\[A-\frac {C}{b^2}=0, \qquad C=Ab^2.\]</div>
+At \(r=a\), <div class="math-display">\[\delta B_r(a)=A\left (1-\frac {b^2}{a^2}\right )e^{i(\theta +kz)} = i\left (kB_z+\frac {B_\theta (a)}{a}\right )\xi _0e^{i(\theta +kz)},\]</div>
+so \(A\) is fixed immediately. Substituting into the surface form for \(\delta W_{\rm vac}\) yields <a id="eq-eq-ks-Wvac_wall_longwave"></a><div class="math-display">\[\boxed { \delta W_{\rm vac}(b) = \frac {\pi a^2L}{2\muo } \frac {a^2+b^2}{b^2-a^2} \left (kB_z+\frac {B_\theta (a)}{a}\right )^2|\xi _0|^2. } \tag{22.55}\]</div>
+In the no-wall limit \(b\to \infty \) this reduces to <div class="math-display">\[\delta W_{\rm vac}(\infty ) = \frac {\pi a^2L}{2\muo } \left (kB_z+\frac {B_\theta (a)}{a}\right )^2|\xi _0|^2.\]</div>
+Therefore the ideal wall adds the positive amount <a id="eq-eq-ks-Wb_periodic"></a><div class="math-display">\[\boxed { \delta W_b \equiv \delta W_{\rm vac}(b)-\delta W_{\rm vac}(\infty ) = \frac {\pi a^2L}{\muo } \frac {a^2}{b^2-a^2} \left (kB_z+\frac {B_\theta (a)}{a}\right )^2|\xi _0|^2. } \tag{22.57}\]</div>
+</p>
+<!--l. 493--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760002"></a>Periodic ideal-wall threshold.</span>
+Let <div class="math-display">\[h\equiv \frac {a^2}{b^2}, \qquad \mathcal A \equiv \frac {\pi a^2Lk^2B_z^2}{\muo }|\xi _0|^2 &gt;0.\]</div>
+Using (<a href="lecture22.html#eq-eq-ks-Wpl">22.22</a>), (<a href="lecture22.html#eq-eq-ks-Wsurf">22.25</a>), and (<a href="lecture22.html#eq-eq-ks-Wvac_wall_longwave">22.55</a>), the total long-wavelength energy is <a id="eq-eq-ks-periodic_wall_factorized"></a><div class="math-display">\[\begin{aligned}\delta W &amp;= \mathcal A \left [ \left (1-\frac {1}{q_a}\right ) + \frac {h}{1-h}\left (1-\frac {1}{q_a}\right )^2 \right ] \\ &amp;= \mathcal A\, \frac {(q_a-1)(q_a-h)}{q_a^2(1-h)}.\end{aligned} \tag{22.60}\]</div>
+</p><!--l. 515--><p class="noindent" >The roots are <div class="math-display">\[q_a=1, \qquad q_a=h=\frac {a^2}{b^2}.\]</div>
+So the <tspan font-family="ecti" font-size="1095">periodic </tspan>ideal-wall model is unstable only in the interval <a id="eq-eq-ks-periodic_reentrant_interval"></a><div class="math-display">\[\boxed {\frac {a^2}{b^2}&lt;q_a&lt;1.} \tag{22.62}\]</div>
+</p><!--l. 528--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 528--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">This two-root structure belongs to the periodic problem. </tspan>The re-entrant stability
+                                                                                         
+                                                                                         
+     at very small \(q_a\) is not the correct finite-length, line-tied result. In the line-tied problem
+     the end plates force the eigenfunction to change with current, and the upper root \(q_a=a^2/b^2\)
+     disappears. This is exactly why the finite-length screw pinch is more subtle than &#8220;take
+     the infinite-cylinder result and set \(k=2\pi /L\).&#8221;</p></blockquote></div></div>
+<a 
+ id="x1-76001r82"></a>
+<h3 class="sectionHead"><span class="titlemark">22.3   </span> <a 
+ id="x1-770003"></a>Line tying and the finite-length screw pinch</h3>
+<!--l. 533--><p class="noindent" >Now impose the physically correct end conditions for a finite plasma column. At perfectly conducting end
+plates, <a id="eq-eq-ks-linetied_bc"></a><div class="math-display">\[\vect {\xi }_\perp (z=0)=\vect {\xi }_\perp (z=L)=0, \qquad \delta B_z(z=0)=\delta B_z(z=L)=0. \tag{22.63}\]</div>
+A single traveling helix \(e^{ikz}\) cannot satisfy these conditions and a more complicated PDE is needed. In the
+long-thin limit \(a,b\ll L\), the plasma may be viewed as a stack of almost rigid slices (from \(\nabla \cdot \vect {\xi }=0\)) <a 
+href="#XRyutov2004">Ryutov
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XRyutov2004">2004</a>].
+</p>
+<!--l. 543--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-780003"></a>Axial equation.</span>
+Once the pinch is truncated in the \(z\) direct, the system can no longer be Fourier analyzed in the \(z\) and \(\theta \)
+directions; the problem becomes intrinsically 2D and the equation of motion becomes \(z\) dependent as it
+approaches the ends. When the system is long and thin, the end effects become unimportant. Even so, a
+equation of motion in the interior must be derived then solved as in <a 
+href="#XRyutov2004">Ryutov et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XRyutov2004">2004</a>],&#x00A0;<a 
+href="#XHegna2004">Hegna</a>&#x00A0;[<a 
+href="#XHegna2004">2004</a>].
+For the hollow-current surface-current model, <a 
+href="#XRyutov2004">Ryutov et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XRyutov2004">2004</a>] derives an equation for pressure inside
+the pinch that obeys <a id="eq-eq-ks-linetied_ode"></a><div class="math-display">\[\boxed { \dd {^2\xi _0}{z^2} -2iK\dd {\xi _0}{z} -\widetilde K^2\xi _0 = -\frac {4\pi \rho \omega ^2}{B_z^2}\xi _0, } \tag{22.64}\]</div>
+for the \(m=1\) perturbation in the long and thin approximation, where <a id="eq-eq-ks-Kdefs"></a><div class="math-display">\[\boxed { K=\frac {1+\eta }{2}\frac {B_\theta (a)}{aB_z}, \qquad \widetilde K^2 = \eta \left (\frac {B_\theta (a)}{aB_z}\right )^2, \qquad \eta \equiv \frac {a^2}{b^2}. } \tag{22.65}\]</div>
+Equation&#x00A0;(<a href="lecture22.html#eq-eq-ks-linetied_ode">22.64</a>) is the finite-length statement of the same physics we saw in the energy principle:
+guide-field bending stabilizes, the edge current drives, and the wall enters through the vacuum
+matching.
+</p><!--l. 569--><p class="noindent" >At marginal stability, \(\omega =0\), seek a solution satisfying the \(z=0\) boundary condition in the form <a id="eq-eq-ks-linetied_mode"></a><div class="math-display">\[\xi _0(z)=C\left (e^{ik_1 z}-e^{ik_2 z}\right ). \tag{22.66}\]</div>
+Substituting (<a href="lecture22.html#eq-eq-ks-linetied_mode">22.66</a>) into (<a href="lecture22.html#eq-eq-ks-linetied_ode">22.64</a>) gives the algebraic relations <a id="eq-eq-ks-k1k2rels"></a><div class="math-display">\[k_1+k_2 = 2K, \qquad k_1k_2 = \widetilde K^2. \tag{22.67}\]</div>
+The second end condition, \(\xi _0(L)=0\), requires <div class="math-display">\[e^{i(k_1-k_2)L}=1.\]</div>
+For the fundamental mode, <a id="eq-eq-ks-kdiff"></a><div class="math-display">\[\boxed {k_1-k_2=\frac {2\pi }{L}.} \tag{22.69}\]</div>
+Physically, the eigenmode is made up of two counter propagating eigenfunctions with proper periodicity to
+give zero displace at the ends.
+</p><!--l. 592--><p class="noindent" >Now square (<a href="lecture22.html#eq-eq-ks-kdiff">22.69</a>) and use (<a href="lecture22.html#eq-eq-ks-k1k2rels">22.67</a>): <div class="math-display">\[\begin{aligned}\left (\frac {2\pi }{L}\right )^2 &amp;=(k_1-k_2)^2 \nonumber \\ &amp;=(k_1+k_2)^2-4k_1k_2 \nonumber \\ &amp;=4\left (K^2-\widetilde K^2\right ).\end{aligned}\]</div>
+</p><!--l. 599--><p class="noindent" >Using (<a href="lecture22.html#eq-eq-ks-Kdefs">22.65</a>), <div class="math-display">\[\begin{aligned}K^2-\widetilde K^2 &amp;= \left [\frac {(1+\eta )^2}{4}-\eta \right ] \left (\frac {B_\theta (a)}{aB_z}\right )^2 \\ &amp;= \frac {(1-\eta )^2}{4} \left (\frac {B_\theta (a)}{aB_z}\right )^2.\end{aligned}\]</div>
+</p><!--l. 609--><p class="noindent" >Therefore <div class="math-display">\[\frac {2\pi }{L} = (1-\eta )\frac {B_\theta (a)}{aB_z},\]</div>
+and with the definition (<a href="lecture22.html#eq-eq-ks-qdef">22.38</a>) one finds the line-tied ideal-wall threshold <a id="eq-eq-ks-line_tied_threshold"></a><div class="math-display">\[\boxed { q_a = 1-\eta = 1-\frac {a^2}{b^2}. } \tag{22.74}\]</div>
+Therefore the line-tied column with an ideal wall is unstable for <a id="eq-eq-ks-line_tied_unstable"></a><div class="math-display">\[\boxed {q_a&lt;1-\frac {a^2}{b^2}.} \tag{22.75}\]</div>
+This is the result that is easy to miss if one jumps too quickly from the infinite cylinder to a single periodic
+harmonic.
+</p>
+<!--l. 629--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-790003"></a>Why the no-wall and ideal-wall line-tied cases differ.</span>
+The algebra above also makes the mode structure more transparent. From (<a href="lecture22.html#eq-eq-ks-k1k2rels">22.67</a>) and (<a href="lecture22.html#eq-eq-ks-kdiff">22.69</a>), the
+marginal roots are <a id="eq-eq-ks-kroots_threshold"></a><div class="math-display">\[\boxed { k_1 = \frac {B_\theta (a)}{aB_z}, \qquad k_2 = \eta \frac {B_\theta (a)}{aB_z}. } \tag{22.76}\]</div>
+                                                                                         
+                                                                                         
+In the far-wall limit \(\eta \to 0\), the second branch becomes <div class="math-display">\[k_2\to 0,\]</div>
+which is just a rigid sideways translation. That is why the no-wall line-tied problem recovers the usual
+Kruskal&#8211;Shafranov threshold \(q_a=1\): the translational piece can be mixed with the helical piece to satisfy the end
+conditions at no energy cost. For a finite wall, that translational branch is no longer neutral; it becomes a
+second long-pitch helix with \(k_2\neq 0\). Once that happens, the threshold shifts to (<a href="lecture22.html#eq-eq-ks-line_tied_threshold">22.74</a>), and the periodic
+re-entrant stability at very small \(q_a\) disappears.
+</p>
+<!--l. 645--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-800003"></a>A compact energy-principle interpretation.</span>
+This line-tied result is also naturally read as an energy principle. The guide field contributes the positive
+line-bending term, roughly \(\int B_z^2|d\xi _0/dz|^2\,dz\), while the edge current and the vacuum matching contribute the negative
+drive. The conducting wall makes the vacuum matching more expensive, and the end plates enforce a
+two-harmonic axial structure rather than a single helix. The threshold changes because the admissible trial
+functions change.
+<a 
+ id="x1-80001r86"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">22.4   </span> <a 
+ id="x1-810004"></a>The resistive wall mode</h3>
+<!--l. 650--><p class="noindent" >The resistive wall mode is the case in which the plasma is unstable with <tspan font-family="ecti" font-size="1095">no </tspan>wall, stable with an <tspan font-family="ecti" font-size="1095">ideal </tspan>wall
+at \(r=b\), and therefore unstable again when the wall has finite conductivity. The mode is not an entirely new
+instability. It is the same external kink, slowed down to the wall-diffusion timescale because the wall
+current can only hold the vacuum perturbation off for a finite time.
+</p>
+<!--l. 652--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-820004"></a>The three \(\Delta \)&#8217;s one actually needs.</span>
+A good deal of confusion in the literature comes from the fact that different papers package the same
+physics into different logarithmic derivatives and therefore different sign conventions. In this lecture I will
+use a deliberately simple normalization. Define <div class="math-display">\[\mathcal N \equiv \frac {\pi a^2L}{2\muo }|\xi _0|^2,\]</div>
+and write <a id="eq-eq-ks-Delta_defs1"></a><div class="math-display">\[\delta W_\infty = \mathcal N\,\Delta _{\rm nw}, \qquad \delta W_b = \mathcal N\,\Delta _b, \qquad \delta W_{\rm ideal}(b)=\mathcal N\,\Delta _{\rm iw}, \tag{22.79}\]</div>
+with <a id="eq-eq-ks-Delta_nw"></a><div class="math-display">\[\begin{aligned}\Delta _{\rm nw} &amp;= k^2B_z^2 - \frac {B_\theta ^2(a)}{a^2} + \left (kB_z+\frac {B_\theta (a)}{a}\right )^2,  \\ \Delta _b &amp;= \frac {2a^2}{b^2-a^2}\left (kB_z+\frac {B_\theta (a)}{a}\right )^2, \\ \Delta _{\rm iw} &amp;= \Delta _{\rm nw}+\Delta _b.\end{aligned} \tag{22.80}\]</div>
+</p><!--l. 678--><p class="noindent" >So: </p>
+   <ul class="itemize1">
+   <li class="itemize">\(\Delta _{\rm nw}\) is the <tspan font-family="ecti" font-size="1095">no-wall drive</tspan>;
+   </li>
+   <li class="itemize">\(\Delta _b\) is the <tspan font-family="ecti" font-size="1095">extra ideal-wall stabilization</tspan>;
+   </li>
+   <li class="itemize">\(\Delta _{\rm iw}\) is the <tspan font-family="ecti" font-size="1095">ideal-wall total</tspan>.</li></ul>
+<!--l. 684--><p class="noindent" >Nothing mysterious is hiding in the notation. These are just the three energies we already computed,
+divided by the common positive factor \(\mathcal N\).
+</p><!--l. 686--><p class="noindent" >The resistive-wall regime is <a id="eq-eq-ks-rwm_regime"></a><div class="math-display">\[\Delta _{\rm nw}&lt;0, \qquad \Delta _{\rm iw}&gt;0, \tag{22.83}\]</div>
+which is exactly the statement <div class="math-display">\[\delta W_\infty &lt;0, \qquad \delta W_{\rm ideal}(b)&gt;0.\]</div>
+</p>
+                                                                                         
+                                                                                         
+<!--l. 700--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830004"></a>Thin-wall constant-\(\psi \) model.</span>
+Let the wall occupy \(b&lt;r&lt;b+d\), with conductivity \(\sigma _w\) and resistivity \(\eta _w=1/\sigma _w\). In the long-wavelength limit it is convenient to
+represent the vacuum perturbation by a helical flux function, <div class="math-display">\[\delta \B _{\rm vac}=\grad \psi \times \vect {e}_z, \qquad \psi (r,\theta ,z,t)=\psi (r)e^{i\theta +ikz+\gamma t}.\]</div>
+Then <div class="math-display">\[\delta B_r = \frac {i}{r}\psi , \qquad \delta B_\theta = -\dd {\psi }{r}.\]</div>
+In the vacuum regions, <div class="math-display">\[\nabla ^2\psi =0,\]</div>
+so the \(m=1\) solutions are <a id="eq-eq-ks-psiinsidewall"></a><div class="math-display">\[\psi _&lt;(r)=Ar+\frac {C}{r},\qquad a&lt;r&lt;b, \tag{22.88}\]</div>
+and <a id="eq-eq-ks-psioutsidewall"></a><div class="math-display">\[\psi _&gt;(r)=\frac {D}{r},\qquad r&gt;b+d. \tag{22.89}\]</div>
+The thin-wall approximation assumes \(\psi \) is nearly constant across the wall, so <div class="math-display">\[\psi (b+d)\simeq \psi (b),\]</div>
+which is valid when the wall thickness is smaller than the resistive skin depth. The wall timescale is <a id="eq-eq-ks-tauw"></a><div class="math-display">\[\tau _w \equiv \frac {\muo b d}{\eta _w}=\muo \sigma _w b d. \tag{22.91}\]</div>
+</p>
+<!--l. 737--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-840004"></a>Jump condition across the resistive wall.</span>
+Continuity of magnetic flux gives <div class="math-display">\[[\psi ]_b=0.\]</div>
+Inside the wall, the tangential electric field is <div class="math-display">\[E_z = -\pp {\psi }{t} = -\gamma \psi ,\]</div>
+so Ohm&#8217;s law gives <div class="math-display">\[j_z = \sigma _w E_z = -\sigma _w\gamma \psi .\]</div>
+The corresponding surface current is <div class="math-display">\[K_z = j_z d = -\sigma _w d\,\gamma \psi .\]</div>
+Ampère&#8217;s law across the shell then implies <div class="math-display">\[\delta B_{\theta ,&gt;}-\delta B_{\theta ,&lt;}=\muo K_z.\]</div>
+Since \(\delta B_\theta =-d\psi /dr\), this becomes <a id="eq-eq-ks-jump"></a><div class="math-display">\[\boxed { \left [\dd {\psi }{r}\right ]_b = \frac {\muo \gamma d}{\eta _w}\,\psi (b) = \frac {\gamma \tau _w}{b}\,\psi (b). } \tag{22.97}\]</div>
+This is the standard thin-wall constant-\(\psi \) condition.
+</p><!--l. 771--><p class="noindent" >At \(r=b\), continuity of \(\psi \) gives <div class="math-display">\[D = Ab^2+C.\]</div>
+Using (<a href="lecture22.html#eq-eq-ks-jump">22.97</a>) together with (<a href="lecture22.html#eq-eq-ks-psiinsidewall">22.88</a>) and (<a href="lecture22.html#eq-eq-ks-psioutsidewall">22.89</a>), <div class="math-display">\[-2A = \gamma \tau _w\left (A+\frac {C}{b^2}\right ).\]</div>
+If we define <div class="math-display">\[\lambda \equiv \gamma \tau _w,\]</div>
+then <a id="eq-eq-ks-A_lambda"></a><div class="math-display">\[\boxed { A = -\frac {\lambda }{2+\lambda }\frac {C}{b^2}. } \tag{22.101}\]</div>
+So the wall response interpolates continuously between <div class="math-display">\[\lambda \to 0: \quad A\to 0 \quad \text {(no wall)},\]</div>
+and <div class="math-display">\[\lambda \to \infty : \quad \psi (b)\to 0 \quad \text {(ideal wall)}.\]</div>
+</p>
+<!--l. 799--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-850004"></a>Vacuum response seen by the plasma.</span>
+At the plasma boundary, <div class="math-display">\[\psi (a)=Aa+\frac {C}{a}, \qquad -\psi _&lt;'(a)=-A+\frac {C}{a^2}.\]</div>
+Substituting (<a href="lecture22.html#eq-eq-ks-A_lambda">22.101</a>) gives <a id="eq-eq-ks-Clambda"></a><div class="math-display">\[-\frac {\psi _&lt;'(a)}{\psi (a)/a} = \mathcal C(\lambda ) \equiv \frac {2b^2+\lambda (b^2+a^2)}{2b^2+\lambda (b^2-a^2)}. \tag{22.105}\]</div>
+It is more revealing to rewrite this as <a id="eq-eq-ks-Clambda_split"></a><div class="math-display">\[\mathcal C(\lambda ) = 1+ \frac {\lambda (b^2-a^2)}{2b^2+\lambda (b^2-a^2)} \left [\frac {2a^2}{b^2-a^2}\right ]. \tag{22.106}\]</div>
+The square bracket is exactly the ideal-wall increment already identified in (<a href="lecture22.html#eq-eq-ks-Delta_b">22.81</a>). Therefore the total
+energy is <a id="eq-eq-ks-RWM_interpolation"></a><div class="math-display">\[\boxed { \delta W(\lambda ) = \delta W_\infty + \frac {\lambda (b^2-a^2)}{2b^2+\lambda (b^2-a^2)}\,\delta W_b. } \tag{22.107}\]</div>
+This is the cleanest way to read the resistive-wall problem. A finite-conductivity wall does not add a new
+type of drive; it restores only a <tspan font-family="ecti" font-size="1095">fraction </tspan>of the ideal-wall stabilization, with that fraction going from \(0\) to \(1\) as \(\lambda =\gamma \tau _w\)
+goes from \(0\) to \(\infty \).
+</p>
+<!--l. 837--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-860004"></a>Thin-wall dispersion relation.</span>
+At marginality we set \(\delta W(\lambda )=0\). Using (<a href="lecture22.html#eq-eq-ks-RWM_interpolation">22.107</a>), <div class="math-display">\[0 = \delta W_\infty + \frac {\lambda (b^2-a^2)}{2b^2+\lambda (b^2-a^2)}\,\delta W_b.\]</div>
+Multiply through by \(2b^2+\lambda (b^2-a^2)\): <div class="math-display">\[2b^2\delta W_\infty + \lambda (b^2-a^2)(\delta W_\infty +\delta W_b)=0.\]</div>
+But \(\delta W_\infty +\delta W_b=\delta W_{\rm ideal}(b)\), so <a id="eq-eq-ks-RWM_dispersion"></a><div class="math-display">\[\boxed { \gamma \tau _w = -\frac {2b^2}{b^2-a^2} \frac {\delta W_\infty }{\delta W_{\rm ideal}(b)}} \tag{22.110}\]</div>
+In the RWM regime (<a href="lecture22.html#eq-eq-ks-rwm_regime">22.83</a>), the right-hand side is positive, so \(\gamma &gt;0\). The mode grows, but only on the slow wall
+                                                                                         
+                                                                                         
+time, <div class="math-display">\[\gamma \sim \tau _w^{-1} \propto \frac {\eta _w}{\muo b d}.\]</div>
+That is the entire physical content of the resistive wall mode.
+</p><!--l. 868--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 868--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Energy dictionary. </tspan>If the \(\Delta \)&#8217;s in the literature feel slippery, translate them back into
+     energies. The no-wall problem gives \(\delta W_\infty \). The ideal wall adds \(\delta W_b&gt;0\). The resistive wall restores
+     only a fraction of that increment, as in (<a href="lecture22.html#eq-eq-ks-RWM_interpolation">22.107</a>). Once that bookkeeping is clear, the
+     signs are no longer mysterious.</p></blockquote></div></div>
+<a 
+ id="x1-86001r90"></a>
+<h3 class="sectionHead"><span class="titlemark">22.5   </span> <a 
+ id="x1-870005"></a>A brief experimental perspective</h3>
+<!--l. 873--><p class="noindent" >This lecture is mainly analytic, but the line-tied screw pinch and its wall variants are also unusually close
+to laboratory realizations. In Wisconsin line-tied pinch experiments, the onset and saturation of the kink
+were observed as the edge safety factor was driven below unity <a 
+href="#XBergerson2006">Bergerson et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBergerson2006">2006</a>]. The same program
+later observed resistive and ferritic wall modes in a line-tied pinch, making the distinction between
+ideal-wall stabilization and finite-wall-response dynamics directly visible <a 
+href="#XBergerson2008mwh">Bergerson et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBergerson2008mwh">2008</a>]. Rotating
+solid conductors were then shown to reduce the growth rate of the resistive wall mode and extend the
+stable operating range <a 
+href="#XPaz-Soldan2011pg">Paz-Soldan et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XPaz-Soldan2011pg">2011</a>]. Finally, zero-net-current line-tied screw-pinches
+connected the same geometry to internal kink activity, reconnection, and turbulence <a 
+href="#XBrookhart2015">Brookhart
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBrookhart2015">2015</a>].
+</p><!--l. 875--><p class="noindent" >This is a good place to emphasize a broader point that will return in later lectures: equilibrium
+reconstruction and stability analysis belong together. The quantity \(q_a\) is not just a convenient symbol
+in a derivation. It is the experimentally relevant summary of twist at the plasma edge, and
+the wall location \(b\) is not just a parameter in a vacuum calculation. It is part of the stability
+problem.
+</p><!--l. 878--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 878--><p class="noindent" >There are really three distinct lessons in this lecture.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">In the surface-current model, the external kink is the competition between guide-field
+   line bending and the edge-current drive. In the periodic no-wall problem this gives
+   the classic threshold \(q_a=1\).
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">An ideal wall adds positive vacuum energy. In the periodic model this produces the
+   familiar interval \(a^2/b^2&lt;q_a&lt;1\), but the lower root is an artifact of the periodic assumption.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">In the finite line-tied pinch, the admissible eigenfunction is a superposition of two
+   axial harmonics. That changes the ideal threshold to \[ q_a = 1-\frac {a^2}{b^2}, \] and explains why a resistive
+   wall mode is simply the slow return of an external kink whose stabilization relied on
+   wall currents.</dd></dl>
+                                                                                         
+                                                                                         
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-880005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. <tspan font-family="ecti" font-size="1095">Cosmical Electrodynamics</tspan>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <tspan font-family="ecti" font-size="1095">Nature</tspan>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <tspan font-family="ecti" font-size="1095">Nuclear</tspan>
+  <tspan font-family="ecti" font-size="1095">Fusion Supplement, Part 2</tspan>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <tspan font-family="ecti" font-size="1095">Magnetic Field Generation in Electrically Conducting Fluids</tspan>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-890005"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 22.1.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture22.html#eq-eq-ks-Wtotal_nowall">22.34</a>), take the limit \(|k|a\ll 1\) and show explicitly that the \(m=1\) energy reduces
+                to (<a href="lecture22.html#eq-eq-ks-Wlongwave_nowall">22.37</a>). Identify where the rigid-translation root comes from.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 22.2.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture22.html#eq-eq-ks-Wvac_wall_longwave">22.55</a>), derive (<a href="lecture22.html#eq-eq-ks-periodic_wall_factorized">22.60</a>). Show carefully that the periodic ideal-wall
+                problem is unstable only in the interval (<a href="lecture22.html#eq-eq-ks-periodic_reentrant_interval">22.62</a>).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 22.3.</tspan>  </dt><dd 
+class="enumerate-enumitem">Beginning with (<a href="lecture22.html#eq-eq-ks-linetied_ode">22.64</a>), set \(\omega =0\) and derive (<a href="lecture22.html#eq-eq-ks-line_tied_threshold">22.74</a>). Show that in the far-wall limit \(\eta \to 0\)
+                the second root becomes \(k_2\to 0\), i.e. a rigid translation.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 22.4.</tspan>  </dt><dd 
+class="enumerate-enumitem">Use (<a href="lecture22.html#eq-eq-ks-RWM_interpolation">22.107</a>) to re-derive (<a href="lecture22.html#eq-eq-ks-RWM_dispersion">22.110</a>). Then evaluate the growth rate in the limit
+                where the wall is only weakly stabilizing, \(\delta W_{\rm ideal}(b)\ll |\delta W_\infty |\), and in the opposite limit where the
+                ideal-wall stabilization is strong.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

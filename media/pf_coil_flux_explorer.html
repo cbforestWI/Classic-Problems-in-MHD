@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poloidal-Field Coil Flux Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+      --cs: #bb4c45;
+      --pf: #2d6ea8;
+      --div: #7c4aa5;
+      --vf: #b98a3d;
+      --plasma: #2f7d49;
+      --lcfs: #17232e;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 76ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label,
+    .control legend {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"], select {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      padding: 0.45rem 0.55rem;
+      border-radius: 8px;
+      border: 1px solid #cfdce5;
+      background: #fcfeff;
+      color: #23475f;
+      font-size: 0.95rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    fieldset {
+      margin: 0;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.8rem 0.8rem 0.55rem 0.8rem;
+      background: #f8fbfd;
+    }
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem 0.85rem;
+      margin-top: 0.25rem;
+    }
+    .toggle-grid label {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+      font-weight: 600;
+      color: #345265;
+      font-size: 0.92rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 64ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .mini-plot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      margin-top: 0.9rem;
+      color: #59707f;
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid,
+      .toggle-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Poloidal-Field Coil Flux Explorer</h1>
+  <p class="lede">
+    This browser-side companion uses a simplified Green&rsquo;s-function model in the
+    poloidal cross-section, but it now includes a boundary-fitted Grad&ndash;Shafranov-style inverse step.
+    The active ITER preset now uses the public DINA-IMAS rectangular CS/PF winding-pack model,
+    together with a plasma current found either from a boundary-fitted GS profile solve or from
+    simpler reference models.
+    Start from the full preset configuration, then turn families on and off to see
+    how each contribution bends the flux.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="device">Device preset</label>
+        </div>
+        <select id="device">
+          <option value="iter" selected>ITER</option>
+          <option value="sparc" disabled>SPARC (pending curated import)</option>
+          <option value="d3d" disabled>DIII-D (pending curated import)</option>
+        </select>
+        <p class="help">ITER uses the imported public CS/PF rectangle set. SPARC and DIII-D are temporarily disabled until their coil packs are curated to the same standard.</p>
+      </div>
+
+      <div class="control">
+        <fieldset>
+          <legend>Flux components</legend>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 4.9rem 4.3rem;gap:0.35rem 0.65rem;align-items:center;font-family:'Avenir Next','Gill Sans','Trebuchet MS',sans-serif;font-size:0.9rem;color:#345265;">
+            <div style="font-weight:700;">Component</div>
+            <div style="text-align:center;font-weight:700;">Total</div>
+            <div style="text-align:center;font-weight:700;">Plot</div>
+            <div>Total superposition</div>
+            <div style="text-align:center;color:#7b909f;">all active</div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="total" checked /></div>
+            <div>Plasma current</div>
+            <div style="text-align:center;"><input id="active-plasma" type="checkbox" checked /></div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="plasma" /></div>
+            <div>Central solenoid</div>
+            <div style="text-align:center;"><input id="active-cs" type="checkbox" checked /></div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="cs" /></div>
+            <div>PF shaping</div>
+            <div style="text-align:center;"><input id="active-pf" type="checkbox" checked /></div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="pf" /></div>
+            <div>Divertor</div>
+            <div style="text-align:center;"><input id="active-div" type="checkbox" checked /></div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="div" /></div>
+            <div>Vertical / equilibrium</div>
+            <div style="text-align:center;"><input id="active-vf" type="checkbox" checked /></div>
+            <div style="text-align:center;"><input type="radio" name="focus" value="vf" /></div>
+          </div>
+          <p class="help">Use the <strong>Total</strong> column to choose what goes into the black reference equilibrium, and the <strong>Plot</strong> column to decide whether the colored contours show the whole superposition or one family in isolation.</p>
+        </fieldset>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="solve-mode">Equilibrium mode</label>
+        </div>
+        <select id="solve-mode">
+          <option value="cerfon-fit">Cerfon-seeded coil + GS fit</option>
+          <option value="boundary-fit">Boundary-fitted GS profile solve</option>
+          <option value="iterative">Grid-based free-boundary iteration</option>
+          <option value="superposition">Fixed plasma superposition</option>
+        </select>
+        <p class="help">The Cerfon-seeded ITER mode starts from the same D-shaped boundary family used in the Cerfon explorer, then fits both the plasma <code>R p&apos;(ψ)</code> / <code>F F&apos;(ψ)/R</code> source amplitudes and the active external coil-family scales so the target boundary becomes as close as possible to an isoflux contour while matching the chosen plasma current. The boundary-fitted mode only adjusts the plasma profile amplitudes for a fixed external-coil mix; the free-boundary mode keeps the older moving-mask Picard iteration, and the superposition mode keeps the original prescribed source for decomposition-only viewing.</p>
+      </div>
+
+      <div class="control">
+        <fieldset>
+          <legend>Overlays</legend>
+          <div class="toggle-grid">
+            <label><input id="show-plasma-grid" type="checkbox" checked /> Show plasma grid</label>
+            <label><input id="show-plasma-flux" type="checkbox" checked /> Show plasma flux</label>
+            <label><input id="show-pf-flux" type="checkbox" checked /> Show PF-coil flux</label>
+          </div>
+          <p class="help">Shows the D-shaped plasma-current lattice and, when enabled, separate plasma and PF contour families on top of the total-field separatrix.</p>
+        </fieldset>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="scale-plasma">Plasma-current scale</label>
+          <span class="value" id="scale-plasma-value"></span>
+        </div>
+        <input id="scale-plasma" type="range" min="0.00" max="1.60" step="0.01" value="1.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="scale-cs">Central-solenoid scale</label>
+          <span class="value" id="scale-cs-value"></span>
+        </div>
+        <input id="scale-cs" type="range" min="-1.60" max="1.60" step="0.01" value="1.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="scale-pf">PF-coil scale</label>
+          <span class="value" id="scale-pf-value"></span>
+        </div>
+        <input id="scale-pf" type="range" min="-1.60" max="1.60" step="0.01" value="1.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="scale-div">Divertor-coil scale</label>
+          <span class="value" id="scale-div-value"></span>
+        </div>
+        <input id="scale-div" type="range" min="-1.60" max="1.60" step="0.01" value="1.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="scale-vf">Vertical/equilibrium scale</label>
+          <span class="value" id="scale-vf-value"></span>
+        </div>
+        <input id="scale-vf" type="range" min="-1.60" max="1.60" step="0.01" value="1.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="peaking">Plasma-current peaking</label>
+          <span class="value" id="peaking-value"></span>
+        </div>
+        <input id="peaking" type="range" min="0.50" max="3.00" step="0.05" value="1.40" />
+        <p class="help">Controls how hollow or peaked the pressure and current source functions are through <code>(1 - &psi;<sub>N</sub>)<sup>&alpha;</sup></code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="source-mix">GS source mix</label>
+          <span class="value" id="source-mix-value"></span>
+        </div>
+        <input id="source-mix" type="range" min="0.00" max="1.00" step="0.01" value="0.42" />
+        <p class="help"><code>0</code> biases the plasma current toward the pressure-like <code>R p&apos;(ψ)</code> family, while <code>1</code> biases it toward the toroidal-field <code>F F&apos;(ψ)/R</code> family. In the boundary-fitted mode this acts as a prior, while the solver still adjusts both amplitudes to flatten the target boundary.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="contours">Contour density</label>
+          <span class="value" id="contours-value"></span>
+        </div>
+        <input id="contours" type="range" min="6" max="18" step="1" value="10" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="iterations">Picard iterations</label>
+          <span class="value" id="iterations-value"></span>
+        </div>
+        <input id="iterations" type="range" min="2" max="12" step="1" value="7" />
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <h3>Preset summary</h3>
+          <p id="preset-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Boundary-flux spread</h3>
+          <p id="boundary-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Magnetic axis estimate</h3>
+          <p id="axis-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>X-point candidate</h3>
+          <p id="xpoint-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Family decomposition</h3>
+          <p id="family-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Reference contour</h3>
+          <p id="contour-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>q-profile estimate</h3>
+          <p id="q-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Iteration status</h3>
+          <p id="iterate-summary">Awaiting solve.</p>
+        </div>
+      </div>
+
+      <div class="equations">
+        The simplified cross-section model uses
+        <code>&nabla;<sub>&perp;</sub><sup>2</sup>&psi; = -C j<sub>&phi;</sub></code>
+        together with the 2D Green&rsquo;s function
+        <code>G = -(1/2&pi;) ln[(R-R&rsquo;)<sup>2</sup> + (Z-Z&rsquo;)<sup>2</sup>]</code>.
+        External coils are represented as finite coil packs, each approximated by a small grid of toroidal-current filaments projected into the poloidal plane. In the iterative mode the plasma update uses a Grad&ndash;Shafranov-inspired source family <code>j<sub>&phi;</sub> &sim; (1-&psi;<sub>N</sub>)<sup>&alpha;</sup>[(1-\lambda)R p&apos;(ψ) + \lambda F F&apos;(ψ)/R]</code> before renormalizing to the chosen total plasma current.
+        In the Cerfon-seeded ITER mode those same profile families are used as a D-shaped seed and fitted together with the active external coil-family amplitudes. In the boundary-fitted mode the plasma families alone are adjusted so the prescribed plasma boundary becomes as close as possible to an isoflux contour while satisfying the chosen plasma current.
+      </div>
+      <div class="warning">
+        This is a teaching-focused equilibrium model, not EFIT. The finite coil-pack geometry and the new boundary-fitted GS-style inverse step are much closer to a real fixed-boundary solve than pure source superposition, but the code still uses a reduced 2D Green&rsquo;s function rather than the full toroidal Grad&ndash;Shafranov operator with experimental constraints and exact vessel boundary conditions.
+      </div>
+      <p class="footer-note">The most useful reading strategy is to leave the black reference contour on, then switch the colored focus field between plasma, CS, PF, divertor, and vertical families while turning pieces of the total field on and off.</p>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2 style="margin:0 0 0.35rem 0;">Cross-section Flux Map</h2>
+          <p>The dashed green curve is the full Cerfon-seeded plasma boundary used as the ITER target LCFS. The black contour is the active total-field separatrix estimate, while the optional green and blue overlays show the plasma and PF-coil flux families directly. The colored focus contours still track whichever single family or total field is selected in the component table.</p>
+        </div>
+      </div>
+      <ul class="legend">
+        <li style="color:var(--plasma);"><span class="swatch dashed"></span>Cerfon seed plasma boundary</li>
+        <li style="color:var(--plasma);"><span class="swatch"></span>Plasma-flux contours</li>
+        <li style="color:var(--pf);"><span class="swatch"></span>PF-flux contours</li>
+        <li style="color:#5ea07d;"><span class="swatch"></span>Plasma-current grid</li>
+        <li style="color:#6f7d86;"><span class="swatch dashed"></span>Vacuum vessel</li>
+        <li style="color:var(--lcfs);"><span class="swatch"></span>Reference total-flux contour</li>
+        <li style="color:var(--cs);"><span class="swatch"></span>Central solenoid</li>
+        <li style="color:var(--pf);"><span class="swatch"></span>PF shaping</li>
+        <li style="color:var(--div);"><span class="swatch"></span>Divertor</li>
+        <li style="color:var(--vf);"><span class="swatch"></span>Vertical/equilibrium</li>
+      </ul>
+      <div class="plot-frame">
+        <svg id="plot" viewBox="0 0 900 760" aria-label="Poloidal flux map with coil families"></svg>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Midplane Flux Decomposition</h3>
+          <p>The lineout along <em>Z = 0</em> shows how the active total field and the individual families contribute to the vacuum-plus-plasma flux balance across the machine.</p>
+          <svg class="mini-plot" id="midplane-plot" viewBox="0 0 420 255" aria-label="Midplane flux decomposition"></svg>
+        </div>
+        <div class="profile-card">
+          <h3>Boundary Flux Around the Plasma</h3>
+          <p>The total-field trace measures <em>&psi;(&theta;) - &lang;&psi;&rang;</em> around the target boundary. A perfectly self-consistent equilibrium would leave this curve flat.</p>
+          <svg class="mini-plot" id="boundary-plot" viewBox="0 0 420 255" aria-label="Boundary flux around target plasma"></svg>
+        </div>
+        <div class="profile-card">
+          <h3>Estimated q Profile</h3>
+          <p>The curve uses the closed flux contours from the current iterate and reports a normalized geometric safety-factor shape <em>q/q<sub>edge</sub></em>. In this reduced model it is the profile shape, not the absolute normalization, that is trustworthy.</p>
+          <svg class="mini-plot" id="q-plot" viewBox="0 0 420 255" aria-label="Estimated q profile"></svg>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const ns = "http://www.w3.org/2000/svg";
+    const TAU = 2 * Math.PI;
+
+    const COLORS = {
+      total: "#1f4e79",
+      plasma: "#2f7d49",
+      cs: "#bb4c45",
+      pf: "#2d6ea8",
+      div: "#7c4aa5",
+      vf: "#b98a3d",
+      lcfs: "#17232e"
+    };
+
+    const FAMILY_ORDER = ["plasma", "cs", "pf", "div", "vf"];
+    const FAMILY_LABELS = {
+      plasma: "Plasma current",
+      cs: "Central solenoid",
+      pf: "PF shaping",
+      div: "Divertor",
+      vf: "Vertical/equilibrium"
+    };
+
+    const ITER_IMPORTED_GEOMETRY = {"limiter":[{"R":6.2661,"Z":-3.0434},{"R":7.2824,"Z":-2.2544},{"R":7.9002,"Z":-1.3372},{"R":8.3057,"Z":-0.42},{"R":8.3938,"Z":0.6354},{"R":8.2697,"Z":1.6847},{"R":7.9062,"Z":2.4647},{"R":7.4015,"Z":3.1796},{"R":6.5524,"Z":3.9256},{"R":5.7534,"Z":4.5344},{"R":4.9354,"Z":4.7196},{"R":4.3246,"Z":4.3371},{"R":4.1253,"Z":3.5852},{"R":4.1053,"Z":2.5719},{"R":4.1053,"Z":1.5566},{"R":4.1053,"Z":0.5402},{"R":4.1053,"Z":-0.4761},{"R":4.1053,"Z":-1.4914},{"R":4.1053,"Z":-2.5037},{"R":3.9421,"Z":-2.5357},{"R":4.1146,"Z":-2.5462},{"R":4.2141,"Z":-2.5774},{"R":4.3053,"Z":-2.6279},{"R":4.3844,"Z":-2.6958},{"R":4.4483,"Z":-2.7781},{"R":4.4943,"Z":-2.8716},{"R":4.5205,"Z":-2.9725},{"R":4.526,"Z":-3.0766},{"R":4.5104,"Z":-3.1796},{"R":4.4745,"Z":-3.2775},{"R":4.1624,"Z":-3.9175},{"R":4.1882,"Z":-3.8826},{"R":4.4915,"Z":-3.9065},{"R":4.6453,"Z":-3.7432},{"R":4.7279,"Z":-3.7169},{"R":4.8139,"Z":-3.7064},{"R":4.9004,"Z":-3.712},{"R":4.9843,"Z":-3.7335},{"R":5.0628,"Z":-3.7702},{"R":5.1332,"Z":-3.8209},{"R":5.1929,"Z":-3.8836},{"R":5.2526,"Z":-3.9824},{"R":5.2723,"Z":-4.2608},{"R":5.5566,"Z":-4.545},{"R":5.5642,"Z":-4.5743},{"R":5.5642,"Z":-3.9235},{"R":5.5692,"Z":-3.7933},{"R":5.5892,"Z":-3.6962},{"R":5.6373,"Z":-3.5751},{"R":5.7084,"Z":-3.4669},{"R":5.7995,"Z":-3.3748},{"R":5.9076,"Z":-3.3027},{"R":6.0278,"Z":-3.2536},{"R":6.1549,"Z":-3.2296},{"R":6.2651,"Z":-3.2286},{"R":6.3632,"Z":-3.2446}],"passive":[{"name":"VES_1","R":3.5489,"Z":0.288741,"w":0.06,"h":0.521081,"angle":1.570796326795},{"name":"VES_2","R":3.5489,"Z":0.809821,"w":0.06,"h":0.521079,"angle":1.570796326795},{"name":"VES_3","R":3.5489,"Z":1.3309,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_4","R":3.5489,"Z":1.85198,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_5","R":3.5489,"Z":2.373065,"w":0.06,"h":0.52109,"angle":1.570796326795},{"name":"VES_6","R":3.5489,"Z":2.89415,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_7","R":3.551895,"Z":3.41514,"w":0.06,"h":0.520934,"angle":1.559297505538},{"name":"VES_8","R":3.611025,"Z":3.92864,"w":0.06,"h":0.518403,"angle":1.352497717178},{"name":"VES_9","R":3.800925,"Z":4.40389,"w":0.06,"h":0.518713,"angle":1.028905553793},{"name":"VES_10","R":4.13178,"Z":4.794395,"w":0.06,"h":0.518348,"angle":0.706782761456},{"name":"VES_11","R":4.56846,"Z":5.061725,"w":0.06,"h":0.518495,"angle":0.39192780022},{"name":"VES_12","R":5.06684,"Z":5.1779,"w":0.06,"h":0.518715,"angle":0.066173190726},{"name":"VES_13","R":5.576495,"Z":5.130045,"w":0.06,"h":0.518301,"angle":6.029638486962},{"name":"VES_14","R":6.050105,"Z":4.931065,"w":0.06,"h":0.519864,"angle":5.741683763324},{"name":"VES_15","R":6.487235,"Z":4.649035,"w":0.06,"h":0.52108,"angle":5.678793695619},{"name":"VES_16","R":6.91307,"Z":4.34887,"w":0.06,"h":0.520955,"angle":5.659579739719},{"name":"VES_17","R":7.32118,"Z":4.02607,"w":0.06,"h":0.520808,"angle":5.568365242317},{"name":"VES_18","R":7.69585,"Z":3.6653,"w":0.06,"h":0.520838,"angle":5.465007995397},{"name":"VES_19","R":8.031225,"Z":3.26775,"w":0.06,"h":0.520798,"angle":5.361304886772},{"name":"VES_20","R":8.324285,"Z":2.83802,"w":0.06,"h":0.520817,"angle":5.26051059095},{"name":"VES_21","R":8.571765,"Z":2.380555,"w":0.06,"h":0.520835,"angle":5.156054536279},{"name":"VES_22","R":8.77019,"Z":1.89982,"w":0.06,"h":0.520736,"angle":5.05161768142},{"name":"VES_23","R":8.907755,"Z":1.399125,"w":0.06,"h":0.520394,"angle":4.909377530647},{"name":"VES_24","R":8.976595,"Z":0.884139,"w":0.06,"h":0.520876,"angle":4.781231336136},{"name":"VES_25","R":8.98814,"Z":0.363958,"w":0.06,"h":0.520876,"angle":4.687927736539},{"name":"VES_26","R":8.94022,"Z":-0.153031,"w":0.06,"h":0.519942,"angle":4.551874993599},{"name":"VES_27","R":8.80172,"Z":-0.651137,"w":0.06,"h":0.520424,"angle":4.330600207314},{"name":"VES_28","R":8.59639,"Z":-1.129541,"w":0.06,"h":0.521081,"angle":4.283367200776},{"name":"VES_29","R":8.3796,"Z":-1.603385,"w":0.06,"h":0.521081,"angle":4.283240936644},{"name":"VES_30","R":8.16281,"Z":-2.07723,"w":0.06,"h":0.521084,"angle":4.283369595678},{"name":"VES_31","R":7.94602,"Z":-2.551075,"w":0.06,"h":0.521081,"angle":4.283240936644},{"name":"VES_32","R":7.729225,"Z":-3.024915,"w":0.06,"h":0.521079,"angle":4.283344160878},{"name":"VES_33","R":7.510975,"Z":-3.498055,"w":0.06,"h":0.521029,"angle":4.277044204129},{"name":"VES_34","R":7.26179,"Z":-3.953775,"w":0.06,"h":0.519971,"angle":4.146844199714},{"name":"VES_35","R":6.94128,"Z":-4.35986,"w":0.06,"h":0.520161,"angle":3.94164566685},{"name":"VES_36","R":6.54392,"Z":-4.691035,"w":0.06,"h":0.520143,"angle":3.731136260503},{"name":"VES_37","R":6.086805,"Z":-4.933255,"w":0.06,"h":0.519943,"angle":3.526552652214},{"name":"VES_38","R":5.590095,"Z":-5.07749,"w":0.06,"h":0.519955,"angle":3.321852121086},{"name":"VES_39","R":5.0752,"Z":-5.10936,"w":0.06,"h":0.519098,"angle":3.084771239484},{"name":"VES_40","R":4.575465,"Z":-4.998025,"w":0.06,"h":0.518542,"angle":2.759822145194},{"name":"VES_41","R":4.136525,"Z":-4.73465,"w":0.06,"h":0.518275,"angle":2.442405098236},{"name":"VES_42","R":3.80317,"Z":-4.34646,"w":0.06,"h":0.518663,"angle":2.118404333699},{"name":"VES_43","R":3.611555,"Z":-3.872115,"w":0.06,"h":0.518379,"angle":1.790923671663},{"name":"VES_44","R":3.55193,"Z":-3.358735,"w":0.06,"h":0.520925,"angle":1.582429736187},{"name":"VES_45","R":3.5489,"Z":-2.83775,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_46","R":3.5489,"Z":-2.316665,"w":0.06,"h":0.52109,"angle":1.570796326795},{"name":"VES_47","R":3.5489,"Z":-1.79558,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_48","R":3.5489,"Z":-1.2745,"w":0.06,"h":0.52108,"angle":1.570796326795},{"name":"VES_49","R":3.5489,"Z":-0.753421,"w":0.06,"h":0.521079,"angle":1.570796326795},{"name":"VES_50","R":3.5489,"Z":-0.232341,"w":0.06,"h":0.521081,"angle":1.570796326795},{"name":"VES_51","R":6.499155,"Z":5.338485,"w":0.06,"h":0.584114,"angle":5.829835561627},{"name":"VES_52","R":7.009855,"Z":5.05657,"w":0.06,"h":0.584096,"angle":5.727752766482},{"name":"VES_53","R":7.489135,"Z":4.724065,"w":0.06,"h":0.58408,"angle":5.625565805408},{"name":"VES_54","R":7.93197,"Z":4.344405,"w":0.06,"h":0.584056,"angle":5.52332324676},{"name":"VES_55","R":8.333735,"Z":3.921545,"w":0.06,"h":0.584047,"angle":5.421098823403},{"name":"VES_56","R":8.69028,"Z":3.459925,"w":0.06,"h":0.584037,"angle":5.319017630341},{"name":"VES_57","R":8.997885,"Z":2.964355,"w":0.06,"h":0.58404,"angle":5.216776716168},{"name":"VES_58","R":9.25332,"Z":2.43999,"w":0.06,"h":0.584027,"angle":5.114600796468},{"name":"VES_59","R":9.45395,"Z":1.89231,"w":0.06,"h":0.584039,"angle":5.012469021913},{"name":"VES_60","R":9.59737,"Z":1.326975,"w":0.06,"h":0.584005,"angle":4.909203584241},{"name":"VES_61","R":9.67255,"Z":0.749351,"w":0.06,"h":0.583638,"angle":4.774384872781},{"name":"VES_62","R":9.662895,"Z":0.167597,"w":0.06,"h":0.583634,"angle":4.617202864247},{"name":"VES_63","R":9.562335,"Z":-0.405481,"w":0.06,"h":0.583631,"angle":4.460164910427},{"name":"VES_64","R":9.378285,"Z":-0.958102,"w":0.06,"h":0.584094,"angle":4.32167782475},{"name":"VES_65","R":9.149135,"Z":-1.49546,"w":0.06,"h":0.58435,"angle":4.296929119468},{"name":"VES_66","R":8.91327,"Z":-2.03009,"w":0.06,"h":0.584344,"angle":4.29686833312},{"name":"VES_67","R":8.67741,"Z":-2.56472,"w":0.06,"h":0.584346,"angle":4.296944776811},{"name":"VES_68","R":8.44155,"Z":-3.099355,"w":0.06,"h":0.584353,"angle":4.296875241037},{"name":"VES_69","R":8.203165,"Z":-3.63283,"w":0.06,"h":0.584288,"angle":4.287434297338},{"name":"VES_70","R":7.926755,"Z":-4.145595,"w":0.06,"h":0.583572,"angle":4.148451252846},{"name":"VES_71","R":7.572285,"Z":-4.606075,"w":0.06,"h":0.583598,"angle":3.964245021342},{"name":"VES_72","R":7.13947,"Z":-4.993845,"w":0.06,"h":0.583577,"angle":3.780055848976},{"name":"VES_73","R":6.64302,"Z":-5.29586,"w":0.06,"h":0.583548,"angle":3.596196977546},{"name":"VES_74","R":6.099765,"Z":-5.502065,"w":0.06,"h":0.583517,"angle":3.412531247797},{"name":"VES_75","R":5.528005,"Z":-5.6055,"w":0.06,"h":0.583497,"angle":3.228592292958},{"name":"VES_76","R":4.948665,"Z":-5.593265,"w":0.06,"h":0.582263,"angle":3.012131499927},{"name":"VES_77","R":4.39554,"Z":-5.434385,"w":0.06,"h":0.581844,"angle":2.711524407429},{"name":"VES_78","R":3.91554,"Z":-5.11777,"w":0.06,"h":0.581791,"angle":2.405437911012},{"name":"VES_79","R":3.553285,"Z":-4.67127,"w":0.06,"h":0.581749,"angle":2.099355809043},{"name":"VES_80","R":3.342425,"Z":-4.136405,"w":0.06,"h":0.581706,"angle":1.793270938769},{"name":"VES_81","R":3.274875,"Z":-3.560635,"w":0.06,"h":0.584209,"angle":1.582350668196},{"name":"VES_82","R":3.2715,"Z":-2.976375,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_83","R":3.2715,"Z":-2.392025,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_84","R":3.2715,"Z":-1.807675,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_85","R":3.2715,"Z":-1.223326,"w":0.06,"h":0.584347,"angle":1.570796326795},{"name":"VES_86","R":3.2715,"Z":-0.638979,"w":0.06,"h":0.584349,"angle":1.570796326795},{"name":"VES_87","R":3.2715,"Z":-0.054629,"w":0.06,"h":0.584349,"angle":1.570796326795},{"name":"VES_88","R":3.2715,"Z":0.529719,"w":0.06,"h":0.584348,"angle":1.570796326795},{"name":"VES_89","R":3.2715,"Z":1.114067,"w":0.06,"h":0.584347,"angle":1.570796326795},{"name":"VES_90","R":3.2715,"Z":1.698415,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_91","R":3.2715,"Z":2.282765,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_92","R":3.2715,"Z":2.867115,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_93","R":3.2715,"Z":3.451465,"w":0.06,"h":0.58435,"angle":1.570796326795},{"name":"VES_94","R":3.312,"Z":4.03188,"w":0.06,"h":0.582143,"angle":1.431202273687},{"name":"VES_95","R":3.47922,"Z":4.5821,"w":0.06,"h":0.582036,"angle":1.120272695307},{"name":"VES_96","R":3.807865,"Z":5.053615,"w":0.06,"h":0.581992,"angle":0.803891169916},{"name":"VES_97","R":4.266385,"Z":5.40018,"w":0.06,"h":0.581784,"angle":0.490501291872},{"name":"VES_98","R":4.80855,"Z":5.59467,"w":0.06,"h":0.582587,"angle":0.198560299344},{"name":"VES_99","R":5.385235,"Z":5.639765,"w":0.06,"h":0.582755,"angle":6.240736198868},{"name":"VES_100","R":5.956475,"Z":5.5469,"w":0.06,"h":0.582925,"angle":6.00335398516},{"name":"TRI_SUPP","R":7.21375,"Z":-2.89605,"w":0.06,"h":0.940734,"angle":0.659085194772},{"name":"INB_RAIL","R":3.6986,"Z":-2.99525,"w":0.08,"h":0.6509,"angle":1.570796326795}]};
+
+    const DEVICE_PRESETS = {
+      iter: {
+        name: "ITER",
+        R0: 6.2,
+        a: 2.0,
+        kappa: 1.85,
+        delta: 0.42,
+        machineGeometry: ITER_IMPORTED_GEOMETRY,
+        vessel: { a: 3.55, kappa: 1.61, delta: 0.28, shift: 0.10 },
+        ipMA: 15.0,
+        extent: { rmin: 0.8, rmax: 13.6, zmax: 10.8 },
+        nominal: { plasma: 1.0, cs: 1.0, pf: 1.0, div: 1.0, vf: 1.0 },
+        families: {
+          cs: [
+            { R: 1.687, Z:  5.464, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS3U" },
+            { R: 1.687, Z:  3.278, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS2U" },
+            { R: 1.687, Z:  1.092, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS1U" },
+            { R: 1.687, Z: -1.072, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS1L" },
+            { R: 1.687, Z: -3.258, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS2L" },
+            { R: 1.687, Z: -5.444, I: 8.0, soft: 0.22, w: 0.74,   h: 2.093, name: "CS3L" }
+          ],
+          pf: [
+            { R: 3.9431,  Z:  7.5737, I:  3.6, soft: 0.18, w: 0.9590, h: 0.9841, name: "PF1" },
+            { R: 8.2847,  Z:  6.5398, I: -2.7, soft: 0.16, w: 0.5801, h: 0.7146, name: "PF2" },
+            { R: 11.9923, Z:  3.2752, I:  3.9, soft: 0.16, w: 0.6963, h: 0.9538, name: "PF3" },
+            { R: 11.9628, Z: -2.2336, I:  3.7, soft: 0.16, w: 0.6382, h: 0.9538, name: "PF4" },
+            { R: 8.3910,  Z: -6.7265, I: -4.1, soft: 0.18, w: 0.8125, h: 0.9538, name: "PF5" },
+            { R: 4.3340,  Z: -7.4660, I:  5.4, soft: 0.20, w: 1.5590, h: 1.1075, name: "PF6" }
+          ],
+          div: [],
+          vf: []
+        }
+      },
+      sparc: {
+        name: "SPARC",
+        R0: 1.85,
+        a: 0.57,
+        kappa: 1.97,
+        delta: 0.31,
+        boundaryCenter: { R: 1.72, Z: -0.10 },
+        plasmaSupportScale: 0.84,
+        customBoundary: [
+          { R: 1.14, Z:  1.24 },
+          { R: 1.34, Z:  1.30 },
+          { R: 1.62, Z:  1.32 },
+          { R: 1.92, Z:  1.18 },
+          { R: 2.18, Z:  0.94 },
+          { R: 2.38, Z:  0.58 },
+          { R: 2.52, Z:  0.10 },
+          { R: 2.48, Z: -0.34 },
+          { R: 2.34, Z: -0.82 },
+          { R: 2.10, Z: -1.22 },
+          { R: 1.82, Z: -1.52 },
+          { R: 1.52, Z: -1.66 },
+          { R: 1.28, Z: -1.56 },
+          { R: 1.14, Z: -1.18 },
+          { R: 1.04, Z: -0.64 },
+          { R: 0.98, Z: -0.06 },
+          { R: 1.00, Z:  0.46 },
+          { R: 1.06, Z:  0.92 }
+        ],
+        vessel: { a: 0.86, kappa: 2.08, delta: 0.22, shift: 0.04 },
+        ipMA: 8.7,
+        extent: { rmin: 0.25, rmax: 3.75, zmax: 2.45 },
+        nominal: { plasma: 1.0, cs: 1.0, pf: 1.0, div: 1.0, vf: 1.0 },
+        families: {
+          cs: [
+            { R: 0.56, Z: -1.34, I: 4.8, soft: 0.10, name: "CS3L" },
+            { R: 0.56, Z: -0.76, I: 4.8, soft: 0.10, name: "CS2L" },
+            { R: 0.56, Z: -0.22, I: 4.8, soft: 0.10, name: "CS1L" },
+            { R: 0.56, Z:  0.22, I: 4.8, soft: 0.10, name: "CS1U" },
+            { R: 0.56, Z:  0.76, I: 4.8, soft: 0.10, name: "CS2U" },
+            { R: 0.56, Z:  1.34, I: 4.8, soft: 0.10, name: "CS3U" }
+          ],
+          pf: [
+            { R: 0.82, Z:  2.28, I:  2.4, soft: 0.12, w: 0.18, h: 0.18, name: "PF1U" },
+            { R: 0.82, Z: -2.28, I:  2.4, soft: 0.12, w: 0.18, h: 0.18, name: "PF1L" },
+            { R: 1.46, Z:  2.28, I: -2.9, soft: 0.12, w: 0.18, h: 0.18, name: "PF2U" },
+            { R: 1.46, Z: -2.28, I: -2.9, soft: 0.12, w: 0.18, h: 0.18, name: "PF2L" },
+            { R: 2.18, Z:  2.26, I:  2.1, soft: 0.12, w: 0.18, h: 0.18, name: "PF3U" },
+            { R: 2.18, Z: -2.26, I:  2.1, soft: 0.12, w: 0.18, h: 0.18, name: "PF3L" },
+            { R: 3.56, Z:  1.34, I: -1.7, soft: 0.12, w: 0.16, h: 0.30, name: "PF4U" },
+            { R: 3.56, Z: -1.34, I: -1.7, soft: 0.12, w: 0.16, h: 0.30, name: "PF4L" }
+          ],
+          div: [
+            { R: 1.66, Z:  1.56, I: -2.2, soft: 0.08, w: 0.12, h: 0.14, name: "DV1U" },
+            { R: 1.66, Z: -1.56, I: -2.2, soft: 0.08, w: 0.12, h: 0.14, name: "DV1L" },
+            { R: 1.66, Z:  1.10, I:  1.4, soft: 0.08, w: 0.12, h: 0.14, name: "DV2U" },
+            { R: 1.66, Z: -1.10, I:  1.4, soft: 0.08, w: 0.12, h: 0.14, name: "DV2L" }
+          ],
+          vf: []
+        }
+      },
+      d3d: {
+        name: "DIII-D",
+        R0: 1.67,
+        a: 0.67,
+        kappa: 1.82,
+        delta: 0.36,
+        vessel: { a: 0.95, kappa: 1.50, delta: 0.42, shift: 0.06 },
+        ipMA: 1.6,
+        extent: { rmin: 0.22, rmax: 3.55, zmax: 2.45 },
+        nominal: { plasma: 1.0, cs: 1.0, pf: 1.0, div: 1.0, vf: 1.0 },
+        families: {
+          cs: [
+            { R: 0.46, Z: -1.18, I: 1.8, soft: 0.10 },
+            { R: 0.46, Z: -0.45, I: 1.8, soft: 0.10 },
+            { R: 0.46, Z:  0.45, I: 1.8, soft: 0.10 },
+            { R: 0.46, Z:  1.18, I: 1.8, soft: 0.10 }
+          ],
+          pf: [
+            { R: 2.92, Z:  1.85, I: 1.5, soft: 0.12 },
+            { R: 2.92, Z: -1.85, I: 1.5, soft: 0.12 },
+            { R: 2.70, Z:  1.00, I: -2.0, soft: 0.12 },
+            { R: 2.70, Z: -1.00, I: -2.0, soft: 0.12 }
+          ],
+          div: [
+            { R: 1.04, Z:  1.58, I: -1.4, soft: 0.08 },
+            { R: 1.04, Z: -1.58, I: -1.4, soft: 0.08 },
+            { R: 2.25, Z:  1.74, I:  0.9, soft: 0.08 },
+            { R: 2.25, Z: -1.74, I:  0.9, soft: 0.08 }
+          ],
+          vf: [
+            { R: 3.12, Z:  2.20, I: 0.95, soft: 0.12 },
+            { R: 3.12, Z: -2.20, I: 0.95, soft: 0.12 }
+          ]
+        }
+      }
+    };
+
+    const deviceSelect = document.getElementById("device");
+    const solveModeSelect = document.getElementById("solve-mode");
+    const focusRadios = Array.from(document.querySelectorAll('input[name="focus"]'));
+    const plot = document.getElementById("plot");
+    const midplanePlot = document.getElementById("midplane-plot");
+    const boundaryPlot = document.getElementById("boundary-plot");
+    const qPlot = document.getElementById("q-plot");
+    const presetSummary = document.getElementById("preset-summary");
+    const boundarySummary = document.getElementById("boundary-summary");
+    const axisSummary = document.getElementById("axis-summary");
+    const xpointSummary = document.getElementById("xpoint-summary");
+    const familySummary = document.getElementById("family-summary");
+    const contourSummary = document.getElementById("contour-summary");
+    const qSummary = document.getElementById("q-summary");
+    const iterateSummary = document.getElementById("iterate-summary");
+
+    const sliders = {
+      plasma: document.getElementById("scale-plasma"),
+      cs: document.getElementById("scale-cs"),
+      pf: document.getElementById("scale-pf"),
+      div: document.getElementById("scale-div"),
+      vf: document.getElementById("scale-vf"),
+      peaking: document.getElementById("peaking"),
+      sourceMix: document.getElementById("source-mix"),
+      contours: document.getElementById("contours"),
+      iterations: document.getElementById("iterations")
+    };
+
+    const labels = {
+      plasma: document.getElementById("scale-plasma-value"),
+      cs: document.getElementById("scale-cs-value"),
+      pf: document.getElementById("scale-pf-value"),
+      div: document.getElementById("scale-div-value"),
+      vf: document.getElementById("scale-vf-value"),
+      peaking: document.getElementById("peaking-value"),
+      sourceMix: document.getElementById("source-mix-value"),
+      contours: document.getElementById("contours-value"),
+      iterations: document.getElementById("iterations-value")
+    };
+
+    const activeBoxes = {
+      plasma: document.getElementById("active-plasma"),
+      cs: document.getElementById("active-cs"),
+      pf: document.getElementById("active-pf"),
+      div: document.getElementById("active-div"),
+      vf: document.getElementById("active-vf")
+    };
+    const overlayBoxes = {
+      plasmaGrid: document.getElementById("show-plasma-grid"),
+      plasmaFlux: document.getElementById("show-plasma-flux"),
+      pfFlux: document.getElementById("show-pf-flux")
+    };
+
+    const modelCache = new Map();
+
+    function fmt(value, digits = 2) {
+      return Number(value).toFixed(digits);
+    }
+
+    function svgElement(tag, attrs = {}) {
+      const el = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attrs)) {
+        el.setAttribute(key, value);
+      }
+      return el;
+    }
+
+    function rotatedRectanglePoints(R, Z, w, h, angle) {
+      const c = Math.cos(angle);
+      const s = Math.sin(angle);
+      const hw = 0.5 * w;
+      const hh = 0.5 * h;
+      return [
+        { R: R - hw * c + hh * s, Z: Z - hw * s - hh * c },
+        { R: R + hw * c + hh * s, Z: Z + hw * s - hh * c },
+        { R: R + hw * c - hh * s, Z: Z + hw * s + hh * c },
+        { R: R - hw * c - hh * s, Z: Z - hw * s + hh * c }
+      ];
+    }
+
+    function greens2D(R, Z, source) {
+      const d2 = (R - source.R) ** 2 + (Z - source.Z) ** 2 + source.soft ** 2;
+      return -0.5 * Math.log(d2);
+    }
+
+    function coilPackShape(family, preset, coil) {
+      if (coil.w && coil.h) return { w: coil.w, h: coil.h };
+      if (family === "cs") return { w: 0.16 * preset.a, h: 0.42 * preset.a };
+      if (family === "pf") return { w: 0.28 * preset.a, h: 0.28 * preset.a };
+      if (family === "div") return { w: 0.18 * preset.a, h: 0.16 * preset.a };
+      if (family === "vf") return { w: 0.24 * preset.a, h: 0.20 * preset.a };
+      return { w: 0.22 * preset.a, h: 0.22 * preset.a };
+    }
+
+    function expandCoilFamily(family, preset, coils) {
+      const sources = [];
+      for (const coil of coils) {
+        const shape = coilPackShape(family, preset, coil);
+        const nx = shape.w > 0.24 * preset.a ? 4 : 3;
+        const nz = shape.h > 0.30 * preset.a ? 5 : 3;
+        const total = nx * nz;
+        for (let iz = 0; iz < nz; iz += 1) {
+          for (let ix = 0; ix < nx; ix += 1) {
+            const fx = nx === 1 ? 0 : (ix / (nx - 1) - 0.5);
+            const fz = nz === 1 ? 0 : (iz / (nz - 1) - 0.5);
+            sources.push({
+              R: coil.R + fx * shape.w,
+              Z: coil.Z + fz * shape.h,
+              I: coil.I / total,
+              soft: Math.max(coil.soft, 0.12 * Math.min(shape.w, shape.h))
+            });
+          }
+        }
+      }
+      return sources;
+    }
+
+    function buildBoundary(preset, count = 240) {
+      if (preset.customBoundary) {
+        const base = preset.customBoundary;
+        const points = [];
+        for (let i = 0; i < count; i += 1) {
+          const s = i * base.length / (count - 1);
+          const i0 = Math.floor(s) % base.length;
+          const i1 = (i0 + 1) % base.length;
+          const t = s - Math.floor(s);
+          const R = base[i0].R + t * (base[i1].R - base[i0].R);
+          const Z = base[i0].Z + t * (base[i1].Z - base[i0].Z);
+          const theta = Math.atan2(Z - (preset.boundaryCenter?.Z ?? 0), R - (preset.boundaryCenter?.R ?? preset.R0));
+          points.push({ R, Z, theta });
+        }
+        return points;
+      }
+      const points = [];
+      for (let i = 0; i < count; i += 1) {
+        const theta = (TAU * i) / (count - 1);
+        const R = preset.R0 + preset.a * Math.cos(theta + preset.delta * Math.sin(theta));
+        const Z = preset.kappa * preset.a * Math.sin(theta);
+        points.push({ R, Z, theta });
+      }
+      return points;
+    }
+
+    function getSupportScale(preset) {
+      return preset.plasmaSupportScale || 1.0;
+    }
+
+    function buildPlasmaSupportBoundary(preset, count = 240) {
+      const boundary = buildBoundary(preset, count);
+      const scale = getSupportScale(preset);
+      if (Math.abs(scale - 1) < 1e-9) return boundary;
+      const center = preset.boundaryCenter || { R: preset.R0, Z: 0 };
+      return boundary.map((point) => ({
+        R: center.R + scale * (point.R - center.R),
+        Z: center.Z + scale * (point.Z - center.Z),
+        theta: point.theta
+      }));
+    }
+
+    function buildPlasmaLattice(preset, nr = 18, nt = 44) {
+      if (preset.customBoundary) {
+        const boundary = buildPlasmaSupportBoundary(preset, 360);
+        const center = preset.boundaryCenter || { R: preset.R0, Z: 0 };
+        const nodes = [{ R: center.R, Z: center.Z, rho: 0, theta: 0, areaWeight: 0.55, soft: 0.07 * preset.a }];
+        for (let it = 0; it < nt; it += 1) {
+          const theta = TAU * it / nt;
+          const edge = boundaryRayIntersection(boundary, center, theta);
+          if (!edge) continue;
+          const edgeR = edge.R - center.R;
+          const edgeZ = edge.Z - center.Z;
+          for (let ir = 0; ir < nr; ir += 1) {
+            const rho = (ir + 0.5) / nr;
+            nodes.push({
+              R: center.R + rho * edgeR,
+              Z: center.Z + rho * edgeZ,
+              rho,
+              theta,
+              areaWeight: Math.max(rho, 0.06),
+              soft: 0.055 * preset.a
+            });
+          }
+        }
+        return nodes;
+      }
+      const nodes = [{ R: preset.R0, Z: 0, rho: 0, theta: 0, areaWeight: 0.55, soft: 0.07 * preset.a }];
+      for (let ir = 0; ir < nr; ir += 1) {
+        const rho = (ir + 0.5) / nr;
+        for (let it = 0; it < nt; it += 1) {
+          const theta = TAU * it / nt;
+          const R = preset.R0 + preset.a * rho * Math.cos(theta + preset.delta * Math.sin(theta));
+          const Z = preset.kappa * preset.a * rho * Math.sin(theta);
+          nodes.push({
+            R,
+            Z,
+            rho,
+            theta,
+            areaWeight: Math.max(rho, 0.06),
+            soft: 0.06 * preset.a
+          });
+        }
+      }
+      return nodes;
+    }
+
+    function buildVesselBoundary(preset, count = 320) {
+      const points = [];
+      const shape = preset.vessel;
+      for (let i = 0; i < count; i += 1) {
+        const theta = (TAU * i) / (count - 1);
+        const shift = shape.shift * shape.a * (1 - Math.sin(theta) ** 2);
+        const R = preset.R0 + shape.a * Math.cos(theta + shape.delta * Math.sin(theta)) - shift;
+        const Z = shape.kappa * shape.a * Math.sin(theta);
+        points.push({ R, Z, theta });
+      }
+      return points;
+    }
+
+    function pointInPolygon(point, polygon) {
+      let inside = false;
+      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const xi = polygon[i].R;
+        const yi = polygon[i].Z;
+        const xj = polygon[j].R;
+        const yj = polygon[j].Z;
+        const intersect = ((yi > point.Z) !== (yj > point.Z))
+          && (point.R < (xj - xi) * (point.Z - yi) / ((yj - yi) || 1e-12) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
+    function boundaryRayIntersection(boundary, center, theta) {
+      const dx = Math.cos(theta);
+      const dz = Math.sin(theta);
+      let best = null;
+      for (let i = 0; i < boundary.length; i += 1) {
+        const p0 = boundary[i];
+        const p1 = boundary[(i + 1) % boundary.length];
+        const sx = p1.R - p0.R;
+        const sz = p1.Z - p0.Z;
+        const det = (-dx * sz + dz * sx);
+        if (Math.abs(det) < 1e-10) continue;
+        const cx = p0.R - center.R;
+        const cz = p0.Z - center.Z;
+        const t = (-sz * cx + sx * cz) / det;
+        const u = (-dz * cx + dx * cz) / det;
+        if (t >= 0 && u >= 0 && u <= 1) {
+          const hit = { R: center.R + t * dx, Z: center.Z + t * dz, t };
+          if (!best || hit.t < best.t) best = hit;
+        }
+      }
+      return best;
+    }
+
+    function plasmaCoordinates(preset, R, Z) {
+      const z = Z / (preset.kappa * preset.a);
+      const shift = preset.delta * preset.a * (1 - z * z);
+      const x = (R - preset.R0 - shift) / preset.a;
+      return { x, z, rho2: x * x + z * z };
+    }
+
+    function vesselCoordinates(preset, R, Z) {
+      const shape = preset.vessel;
+      const z = Z / (shape.kappa * shape.a);
+      const shift = (shape.delta + shape.shift) * shape.a * (1 - z * z);
+      const x = (R - preset.R0 + shape.shift * shape.a * z * z - shape.delta * shape.a * (1 - z * z)) / shape.a;
+      return { x, z, rho2: x * x + z * z };
+    }
+
+    function insideVessel(preset, R, Z) {
+      const coords = vesselCoordinates(preset, R, Z);
+      return coords.rho2 < 1;
+    }
+
+    function insidePlasmaBoundary(preset, R, Z) {
+      if (preset.customBoundary) {
+        return pointInPolygon({ R, Z }, buildPlasmaSupportBoundary(preset, preset.customBoundary.length));
+      }
+      const scale = getSupportScale(preset);
+      const coords = plasmaCoordinates(preset, R, Z);
+      if (Math.abs(scale - 1) > 1e-9) {
+        return coords.rho2 < scale * scale;
+      }
+      return coords.rho2 < 1;
+    }
+
+    function buildInitialMask(preset, Rs, Zs) {
+      return Zs.map((Z) => Rs.map((R) => insidePlasmaBoundary(preset, R, Z)));
+    }
+
+    function gsShapeWeight(peaking, psiN) {
+      return Math.max(0, (1 - psiN) ** peaking);
+    }
+
+    function gsRadialDrive(preset, R, sourceMix) {
+      const pressureTerm = Math.max(R / preset.R0, 0.28);
+      const ffPrimeTerm = Math.min(preset.R0 / Math.max(R, 0.22 * preset.R0), 3.5);
+      return (1 - sourceMix) * pressureTerm + sourceMix * ffPrimeTerm;
+    }
+
+    function scaleWeightedSources(weightedSources, totalCurrentMA) {
+      const sumW = weightedSources.reduce((sum, src) => sum + src.weight, 0);
+      const scale = totalCurrentMA / Math.max(sumW, 1e-12);
+      return weightedSources.map((src) => ({ R: src.R, Z: src.Z, I: src.weight * scale, soft: src.soft }));
+    }
+
+    function buildPlasmaSources(preset, lattice, peaking, sourceMix = 0.42, totalCurrentMA = preset.ipMA) {
+      const weighted = [];
+      for (const node of lattice) {
+        const shape = Math.max(0, (1 - node.rho * node.rho) ** peaking);
+        const radialDrive = (1 - sourceMix) * Math.max(node.R / preset.R0, 0.28)
+          + sourceMix * Math.min(preset.R0 / Math.max(node.R, 0.22 * preset.R0), 3.5);
+        weighted.push({
+          R: node.R,
+          Z: node.Z,
+          soft: node.soft,
+          weight: shape * radialDrive * node.areaWeight
+        });
+      }
+      return scaleWeightedSources(weighted, totalCurrentMA);
+    }
+
+    function buildSourcesFromWeightGrid(preset, Rs, Zs, weights, totalCurrentMA = preset.ipMA) {
+      const sources = [];
+      let sumW = 0;
+      for (let j = 0; j < Zs.length; j += 1) {
+        for (let i = 0; i < Rs.length; i += 1) {
+          sumW += weights[j][i];
+        }
+      }
+      const scale = totalCurrentMA / Math.max(sumW, 1e-12);
+      for (let j = 0; j < Zs.length; j += 1) {
+        for (let i = 0; i < Rs.length; i += 1) {
+          const weight = weights[j][i];
+          if (weight <= 0) continue;
+          sources.push({
+            R: Rs[i],
+            Z: Zs[j],
+            I: scale * weight,
+            soft: 0.085 * preset.a
+          });
+        }
+      }
+      return sources;
+    }
+
+    function solveLinearSystem(A, b) {
+      const n = A.length;
+      const m = A.map((row, i) => [...row, b[i]]);
+      for (let col = 0; col < n; col += 1) {
+        let pivot = col;
+        for (let row = col + 1; row < n; row += 1) {
+          if (Math.abs(m[row][col]) > Math.abs(m[pivot][col])) pivot = row;
+        }
+        if (Math.abs(m[pivot][col]) < 1e-12) return null;
+        if (pivot !== col) {
+          const tmp = m[col];
+          m[col] = m[pivot];
+          m[pivot] = tmp;
+        }
+        const scale = m[col][col];
+        for (let k = col; k < 4; k += 1) m[col][k] /= scale;
+        for (let row = 0; row < n; row += 1) {
+          if (row === col) continue;
+          const factor = m[row][col];
+          for (let k = col; k < n + 1; k += 1) {
+            m[row][k] -= factor * m[col][k];
+          }
+        }
+      }
+      return m.map((row) => row[n]);
+    }
+
+    function solveLeastSquares(rows, rhs, ridge = 1e-9) {
+      const cols = rows[0]?.length || 0;
+      const ATA = Array.from({ length: cols }, (_, i) =>
+        Array.from({ length: cols }, (_, j) => (i === j ? ridge : 0))
+      );
+      const ATb = Array.from({ length: cols }, () => 0);
+      for (let n = 0; n < rows.length; n += 1) {
+        const row = rows[n];
+        const b = rhs[n];
+        for (let i = 0; i < cols; i += 1) {
+          ATb[i] += row[i] * b;
+          for (let j = 0; j < cols; j += 1) {
+            ATA[i][j] += row[i] * row[j];
+          }
+        }
+      }
+      return solveLinearSystem(ATA, ATb);
+    }
+
+    function linspace(min, max, count) {
+      const arr = [];
+      for (let i = 0; i < count; i += 1) {
+        arr.push(min + (max - min) * i / (count - 1));
+      }
+      return arr;
+    }
+
+    function computeFieldGrid(Rs, Zs, sources) {
+      const grid = [];
+      for (let j = 0; j < Zs.length; j += 1) {
+        const row = [];
+        for (let i = 0; i < Rs.length; i += 1) {
+          const R = Rs[i];
+          const Z = Zs[j];
+          let psi = 0;
+          for (const source of sources) {
+            psi += source.I * greens2D(R, Z, source);
+          }
+          row.push(psi);
+        }
+        grid.push(row);
+      }
+      return grid;
+    }
+
+    function bfsMask(mask, startI, startJ) {
+      const ny = mask.length;
+      const nx = mask[0].length;
+      const out = mask.map((row) => row.map(() => false));
+      if (startI < 0 || startI >= nx || startJ < 0 || startJ >= ny || !mask[startJ][startI]) return out;
+      const queue = [[startI, startJ]];
+      out[startJ][startI] = true;
+      for (let head = 0; head < queue.length; head += 1) {
+        const [i, j] = queue[head];
+        for (const [di, dj] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+          const ii = i + di;
+          const jj = j + dj;
+          if (ii < 0 || ii >= nx || jj < 0 || jj >= ny) continue;
+          if (!mask[jj][ii] || out[jj][ii]) continue;
+          out[jj][ii] = true;
+          queue.push([ii, jj]);
+        }
+      }
+      return out;
+    }
+
+    function maskEdgePsi(mask, grid) {
+      const values = [];
+      const ny = mask.length;
+      const nx = mask[0].length;
+      for (let j = 1; j < ny - 1; j += 1) {
+        for (let i = 1; i < nx - 1; i += 1) {
+          if (!mask[j][i]) continue;
+          if (!mask[j][i - 1] || !mask[j][i + 1] || !mask[j - 1][i] || !mask[j + 1][i]) {
+            values.push(grid[j][i]);
+          }
+        }
+      }
+      return values;
+    }
+
+    function detectAxisCell(preset, Rs, Zs, grid, mask = null) {
+      let axisCell = null;
+      let bestDelta = -Infinity;
+      const trialMask = mask || Zs.map((Z) => Rs.map((R) => insideVessel(preset, R, Z)));
+      const edgePsi = maskEdgePsi(trialMask, grid);
+      const psiRef = edgePsi.length ? edgePsi.reduce((s, v) => s + v, 0) / edgePsi.length : 0;
+      for (let j = 1; j < Zs.length - 1; j += 1) {
+        for (let i = 1; i < Rs.length - 1; i += 1) {
+          if (!trialMask[j][i]) continue;
+          const delta = Math.abs(grid[j][i] - psiRef);
+          if (delta > bestDelta) {
+            bestDelta = delta;
+            axisCell = { i, j, R: Rs[i], Z: Zs[j], psi: grid[j][i] };
+          }
+        }
+      }
+      return axisCell || { i: Math.floor(Rs.length / 2), j: Math.floor(Zs.length / 2), R: preset.R0, Z: 0, psi: 0 };
+    }
+
+    function detectSeparatrix(preset, Rs, Zs, grid, axisCell) {
+      const vesselBoundary = buildVesselBoundary(preset);
+      const vesselPsi = vesselBoundary.map((point) => interpolateGrid(Rs, Zs, grid, point.R, point.Z)).filter((value) => value !== null);
+      const vesselMean = vesselPsi.length ? vesselPsi.reduce((s, v) => s + v, 0) / vesselPsi.length : 0;
+      const psiAxis = grid[axisCell.j][axisCell.i];
+      const sign = psiAxis >= vesselMean ? 1 : -1;
+
+      let xPoint = null;
+      let bestScore = Infinity;
+      for (let j = 1; j < Zs.length - 1; j += 1) {
+        for (let i = 1; i < Rs.length - 1; i += 1) {
+          const R = Rs[i];
+          const Z = Zs[j];
+          if (!insideVessel(preset, R, Z)) continue;
+          if (Math.abs(Z) < 0.38 * preset.kappa * preset.a) continue;
+          const grad = gradientMagnitude(Rs, Zs, grid, i, j);
+          const radialPenalty = Math.max(0, preset.R0 - R) / Math.max(preset.a, 1e-6);
+          const verticalBias = Math.abs(Math.abs(Z) - 0.70 * preset.kappa * preset.a) / Math.max(preset.kappa * preset.a, 1e-6);
+          const score = grad * (1 + 0.12 * radialPenalty + 0.08 * verticalBias);
+          if (score < bestScore) {
+            bestScore = score;
+            xPoint = { i, j, R, Z, psi: grid[j][i], grad };
+          }
+        }
+      }
+
+      const psiSep = xPoint ? xPoint.psi : vesselMean;
+      return { psiSep, xPoint, vesselMean, sign };
+    }
+
+    function buildProfileBasisWeights(preset, Rs, Zs, totalGrid, mask, peaking) {
+      const axisCell = detectAxisCell(preset, Rs, Zs, totalGrid, mask);
+      const boundary = buildBoundary(preset);
+      const boundaryPsi = boundary.map((point) => interpolateGrid(Rs, Zs, totalGrid, point.R, point.Z)).filter((value) => value !== null);
+      const psiBoundary = boundaryPsi.length ? boundaryPsi.reduce((s, v) => s + v, 0) / boundaryPsi.length : totalGrid[axisCell.j][axisCell.i];
+      const psiAxis = totalGrid[axisCell.j][axisCell.i];
+      const denomRaw = psiBoundary - psiAxis;
+      const denom = Math.abs(denomRaw) > 1e-9 ? denomRaw : -1;
+      const pressureWeights = Zs.map((Z, j) => Rs.map((R, i) => {
+        if (!mask[j][i]) return 0;
+        const psiN = Math.max(0, Math.min(1, (totalGrid[j][i] - psiAxis) / denom));
+        const shape = gsShapeWeight(peaking, psiN);
+        return shape * Math.max(R / preset.R0, 0.28);
+      }));
+      const ffprimeWeights = Zs.map((Z, j) => Rs.map((R, i) => {
+        if (!mask[j][i]) return 0;
+        const psiN = Math.max(0, Math.min(1, (totalGrid[j][i] - psiAxis) / denom));
+        const shape = gsShapeWeight(peaking, psiN);
+        return shape * Math.min(preset.R0 / Math.max(R, 0.22 * preset.R0), 3.5);
+      }));
+      return {
+        pressureWeights,
+        ffprimeWeights,
+        axisCell,
+        boundaryPsi,
+        psiAxis,
+        psiBoundary
+      };
+    }
+
+    function shellBasisWeight(rho, center, width) {
+      const x = (rho - center) / width;
+      return Math.exp(-x * x);
+    }
+
+    function buildProfileBasisSourcesFromLattice(preset, lattice, Rs, Zs, totalGrid, peaking, psiAxis, psiBoundary) {
+      const denomRaw = psiBoundary - psiAxis;
+      const denom = Math.abs(denomRaw) > 1e-9 ? denomRaw : -1;
+      const shellCenters = [0.14, 0.34, 0.56, 0.80];
+      const shellWidth = 0.18;
+      const entries = [];
+      for (const kind of ["pressure", "ffprime"]) {
+        for (const center of shellCenters) {
+          const weighted = [];
+          for (const node of lattice) {
+            const psi = interpolateGrid(Rs, Zs, totalGrid, node.R, node.Z);
+            if (psi === null) continue;
+            const psiN = Math.max(0, Math.min(1, (psi - psiAxis) / denom));
+            const shape = gsShapeWeight(peaking, psiN);
+            const shell = shellBasisWeight(node.rho, center, shellWidth);
+            const drive = kind === "pressure"
+              ? Math.max(node.R / preset.R0, 0.28)
+              : Math.min(preset.R0 / Math.max(node.R, 0.22 * preset.R0), 3.5);
+            weighted.push({
+              R: node.R,
+              Z: node.Z,
+              soft: node.soft,
+              weight: shape * shell * drive * node.areaWeight
+            });
+          }
+          entries.push({
+            kind,
+            center,
+            sources: scaleWeightedSources(weighted, 1.0)
+          });
+        }
+      }
+      return entries;
+    }
+
+    function solveCerfonSeededCoilFit(model, scales, active, peaking, sourceMix, iterationCount, totalCurrentMA) {
+      const { preset, Rs, Zs, boundary, plasmaLattice, familyGrids } = model;
+      const activeExternalFamilies = FAMILY_ORDER.filter((family) => family !== "plasma" && active[family]);
+      const mask = buildInitialMask(preset, Rs, Zs);
+      let familyCoeffs = Object.fromEntries(activeExternalFamilies.map((family) => [family, scales[family]]));
+      let plasmaGrid = scaleGrid(familyGrids.plasma, scales.plasma);
+      let externalGrid = combineSelectedFamilyGrids(model, familyCoeffs);
+      let totalGrid = externalGrid.map((row, j) => row.map((value, i) => value + plasmaGrid[j][i]));
+      let pressureMA = (1 - sourceMix) * totalCurrentMA;
+      let ffprimeMA = sourceMix * totalCurrentMA;
+      let axisCell = detectAxisCell(preset, Rs, Zs, totalGrid, mask);
+      let psiAxis = totalGrid[axisCell.j][axisCell.i];
+      let psiBoundary = psiAxis;
+      let boundaryRms = 0;
+      let basisEntries = [];
+      let basisGrids = [];
+      let basisCoeffs = [];
+
+      for (let iter = 0; iter < iterationCount; iter += 1) {
+        externalGrid = combineSelectedFamilyGrids(model, familyCoeffs);
+        totalGrid = externalGrid.map((row, j) => row.map((value, i) => value + plasmaGrid[j][i]));
+        const basis = buildProfileBasisWeights(preset, Rs, Zs, totalGrid, mask, peaking);
+        axisCell = basis.axisCell;
+        psiAxis = basis.psiAxis;
+        psiBoundary = basis.psiBoundary;
+        basisEntries = buildProfileBasisSourcesFromLattice(preset, plasmaLattice, Rs, Zs, totalGrid, peaking, psiAxis, psiBoundary);
+        basisGrids = basisEntries.map((entry) => computeFieldGrid(Rs, Zs, entry.sources));
+
+        const rows = [];
+        const rhs = [];
+        for (const point of boundary) {
+          const plasmaRow = basisGrids.map((grid) => interpolateGrid(Rs, Zs, grid, point.R, point.Z) ?? 0);
+          const externalRow = activeExternalFamilies.map((family) => interpolateGrid(Rs, Zs, familyGrids[family], point.R, point.Z) ?? 0);
+          rows.push(plasmaRow.concat(externalRow, -1));
+          rhs.push(0);
+        }
+
+        const currentWeight = Math.max(6, Math.sqrt(boundary.length));
+        rows.push(
+          basisEntries.map(() => currentWeight)
+            .concat(activeExternalFamilies.map(() => 0), 0)
+        );
+        rhs.push(currentWeight * totalCurrentMA);
+
+        const pressureRow = basisEntries.map((entry) => entry.kind === "pressure" ? 0.9 : 0)
+          .concat(activeExternalFamilies.map(() => 0), 0);
+        const ffRow = basisEntries.map((entry) => entry.kind === "ffprime" ? 0.9 : 0)
+          .concat(activeExternalFamilies.map(() => 0), 0);
+        rows.push(pressureRow);
+        rhs.push(0.9 * (1 - sourceMix) * totalCurrentMA);
+        rows.push(ffRow);
+        rhs.push(0.9 * sourceMix * totalCurrentMA);
+
+        for (let i = 0; i < basisEntries.length - 1; i += 1) {
+          if (basisEntries[i].kind !== basisEntries[i + 1].kind) continue;
+          rows.push(
+            basisEntries.map((_, k) => (k === i ? 0.18 : k === i + 1 ? -0.18 : 0))
+              .concat(activeExternalFamilies.map(() => 0), 0)
+          );
+          rhs.push(0);
+        }
+
+        for (let i = 0; i < activeExternalFamilies.length; i += 1) {
+          const family = activeExternalFamilies[i];
+          const priorWeight = family === "pf" ? 0.95 : family === "cs" ? 0.80 : 0.55;
+          rows.push(
+            basisEntries.map(() => 0)
+              .concat(activeExternalFamilies.map((_, k) => (k === i ? priorWeight : 0)), 0)
+          );
+          rhs.push(priorWeight * scales[family]);
+        }
+
+        const fallback = basisEntries.map((entry) =>
+          entry.kind === "pressure" ? (1 - sourceMix) * totalCurrentMA / 4 : sourceMix * totalCurrentMA / 4
+        ).concat(activeExternalFamilies.map((family) => scales[family]), psiBoundary);
+        const solution = solveLeastSquares(rows, rhs, 1e-8) || fallback;
+
+        basisCoeffs = solution.slice(0, basisEntries.length).map((value) => Math.max(0, value));
+        const extOffset = basisEntries.length;
+        familyCoeffs = Object.fromEntries(
+          activeExternalFamilies.map((family, index) => [family, solution[extOffset + index]])
+        );
+
+        plasmaGrid = Zs.map((_, j) => Rs.map((__, i) =>
+          basisGrids.reduce((sum, grid, k) => sum + basisCoeffs[k] * grid[j][i], 0)
+        ));
+      }
+
+      externalGrid = combineSelectedFamilyGrids(model, familyCoeffs);
+      totalGrid = externalGrid.map((row, j) => row.map((value, i) => value + plasmaGrid[j][i]));
+      const finalBoundaryPsi = boundary.map((point) => interpolateGrid(Rs, Zs, totalGrid, point.R, point.Z)).filter((value) => value !== null);
+      const psiMean = finalBoundaryPsi.length ? finalBoundaryPsi.reduce((s, v) => s + v, 0) / finalBoundaryPsi.length : psiBoundary;
+      boundaryRms = Math.sqrt(finalBoundaryPsi.reduce((s, v) => s + (v - psiMean) ** 2, 0) / Math.max(finalBoundaryPsi.length, 1));
+      const separatrix = detectSeparatrix(preset, Rs, Zs, totalGrid, axisCell);
+      pressureMA = basisEntries.reduce((sum, entry, k) => sum + (entry.kind === "pressure" ? basisCoeffs[k] : 0), 0);
+      ffprimeMA = basisEntries.reduce((sum, entry, k) => sum + (entry.kind === "ffprime" ? basisCoeffs[k] : 0), 0);
+      return {
+        totalGrid,
+        plasmaGrid,
+        externalGrid,
+        mask,
+        axisCell,
+        psiAxis,
+        psiBoundary: psiMean,
+        xPoint: separatrix.xPoint,
+        boundaryRms,
+        pressureMA,
+        ffprimeMA,
+        familyCoeffs,
+        basisCount: basisEntries.length,
+        iterations: iterationCount
+      };
+    }
+
+    function solveBoundaryFittedProfiles(preset, Rs, Zs, externalGrid, peaking, sourceMix, iterationCount, totalCurrentMA) {
+      const mask = buildInitialMask(preset, Rs, Zs);
+      const boundary = buildBoundary(preset);
+      const lattice = buildPlasmaLattice(preset);
+      let totalGrid = externalGrid.map((row) => row.slice());
+      let plasmaGrid = Zs.map(() => Rs.map(() => 0));
+      let pressureMA = (1 - sourceMix) * totalCurrentMA;
+      let ffprimeMA = sourceMix * totalCurrentMA;
+      let axisCell = detectAxisCell(preset, Rs, Zs, totalGrid, mask);
+      let psiAxis = totalGrid[axisCell.j][axisCell.i];
+      let psiBoundary = psiAxis;
+      let boundaryRms = 0;
+      let basisEntries = [];
+      let basisGrids = [];
+      let basisCoeffs = [];
+
+      for (let iter = 0; iter < iterationCount; iter += 1) {
+        const basis = buildProfileBasisWeights(preset, Rs, Zs, totalGrid, mask, peaking);
+        axisCell = basis.axisCell;
+        psiAxis = basis.psiAxis;
+        psiBoundary = basis.psiBoundary;
+        basisEntries = buildProfileBasisSourcesFromLattice(preset, lattice, Rs, Zs, totalGrid, peaking, psiAxis, psiBoundary);
+        basisGrids = basisEntries.map((entry) => computeFieldGrid(Rs, Zs, entry.sources));
+        const extBoundary = boundary.map((point) => interpolateGrid(Rs, Zs, externalGrid, point.R, point.Z) ?? 0);
+        const rows = [];
+        const rhs = [];
+        for (let k = 0; k < extBoundary.length; k += 1) {
+          const row = basisGrids.map((grid) => interpolateGrid(Rs, Zs, grid, boundary[k].R, boundary[k].Z) ?? 0);
+          row.push(-1);
+          rows.push(row);
+          rhs.push(-extBoundary[k]);
+        }
+        const currentWeight = Math.max(6, Math.sqrt(extBoundary.length));
+        rows.push([...basisEntries.map(() => currentWeight), 0]);
+        rhs.push(currentWeight * totalCurrentMA);
+        const pressureRow = basisEntries.map((entry) => entry.kind === "pressure" ? 0.9 : 0).concat(0);
+        const ffRow = basisEntries.map((entry) => entry.kind === "ffprime" ? 0.9 : 0).concat(0);
+        rows.push(pressureRow);
+        rhs.push(0.9 * (1 - sourceMix) * totalCurrentMA);
+        rows.push(ffRow);
+        rhs.push(0.9 * sourceMix * totalCurrentMA);
+        for (let i = 0; i < basisEntries.length - 1; i += 1) {
+          if (basisEntries[i].kind !== basisEntries[i + 1].kind) continue;
+          const smooth = basisEntries.map((_, k) => (k === i ? 0.18 : k === i + 1 ? -0.18 : 0)).concat(0);
+          rows.push(smooth);
+          rhs.push(0);
+        }
+        const solution = solveLeastSquares(rows, rhs, 1e-8)
+          || basisEntries.map((entry) => entry.kind === "pressure" ? (1 - sourceMix) * totalCurrentMA / 4 : sourceMix * totalCurrentMA / 4).concat(psiBoundary);
+        basisCoeffs = solution.slice(0, basisEntries.length).map((value) => Math.max(0, value));
+        plasmaGrid = Zs.map((_, j) => Rs.map((__, i) =>
+          basisGrids.reduce((sum, grid, k) => sum + basisCoeffs[k] * grid[j][i], 0)
+        ));
+        totalGrid = externalGrid.map((row, j) => row.map((v, i) => v + plasmaGrid[j][i]));
+      }
+
+      const finalBoundaryPsi = boundary.map((point) => interpolateGrid(Rs, Zs, totalGrid, point.R, point.Z)).filter((value) => value !== null);
+      const psiMean = finalBoundaryPsi.length ? finalBoundaryPsi.reduce((s, v) => s + v, 0) / finalBoundaryPsi.length : psiBoundary;
+      boundaryRms = Math.sqrt(finalBoundaryPsi.reduce((s, v) => s + (v - psiMean) ** 2, 0) / Math.max(finalBoundaryPsi.length, 1));
+      const separatrix = detectSeparatrix(preset, Rs, Zs, totalGrid, axisCell);
+      pressureMA = basisEntries.reduce((sum, entry, k) => sum + (entry.kind === "pressure" ? basisCoeffs[k] : 0), 0);
+      ffprimeMA = basisEntries.reduce((sum, entry, k) => sum + (entry.kind === "ffprime" ? basisCoeffs[k] : 0), 0);
+      return {
+        totalGrid,
+        plasmaGrid,
+        mask,
+        axisCell,
+        psiAxis,
+        psiBoundary: psiMean,
+        xPoint: separatrix.xPoint,
+        boundaryRms,
+        pressureMA,
+        ffprimeMA,
+        basisCount: basisEntries.length,
+        iterations: iterationCount
+      };
+    }
+
+    function iteratePlasmaEquilibrium(preset, Rs, Zs, externalGrid, peaking, sourceMix, iterationCount, totalCurrentMA) {
+      let mask = buildInitialMask(preset, Rs, Zs);
+      let weights = Zs.map((Z, j) => Rs.map((R, i) => {
+        if (!mask[j][i]) return 0;
+        const rho2 = plasmaCoordinates(preset, R, Z).rho2;
+        return Math.max(0, (1 - rho2) ** peaking) * gsRadialDrive(preset, R, sourceMix);
+      }));
+      let plasmaSources = buildSourcesFromWeightGrid(preset, Rs, Zs, weights, totalCurrentMA);
+      let plasmaGrid = computeFieldGrid(Rs, Zs, plasmaSources);
+      let totalGrid = externalGrid.map((row, j) => row.map((v, i) => v + plasmaGrid[j][i]));
+      let psiAxis = 0;
+      let psiBoundary = 0;
+      let axisCell = { i: Math.floor(Rs.length / 2), j: Math.floor(Zs.length / 2), R: preset.R0, Z: 0, psi: 0 };
+      let xPoint = null;
+
+      for (let iter = 0; iter < iterationCount; iter += 1) {
+        axisCell = detectAxisCell(preset, Rs, Zs, totalGrid, mask);
+        psiAxis = totalGrid[axisCell.j][axisCell.i];
+        const separatrix = detectSeparatrix(preset, Rs, Zs, totalGrid, axisCell);
+        psiBoundary = separatrix.psiSep;
+        xPoint = separatrix.xPoint;
+        const sign = separatrix.sign;
+        const trialMask = Zs.map((Z, j) => Rs.map((R, i) => insideVessel(preset, R, Z) && sign * (totalGrid[j][i] - psiBoundary) >= 0));
+        mask = bfsMask(trialMask, axisCell.i, axisCell.j);
+        const denom = Math.abs(psiBoundary - psiAxis) > 1e-9 ? (psiBoundary - psiAxis) : (sign > 0 ? -1 : 1);
+        const newWeights = Zs.map((Z, j) => Rs.map((R, i) => {
+          if (!mask[j][i]) return 0;
+          const psiN = Math.max(0, Math.min(1, (totalGrid[j][i] - psiAxis) / denom));
+          const shape = gsShapeWeight(peaking, psiN);
+          return shape * gsRadialDrive(preset, R, sourceMix);
+        }));
+        weights = weights.map((row, j) => row.map((oldValue, i) => 0.45 * oldValue + 0.55 * newWeights[j][i]));
+        plasmaSources = buildSourcesFromWeightGrid(preset, Rs, Zs, weights, totalCurrentMA);
+        plasmaGrid = computeFieldGrid(Rs, Zs, plasmaSources);
+        totalGrid = externalGrid.map((row, j) => row.map((v, i) => v + plasmaGrid[j][i]));
+      }
+
+      return {
+        totalGrid,
+        plasmaGrid,
+        plasmaSources,
+        mask,
+        axisCell,
+        psiAxis,
+        psiBoundary,
+        iterations: iterationCount,
+        xPoint
+      };
+    }
+
+    function buildModel(deviceKey, peaking) {
+      const cacheKey = `${deviceKey}:${peaking.toFixed(2)}`;
+      if (modelCache.has(cacheKey)) return modelCache.get(cacheKey);
+      const preset = DEVICE_PRESETS[deviceKey];
+      const Rs = linspace(preset.extent.rmin, preset.extent.rmax, 88);
+      const Zs = linspace(-preset.extent.zmax, preset.extent.zmax, 96);
+      const boundary = buildBoundary(preset);
+      const vesselBoundary = buildVesselBoundary(preset);
+      const plasmaLattice = buildPlasmaLattice(preset);
+      const fixedPlasma = buildPlasmaSources(preset, plasmaLattice, peaking);
+      const familySources = {
+        plasma: fixedPlasma,
+        cs: expandCoilFamily("cs", preset, preset.families.cs),
+        pf: expandCoilFamily("pf", preset, preset.families.pf),
+        div: expandCoilFamily("div", preset, preset.families.div),
+        vf: expandCoilFamily("vf", preset, preset.families.vf)
+      };
+      const familyGrids = {};
+      for (const family of FAMILY_ORDER) {
+        familyGrids[family] = computeFieldGrid(Rs, Zs, familySources[family]);
+      }
+      const model = { preset, Rs, Zs, boundary, vesselBoundary, plasmaLattice, familySources, familyGrids };
+      modelCache.set(cacheKey, model);
+      return model;
+    }
+
+    function combineGrid(model, scales, active) {
+      const { familyGrids, Rs, Zs } = model;
+      const grid = Zs.map(() => Rs.map(() => 0));
+      for (const family of FAMILY_ORDER) {
+        if (!active[family]) continue;
+        const scale = scales[family];
+        const familyGrid = familyGrids[family];
+        for (let j = 0; j < Zs.length; j += 1) {
+          const row = grid[j];
+          const srcRow = familyGrid[j];
+          for (let i = 0; i < Rs.length; i += 1) {
+            row[i] += scale * srcRow[i];
+          }
+        }
+      }
+      return grid;
+    }
+
+    function combineSelectedFamilyGrids(model, familyCoeffs) {
+      const { familyGrids, Rs, Zs } = model;
+      const grid = Zs.map(() => Rs.map(() => 0));
+      for (const [family, coeff] of Object.entries(familyCoeffs)) {
+        const familyGrid = familyGrids[family];
+        if (!familyGrid) continue;
+        for (let j = 0; j < Zs.length; j += 1) {
+          const row = grid[j];
+          const srcRow = familyGrid[j];
+          for (let i = 0; i < Rs.length; i += 1) {
+            row[i] += coeff * srcRow[i];
+          }
+        }
+      }
+      return grid;
+    }
+
+    function scaleGrid(grid, factor) {
+      return grid.map((row) => row.map((value) => value * factor));
+    }
+
+    function interpolateGrid(Rs, Zs, grid, R, Z) {
+      if (R <= Rs[0] || R >= Rs[Rs.length - 1] || Z <= Zs[0] || Z >= Zs[Zs.length - 1]) {
+        return null;
+      }
+      let i = 0;
+      while (i < Rs.length - 2 && Rs[i + 1] < R) i += 1;
+      let j = 0;
+      while (j < Zs.length - 2 && Zs[j + 1] < Z) j += 1;
+      const t = (R - Rs[i]) / (Rs[i + 1] - Rs[i]);
+      const u = (Z - Zs[j]) / (Zs[j + 1] - Zs[j]);
+      const v00 = grid[j][i];
+      const v10 = grid[j][i + 1];
+      const v01 = grid[j + 1][i];
+      const v11 = grid[j + 1][i + 1];
+      return (1 - t) * (1 - u) * v00 + t * (1 - u) * v10 + (1 - t) * u * v01 + t * u * v11;
+    }
+
+    function marchingSquares(xs, ys, field, level) {
+      const segments = [];
+      function interp(x1, y1, v1, x2, y2, v2) {
+        const denom = v2 - v1;
+        const t = Math.abs(denom) < 1e-14 ? 0.5 : (level - v1) / denom;
+        return [x1 + t * (x2 - x1), y1 + t * (y2 - y1)];
+      }
+      for (let j = 0; j < ys.length - 1; j += 1) {
+        for (let i = 0; i < xs.length - 1; i += 1) {
+          const x0 = xs[i];
+          const x1 = xs[i + 1];
+          const y0 = ys[j];
+          const y1 = ys[j + 1];
+          const v0 = field[j][i];
+          const v1 = field[j][i + 1];
+          const v2 = field[j + 1][i + 1];
+          const v3 = field[j + 1][i];
+          const points = [];
+          if ((v0 - level) * (v1 - level) < 0) points.push(interp(x0, y0, v0, x1, y0, v1));
+          if ((v1 - level) * (v2 - level) < 0) points.push(interp(x1, y0, v1, x1, y1, v2));
+          if ((v2 - level) * (v3 - level) < 0) points.push(interp(x1, y1, v2, x0, y1, v3));
+          if ((v3 - level) * (v0 - level) < 0) points.push(interp(x0, y1, v3, x0, y0, v0));
+          if (points.length === 2) {
+            segments.push(points);
+          } else if (points.length === 4) {
+            const center = 0.25 * (v0 + v1 + v2 + v3);
+            if (center > level) {
+              segments.push([points[0], points[3]]);
+              segments.push([points[1], points[2]]);
+            } else {
+              segments.push([points[0], points[1]]);
+              segments.push([points[2], points[3]]);
+            }
+          }
+        }
+      }
+      return segments;
+    }
+
+    function segmentsToPath(segments, transform) {
+      return segments.map((segment) => {
+        const [p0, p1] = segment.map(([x, y]) => transform(x, y));
+        return `M ${p0[0].toFixed(2)} ${p0[1].toFixed(2)} L ${p1[0].toFixed(2)} ${p1[1].toFixed(2)}`;
+      }).join(" ");
+    }
+
+    function contourLevels(grid, count) {
+      const values = [];
+      for (const row of grid) {
+        for (const value of row) values.push(value);
+      }
+      values.sort((a, b) => a - b);
+      const levels = [];
+      for (let i = 1; i <= count; i += 1) {
+        const q = 0.08 + 0.84 * (i / (count + 1));
+        levels.push(values[Math.floor(q * (values.length - 1))]);
+      }
+      return levels;
+    }
+
+    function equilibriumContourLevels(axisPsi, boundaryPsi, vesselPsiValues, count) {
+      const levels = [];
+      const interiorCount = Math.max(4, Math.round(0.7 * count));
+      const exteriorCount = Math.max(0, count - interiorCount);
+      for (let k = 1; k <= interiorCount; k += 1) {
+        const rho = k / (interiorCount + 1);
+        levels.push({
+          level: axisPsi + (boundaryPsi - axisPsi) * rho * rho,
+          region: "interior"
+        });
+      }
+      if (vesselPsiValues.length && exteriorCount > 0) {
+        const vesselMean = vesselPsiValues.reduce((s, v) => s + v, 0) / vesselPsiValues.length;
+        for (let k = 1; k <= exteriorCount; k += 1) {
+          const t = k / (exteriorCount + 1);
+          levels.push({
+            level: boundaryPsi + (vesselMean - boundaryPsi) * t,
+            region: "exterior"
+          });
+        }
+      }
+      return levels;
+    }
+
+    function midplaneCrossingsFromPath(points) {
+      const hits = [];
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const p0 = points[i];
+        const p1 = points[i + 1];
+        if ((p0.Z === 0 && p1.Z === 0) || (p0.Z <= 0 && p1.Z >= 0) || (p0.Z >= 0 && p1.Z <= 0)) {
+          const dz = p1.Z - p0.Z;
+          const t = Math.abs(dz) < 1e-12 ? 0.5 : (-p0.Z / dz);
+          if (t >= 0 && t <= 1) {
+            hits.push(p0.R + t * (p1.R - p0.R));
+          }
+        }
+      }
+      return hits.filter((value, idx, arr) => idx === 0 || Math.abs(value - arr[idx - 1]) > 1e-3).sort((a, b) => a - b);
+    }
+
+    function midplaneCrossingsFromSegments(segments) {
+      const hits = [];
+      for (const [p0, p1] of segments) {
+        const z0 = p0[1];
+        const z1 = p1[1];
+        if ((z0 === 0 && z1 === 0) || (z0 <= 0 && z1 >= 0) || (z0 >= 0 && z1 <= 0)) {
+          const dz = z1 - z0;
+          const t = Math.abs(dz) < 1e-12 ? 0.5 : (-z0 / dz);
+          if (t >= 0 && t <= 1) {
+            hits.push(p0[0] + t * (p1[0] - p0[0]));
+          }
+        }
+      }
+      hits.sort((a, b) => a - b);
+      return hits.filter((value, idx) => idx === 0 || Math.abs(value - hits[idx - 1]) > 1e-3);
+    }
+
+    function gradientMagnitude(Rs, Zs, grid, i, j) {
+      if (i <= 0 || i >= Rs.length - 1 || j <= 0 || j >= Zs.length - 1) return Infinity;
+      const dR = Rs[i + 1] - Rs[i - 1];
+      const dZ = Zs[j + 1] - Zs[j - 1];
+      const dPsiR = (grid[j][i + 1] - grid[j][i - 1]) / dR;
+      const dPsiZ = (grid[j + 1][i] - grid[j - 1][i]) / dZ;
+      return Math.hypot(dPsiR, dPsiZ);
+    }
+
+    function computeFluxProfiles(levels, xs, ys, field) {
+      const rows = [];
+      for (const entry of levels) {
+        const segments = marchingSquares(xs, ys, field, entry.level);
+        if (!segments.length) continue;
+        let qGeo = 0;
+        for (const [p0, p1] of segments) {
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const ds = Math.hypot(dx, dy);
+          if (ds < 1e-8) continue;
+          const xm = 0.5 * (p0[0] + p1[0]);
+          const ym = 0.5 * (p0[1] + p1[1]);
+          const value = interpolateGrid(xs, ys, field, xm, ym);
+          if (value === null) continue;
+          let i = 1;
+          while (i < xs.length - 1 && xs[i] < xm) i += 1;
+          let j = 1;
+          while (j < ys.length - 1 && ys[j] < ym) j += 1;
+          const gradMag = gradientMagnitude(xs, ys, field, i, j);
+          if (!isFinite(gradMag) || gradMag < 1e-8) continue;
+          qGeo += ds / (Math.max(xm, 1e-4) * gradMag);
+        }
+        rows.push({ rho: entry.rho, qGeo });
+      }
+      if (!rows.length) return rows;
+      const qEdge = rows[rows.length - 1].qGeo || 1;
+      rows.forEach((row) => {
+        row.qNorm = row.qGeo / qEdge;
+      });
+      return rows;
+    }
+
+    function drawMiniSeries(svg, xValues, series, xLabel, yLabel, xMin, xMax, yMin, yMax, markers = []) {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const width = 420;
+      const height = 255;
+      const margin = { left: 54, right: 16, top: 16, bottom: 38 };
+      const plotW = width - margin.left - margin.right;
+      const plotH = height - margin.top - margin.bottom;
+      function mapX(x) {
+        return margin.left + (x - xMin) / (xMax - xMin || 1) * plotW;
+      }
+      function mapY(y) {
+        return margin.top + plotH - (y - yMin) / (yMax - yMin || 1) * plotH;
+      }
+
+      for (let i = 0; i <= 4; i += 1) {
+        const yv = yMin + (yMax - yMin) * i / 4;
+        const py = mapY(yv);
+        svg.appendChild(svgElement("line", {
+          x1: margin.left, y1: py, x2: width - margin.right, y2: py,
+          stroke: "#e2ebf1", "stroke-width": "1"
+        }));
+        const label = svgElement("text", {
+          x: margin.left - 8, y: py + 4, "text-anchor": "end",
+          fill: "#5a7180", "font-size": "12",
+          "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        label.textContent = fmt(yv, 2);
+        svg.appendChild(label);
+      }
+
+      for (let i = 0; i <= 5; i += 1) {
+        const xv = xMin + (xMax - xMin) * i / 5;
+        const px = mapX(xv);
+        svg.appendChild(svgElement("line", {
+          x1: px, y1: margin.top, x2: px, y2: height - margin.bottom,
+          stroke: "#e2ebf1", "stroke-width": "1"
+        }));
+        const label = svgElement("text", {
+          x: px, y: height - margin.bottom + 18, "text-anchor": "middle",
+          fill: "#5a7180", "font-size": "12",
+          "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        label.textContent = fmt(xv, 1);
+        svg.appendChild(label);
+      }
+
+      svg.appendChild(svgElement("line", {
+        x1: margin.left, y1: height - margin.bottom, x2: width - margin.right, y2: height - margin.bottom,
+        stroke: "#90a8b8", "stroke-width": "1.1"
+      }));
+      svg.appendChild(svgElement("line", {
+        x1: margin.left, y1: margin.top, x2: margin.left, y2: height - margin.bottom,
+        stroke: "#90a8b8", "stroke-width": "1.1"
+      }));
+
+      for (const item of series) {
+        const d = xValues.map((x, index) => `${index === 0 ? "M" : "L"} ${mapX(x).toFixed(2)} ${mapY(item.values[index]).toFixed(2)}`).join(" ");
+        svg.appendChild(svgElement("path", {
+          d, fill: "none", stroke: item.color, "stroke-width": item.width || 2.2,
+          "stroke-linejoin": "round", "stroke-linecap": "round",
+          "stroke-dasharray": item.dash || ""
+        }));
+      }
+
+      for (const marker of markers) {
+        const px = mapX(marker.x);
+        svg.appendChild(svgElement("line", {
+          x1: px, y1: margin.top, x2: px, y2: height - margin.bottom,
+          stroke: marker.color, "stroke-width": marker.width || "1.4",
+          "stroke-dasharray": marker.dash || "6 5",
+          opacity: marker.opacity || "0.95"
+        }));
+        if (marker.label) {
+          const label = svgElement("text", {
+            x: px + 3,
+            y: margin.top + 14,
+            fill: marker.color,
+            "font-size": "11",
+            "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+          });
+          label.textContent = marker.label;
+          svg.appendChild(label);
+        }
+      }
+
+      const xText = svgElement("text", {
+        x: width / 2, y: height - 8, "text-anchor": "middle",
+        fill: "#486170", "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      xText.textContent = xLabel;
+      svg.appendChild(xText);
+
+      const yText = svgElement("text", {
+        x: 14, y: height / 2, "text-anchor": "middle",
+        fill: "#486170", "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+        transform: `rotate(-90 14 ${height / 2})`
+      });
+      yText.textContent = yLabel;
+      svg.appendChild(yText);
+    }
+
+    function render() {
+      const deviceKey = deviceSelect.value;
+      const solveMode = solveModeSelect.value;
+      const peaking = parseFloat(sliders.peaking.value);
+      const sourceMix = parseFloat(sliders.sourceMix.value);
+      const iterationCount = parseInt(sliders.iterations.value, 10);
+      const model = buildModel(deviceKey, peaking);
+      const scales = {
+        plasma: parseFloat(sliders.plasma.value),
+        cs: parseFloat(sliders.cs.value),
+        pf: parseFloat(sliders.pf.value),
+        div: parseFloat(sliders.div.value),
+        vf: parseFloat(sliders.vf.value)
+      };
+      const active = {
+        plasma: activeBoxes.plasma.checked,
+        cs: activeBoxes.cs.checked,
+        pf: activeBoxes.pf.checked,
+        div: activeBoxes.div.checked,
+        vf: activeBoxes.vf.checked
+      };
+      const overlays = {
+        plasmaGrid: overlayBoxes.plasmaGrid.checked,
+        plasmaFlux: overlayBoxes.plasmaFlux.checked,
+        pfFlux: overlayBoxes.pfFlux.checked
+      };
+      for (const family of FAMILY_ORDER) {
+        labels[family].textContent = `${fmt(scales[family], 2)}x`;
+      }
+      labels.peaking.textContent = fmt(peaking, 2);
+      labels.sourceMix.textContent = `${fmt(sourceMix, 2)} FF′`;
+      labels.contours.textContent = sliders.contours.value;
+      labels.iterations.textContent = `${iterationCount}`;
+
+      const externalActive = { plasma: false, cs: active.cs, pf: active.pf, div: active.div, vf: active.vf };
+      const externalGrid = combineGrid(model, scales, externalActive);
+      let totalGrid = combineGrid(model, scales, active);
+      let plasmaGrid = scaleGrid(model.familyGrids.plasma, scales.plasma);
+      let mask = buildInitialMask(model.preset, model.Rs, model.Zs);
+      let psiBoundary = 0;
+      let psiAxis = 0;
+      let axisCell = { R: model.preset.R0, Z: 0, i: Math.floor(model.Rs.length / 2), j: Math.floor(model.Zs.length / 2) };
+      let iterationNote = "Fixed plasma source.";
+      let profileSolve = null;
+      let freeBoundaryXPoint = null;
+      if (solveMode === "cerfon-fit" && active.plasma) {
+        profileSolve = solveCerfonSeededCoilFit(
+          model,
+          scales,
+          active,
+          peaking,
+          sourceMix,
+          iterationCount,
+          model.preset.ipMA * scales.plasma
+        );
+        totalGrid = profileSolve.totalGrid;
+        plasmaGrid = profileSolve.plasmaGrid;
+        mask = profileSolve.mask;
+        psiBoundary = profileSolve.psiBoundary;
+        psiAxis = profileSolve.psiAxis;
+        axisCell = profileSolve.axisCell;
+        freeBoundaryXPoint = profileSolve.xPoint;
+        const fittedFamilies = Object.entries(profileSolve.familyCoeffs)
+          .map(([family, coeff]) => `${FAMILY_LABELS[family]} ${fmt(coeff, 2)}x`)
+          .join(", ");
+        iterationNote = `Cerfon-seeded ITER fit completed in ${profileSolve.iterations} profile updates using ${profileSolve.basisCount} D-shaped radial basis functions. The fitted plasma current splits into ${fmt(profileSolve.pressureMA, 2)} MA of pressure-like drive and ${fmt(profileSolve.ffprimeMA, 2)} MA of FF′-like drive. Active external families were refit to ${fittedFamilies || "their slider priors"}, leaving a target-boundary rms isoflux error of ${fmt(profileSolve.boundaryRms, 2)}.`;
+      } else if (solveMode === "boundary-fit" && active.plasma) {
+        profileSolve = solveBoundaryFittedProfiles(
+          model.preset,
+          model.Rs,
+          model.Zs,
+          externalGrid,
+          peaking,
+          sourceMix,
+          iterationCount,
+          model.preset.ipMA * scales.plasma
+        );
+        totalGrid = profileSolve.totalGrid;
+        plasmaGrid = profileSolve.plasmaGrid;
+        mask = profileSolve.mask;
+        psiBoundary = profileSolve.psiBoundary;
+        psiAxis = profileSolve.psiAxis;
+        axisCell = profileSolve.axisCell;
+        freeBoundaryXPoint = profileSolve.xPoint;
+        iterationNote = `Boundary-fitted GS profile solve completed in ${profileSolve.iterations} profile updates using ${profileSolve.basisCount} D-shaped radial basis functions. The fitted plasma current splits into ${fmt(profileSolve.pressureMA, 2)} MA of pressure-like drive and ${fmt(profileSolve.ffprimeMA, 2)} MA of FF′-like drive, leaving a target-boundary rms isoflux error of ${fmt(profileSolve.boundaryRms, 2)}.`;
+      } else if (solveMode === "iterative" && active.plasma) {
+        const iter = iteratePlasmaEquilibrium(
+          model.preset,
+          model.Rs,
+          model.Zs,
+          externalGrid,
+          peaking,
+          sourceMix,
+          iterationCount,
+          model.preset.ipMA * scales.plasma
+        );
+        totalGrid = active.plasma ? iter.totalGrid : externalGrid;
+        plasmaGrid = iter.plasmaGrid;
+        mask = iter.mask;
+        psiBoundary = iter.psiBoundary;
+        psiAxis = iter.psiAxis;
+        axisCell = iter.axisCell;
+        freeBoundaryXPoint = iter.xPoint;
+        iterationNote = `Iterative GS-inspired plasma solve completed in ${iter.iterations} Picard steps with source mix λ = ${fmt(sourceMix, 2)}.`;
+      } else if (!active.plasma) {
+        iterationNote = "Plasma family is excluded from the total field.";
+      } else {
+        iterationNote = `Fixed source mode with λ = ${fmt(sourceMix, 2)} available only as a reference; the plasma shape is not iterated.`;
+      }
+
+      const focusKey = (focusRadios.find((radio) => radio.checked) || { value: "total" }).value;
+      const displayGrid =
+        focusKey === "total" ? totalGrid :
+        focusKey === "plasma" ? plasmaGrid :
+        scaleGrid(
+          model.familyGrids[focusKey],
+          profileSolve && profileSolve.familyCoeffs && Object.prototype.hasOwnProperty.call(profileSolve.familyCoeffs, focusKey)
+            ? profileSolve.familyCoeffs[focusKey]
+            : scales[focusKey]
+        );
+
+      const boundaryPsi = model.boundary.map((point) => interpolateGrid(model.Rs, model.Zs, totalGrid, point.R, point.Z)).filter((value) => value !== null);
+      const psiMean = boundaryPsi.reduce((sum, value) => sum + value, 0) / Math.max(boundaryPsi.length, 1);
+      const psiStd = Math.sqrt(boundaryPsi.reduce((sum, value) => sum + (value - psiMean) ** 2, 0) / Math.max(boundaryPsi.length, 1));
+      const vesselPsi = model.vesselBoundary.map((point) => interpolateGrid(model.Rs, model.Zs, totalGrid, point.R, point.Z)).filter((value) => value !== null);
+      if ((solveMode !== "iterative" && solveMode !== "boundary-fit" && solveMode !== "cerfon-fit") || !active.plasma) {
+        psiBoundary = psiMean;
+        let bestDelta = -Infinity;
+        for (let j = 1; j < model.Zs.length - 1; j += 1) {
+          for (let i = 1; i < model.Rs.length - 1; i += 1) {
+            if (!mask[j][i]) continue;
+            const delta = Math.abs(totalGrid[j][i] - psiBoundary);
+            if (delta > bestDelta) {
+              bestDelta = delta;
+              axisCell = { i, j, R: model.Rs[i], Z: model.Zs[j] };
+            }
+          }
+        }
+        psiAxis = totalGrid[axisCell.j][axisCell.i];
+      }
+
+      const axisCandidate = { R: axisCell.R, Z: axisCell.Z, psi: psiAxis };
+      let xPoint = freeBoundaryXPoint;
+      let xPointGrad = Infinity;
+      if (!xPoint) {
+        for (let j = 1; j < model.Zs.length - 1; j += 1) {
+          for (let i = 1; i < model.Rs.length - 1; i += 1) {
+            const R = model.Rs[i];
+            const Z = model.Zs[j];
+            const coords = vesselCoordinates(model.preset, R, Z);
+            if (coords.rho2 > 0.65 && Math.abs(Z) > 0.30 * model.preset.kappa * model.preset.a) {
+              const grad = gradientMagnitude(model.Rs, model.Zs, totalGrid, i, j);
+              if (grad < xPointGrad) {
+                xPointGrad = grad;
+                xPoint = { R, Z, grad };
+              }
+            }
+          }
+        }
+      }
+
+      const contourCount = parseInt(sliders.contours.value, 10);
+      const levels = (focusKey === "total")
+        ? equilibriumContourLevels(psiAxis, psiBoundary, vesselPsi, contourCount)
+        : contourLevels(displayGrid, contourCount).map((level) => ({ level, region: "generic" }));
+      const lcfsSegments = marchingSquares(model.Rs, model.Zs, totalGrid, psiBoundary);
+      const qLevels = [];
+      const sign = psiAxis >= psiBoundary ? 1 : -1;
+      for (let k = 1; k <= 12; k += 1) {
+        const rho = k / 13;
+        qLevels.push({ rho, level: psiAxis + (psiBoundary - psiAxis) * rho * rho });
+      }
+      const qRows = computeFluxProfiles(qLevels, model.Rs, model.Zs, totalGrid);
+
+      while (plot.firstChild) plot.removeChild(plot.firstChild);
+      const width = 900;
+      const height = 760;
+      const margin = { left: 60, right: 22, top: 18, bottom: 38 };
+      const plotW = width - margin.left - margin.right;
+      const plotH = height - margin.top - margin.bottom;
+      const xMin = model.preset.extent.rmin;
+      const xMax = model.preset.extent.rmax;
+      const yMin = -model.preset.extent.zmax;
+      const yMax = model.preset.extent.zmax;
+      function toSvg(R, Z) {
+        const x = margin.left + (R - xMin) / (xMax - xMin) * plotW;
+        const y = margin.top + plotH - (Z - yMin) / (yMax - yMin) * plotH;
+        return [x, y];
+      }
+
+      for (let zTick = Math.ceil(yMin); zTick <= yMax + 1e-9; zTick += Math.max(1, Math.round(model.preset.extent.zmax / 4))) {
+        const [, py] = toSvg(xMin, zTick);
+        plot.appendChild(svgElement("line", { x1: margin.left, y1: py, x2: width - margin.right, y2: py, stroke: "#e2ebf1", "stroke-width": "1" }));
+      }
+      for (let rTick = Math.ceil(xMin); rTick <= xMax + 1e-9; rTick += Math.max(0.5, Math.round((xMax - xMin) / 6 * 2) / 2)) {
+        const [px] = toSvg(rTick, yMin);
+        plot.appendChild(svgElement("line", { x1: px, y1: margin.top, x2: px, y2: height - margin.bottom, stroke: "#e2ebf1", "stroke-width": "1" }));
+      }
+
+      plot.appendChild(svgElement("rect", {
+        x: margin.left, y: margin.top, width: plotW, height: plotH,
+        fill: "none", stroke: "#8ea6b6", "stroke-width": "1.2"
+      }));
+
+      const focusColor = focusKey === "total" ? COLORS.total : COLORS[focusKey];
+      for (const entry of levels) {
+        const segments = marchingSquares(model.Rs, model.Zs, displayGrid, entry.level);
+        if (!segments.length) continue;
+        plot.appendChild(svgElement("path", {
+          d: segmentsToPath(segments, toSvg),
+          fill: "none",
+          stroke: focusColor,
+          "stroke-width": entry.region === "interior" ? "1.55" : "1.2",
+          opacity: entry.region === "exterior" ? "0.56" : "0.82",
+          "stroke-dasharray": entry.region === "exterior" ? "5 4" : "",
+          "stroke-linecap": "round"
+        }));
+      }
+
+      if (overlays.plasmaFlux && active.plasma) {
+        const plasmaLevels = contourLevels(plasmaGrid, Math.max(6, Math.round(contourCount * 0.55)));
+        for (const level of plasmaLevels) {
+          const segments = marchingSquares(model.Rs, model.Zs, plasmaGrid, level);
+          if (!segments.length) continue;
+          plot.appendChild(svgElement("path", {
+            d: segmentsToPath(segments, toSvg),
+            fill: "none",
+            stroke: COLORS.plasma,
+            "stroke-width": "1.15",
+            opacity: "0.62",
+            "stroke-dasharray": "4 3",
+            "stroke-linecap": "round"
+          }));
+        }
+      }
+
+      if (overlays.pfFlux && active.pf) {
+        const pfScale = profileSolve && profileSolve.familyCoeffs && Object.prototype.hasOwnProperty.call(profileSolve.familyCoeffs, "pf")
+          ? profileSolve.familyCoeffs.pf
+          : scales.pf;
+        const pfGrid = scaleGrid(model.familyGrids.pf, pfScale);
+        const pfLevels = contourLevels(pfGrid, Math.max(6, Math.round(contourCount * 0.55)));
+        for (const level of pfLevels) {
+          const segments = marchingSquares(model.Rs, model.Zs, pfGrid, level);
+          if (!segments.length) continue;
+          plot.appendChild(svgElement("path", {
+            d: segmentsToPath(segments, toSvg),
+            fill: "none",
+            stroke: COLORS.pf,
+            "stroke-width": "1.10",
+            opacity: "0.66",
+            "stroke-dasharray": "8 4",
+            "stroke-linecap": "round"
+          }));
+        }
+      }
+
+      if (lcfsSegments.length) {
+        plot.appendChild(svgElement("path", {
+          d: segmentsToPath(lcfsSegments, toSvg),
+          fill: "none",
+          stroke: COLORS.lcfs,
+          "stroke-width": "2.0",
+          "stroke-linecap": "round"
+        }));
+      }
+
+      const boundaryPath = model.boundary.map((point, index) => {
+        const [x, y] = toSvg(point.R, point.Z);
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      }).join(" ");
+      plot.appendChild(svgElement("path", {
+        d: boundaryPath,
+        fill: "none",
+        stroke: COLORS.plasma,
+        "stroke-width": "2.3",
+        "stroke-dasharray": "9 6",
+        opacity: "0.96"
+      }));
+      const vesselPath = model.vesselBoundary.map((point, index) => {
+        const [x, y] = toSvg(point.R, point.Z);
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      }).join(" ");
+      plot.appendChild(svgElement("path", {
+        d: vesselPath,
+        fill: "none",
+        stroke: "#6f7d86",
+        "stroke-width": "2.5",
+        "stroke-dasharray": "8 6",
+        opacity: "0.92"
+      }));
+      if (model.preset.machineGeometry) {
+        for (const element of model.preset.machineGeometry.passive) {
+          const points = rotatedRectanglePoints(element.R, element.Z, element.w, element.h, element.angle);
+          const d = points.map((point, index) => {
+            const [x, y] = toSvg(point.R, point.Z);
+            return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+          }).join(" ") + " Z";
+          plot.appendChild(svgElement("path", {
+            d,
+            fill: "rgba(125, 139, 148, 0.08)",
+            stroke: "#7a8993",
+            "stroke-width": element.name.startsWith("VES") ? "0.9" : "1.2",
+            "stroke-linejoin": "round",
+            opacity: element.name.startsWith("VES") ? "0.70" : "0.88"
+          }));
+        }
+        const limiterPath = model.preset.machineGeometry.limiter.map((point, index) => {
+          const [x, y] = toSvg(point.R, point.Z);
+          return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+        }).join(" ");
+        plot.appendChild(svgElement("path", {
+          d: limiterPath,
+          fill: "none",
+          stroke: "#3f515c",
+          "stroke-width": "2.1",
+          "stroke-linejoin": "round",
+          "stroke-linecap": "round",
+          opacity: "0.96"
+        }));
+      }
+
+      if (overlays.plasmaGrid && active.plasma) {
+        for (const node of model.plasmaLattice) {
+          const [gx, gy] = toSvg(node.R, node.Z);
+          const radius = node.rho < 0.02 ? 2.6 : 1.45 + 0.65 * (1 - node.rho);
+          plot.appendChild(svgElement("circle", {
+            cx: gx,
+            cy: gy,
+            r: radius,
+            fill: "#d7efe1",
+            "fill-opacity": node.rho < 0.02 ? "0.9" : "0.72",
+            stroke: "#5ea07d",
+            "stroke-width": node.rho < 0.02 ? "0.85" : "0.55"
+          }));
+        }
+      }
+
+      for (const family of ["cs", "pf", "div", "vf"]) {
+        const activeAlpha = active[family] ? 1 : 0.25;
+        for (const coil of model.preset.families[family]) {
+          const shape = coilPackShape(family, model.preset, coil);
+          const [x0, y0] = toSvg(coil.R - 0.5 * shape.w, coil.Z + 0.5 * shape.h);
+          const [x1, y1] = toSvg(coil.R + 0.5 * shape.w, coil.Z - 0.5 * shape.h);
+          const [cx, cy] = toSvg(coil.R, coil.Z);
+          plot.appendChild(svgElement("rect", {
+            x: Math.min(x0, x1),
+            y: Math.min(y0, y1),
+            width: Math.abs(x1 - x0),
+            height: Math.abs(y1 - y0),
+            fill: COLORS[family],
+            "fill-opacity": String(0.09 + 0.18 * activeAlpha),
+            stroke: COLORS[family],
+            "stroke-width": "1.5",
+            rx: "4",
+            ry: "4"
+          }));
+          plot.appendChild(svgElement("circle", {
+            cx, cy, r: Math.max(4, 2.2 + 3.5 * coil.soft / model.preset.a),
+            fill: COLORS[family], "fill-opacity": String(0.28 + 0.45 * activeAlpha),
+            stroke: COLORS[family], "stroke-width": "1.4"
+          }));
+          if (coil.name) {
+            const labelDx = family === "pf" && coil.R > model.preset.R0 + 1.2 * model.preset.a ? -8 : 8;
+            const labelDy = coil.Z >= 0 ? -8 : 13;
+            const text = svgElement("text", {
+              x: cx + labelDx,
+              y: cy + labelDy,
+              fill: COLORS[family],
+              "font-size": "10.5",
+              "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+              "text-anchor": labelDx < 0 ? "end" : "start"
+            });
+            text.textContent = coil.name;
+            plot.appendChild(text);
+          }
+        }
+      }
+
+      if (axisCandidate) {
+        const [ax, ay] = toSvg(axisCandidate.R, axisCandidate.Z);
+        plot.appendChild(svgElement("circle", {
+          cx: ax, cy: ay, r: 5.5, fill: "#ffffff", stroke: "#213848", "stroke-width": "2"
+        }));
+        plot.appendChild(svgElement("line", {
+          x1: ax - 7, y1: ay, x2: ax + 7, y2: ay, stroke: "#213848", "stroke-width": "1.4"
+        }));
+        plot.appendChild(svgElement("line", {
+          x1: ax, y1: ay - 7, x2: ax, y2: ay + 7, stroke: "#213848", "stroke-width": "1.4"
+        }));
+      }
+
+      if (xPoint) {
+        const [xx, xy] = toSvg(xPoint.R, xPoint.Z);
+        plot.appendChild(svgElement("path", {
+          d: `M ${(xx - 6).toFixed(2)} ${(xy - 6).toFixed(2)} L ${(xx + 6).toFixed(2)} ${(xy + 6).toFixed(2)} M ${(xx - 6).toFixed(2)} ${(xy + 6).toFixed(2)} L ${(xx + 6).toFixed(2)} ${(xy - 6).toFixed(2)}`,
+          fill: "none", stroke: "#8c5b1d", "stroke-width": "1.6"
+        }));
+      }
+
+      const xAxis = svgElement("text", {
+        x: width / 2,
+        y: height - 8,
+        "text-anchor": "middle",
+        fill: "#486170",
+        "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      xAxis.textContent = "Major radius R (m)";
+      plot.appendChild(xAxis);
+      const yAxis = svgElement("text", {
+        x: 16,
+        y: height / 2,
+        "text-anchor": "middle",
+        fill: "#486170",
+        "font-size": "13",
+        "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+        transform: `rotate(-90 16 ${height / 2})`
+      });
+      yAxis.textContent = "Vertical coordinate Z (m)";
+      plot.appendChild(yAxis);
+
+      const RsMid = model.Rs;
+      const midIndex = Math.floor(model.Zs.length / 2);
+      const midSeries = [
+        { color: COLORS.total, width: 2.7, values: totalGrid[midIndex] }
+      ];
+      for (const family of FAMILY_ORDER) {
+        const familyScale = profileSolve && profileSolve.familyCoeffs && Object.prototype.hasOwnProperty.call(profileSolve.familyCoeffs, family)
+          ? profileSolve.familyCoeffs[family]
+          : scales[family];
+        midSeries.push({
+          color: COLORS[family],
+          width: 1.8,
+          dash: active[family] ? "" : "6 5",
+          values: model.familyGrids[family][midIndex].map((v) => familyScale * v)
+        });
+      }
+      const midValues = midSeries.flatMap((series) => series.values);
+      const midMin = Math.min(...midValues);
+      const midMax = Math.max(...midValues);
+      const targetCrossings = midplaneCrossingsFromPath(model.boundary);
+      const vesselCrossings = midplaneCrossingsFromPath(model.vesselBoundary);
+      const plasmaCrossings = midplaneCrossingsFromSegments(lcfsSegments);
+      const markers = [];
+      targetCrossings.forEach((x, idx) => markers.push({ x, color: COLORS.plasma, label: idx === 0 ? "target" : "", dash: "8 5" }));
+      vesselCrossings.forEach((x, idx) => markers.push({ x, color: "#6f7d86", label: idx === 0 ? "vessel" : "", dash: "5 4" }));
+      plasmaCrossings.forEach((x, idx) => markers.push({ x, color: COLORS.lcfs, label: idx === 0 ? "sep" : "", dash: "", width: "1.8" }));
+      drawMiniSeries(midplanePlot, RsMid, midSeries, "R (m)", "Flux proxy ψ", RsMid[0], RsMid[RsMid.length - 1], midMin, midMax, markers);
+
+      const thetaValues = model.boundary.map((point) => point.theta / Math.PI);
+      const boundaryDelta = boundaryPsi.map((value) => value - psiMean);
+      const boundarySeries = [{ color: COLORS.total, values: boundaryDelta, width: 2.4 }];
+      const deltaMax = Math.max(...boundaryDelta.map((value) => Math.abs(value)), 1e-6);
+      drawMiniSeries(boundaryPlot, thetaValues, boundarySeries, "θ / π", "ψ - <ψ>", 0, 2, -deltaMax, deltaMax);
+      if (qRows.length) {
+        drawMiniSeries(
+          qPlot,
+          qRows.map((row) => row.rho),
+          [{ color: COLORS.total, values: qRows.map((row) => row.qNorm), width: 2.4 }],
+          "ρ",
+          "q/qedge",
+          0,
+          1,
+          Math.min(...qRows.map((row) => row.qNorm)) * 0.95,
+          Math.max(...qRows.map((row) => row.qNorm)) * 1.05
+        );
+      } else {
+        drawMiniSeries(qPlot, [0, 1], [{ color: COLORS.total, values: [1, 1], width: 1.5 }], "ρ", "q/qedge", 0, 1, 0.9, 1.1);
+      }
+
+      presetSummary.textContent = `${model.preset.name}: R0 = ${fmt(model.preset.R0, 2)} m, a = ${fmt(model.preset.a, 2)} m, κ = ${fmt(model.preset.kappa, 2)}, δ = ${fmt(model.preset.delta, 2)}, Ip ≈ ${fmt(model.preset.ipMA * scales.plasma, 1)} MA.`;
+      boundarySummary.textContent = solveMode === "boundary-fit"
+        ? `Target-boundary mean flux ψ̄ ≈ ${fmt(psiMean, 2)} with rms spread ${fmt(psiStd, 2)}. In the boundary-fitted mode the solver adjusts the amplitudes of the Rp′ and FF′ families so this spread is driven down while keeping Ip fixed; the plotted reference level uses ψb ≈ ${fmt(psiBoundary, 2)}.`
+        : solveMode === "cerfon-fit"
+          ? `Target-boundary mean flux ψ̄ ≈ ${fmt(psiMean, 2)} with rms spread ${fmt(psiStd, 2)}. In the Cerfon-seeded ITER fit the solver adjusts both the plasma basis and the active external coil-family scales so this spread is driven down while keeping Ip fixed; the plotted reference level uses ψb ≈ ${fmt(psiBoundary, 2)}.`
+          : `Target-boundary mean flux ψ̄ ≈ ${fmt(psiMean, 2)} with rms spread ${fmt(psiStd, 2)}. In iterative mode the plotted separatrix instead uses the self-consistent boundary level ψb ≈ ${fmt(psiBoundary, 2)}.`;
+      axisSummary.textContent = axisCandidate
+        ? `The current iterate places the magnetic axis near R = ${fmt(axisCandidate.R, 2)} m, Z = ${fmt(axisCandidate.Z, 2)} m, where ψa ≈ ${fmt(axisCandidate.psi, 2)}.`
+        : "Axis estimate unavailable.";
+      xpointSummary.textContent = xPoint
+        ? `A low-|∇ψ| divertor candidate appears near R = ${fmt(xPoint.R, 2)} m, Z = ${fmt(xPoint.Z, 2)} m.`
+        : "X-point candidate unavailable.";
+      const activeNames = FAMILY_ORDER.filter((family) => active[family]).map((family) => FAMILY_LABELS[family]);
+      familySummary.textContent = activeNames.length
+        ? `Active in the total field: ${activeNames.join(", ")}. Focus contours are currently showing ${focusKey === "total" ? "the total superposition" : FAMILY_LABELS[focusKey].toLowerCase()}.${profileSolve ? ` The plasma fit is currently split ${fmt(100 * profileSolve.pressureMA / Math.max(profileSolve.pressureMA + profileSolve.ffprimeMA, 1e-9), 0)}% pressure-like and ${fmt(100 * profileSolve.ffprimeMA / Math.max(profileSolve.pressureMA + profileSolve.ffprimeMA, 1e-9), 0)}% FF′-like.${profileSolve.familyCoeffs ? ` External-family fit: ${Object.entries(profileSolve.familyCoeffs).map(([family, coeff]) => `${FAMILY_LABELS[family]} ${fmt(coeff, 2)}x`).join(", ")}.` : ""}` : ""}`
+        : "No families are active in the total field.";
+      contourSummary.textContent = focusKey === "total"
+        ? `The black contour is the ψ = ψb separatrix from the active total field. The colored total-field family now prioritizes nested interior equilibrium surfaces between ψa and ψb, then adds lighter exterior vacuum contours out toward the vessel.`
+        : `The black contour is the ψ = ψb line from the active total field. The colored contour family uses ${contourCount} levels from the ${FAMILY_LABELS[focusKey].toLowerCase()} contribution.`;
+      qSummary.textContent = qRows.length
+        ? `The normalized geometric profile drops from q/qedge ≈ ${fmt(qRows[0].qNorm, 2)} near the core to 1.00 at the edge.`
+        : "No closed flux levels were found for a q-profile estimate.";
+      iterateSummary.textContent = iterationNote;
+    }
+
+    [deviceSelect, solveModeSelect, ...focusRadios, ...Object.values(sliders), ...Object.values(activeBoxes), ...Object.values(overlayBoxes)].forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

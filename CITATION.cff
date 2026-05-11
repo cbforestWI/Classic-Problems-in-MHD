@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use or reference this web edition, please cite it using the DOI for the archived release."
+title: "Classic Problems in Magnetohydrodynamics: Interactive Web Edition"
+type: software
+authors:
+  - family-names: "Forest"
+    given-names: "Cary"
+    email: "cbforest@gmail.com"
+version: "2026.05.11"
+date-released: "2026-05-11"
+abstract: "Publish-only static website for the interactive web edition of Classic Problems in Magnetohydrodynamics, including HTML lectures, figures, media, browser-based physics explorers, and a bundled PDF."
+keywords:
+  - magnetohydrodynamics
+  - plasma physics
+  - tokamaks
+  - MHD stability
+  - teaching
+  - interactive website
+copyright: "Copyright (c) 2026 Cary Forest. All rights reserved."
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Forest"
+      given-names: "Cary"
+  title: "Classic Problems in Magnetohydrodynamics: Interactive Web Edition"
+  version: "2026.05.11"
+  date-released: "2026-05-11"

@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 14 Equilibrium Reconstruction and Properties</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_equilibrium.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture13.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture15.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;14</span><br /><a 
+ id="x1-10900014"></a>Equilibrium Reconstruction and Properties</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" ><span 
+class="ecbx-1095">This lecture is about what an equilibrium really gives you, and how</span>
+     <span 
+class="ecbx-1095">experimentalists infer it.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">It collects the geometric quantities attached to an axisymmetric equilibrium: flux
+   coordinates, safety factor, flux-surface averages, shaping, and current profiles.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">It shows how the Grad&#8211;Shafranov equation (<a href="lecture12.html#eq-eq-GS_master">12.28</a>) becomes both a forward problem
+   and an inverse problem.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">It treats two genuinely classic examples: Solov&#8217;ev equilibria as a semi-analytic family,
+   and  EFIT-style  reconstruction  as  the  moment  when  equilibrium  solving  became
+   routine experimental analysis.</dd></dl>
+     </blockquote></div></div>
+<!--l. 14--><p class="noindent" >Magnetic equilibrium reconstruction lies at the heart of experimental magnetic-fusion research. Nearly
+every quantitative comparison between theory and experiment&#8212;stability, transport, confinement, current
+drive, energetic particles, and wave physics&#8212;requires a map of the flux surfaces and the current
+density that generated them. The previous equilibrium lectures established the force-balance
+logic and the Grad&#8211;Shafranov equation. The present lecture asks a different question: once an
+axisymmetric equilibrium exists, how do we describe it compactly, and how do we infer it from
+diagnostics?
+<a 
+ id="x1-109004r103"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">14.1   </span> <a 
+ id="x1-1100001"></a>Topology and geometry of axisymmetric equilibria</h3>
+<!--l. 21--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1110001"></a>Closed surfaces, magnetic axis, and separatrix structure.</span>
+In an axisymmetric toroidal plasma the generic integrable topology consists of nested flux surfaces
+surrounding a magnetic axis. In a poloidal cross-section the magnetic axis appears as an \(O\)-point, that is, an
+elliptic fixed point of the field-line map. Divertor equilibria introduce \(X\)-points, which are hyperbolic fixed
+points where the poloidal field vanishes and the separatrix branches. This distinction matters physically:
+closed surfaces confine the core plasma, whereas open field lines in the scrape-off layer intersect material
+surfaces.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1110011"></a>
+                                                                                         
+                                                                                         
+<!--l. 26--><p class="noindent" ><img 
+src="figures/STStartup1.jpg" alt="PIC"  
+width="211" height="154"  /> <img 
+src="figures/STStartup2.jpg" alt="PIC"  
+width="211" height="158"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.1:  </span><span  
+class="content">Tokamak  start-up  involves  a  topological  change  from  an  <span 
+class="ecbx-1095">open-field  lines </span>like
+on the left to one with <span 
+class="ecbx-1095">closed flux surfaces </span>and a <span 
+class="ecbx-1095">magnetic axis </span>like on the right. <a 
+href="#XForest1992">Forest
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XForest1992">1992</a>,&#x00A0;<a 
+href="#Xforest1994investigation-abf">1994a</a>].</span></div><!--tex4ht:label?: x1-1110011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 33--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 33--><p class="noindent" >There are really three historical steps behind this lecture. First came the recognition,
+     due to Grad and Shafranov, that isotropic axisymmetric equilibrium reduces to a single
+     elliptic  equation  for  \(\psi (R,Z)\).  Second  came  analytic  families,  especially  Solov&#8217;ev  equilibria,
+     that  made  shaping  and  free-boundary  thinking  concrete.  Third  came  the  marriage
+     of free-boundary equilibrium solvers with internal magnetic-pitch measurements from
+     motional  Stark  effect  (MSE)  polarimetry.  Levinton&#8217;s  PBX-M  paper  showed  that
+     the  internal  pitch  angle  could  be  measured  locally,  while  the  DIII-D  work  of  Rice
+     and  collaborators  made  the  EFIT+MSE  combination  a  practical  route  to  routine
+     \(q(\psi )\)  reconstruction  <a 
+href="#Xlao1985reconstruction">Lao  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlao1985reconstruction">1985a</a>],&#x00A0;<a 
+href="#Xlevinton1989_mse_pbxm">Levinton  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlevinton1989_mse_pbxm">1989</a>],&#x00A0;<a 
+href="#Xrice1997_mse_diiid">Rice</a>&#x00A0;[<a 
+href="#Xrice1997_mse_diiid">1997</a>],&#x00A0;<a 
+href="#Xcerfon2010freeboundary">Cerfon  and
+     Freidberg</a>&#x00A0;[<a 
+href="#Xcerfon2010freeboundary">2010</a>].</p></blockquote></div></div>
+<!--l. 38--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120001"></a>Field-line topology and rational surfaces.</span>
+Away from separatrices, each flux surface may be labeled by the safety factor \(q(\psi )\), the ratio of
+toroidal to poloidal winding. When \(q\) is irrational, a field line never closes and densely fills the
+surface. When \(q=m/n\) is rational, the field line closes after finitely many turns; those rational surfaces
+are where magnetic islands arise most naturally once axisymmetry is weakly broken. In that
+sense the equilibrium geometry already contains the seeds of later tearing and resonant-MHD
+physics.
+</p>
+<!--l. 41--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1130001"></a>Choose a flux-surface label.</span>
+Several equivalent radial labels are common: <div class="math-display">\[\psi , \qquad \Phi (\psi )\equiv \mbox {toroidal flux}, \qquad V(\psi )\equiv \mbox {enclosed volume}, \qquad \rho \equiv \sqrt {\frac {\Phi }{\pi B_{T,0}}}.\]</div>
+No single choice is sacred. The important point is that in an axisymmetric equilibrium all thermodynamic
+flux functions are most naturally regarded as functions of one surface label.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1130012"></a>
+                                                                                         
+                                                                                         
+<!--l. 69--><p class="noindent" ><img 
+src="figures/shaped_boundary_default.png" alt="PIC"  
+width="220" height="258"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.2: </span><span  
+class="content">Characteristic geometric shape parameters used in modern tokamak equilibria.</span></div><!--tex4ht:label?: x1-1130012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 75--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1140001"></a>Plasma shape and the last closed flux surface.</span>
+In a fixed-boundary calculation the last closed flux surface is given in advance. In a free-boundary
+calculation it emerges from force balance plus the external coil set. A widely used parameterization of a
+shaped plasma boundary is <a id="eq-eq-eqrecon-boundary_shape"></a><div class="math-display">\[\begin{aligned}R(\tau ) &amp;=R_0 + a \cos \!\left (\tau +\delta \sin \tau \right ), \\ Z(\tau ) &amp;= \kappa a \sin \tau , \qquad 0\le \tau \le 2\pi ,\end{aligned} \tag{14.3}\]</div>
+</p><!--l. 87--><p class="noindent" >where \(a\) is the minor radius, \(\kappa \) is the elongation, and \(\delta \) is the triangularity. These shape parameters enter
+almost every equilibrium data set produced for tokamak analysis.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1140013"></a>
+                                                                                         
+                                                                                         
+<!--l. 92--><p class="noindent" ><img 
+src="figures/cerfon_solovev_triptych.png" alt="PIC"  
+width="413" height="216"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.3: </span><span  
+class="content">(a) an inboard wall limited plasma, (b) a positive triangularity double null plasma
+and (c) a negative triangularity single null plasma.</span></div><!--tex4ht:label?: x1-1140013 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 98--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1150001"></a>Derive the safety factor.</span>
+Starting from the axisymmetric field representation <a id="eq-eq-eqrecon-Bsplit"></a><div class="math-display">\[\B = \grad \psi \times \grad \phi + F(\psi )\grad \phi = \B _p+\B _\phi , \tag{14.4}\]</div>
+the safety factor is <a id="eq-eq-eqrecon-qdef"></a><div class="math-display">\[q(\psi ) = \frac {1}{2\pi } \oint \frac {B_\phi }{R B_p}\,d\ell , \tag{14.5}\]</div>
+where the line integral is taken around the poloidal cross-section of one flux surface.
+</p>
+<!--l. 121--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1160001"></a>Derive \(V'(\psi )\) and a useful alternative form of \(q\).</span>
+Consider the thin shell between \(\psi \) and \(\psi +\delta \psi \). Let \(\Delta (\ell )\) be the distance between the two surfaces measured normal to
+the contour in the poloidal plane. Since \(R B_p \Delta = \delta \psi \), <div class="math-display">\[\delta V = \oint 2\pi R\,\Delta \,d\ell = 2\pi \delta \psi \oint \frac {d\ell }{B_p},\]</div>
+so <a id="eq-eq-eqrecon-Vprime"></a><div class="math-display">\[\boxed { \pp {V}{\psi } = 2\pi \oint \frac {d\ell }{B_p}. } \tag{14.7}\]</div>
+Likewise, the toroidal flux between the two surfaces is <div class="math-display">\[\delta \Phi = \oint B_\phi \Delta \,d\ell = \delta \psi \oint \frac {B_\phi }{R B_p}\,d\ell .\]</div>
+Therefore <a id="eq-eq-eqrecon-dPhidpsi"></a><div class="math-display">\[\pp {\Phi }{\psi } = \oint \frac {B_\phi }{R B_p}\,d\ell = 2\pi q(\psi ). \tag{14.9}\]</div>
+Use \(B_\phi =F/R\) and Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-Vprime">14.7</a>): <div class="math-display">\[\begin{aligned}2\pi q(\psi ) &amp;= F(\psi )\oint \frac {1}{R^2 B_p}\,d\ell \\ &amp;= F(\psi )\, \frac {1}{2\pi }\pp {V}{\psi } \, \frac {\oint R^{-2} d\ell /B_p}{\oint d\ell /B_p}.\end{aligned}\]</div>
+</p><!--l. 168--><p class="noindent" >Define the flux-surface average <a id="eq-eq-eqrecon-fsadef"></a><div class="math-display">\[\langle f\rangle = \frac {\oint f\,d\ell /B_p}{\oint d\ell /B_p}. \tag{14.12}\]</div>
+</p><hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1160014"></a>
+                                                                                         
+                                                                                         
+<!--l. 177--><p class="noindent" > <img 
+src="figures/flux_surface_geometry-.png" alt="PIC"  
+width="289" height="289"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.4: </span><span  
+class="content">The relation between \(q\), toroidal flux, and shell geometry.</span></div><!--tex4ht:label?: x1-1160014 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 182--><p class="noindent" >Then <a id="eq-eq-eqrecon-qalt"></a><div class="math-display">\[\boxed { q(\psi ) = \frac {F(\psi )}{4\pi ^2}\pp {V}{\psi }\left \langle \frac {1}{R^2}\right \rangle . } \tag{14.13}\]</div>
+This form is especially convenient when equilibrium solvers already provide \(V'(\psi )\) and surface averages.
+</p>
+<!--l. 193--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1170001"></a>Large-aspect-ratio estimate.</span>
+For a circular large-aspect-ratio tokamak, \(R\simeq R_0\) and \(d\ell \simeq r\,d\theta \), so Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-qdef">14.5</a>) reduces to <div class="math-display">\[q \sim \frac {r B_\phi }{R_0 B_p},\]</div>
+which is the familiar cylindrical estimate used in the previous lecture.
+</p>
+<!--l. 202--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1180001"></a>Useful figures of merit.</span>
+Once \(V'(\psi )\) is known, the volume-averaged pressure is <div class="math-display">\[\langle p\rangle _V = \frac {1}{V_p} \int p(\psi )\,\pp {V}{\psi }\,d\psi , \qquad V_p = \int \pp {V}{\psi }\,d\psi .\]</div>
+This leads to <div class="math-display">\[\beta _t = \frac {2\muo \langle p\rangle _V}{B_0^2}, \qquad \beta _p = \frac {4\pi ^2 a^2(1+\kappa ^2)\langle p\rangle _V}{\muo I_p^2}.\]</div>
+For shaped plasmas it is also useful to define the cylindrical-edge estimate <a id="eq-eq-eqrecon-qstar"></a><div class="math-display">\[q_{\rm cyl} = \frac {2\pi a^2 B_0}{\muo R_0 I_p}, \qquad q_* \equiv q_{\rm cyl}\frac {1+\kappa ^2}{2}. \tag{14.17}\]</div>
+These are not exact invariants, but they are widely used engineering summaries of an equilibrium. The
+previous lecture showed that the particular combination of \(\beta _p\), \(\ell _i\), and aspect ratio enters toroidal force balance
+through Eq.&#x00A0;(<a href="lecture13.html#eq-eq-Bv_required">13.75</a>); full reconstruction generalizes that asymptotic lesson to shaped, finite-aspect-ratio
+equilibria.
+<a 
+ id="x1-118001r111"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">14.2   </span> <a 
+ id="x1-1190002"></a>Current structure and flux-surface-averaged Ohm&#8217;s law</h3>
+<!--l. 239--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1200002"></a>Decompose the current in axisymmetry.</span>
+Apply Ampre&#8217;s law, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>), to Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-Bsplit">14.4</a>). One finds <a id="eq-eq-eqrecon-Jsplit"></a><div class="math-display">\[\muo \J = -\Delta ^\star \psi \,\grad \phi + F'(\psi )\,\grad \psi \times \grad \phi , \tag{14.18}\]</div>
+where \(F'(\psi )=\pp {F}{\psi }\). The toroidal part is set by \(-\Delta ^\star \psi \), while the poloidal part is set by \(F'(\psi )\).
+</p>
+<!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1210002"></a>Project the current along the magnetic field.</span>
+Dot Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-Jsplit">14.18</a>) with Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-Bsplit">14.4</a>): <div class="math-display">\[\begin{aligned}\muo \J \cdot \B &amp;= -\Delta ^\star \psi \,F\,(\grad \phi )^2 + F'(\psi )\,B_p^2 \\ &amp;= -\Delta ^\star \psi \,\frac {F}{R^2} + F'(\psi )\,B_p^2.\end{aligned}\]</div>
+</p><!--l. 265--><p class="noindent" >Now use the Grad&#8211;Shafranov equation (<a href="lecture12.html#eq-eq-GS_master">12.28</a>), <div class="math-display">\[\Delta ^\star \psi = -\muo R^2 p'(\psi )-F(\psi )F'(\psi ),\]</div>
+to eliminate \(\Delta ^\star \psi \): <a id="eq-eq-eqrecon-JdotB"></a><div class="math-display">\[\begin{aligned}\muo \J \cdot \B &amp;= \left [ \muo R^2 p'(\psi )+F F' \right ]\frac {F}{R^2} + F' B_p^2 \nonumber \\ &amp;= \muo p'(\psi )F(\psi ) + F'(\psi )\left (B_\phi ^2+B_p^2\right ) \nonumber \\ &amp;= \boxed { \muo \J \cdot \B = \muo p'(\psi )F(\psi ) + F'(\psi )B^2. }\end{aligned} \tag{14.22}\]</div>
+</p>
+<!--l. 297--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1220002"></a>Take the flux-surface average.</span>
+Because \(p'(\psi )\) and \(F'(\psi )\) are flux functions, <div class="math-display">\[\muo \left \langle \J \cdot \B \right \rangle = \muo p'F + F'\left \langle B^2\right \rangle .\]</div>
+Hence <a id="eq-eq-eqrecon-Fprimeavg"></a><div class="math-display">\[F' = \frac {\muo \left \langle \J \cdot \B \right \rangle - \muo p'F}{\left \langle B^2\right \rangle }. \tag{14.24}\]</div>
+Insert Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-Fprimeavg">14.24</a>) back into Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-JdotB">14.22</a>): <a id="eq-eq-eqrecon-PS"></a><div class="math-display">\[\frac {\muo J_\parallel }{B} = \frac {\muo \left \langle \J \cdot \B \right \rangle }{\left \langle B^2\right \rangle } + \muo p'F \left ( \frac {1}{B^2} - \frac {1}{\left \langle B^2\right \rangle } \right ). \tag{14.25}\]</div>
+The second term is the Pfirsch&#8211;Schlter variation of the parallel current within a flux surface. Even though
+the flux-surface average is a flux function, \(J_\parallel \) itself is generally not uniform around the poloidal
+contour.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 329--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1230002"></a>Average Ohm&#8217;s law over a flux surface.</span>
+Write the electric field as <a id="eq-eq-eqrecon-Edecomp"></a><div class="math-display">\[\E = \pp {\psi }{t}\grad \phi - \grad \Phi _e, \tag{14.26}\]</div>
+where \(\Phi _e\) is an electrostatic potential. Dot with \(\B \): <div class="math-display">\[\begin{aligned}\E \cdot \B &amp;= F\pp {\psi }{t}(\grad \phi )^2 - \B \cdot \grad \Phi _e \\ &amp;= F\pp {\psi }{t}\frac {1}{R^2} - \B \cdot \grad \Phi _e.\end{aligned}\]</div>
+</p><!--l. 352--><p class="noindent" >If \(\Phi _e\) is single-valued on a closed flux surface, the surface average of the field-line derivative vanishes, so
+<a id="eq-eq-eqrecon-Eparavg"></a><div class="math-display">\[\boxed { \left \langle \E \cdot \B \right \rangle = F\pp {\psi }{t} \left \langle \frac {1}{R^2}\right \rangle . } \tag{14.29}\]</div>
+A simple surface-averaged Ohm&#8217;s law then reads <a id="eq-eq-eqrecon-ohmavg"></a><div class="math-display">\[\left \langle \J \cdot \B \right \rangle = \sigma _\parallel \left \langle \E \cdot \B \right \rangle + \left \langle \J _{\rm NI}\cdot \B \right \rangle , \tag{14.30}\]</div>
+where \(\J _{\rm NI}\) represents non-inductive sources such as bootstrap current, neutral beams, RF current drive, or
+electron-cyclotron current drive.
+</p>
+<!--l. 374--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1240002"></a>Why internal measurements are essential for \(q(\psi )\).</span>
+External magnetic data determine the total plasma current and the boundary shape rather well, but they
+do not uniquely determine how that current is distributed on flux surfaces. Since the safety factor is a
+functional of the internal current distribution, \(q(\psi )\) remains weakly constrained unless one brings in internal
+measurements. MSE is powerful precisely because it measures the local magnetic pitch angle, and those
+internal pitch-angle constraints can then be folded into EFIT or related Grad&#8211;Shafranov solvers to
+determine the current profile in a way that external magnetics alone cannot <a 
+href="#Xlao1985reconstruction">Lao et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlao1985reconstruction">1985a</a>],&#x00A0;<a 
+href="#Xlevinton1989_mse_pbxm">Levinton
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlevinton1989_mse_pbxm">1989</a>],&#x00A0;<a 
+href="#Xrice1997_mse_diiid">Rice</a>&#x00A0;[<a 
+href="#Xrice1997_mse_diiid">1997</a>].
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1240015"></a>
+                                                                                         
+                                                                                         
+<!--l. 379--><p class="noindent" > <img 
+src="figures/noninductivePRL-.png" alt="PIC"  
+width="469" height="469"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.5: </span><span  
+class="content">Time sequences of equilibrium reconstructions, together with internal measurements of
+the magnetic field from motional Stark effect polarimetry on DIII-D, allowed direct inference of \(\langle \J \cdot \B \rangle \), the
+inductive electric field through \(\pp {\psi }{t}\), and the non-inductive current contributions <a 
+href="#XForest1994">Forest et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XForest1994">1994b</a>].</span></div><!--tex4ht:label?: x1-1240015 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 384--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1250002"></a>Experimental perspective.</span>
+This is one of the reasons equilibrium reconstruction became so important experimentally. EFIT and
+MSE are not competing ideas; they are complementary pieces of the same diagnostic chain.
+EFIT enforces the global free-boundary force balance and coil geometry, while MSE supplies
+the internal magnetic-pitch information required to pin down \(q(\psi )\). That combined strategy was
+first established on PBX-M and matured into routine profile analysis on DIII-D <a 
+href="#Xlevinton1989_mse_pbxm">Levinton
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlevinton1989_mse_pbxm">1989</a>],&#x00A0;<a 
+href="#Xrice1997_mse_diiid">Rice</a>&#x00A0;[<a 
+href="#Xrice1997_mse_diiid">1997</a>]. In the DIII-D work shown in Fig.&#x00A0;14.5, time-dependent reconstructions
+together with internal MSE constraints made it possible to infer the inductive electric field directly and to
+separate non-inductive current sources. Those measurements were then used to verify and
+validate models of bootstrap current, neutral-beam current drive, fast-wave current drive, and
+electron-cyclotron current drive <a 
+href="#XForest1994">Forest et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XForest1994">1994b</a>,&#x00A0;<a 
+href="#XForest1997">1997</a>,&#x00A0;<a 
+href="#XForest1996">1996</a>],&#x00A0;<a 
+href="#XPetty1995">Petty et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XPetty1995">1995</a>],&#x00A0;<a 
+href="#Xoikawa2000heating-2d1">Oikawa
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xoikawa2000heating-2d1">2000</a>].
+</p><!--l. 396--><p class="noindent" ><span 
+class="ecbx-1095">What does it take to &#8220;measure&#8221; the </span>\(q\)<span 
+class="ecbx-1095">-profile?</span>
+     </p><blockquote class="quote">
+     <!--l. 398--><p class="noindent" >Strictly speaking, the \(q\)-profile is <span 
+class="ecti-1095">inferred</span>, not directly measured: <span 
+class="ecbx-1095">a reconstruction is</span>
+     <span 
+class="ecbx-1095">not a direct measurement. </span>Because \(q(\psi )\sim B_\phi /B_p\), reconstructing \(q(\psi )\) requires the poloidal field \(B_p(\psi )\), and
+     therefore the toroidal current density \(j_\phi (\psi )\), throughout the plasma.
+     </p><!--l. 403--><p class="noindent" >Writing \(f(\psi )\equiv R B_\phi \), the Grad&#8211;Shafranov source is \[ -\Delta ^\star \psi = R\,p'(\psi ) + \frac {1}{\mu _0 R}\,f f'(\psi ). \] For a circular plasma with medium-to-high
+     aspect  ratio,  \(R=R_0(1+\epsilon \cos \theta )\)  with  \(\epsilon \ll 1\),  so  \[ R\,p' + \frac {f f'}{\mu _0 R} = \left (R_0 p' + \frac {f f'}{\mu _0 R_0}\right ) +\epsilon \cos \theta \left (R_0 p' - \frac {f f'}{\mu _0 R_0}\right ) +O(\epsilon ^2). \]  Thus  external  magnetics  are  mainly  sensitive  to  the  first
+     combination,  while  the  part  that  separates  \(p'(\psi )\)  from  \(f f'(\psi )\)  appears  only  through  small
+     geometric corrections. This is the origin of the near-degeneracy of \(p'\) and \(f f'\) in circular,
+     higher-aspect-ratio plasmas.
+     </p><!--l. 422--><p class="noindent" >Historically, this is why external magnetic data determine the plasma boundary and
+     a  few  global  moments,  but  not  a  unique  \(j(r)\)  or  \(q(r)\).  In  the  circular  high-aspect-ratio
+     limit  one  essentially  recovers  \(I_p\)  and  the  combination  \(\beta _p+l_i/2\),  not  the  full  current  profile.
+     Elongation, triangularity, up&#8211;down asymmetry, and especially low aspect ratio increase
+     the sensitivity of the external field to the internal current distribution and partially
+     break this degeneracy.
+     </p><!--l. 430--><p class="noindent" >In practice, &#8220;measuring&#8221; \(q(\psi )\) means combining external magnetics with at least one internal
+     or topological constraint: internal pitch-angle data (MSE, Li-beam, polarimetry/Faraday
+     rotation), kinetic pressure profiles, or flux-surface-shape information. The last category
+     includes  diagnostics  whose  contours  approximately  label  flux  surfaces,  such  as
+     TS/ECE isotherms or tangential soft-X-ray imaging when the emissivity is sufficiently
+     flux-function-like.
+     </p><blockquote class="quote">
+     <!--l. 439--><p class="noindent" >External   magnetics   determine   boundary   shape   and   global   moments;
+     internal/topological data make \(q(\psi )\) measurable.</p></blockquote>
+     <!--l. 441--><p class="noindent" >Already in the classical equilibrium literature it was clear that, for circular medium- to
+     high-aspect-ratio tokamaks, external magnetic data do not uniquely determine \(j_\phi (r)\) because \(p'(\psi )\) and \(ff'(\psi )\)
+                                                                                         
+                                                                                         
+     are nearly degenerate; noncircular shaping and lower aspect ratio help break this
+     degeneracy, but genuinely reconstructing \(q(\psi )\) requires additional internal or topological
+     information, such as MSE or flux-surface-shape constraints from soft-x-ray imaging
+     <a 
+href="#XChristiansenTaylor1982">Christiansen and Taylor</a>&#x00A0;[<a 
+href="#XChristiansenTaylor1982">1982</a>],&#x00A0;<a 
+href="#XBraams1991">Braams</a>&#x00A0;[<a 
+href="#XBraams1991">1991</a>],&#x00A0;<a 
+href="#XLaoSeparation1985">Lao et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XLaoSeparation1985">1985b</a>,&#x00A0;<a 
+href="#XLaoCurrentProfiles1990">1990</a>],&#x00A0;<a 
+href="#XBlumBoulbeFaugeras2012">Blum
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBlumBoulbeFaugeras2012">2012</a>],&#x00A0;<a 
+href="#XZakharovVariances2008">Zakharov et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XZakharovVariances2008">2008</a>],&#x00A0;<a 
+href="#XHirshmanMSE1994">Hirshman et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHirshmanMSE1994">1994</a>],&#x00A0;<a 
+href="#XTritzFonckReinkeWinz2003">Tritz et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XTritzFonckReinkeWinz2003">2003</a>],&#x00A0;<a 
+href="#XQianSXR2009">Qian
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XQianSXR2009">2009</a>].</p></blockquote>
+<a 
+ id="x1-125001r124"></a>
+<h3 class="sectionHead"><span class="titlemark">14.3   </span> <a 
+ id="x1-1260003"></a>Why reconstruction is an inverse problem</h3>
+<!--l. 448--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1270003"></a>What is known and what is unknown?</span>
+Once the plasma boundary is specified&#8212;either directly, or implicitly through external coil currents and
+magnetic measurements&#8212;the Grad&#8211;Shafranov problem reduces to determining the source functions on the
+right-hand side of Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>), namely <div class="math-display">\[p'(\psi ) \qquad \mbox {and} \qquad F(\psi )F'(\psi ).\]</div>
+These functions determine the pressure profile and the toroidal-current distribution. In experiment,
+however, they are not measured directly. What is measured are magnetic probe signals, flux loops,
+Rogowski coils, coil currents, and, when available, internal constraints such as MSE, interferometry,
+polarimetry, Thomson scattering, or soft x-ray emissivity.
+</p>
+<!--l. 459--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1280003"></a>Why the problem is ill posed.</span>
+If only external magnetic measurements are available, then recovering completely arbitrary functions \(p'(\psi )\) and \(F F'(\psi )\)
+is fundamentally underdetermined. The unknowns are continuous functions; the data are finite in number.
+Worse, different internal current profiles can produce very similar external fields, especially for circular
+plasmas. This is why equilibrium reconstruction is an inverse problem rather than a direct inversion
+formula.
+</p>
+<!--l. 462--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1290003"></a>Parameterize the profile functions.</span>
+A common strategy is to represent the unknown functions in a finite basis: <a id="eq-eq-eqrecon-basis"></a><div class="math-display">\[p'(\hat \psi ) = \sum _{n=0}^{N_a} a_n P_n(\hat \psi ), \qquad F F'(\hat \psi ) = \sum _{n=0}^{N_b} b_n Q_n(\hat \psi ), \tag{14.32}\]</div>
+where the normalized flux is <a id="eq-eq-eqrecon-psinorm"></a><div class="math-display">\[\hat \psi = \frac {\psi -\psi _{\rm lim}}{\psi _0-\psi _{\rm lim}}. \tag{14.33}\]</div>
+Here \(\psi _0\) denotes the flux at the magnetic axis and \(\psi _{\rm lim}\) the value at the boundary or last closed flux surface.
+Low-order polynomials are common, but splines, piecewise linear profiles, or other regularized basis sets
+are also used.
+</p>
+<!--l. 483--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1300003"></a>Turn the inverse problem into optimization.</span>
+For a given set of coefficients \(\{a_n,b_n\}\), one solves the Grad&#8211;Shafranov equation and computes the predicted
+diagnostic signals. This is the forward problem. One then adjusts the coefficients to minimize a
+goodness-of-fit function, typically of \(\chi ^2\) form, <div class="math-display">\[\chi ^2 = \sum _m \frac {\left (d_m^{\rm meas}-d_m^{\rm model}\right )^2}{\sigma _m^2},\]</div>
+possibly augmented by smoothness constraints or Bayesian priors. Reconstruction therefore lives at the
+intersection of equilibrium theory, numerical PDEs, and inverse methods.
+</p><!--l. 493--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 493--><p class="noindent" ><span 
+class="ecbx-1095">A  classic  problem:  EFIT  plus  internal  constraints.  </span>The  work  of  Lao  and
+     collaborators turned Grad&#8211;Shafranov reconstruction into a practical experimental tool
+     <a 
+href="#Xlao1985reconstruction">Lao  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlao1985reconstruction">1985a</a>].  But  the  deeper  lesson  of  the  next  decade  was  that  the  most
+     important equilibrium quantities are not all equally constrained by boundary magnetics.
+     In  particular,  the  \(q\)  profile  becomes  a  true  experimental  observable  only  when  the
+     free-boundary solver is paired with internal measurements such as MSE. That is why
+     EFIT and MSE together, rather than either one alone, deserve to be treated as a classic
+     tokamak equilibrium problem <a 
+href="#Xlevinton1989_mse_pbxm">Levinton et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xlevinton1989_mse_pbxm">1989</a>],&#x00A0;<a 
+href="#Xrice1997_mse_diiid">Rice</a>&#x00A0;[<a 
+href="#Xrice1997_mse_diiid">1997</a>].</p></blockquote></div></div>
+<a 
+ id="x1-130001r132"></a>
+<h3 class="sectionHead"><span class="titlemark">14.4   </span> <a 
+ id="x1-1310004"></a>Numerical Techniques</h3>
+<!--l. 501--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1320004"></a>Fixed-boundary finite-difference discretization.</span>
+For numerical work, Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>) is often solved on a rectangular \((R,Z)\) grid. Write <div class="math-display">\[R_i = R_{\min }+i\Delta R, \qquad Z_j = Z_{\min }+j\Delta Z, \qquad \psi _{i,j}\equiv \psi (R_i,Z_j),\]</div>
+and define the staggered radii <div class="math-display">\[R_{i\pm 1/2}=R_i\pm \frac {\Delta R}{2}.\]</div>
+</p>
+<div class="center" 
+>
+<!--l. 515--><p class="noindent" >
+<!--l. 530--><p class="noindent" ><object data="main_html_mathjax_preview_equilibrium-1.svg" width="257.66806 " height="201.46288 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p></div>
+<!--l. 533--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1330004"></a>Assemble the five-point stencil.</span>
+Using the conservative form <div class="math-display">\[\Delta ^\star \psi = R\pp {}{R}\!\left (\frac {1}{R}\pp {\psi }{R}\right ) + \pp {^2\psi }{Z^2},\]</div>
+a standard second-order discretization yields <div class="math-display">\[\begin{aligned}A_i^{R+} &amp;= \frac {R_i}{\Delta R^2 R_{i+1/2}}, &amp; A_i^{R-} &amp;= \frac {R_i}{\Delta R^2 R_{i-1/2}}, \\ A_i^{R0} &amp;= -\frac {R_i}{\Delta R^2} \left ( \frac {1}{R_{i+1/2}}+\frac {1}{R_{i-1/2}} \right ), &amp; A^Z &amp;= \frac {1}{\Delta Z^2}.\end{aligned}\]</div>
+</p><!--l. 555--><p class="noindent" >The discrete equation at node \((i,j)\) is <a id="eq-eq-eqrecon-fdrow"></a><div class="math-display">\[\left (A_i^{R0}-\frac {2}{\Delta Z^2}\right )\psi _{i,j} + A_i^{R+}\psi _{i+1,j} + A_i^{R-}\psi _{i-1,j} + \frac {1}{\Delta Z^2}\left (\psi _{i,j+1}+\psi _{i,j-1}\right ) = b_{i,j}(\psi _{i,j}), \tag{14.40}\]</div>
+with nonlinear source <div class="math-display">\[b_{i,j}(\psi _{i,j}) = -\muo R_i^2\left .\pp {p}{\psi }\right |_{\psi _{i,j}} - \left .F\pp {F}{\psi }\right |_{\psi _{i,j}}.\]</div>
+Thus one obtains a sparse nonlinear algebraic system.
+</p>
+<!--l. 578--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1340004"></a>Picard iteration.</span>
+A common strategy is to lag the nonlinear source: <a id="eq-eq-eqrecon-picard"></a><div class="math-display">\[\vect {A}\,\vect {\psi }^{(k+1)} = \vect {b}\!\left (\vect {\psi }^{(k)}\right ). \tag{14.42}\]</div>
+                                                                                         
+                                                                                         
+Written componentwise, <div class="math-display">\[\begin{aligned}\left (A_i^{R0}-\frac {2}{\Delta Z^2}\right )\psi _{i,j}^{(k+1)} &amp;+ A_i^{R+}\psi _{i+1,j}^{(k+1)} + A_i^{R-}\psi _{i-1,j}^{(k+1)} \nonumber \\ &amp;+ \frac {1}{\Delta Z^2} \left ( \psi _{i,j+1}^{(k+1)}+\psi _{i,j-1}^{(k+1)} \right ) = -\muo R_i^2\left .\pp {p}{\psi }\right |_{\psi _{i,j}^{(k)}} - \left .F\pp {F}{\psi }\right |_{\psi _{i,j}^{(k)}}.\end{aligned}\]</div>
+</p><!--l. 604--><p class="noindent" >This is usually robust when the profiles are not too stiff.
+</p>
+<!--l. 606--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1350004"></a>Green&#8217;s-function free-boundary methods.</span>
+An alternative is to treat the plasma and external coils as toroidal current filaments. If the
+toroidal current density is represented by discrete current elements, then the poloidal flux is
+<a id="eq-eq-psi_many_filaments"></a><div class="math-display">\[\psi (R,Z) = \muo \sum _n I_n\,G(R,Z;R_n,Z_n). \tag{14.44}\]</div>
+For a filament at \((R',Z')\), the standard Green&#8217;s function is <a id="eq-eq-G_psi_filament"></a><div class="math-display">\[G(R,Z;R',Z') = \frac {1}{\pi }\sqrt {R R'}\; \frac {(2-k^2)K(k)-2E(k)}{k}, \tag{14.45}\]</div>
+with <a id="eq-eq-k_def"></a><div class="math-display">\[k^2 = \frac {4RR'}{(R+R')^2+(Z-Z')^2}. \tag{14.46}\]</div>
+This representation is especially attractive for free-boundary problems, because the same Green&#8217;s-function
+table can be used for both plasma currents and coil currents.
+</p>
+<!--l. 631--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1360004"></a>Vacuum and external coils are naturally handled with Green&#8217;s functions.</span>
+In a vacuum region the source is purely toroidal current, so one solves <a id="eq-eq-GS_vacuum_source"></a><div class="math-display">\[\Delta ^\star \psi = -\muo R J_\phi (R,Z). \tag{14.47}\]</div>
+Formally one may write the solution as <a id="eq-eq-GS_green_integral"></a><div class="math-display">\[\psi (R,Z) = \muo \int G(R,Z;R',Z')\,R'J_\phi (R',Z')\,dR'\,dZ', \tag{14.48}\]</div>
+where \(G\) is the Green&#8217;s function of \(\Delta ^\star \). For a current filament, the result is expressible in terms of complete
+elliptic integrals; deriving that kernel is a good exercise because it connects the abstract PDE back to the
+magnetic field of real coils.
+</p>
+<!--l. 657--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1370004"></a>Nonlinear profiles are usually solved iteratively.</span>
+Given an iterate \(\psi ^{(n)}\), define the source <a id="eq-eq-GS_picard_source"></a><div class="math-display">\[S^{(n)}(R,Z) = -\muo R^2 p'\!\left (\psi ^{(n)}\right ) - F\!\left (\psi ^{(n)}\right )F'\!\left (\psi ^{(n)}\right ). \tag{14.49}\]</div>
+Then solve the linear problem <a id="eq-eq-GS_picard_step"></a><div class="math-display">\[\Delta ^\star \psi ^{(n+1)} = S^{(n)} \tag{14.50}\]</div>
+with the chosen boundary conditions, and under-relax if necessary. This Picard viewpoint is conceptually
+simple and already captures the structure of many practical equilibrium solvers.
+</p>
+<!--l. 674--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1380004"></a>Experimental perspective.</span>
+For a fusion experimentalist the Grad&#8211;Shafranov equation is not an abstract exercise. It is the daily
+language of equilibrium reconstruction. Magnetic probes, flux loops, Rogowski coils, diamagnetic
+measurements, and sometimes motional-Stark-effect constraints are combined with a Grad&#8211;Shafranov
+solver to infer the plasma boundary, current profile, safety-factor profile, X-point position, and Shafranov
+shift. In that sense this lecture is one of the clearest examples of a classic analytical result becoming a
+routine diagnostic tool.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1380016"></a>
+                                                                                         
+                                                                                         
+<!--l. 680--><p class="noindent" ><img 
+src="figures/Efit.jpg" alt="PIC"  
+width="375" height="230"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;14.6: </span><span  
+class="content">Logical flow of a free-boundary equilibrium solver for an axisymmetric tokamak.</span></div><!--tex4ht:label?: x1-1380016 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 685--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1390004"></a>An EFIT-style reconstruction loop.</span>
+A representative workflow is:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">guess \(\psi ^{(0)}\) and choose profile parameterizations for \(p'(\hat \psi )\) and \(F F'(\hat \psi )\);
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">compute the plasma current density implied by the current iterate;
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">solve the forward Grad&#8211;Shafranov problem, either by finite difference or by Green&#8217;s functions,
+   including the known external coil currents;
+   </dd><dt class="enumerate-enumitem">
+ 4. </dt><dd 
+class="enumerate-enumitem">compare the predicted magnetic and internal diagnostic signals against the measured ones;
+   </dd><dt class="enumerate-enumitem">
+ 5. </dt><dd 
+class="enumerate-enumitem">update  the  profile  coefficients  and  repeat  until  the  residuals  and  regularization  criteria  are
+   satisfactory.</dd></dl>
+<!--l. 694--><p class="noindent" >This is the practical form in which equilibrium reconstruction entered experimental fusion.
+</p><!--l. 697--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The equilibrium is more than a contour plot of \(\psi \): it furnishes \(q(\psi )\), \(V'(\psi )\), flux-surface averages,
+   current profiles, and shaping parameters that feed directly into stability and transport
+   theory.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">EFIT-style reconstruction is a classic experimental problem because it turned the
+   Grad&#8211;Shafranov equation into an everyday analysis tool, and MSE made the internal
+   \(q\) profile part of the experimentally constrained state rather than a weakly constrained
+   model output.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1400004"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <tspan font-family="ecti" font-size="1095">The Mathematical Theory of Non-Uniform Gases:</tspan>
+  <tspan font-family="ecti" font-size="1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</tspan>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Hrm.  Transport phenomena in a completely ionized gas.
+  <tspan font-family="ecti" font-size="1095">Physical Review</tspan>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <tspan font-family="ecti" font-size="1095">Soviet</tspan>
+  <tspan font-family="ecti" font-size="1095">Physics JETP</tspan>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <tspan font-family="ecti" font-size="1095">Reports on Progress in Physics</tspan>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <tspan font-family="ecti" font-size="1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</tspan>
+  <tspan font-family="ecti" font-size="1095">Research</tspan>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <tspan font-family="ecti" font-size="1095">Proceedings  of  the  Royal</tspan>
+  <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <tspan font-family="ecti" font-size="1095">Plasma Physics for Astrophysics</tspan>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-1410004"></a>Problems</h3>
+<a 
+ id="x1-141001r1"></a>
+<!--l. 708--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 14.1. Solov&#8217;ev equilibrium and shaping parameters</tspan>
+</p><!--l. 709--><p class="noindent" >Starting from Eq.&#x00A0;(<a href="lecture12.html#eq-eq-eqrecon-solovev_basis">12.49</a>), show how the truncated form may be obtained from a suitable choice of
+coefficients \(c_j\). Identify which combinations of coefficients control the magnetic-axis position, the effective
+minor radius, and the elongation.
+<a 
+ id="x1-141002r2"></a>
+</p><!--l. 712--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 14.2. Green&#8217;s function for a toroidal filament</tspan>
+</p><!--l. 713--><p class="noindent" >Derive the Green&#8217;s function (<a href="lecture14.html#eq-eq-G_psi_filament">14.45</a>) for the Grad&#8211;Shafranov operator and show how \(B_R\) and \(B_Z\) may
+be recovered from \(\psi (R,Z)\). Then implement a numerical routine that computes contours of \(\psi \) and \(B_Z(R,Z=0)\)
+for
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">a single current loop,
+   </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">a quadrupole pair of loops,
+   </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">an octupole arrangement of four loops.</dd></dl>
+<!--l. 719--><p class="noindent" >Use your plots to explain how external shaping coils build up multipole vacuum fields.
+<a 
+ id="x1-141006r3"></a>
+</p><!--l. 722--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 14.3. Reconstruction as an inverse problem</tspan>
+</p><!--l. 723--><p class="noindent" >Choose a simple fixed-boundary geometry and profile parameterization, generate synthetic
+magnetic-diagnostic data from a known equilibrium, and then reconstruct the equilibrium by fitting the
+coefficients in Eq.&#x00A0;(<a href="lecture14.html#eq-eq-eqrecon-basis">14.32</a>). Which quantities are recovered robustly, and which are sensitive to the chosen
+basis and regularization?
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+ 
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

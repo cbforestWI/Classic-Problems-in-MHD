@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 0 Impedance Matching: The Background You Already Have</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><span class="nav-prev nav-disabled">&#8592; Previous Lecture</span><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture1.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;0</span><br /><a 
+ id="x1-50000"></a>Impedance Matching: The Background You Already Have</h2>
+                                                                                         <div class="flushright" 
+>
+<!--l. 13--><p class="noindent" >
+ <span 
+class="ecti-1095">MHD looks new mostly because undergraduate physics is taught in compartments.</span></p></div>
+<!--l. 17--><p class="noindent" >Magnetohydrodynamics often looks more exotic than it is because vector calculus, electromagnetism,
+hydrostatics, ideal flow, viscous flow, and continuum mechanics are usually taught in separate
+compartments. This lecture is meant to reconnect those subjects before the full MHD system
+appears.
+</p><!--l. 19--><p class="noindent" >The point is not that MHD is easy. It is not. The point is that most of its first language is already familiar.
+If you know what a flux is, what a circulation is, what a divergence measures, what pressure does in a
+fluid, what Maxwell&#8217;s equations say, and why the Navier&#8211;Stokes equation is a momentum
+balance, then you already possess most of the mathematical reflexes needed to start reading
+MHD.
+</p><!--l. 21--><div class="callout callout-roadmap"><div class="callout-title">Roadmap</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 22--><p class="noindent" >This opening lecture is intentionally preparatory. Part&#x00A0;I turns this background into the
+     actual single-fluid equations and their closures. Part&#x00A0;III then develops force balance
+     and Grad&#8211;Shafranov structure, Part&#x00A0;IV turns those equilibria into wave and stability
+     problems, and Part&#x00A0;V carries that logic into the classic kink, interchange, internal-kink,
+     TAE, and ballooning calculations. Later still, Part&#x00A0;VI revisits many of the same ideas
+     once ideal constraints are relaxed.</p></blockquote></div></div>
+<!--l. 26--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 26--><p class="noindent" >This is not a remedial lecture. It is a reactivation lecture. We are not trying to reteach
+     everything from undergraduate electromagnetism and fluid dynamics. We are trying to
+     remind you that those subjects are assumed background, and that MHD is built from
+     them rather than placed on top of them as a completely separate edifice.
+     </p><!--l. 28--><p class="noindent" >At the same time, there is one honest warning: if Maxwell&#8217;s equations in both integral
+     and differential form still feel foreign, or if the idea of a control volume and a stress
+     tensor is entirely new, then this is the moment to pause and repair that background
+     before going deeper. The rest of the book will assume it.</p></blockquote></div></div>
+<a 
+ id="x1-5001r1"></a>
+<h3 class="sectionHead"><span class="titlemark">0.1   </span> <a 
+ id="x1-60001"></a>The shared geometry of fields and flows</h3>
+<!--l. 33--><p class="noindent" >The first piece of soft impedance matching is geometric. Long before one writes a plasma
+momentum equation, one has already learned the two integral theorems that organize the subject:
+<div class="math-display">\[\int _V \nabla \cdot \mathbf {F}\, dV = \oint _{\partial V} \mathbf {F}\cdot \mathbf {n}\, dA, \qquad \int _S (\nabla \times \mathbf {F})\cdot \mathbf {n}\, dA = \oint _{\partial S} \mathbf {F}\cdot d\boldsymbol {\ell }.\]</div>
+These are not decorative facts from a vector-calculus course. They are the machinery that turns local
+                                                                                         
+                                                                                         
+statements into global ones, and they are the reason that fluid mechanics and electromagnetism feel like
+close cousins.
+</p><!--l. 41--><p class="noindent" >In a fluid course, one learns to think in terms of a control volume: what enters, what leaves, and what
+accumulates. In electromagnetism, one learns essentially the same geometry in a different vocabulary: how
+much field threads a surface, how much circulation is measured around a loop, and how local sources
+appear as divergences or curls.
+</p><!--l. 43--><p class="noindent" >For example, mass conservation for a fixed control volume \(V\) reads <div class="math-display">\[\frac {d}{dt}\int _V \rho \, dV = -\oint _{\partial V} \rho \mathbf {u}\cdot \mathbf {n}\, dA,\]</div>
+which becomes, after the divergence theorem, <a id="eq-eq-continuity-reactivated"></a><div class="math-display">\[\partial _t \rho + \nabla \cdot (\rho \mathbf {u}) = 0. \tag{0.3}\]</div>
+This is already a prototype for how much of MHD works: a conservation law written first as balance over a
+volume and then as a local differential equation.
+</p><!--l. 54--><p class="noindent" ><span 
+class="ecbx-1095">You have seen this structure before</span>
+     </p><blockquote class="quote">
+     <!--l. 55--><p class="noindent" >At a very high level, <div class="math-display">\[\text {accumulation in a region} = -\text {outward flux through the boundary} + \text {sources inside the region}.\]</div>
+     That sentence organizes the continuity equation, Gauss&#8217;s law, the induction equation, charge
+     conservation, heat balance, and much of continuum mechanics.
+</p>
+     <div class="center" 
+>
+<!--l. 61--><p class="noindent" >
+</p>
+<div class="tabular"> <table id="TBL-1" class="tabular" 
+ 
+><colgroup id="TBL-1-1g"><col 
+id="TBL-1-1" /><col 
+id="TBL-1-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-1-1"  
+class="td11"> Fluid language                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-1-2"  
+class="td11"> Electromagnetic language           </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-2-1"  
+class="td11"> mass flux \(\rho \mathbf {u}\)                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-2-2"  
+class="td11"> magnetic flux \(\mathbf {B}\) through a surface  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-3-1"  
+class="td11"> circulation \(\oint \mathbf {u}\cdot d\boldsymbol {\ell }\)                      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-3-2"  
+class="td11"> emf \(\oint \mathbf {E}\cdot d\boldsymbol {\ell }\)                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-4-1"  
+class="td11"> control volume balance       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-4-2"  
+class="td11"> integral Maxwell law                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-5-1"  
+class="td11"> local conservation equation  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-5-2"  
+class="td11"> differential field equation            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-6-1"  
+class="td11">                         </td>
+</tr></table></div></div>
+     <!--l. 73--><p class="noindent" >The nouns change, but the geometry does not.</p></blockquote>
+<!--l. 76--><p class="noindent" >A second important idea is the <span 
+class="ecti-1095">material derivative </span><div class="math-display">\[\frac {D}{Dt} = \partial _t + \mathbf {u}\cdot \nabla ,\]</div>
+which asks for the rate of change seen by a moving parcel of fluid. That same habit of mind&#8212;following a
+moving object rather than staring at a fixed point in space&#8212;returns everywhere in MHD. Advection,
+frozen-in flux, transport of vorticity, and the kinematics of field-line motion all depend on this
+distinction.
+<a 
+ id="x1-6001r8"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">0.2   </span> <a 
+ id="x1-70002"></a>A one-page identity sheet</h3>
+<!--l. 84--><p class="noindent" >There are a handful of vector and tensor identities that get used so often in MHD that it is worth having
+them in one place. They are not profound by themselves, but they are the algebraic hinges on which many
+derivations turn.
+</p><!--l. 87--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 87--><p class="noindent" >The quickest way to get lost in a first reading of MHD is often not physics but algebra. If
+     an expression involving a divergence, curl, dyad, or convective derivative suddenly feels
+     unfamiliar, it is usually one of the identities below.</p></blockquote></div></div>
+<h4 class="likesubsectionHead"><a 
+ id="x1-80002"></a>Vector identities used constantly</h4>
+
+<!--l. 102--><p class="noindent" ><a id="eq-eq-lecture0-advective-identity"></a><div class="math-display">\[\begin{aligned}\nabla \cdot (\phi \mathbf {A}) &amp;= \phi \, \nabla \cdot \mathbf {A} + \mathbf {A}\cdot \nabla \phi ,\\ \nabla \times (\phi \mathbf {A}) &amp;= \nabla \phi \times \mathbf {A} + \phi \, \nabla \times \mathbf {A},\\ \nabla \cdot (\mathbf {A}\times \mathbf {B}) &amp;= \mathbf {B}\cdot (\nabla \times \mathbf {A}) - \mathbf {A}\cdot (\nabla \times \mathbf {B}),\\ \nabla \times (\mathbf {A}\times \mathbf {B}) &amp;= (\mathbf {B}\cdot \nabla )\mathbf {A} - (\mathbf {A}\cdot \nabla )\mathbf {B} + \mathbf {A}\,\nabla \cdot \mathbf {B} - \mathbf {B}\,\nabla \cdot \mathbf {A},\\ \nabla (\mathbf {A}\cdot \mathbf {B}) &amp;= (\mathbf {A}\cdot \nabla )\mathbf {B} + (\mathbf {B}\cdot \nabla )\mathbf {A} + \mathbf {A}\times (\nabla \times \mathbf {B}) + \mathbf {B}\times (\nabla \times \mathbf {A}),\\ (\mathbf {u}\cdot \nabla )\mathbf {u} &amp;= \nabla \!\left (\frac {u^2}{2}\right ) - \mathbf {u}\times (\nabla \times \mathbf {u}).\end{aligned} \tag{0.11}\]</div>
+</p><!--l. 104--><p class="noindent" >The last identity is especially useful because it rewrites the nonlinear advection term in terms of a gradient
+plus a vorticity piece. This is one reason vorticity appears so naturally in both fluid mechanics and
+MHD.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-90002"></a>Tensor and dyadic identities used repeatedly</h4>
+<!--l. 108--><p class="noindent" >Write the dyad \(\mathbf {A}\mathbf {B}\) componentwise as \((\mathbf {A}\mathbf {B})_{ij}=A_i B_j\). Then <a id="eq-eq-lecture0-stress-identity"></a><div class="math-display">\[\begin{aligned}\nabla \cdot (\mathbf {A}\mathbf {B}) &amp;= (\mathbf {B}\cdot \nabla )\mathbf {A} + \mathbf {A}\,\nabla \cdot \mathbf {B},\\ \nabla \cdot (\phi \mathbf {I}) &amp;= \nabla \phi ,\\ \nabla \cdot (\nabla \mathbf {u}) &amp;= \nabla ^2\mathbf {u},\\ \nabla \cdot \!\left [(\nabla \mathbf {u})^{T}\right ] &amp;= \nabla (\nabla \cdot \mathbf {u}),\\ \nabla \cdot \!\left [\nabla \mathbf {u}+(\nabla \mathbf {u})^{T}\right ] &amp;= \nabla ^2\mathbf {u} + \nabla (\nabla \cdot \mathbf {u}).\end{aligned} \tag{0.16}\]</div>
+</p><!--l. 119--><p class="noindent" >These identities are the reason the divergence of the Newtonian stress tensor turns into the familiar viscous
+operators in Navier&#8211;Stokes and MHD. In the incompressible limit, \(\nabla \cdot \mathbf {u}=0\), the last line collapses immediately to a
+Laplacian.
+</p><!--l. 121--><p class="noindent" ><span 
+class="ecbx-1095">Why this page matters later</span>
+     </p><blockquote class="quote">
+     <!--l. 122--><p class="noindent" >These formulas will be used, often without ceremony, in the induction equation, in
+     the conversion between conservative and advective forms of the momentum equation,
+     in  the  derivation  of  vorticity  equations,  in  stress-tensor  manipulations,  and  in  the
+     magnetic-force rewrite \(\mathbf {J}\times \mathbf {B}=\nabla \cdot \mathbf {T}_{\rm M}\) using the Maxwell stress tensor.</p></blockquote>
+<a 
+ id="x1-9001r9"></a>
+<h3 class="sectionHead"><span class="titlemark">0.3   </span> <a 
+ id="x1-100003"></a>Electromagnetism, reactivated</h3>
+<!--l. 127--><p class="noindent" >The Maxwell equations are the electromagnetic side of the bridge. In SI units they are <a id="eq-eq-maxwell1-reactivated"></a><div class="math-display">\[\begin{aligned}\nabla \cdot \mathbf {E} &amp;= \frac {\rho _e}{\varepsilon _0}, \\ \nabla \cdot \mathbf {B} &amp;= 0, \\ \nabla \times \mathbf {E} &amp;= -\partial _t \mathbf {B}, \\ \nabla \times \mathbf {B} &amp;= \mu _0 \mathbf {J} + \mu _0\varepsilon _0 \partial _t \mathbf {E}.\end{aligned} \tag{0.17}\]</div>
+</p><!--l. 138--><p class="noindent" >For first-course MHD, the most important equations are usually (<a href="lecture0.html#eq-eq-maxwell2-reactivated">0.18</a>) and (<a href="lecture0.html#eq-eq-maxwell3-reactivated">0.19</a>), together with a reduced
+form of Ampre&#8217;s law in which the displacement current is neglected: <a id="eq-eq-ampere-mhd-limit"></a><div class="math-display">\[\nabla \times \mathbf {B} \approx \mu _0 \mathbf {J}. \tag{0.21}\]</div>
+This is the standard non-relativistic, low-frequency limit in which the characteristic speeds are small
+compared with the speed of light and the electromagnetic evolution is slaved to the conducting
+medium.
+</p><!--l. 145--><p class="noindent" >The Lorentz force density, <div class="math-display">\[\mathbf {f}_{\mathrm L} = \rho _e \mathbf {E} + \mathbf {J}\times \mathbf {B},\]</div>
+is the term that eventually enters the momentum equation. In quasineutral single-fluid MHD, the \(\rho _e\mathbf {E}\) part is
+often negligible at leading order, leaving the celebrated \(\mathbf {J}\times \mathbf {B}\) force.
+</p><!--l. 151--><p class="noindent" >A simple resistive form of Ohm&#8217;s law then reads <a id="eq-eq-ohm-reactivated"></a><div class="math-display">\[\mathbf {J} = \sigma \left (\mathbf {E} + \mathbf {u}\times \mathbf {B}\right ), \tag{0.23}\]</div>
+or, equivalently, <div class="math-display">\[\mathbf {E} + \mathbf {u}\times \mathbf {B} = \eta \mathbf {J}, \qquad \eta = \frac {1}{\sigma }.\]</div>
+Combining (<a href="lecture0.html#eq-eq-maxwell3-reactivated">0.19</a>), (<a href="lecture0.html#eq-eq-ampere-mhd-limit">0.21</a>), and (<a href="lecture0.html#eq-eq-ohm-reactivated">0.23</a>) yields the induction equation, <a id="eq-eq-induction-reactivated"></a><div class="math-display">\[\partial _t \mathbf {B} = \nabla \times (\mathbf {u}\times \mathbf {B}) + \eta _m \nabla ^2 \mathbf {B}, \qquad \eta _m = \frac {1}{\mu _0 \sigma }, \tag{0.25}\]</div>
+when \(\eta _m\) is uniform and one uses \(\nabla \cdot \mathbf {B}=0\).
+                                                                                         
+                                                                                         
+</p><!--l. 169--><p class="noindent" ><span 
+class="ecbx-1095">Electromagnetic core ideas</span>
+     </p><blockquote class="quote">
+     <!--l. 170--><p class="noindent" >For  the  purposes  of  early  MHD,  you  do  not  need  every  corner  of  undergraduate
+     electrodynamics equally.
+     </p><!--l. 172--><p class="noindent" >You do need to be comfortable with the following ideas:
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">magnetic fields are divergence-free, so magnetic flux is constrained rather than
+     sourced locally;
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">time-varying magnetic fields generate electric fields through Faraday&#8217;s law;
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">currents generate magnetic fields through Ampre&#8217;s law;
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">the Lorentz force couples the field back to the material motion.</dd></dl>
+     <!--l. 179--><p class="noindent" >Everything in elementary MHD is a disciplined exploitation of those four facts.</p></blockquote>
+<!--l. 183--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 183--><p class="noindent" >Faraday taught physicists to think in terms of lines of force and field structure; Maxwell
+     converted that physical picture into a mathematical field theory whose mature statement
+     appeared in the <span 
+class="ecti-1095">Treatise </span>of 1873 <a 
+href="lecture0.html#XMaxwell1873">Maxwell</a>&#x00A0;[<a 
+href="lecture0.html#XMaxwell1873">1873</a>]. For our purposes, the important lesson
+     is not merely historical reverence. It is methodological. MHD inherits from Maxwell a
+     willingness to treat fields as dynamical objects, not just as bookkeeping devices attached
+     to particles.</p></blockquote></div></div>
+<a 
+ id="x1-10005r12"></a>
+<h3 class="sectionHead"><span class="titlemark">0.4   </span> <a 
+ id="x1-110004"></a>Fluid mechanics, reactivated</h3>
+<!--l. 188--><p class="noindent" >On the fluid side, the most economical statement is that momentum balance for a continuum can be
+written as <a id="eq-eq-cauchy-momentum-reactivated"></a><div class="math-display">\[\rho \frac {D\mathbf {u}}{Dt} = \nabla \cdot \boldsymbol {\sigma } + \rho \mathbf {g} + \mathbf {f}_{\mathrm {other}}, \tag{0.26}\]</div>
+where \(\boldsymbol {\sigma }\) is the stress tensor. The familiar Navier&#8211;Stokes equation is simply a special constitutive choice for
+\(\boldsymbol {\sigma }\).
+</p><!--l. 195--><p class="noindent" >For a Newtonian fluid, <div class="math-display">\[\boldsymbol {\sigma } = -p\mathbf {I} + \boldsymbol {\tau },\]</div>
+with viscous part <a id="eq-eq-newtonian-stress-reactivated"></a><div class="math-display">\[\boldsymbol {\tau } = 2\mu \mathbf {D} + \lambda (\nabla \cdot \mathbf {u})\mathbf {I}, \tag{0.28}\]</div>
+where \(\mu \) is the dynamic viscosity, \(\lambda \) is the second viscosity coefficient, and <a id="eq-eq-rate-of-strain-reactivated"></a><div class="math-display">\[\mathbf {D} = \frac {1}{2}\left (\nabla \mathbf {u} + (\nabla \mathbf {u})^{T}\right ) \tag{0.29}\]</div>
+is the symmetric rate-of-strain tensor.
+</p><!--l. 211--><p class="noindent" >If the flow is incompressible and \(\mu \) is constant, then \(\nabla \cdot \mathbf {u}=0\) and (<a href="lecture0.html#eq-eq-cauchy-momentum-reactivated">0.26</a>) becomes the familiar form <a id="eq-eq-navier-stokes-reactivated"></a><div class="math-display">\[\rho \left (\partial _t\mathbf {u}+\mathbf {u}\cdot \nabla \mathbf {u}\right ) = -\nabla p + \mu \nabla ^2\mathbf {u} + \rho \mathbf {g}. \tag{0.30}\]</div>
+Without the viscous term one recovers Euler&#8217;s equation, <a id="eq-eq-euler-reactivated"></a><div class="math-display">\[\rho \frac {D\mathbf {u}}{Dt} = -\nabla p + \rho \mathbf {g}. \tag{0.31}\]</div>
+</p>
+                                                                                         
+                                                                                         
+<h4 class="likesubsectionHead"><a 
+ id="x1-120004"></a>Hydrostatics and Archimedes</h4>
+<!--l. 225--><p class="noindent" >Hydrostatics is the equilibrium limit \(\mathbf {u}=0\). Then the momentum equation reduces to <a id="eq-eq-hydrostatic-reactivated"></a><div class="math-display">\[\nabla p = \rho \mathbf {g}. \tag{0.32}\]</div>
+This one line contains the usual &#8220;pressure increasing with depth&#8221; intuition, and it also contains
+Archimedes&#8217; principle.
+</p><!--l. 232--><p class="noindent" >To see that, let a body occupy a volume \(V\) with boundary \(\partial V\). The net force exerted on it by the surrounding
+fluid pressure is <div class="math-display">\[\mathbf {F}_b = -\oint _{\partial V} p\, \mathbf {n}\, dA.\]</div>
+Applying the divergence theorem componentwise gives <div class="math-display">\[\mathbf {F}_b = -\int _V \nabla p\, dV = -\int _V \rho \mathbf {g}\, dV.\]</div>
+If the ambient fluid density is uniform, this becomes <div class="math-display">\[\mathbf {F}_b = -\rho V \mathbf {g},\]</div>
+which is precisely the weight of the displaced fluid. That is Archimedes&#8217; principle in continuum-mechanics
+form.
+</p><!--l. 247--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 247--><p class="noindent" ><span 
+class="ecbx-1095">Archimedes  before  the  modern  language. </span>Archimedes&#8217;  <span 
+class="ecti-1095">On  Floating  Bodies  </span>is
+     vastly older than the vector-calculus notation we now use, but the physical content is
+     already recognizable: equilibrium, buoyancy, and the relation between force balance and
+     displaced volume <a 
+href="lecture0.html#XArchimedes1897">Archimedes</a>&#x00A0;[<a 
+href="lecture0.html#XArchimedes1897">1897</a>]. It is worth recalling this because MHD often feels
+     modern in notation while being classical in structure.</p></blockquote></div></div>
+<h4 class="likesubsectionHead"><a 
+ id="x1-130004"></a>Bernoulli and ideal motion</h4>
+<!--l. 253--><p class="noindent" >For steady, incompressible, inviscid flow with conservative body force \(\mathbf {g}=-\nabla \Phi \), Euler&#8217;s equation implies Bernoulli&#8217;s
+relation along a streamline: <a id="eq-eq-bernoulli-reactivated"></a><div class="math-display">\[p + \frac {1}{2}\rho u^2 + \rho \Phi = \text {constant along a streamline}. \tag{0.36}\]</div>
+Bernoulli&#8217;s law is a first example of a more general idea: under appropriate assumptions, momentum
+balance can be integrated into a useful scalar invariant. MHD returns to this repeatedly, sometimes in
+familiar form and sometimes in far less obvious geometries.
+</p><!--l. 261--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 261--><p class="noindent" ><span 
+class="ecbx-1095">Bernoulli, Euler, Navier, and Stokes. </span>Bernoulli&#8217;s <span 
+class="ecti-1095">Hydrodynamica </span>of 1738 is one of
+     the great founding texts of fluid mechanics <a 
+href="lecture0.html#XBernoulli1738">Bernoulli</a>&#x00A0;[<a 
+href="lecture0.html#XBernoulli1738">1738</a>]. Euler&#8217;s 1757 memoir gave a
+     systematic differential formulation for ideal-fluid motion <a 
+href="lecture0.html#XEuler1757">Euler</a>&#x00A0;[<a 
+href="lecture0.html#XEuler1757">1757</a>]. In the nineteenth
+     century,  Navier  and  Stokes  supplied  what  became  the  standard  viscous  extension
+     <a 
+href="lecture0.html#XNavier1823">Navier</a>&#x00A0;[<a 
+href="lecture0.html#XNavier1823">1823</a>],&#x00A0;<a 
+href="lecture0.html#XStokes1845">Stokes</a>&#x00A0;[<a 
+href="lecture0.html#XStokes1845">1845</a>].  If  you  want  a  historical  narrative  that  treats  these
+     developments as a connected story rather than a list of surnames attached to equations,
+     Darrigol&#8217;s history is especially useful <a 
+href="lecture0.html#XDarrigol2005">Darrigol</a>&#x00A0;[<a 
+href="lecture0.html#XDarrigol2005">2005</a>]; Tamburrino&#8217;s bicentenary article
+     is also handy for the Navier-to-Stokes arc <a 
+href="lecture0.html#XTamburrino2024">Tamburrino</a>&#x00A0;[<a 
+href="lecture0.html#XTamburrino2024">2024</a>].</p></blockquote></div></div>
+<h4 class="likesubsectionHead"><a 
+ id="x1-140004"></a>Vorticity and circulation</h4>
+<!--l. 267--><p class="noindent" >Another fluid idea that will reappear in MHD is vorticity, <div class="math-display">\[\boldsymbol {\omega } = \nabla \times \mathbf {u},\]</div>
+and its integral partner, circulation, <div class="math-display">\[\Gamma = \oint _C \mathbf {u}\cdot d\boldsymbol {\ell }.\]</div>
+These are not just diagnostics for swirl. They are examples of how curl, line integrals, and transport of
+structure naturally organize dynamics. The same geometric habits reappear in magnetic induction, flux
+conservation, and the role of topology in plasma dynamics.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-14001r13"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">0.5   </span> <a 
+ id="x1-150005"></a>Stress, shear, strain, and tensors without apology</h3>
+<!--l. 279--><p class="noindent" >This part is often compressed in earlier courses, but it matters enough in MHD that it should be stated
+plainly.
+</p><!--l. 281--><p class="noindent" >The displacement field \(\boldsymbol {\xi }\) of a solid gives the small-strain tensor <div class="math-display">\[\boldsymbol {\varepsilon } = \frac {1}{2}\left (\nabla \boldsymbol {\xi } + (\nabla \boldsymbol {\xi })^{T}\right ).\]</div>
+In a fluid, where the material keeps deforming, one usually works instead with the <span 
+class="ecti-1095">rate</span>-of-strain tensor
+already introduced in (<a href="lecture0.html#eq-eq-rate-of-strain-reactivated">0.29</a>), <div class="math-display">\[\mathbf {D} = \frac {1}{2}\left (\nabla \mathbf {u} + (\nabla \mathbf {u})^{T}\right ).\]</div>
+The antisymmetric part of the velocity gradient, <div class="math-display">\[\mathbf {W} = \frac {1}{2}\left (\nabla \mathbf {u} - (\nabla \mathbf {u})^{T}\right ),\]</div>
+represents local rigid-body rotation. Thus <div class="math-display">\[\nabla \mathbf {u} = \mathbf {D} + \mathbf {W}.\]</div>
+The symmetric part deforms a parcel; the antisymmetric part rotates it.
+</p><!--l. 299--><p class="noindent" >For a simple shear flow <div class="math-display">\[\mathbf {u} = \dot \gamma y\, \hat {\mathbf {x}},\]</div>
+one finds <div class="math-display">\[\nabla \mathbf {u}= \begin {pmatrix} 0 &amp; \dot \gamma &amp; 0\\ 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 \end {pmatrix}, \quad \mathbf {D}= \frac {\dot \gamma }{2} \begin {pmatrix} 0 &amp; 1 &amp; 0\\ 1 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 \end {pmatrix}, \quad \mathbf {W}= \frac {\dot \gamma }{2} \begin {pmatrix} 0 &amp; 1 &amp; 0\\ -1 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 \end {pmatrix}.\]</div>
+This is a useful reminder that shear is partly deformation and partly local rotation. In MHD, where shear
+layers, current sheets, and anisotropic transport matter, those distinctions are not optional
+niceties.
+</p><!--l. 330--><p class="noindent" >The stress tensor \(\boldsymbol {\sigma }\) is equally central. Its meaning is simple even if the notation initially looks heavy: it is
+the linear map that turns a surface normal into the traction acting on that surface. Once written that way,
+the momentum equation (<a href="lecture0.html#eq-eq-cauchy-momentum-reactivated">0.26</a>) becomes the natural continuum version of Newton&#8217;s second
+law.
+</p><!--l. 333--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 333--><p class="noindent" ><span 
+class="ecbx-1095">Cauchy and the modern continuum viewpoint. </span>The modern tensorial description
+     of stress is due in large part to Cauchy in the early 1820s <a 
+href="lecture0.html#XCauchy1823">Cauchy</a>&#x00A0;[<a 
+href="lecture0.html#XCauchy1823">1823</a>]. This is one
+     reason continuum mechanics belongs in the prologue to MHD. The tensor language is
+     not an ornamental modernization added after the fact; it is the natural language for
+     local force transmission in continuous media.</p></blockquote></div></div>
+<!--l. 337--><p class="noindent" ><span 
+class="ecbx-1095">Why tensor language appears here</span>
+     </p><blockquote class="quote">
+     <!--l. 338--><p class="noindent" >Tensor notation often appears abruptly, but the underlying idea is simple: a second-rank
+     tensor is the natural way to encode a linear map between directions and forces, between
+     normals and fluxes, or between gradients and responses.
+     </p><!--l. 340--><p class="noindent" >In MHD this becomes unavoidable. Even when one begins with a scalar pressure, the
+     electromagnetic stress already has tensor structure, and kinetic plasma theory later
+     promotes pressure itself to a tensor in many important limits.</p></blockquote>
+<a 
+ id="x1-15001r17"></a>
+<h3 class="sectionHead"><span class="titlemark">0.6   </span> <a 
+ id="x1-160006"></a>The first MHD bridge</h3>
+<!--l. 345--><p class="noindent" >Now we can say in one line what idealized single-fluid MHD is trying to do. It couples the fluid balances to
+                                                                                         
+                                                                                         
+the electromagnetic field equations. A minimal system is <div class="math-display">\[\begin{aligned}\partial _t \rho + \nabla \cdot (\rho \mathbf {u}) &amp;= 0, \\ \rho \frac {D\mathbf {u}}{Dt} &amp;= -\nabla p + \mathbf {J}\times \mathbf {B} + \mu \nabla ^2\mathbf {u} + \rho \mathbf {g}, \\ \partial _t \mathbf {B} &amp;= \nabla \times (\mathbf {u}\times \mathbf {B}) + \eta _m \nabla ^2\mathbf {B}, \\ \nabla \cdot \mathbf {B} &amp;= 0, \\ \nabla \times \mathbf {B} &amp;= \mu _0\mathbf {J}.\end{aligned}\]</div>
+</p><!--l. 357--><p class="noindent" >There are many refinements&#8212;energy closure, Hall terms, anisotropic viscosity, anisotropic
+conductivity, two-fluid effects, kinetic corrections&#8212;but this much is enough to make the conceptual
+point.
+</p><!--l. 359--><p class="noindent" >MHD is not &#8220;electromagnetism plus a fluid glued on.&#8221; Nor is it &#8220;fluid mechanics with a magnetic forcing
+term tacked onto the right-hand side.&#8221; It is a coupled field theory in which the medium shapes the field
+and the field pushes back on the medium.
+</p><!--l. 361--><p class="noindent" >There is a particularly nice analogy, emphasized already in classic equilibrium work, between
+hydromagnetic equilibria and incompressible fluid motion. Indeed, Grad and Rubin explicitly noted that
+their equilibrium equations are formally identical to those of incompressible flow if one identifies the
+magnetic field with a fluid velocity and the pressure term with a Bernoulli-like quantity <a 
+href="lecture0.html#XGradRubin1958">Grad and
+Rubin</a>&#x00A0;[<a 
+href="lecture0.html#XGradRubin1958">1958</a>]. Shafranov likewise made the connection between magnetohydrodynamic equilibria and
+hydrodynamical vortices in his 1958 paper <a 
+href="lecture0.html#XShafranov1958">Shafranov</a>&#x00A0;[<a 
+href="lecture0.html#XShafranov1958">1958</a>]. It is worth stating this bridge
+early because it clarifies how naturally equilibrium theory fits into the broader continuum
+framework.
+</p><!--l. 363--><p class="noindent" >Static equilibrium is the cleanest first example. If the velocity vanishes and gravity is ignored, then the
+momentum equation reduces to <a id="eq-eq-force-balance-reactivated"></a><div class="math-display">\[\nabla p = \mathbf {J}\times \mathbf {B}. \tag{0.50}\]</div>
+This is already a profoundly instructive equation. It says that pressure gradients are balanced not by
+inertia or viscosity but by magnetic stresses. Later, under axisymmetry, this balance becomes the
+Grad&#8211;Shafranov equation for a flux function \(\psi \). The important point here is continuity of structure: the
+Grad&#8211;Shafranov operator is a more specialized descendant of familiar mathematical habits&#8212;flux functions,
+elliptic operators, balance laws, and careful boundary conditions&#8212;not an alien object dropped from
+orbit.
+</p><!--l. 371--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 372--><p class="noindent" >Hartmann&#8217;s  1937  mercury-flow  papers  are  among  the  clearest  early  demonstrations
+     that  electrically  conducting  fluids  in  magnetic  fields  really  do  constitute  a  distinct
+     physical regime <a 
+href="lecture7.html#Xhartmann1937mercury">Hartmann and Lazarus</a>&#x00A0;[<a 
+href="lecture7.html#Xhartmann1937mercury">1937</a>]. In fact, Hartmann explicitly wrote of
+     the emergence of a &#8220;new field of research,&#8221;  the field of &#8220;Hg-Dynamics.&#8221;  A few years
+     later Alfvn identified the wave mode that now bears his name <a 
+href="lecture0.html#XAlfven1942">Alfvn</a>&#x00A0;[<a 
+href="lecture0.html#XAlfven1942">1942</a>]. By 1958,
+     equilibrium theory had reached the landmark papers of Grad&#8211;Rubin and Shafranov <a 
+href="lecture0.html#XGradRubin1958">Grad
+     and Rubin</a>&#x00A0;[<a 
+href="lecture0.html#XGradRubin1958">1958</a>],&#x00A0;<a 
+href="lecture0.html#XShafranov1958">Shafranov</a>&#x00A0;[<a 
+href="lecture0.html#XShafranov1958">1958</a>]. This is a good miniature history of the subject
+     itself: laboratory flows, waves, and equilibrium theory grew together rather than in
+     isolation.</p></blockquote></div></div>
+<a 
+ id="x1-16001r18"></a>
+<h3 class="sectionHead"><span class="titlemark">0.7   </span> <a 
+ id="x1-170007"></a>A roadmap for the rest of the book</h3>
+<!--l. 384--><p class="noindent" >A compact historical sequence is:
+</p><!--l. 386--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="ecbx-1095">Archimedes: </span>hydrostatics, buoyancy, floating bodies <a 
+href="lecture0.html#XArchimedes1897">Archimedes</a>&#x00A0;[<a 
+href="lecture0.html#XArchimedes1897">1897</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Bernoulli  and  Euler: </span>ideal  flow,  pressure,  energy-like  invariants,  differential
+     equations of motion <a 
+href="lecture0.html#XBernoulli1738">Bernoulli</a>&#x00A0;[<a 
+href="lecture0.html#XBernoulli1738">1738</a>],&#x00A0;<a 
+href="lecture0.html#XEuler1757">Euler</a>&#x00A0;[<a 
+href="lecture0.html#XEuler1757">1757</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Cauchy, Navier, and Stokes: </span>stress, continuum force balance, viscosity, and the
+     modern momentum equation <a 
+href="lecture0.html#XCauchy1823">Cauchy</a>&#x00A0;[<a 
+href="lecture0.html#XCauchy1823">1823</a>],&#x00A0;<a 
+href="lecture0.html#XNavier1823">Navier</a>&#x00A0;[<a 
+href="lecture0.html#XNavier1823">1823</a>],&#x00A0;<a 
+href="lecture0.html#XStokes1845">Stokes</a>&#x00A0;[<a 
+href="lecture0.html#XStokes1845">1845</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Faraday   and   Maxwell:   </span>field   language   and   electromagnetic   dynamics,
+     mathematically consolidated by Maxwell <a 
+href="lecture0.html#XMaxwell1873">Maxwell</a>&#x00A0;[<a 
+href="lecture0.html#XMaxwell1873">1873</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Hartmann: </span>conducting-liquid  flow  in  magnetic  fields  as  a  distinct  laboratory
+     subject <a 
+href="lecture7.html#Xhartmann1937mercury">Hartmann and Lazarus</a>&#x00A0;[<a 
+href="lecture7.html#Xhartmann1937mercury">1937</a>],&#x00A0;<a 
+href="lecture7.html#Xhartmann1937hg-dynamics-60e">Hartmann</a>&#x00A0;[<a 
+href="lecture7.html#Xhartmann1937hg-dynamics-60e">1937</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Alfv</span><span 
+class="ecbx-1095">n: </span>wave dynamics specific to conducting media <a 
+href="lecture0.html#XAlfven1942">Alfvn</a>&#x00A0;[<a 
+href="lecture0.html#XAlfven1942">1942</a>].
+     </li>
+     <li class="itemize"><span 
+class="ecbx-1095">Grad, Rubin, and Shafranov: </span>the equilibrium mathematics central to fusion
+     and plasma confinement <a 
+href="lecture0.html#XGradRubin1958">Grad and Rubin</a>&#x00A0;[<a 
+href="lecture0.html#XGradRubin1958">1958</a>],&#x00A0;<a 
+href="lecture0.html#XShafranov1958">Shafranov</a>&#x00A0;[<a 
+href="lecture0.html#XShafranov1958">1958</a>].</li></ul>
+     </blockquote></div></div>
+<!--l. 397--><p class="noindent" >That compressed sequence is not the whole history, but it already shows why MHD deserves to be
+called a classic subject. It sits at the confluence of two of the great nineteenth-century field
+theories&#8212;continuum mechanics and electromagnetism&#8212;and it becomes experimentally urgent as
+soon as one cares about liquid metals, plasma discharges, astrophysical flows, or magnetic
+confinement.
+</p><!--l. 399--><p class="noindent" ><span 
+class="ecbx-1095">Core ideas carried forward</span>
+     </p><blockquote class="quote">
+     <!--l. 400--><p class="noindent" >By the end of this lecture, the following claims should feel reasonable:
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">MHD  begins  from  mathematics  you  already  know:  divergences,  curls,  fluxes,
+     circulation, balance laws, and constitutive closure.
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Maxwell&#8217;s equations are assumed background, not optional enrichment.
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">Navier&#8211;Stokes is not a distraction from MHD; it is one of its parents.
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">Hydrostatics, Bernoulli, shear, strain, and stress tensors are not side topics. They
+     are part of the conceptual grammar needed later.
+     </dd><dt class="enumerate-enumitem">
+  5. </dt><dd 
+class="enumerate-enumitem">When the book turns to magnetic induction, equilibrium, waves, instabilities, and
+     experiments, the right response is not &#8220;this is a new universe.&#8221;  It is &#8220;these are
+     familiar structures in a stronger coupling.&#8221;</dd></dl>
+                                                                                         
+                                                                                         
+     </blockquote>
+<!--l. 410--><p class="noindent" >For readers who want a little more background before moving on, Batchelor remains an excellent
+fluid-mechanics anchor <a 
+href="lecture0.html#XBatchelor1967">Batchelor</a>&#x00A0;[<a 
+href="lecture0.html#XBatchelor1967">1967</a>]; Chandrasekhar is a classic for stability and the fluid&#8211;magnetic
+interface <a 
+href="lecture0.html#XChandrasekhar1961">Chandrasekhar</a>&#x00A0;[<a 
+href="lecture0.html#XChandrasekhar1961">1961</a>]; Davidson is a clear entry point for modern MHD <a 
+href="lecture0.html#XDavidson2001">Davidson</a>&#x00A0;[<a 
+href="lecture0.html#XDavidson2001">2001</a>]; and
+the edited volume by Molokov, Moreau, and Moffatt is useful for historical perspective across several
+branches of the subject <a 
+href="lecture0.html#XMolokovMoreauMoffatt2007">Molokov et&#x00A0;al.</a>&#x00A0;[<a 
+href="lecture0.html#XMolokovMoreauMoffatt2007">2007</a>].
+</p><!--l. 417--><p class="noindent" >The rest of the book can now move without apology into MHD proper. We have not proven
+everything we will need, and we have certainly not reviewed every detail. But we have done
+the more important thing: we have reminded ourselves that the subject begins on familiar
+ground.
+</p>
+<h3 class="likesectionHead"><a 
+ id="x1-180007"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes gnraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mmoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;quilibre et le mouvement intrieur des corps solides
+  ou fluides, lastiques ou non lastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">t</span><span 
+class="ecti-1095"> Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

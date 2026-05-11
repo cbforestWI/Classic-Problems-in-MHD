@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 7 Hartmann Flow</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture6.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture8.html">Next Lecture &#8594;</a></div>
+<h1 class="partHead"><span class="titlemark">Part&#x00A0;II<br /></span><a 
+ id="x1-115000II"></a>Classical Examples and Applications</h1>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;7</span><br /><a 
+ id="x1-1160007"></a>Hartmann Flow</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Hartmann flow is the classic liquid-metal problem that teaches three MHD lessons</tspan>
+     <tspan font-family="ecbx" font-size="1095">at once.</tspan>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">a magnetic field can strongly reshape a velocity profile even when magnetic advection
+   is weak;
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">the  balance  among  pressure,  viscosity,  and  Lorentz  force  naturally  produces  the
+   Hartmann number;
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">current closure at the walls is every bit as important as the bulk momentum balance.</dd></dl>
+     </blockquote></div></div>
+<!--l. 13--><p class="noindent" >Hartmann flow is one of the cleanest examples in all of MHD because the formal equations and the
+laboratory experiment sit very close together. In a liquid metal the assumptions of resistive&#8211;viscous MHD
+are often excellent, yet the magnetic Reynolds number can remain small. That makes this problem an
+ideal bridge between the general equations of the earlier lectures and a canonical laboratory
+flow.
+</p><!--l. 16--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 16--><p class="noindent" >The original analysis of pressure-driven flow in a transverse magnetic field goes back
+     to  Hartmann&#8217;s  mercury  experiments  in  the  1930s  [<a 
+href="lecture7.html#Xhartmann1937hg-dynamics-60e">Hartmann</a>,&#x00A0;<a 
+href="lecture7.html#Xhartmann1937hg-dynamics-60e">1937</a>,&#x00A0;<a 
+href="lecture7.html#Xhartmann1937mercury">Hartmann  and
+     Lazarus</a>,&#x00A0;<a 
+href="lecture7.html#Xhartmann1937mercury">1937</a>].  Hide  and  Roberts  later  turned  these  examples  into  textbook  MHD
+     problems with a clear physical interpretation [<a 
+href="lecture7.html#Xhide1962some-c81">Hide and Roberts</a>,&#x00A0;<a 
+href="lecture7.html#Xhide1962some-c81">1962</a>,&#x00A0;<a 
+href="lecture7.html#Xroberts1967intro_mhd">Roberts</a>,&#x00A0;<a 
+href="lecture7.html#Xroberts1967intro_mhd">1967</a>].
+     Shercliff and Hunt showed how the story extends to real ducts, where sidewall current
+     closure creates an additional family of boundary layers [<a 
+href="lecture7.html#Xshercliff1956flow-703">Shercliff</a>,&#x00A0;<a 
+href="lecture7.html#Xshercliff1956flow-703">1956</a>,&#x00A0;<a 
+href="lecture7.html#Xhunt1965magnetohydrodynamic-809">Hunt</a>,&#x00A0;<a 
+href="lecture7.html#Xhunt1965magnetohydrodynamic-809">1965</a>].</p></blockquote></div></div>
+<!--l. 20--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 20--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Large magnetic influence does not mean ideal MHD. </tspan>Many liquid-metal duct
+     flows have \(\mathrm {Ha}\gg 1\) and yet \(\mathrm {Rm}\ll 1\). The magnetic field strongly brakes and reorganizes the flow, but
+     the flux-freezing picture developed earlier is not the right language. Here diffusion of the
+     induced field is fast, and wall-controlled current closure is central.</p></blockquote></div></div>
+<a 
+ id="x1-116004r111"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">7.1   </span> <a 
+ id="x1-1170001"></a>Geometry and low-\(\mathrm {Rm}\) ordering</h3>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1170011"></a>
+                                                                                         
+                                                                                         
+<!--l. 30--><p class="noindent" ><img 
+src="figures/DuctFlow.jpeg" alt="PIC"  
+width="399" height="399"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;7.1: </span><span  
+class="content">Canonical Hartmann duct geometry. A pressure gradient drives flow along the duct
+while a transverse magnetic field brakes the motion through the induced current system. Figure
+adapted from Roberts [<a 
+href="lecture7.html#Xroberts1967intro_mhd">Roberts</a>,&#x00A0;<a 
+href="lecture7.html#Xroberts1967intro_mhd">1967</a>].</span></div><!--tex4ht:label?: x1-1170011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 35--><p class="noindent" >Take two parallel plates at \(x=\pm a\), infinite in \(y\) and extended along the duct direction \(z\). We impose a uniform
+magnetic field <a id="eq-eq-duct-B0"></a><div class="math-display">\[\B _0 = B_0\,\hat{x} , \tag{7.1}\]</div>
+and drive a steady flow in the \(z\) direction with pressure gradient <a id="eq-eq-duct-Gdef"></a><div class="math-display">\[G \equiv -\dd {p}{z} &gt; 0. \tag{7.2}\]</div>
+The fully developed velocity is taken to be <a id="eq-eq-duct-velocityansatz"></a><div class="math-display">\[\uvec = u_z(x)\,\hat{z} . \tag{7.3}\]</div>
+</p><!--l. 51--><p class="noindent" >The usual assumptions are </p>
+   <ul class="itemize1">
+   <li class="itemize">steady state, \(\pp {}{t}=0\),
+   </li>
+   <li class="itemize">incompressibility, \(\divergence \uvec = 0\),
+   </li>
+   <li class="itemize">no-slip at the Hartmann walls, \(u_z(\pm a)=0\),
+   </li>
+   <li class="itemize">negligible variation in \(y\) and \(z\), so all gradients are in \(x\) only,
+   </li>
+   <li class="itemize">low magnetic Reynolds number, \(\mathrm {Rm}=Ua/\eta \ll 1\), using the definition from (<a href="lecture4.html#eq-eq-flux-rm">4.3</a>).</li></ul>
+<!--l. 60--><p class="noindent" >That last condition is the key difference from the flux-freezing lecture. Because \(\mathrm {Rm}\ll 1\), the magnetic field is
+mostly imposed rather than advected. We therefore write <a id="eq-eq-duct-BandJ"></a><div class="math-display">\[\B = B_0\,\hat{x} + b_z(x)\,\hat{z} , \qquad \J = J_y(x)\,\hat{y} , \tag{7.4}\]</div>
+where \(b_z\) is a small induced correction. The governing equations are just the steady specialization of the
+momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), the resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), and Amp�re&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>).
+<a 
+ id="x1-117002r120"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">7.2   </span> <a 
+ id="x1-1180002"></a>Hydrodynamic limit: Poiseuille flow</h3>
+<!--l. 73--><p class="noindent" >If \(B_0=0\), the \(z\)-component of the steady momentum equation reduces to <a id="eq-eq-duct-poiseuilleode"></a><div class="math-display">\[\mu \dd {^2 u_z}{x^2} + G = 0. \tag{7.5}\]</div>
+Integrating twice, imposing symmetry \(\dd {u_z}{x}(0)=0\), and using the no-slip condition \(u_z(\pm a)=0\), one obtains the classical
+plane-Poiseuille profile <a id="eq-eq-duct-poiseuille"></a><div class="math-display">\[u_z(x) = \frac {G}{2\mu } \left (a^2-x^2\right ). \tag{7.6}\]</div>
+This is the profile to compare against once the Lorentz force is turned on.
+<a 
+ id="x1-118001r122"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">7.3   </span> <a 
+ id="x1-1190003"></a>Hartmann flow from the steady MHD equations</h3>
+<!--l. 92--><p class="noindent" >With the ansatz (<a href="lecture7.html#eq-eq-duct-velocityansatz">7.3</a>)&#8211;(<a href="lecture7.html#eq-eq-duct-BandJ">7.4</a>), the Lorentz force points along \(\hat{z} \) because <a id="eq-eq-duct-lorentzdir"></a><div class="math-display">\[\J \times \B = J_y\,\hat{y} \times B_0\,\hat{x} = - J_y B_0\,\hat{z} . \tag{7.7}\]</div>
+and Amp�re&#8217;s law gives <a id="eq-eq-duct-ampere"></a><div class="math-display">\[J_y = - \frac {1}{\muo } \dd {b_z}{x}. \tag{7.8}\]</div>
+</p><!--l. 112--><p class="noindent" >We can search for steady solutions to the resistive, viscous MHD equations for this geometry with a
+transverse magnetic field \(b_x\). Note from \(\nabla \cdot \bm B= \frac {\partial b_x}{\partial x} = 0\) so that \(B_x=B_0\) a constant. the steady momentum equation becomes <div class="math-display">\[-G + \frac {B_0}{\mu _0\rho } \frac {d b_x}{dz} + \mu \frac {d^2 u_x}{dz^2} = 0.\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 123--><p class="noindent" >The \(z\)-momentum equation becomes <a id="eq-eq-duct-momentum"></a><div class="math-display">\[\mu \dd {^2 u_z}{x^2} - B_0 J_y + G = 0. \tag{7.10}\]</div>
+Meanwhile Ohm&#8217;s law gives <a id="eq-eq-duct-ohm"></a><div class="math-display">\[J_y = \sigma \left ( E_y + u_z B_0 \right ), \tag{7.11}\]</div>
+</p><!--l. 140--><p class="noindent" >Substituting (<a href="lecture7.html#eq-eq-duct-ohm">7.11</a>) into (<a href="lecture7.html#eq-eq-duct-momentum">7.10</a>) yields a single second-order equation for the velocity, <a id="eq-eq-duct-velocityode"></a><div class="math-display">\[\dd {^2 u_z}{x^2} - \frac {\sigma B_0^2}{\mu }u_z = \frac {\sigma E_y B_0 - G}{\mu }. \tag{7.12}\]</div>
+This form is more useful than the fourth-order elimination because it keeps the physics transparent:
+pressure drives the flow, viscosity smooths it, and the induced current brakes it.
+</p>
+<!--l. 151--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1200003"></a>Hartmann number.</span>
+Using \(\mu =\rho \nu \) and \(\eta =(\muo \sigma )^{-1}\), define <a id="eq-eq-duct-Ha"></a><div class="math-display">\[\mathrm {Ha} \equiv B_0 a\sqrt {\frac {\sigma }{\rho \nu }} = \frac {V_A a}{\sqrt {\nu \eta }}, \qquad V_A \equiv \frac {B_0}{\sqrt {\muo \rho }}. \tag{7.13}\]</div>
+Then (<a href="lecture7.html#eq-eq-duct-velocityode">7.12</a>) reads <a id="eq-eq-duct-velocityodeHa"></a><div class="math-display">\[\dd {^2 u_z}{x^2} - \frac {\mathrm {Ha}^2}{a^2}u_z = \frac {\sigma E_y B_0 - G}{\mu }. \tag{7.14}\]</div>
+</p>
+<!--l. 173--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1210003"></a>Solution.</span>
+The general even solution of (<a href="lecture7.html#eq-eq-duct-velocityodeHa">7.14</a>) is <a id="eq-eq-duct-gensoln"></a><div class="math-display">\[u_z(x) = A\cosh \left (\frac {\mathrm {Ha}\,x}{a}\right ) + C. \tag{7.15}\]</div>
+A constant particular solution satisfies <a id="eq-eq-duct-Cvalue"></a><div class="math-display">\[- \frac {\mathrm {Ha}^2}{a^2}C = \frac {\sigma E_y B_0 - G}{\mu }, \qquad \Rightarrow \qquad C = \frac {G-\sigma E_y B_0}{\sigma B_0^2}. \tag{7.16}\]</div>
+Applying \(u_z(\pm a)=0\) gives <a id="eq-eq-duct-Avalue"></a><div class="math-display">\[A = - \frac {C}{\cosh (\mathrm {Ha})}, \tag{7.17}\]</div>
+so the Hartmann profile is <a id="eq-eq-duct-hartmannvelocity"></a><div class="math-display">\[\boxed { u_z(x) = \frac {G-\sigma E_y B_0}{\sigma B_0^2} \left [ 1- \frac {\cosh (\mathrm {Ha}\,x/a)}{\cosh (\mathrm {Ha})} \right ]. } \tag{7.18}\]</div>
+This is the basic textbook solution.
+</p><!--l. 216--><p class="noindent" >The current density follows immediately from Ohm&#8217;s law, <a id="eq-eq-duct-hartmanncurrent"></a><div class="math-display">\[J_y(x) = \sigma E_y + \frac {G-\sigma E_y B_0}{B_0} \left [ 1- \frac {\cosh (\mathrm {Ha}\,x/a)}{\cosh (\mathrm {Ha})} \right ]. \tag{7.19}\]</div>
+Integrating Amp�re&#8217;s law then gives the induced magnetic field, <a id="eq-eq-duct-hartmannbz"></a><div class="math-display">\[b_z(x) = -\muo \int _0^x J_y(x')\,dx', \tag{7.20}\]</div>
+with the additive constant fixed by symmetry or by a chosen reference level.
+</p><!--l. 239--><p class="noindent" >The cross-sectional average of the velocity is <a id="eq-eq-duct-umean"></a><div class="math-display">\[\overline {u} \equiv \frac {1}{2a} \int _{-a}^{a} u_z(x)\,dx = \frac {G-\sigma E_y B_0}{\sigma B_0^2} \left ( 1- \frac {\tanh (\mathrm {Ha})}{\mathrm {Ha}} \right ). \tag{7.21}\]</div>
+Equation (<a href="lecture7.html#eq-eq-duct-umean">7.21</a>) is the most useful form for engineering estimates because it connects the pressure gradient
+directly to the bulk flow.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1210012"></a>
+                                                                                         
+                                                                                         
+<!--l. 257--><p class="noindent" ><img 
+src="figures/HartmannVelocity.jpeg" alt="PIC"  
+width="187" height="187"  /> <img 
+src="figures/HartmannCurrent.jpeg" alt="PIC"  
+width="187" height="187"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;7.2: </span><span  
+class="content">Velocity and current profiles for classic Hartmann-flow electrical boundary conditions.
+These figures are especially useful for remembering that the wall physics selects \(E_y\), and \(E_y\) in turn selects
+the current pattern and the amount of magnetic braking [<a 
+href="lecture7.html#Xroberts1967intro_mhd">Roberts</a>,&#x00A0;<a 
+href="lecture7.html#Xroberts1967intro_mhd">1967</a>].</span></div><!--tex4ht:label?: x1-1210012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-121002r123"></a>
+<h3 class="sectionHead"><span class="titlemark">7.4   </span> <a 
+ id="x1-1220004"></a>Limiting cases and physical interpretation</h3>
+<!--l. 267--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1230004"></a>Weak magnetic field: \(\mathrm {Ha}\ll 1\).</span>
+Expand the hyperbolic functions in (<a href="lecture7.html#eq-eq-duct-hartmannvelocity">7.18</a>): <a id="eq-eq-duct-smallHaexpansion"></a><div class="math-display">\[1- \frac {\cosh (\mathrm {Ha}\,x/a)}{\cosh (\mathrm {Ha})} = \frac {\mathrm {Ha}^2}{2} \left (1-\frac {x^2}{a^2}\right ) + \mathcal {O}(\mathrm {Ha}^4). \tag{7.22}\]</div>
+Using (<a href="lecture7.html#eq-eq-duct-Ha">7.13</a>), one recovers <a id="eq-eq-duct-smallHaPoiseuille"></a><div class="math-display">\[u_z(x) \simeq \frac {G-\sigma E_y B_0}{2\mu } \left (a^2-x^2\right ). \tag{7.23}\]</div>
+In the simplest conducting-wall textbook limit \(E_y=0\), this reduces to the Poiseuille result (<a href="lecture7.html#eq-eq-duct-poiseuille">7.6</a>).
+</p>
+<!--l. 289--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1240004"></a>Strong magnetic field: \(\mathrm {Ha}\gg 1\).</span>
+In the core, away from the walls, <a id="eq-eq-duct-plugcore"></a><div class="math-display">\[u_z(x) \approx \frac {G-\sigma E_y B_0}{\sigma B_0^2}, \tag{7.24}\]</div>
+so the flow becomes plug-like. The shear is expelled into thin boundary layers of thickness
+<a id="eq-eq-duct-deltah"></a><div class="math-display">\[\delta _H \sim \frac {a}{\mathrm {Ha}}. \tag{7.25}\]</div>
+These are the Hartmann layers. In the common \(E_y=0\) limit, (<a href="lecture7.html#eq-eq-duct-umean">7.21</a>) becomes <a id="eq-eq-duct-umeanconducting"></a><div class="math-display">\[\overline {u} = \frac {G}{\sigma B_0^2} \left ( 1- \frac {\tanh (\mathrm {Ha})}{\mathrm {Ha}} \right ), \tag{7.26}\]</div>
+and for \(\mathrm {Ha}\gg 1\) this implies the practical scaling <a id="eq-eq-duct-pressuredrophighHa"></a><div class="math-display">\[\frac {\Delta p}{L} = G \approx \sigma B_0^2\,\overline {u}. \tag{7.27}\]</div>
+This is why liquid-metal blanket concepts can suffer enormous MHD pressure drops even when the
+magnetic field is not frozen into the fluid.
+</p>
+<!--l. 322--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1250004"></a>What sets \(E_y\)?</span>
+Equation (<a href="lecture7.html#eq-eq-duct-hartmannvelocity">7.18</a>) leaves \(E_y\) undetermined because it is fixed by current closure. In the simplest conducting-wall
+or externally short-circuited limit one often sets \(E_y=0\). For insulating sidewalls, by contrast, charge
+buildup creates an electrostatic field that partly cancels \(\uvec \times \B \) and reduces the current. The figures in
+Fig.&#x00A0;7.2 are useful precisely because they show how much this electrical boundary condition
+matters.
+<a 
+ id="x1-125001r127"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">7.5   </span> <a 
+ id="x1-1260005"></a>Dimensionless numbers and why liquid metals are special</h3>
+<!--l. 329--><p class="noindent" >Besides the Hartmann number, the standard control parameters are <a id="eq-eq-duct-ReRmPm"></a><div class="math-display">\[\begin{aligned}\mathrm {Re} &amp;\equiv \frac {Ua}{\nu }, &amp; \mathrm {Rm} &amp;\equiv \frac {Ua}{\eta }, &amp; \mathrm {Pm} &amp;\equiv \frac {\nu }{\eta } = \frac {\mathrm {Rm}}{\mathrm {Re}},  \\ N &amp;\equiv \frac {\sigma B_0^2 a}{\rho U} = \frac {\mathrm {Ha}^2}{\mathrm {Re}}, &amp; S &amp;\equiv \frac {V_A a}{\eta }.\end{aligned} \tag{7.28}\]</div>
+</p><!--l. 344--><p class="noindent" >Liquid metals typically have tiny magnetic Prandtl number \(\mathrm {Pm}\ll 1\). That is what makes the regime so instructive:
+one can have \(\mathrm {Rm}\ll 1\) while still reaching very large \(\mathrm {Ha}\) and \(N\). The field is not frozen in, but the Lorentz force still
+dominates the momentum balance.
+</p><!--l. 347--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 347--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Experimental perspective. </tspan>This is the regime that matters for liquid-metal MHD
+     experiments and for fusion-blanket technology. In PbLi, sodium, or galinstan loops,
+     one often worries less about flux freezing than about current closure, wall conductivity,
+     and the pressure drop required to push the fluid through strong magnetic fields. The
+     experimental moral is very practical: if the walls let currents close easily, the magnetic
+                                                                                         
+                                                                                         
+     braking  is  severe;  if  the  walls  interrupt  current  closure,  the  pressure  drop  can  be
+     dramatically reduced.</p></blockquote></div></div>
+<a 
+ id="x1-126001r131"></a>
+<div class="interactive-shell"><p class="interactive-title">Interactive Hartmann-and-Shercliff Flow Explorer</p><p class="interactive-caption">Open a browser companion to the low-<em>Rm</em> duct-flow lecture. The app solves the coupled cross-section velocity-and-potential problem for rectangular ducts and circular pipes, lets the Hartmann and Shercliff walls be conducting or insulating, and then compares the resulting boundary layers, chord profiles, and pressure drop.</p><p><a class="interactive-button" href="media/hartmann_flow_explorer.html">Open the Hartmann flow explorer</a></p></div>
+<h3 class="sectionHead"><span class="titlemark">7.6   </span> <a 
+ id="x1-1270006"></a>From parallel plates to real ducts: Hartmann and Shercliff layers</h3>
+<!--l. 355--><p class="noindent" >The parallel-plate solution is only the first step. In a rectangular duct the core flow remains nearly uniform
+for large \(\mathrm {Ha}\), but two different boundary layers appear.
+</p>
+<!--l. 357--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1280006"></a>Hartmann layers.</span>
+On walls whose normal is parallel to the imposed magnetic field, the local balance remains the Hartmann
+balance and the thickness is still <a id="eq-eq-duct-deltaHartmann"></a><div class="math-display">\[\delta _H \sim \frac {a}{\mathrm {Ha}}. \tag{7.30}\]</div>
+</p>
+<!--l. 364--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1290006"></a>Shercliff layers.</span>
+On sidewalls parallel to the imposed field, currents must turn and close through broader lateral layers.
+Their thickness scales as <a id="eq-eq-duct-deltaShercliff"></a><div class="math-display">\[\delta _S \sim \frac {a}{\sqrt {\mathrm {Ha}}}, \tag{7.31}\]</div>
+when the Hartmann number is defined with the Hartmann half-gap \(a\). These Shercliff layers are thicker than
+Hartmann layers by a factor of order \(\sqrt {\mathrm {Ha}}\).
+</p>
+<!--l. 372--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1300006"></a>Current closure through an electrostatic potential.</span>
+For arbitrary duct cross sections it is often cleaner to solve for an electric potential \(\Phi \) rather than directly for
+the current. Writing <a id="eq-eq-duct-PhiOhm"></a><div class="math-display">\[\E = -\grad \Phi , \qquad \J = \sigma \left (-\grad \Phi + \uvec \times \B \right ), \tag{7.32}\]</div>
+and using \(\divergence \J =0\) gives <a id="eq-eq-duct-PhiPoisson"></a><div class="math-display">\[\lap \Phi = \divergence (\uvec \times \B ). \tag{7.33}\]</div>
+The boundary conditions are what encode the wall physics: for a good conductor one often takes \(\Phi =\mathrm {const}\) on the
+wall, while for an insulator one imposes \(\J \cdot \hat {\vect {n}}=0\), or equivalently <a id="eq-eq-duct-insulatingbc"></a><div class="math-display">\[\pp {\Phi }{n} = (\uvec \times \B )\cdot \hat {\vect {n}}. \tag{7.34}\]</div>
+<span class="likeparagraphHead"><a id="x1-1301006"></a>Cross-section model solved by the explorer.</span> This is a different coordinate choice from the earlier parallel-plate derivation above: here the applied field points along \(\hat {y}\), the flow is along \(\hat {z}\), and the only induced magnetic correction retained is the axial field \(b_z(x,y)\). The browser companion does not solve a separate transverse or poloidal magnetic-streamfunction problem. It works in the low-\(\mathrm {Rm}\) quasi-static limit with imposed field \(\B _0 = B_0\,\hat {y}\), and solves only for the streamwise velocity \(u_z(x,y)\) and electrostatic potential \(\Phi (x,y)\). Taking \(\uvec = u_z\hat {z}\) gives \(\uvec \times \B _0 = -u_z B_0\hat {x}\), so Ohm's law becomes <a id="eq-eq-duct-Jcomponents"></a><div class="math-display">\[J_x = -\sigma \left (\pp {\Phi }{x} + u_z B_0\right ), \qquad J_y = -\sigma \pp {\Phi }{y}. \tag{7.35}\]</div> Enforcing \(\divergence \J = 0\) gives <a id="eq-eq-duct-PhiPoisson2D"></a><div class="math-display">\[\pp {^2 \Phi }{x^2} + \pp {^2 \Phi }{y^2} = -B_0\pp {u_z}{x}. \tag{7.36}\]</div> while the streamwise momentum balance reads <a id="eq-eq-duct-momentum2D"></a><div class="math-display">\[\mu \left (\pp {^2 u_z}{x^2} + \pp {^2 u_z}{y^2}\right ) - B_0 J_x + G = 0. \tag{7.37}\]</div> The explorer first solves this coupled \((u_z,\Phi )\) system. It then reconstructs the induced axial magnetic correction from Ampere's law, using <a id="eq-eq-duct-bzfromJ"></a><div class="math-display">\[J_x = \frac {1}{\muo }\pp {b_z}{y}, \qquad J_y = -\frac {1}{\muo }\pp {b_z}{x}, \tag{7.38}\]</div> or equivalently <a id="eq-eq-duct-bzpoisson"></a><div class="math-display">\[\lap _\perp b_z = \muo \left (\pp {J_x}{y} - \pp {J_y}{x}\right ), \tag{7.39}\]</div> with only an additive constant left free. No separate transverse or poloidal magnetic field is evolved in this reduced model. This is the real reason &#8220;duct flow&#8221; becomes more interesting than the parallel-plate problem: the
+three-dimensional current closure can dominate the qualitative behavior.
+</p><!--l. 393--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">Hartmann flow is the canonical example of resistive&#8211;viscous MHD in the low-\(\mathrm {Rm}\) limit.
+   </li>
+   <li class="itemize">The Hartmann number measures how strongly the magnetic field flattens the profile
+   and confines shear to boundary layers.
+   </li>
+   <li class="itemize">The  average  flow  is  controlled  not  just  by  pressure  and  viscosity,  but  by  the
+   wall-selected electric field \(E_y\) and therefore by the current-closure path.
+   </li>
+   <li class="itemize">In real ducts, Hartmann layers and Shercliff layers coexist; the former are thin, the
+   latter broader, and both are central to liquid-metal MHD design.</li></ul>
+                                                                                         
+                                                                                         
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1310006"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <tspan font-family="ecti" font-size="1095">Mathematisk-fysiske Meddelelser</tspan>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <tspan font-family="ecti" font-size="1095">Matematisk-fysiske Meddelelser</tspan>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <tspan font-family="ecti" font-size="1095">Advances in Applied Mechanics</tspan>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <tspan font-family="ecti" font-size="1095">An Introduction to Magnetohydrodynamics</tspan>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshercliff1956flow-703"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;A. Shercliff. The flow of conducting fluids in circular pipes under transverse magnetic fields.
+  <tspan font-family="ecti" font-size="1095">Journal of Fluid Mechanics</tspan>, 1(6):644&#8211;666, 1956. doi:<a 
+href="https://doi.org/10.1017/s0022112056000421" >10.1017/s0022112056000421</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhunt1965magnetohydrodynamic-809"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J&#x00A0;C&#x00A0;R Hunt.  Magnetohydrodynamic flow in rectangular ducts.  <tspan font-family="ecti" font-size="1095">Journal of Fluid Mechanics</tspan>,
+  21(4):577&#8211;590, 1965. doi:<a 
+href="https://doi.org/10.1017/s0022112065000344" >10.1017/s0022112065000344</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-1320006"></a>Problems</h3>
+<a 
+ id="x1-132001r1"></a>
+<!--l. 405--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 7.1. Hartmann flow: PbLi in SPARC</tspan>
+</p><!--l. 407--><p class="noindent" >Liquid metal breeding blankets often consider Pb&#8211;17Li (&#8220;PbLi&#8221;) flowing through rectangular ducts in a
+strong tokamak magnetic field. In this problem you will use Hartmann-flow scalings to estimate the MHD
+pressure drop, pumping power, and the boundary-layer thicknesses that must be resolved in
+simulations.
+</p>
+<!--l. 409--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1330001"></a>Given geometry and operating point</span>
+Consider a straight rectangular duct of height \(h=10~\mathrm {cm}\) and width \(w=1~\mathrm {m}\) carrying PbLi at bulk speed \(U=1~\mathrm {m/s}\). Assume the
+magnetic field is uniform and transverse to the flow with magnitude \(B_0=10~\mathrm {T}\). Take the flow direction as \(\hat{z} \), and the
+field as \(\B _0 = B_0 \hat{x} \), so that the Hartmann walls are the two faces normal to \(\hat{x} \).
+</p><!--l. 413--><p class="noindent" >Treat the Hartmann gap as parallel plates separated by \(h\), so the half-gap is \[ a \equiv \frac {h}{2} = 0.05~\mathrm {m}. \]
+</p><!--l. 418--><p class="noindent" >Assume the textbook conducting-wall limit \(E_y=0\) in Ohm&#8217;s law, so that the mean-flow relation is given by
+(<a href="lecture7.html#eq-eq-duct-umeanconducting">7.26</a>).
+</p>
+<!--l. 420--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1340001"></a>Material properties (Pb&#8211;17Li, representative fusion temperature)</span>
+Use the following representative values: \[ \rho \simeq 9.3\times 10^{3}\ \mathrm {kg/m^3}, \qquad \mu \simeq 1.4\times 10^{-3}\ \mathrm {Pa\cdot s}, \qquad \sigma \simeq 1.0\times 10^{6}\ \mathrm {S/m}. \] Compute the kinematic viscosity \(\nu =\mu /\rho \) and resistive diffusivity
+\(\eta = (\muo \sigma )^{-1}\).
+</p>
+<!--l. 431--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1350001"></a>Part A: dimensionless parameters and boundary layers</span>
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Compute the Reynolds number \(\mathrm {Re} = Ua/\nu \).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Compute the Hartmann number using (<a href="lecture7.html#eq-eq-duct-Ha">7.13</a>).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">For \(\mathrm {Ha}\gg 1\), estimate the Hartmann-layer thickness \(\delta _H \sim a/\mathrm {Ha}\).
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">(Optional.) Estimate the Shercliff-layer thickness δ_S ~ a/√Ha and compare it with δ_H.</dd></dl>
+<!--l. 439--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1360001"></a>Part B: pressure drop</span>
+For the parallel-plate Hartmann solution with \(E_y=0\), the mean speed is related to the pressure gradient by
+\[ \overline {u} = \frac {G}{\sigma B_0^2} \left ( 1- \frac {\tanh (\mathrm {Ha})}{\mathrm {Ha}} \right ). \]
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Solve for the required pressure gradient \(G= -dp/dz\) to achieve \(\overline {u}=U=1~\mathrm {m/s}\).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Evaluate the high-\(\mathrm {Ha}\) approximation \(\Delta p/L \approx \sigma B_0^2 U\) from (<a href="lecture7.html#eq-eq-duct-pressuredrophighHa">7.27</a>) and compare it with the exact answer.
+    </dd><dt class="enumerate-enumitem">
+                                                                                         
+                                                                                         
+(c) </dt><dd 
+class="enumerate-enumitem">Report your final \(\Delta p/L\) in \(\mathrm {Pa/m}\) and in \(\mathrm {bar/m}\).</dd></dl>
+<!--l. 456--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1370001"></a>Part C: pumping power</span>
+The volumetric flow rate is \(Q = U A\), where \(A = hw\) is the duct cross-sectional area.
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Compute \(Q\).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">The pumping power required over a length \(L\) is \(P_{\rm pump} = (\Delta p)Q\). Compute \(P_{\rm pump}\) for \(L=1~\mathrm {m}\).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Repeat  for  \(L=10~\mathrm {m}\)  and  comment  on  what  this  implies  about  the  value  of  electrical  insulation  in
+    liquid-metal blanket concepts.</dd></dl>
+<!--l. 464--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1380001"></a>Short conceptual questions</span>
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Why does the \(E_y=0\) assumption permit a large Lorentz force and therefore a large pressure drop?
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Why do large-\(\mathrm {Ha}\) flows look plug-like in the core even though the strongest gradients are confined
+    to thin boundary layers?</dd></dl>
+<!--l. 470--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1390001"></a>Sanity-check hint (order of magnitude).</span>
+A consistent estimate gives \(\mathrm {Ha}\gg 1\), a Hartmann-layer thickness in the few-\(\mu \mathrm {m}\) range, and an MHD pressure
+drop of order \(10^8~\mathrm {Pa/m}\) for \(E_y=0\), implying pumping power of order \(\sim 10~\mathrm {MW}\) per meter of duct at the stated flow
+rate.
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 38 Self-Adjointness of the Ideal-MHD Force Operator</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture37.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture39.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;38</span><br /><a 
+ id="x1-12000038"></a>Self-Adjointness of the Ideal-MHD Force Operator</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" >This appendix explains why the static ideal-MHD force operator is self-adjoint and
+     why that fact matters. The point is not merely formal. Self-adjointness is the operator
+     statement behind the energy principle of Lecture&#x00A0;15: it is what guarantees that the
+     quadratic form \(\delta W\) is real, that \(\omega ^2\) is real, and that distinct normal modes are orthogonal in
+     the natural density-weighted inner product.
+     </p><!--l. 7--><p class="noindent" >There is also an important caution. A self-adjoint ideal-MHD operator can still possess
+     a <span 
+class="ecti-1095">continuum </span>spectrum. The Alfvén continuum is not a failure of Hermiticity; it is a
+     consequence of singular coefficients in the reduced wave equation.</p></blockquote></div></div>
+<!--l. 11--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 11--><p class="noindent" >The  self-adjoint  structure  of  static  ideal  MHD  was  clarified  in  the  classic  work
+     of  Bernstein,  Frieman,  Kruskal,  and  Kulsrud,  together  with  Kruskal  and  Oberman,
+     and  then  sharpened  geometrically  by  Newcomb&#8217;s  field-line  formulation  <a 
+href="#Xbernstein1958_energy_principle">Bernstein
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbernstein1958_energy_principle">1958</a>],&#x00A0;<a 
+href="#Xkruskal1958_stability">Kruskal and Oberman</a>&#x00A0;[<a 
+href="#Xkruskal1958_stability">1958</a>],&#x00A0;<a 
+href="#Xnewcomb1960hydromagnetic-853">Newcomb</a>&#x00A0;[<a 
+href="#Xnewcomb1960hydromagnetic-853">1960</a>]. One of the deepest later
+     insights  was  that  this  clean  variational  structure  belongs  specifically  to  <span 
+class="ecti-1095">static  </span>ideal
+     MHD. Frieman and Rotenberg showed how the problem changes in the presence of
+     equilibrium  flow,  where  gyroscopic  terms  spoil  the  simple  Hermitian  form  <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman
+     and Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>]. This appendix is therefore the mathematical companion to the
+     energy-principle lecture and to the later appendix on flow and moving boundaries.</p></blockquote></div></div>
+<!--l. 15--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 15--><p class="noindent" >It is very easy to start from \(\int \vect {\eta }^*\!\cdot \vect {F}(\vect {\xi })\,dV\) and get lost in apparently asymmetric intermediate steps.
+     The right object to study is not the unsymmetrized force term by itself, but the <span 
+class="ecti-1095">bilinear</span>
+     <span 
+class="ecti-1095">form </span>obtained by polarizing the quadratic functional \(\delta W[\vect {\xi }]\). Once that is done, the symmetry
+     becomes transparent.</p></blockquote></div></div>
+<a 
+ id="x1-120001r124"></a>
+<h3 class="sectionHead"><span class="titlemark">38.1   </span> <a 
+ id="x1-1210001"></a>The operator statement and the natural inner products</h3>
+<!--l. 22--><p class="noindent" >In Lecture&#x00A0;15 the linearized equation of motion for a static ideal-MHD equilibrium was written as
+<a id="eq-eq-app-selfadj_eigenproblem"></a><div class="math-display">\[\vect {F}(\vect {\xi }) = -\omega ^2\rho \vect {\xi }, \tag{D.1}\]</div>
+which is the normal-mode form of Eq.&#x00A0;(<a href="lecture15.html#eq-eq-lin_eom_operator_form">15.13</a>). The force operator \(\vect {F}\) is linear in the displacement
+\(\vect {\xi }\).
+</p><!--l. 29--><p class="noindent" >There are really two inner products in the story.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 31--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1220001"></a>The ordinary \(L^2\) inner product.</span>
+The operator itself is symmetric in the ordinary volume inner product <a id="eq-eq-app-selfadj_L2"></a><div class="math-display">\[\langle \vect {\eta },\vect {\xi }\rangle \equiv \int _P \vect {\eta }^{*}\cdot \vect {\xi }\,dV, \tag{D.2}\]</div>
+provided the usual ideal-MHD boundary conditions remove the surface terms.
+</p>
+<!--l. 41--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1230001"></a>The density-weighted inner product.</span>
+Because the eigenvalue problem is generalized, with the positive weight \(\rho \) on the right-hand side of (D.1),
+the mode orthogonality is naturally expressed in <a id="eq-eq-app-selfadj_rho_inner"></a><div class="math-display">\[\langle \vect {\eta },\vect {\xi }\rangle _\rho \equiv \int _P \rho \,\vect {\eta }^{*}\cdot \vect {\xi }\,dV. \tag{D.3}\]</div>
+</p><!--l. 51--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 51--><p class="noindent" ><span 
+class="ecbx-1095">Why the problem is a generalized Hermitian eigenvalue problem. </span>The operator
+     statement \[ \vect {F}(\vect {\xi })=-\omega ^2\rho \vect {\xi } \] looks slightly different from the textbook form \(\mathcal L\xi =\lambda \xi \) because the inertia is carried by \(\rho \).
+     The clean way to think about it is:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">\(\vect {F}\) is symmetric in the ordinary \(L^2\) product (D.2);
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">the eigenvalues are \(-\omega ^2\);
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">orthogonality of distinct eigenfunctions is with respect to the positive weight \(\rho \), namely
+   (D.3).</dd></dl>
+     <!--l. 62--><p class="noindent" >So the static ideal-MHD normal-mode problem is the plasma analogue of a generalized
+     Hermitian matrix problem \(Kx=\lambda Mx\), with stiffness matrix \(K\sim -\vect {F}\) and mass matrix \(M\sim \rho \).</p></blockquote></div></div>
+<a 
+ id="x1-123004r127"></a>
+<h3 class="sectionHead"><span class="titlemark">38.2   </span> <a 
+ id="x1-1240002"></a>The clean proof: self-adjointness from the energy principle</h3>
+<!--l. 69--><p class="noindent" >The most economical proof starts from the energy principle itself. In Lecture&#x00A0;15, the bilinear form was
+defined by <a id="eq-eq-app-selfadj_bilinear_def"></a><div class="math-display">\[\delta W(\vect {\eta },\vect {\xi }) \equiv -\frac 12\int _P \vect {\eta }^{*}\cdot \vect {F}(\vect {\xi })\,dV. \tag{D.4}\]</div>
+The actual potential energy is the quadratic functional \(\delta W[\vect {\xi }]\equiv \delta W(\vect {\xi },\vect {\xi })\), as in Eq.&#x00A0;(<a href="lecture15.html#eq-eq-EP_deltaW_quadratic">15.15</a>).
+</p>
+<!--l. 78--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1250002"></a>Step 1: polarize the quadratic form.</span>
+To keep the algebra transparent, suppress complex conjugation for one moment and work with real trial
+displacements. Let <a id="eq-eq-app-selfadj_Wab"></a><div class="math-display">\[\mathcal W(\alpha ,\beta ) \equiv \delta W[\alpha \vect {\xi }+\beta \vect {\eta }], \tag{D.5}\]</div>
+where \(\alpha \) and \(\beta \) are independent real parameters. Because \(\delta W\) is quadratic, <a id="eq-eq-app-selfadj_Wab_expand"></a><div class="math-display">\[\mathcal W(\alpha ,\beta ) = \alpha ^2\delta W[\vect {\xi }] + 2\alpha \beta \,\delta W(\vect {\eta },\vect {\xi }) + \beta ^2\delta W[\vect {\eta }]. \tag{D.6}\]</div>
+Therefore <a id="eq-eq-app-selfadj_polarization"></a><div class="math-display">\[\delta W(\vect {\eta },\vect {\xi }) = \frac 12\left .\frac {\partial ^2 \mathcal W}{\partial \alpha \,\partial \beta }\right |_{\alpha =\beta =0}. \tag{D.7}\]</div>
+Since mixed partial derivatives commute, <a id="eq-eq-app-selfadj_real_symmetry"></a><div class="math-display">\[\delta W(\vect {\eta },\vect {\xi }) = \delta W(\vect {\xi },\vect {\eta }). \tag{D.8}\]</div>
+For Fourier amplitudes, one restores the Hermitian form simply by replacing one factor with its complex
+conjugate: <a id="eq-eq-app-selfadj_complex_symmetry"></a><div class="math-display">\[\delta W(\vect {\eta },\vect {\xi }) = \delta W(\vect {\xi },\vect {\eta })^{*}. \tag{D.9}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 119--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1260002"></a>Step 2: translate symmetry of \(\delta W\) into symmetry of \(\vect {F}\).</span>
+Using (D.4), Eq.&#x00A0;(D.9) becomes <a id="eq-eq-app-selfadj_step2"></a><div class="math-display">\[-\frac 12\int _P \vect {\eta }^{*}\cdot \vect {F}(\vect {\xi })\,dV = -\frac 12\int _P \vect {F}(\vect {\eta })^{*}\cdot \vect {\xi }\,dV. \tag{D.10}\]</div>
+Hence <a id="eq-eq-app-selfadj_final"></a><div class="math-display">\[\boxed { \int _P \vect {\eta }^{*}\cdot \vect {F}(\vect {\xi })\,dV = \int _P \vect {F}(\vect {\eta })^{*}\cdot \vect {\xi }\,dV. } \tag{D.11}\]</div>
+This is the self-adjointness statement already quoted in Eq.&#x00A0;(<a href="lecture15.html#eq-eq-selfadjoint_def">15.51</a>); here we have seen exactly where it
+comes from. The key point is that the force operator is the Fréchet derivative of a scalar potential-energy
+functional.
+</p>
+<!--l. 138--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1270002"></a>Why this proof is the right one.</span>
+One can certainly manipulate the linearized force term by term. But that route is messy because
+individual intermediate contributions do not look symmetric until they are combined correctly.
+The variational proof avoids that clutter and makes the physics clearer: static ideal MHD is
+self-adjoint because it is a small-oscillation problem around an equilibrium of a potential-energy
+functional.
+<a 
+ id="x1-127001r130"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">38.3   </span> <a 
+ id="x1-1280003"></a>A direct fixed-boundary bilinear form</h3>
+<!--l. 145--><p class="noindent" >The variational proof is the clean one, but it is also helpful to see the bilinear form explicitly. For
+fixed-boundary perturbations with \(\xi _n=0\) at the plasma surface and with gravity temporarily set to zero,
+Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>) reduces to the plasma volume integral <a id="eq-eq-app-selfadj_quadratic_fixed"></a><div class="math-display">\[2\delta W[\vect {\xi }] = \int _P dV\left [ \frac {|\vect {Q}|^2}{\muo } - \vect {\xi }\cdot (\J \times \vect {Q}) + \gamma p\,(\divergence \vect {\xi })^2 + (\vect {\xi }\cdot \grad p)\,\divergence \vect {\xi } \right ], \tag{D.12}\]</div>
+where <a id="eq-eq-app-selfadj_Qdef"></a><div class="math-display">\[\vect {Q}\equiv \curl (\vect {\xi }\times \B ). \tag{D.13}\]</div>
+Polarizing (D.12) gives <a id="eq-eq-app-selfadj_bilinear_fixed"></a><div class="math-display">\[\begin{aligned}2\delta W(\vect {\eta },\vect {\xi }) = \int _P dV\Bigg [ &amp;\frac {\vect {Q}_{\eta }^{*}\cdot \vect {Q}_{\xi }}{\muo } - \frac 12\,\vect {\eta }^{*}\cdot (\J \times \vect {Q}_{\xi }) - \frac 12\,\vect {\xi }\cdot (\J \times \vect {Q}_{\eta }^{*}) \nonumber \\ &amp;+ \gamma p\,(\divergence \vect {\eta }^{*})(\divergence \vect {\xi }) + \frac 12(\vect {\eta }^{*}\cdot \grad p)\,\divergence \vect {\xi } + \frac 12(\vect {\xi }\cdot \grad p)\,\divergence \vect {\eta }^{*} \Bigg ].\end{aligned} \tag{D.14}\]</div>
+</p><!--l. 185--><p class="noindent" >Now the symmetry is manifest: under the interchange \(\vect {\eta }\leftrightarrow \vect {\xi }\) followed by complex conjugation, every term in
+(D.14) is unchanged.
+</p>
+<!--l. 187--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1290003"></a>Magnetic term in one line.</span>
+The positive-definite line-bending term comes from a single integration by parts. Starting from the first
+part of the magnetic force, <a id="eq-eq-app-selfadj_mag_one_line"></a><div class="math-display">\[\begin{aligned}-\int _P \vect {\eta }^{*}\cdot \frac {1}{\muo }(\curl \vect {Q}_{\xi })\times \B \,dV &amp;= -\frac {1}{\muo }\int _P (\curl \vect {Q}_{\xi })\cdot (\B \times \vect {\eta }^{*})\,dV \nonumber \\ &amp;= \frac {1}{\muo }\int _P \vect {Q}_{\xi }\cdot \curl (\vect {\eta }^{*}\times \B )\,dV \nonumber \\ &amp;= \frac {1}{\muo }\int _P \vect {Q}_{\eta }^{*}\cdot \vect {Q}_{\xi }\,dV,\end{aligned} \tag{D.15}\]</div>
+</p><!--l. 201--><p class="noindent" >where the boundary term vanishes under the fixed-wall ideal boundary condition. This is the clean source
+of the \(|\vect {Q}|^2\) term in the quadratic form.
+</p>
+<!--l. 203--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1300003"></a>If gravity is retained.</span>
+In the interchange lectures one keeps the term involving \(\grad \Phi _g\). Its polarization is also symmetric: <a id="eq-eq-app-selfadj_gravity_bilinear"></a><div class="math-display">\[\begin{aligned}2\delta W_g(\vect {\eta },\vect {\xi }) = -\int _P dV\Bigg [ &amp;\frac 12(\vect {\eta }^{*}\cdot \grad \Phi _g)\,\divergence (\rho \vect {\xi }) \nonumber \\ &amp;+ \frac 12(\vect {\xi }\cdot \grad \Phi _g)\,\divergence (\rho \vect {\eta }^{*}) \Bigg ].\end{aligned} \tag{D.16}\]</div>
+</p><!--l. 216--><p class="noindent" >So gravity changes the stability physics, but it does <span 
+class="ecti-1095">not </span>destroy self-adjointness.
+<a 
+ id="x1-130001r134"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">38.4   </span> <a 
+ id="x1-1310004"></a>Consequences: real \(\omega ^2\), orthogonality, and continua</h3>
+<!--l. 222--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1320004"></a>Reality of \(\omega ^2\).</span>
+Take the ordinary inner product of (D.1) with \(\vect {\xi }\): <a id="eq-eq-app-selfadj_reality1"></a><div class="math-display">\[\int _P \vect {\xi }^{*}\cdot \vect {F}(\vect {\xi })\,dV = -\omega ^2\int _P \rho |\vect {\xi }|^2\,dV. \tag{D.17}\]</div>
+Complex conjugation gives <a id="eq-eq-app-selfadj_reality2"></a><div class="math-display">\[\int _P \vect {F}(\vect {\xi })^{*}\cdot \vect {\xi }\,dV = -\omega ^{*2}\int _P \rho |\vect {\xi }|^2\,dV. \tag{D.18}\]</div>
+Using (D.11), the left-hand sides are equal, so <a id="eq-eq-app-selfadj_reality3"></a><div class="math-display">\[\omega ^{*2}=\omega ^2. \tag{D.19}\]</div>
+Thus \(\omega ^2\) is real. The sign of \(\omega ^2\) then decides whether the response is oscillatory, marginal, or exponentially
+growing, exactly as discussed in Lecture&#x00A0;15.
+</p>
+<!--l. 244--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1330004"></a>Orthogonality of distinct eigenmodes.</span>
+Let \(\vect {\xi }_m\) and \(\vect {\xi }_n\) satisfy <a id="eq-eq-app-selfadj_modes"></a><div class="math-display">\[\vect {F}(\vect {\xi }_n)=-\omega _n^2\rho \vect {\xi }_n, \qquad \vect {F}(\vect {\xi }_m)=-\omega _m^2\rho \vect {\xi }_m. \tag{D.20}\]</div>
+Multiply the first equation by \(\vect {\xi }_m^{*}\), integrate over volume, and then use self-adjointness to move \(\vect {F}\) onto \(\vect {\xi }_m\): <a id="eq-eq-app-selfadj_orth1"></a><div class="math-display">\[\begin{aligned}-\omega _n^2\int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV &amp;= \int _P \vect {\xi }_m^{*}\cdot \vect {F}(\vect {\xi }_n)\,dV \nonumber \\ &amp;= \int _P \vect {F}(\vect {\xi }_m)^{*}\cdot \vect {\xi }_n\,dV \nonumber \\ &amp;= -\omega _m^2\int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV.\end{aligned} \tag{D.21}\]</div>
+</p><!--l. 265--><p class="noindent" >Therefore <a id="eq-eq-app-selfadj_orth2"></a><div class="math-display">\[(\omega _n^2-\omega _m^2) \int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV = 0. \tag{D.22}\]</div>
+If \(\omega _n^2\neq \omega _m^2\), then <a id="eq-eq-app-selfadj_orth3"></a><div class="math-display">\[\boxed { \int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV = 0. } \tag{D.23}\]</div>
+So distinct ideal-MHD eigenmodes are orthogonal in the density-weighted inner product (D.3).
+</p>
+<!--l. 280--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1340004"></a>Why a continuum does not contradict self-adjointness.</span>
+Self-adjointness does <span 
+class="ecti-1095">not </span>mean the spectrum must be purely discrete. A Hermitian differential operator
+may still have a continuous spectrum when the effective radial equation becomes singular or when the
+domain is unbounded. In ideal MHD the classic example is the Alfvén continuum: at a resonant surface
+the coefficient of the highest radial derivative vanishes, and the local solutions become singular even
+though the underlying operator remains Hermitian. The toroidal Alfvén-eigenmode lecture is therefore
+perfectly consistent with the present appendix: the continuum comes from singular structure, not from any
+failure of self-adjointness.
+</p>
+<!--l. 283--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1350004"></a>Where the symmetry is lost.</span>
+The clean Hermitian structure belongs to <span 
+class="ecti-1095">static ideal MHD</span>. With equilibrium flow, the Frieman&#8211;Rotenberg
+problem acquires gyroscopic terms that are antisymmetric rather than symmetric <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman and
+Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>]. With resistivity, the induction equation becomes diffusive and the eigenvalue problem
+becomes non-Hermitian. With kinetic closures, resonant denominators and frequency-dependent
+operators replace the simple potential-energy structure. That is why the energy principle is
+so powerful for ideal problems and so limited once dissipation, flow, or resonances become
+important.
+</p><!--l. 287--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 287--><p class="noindent" >There are three equivalent ways to remember this appendix.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">Static ideal MHD is a small-oscillation problem about an equilibrium of a scalar
+                                                                                         
+                                                                                         
+   potential-energy functional.
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">Because \(\delta W\) is a symmetric quadratic form, the linearized force operator is self-adjoint.
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">Self-adjointness implies real \(\omega ^2\), \(\rho \)-weighted orthogonality of distinct modes, and a clean
+   variational stability theory &#8212; but it does <span 
+class="ecti-1095">not </span>exclude the existence of continua.</dd></dl>
+     <!--l. 293--><p class="noindent" >That is the mathematical backbone of the ideal-MHD stability lectures.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1360004"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <span 
+class="ecti-1095">Nuclear</span>
+  <span 
+class="ecti-1095">Fusion Supplement, Part 2</span>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

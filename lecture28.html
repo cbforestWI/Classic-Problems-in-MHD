@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 28 Toroidal Alfvén Eigenmodes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture27.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture29.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;28</span><br /><a 
+ id="x1-18900028"></a>Toroidal Alfvén Eigenmodes</h2>
+<!--l. 16--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 16--><p class="noindent" >Toroidal  Alfvén  eigenmodes  are  a  classic  tokamak  problem  because  they  show,  in
+     unusually  compact  form,  how  geometry  changes  the  spectrum  of  ideal  MHD.  In  a
+     cylinder the shear-Alfvén branch is a continuum of local field-line resonances. In a torus,
+     neighboring  poloidal  harmonics  couple,  the  continuum  crossing  becomes  an  avoided
+     crossing, and a spectral gap appears. A discrete global mode can then live in that
+     gap. That mathematical fact matters because such modes are easily driven by energetic
+     particles and can redistribute or expel them.</p></blockquote></div></div>
+<!--l. 27--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 27--><p class="noindent" >The modern TAE story sits on top of several older layers. Alfvén&#8217;s original wave is
+     already present in the local ideal-MHD system, but in a torus one must also confront
+     the fact that each magnetic surface has its own parallel wave number and therefore its
+     own local shear-Alfvén frequency. Newcomb&#8217;s one-dimensional variational formulation
+     gave the clean language for radial singularities and continua <a 
+href="#Xnewcomb1960hydromagnetic-853">Newcomb</a>&#x00A0;[<a 
+href="#Xnewcomb1960hydromagnetic-853">1960</a>]. Kieras
+     and  Tataronis  then  gave  an  especially  transparent  formulation  of  the  shear-Alfvén
+     continuous spectrum in axisymmetric toroidal equilibria <a 
+href="#XKierasTataronis1982">Kieras and Tataronis</a>&#x00A0;[<a 
+href="#XKierasTataronis1982">1982</a>].
+     The large-aspect-ratio analyses of Cheng, Chen, and Chance made the key observation
+     that the first toroidal correction couples neighboring poloidal harmonics and therefore
+     opens a gap in the Alfvén continuum <a 
+href="#Xcheng85">Cheng et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xcheng85">1985</a>],&#x00A0;<a 
+href="#Xcheng87">Cheng and Chance</a>&#x00A0;[<a 
+href="#Xcheng87">1987</a>]. Fu
+     and Van Dam then pointed out the consequence that mattered for fusion: alpha particles
+     and other energetic ions can resonate with a discrete gap mode and drive it unstable <a 
+href="#Xfu89">Fu
+     and Van&#x00A0;Dam</a>&#x00A0;[<a 
+href="#Xfu89">1989</a>]. The TFTR observations of beam-driven TAEs turned that point
+     from an elegant theoretical possibility into an experimental reality <a 
+href="#Xwong91">Wong et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xwong91">1991</a>].
+     The DIII-D beam-driven studies and the early global-mode comparison between theory
+     and  experiment  made  the  same  lesson  concrete  in  a  different  experimental  setting
+     <a 
+href="#XHeidbrink1991NF">Heidbrink et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHeidbrink1991NF">1991</a>],&#x00A0;<a 
+href="#XTurnbull1993PFB">Turnbull et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XTurnbull1993PFB">1993</a>]. Since then the field has broadened into
+     a full spectroscopy of Alfvénic fluctuations&#8212;TAEs, EAEs, NAEs, RSAEs, BAEs&#8212;with
+     continuum damping, kinetic corrections, and energetic-particle transport all becoming
+     central  parts  of  the  subject  <a 
+href="#Xberk91">Berk  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xberk91">1991</a>],&#x00A0;<a 
+href="#Xmett92">Mett  and  Mahajan</a>&#x00A0;[<a 
+href="#Xmett92">1992</a>],&#x00A0;<a 
+href="#Xfasoli07">Fasoli
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xfasoli07">2007</a>],&#x00A0;<a 
+href="#Xlauber13">Lauber</a>&#x00A0;[<a 
+href="#Xlauber13">2013</a>],&#x00A0;<a 
+href="#Xchenzonca16">Chen   and   Zonca</a>&#x00A0;[<a 
+href="#Xchenzonca16">2016</a>],&#x00A0;<a 
+href="#XHeidbrink2008POP">Heidbrink</a>&#x00A0;[<a 
+href="#XHeidbrink2008POP">2008</a>],&#x00A0;<a 
+href="#XHeidbrinkWhite2020POP">Heidbrink
+     and White</a>&#x00A0;[<a 
+href="#XHeidbrinkWhite2020POP">2020</a>].</p></blockquote></div></div>
+<!--l. 52--><p class="noindent" >This lecture is deliberately tied to the Rosenbluth&#8211;Bussac lecture. We use the same large-aspect-ratio
+notation, the same field-line mismatch <a id="eq-eq-tae_delta_m_def_intro"></a><div class="math-display">\[\Delta _m(r)\equiv n-\frac {m}{q(r)}, \tag{28.1}\]</div>
+and the same Newcomb radial displacement \(\xi _m(r)\). The aim is to show how the static Newcomb functional
+becomes a wave functional, how the Alfvén continuum appears as a singular point of the radial equation,
+and how the first toroidal harmonic opens the TAE gap.
+<a 
+ id="x1-189001r196"></a>
+                                                                                         
+                                                                                         
+</p>
+<h3 class="sectionHead"><span class="titlemark">28.1   </span> <a 
+ id="x1-1900001"></a>Physical picture</h3>
+<!--l. 67--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1910001"></a>Start in a cylinder.</span>
+For a Fourier harmonic <a id="eq-eq-tae_fourier_xi"></a><div class="math-display">\[\xi _r(r,\theta ,\varphi ,t)=\xi _m(r)e^{i(m\theta -n\varphi )-i\omega t}, \tag{28.2}\]</div>
+the large-aspect-ratio parallel wave number is <a id="eq-eq-tae_kparallel_delta"></a><div class="math-display">\[k_{\parallel m}(r) = \frac {1}{R_0}\left (n-\frac {m}{q(r)}\right ) = \frac {\Delta _m(r)}{R_0}. \tag{28.3}\]</div>
+If \(q\) varies with radius, then \(k_{\parallel m}\) varies from one magnetic surface to the next. The local shear-Alfvén frequency
+also varies with radius, <a id="eq-eq-tae_local_alfven_frequency"></a><div class="math-display">\[\omega _{A,m}(r) = \left |k_{\parallel m}(r)\right |v_A(r) = \left |\Delta _m(r)\right |\frac {v_A(r)}{R_0}, \qquad v_A(r)=\frac {B_0}{\sqrt {\mu _0\rho (r)}}. \tag{28.4}\]</div>
+The cylinder therefore does not give one global shear-Alfvén frequency. It gives a family of local field-line
+resonances: the shear-Alfvén continuum.
+</p>
+<!--l. 98--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1920001"></a>Now add toroidicity.</span>
+In a large-aspect-ratio tokamak the major radius varies around the poloidal angle, <a id="eq-eq-tae_major_radius"></a><div class="math-display">\[R(r,\theta )=R_0+r\cos \theta , \qquad \epsilon (r)\equiv \frac {r}{R_0}\ll 1. \tag{28.5}\]</div>
+Because of the magnetic field variation within a flux surface, the \(\cos \theta \) couples neighboring poloidal harmonics \(m\leftrightarrow m\pm 1\),
+while preserving the same toroidal mode number \(n\). Where two neighboring cylindrical continuum branches
+would have crossed, toroidicity converts the exact crossing into an avoided crossing. The interval between
+the split branches is the toroidicity-induced Alfvén gap.
+</p>
+<!--l. 113--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1930001"></a>Why that matters.</span>
+A discrete mode can localize radially in that gap and thereby avoid the strongest ideal continuum
+resonances over the region where the mode lives. It is not undamped, but the leading continuum
+singularity has been pushed aside. At that point geometry has done its job; the stability question is handed
+to energetic particles, kinetic damping, and the detailed global mode structure.
+</p><!--l. 121--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 121--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">A gap is not yet a global mode. </tspan>The local gap is a statement about the spectrum on
+     each surface. A true TAE still needs radial localization and boundary conditions. Only
+     after the coupled radial problem is solved does one obtain a discrete global eigenmode.</p></blockquote></div></div>
+<a 
+ id="x1-193001r201"></a>
+<h3 class="sectionHead"><span class="titlemark">28.2   </span> <a 
+ id="x1-1940002"></a>Newcomb Lagrangian for waves</h3>
+<!--l. 131--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 132--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1950002"></a>Step 1: start from the same ideal-MHD variational structure.</span>
+     For ideal MHD linearized about a static equilibrium, <a id="eq-eq-tae_linear_motion"></a><div class="math-display">\[\rho _0\,\partial _t^2\boldsymbol {\xi } = \mathcal {F}(\boldsymbol {\xi }), \tag{28.6}\]</div>
+     where \(\mathcal {F}\) is the self-adjoint linearized force operator. With \(e^{-i\omega t}\) time dependence, <a id="eq-eq-tae_force_balance_harmonic"></a><div class="math-display">\[\mathcal {F}(\hat {\boldsymbol {\xi }})+\omega ^2\rho _0\hat {\boldsymbol {\xi }}=0. \tag{28.7}\]</div>
+     The corresponding Lagrangian is <a id="eq-eq-tae_mhd_lagrangian"></a><div class="math-display">\[\mathcal {L}[\hat {\boldsymbol {\xi }}] = \delta W[\hat {\boldsymbol {\xi }}]-\omega ^2K[\hat {\boldsymbol {\xi }}], \tag{28.8}\]</div>
+                                                                                         
+                                                                                         
+     where <a id="eq-eq-tae_deltaW_K_definitions"></a><div class="math-display">\[\delta W = -\frac 12\int d^3x\,\hat {\boldsymbol {\xi }}^{\,*}\cdot \mathcal {F}(\hat {\boldsymbol {\xi }}), \qquad K=\frac 12\int d^3x\,\rho _0|\hat {\boldsymbol {\xi }}|^2. \tag{28.9}\]</div>
+     For an exact eigenfunction, \(\omega ^2=\delta W/K\). But the more useful statement here is that \(\delta \mathcal {L}=0\) gives the wave
+     equation.
+</p>
+     <!--l. 166--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1960002"></a>Step 2: separate the static Newcomb coefficients from inertia.</span>
+     The coefficients in the Rosenbluth&#8211;Bussac lecture are potential-energy coefficients. In this
+     lecture we should therefore write them first as \(f_m^{(W)}\) and \(g_m^{(W)}\). The wave coefficients are obtained only
+     after subtracting \(\omega ^2K\): <a id="eq-eq-tae_deltaW_minus_omegaK"></a><div class="math-display">\[\mathcal {L}_m(\omega ) = \delta W_m-\omega ^2K_m. \tag{28.10}\]</div>
+     For the radial displacement variable \(\xi _m\), the leading cylindrical kinetic energy is not just an edge
+     term. Use the Rosenbluth&#8211;Bussac normalization <a id="eq-eq-tae_normalization_N"></a><div class="math-display">\[\mathcal {N}\equiv \frac {2\pi ^2R_0}{\mu _0}. \tag{28.11}\]</div>
+     The small but important point is that an incompressible shear-Alfvén perturbation is not a
+     purely radial displacement. Once \(\xi _r=\xi _m\) is specified, incompressibility also fixes the binormal
+     component \(\xi _{\eta m}\). On a cylindrical magnetic surface define <a id="eq-eq-tae_eta_direction"></a><div class="math-display">\[\vect {e}_{\eta ,m} = (m/r)\vect {e}_{\theta } -(n/R_0)\vect {e}_\varphi {\left (m^2/r^2+n^2/R_0^2\right )^{1/2}}, \qquad k_{\eta m}^2\equiv \frac {m^2}{r^2}+\frac {n^2}{R_0^2} =\frac {M_m}{r^2}, \tag{28.12}\]</div>
+     where <a id="eq-eq-tae_Mm_def"></a><div class="math-display">\[M_m\equiv m^2+\frac {n^2r^2}{R_0^2}. \tag{28.13}\]</div>
+     Thus, to the accuracy needed here, the physical displacement is <a id="eq-eq-tae_radial_plus_binormal"></a><div class="math-display">\[\vect {\xi }_m = \xi _m\vect {e}_r+\xi _{\eta m}\vect {e}_{\eta ,m}, \tag{28.14}\]</div>
+     with any remaining transverse component chosen zero because it would add inertia without
+     helping satisfy incompressibility. The divergence constraint is then <a id="eq-eq-tae_incompressibility_constraint_eta"></a><div class="math-display">\[\nabla \cdot \vect {\xi }_m = \frac {1}{r}(r\xi _m)' + i k_{\eta m}\xi _{\eta m} =0, \tag{28.15}\]</div>
+     so <a id="eq-eq-tae_xi_eta_from_xi_r"></a><div class="math-display">\[\xi _{\eta m} = \frac {i}{\sqrt {M_m}}(r\xi _m)', \qquad |\xi _{\eta m}|^2 = \frac {|(r\xi _m)'|^2}{M_m}. \tag{28.16}\]</div>
+     This is the whole origin of the derivative inertia. The kinetic energy contains both \(|\xi _r|^2\) and \(|\xi _\eta |^2\):
+     <a id="eq-eq-tae_kinetic_xi_unintegrated"></a><div class="math-display">\[\frac {\omega ^2K_m}{\mathcal {N}} = \frac 12\int _0^a \mu _0\rho \omega ^2 r \left [ |\xi _m|^2+|\xi _{\eta m}|^2 \right ]dr = \frac 12\int _0^a \mu _0\rho \omega ^2 \left [ r|\xi _m|^2+ \frac {r}{M_m}\left |(r\xi _m)'\right |^2 \right ]dr . \tag{28.17}\]</div>
+     So the derivative term is not a boundary correction and it is not an extra assumption. It is
+     simply the inertia of the binormal displacement required by \(\nabla \cdot \boldsymbol {\xi }=0\).
+     </p><!--l. 252--><p class="noindent" >To put (<a href="lecture28.html#eq-eq-tae_kinetic_xi_unintegrated">28.17</a>) into Newcomb&#8217;s standard \(f,g\) form, expand the second term: <a id="eq-eq-tae_kinetic_metric_expand"></a><div class="math-display">\[\begin{aligned}\frac {r}{M_m}|(r\xi _m)'|^2 &amp;= \frac {r}{M_m}|r\xi _m'+\xi _m|^2 \nonumber \\ &amp;= \frac {r^3}{M_m}|\xi _m'|^2 + \frac {r}{M_m}|\xi _m|^2 + \frac {r^2}{M_m}\frac {d}{dr}|\xi _m|^2.\end{aligned} \tag{28.18}\]</div>
+     </p><!--l. 267--><p class="noindent" >The last term is the only part that becomes a surface contribution. With a nonuniform density,
+     <a id="eq-eq-tae_kinetic_cross_parts"></a><div class="math-display">\[\begin{aligned}\int _0^a \mu _0\rho \omega ^2 \frac {r^2}{M_m}\frac {d}{dr}|\xi _m|^2dr &amp;= \left [ \mu _0\rho \omega ^2\frac {r^2}{M_m}|\xi _m|^2 \right ]_0^a \nonumber \\ &amp;\quad - \int _0^a \mu _0\omega ^2 \left (\frac {\rho r^2}{M_m}\right )' |\xi _m|^2dr .\end{aligned} \tag{28.19}\]</div>
+     </p><!--l. 284--><p class="noindent" >Therefore the bulk kinetic coefficients are <a id="eq-eq-tae_fK_general"></a><div class="math-display">\[\begin{aligned}f_m^{(K)}(r) &amp;= \mu _0\rho \frac {r^3}{M_m},  \\ g_m^{(K)}(r) &amp;= \mu _0 \left [ \rho \left (r+\frac {r}{M_m}\right ) - \left (\frac {\rho r^2}{M_m}\right )' \right ].\end{aligned} \tag{28.20}\]</div>
+     </p><!--l. 301--><p class="noindent" >Since the wave functional is \(\delta W_m-\omega ^2K_m\), the full Newcomb wave coefficients are <a id="eq-eq-tae_f_wave_from_static_general"></a><div class="math-display">\[\begin{aligned}f_m(r,\omega ) &amp;= f_m^{(W)}(r)-\omega ^2 f_m^{(K)}(r) = f_m^{(W)}(r)-\mu _0\rho \omega ^2\frac {r^3}{M_m},  \\ g_m(r,\omega ) &amp;= g_m^{(W)}(r)-\omega ^2 g_m^{(K)}(r) \nonumber \\ &amp;= g_m^{(W)}(r) - \mu _0\omega ^2 \left [ \rho \left (r+\frac {r}{M_m}\right ) - \left (\frac {\rho r^2}{M_m}\right )' \right ].\end{aligned} \tag{28.22}\]</div>
+     </p><!--l. 326--><p class="noindent" >The integration by parts also changes the natural edge term by <a id="eq-eq-tae_boundary_inertial_piece"></a><div class="math-display">\[\mathcal {B}(\omega ) = \mathcal {B}^{(W)}- \mu _0\rho (a)\omega ^2\frac {a^2}{M_m(a)} \tag{28.24}\]</div>
+     for a free boundary. For the fixed-boundary internal problem this edge term is irrelevant, but
+     the bulk terms in (<a href="lecture28.html#eq-eq-tae_f_wave_from_static_general">28.22</a>) and (<a href="lecture28.html#eq-eq-tae_g_wave_from_static_general">28.23</a>) remain. This is where the \(\rho \omega ^2\) terms enter Newcomb&#8217;s \(f_m\) and
+     \(g_m\).
+</p>
+     <!--l. 339--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1970002"></a>Step 3: write the one-dimensional wave functional with f and g.</span>
+     After this subtraction has been made, a single harmonic has the form <a id="eq-eq-tae_newcomb_functional_fg"></a><div class="math-display">\[\mathcal {L}_m[\xi _m;\omega ] = \frac 12\int _0^a \left [ f_m(r,\omega )|\xi _m'|^2+g_m(r,\omega )|\xi _m|^2 \right ]dr +\frac 12\mathcal {B}(\omega )|\xi _m(a)|^2. \tag{28.25}\]</div>
+</p>
+     <!--l. 353--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1980002"></a>Step 4: vary it once, carefully.</span>
+     Let \(\xi _m\rightarrow \xi _m+\varepsilon \chi \). The term linear in \(\varepsilon \) is <a id="eq-eq-tae_variation_before_parts_fg"></a><div class="math-display">\[\delta \mathcal {L}_m = \Re \left \{ \int _0^a \left [ f_m\xi _m'\chi ^{*\prime }+g_m\xi _m\chi ^* \right ]dr + \mathcal {B}\xi _m(a)\chi ^*(a) \right \}. \tag{28.26}\]</div>
+                                                                                         
+                                                                                         
+     Integrating the derivative term by parts, <a id="eq-eq-tae_parts_fg"></a><div class="math-display">\[\int _0^a f_m\xi _m'\chi ^{*\prime }dr = \left [f_m\xi _m'\chi ^*\right ]_0^a - \int _0^a (f_m\xi _m')'\chi ^*dr. \tag{28.27}\]</div>
+     Since \(\chi \) is arbitrary in the interior, the Euler&#8211;Lagrange equation is <a id="eq-eq-tae_newcomb_EL_fg"></a><div class="math-display">\[-\frac {d}{dr}\left (f_m\frac {d\xi _m}{dr}\right )+g_m\xi _m=0. \tag{28.28}\]</div>
+     If the edge is free rather than fixed, the natural boundary condition is <a id="eq-eq-tae_newcomb_natural_bc_fg"></a><div class="math-display">\[f_m(a)\xi _m'(a)+\mathcal {B}\xi _m(a)=0. \tag{28.29}\]</div>
+     For a fixed boundary one instead imposes \(\xi _m(a)=0\).
+</p>
+     <!--l. 390--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1990002"></a>Step 5: why continua appear in this same equation.</span>
+     The highest-derivative coefficient is \(f_m(r,\omega )\). If \(f_m\) is smooth and nonzero on \(0&lt;r&lt;a\), the radial
+     problem is an ordinary regular eigenvalue problem. If \(f_m(r_A,\omega )=0\) at an interior surface, the
+     differential operator is singular. That singular Newcomb solution is the ideal-MHD
+     continuum.</p></blockquote></div></div>
+<a 
+ id="x1-199001r205"></a>
+<h3 class="sectionHead"><span class="titlemark">28.3   </span> <a 
+ id="x1-2000003"></a>The leading large-aspect-ratio wave functional</h3>
+<!--l. 402--><p class="noindent" >Use the same definitions as Lecture&#x00A0;26: <a id="eq-eq-tae_delta_sigma_F"></a><div class="math-display">\[\Delta _m(r)=n-\frac {m}{q(r)}, \qquad \Sigma _m(r)=n+\frac {m}{q(r)}, \qquad F_m=-\frac {B_0}{R_0}\Delta _m. \tag{28.30}\]</div>
+The leading large-aspect-ratio Newcomb coefficients are <a id="eq-eq-tae_f2_static"></a><div class="math-display">\[\begin{aligned}f_{2m}^{(W)}(r) &amp;= \frac {B_0^2r^3}{m^2R_0^2}\Delta _m^2,  \\ g_{2m}^{(W)}(r) &amp;= \frac {B_0^2r}{m^2R_0^2}(m^2-1)\Delta _m^2 + \frac {2n^2r^2}{m^2R_0^2}\mu _0p'(r).\end{aligned} \tag{28.31}\]</div>
+</p><!--l. 425--><p class="noindent" >The superscript \((W)\) reminds us that these are the potential-energy pieces; the inertial pieces still have to be
+added before this becomes a wave functional.
+</p>
+<!--l. 429--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2010003"></a>Add the inertial term explicitly.</span>
+With this normalization, the leading kinetic contribution from (<a href="lecture28.html#eq-eq-tae_kinetic_xi_unintegrated">28.17</a>) reduces, for \(n^2r^2/R_0^2\ll m^2\) and slowly varying
+density, to <a id="eq-eq-tae_K2_newcomb"></a><div class="math-display">\[\frac {\omega ^2K_{2m}}{\mathcal {N}} = \frac 12\int _0^a \mu _0\rho \omega ^2 \left [ \frac {r^3}{m^2}|\xi _m'|^2 + \frac {m^2-1}{m^2}r|\xi _m|^2 \right ]dr +\hbox {surface term}. \tag{28.33}\]</div>
+The surface term is zero for a fixed boundary and regular axis, but the two bulk terms are not
+optional. In the same leading ordering, the Rosenbluth&#8211;Bussac potential-energy coefficients are <div class="math-display">\[\begin{aligned}f_{2m}^{(W)} &amp;= \frac {r^3}{m^2}\frac {B_0^2}{R_0^2}\Delta _m^2, \\ g_{2m}^{(W)} &amp;= \frac {m^2-1}{m^2}r\frac {B_0^2}{R_0^2}\Delta _m^2 + \frac {2n^2r^2}{m^2R_0^2}\mu _0p'.\end{aligned}\]</div>
+</p><!--l. 460--><p class="noindent" >The kinetic coefficients from (<a href="lecture28.html#eq-eq-tae_K2_newcomb">28.33</a>) are <a id="eq-eq-tae_fK_gK_leading"></a><div class="math-display">\[f_{2m}^{(K)}=\mu _0\rho \frac {r^3}{m^2}, \qquad g_{2m}^{(K)}=\mu _0\rho \frac {m^2-1}{m^2}r . \tag{28.36}\]</div>
+Subtracting \(\omega ^2K_{2m}\) from the static Rosenbluth&#8211;Bussac coefficients therefore gives <a id="eq-eq-tae_f2_wave"></a><div class="math-display">\[\begin{aligned}f_{2m}(r,\omega ) &amp;= f_{2m}^{(W)}-\omega ^2 f_{2m}^{(K)} \nonumber \\ &amp;= \frac {r^3}{m^2} \left [ \frac {B_0^2}{R_0^2}\Delta _m^2(r)-\mu _0\rho (r)\omega ^2 \right ],  \\ g_{2m}(r,\omega ) &amp;= g_{2m}^{(W)}-\omega ^2 g_{2m}^{(K)} \nonumber \\ &amp;= \frac {m^2-1}{m^2}r \left [ \frac {B_0^2}{R_0^2}\Delta _m^2(r)-\mu _0\rho (r)\omega ^2 \right ] + \frac {2n^2r^2}{m^2R_0^2}\mu _0p'(r).\end{aligned} \tag{28.37}\]</div>
+</p><!--l. 494--><p class="noindent" >Equivalently, <a id="eq-eq-tae_f2_g2_A_form"></a><div class="math-display">\[f_{2m}=\frac {r^3}{m^2}\mathcal {A}_m, \qquad g_{2m}=\frac {m^2-1}{m^2}r\mathcal {A}_m + \frac {2n^2r^2}{m^2R_0^2}\mu _0p', \tag{28.39}\]</div>
+where <a id="eq-eq-tae_A_m_def"></a><div class="math-display">\[\mathcal {A}_m(r,\omega ) \equiv \frac {B_0^2}{R_0^2}\Delta _m^2(r)-\mu _0\rho (r)\omega ^2 = \mu _0\rho (r)\left [\omega _{A,m}^2(r)-\omega ^2\right ]. \tag{28.40}\]</div>
+This is the answer to the apparent mystery in the derivative term: the coefficient multiplying \(\xi _m'\) is the
+line-bending coefficient \(r^3B_0^2\Delta _m^2/(m^2R_0^2)\) minus the derivative part of the kinetic metric, \(\mu _0\rho \omega ^2r^3/m^2\). Factoring out \(r^3/m^2\) leaves \(\mathcal {A}_m\). Thus the
+leading one-harmonic wave functional is <a id="eq-eq-tae_L2_newcomb"></a><div class="math-display">\[\frac {\mathcal {L}_{2m}}{\mathcal {N}} = \frac 12\int _0^a \left [ f_{2m}(r,\omega )|\xi _m'|^2+ g_{2m}(r,\omega )|\xi _m|^2 \right ]dr . \tag{28.41}\]</div>
+For the elementary TAE derivation below we set the pressure-gradient term aside. That is the low-\(\beta \),
+shear-Alfvén limit. Pressure and compressibility are essential for BAEs and beta-induced gaps, but they
+are not needed to see the first toroidal Alfvén gap.
+</p><!--l. 533--><p class="noindent" >The useful rule is therefore not &#8220;use the static \(f\) and \(g\) unchanged.&#8221; It is <a id="eq-eq-tae_static_plus_kinetic_rule"></a><div class="math-display">\[f_m=f_m^{(W)}-\omega ^2 f_m^{(K)}, \qquad g_m=g_m^{(W)}-\omega ^2 g_m^{(K)}. \tag{28.42}\]</div>
+At leading order, this rule is equivalent to replacing <a id="eq-eq-tae_static_to_wave_replacement"></a><div class="math-display">\[\frac {B_0^2}{R_0^2}\Delta _m^2 \quad \longrightarrow \quad \frac {B_0^2}{R_0^2}\Delta _m^2-\mu _0\rho \omega ^2 \tag{28.43}\]</div>
+inside the leading line-bending pieces of both \(f_m\) and \(g_m\).
+</p>
+                                                                                         
+                                                                                         
+<!--l. 550--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2020003"></a>The explicit one-dimensional wave equation.</span>
+Varying (<a href="lecture28.html#eq-eq-tae_L2_newcomb">28.41</a>) gives the Newcomb wave equation <a id="eq-eq-tae_L2_wave_equation_fg"></a><div class="math-display">\[-\frac {d}{dr} \left [ f_{2m}(r,\omega )\frac {d\xi _m}{dr} \right ] + g_{2m}(r,\omega )\xi _m =0. \tag{28.44}\]</div>
+Using (<a href="lecture28.html#eq-eq-tae_f2_wave">28.37</a>)&#8211;(<a href="lecture28.html#eq-eq-tae_g2_wave">28.38</a>), this is <a id="eq-eq-tae_L2_wave_equation"></a><div class="math-display">\[-\frac {d}{dr} \left [ \frac {r^3}{m^2}\mathcal {A}_m(r,\omega )\frac {d\xi _m}{dr} \right ] + \left [ \frac {m^2-1}{m^2}r\mathcal {A}_m(r,\omega ) + \frac {2n^2r^2}{m^2R_0^2}\mu _0p'(r) \right ]\xi _m =0. \tag{28.45}\]</div>
+In the low-\(\beta \) TAE limit one drops the pressure-gradient term. The fixed-boundary version uses regularity at
+the magnetic axis and \(\xi _m(a)=0\). The free-boundary version would use the corresponding natural condition obtained
+from the surface term.
+</p>
+<!--l. 582--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2030003"></a>Where the singularity is.</span>
+The coefficient of the highest radial derivative vanishes when <a id="eq-eq-tae_A_zero"></a><div class="math-display">\[\mathcal {A}_m(r_A,\omega )=0, \tag{28.46}\]</div>
+or equivalently <a id="eq-eq-tae_Dm_resonance"></a><div class="math-display">\[D_m(r_A,\omega ) \equiv \omega ^2-\omega _{A,m}^2(r_A) = \omega ^2-\omega _A^2(r_A)\Delta _m^2(r_A) =0, \tag{28.47}\]</div>
+where \(\omega _A(r)=v_A(r)/R_0\). The two signs are useful for different purposes: <a id="eq-eq-tae_A_D_relation"></a><div class="math-display">\[\mathcal {A}_m=-\mu _0\rho D_m. \tag{28.48}\]</div>
+Newcomb&#8217;s singular-surface language is naturally phrased as \(\mathcal {A}_m=0\), because \(\mathcal {A}_m\) multiplies the highest
+derivative. The continuum language is naturally phrased as \(D_m=0\), because \(D_m\) is the local oscillator
+denominator.
+</p>
+<!--l. 609--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2040003"></a>Local form of the singular solution.</span>
+Assume \(r_A\) is a simple resonance, so <a id="eq-eq-tae_A_linearized"></a><div class="math-display">\[\mathcal {A}_m(r,\omega ) \simeq \mathcal {A}'_{mA}(r-r_A), \qquad \mathcal {A}'_{mA}\equiv \left .\frac {\partial \mathcal {A}_m}{\partial r}\right |_{r_A}. \tag{28.49}\]</div>
+The leading singular part of (<a href="lecture28.html#eq-eq-tae_L2_wave_equation">28.45</a>) is then <a id="eq-eq-tae_local_singular_equation"></a><div class="math-display">\[-\frac {d}{dr} \left [ (r-r_A)\frac {d\xi _m}{dr} \right ] \simeq 0, \tag{28.50}\]</div>
+where smooth nonzero factors have been divided out. Integrating twice, <a id="eq-eq-tae_log_singularity_xi"></a><div class="math-display">\[(r-r_A)\xi _m'=C_1, \qquad \xi _m(r)=C_0+C_1\ln |r-r_A|. \tag{28.51}\]</div>
+Thus the ideal-MHD continuum is not merely the algebraic formula \(\omega =\omega _{A,m}(r)\). In the full radial Newcomb problem
+it is a logarithmic singularity caused by the vanishing of the highest-derivative coefficient.
+</p><!--l. 642--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 642--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Do not confuse two different uses of &#8220;resonance.&#8221; </tspan>The rational surface \(\Delta _m=0\) is the place
+     where \(k_{\parallel m}=0\), so the local shear-Alfvén frequency of that harmonic is zero. A finite-frequency
+     Alfvén continuum resonance satisfies \(D_m=0\), i.e. \(\omega ^2=\omega _A^2\Delta _m^2\). For a fixed nonzero \(\omega \), the resonant surface is
+     generally not the rational surface.</p></blockquote></div></div>
+<a 
+ id="x1-204001r211"></a>
+<h3 class="sectionHead"><span class="titlemark">28.4   </span> <a 
+ id="x1-2050004"></a>Concrete crossing example: m = 2 and m = 3</h3>
+<!--l. 654--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2060004"></a>Choose a simple monotone safety-factor profile.</span>
+Take <a id="eq-eq-tae_q_profile_example"></a><div class="math-display">\[q(r)=q_0+(q_a-q_0)\left (\frac {r}{a}\right )^2, \qquad q_0\simeq 1, \qquad q_a\simeq 4. \tag{28.52}\]</div>
+For arithmetic let \(q_0=1\) and \(q_a=4\). Then <a id="eq-eq-tae_q_profile_specific"></a><div class="math-display">\[q(r)=1+3\frac {r^2}{a^2}. \tag{28.53}\]</div>
+</p>
+<!--l. 670--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2070004"></a>We will be searching for eigen functions that depend on the same \(n\)</span>
+since toroidal axisymmetry conserves the toroidal mode number. The basic TAE pair is therefore the pair
+<a id="eq-eq-tae_23_same_n"></a><div class="math-display">\[(m,n)=(2,1), \qquad (m+1,n)=(3,1), \tag{28.54}\]</div>
+                                                                                         
+                                                                                         
+At the crossing however the \(\Delta _m\), hence \(k_\parallel \) are of opposite signs.
+</p>
+<!--l. 682--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2080004"></a>Locate the uncoupled crossing.</span>
+The two cylindrical continuum branches cross when their local Alfvén frequencies are equal,
+<a id="eq-eq-tae_equal_continuum_frequencies"></a><div class="math-display">\[\omega _A^2\Delta _m^2=\omega _A^2\Delta _{m+1}^2. \tag{28.55}\]</div>
+The crossing relevant to a TAE has opposite parallel wave numbers, <a id="eq-eq-tae_opposite_delta_crossing"></a><div class="math-display">\[\Delta _m=-\Delta _{m+1}. \tag{28.56}\]</div>
+Using \(\Delta _m=n-m/q\), <div class="math-display">\[n-\frac {m}{q_c} = -\left (n-\frac {m+1}{q_c}\right ),\]</div>
+so <a id="eq-eq-tae_crossing_q_general"></a><div class="math-display">\[q_c=\frac {m+\tfrac 12}{n}. \tag{28.58}\]</div>
+For \(m=2\) and \(n=1\), <a id="eq-eq-tae_crossing_q_23"></a><div class="math-display">\[q_c=\frac 52. \tag{28.59}\]</div>
+With (<a href="lecture28.html#eq-eq-tae_q_profile_specific">28.53</a>), <a id="eq-eq-tae_crossing_radius_example"></a><div class="math-display">\[\frac {r_c}{a} = \left (\frac {q_c-q_0}{q_a-q_0}\right )^{1/2} = \left (\frac {2.5-1}{4-1}\right )^{1/2} = \frac {1}{\sqrt {2}} \simeq 0.707. \tag{28.60}\]</div>
+At this radius, <a id="eq-eq-tae_delta_values_23"></a><div class="math-display">\[\Delta _2(r_c)=1-\frac {2}{2.5}=+\frac 15, \qquad \Delta _3(r_c)=1-\frac {3}{2.5}=-\frac 15. \tag{28.61}\]</div>
+Thus both branches satisfy the same continuum-resonance condition at the same radius when
+<a id="eq-eq-tae_example_omega0"></a><div class="math-display">\[\omega _0 = \omega _A(r_c)|\Delta _2(r_c)| = \omega _A(r_c)|\Delta _3(r_c)| = \frac {v_A(r_c)}{5R_0}. \tag{28.62}\]</div>
+This is the surface where toroidicity will open the gap.
+</p>
+<!--l. 743--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2090004"></a>The rational surfaces are nearby but different.</span>
+For the same profile, <a id="eq-eq-tae_m2_rational_surface"></a><div class="math-display">\[\Delta _2=0 \quad \Longleftrightarrow \quad q=2 \quad \Longrightarrow \quad \frac {r}{a}=\sqrt {\frac 13}\simeq 0.577, \tag{28.63}\]</div>
+and <a id="eq-eq-tae_m3_rational_surface"></a><div class="math-display">\[\Delta _3=0 \quad \Longleftrightarrow \quad q=3 \quad \Longrightarrow \quad \frac {r}{a}=\sqrt {\frac 23}\simeq 0.816. \tag{28.64}\]</div>
+Those are the zero-frequency continuum points. The TAE crossing at \(r_c/a\simeq 0.707\) lies between them, where \(\Delta _2\) and \(\Delta _3\) have
+opposite signs but equal magnitude.
+<a 
+ id="x1-209001r216"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">28.5   </span> <a 
+ id="x1-2100005"></a>The next-order functional and toroidal coupling</h3>
+<!--l. 766--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2110005"></a>Separate the diagonal and off-diagonal next-order pieces.</span>
+For this lecture it is useful to write the wave functional schematically as <a id="eq-eq-tae_L2_L4_split"></a><div class="math-display">\[\mathcal {L} = \mathcal {L}_2+ \mathcal {L}_{4,{\rm diag}}+ \mathcal {L}_{4,{\rm tor}}+ \cdots . \tag{28.65}\]</div>
+The diagonal part is obtained directly from the expanded \(f\) and \(g\) in (<a href="lecture26.html#eq-eq-tokamak_fg_next">26.11</a>). The toroidal part is the piece
+one sees only if the \(\theta \)-dependent geometry is kept before projecting onto poloidal Fourier harmonics. The
+first one shifts the branches; the second one opens the gap.
+</p>
+<!--l. 783--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2120005"></a>The diagonal L4 pieces from the earlier lecture.</span>
+Equation&#x00A0;(<a href="lecture26.html#eq-eq-tokamak_fg_next">26.11</a>) gives the potential-energy expansion <a id="eq-eq-tae_f_g_expansion"></a><div class="math-display">\[f_m^{(W)}=f_{2m}^{(W)}+f_{4m}^{(W)}+\cdots , \qquad g_m^{(W)}=g_{2m}^{(W)}+g_{4m}^{(W)}+\cdots , \tag{28.66}\]</div>
+with <a id="eq-eq-tae_f4_diag_W"></a><div class="math-display">\[f_{4m}^{(W)} = -\frac {B_0^2n^2r^5}{m^4R_0^4}\Delta _m^2, \tag{28.67}\]</div>
+and, in the low-\(\beta \) shear-Alfvén limit, <a id="eq-eq-tae_g4_diag_W"></a><div class="math-display">\[g_{4m}^{(W)} = \frac {n^2B_0^2r^3}{m^4R_0^4} \left ( 3n^2-\frac {2nm}{q(r)}-\frac {m^2}{q^2(r)} \right ). \tag{28.68}\]</div>
+These are the static line-bending pieces. The wave problem requires the same-order expansion of the
+kinetic metric.
+</p>
+<!--l. 811--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2130005"></a>Derive the fourth-order kinetic terms from xi-eta.</span>
+The important point is that no new displacement component is being introduced at fourth order. The
+fourth-order kinetic terms are the next term in the same binormal inertia already used in (<a href="lecture28.html#eq-eq-tae_kinetic_xi_unintegrated">28.17</a>). Start
+again from <a id="eq-eq-tae_K_exact_for_L4"></a><div class="math-display">\[\frac {\omega ^2K_m}{\mathcal {N}} = \frac 12\int _0^a \mu _0\rho \omega ^2 \left [ r|\xi _m|^2+ \frac {r}{M_m}\left |(r\xi _m)'\right |^2 \right ]dr, \qquad M_m=m^2+\frac {n^2r^2}{R_0^2}. \tag{28.69}\]</div>
+                                                                                         
+                                                                                         
+The leading calculation replaced \(M_m\) by \(m^2\). To retain the next piece, write <a id="eq-eq-tae_lambda_m_def"></a><div class="math-display">\[M_m=m^2(1+\lambda _m), \qquad \lambda _m(r)\equiv \frac {n^2r^2}{m^2R_0^2}=O(\epsilon ^2), \tag{28.70}\]</div>
+so that <a id="eq-eq-tae_inverse_M_expansion"></a><div class="math-display">\[\frac {1}{M_m} = \frac {1}{m^2}\left (1-\lambda _m+O(\lambda _m^2)\right ). \tag{28.71}\]</div>
+The coefficient of \(|\xi _m'|^2\) in the kinetic energy is therefore <a id="eq-eq-tae_fK_raw_L4_expansion"></a><div class="math-display">\[\begin{aligned}f_m^{(K,{\rm raw})} &amp;= \mu _0\rho \frac {r^3}{M_m} \nonumber \\ &amp;= \mu _0\rho \frac {r^3}{m^2} - \mu _0\rho \frac {n^2r^5}{m^4R_0^2} +O\!\left (\mu _0\rho \frac {r^7}{R_0^4}\right ).\end{aligned} \tag{28.72}\]</div>
+</p><!--l. 856--><p class="noindent" >The word &#8220;raw&#8221; means that this is still the coefficient inside \(K\), before multiplication by \(-\omega ^2\) in \(\mathcal {L}=\delta W-\omega ^2K\). Hence the
+fourth-order inertial contribution that appears in the wave functional is <a id="eq-eq-tae_f4_diag_K"></a><div class="math-display">\[f_{4m}^{({\rm inert})} \equiv -\omega ^2\left [-\mu _0\rho \frac {n^2r^5}{m^4R_0^2}\right ] = +\mu _0\rho \omega ^2\frac {n^2r^5}{m^4R_0^2}. \tag{28.73}\]</div>
+This plus sign is often where mistakes creep in: the next term in \(1/M_m\) is negative, but the kinetic energy is
+subtracted from \(\delta W\).
+</p><!--l. 870--><p class="noindent" >Now do the same algebra for the \(|\xi _m|^2\) coefficient. For locally constant or slowly varying density, use the bulk
+coefficient from (<a href="lecture28.html#eq-eq-tae_gK_general">28.21</a>), <a id="eq-eq-tae_gK_raw_start_L4"></a><div class="math-display">\[g_m^{(K,{\rm raw})} = \mu _0\rho \left [ r+\frac {r}{M_m}-\left (\frac {r^2}{M_m}\right )' \right ]. \tag{28.74}\]</div>
+Expanding each piece gives <a id="eq-eq-tae_r_over_M_expand"></a><div class="math-display">\[\begin{aligned}\frac {r}{M_m} &amp;= \frac {r}{m^2} - \frac {n^2r^3}{m^4R_0^2} +O\!\left (\frac {r^5}{R_0^4}\right ),  \\ \left (\frac {r^2}{M_m}\right )' &amp;= \frac {2r}{m^2} - \frac {4n^2r^3}{m^4R_0^2} +O\!\left (\frac {r^5}{R_0^4}\right ).\end{aligned} \tag{28.75}\]</div>
+</p><!--l. 900--><p class="noindent" >Therefore <a id="eq-eq-tae_gK_raw_L4_expansion"></a><div class="math-display">\[\begin{aligned}g_m^{(K,{\rm raw})} &amp;= \mu _0\rho \left [ r+\left (\frac {r}{m^2}-\frac {n^2r^3}{m^4R_0^2}\right ) -\left (\frac {2r}{m^2}-\frac {4n^2r^3}{m^4R_0^2}\right ) \right ] +\cdots \nonumber \\ &amp;= \mu _0\rho \left [ \frac {m^2-1}{m^2}r + \frac {3n^2r^3}{m^4R_0^2} \right ] +\cdots .\end{aligned} \tag{28.77}\]</div>
+</p><!--l. 921--><p class="noindent" >Thus the fourth-order inertial contribution to the \(g\) coefficient in the wave functional is <a id="eq-eq-tae_g4_diag_K"></a><div class="math-display">\[g_{4m}^{({\rm inert})} \equiv -\omega ^2\left [\mu _0\rho \frac {3n^2r^3}{m^4R_0^2}\right ] = -\mu _0\rho \omega ^2\frac {3n^2r^3}{m^4R_0^2}. \tag{28.78}\]</div>
+If the density varies appreciably across the radial scale of interest, the more general expression (<a href="lecture28.html#eq-eq-tae_gK_general">28.21</a>)
+should be expanded instead; the extra terms are proportional to derivatives of \(\rho \). For the local TAE gap
+calculation below, \(\rho \) is frozen at the crossing surface, so (<a href="lecture28.html#eq-eq-tae_f4_diag_K">28.73</a>) and (<a href="lecture28.html#eq-eq-tae_g4_diag_K">28.78</a>) are the relevant kinetic
+corrections.
+</p><!--l. 938--><p class="noindent" >Combining the static and inertial pieces gives the diagonal fourth-order functional <a id="eq-eq-tae_L4_diag"></a><div class="math-display">\[\frac {\mathcal {L}_{4,{\rm diag}}}{\mathcal {N}} = \frac 12\sum _m\int _0^a \left [ \left (f_{4m}^{(W)}+f_{4m}^{({\rm inert})}\right )|\xi _m'|^2+ \left (g_{4m}^{(W)}+g_{4m}^{({\rm inert})}\right )|\xi _m|^2 \right ]dr . \tag{28.79}\]</div>
+For the elementary gap calculation, these diagonal terms are less important than the off-diagonal toroidal
+term because they do not couple \(m\) to \(m+1\). They shift the uncoupled continuum branches; by themselves they
+cannot produce an avoided crossing.
+</p>
+<!--l. 955--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2140005"></a>Where the coupling comes from: project the cosine term explicitly.</span>
+The off-diagonal coupling is not contained in the already-projected one-harmonic coefficients \(f_m\) and \(g_m\). It
+appears only if the poloidal dependence of the toroidal metric is kept before the Fourier projection. For
+circular flux surfaces, <a id="eq-eq-tae_R_inverse_squared"></a><div class="math-display">\[\frac {R_0^2}{R^2(r,\theta )} = 1-2\epsilon (r)\cos \theta +O(\epsilon ^2), \qquad \epsilon (r)=\frac {r}{R_0}. \tag{28.80}\]</div>
+The selection rule is just the Fourier identity <a id="eq-eq-tae_cos_selection_rule"></a><div class="math-display">\[\cos \theta \,e^{i(m\theta -n\varphi )} = \frac 12e^{i[(m+1)\theta -n\varphi ]} + \frac 12e^{i[(m-1)\theta -n\varphi ]}. \tag{28.81}\]</div>
+To see the matrix element, write the local line-bending amplitude as <a id="eq-eq-tae_S_theta_def"></a><div class="math-display">\[S(r,\theta ) \equiv \sum _m \Delta _m(r)\xi _m(r)e^{im\theta }, \tag{28.82}\]</div>
+where the common factor \(e^{-in\varphi }\) has been suppressed. The minimal local shear-Alfvén Lagrangian before angular
+projection is <a id="eq-eq-tae_preprojection_local_L"></a><div class="math-display">\[\frac {\mathcal {L}_{\rm loc}}{\mathcal {N}} = \frac 12\int dr\,\mu _0\rho r \left \{ \omega _A^2 \left \langle \left [1-2\epsilon \cos \theta \right ]|S(r,\theta )|^2 \right \rangle _\theta - \omega ^2 \left \langle \left |\sum _m\xi _m e^{im\theta }\right |^2 \right \rangle _\theta \right \}, \tag{28.83}\]</div>
+with <a id="eq-eq-tae_theta_average_def"></a><div class="math-display">\[\left \langle A\right \rangle _\theta \equiv \frac {1}{2\pi }\int _0^{2\pi }A(\theta )\,d\theta . \tag{28.84}\]</div>
+The diagonal part follows from ordinary orthogonality, <a id="eq-eq-tae_orthogonality_diagonal"></a><div class="math-display">\[\left \langle e^{i(m-\ell )\theta }\right \rangle _\theta =\delta _{m\ell }, \qquad \left \langle |S|^2\right \rangle _\theta = \sum _m\Delta _m^2|\xi _m|^2. \tag{28.85}\]</div>
+The off-diagonal part follows from the same identity with one factor of \(\cos \theta \): <a id="eq-eq-tae_cos_projection_integral"></a><div class="math-display">\[\left \langle \cos \theta \,e^{i(m-\ell )\theta } \right \rangle _\theta = \frac 12\left (\delta _{\ell ,m+1}+\delta _{\ell ,m-1}\right ). \tag{28.86}\]</div>
+Using (<a href="lecture28.html#eq-eq-tae_cos_projection_integral">28.86</a>) in \(|S|^2\) gives <a id="eq-eq-tae_cos_selection_to_pair"></a><div class="math-display">\[\begin{aligned}\left \langle \cos \theta \,|S|^2\right \rangle _\theta &amp;= \frac 12\sum _m \Delta _m\Delta _{m+1} \left ( \xi _m^*\xi _{m+1}+\xi _{m+1}^*\xi _m \right ).\end{aligned} \tag{28.87}\]</div>
+</p><!--l. 1041--><p class="noindent" >This equation is the crux. The factor \(1/2\) comes from the cosine selection rule, while the metric
+perturbation carries the factor \(-2\epsilon \cos \theta \). Their product is \(-\epsilon \). Thus the projected local Lagrangian is <a id="eq-eq-tae_local_coupling_lagrangian"></a><div class="math-display">\[\begin{aligned}\frac {\mathcal {L}_{\rm loc}}{\mathcal {N}} &amp;= \frac 12\int dr\,\mu _0\rho (r)r \Bigg \{ \sum _m \left [\omega _A^2(r)\Delta _m^2(r)-\omega ^2\right ]|\xi _m|^2 \nonumber \\ &amp;\hspace {7em} - \epsilon (r)\omega _A^2(r) \sum _m\Delta _m(r)\Delta _{m+1}(r) \left ( \xi _m^*\xi _{m+1}+\xi _{m+1}^*\xi _m \right ) \Bigg \}.\end{aligned} \tag{28.88}\]</div>
+</p><!--l. 1062--><p class="noindent" >For the concrete \((m,n)=(2,1)\), \((3,1)\) pair, the same statement is <a id="eq-eq-tae_23_projection_example"></a><div class="math-display">\[\left \langle e^{-i3\theta }\cos \theta \,e^{i2\theta }\right \rangle _\theta =\frac 12, \qquad -2\epsilon \times \frac 12=-\epsilon , \tag{28.89}\]</div>
+so the line-bending part contains the cross term <a id="eq-eq-tae_23_cross_term"></a><div class="math-display">\[-\frac 12\int dr\,\mu _0\rho r\, \epsilon \omega _A^2\Delta _2\Delta _3 \left (\xi _2^*\xi _3+\xi _3^*\xi _2\right ). \tag{28.90}\]</div>
+The full radial version replaces the diagonal algebraic factors in (<a href="lecture28.html#eq-eq-tae_local_coupling_lagrangian">28.88</a>) by the Newcomb differential
+operators in (<a href="lecture28.html#eq-eq-tae_L2_wave_equation">28.45</a>) and keeps the corresponding nearest-neighbor operator couplings. For locating the
+                                                                                         
+                                                                                         
+local gap edges, (<a href="lecture28.html#eq-eq-tae_local_coupling_lagrangian">28.88</a>) is the useful minimal form.
+</p>
+<!--l. 1083--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2150005"></a>Stationarity gives the tridiagonal continuum matrix.</span>
+Now vary (<a href="lecture28.html#eq-eq-tae_local_coupling_lagrangian">28.88</a>) with respect to \(\xi _m^*\). The diagonal term contributes <a id="eq-eq-tae_diagonal_variation_local"></a><div class="math-display">\[\frac {\partial }{\partial \xi _m^*} \left [ \left (\omega _A^2\Delta _m^2-\omega ^2\right )|\xi _m|^2 \right ] = \left (\omega _A^2\Delta _m^2-\omega ^2\right )\xi _m . \tag{28.91}\]</div>
+The off-diagonal sum contains two terms involving \(\xi _m^*\): the pair \((m,m+1)\) and the pair \((m-1,m)\). Therefore <a id="eq-eq-tae_offdiag_variation_local"></a><div class="math-display">\[\begin{aligned}\frac {\partial }{\partial \xi _m^*} \sum _\ell \Delta _\ell \Delta _{\ell +1} \left (\xi _\ell ^*\xi _{\ell +1}+\xi _{\ell +1}^*\xi _\ell \right ) &amp;= \Delta _m\Delta _{m+1}\xi _{m+1} + \Delta _{m-1}\Delta _m\xi _{m-1}.\end{aligned} \tag{28.92}\]</div>
+</p><!--l. 1108--><p class="noindent" >Stationarity gives <a id="eq-eq-tae_tridiagonal_before_sign_flip"></a><div class="math-display">\[\left [\omega _A^2\Delta _m^2-\omega ^2\right ]\xi _m - \epsilon \omega _A^2 \left [ \Delta _m\Delta _{m+1}\xi _{m+1} + \Delta _m\Delta _{m-1}\xi _{m-1} \right ] =0. \tag{28.93}\]</div>
+Multiplying by \(-1\) puts it in the usual continuum-denominator form, <a id="eq-eq-tae_tridiagonal_xi"></a><div class="math-display">\[\left [\omega ^2-\omega _A^2\Delta _m^2\right ]\xi _m + \epsilon \omega _A^2\Delta _m\Delta _{m+1}\xi _{m+1} + \epsilon \omega _A^2\Delta _m\Delta _{m-1}\xi _{m-1} =0. \tag{28.94}\]</div>
+This is the cleanest algebraic statement of toroidicity-induced coupling in the same \(\Delta _m\) notation used
+above.
+<a 
+ id="x1-215001r221"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">28.6   </span> <a 
+ id="x1-2160006"></a>The toroidicity-induced gap</h3>
+<!--l. 1138--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2170006"></a>Keep only the two harmonics that cross.</span>
+Near the crossing of the \(m\) and \(m+1\) branches, keep only those two amplitudes. Equation&#x00A0;(<a href="lecture28.html#eq-eq-tae_tridiagonal_xi">28.94</a>) becomes
+<a id="eq-eq-tae_two_mode_matrix_xi"></a><div class="math-display">\[\begin {pmatrix} \omega ^2-\omega _A^2\Delta _m^2 &amp; \epsilon \omega _A^2\Delta _m\Delta _{m+1} \\[4pt] \epsilon \omega _A^2\Delta _m\Delta _{m+1} &amp; \omega ^2-\omega _A^2\Delta _{m+1}^2 \end {pmatrix} \begin {pmatrix} \xi _m\\ \xi _{m+1} \end {pmatrix} =0. \tag{28.95}\]</div>
+A nontrivial solution requires <a id="eq-eq-tae_gap_determinant"></a><div class="math-display">\[\left (\omega ^2-\omega _A^2\Delta _m^2\right ) \left (\omega ^2-\omega _A^2\Delta _{m+1}^2\right ) - \epsilon ^2\omega _A^4\Delta _m^2\Delta _{m+1}^2 =0. \tag{28.96}\]</div>
+Solving for \(\omega ^2\), <a id="eq-eq-tae_omega_pm_xi"></a><div class="math-display">\[\omega _\pm ^2 = \frac {\omega _A^2}{2}\left (\Delta _m^2+\Delta _{m+1}^2\right ) \pm \omega _A^2 \left [ \left (\frac {\Delta _m^2-\Delta _{m+1}^2}{2}\right )^2 + \epsilon ^2\Delta _m^2\Delta _{m+1}^2 \right ]^{1/2}. \tag{28.97}\]</div>
+This is the avoided-crossing formula.
+</p>
+<!--l. 1182--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2180006"></a>Evaluate it at the crossing.</span>
+At the uncoupled crossing, <a id="eq-eq-tae_crossing_delta_general"></a><div class="math-display">\[\Delta _m=-\Delta _{m+1}, \qquad |\Delta _m|=|\Delta _{m+1}|=\frac {1}{2q_c}, \tag{28.98}\]</div>
+so <a id="eq-eq-tae_gap_center_frequency"></a><div class="math-display">\[\omega _0 = \frac {v_A}{2q_cR_0}. \tag{28.99}\]</div>
+Equation&#x00A0;(<a href="lecture28.html#eq-eq-tae_omega_pm_xi">28.97</a>) reduces to <a id="eq-eq-tae_gap_edges"></a><div class="math-display">\[\omega _\pm ^2 = \omega _0^2(1\pm \epsilon _c), \qquad \epsilon _c\equiv \frac {r_c}{R_0}. \tag{28.100}\]</div>
+Therefore <a id="eq-eq-tae_gap_width"></a><div class="math-display">\[\Delta (\omega ^2)=\omega _+^2-\omega _-^2=2\epsilon _c\omega _0^2, \qquad \Delta \omega \equiv \omega _+-\omega _- \simeq \epsilon _c\omega _0 \quad (\epsilon _c\ll 1). \tag{28.101}\]</div>
+The cylinder would have given an exact crossing. The torus gives a gap whose fractional width is of order
+inverse aspect ratio.
+</p>
+<!--l. 1219--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2190006"></a>Return to the m = 2, 3 and n = 1 example.</span>
+For \(q_c=5/2\), <a id="eq-eq-tae_example_gap_edges"></a><div class="math-display">\[\omega _0=\frac {v_A(r_c)}{5R_0}, \qquad \omega _\pm ^2=\omega _0^2(1\pm \epsilon _c), \qquad \epsilon _c=\frac {r_c}{R_0}=\frac {a}{\sqrt {2}R_0}. \tag{28.102}\]</div>
+Thus the local TAE gap opens around \(v_A/(5R_0)\) at the radius where \(q=2.5\). This is the simplest concrete example of the
+continuum crossing becoming an avoided crossing.
+</p>
+<!--l. 1233--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2200006"></a>What is being plotted in the continuum figures.</span>
+For each surface one first draws the uncoupled cylindrical continua <a id="eq-eq-tae_plotted_cylindrical_continua"></a><div class="math-display">\[\omega _{A,m}(r)=\left |\Delta _m(r)\right |\frac {v_A(r)}{R_0}, \qquad \omega _{A,m+1}(r)=\left |\Delta _{m+1}(r)\right |\frac {v_A(r)}{R_0}. \tag{28.103}\]</div>
+Then one retains only the crossing pair \(m\) and \(m+1\), solves the local two-by-two system (<a href="lecture28.html#eq-eq-tae_two_mode_matrix_xi">28.95</a>) on that surface,
+and plots its two eigenvalues \(\omega _\pm (r)\) from (<a href="lecture28.html#eq-eq-tae_omega_pm_xi">28.97</a>). The solid split branches in the figures below are therefore the
+local toroidal continuum obtained by diagonalizing the coupled continuum matrix on each surface. They
+are not yet the discrete global TAE eigenfunction; the radial envelope problem still comes
+afterward.
+                                                                                         
+                                                                                         
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2200011"></a>
+                                                                                         
+                                                                                         
+<!--l. 1251--><p class="noindent" ><img 
+src="figures/tae_continuum_triptych.png" alt="PIC"  
+width="469" height="147"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;28.1: </span><span  
+class="content">Concrete \(n=1\) crossing example for the pair \((m,n)=(2,1)\) and \((3,1)\). Panel (a) shows the profile \(q(r)=1+3r^2/a^2\) together
+with the surfaces \(q=2\), \(q=2.5\), and \(q=3\), corresponding to the \(m=2\) rational surface, the TAE crossing surface, and
+the \(m=3\) rational surface. Panel (b) shows the illustrative Alfvén-speed profile used in the plot, \( \rho (r)=\rho _0[1-0.55(r/a)^2]\) and
+notes explicitly that \( v_A(r)/v_{A0}=[1-0.55(r/a)^2]^{-1/2}\). Panel (c) overlays the cylindrical continua \(\omega _{A,2}(r)=|\Delta _2|v_A/R_0\) and \(\omega _{A,3}(r)=|\Delta _3|v_A/R_0\) with the toroidally split local
+branches \(\omega _\pm (r)\) obtained from the two-harmonic coupling matrix (<a href="lecture28.html#eq-eq-tae_two_mode_matrix_xi">28.95</a>). At \(q=2.5\) the cylindrical crossing is
+replaced by an avoided crossing, and the local TAE gap opens around \(\omega _0=v_A(r_c)/(5R_0)\).</span></div><!--tex4ht:label?: x1-2200011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 1269--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2210006"></a>A schematic in the style of Heidbrink&#8217;s review.</span>
+Figure&#x00A0;28.2 presents the same avoided crossing in the more schematic style used in Heidbrink&#8217;s review
+<a 
+href="#XHeidbrink2008POP">Heidbrink</a>&#x00A0;[<a 
+href="#XHeidbrink2008POP">2008</a>]. The upper panel isolates the pair of counterpropagating cylindrical branches whose
+equal-magnitude parallel wave numbers define the center of the gap. The lower panel overlays the positive
+cylindrical continua and the toroidally split continua for the \(n=4\), \((m,m+1)=(4,5)\) pair, together with the next
+pair \((6,7)\) that would cross farther out. In this presentation the cylindrical branches are plotted as
+positive frequencies, so the crossing represents two waves with opposite signs of \(k_\parallel \) but equal
+\(|k_\parallel |\).
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2210012"></a>
+                                                                                         
+                                                                                         
+<!--l. 1283--><p class="noindent" ><img 
+src="figures/heidbrink_fig3_style.png" alt="PIC"  
+width="319" height="426"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;28.2: </span><span  
+class="content">TAE continuum plotted in the style of Fig.&#x00A0;3 of Heidbrink&#x00A0;<a 
+href="#XHeidbrink2008POP">Heidbrink</a>&#x00A0;[<a 
+href="#XHeidbrink2008POP">2008</a>]. The
+upper panel highlights the two counterpropagating cylindrical branches and the frequency gap that
+appears once toroidicity is retained. The lower panel overlays dashed cylindrical continua with solid
+toroidal continua for the \(n=4\) pairs \((m,m+1)=(4,5)\) and \((6,7)\). The toroidal branches are again the local eigenvalues \(\omega _\pm (r)\) of the
+coupled two-harmonic matrix (<a href="lecture28.html#eq-eq-tae_two_mode_matrix_xi">28.95</a>), evaluated surface by surface.</span></div><!--tex4ht:label?: x1-2210012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 1295--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1296--><p class="noindent" >The  leading  cylindrical  Newcomb  equation  gives  singular  continuum  surfaces  where
+     \(D_m=0\).  Toroidicity  does  not  remove  the  continuum  everywhere;  it  couples  neighboring
+     singular branches. At the branch crossing, that coupling splits the two local continuum
+     frequencies and opens a gap. A TAE is a global mode that can live in that gap.</p></blockquote></div></div>
+<a 
+ id="x1-221002r227"></a>
+<h3 class="sectionHead"><span class="titlemark">28.7   </span> <a 
+ id="x1-2220007"></a>From the local gap to a global eigenmode</h3>
+<!--l. 1307--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2230007"></a>The radial problem is still necessary.</span>
+The local gap calculation gives the split continuum branches on each surface, but a global eigenmode
+requires a radial envelope. After the two-mode system is diagonalized locally, the envelope satisfies a
+bound-state problem of the schematic form <a id="eq-eq-tae_radial_envelope"></a><div class="math-display">\[\frac {d^2A}{dr^2}+k_r^2(r,\omega )A=0. \tag{28.104}\]</div>
+If \(k_r^2&gt;0\) in some interval and \(k_r^2&lt;0\) outside, the mode oscillates in the allowed interval and decays outside it. The
+TAE is then trapped in a radial cavity.
+</p>
+<!--l. 1320--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2240007"></a>Quantization of the cavity.</span>
+In a WKB treatment the bound-state condition is <a id="eq-eq-tae_WKB_quantization"></a><div class="math-display">\[\int _{r_1}^{r_2}k_r(r,\omega )dr \simeq \pi \left (\ell +\frac 12\right ), \qquad \ell =0,1,2,\ldots . \tag{28.105}\]</div>
+This is the step that converts the local gap into a discrete ladder of global eigenvalues.
+</p>
+<!--l. 1333--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2250007"></a>Why continuum damping is reduced but not banished.</span>
+If the eigenfrequency lies inside the gap over the region where the mode is localized, then the dominant
+resonant condition \(D_m(r,\omega )=0\) is avoided in the core of the mode. The logarithmic singularity does not
+appear there. But damping can still occur if the radial tails reach the continuum, if additional
+couplings reconnect the mode to another branch, or if kinetic Alfvén-wave conversion, ion
+Landau damping, electron Landau damping, or radiative damping is strong enough <a 
+href="#XRosenbluth1992PRL">Rosenbluth
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XRosenbluth1992PRL">1992</a>],&#x00A0;<a 
+href="#XZoncaChen1993PFB">Zonca and Chen</a>&#x00A0;[<a 
+href="#XZoncaChen1993PFB">1993</a>],&#x00A0;<a 
+href="#Xchenzonca16">Chen and Zonca</a>&#x00A0;[<a 
+href="#Xchenzonca16">2016</a>]. A gap mode is best thought of as a mode
+that has evaded the leading-order continuum resonance, not as a mode that has escaped all
+dissipation.
+</p>
+<!--l. 1344--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2260007"></a>The same physics as phase mixing.</span>
+The continuum can also be understood in initial-value language. If neighboring surfaces oscillate at slightly
+different local frequencies, <div class="math-display">\[\xi (r,t)\sim \xi _0(r)e^{-i\omega _A(r)t},\]</div>
+then <a id="eq-eq-tae_phase_mixing"></a><div class="math-display">\[\partial _r\xi \sim -it\,\omega _A'(r)\xi . \tag{28.107}\]</div>
+The radial gradient grows linearly in time, the perpendicular scale collapses, and the energy cascades
+toward small scales until non-ideal physics dissipates or phase-mixes it away.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-226001r235"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">28.8   </span> <a 
+ id="x1-2270008"></a>What other Alfvénic families teach us</h3>
+<!--l. 1363--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2280008"></a>TAEs are only the first gap family.</span>
+The TAE is the cleanest example because it is opened by the first toroidal harmonic and therefore by \(m\leftrightarrow m+1\)
+coupling. But once one sees that logic, other families are almost inevitable. Ellipticity couples \(m\leftrightarrow m+2\) and
+opens the EAE gap; higher-order shaping opens still higher gaps such as the NAE; reversed
+shear can localize modes near \(q_{\min }\), producing RSAEs; and finite compressibility together with
+geodesic curvature opens the low-frequency BAE gap <a 
+href="#Xbetti91">Betti and Freidberg</a>&#x00A0;[<a 
+href="#Xbetti91">1991</a>],&#x00A0;<a 
+href="#XHeidbrink1993PRL">Heidbrink
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHeidbrink1993PRL">1993</a>,&#x00A0;<a 
+href="#XHeidbrink1999POP">1999</a>],&#x00A0;<a 
+href="#Xkramer98">Kramer et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xkramer98">1998</a>],&#x00A0;<a 
+href="#Xedlund10">Edlund et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xedlund10">2010</a>],&#x00A0;<a 
+href="#Xgorelenkov07">Gorelenkov et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xgorelenkov07">2007</a>],&#x00A0;<a 
+href="#Xchenzonca16">Chen and
+Zonca</a>&#x00A0;[<a 
+href="#Xchenzonca16">2016</a>].
+</p>
+<!--l. 1373--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2290008"></a>RSAEs as a simple example of current-profile sensitivity.</span>
+Near a minimum of the safety factor profile, <a id="eq-eq-tae_qmin_expansion"></a><div class="math-display">\[q(r)=q_{\min }+\frac 12 q_0''(r-r_0)^2+\cdots , \tag{28.108}\]</div>
+so <a id="eq-eq-tae_rsae_kparallel"></a><div class="math-display">\[k_{\parallel m}(r) = \frac {1}{R_0}\left (n-\frac {m}{q(r)}\right ) \simeq k_{\parallel 0}+\alpha (r-r_0)^2+\cdots . \tag{28.109}\]</div>
+If \(nq_{\min }\) is near an integer \(m\), then \(k_{\parallel 0}\) is small and the mode can localize near \(r_0\). As the current profile evolves
+and \(q_{\min }\) changes, the frequency chirps. This is why RSAEs became such a useful spectroscopic
+signature of current-profile evolution in advanced tokamak scenarios <a 
+href="#Xedlund09">Edlund et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xedlund09">2009</a>],&#x00A0;<a 
+href="#Xkramer04_rsae">Kramer
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xkramer04_rsae">2004</a>],&#x00A0;<a 
+href="#Xedlund10">Edlund et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xedlund10">2010</a>],&#x00A0;<a 
+href="#XHeidbrink2013POP">Heidbrink et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHeidbrink2013POP">2013</a>].
+<a 
+ id="x1-229001r240"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">28.9   </span> <a 
+ id="x1-2300009"></a>Energetic-particle drive and experimental importance</h3>
+<!--l. 1398--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2310009"></a>Why energetic particles couple so easily.</span>
+The simplest passing-particle resonance is <a id="eq-eq-tae_passing_resonance"></a><div class="math-display">\[\omega \simeq k_\parallel v_\parallel , \tag{28.110}\]</div>
+which already explains why neutral-beam ions and fusion alphas are such effective drivers of TAEs: the
+phase velocity of the mode is of order \(v_A\), and fast ions often satisfy \(v_\parallel \sim v_A\). In a more faithful toroidal description
+one resolves transit, bounce, and drift frequencies, leading schematically to resonances of the form
+<a id="eq-eq-tae_general_resonance"></a><div class="math-display">\[\omega -n\omega _\phi -\ell \omega _b\simeq 0, \tag{28.111}\]</div>
+where \(\ell \) labels the relevant orbital harmonic.
+</p>
+<!--l. 1415--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2320009"></a>Drive versus damping.</span>
+A convenient bookkeeping formula is <a id="eq-eq-tae_growth_rate_balance"></a><div class="math-display">\[\gamma =\frac {P_h-P_d}{2W}, \tag{28.112}\]</div>
+where \(W\) is the mode energy, \(P_h\) is the power transferred from energetic particles to the wave, and \(P_d\) is the sum
+of damping channels. This formula is schematic, but it captures the physics. Geometry determines whether
+a weakly damped gap mode can exist at all; the fast-ion distribution and the non-ideal damping
+mechanisms determine whether that mode is actually unstable.
+</p>
+<!--l. 1427--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2330009"></a>What experiments actually care about.</span>
+In experiments, AE physics matters because it affects fast-ion confinement. The earliest observations of
+                                                                                         
+                                                                                         
+beam-driven TAEs on TFTR made that point clearly <a 
+href="#Xwong91">Wong et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xwong91">1991</a>]. DIII-D then provided a
+particularly important experimental thread: beam-driven Alfvén instabilities were characterized in detail,
+beta-induced Alfvén eigenmodes were identified, and reversed-shear cases showed that Alfvénic activity
+can flatten the fast-ion profile <a 
+href="#XHeidbrink1991NF">Heidbrink et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHeidbrink1991NF">1991</a>,&#x00A0;<a 
+href="#XHeidbrink1993PRL">1993</a>,&#x00A0;<a 
+href="#XHeidbrink2008NF">2008</a>]. Since then the subject has broadened
+from &#8220;Can one see the mode?&#8221; to &#8220;How much does it redistribute fast ions, flatten pressure profiles, or
+cause losses?&#8221; In present-day devices that question is tied directly to heating efficiency, current drive, and
+burning-plasma performance <a 
+href="#Xfasoli07">Fasoli et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xfasoli07">2007</a>],&#x00A0;<a 
+href="#XHeidbrink2008POP">Heidbrink</a>&#x00A0;[<a 
+href="#XHeidbrink2008POP">2008</a>],&#x00A0;<a 
+href="#Xlauber13">Lauber</a>&#x00A0;[<a 
+href="#Xlauber13">2013</a>],&#x00A0;<a 
+href="#XHeidbrinkWhite2020POP">Heidbrink and
+White</a>&#x00A0;[<a 
+href="#XHeidbrinkWhite2020POP">2020</a>].
+</p><!--l. 1442--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1442--><p class="noindent" >The shear-Alfvén continuum and the TAE gap are two outputs of the same variational
+     ideal-MHD  framework.  In  the  cylindrical  Newcomb  problem,  the  wave  functional
+     contains the coefficient \(\mathcal {A}_m=\mu _0\rho (\omega _{A,m}^2-\omega ^2)\). Where this coefficient vanishes, the highest radial derivative
+     vanishes and the ideal solution becomes logarithmically singular. In a torus, the \(\cos \theta \) variation
+     of the metric couples neighboring poloidal harmonics with the same \(n\). At the place where
+     \(\Delta _m=-\Delta _{m+1}\), the two continuum branches would cross in a cylinder; toroidicity splits them and opens
+     the TAE gap.
+     </p><!--l. 1452--><p class="noindent" >The lecture can be condensed into six statements.
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">The local shear-Alfvén branch is \(\omega ^2=k_\parallel ^2v_A^2\), with \(k_{\parallel m}=\Delta _m/R_0\).
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">The Newcomb wave equation is singular where \(\mathcal {A}_m=0\), equivalently where \(D_m=\omega ^2-\omega _A^2\Delta _m^2=0\).
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">Near a simple resonant surface, \(\xi _m=C_0+C_1\ln |r-r_A|\).
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">The basic TAE pair has the same toroidal mode number \(n\) and neighboring poloidal
+     mode numbers \(m\) and \(m+1\).
+     </dd><dt class="enumerate-enumitem">
+  5. </dt><dd 
+class="enumerate-enumitem">The crossing condition is \(q_c=(m+1/2)/n\), or \(q_c=5/2\) for the \(m=2,3\), \(n=1\) example.
+     </dd><dt class="enumerate-enumitem">
+  6. </dt><dd 
+class="enumerate-enumitem">Toroidicity converts that crossing into the split branches \(\omega _\pm ^2=\omega _0^2(1\pm \epsilon _c)\) at leading order.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-2340009"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XLarmor1919"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Larmor.  Possible rotational origin of magnetic fields of sun and earth.  <tspan font-family="ecti" font-size="1095">Elec. Rev</tspan>, 85:412,
+  1919.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcowling1933magnetic-80e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> T.&#x00A0;G. Cowling.  The magnetic field of sunspots.  <tspan font-family="ecti" font-size="1095">Monthly Notices of the Royal Astronomical</tspan>
+  <tspan font-family="ecti" font-size="1095">Society</tspan>, 94(1):39&#8211;48, 1933. doi:<a 
+href="https://doi.org/10.1093/mnras/94.1.39" >10.1093/mnras/94.1.39</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XVainshteinZeldovich1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>     S.&#x00A0;I.     Vainshtein     and     Ya.&#x00A0;B.     Zeldovich.            Origin     of     magnetic     fields
+  in astrophysics (turbulent "dynamo" mechanisms). <tspan font-family="ecti" font-size="1095">Soviet Physics Uspekhi</tspan>, 15(2):159&#8211;172, 1972.
+  doi:<a 
+href="https://doi.org/10.1070/PU1972v015n02ABEH004960" >10.1070/PU1972v015n02ABEH004960</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMoffatt1989STF"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> H.&#x00A0;K. Moffatt. Stretch, twist and fold. <tspan font-family="ecti" font-size="1095">Nature</tspan>, 341(6240):285&#8211;286, 1989. doi:<a 
+href="https://doi.org/10.1038/341285a0" >10.1038/341285a0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChildressGilbert1995"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Stephen  Childress  and  Andrew&#x00A0;D.  Gilbert.     <tspan font-family="ecti" font-size="1095">Stretch,  Twist,  Fold:  The  Fast  Dynamo</tspan>,
+  volume&#x00A0;37  of  <tspan font-family="ecti" font-size="1095">Lecture  Notes  in  Physics  Monographs</tspan>.    Springer,  Berlin,  Heidelberg,  1995.
+  doi:<a 
+href="https://doi.org/10.1007/978-3-540-44778-8" >10.1007/978-3-540-44778-8</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbullard1954homogeneous-60a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Edward&#x00A0;Crisp Bullard and H.&#x00A0;Gellman.  Homogeneous dynamos and terrestrial magnetism.
+  <tspan font-family="ecti" font-size="1095">Philosophical Transactions of the Royal Society of London. Series A, Mathematical and Physical</tspan>
+  <tspan font-family="ecti" font-size="1095">Sciences</tspan>, 247(928):213&#8211;278, 1954. doi:<a 
+href="https://doi.org/10.1098/rsta.1954.0018" >10.1098/rsta.1954.0018</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdudley1989time-dependent-7dd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  M.&#x00A0;L.  Dudley  and  Reginald&#x00A0;William  James.    Time-dependent  kinematic  dynamos  with
+  stationary flows.   <tspan font-family="ecti" font-size="1095">Proceedings of the Royal Society of London. A. Mathematical and Physical</tspan>
+  <tspan font-family="ecti" font-size="1095">Sciences</tspan>, 425(1869):407&#8211;429, 1989. doi:<a 
+href="https://doi.org/10.1098/rspa.1989.0112" >10.1098/rspa.1989.0112</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xparker1955hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> E.&#x00A0;N. Parker.   Hydromagnetic dynamo models.   <tspan font-family="ecti" font-size="1095">Astrophysical Journal</tspan>, 122:293&#8211;314, 1955.
+  doi:<a 
+href="https://doi.org/10.1086/146087" >10.1086/146087</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStieglitzMueller2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Robert Stieglitz and Ulrich Müller.  Experimental demonstration of a homogeneous two-scale
+  dynamo. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 13(3):561&#8211;564, 2001. doi:<a 
+href="https://doi.org/10.1063/1.1331315" >10.1063/1.1331315</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMuellerEtAl2008Karlsruhe"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ulrich Müller, Robert Stieglitz, Fritz&#x00A0;H. Busse, and Andreas Tilgner. The karlsruhe two-scale
+  dynamo      experiment.               <tspan font-family="ecti" font-size="1095">Comptes     Rendus     Physique</tspan>,      9(7):729&#8211;740,      2008.
+  doi:<a 
+href="https://doi.org/10.1016/j.crhy.2008.07.005" >10.1016/j.crhy.2008.07.005</a>.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMonchaux2007VKS"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Romain Monchaux, Michael Berhanu, Mickael Bourgoin, et&#x00A0;al. Generation of a magnetic field
+  by dynamo action in a turbulent flow of liquid sodium. <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 98:044502, 2007.
+  doi:<a 
+href="https://doi.org/10.1103/PhysRevLett.98.044502" >10.1103/PhysRevLett.98.044502</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpence2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> E&#x00A0;J Spence, M&#x00A0;D Nornberg, C&#x00A0;M Jacobson, R&#x00A0;D Kendrick, and C&#x00A0;B Forest.  Observation
+  of a turbulence-induced large scale magnetic field.  <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 96(5):055002, 2005.
+  doi:<a 
+href="https://doi.org/10.1103/physrevlett.96.055002" >10.1103/physrevlett.96.055002</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNornberg2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> M&#x00A0;D Nornberg, E&#x00A0;J Spence, R&#x00A0;D Kendrick, C&#x00A0;M Jacobson, and C&#x00A0;B Forest.  Intermittent
+  magnetic field excitation by a turbulent flow of liquid sodium.  <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 97(4):
+  044503, 2006. doi:<a 
+href="https://doi.org/10.1103/physrevlett.97.044503" >10.1103/physrevlett.97.044503</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XOConnell2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  R.&#x00A0;O&#8217;Connell,  Roch  Kendrick,  Mark  Nornberg,  Erik  Spence,  Adam  Bayliss,  and  C.&#x00A0;B.
+  Forest.  On the possibility of an homogeneous MHD dynamo in the laboratory.  In P.&#x00A0;Chossat,
+  D.&#x00A0;Ambruster,  and  I.&#x00A0;Oprea,  editors,  <tspan font-family="ecti" font-size="1095">Dynamo  and  Dynamics,  a  Mathematical  Challenge</tspan>,
+  volume&#x00A0;26  of  <tspan font-family="ecti" font-size="1095">NATO  Science  Series  II:  Mathematics,  Physics  and  Chemistry</tspan>,  pages  59&#8211;66.
+  Springer, Dordrecht, 2001. doi:<a 
+href="https://doi.org/10.1007/978-94-010-0788-7_7" >10.1007/978-94-010-0788-7_7</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlathrop2011magnetic-be2"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel&#x00A0;P. Lathrop and Cary&#x00A0;B. Forest.  Magnetic dynamos in the lab.  <tspan font-family="ecti" font-size="1095">Physics Today</tspan>, 64(7):
+  40&#8211;45, 2011. doi:<a 
+href="https://doi.org/10.1063/pt.3.1166" >10.1063/pt.3.1166</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGiesecke2010VKS"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> André Giesecke, Frank Stefani, and Günter Gerbeth.  Role of soft-iron impellers on the mode
+  selection in the von kármán-sodium dynamo experiment.  <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 104:044503,
+  2010. doi:<a 
+href="https://doi.org/10.1103/PhysRevLett.104.044503" >10.1103/PhysRevLett.104.044503</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XRahbarnia2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Kian Rahbarnia, Benjamin&#x00A0;P Brown, Mike&#x00A0;M Clark, Elliot&#x00A0;J Kaplan, Mark&#x00A0;D Nornberg,
+  Alex&#x00A0;M  Rasmus,  Nicholas&#x00A0;Zane  Taylor,  Cary&#x00A0;B  Forest,  Frank  Jenko,  Angelo  Limone,
+  Jean-François Pinton, Nicolas Plihon, and Gautier Verhille.  Direct observation of the turbulent
+  EMF and transport of magnetic field in a liquid sodium experiment. <tspan font-family="ecti" font-size="1095">The Astrophysical Journal</tspan>,
+  759(2):80, 2012. doi:<a 
+href="https://doi.org/10.1088/0004-637x/759/2/80" >10.1088/0004-637x/759/2/80</a>.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-2350009"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.1.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting  from  \(\mathcal {L}_m=\frac 12\int (f_m|\xi _m'|^2+g_m|\xi _m|^2)dr\),  rederive  (<a href="lecture28.html#eq-eq-tae_newcomb_EL_fg">28.28</a>).  Keep  the  boundary  term  and  identify  the
+                fixed-boundary and natural-boundary choices.
+                                                                                         
+                                                                                         
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.2.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture28.html#eq-eq-tae_L2_newcomb">28.41</a>), derive the wave equation (<a href="lecture28.html#eq-eq-tae_L2_wave_equation">28.45</a>). Identify exactly which
+                coefficient vanishes at the continuum resonance.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.3.</tspan>  </dt><dd 
+class="enumerate-enumitem">Let \(\mathcal {A}_m\simeq \mathcal {A}'_{mA}(r-r_A)\). Derive the logarithmic singularity (<a href="lecture28.html#eq-eq-tae_log_singularity_xi">28.51</a>) and explain why the \(|\xi _m|^2\) term is
+                subdominant in the local singular balance.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.4.</tspan>  </dt><dd 
+class="enumerate-enumitem">For \(q(r)=1+3r^2/a^2\), compute the \(m=2\) rational surface, the \(m=3\) rational surface, and the \(m=2,3\), \(n=1\) TAE crossing
+                radius. Explain why these are three different radii.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.5.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting  from  (<a href="lecture28.html#eq-eq-tae_two_mode_matrix_xi">28.95</a>),  verify  the  determinant  condition  (<a href="lecture28.html#eq-eq-tae_gap_determinant">28.96</a>)  and  the
+                avoided-crossing formula (<a href="lecture28.html#eq-eq-tae_omega_pm_xi">28.97</a>).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.6.</tspan>  </dt><dd 
+class="enumerate-enumitem">For the \(m=2,3\), \(n=1\) example, assume \(a/R_0=1/3\). Estimate \(\epsilon _c\), \(\omega _0\), and the leading gap width \(\Delta \omega \) in terms of
+                \(v_A/R_0\).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 28.7.</tspan>  </dt><dd 
+class="enumerate-enumitem">Using  (<a href="lecture28.html#eq-eq-tae_growth_rate_balance">28.112</a>),  discuss  qualitatively  how  increasing  beam  power,  increasing
+                electron   temperature,   and   increasing   magnetic   shear   should   affect   the
+                observability of a TAE.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 21 FLR Stabilization: Roberts-Taylor Extended MHD</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture20.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture22.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;21</span><br /><a 
+ id="x1-4500021"></a>FLR Stabilization: Roberts&#8211;Taylor Extended MHD</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" ><span 
+class="ecbx-1095">Why this lecture matters. </span>This is the first place in the notes where we go beyond the
+     resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and the ideal limit (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) on purpose. The payoff is analytic: one can see,
+     in a completely worked fluid derivation, exactly how Hall physics and ion gyroviscosity
+     regularize the short-wavelength interchange mode. In the Roberts&#8211;Taylor ordering the result is
+     <a id="eq-eq-main_quadratic_intro"></a><div class="math-display">\[\omega ^2-\left (\frac {gk_\perp }{\Omega _i}+\nu _0\eta k_\perp \right )\omega +\frac {g}{L_n}=0, \tag{21.1}\]</div>
+     with \(\eta \equiv L_n^{-1}\) and \[ \nu _0\eta k_\perp =\frac {\Omega _i}{2}\frac {1}{k_\perp L_n}(k_\perp \rho _i)^2. \] The Hall piece and the FLR piece both enter linearly in \(\omega \); the gravitational drive
+     remains \(g/L_n\).</p></blockquote></div></div>
+<!--l. 18--><p class="noindent" >The Roberts&#8211;Taylor problem is a classic because the algebra is still manageable while all of the
+extended-MHD ideas are already present: Hall physics, ion inertia, gyroviscosity, electrostatic closure,
+and a non-solenoidal flow that replaces the ideal-MHD condition \(\divergence \uvec =0\). It is also a perfect bridge
+lecture. The previous lectures developed the single-fluid equations and frozen-in flux. Here we
+deliberately keep the terms that ideal MHD throws away and watch the interchange spectrum
+change.
+</p><!--l. 21--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 21--><p class="noindent" >The  early  1960s  were  intensely  focused  on  interchange  stability  and  on  whether
+     finite-Larmor-radius  effects  could  tame  bad-curvature  drive  <span 
+class="ecbx-1095">??</span>.  Roberts  and  Taylor
+     showed  that  this  stabilization  can  be  recovered  from  a  fluid  model  provided  one
+     retains both of the ingredients that simpler one-fluid reductions tend to discard: the
+     two-fluid correction in Ohm&#8217;s law and the nonscalar ion stress tensor <span 
+class="ecbx-1095">?</span>. I have benefited
+     enormously from Dalton Schnack&#8217;s notes <span 
+class="ecbx-1095">? </span>for unpacking the terse PRL derivation.</p></blockquote></div></div>
+<!--l. 24--><p class="noindent" >The modern vocabulary may be drift-kinetic, gyrofluid, or gyrokinetic, but the intellectual core is already
+here. Bad curvature is still the organizing instability for confinement physics; one simply meets it later
+dressed as interchange, ballooning, ITG, or TEM turbulence. Roberts&#8211;Taylor therefore deserves to be
+worked through carefully, not just quoted. Indeed, this, together with Rosenbluth&#8217;s kinetic FLR treatment
+is the progenitor of modern day gyrokinetics.
+<a 
+ id="x1-45001r39"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.1   </span> <a 
+ id="x1-460001"></a>Geometry, equilibrium, and notation</h3>
+<!--l. 29--><p class="noindent" >We use the slab geometry \[ \B _0=B_0\,\vect {e}_z, \qquad \vect {g}=-g\,\vect {e}_x, \qquad \dd {\rho _0}{x}=\eta \rho _0, \qquad \eta \equiv \frac {1}{L_n}&gt;0, \qquad \uvec _1 = V_x\,\vect {e}_x+V_y\,\vect {e}_y. \] The equilibrium total pressure must satisfy <a id="eq-eq-rt-equilibrium"></a><div class="math-display">\[\dd {p_{T0}}{x}=-\rho _0 g, \qquad p_{T0}\equiv p_0+\frac {B_0^2}{2\muo }. \tag{21.2}\]</div>
+If \(B_0\) is constant, (<a href="lecture21.html#eq-eq-rt-equilibrium">21.2</a>) reduces to the familiar hydrostatic balance \(\dd {p_0}{x}=-\rho _0 g\).
+</p><!--l. 50--><p class="noindent" >The perturbations are taken to be local normal modes, <a id="eq-eq-mode_ansatz"></a><div class="math-display">\[\tilde f(x,y,t)=\hat f\,e^{i\omega t+iky}, \qquad k\equiv k_y=k_\perp , \tag{21.3}\]</div>
+and the local ordering is <a id="eq-eq-local_ordering"></a><div class="math-display">\[\eta \ll k, \tag{21.4}\]</div>
+so perturbation amplitudes are treated as slowly varying in \(x\) while equilibrium coefficients may vary
+through \(\rho _0(x)\) and \(p_0(x)\).
+</p>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 64--><p class="noindent" >
+<!--l. 73--><p class="noindent" ><object data="main_html_mathjax_preview_stability-1.svg" width="637.01462 " height="114.1522 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p></div>
+<!--l. 76--><p class="noindent" >A useful notation map is
+</p>
+<div class="center" 
+>
+<!--l. 78--><p class="noindent" >
+</p>
+
+ <table id="TBL-4" class="tabular" 
+ 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1" /><col 
+id="TBL-4-2" /><col 
+id="TBL-4-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-1"  
+class="td11"> <tspan font-family="ecbx" font-size="1095">This note </tspan></td><td  style="white-space:normal; text-align:left;" id="TBL-4-1-2"  
+class="td11"> <!--l. 90--><p class="noindent" >RT/Schnack                            </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-1-3"  
+class="td11"> <!--l. 90--><p class="noindent" >Meaning                                 </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-1"  
+class="td11"> \(\Omega _i\)           </td><td  style="white-space:normal; text-align:left;" id="TBL-4-2-2"  
+class="td11"> <!--l. 90--><p class="noindent" >\(\Omega \)                             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-2-3"  
+class="td11"> <!--l. 90--><p class="noindent" >ion
+  gyrofrequency                          </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-1"  
+class="td11"> \(\nu _0\)           </td><td  style="white-space:normal; text-align:left;" id="TBL-4-3-2"  
+class="td11"> <!--l. 90--><p class="noindent" >\(2\nu \)                             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-3-3"  
+class="td11"> <!--l. 90--><p class="noindent" >gyroviscous
+  coefficient                                </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-4-1"  
+class="td11"> \(L_n^{-1}=\eta \)           </td><td  style="white-space:normal; text-align:left;" id="TBL-4-4-2"  
+class="td11"> <!--l. 90--><p class="noindent" >\(\eta \)                             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-4-3"  
+class="td11"> <!--l. 90--><p class="noindent" >density-gradient
+  scale                                      </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-5-1"  
+class="td11"> \(k_\perp \)           </td><td  style="white-space:normal; text-align:left;" id="TBL-4-5-2"  
+class="td11"> <!--l. 90--><p class="noindent" >\(k\)                             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-5-3"  
+class="td11"> <!--l. 90--><p class="noindent" >local
+  transverse
+  wavenumber                            </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-6-1"  
+class="td11"> \(\rho _i^2\)           </td><td  style="white-space:normal; text-align:left;" id="TBL-4-6-2"  
+class="td11"> <!--l. 90--><p class="noindent" >\(a^2\)                             </p></td><td  style="white-space:normal; text-align:left;" id="TBL-4-6-3"  
+class="td11"> <!--l. 90--><p class="noindent" >ion
+  gyroradius
+  squared                                  </p></td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-7-1"  
+class="td11">            </td></tr></table>
+</div>
+<!--l. 94--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 94--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Two sign conventions are in play. </tspan>First, Roberts and Taylor use the opposite signs for \(g\) and
+     the equilibrium density gradient. Second, our earlier momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) was written
+     with the continuum-stress convention \(+\divergence \tens {\Pi }\). In this lecture we follow the plasma-transport
+     convention and write the gyroviscous correction as a pressure tensor entering through \(-\divergence \tens {\Pi }^{\mathrm {gv}}\). The two
+     conventions are related by <a id="eq-eq-rt-signmap"></a><div class="math-display">\[\tens {\Pi }_{\text {book}}=-\tens {\Pi }^{\mathrm {gv}}. \tag{21.5}\]</div>
+     That sign map is worth keeping in mind for homework and for the Roberts&#8211;Taylor FLR
+     lecture.</p></blockquote></div></div>
+<a 
+ id="x1-46001r53"></a>
+<h3 class="sectionHead"><span class="titlemark">21.2   </span> <a 
+ id="x1-470002"></a>The clever step: rewrite generalized Ohm&#8217;s law with the momentum equation</h3>
+<!--l. 104--><p class="noindent" >Start from the collisionless, zero-resistivity, negligible-electron-inertia generalized Ohm law,
+                                                                                         
+                                                                                         
+<a id="eq-eq-gen_ohm"></a><div class="math-display">\[\E +\uvec \times \B +\frac {1}{ne}\grad p_e-\frac {1}{ne}\J \times \B =0. \tag{21.6}\]</div>
+Relative to the resistive Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), the new term is the Hall force \((\J \times \B )/(ne)\), and relative to the fully reduced
+ideal law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) we are also keeping electron-pressure effects. Compare also the more general Braginskii form
+in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>).
+</p><!--l. 111--><p class="noindent" >The one-fluid momentum equation is <a id="eq-eq-momentum_onefluid"></a><div class="math-display">\[\rho \frac {D\uvec }{Dt}=\J \times \B -\grad p+\rho \vect {g}-\divergence \tens {\Pi }^{\mathrm {gv}}, \qquad p=p_i+p_e. \tag{21.7}\]</div>
+Therefore <a id="eq-eq-jxb_replace"></a><div class="math-display">\[\J \times \B =\rho \frac {D\uvec }{Dt}+\grad p-\rho \vect {g}+\divergence \tens {\Pi }^{\mathrm {gv}}. \tag{21.8}\]</div>
+Substituting (<a href="lecture21.html#eq-eq-jxb_replace">21.8</a>) into (<a href="lecture21.html#eq-eq-gen_ohm">21.6</a>) gives <a id="eq-eq-ohm_rewritten"></a><div class="math-display">\[\boxed {\; \E =-\uvec \times \B +\frac {M}{e}\frac {D\uvec }{Dt}+\frac {1}{ne}\grad p_i-\frac {M}{e}\vect {g}+\frac {1}{ne}\divergence \tens {\Pi }^{\mathrm {gv}} \;} \tag{21.9}\]</div>
+with \(\rho =nM\).
+</p><!--l. 131--><p class="noindent" >This is the key reorganization. The Hall term and the electron-pressure term have been traded for a sum of
+physically transparent ion-fluid pieces. If we now cross (<a href="lecture21.html#eq-eq-ohm_rewritten">21.9</a>) with \(\B /B^2\), the perpendicular flow can be read as <a id="eq-eq-drift_decomposition"></a><div class="math-display">\[\uvec _\perp =\underbrace {\frac {\E \times \B }{B^2}}_{\text {common }E\times B} +\underbrace {\frac {1}{\Omega _i}\vect {b}\times \frac {D\uvec }{Dt}}_{\text {polarization}} +\underbrace {\frac {\vect {b}\times \grad p_i}{enB}}_{\text {ion diamagnetic}} -\underbrace {\frac {1}{\Omega _i}\vect {b}\times \vect {g}}_{\text {gravity drift}} +\underbrace {\frac {\vect {b}\times (\divergence \tens {\Pi }^{\mathrm {gv}})}{enB}}_{\text {gyroviscous drift}}. \tag{21.10}\]</div>
+</p><!--l. 143--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 143--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Where did the diamagnetic drift go? </tspan>It is still present: it sits explicitly in (<a href="lecture21.html#eq-eq-drift_decomposition">21.10</a>)
+     as \(\vect {b}\times \grad p_i/(enB)\). In the barotropic, isothermal local benchmark its curl vanishes at leading order, so
+     it drops out of the final scalar closure. But the derivation should not skip it, because
+     it is part of the extended-MHD bookkeeping and it reappears directly in the separate
+     ion/electron derivation below.</p></blockquote></div></div>
+<a 
+ id="x1-47001r54"></a>
+<h3 class="sectionHead"><span class="titlemark">21.3   </span> <a 
+ id="x1-480003"></a>Electrostatic closure and the loss of \(\divergence \uvec =0\)</h3>
+<!--l. 148--><p class="noindent" >In the ideal-flux-freezing lecture, the ideal Ohm law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) led directly to frozen flux (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>). Here we take a
+different reduced limit: low \(\beta \), electrostatic perturbations with negligible magnetic perturbation but
+finite Hall and gyroviscous corrections. The dynamics are organized around the total pressure
+<a id="eq-eq-rt-ptotal"></a><div class="math-display">\[p_T\equiv p+\frac {B^2}{2\muo }, \tag{21.11}\]</div>
+and the electrostatic assumption <a id="eq-eq-electrostatic"></a><div class="math-display">\[\curl \E =0. \tag{21.12}\]</div>
+Taking the curl of (<a href="lecture21.html#eq-eq-ohm_rewritten">21.9</a>) gives <a id="eq-eq-closure_vector"></a><div class="math-display">\[-\curl (\uvec \times \B ) +\frac {M}{e}\curl \left [\frac {D\uvec }{Dt}+\frac {C_s^2}{\rho }\grad \rho +\frac {1}{\rho }\divergence \tens {\Pi }^{\mathrm {gv}}\right ]=0, \tag{21.13}\]</div>
+where barotropic ions have been used so that \(\grad p_i=C_s^2\grad \rho \).
+</p><!--l. 166--><p class="noindent" >For the present slab geometry, \(\B =B\,\vect {e}_z\) and \((\B \cdot \grad )\uvec =0\), so <a id="eq-eq-closure_slab_general"></a><div class="math-display">\[\divergence \uvec +\frac {1}{\Omega _i}\vect {e}_z\cdot \curl \left [\frac {D\uvec }{Dt}+\frac {C_s^2}{\rho }\grad \rho +\frac {1}{\rho }\divergence \tens {\Pi }^{\mathrm {gv}}\right ]=0. \tag{21.14}\]</div>
+For the isothermal benchmark, \(C_s^2\) is constant, and the pressure-gradient curl vanishes explicitly because \[ \curl \left (\frac {C_s^2}{\rho }\grad \rho \right ) =C_s^2\,\grad \left (\frac {1}{\rho }\right )\times \grad \rho =0. \]
+Likewise, \[ \curl \left (\frac {1}{\rho }\divergence \tens {\Pi }^{\mathrm {gv}}\right ) =\grad \left (\frac {1}{\rho }\right )\times \left (\divergence \tens {\Pi }^{\mathrm {gv}}\right ) +\frac {1}{\rho }\curl \left (\divergence \tens {\Pi }^{\mathrm {gv}}\right ). \] For the local slab benchmark the second term does not contribute at the order retained, so
+Schnack&#8217;s closure reduces to <a id="eq-eq-schnack_closure"></a><div class="math-display">\[\boxed {\; \divergence \uvec +\frac {1}{\Omega _i}\vect {e}_z\cdot \curl \frac {D\uvec }{Dt} -\frac {1}{\Omega _i\rho ^2}\vect {e}_z\cdot \Big (\grad \rho \times (\divergence \tens {\Pi }^{\mathrm {gv}})\Big )=0 \;} \tag{21.15}\]</div>
+which is the extended-MHD substitute for the ideal-MHD incompressibility condition.
+</p><!--l. 193--><p class="noindent" >In the ideal-MHD limit \(\Omega _i\to \infty \) and \(\tens {\Pi }^{\mathrm {gv}}\to 0\), so (<a href="lecture21.html#eq-eq-schnack_closure">21.15</a>) collapses to \(\divergence \uvec =0\). With Hall and FLR effects retained, electrostatic
+perturbations are no longer forced to be solenoidal.
+<a 
+ id="x1-48001r55"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.4   </span> <a 
+ id="x1-490004"></a>Gyroviscosity in slab geometry: from Braginskii to Roberts&#8211;Taylor</h3>
+<!--l. 197--><p class="noindent" >The Braginskii lecture defined the symmetric traceless strain tensor in (<a href="lecture5.html#eq-eq-brag-gyroviscouscompact">5.25</a>). In the present slab geometry,
+<a id="eq-eq-rt-Wxx"></a><div class="math-display">\[\begin{aligned}W_{xx}&amp;=2\pp {V_x}{x}-\frac {2}{3}\divergence \uvec ,  \\ W_{yy}&amp;=2\pp {V_y}{y}-\frac {2}{3}\divergence \uvec ,  \\ W_{xy}&amp;=\pp {V_x}{y}+\pp {V_y}{x}.\end{aligned} \tag{21.16}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 208--><p class="noindent" >In the strongly magnetized, collisionless limit relevant here, the Braginskii tensor collapses to
+its gyroviscous part with coefficient \(\eta _3=\rho \nu _0\). The nonzero perpendicular components are therefore
+<a id="eq-eq-Pi_components"></a><div class="math-display">\[\Pi _{xx}^{\mathrm {gv}}=-\Pi _{yy}^{\mathrm {gv}}=-\rho \nu _0\left (\pp {V_y}{x}+\pp {V_x}{y}\right ), \qquad \Pi _{xy}^{\mathrm {gv}}=\Pi _{yx}^{\mathrm {gv}}=\rho \nu _0\left (\pp {V_x}{x}-\pp {V_y}{y}\right ), \tag{21.19}\]</div>
+with <a id="eq-eq-nu0_def"></a><div class="math-display">\[\nu _0=\frac {a^2\Omega _i}{2}=\frac {\rho _i^2\Omega _i}{2}, \qquad a\equiv \rho _i, \qquad \rho \nu _0\sim \frac {p_i}{\Omega _i}. \tag{21.20}\]</div>
+Although \(\nu _0\) has the dimensions of a kinematic viscosity, the associated force is nondissipative: it is an FLR
+stress, not collisional damping.
+</p><!--l. 226--><p class="noindent" >Now insert the local mode (<a href="lecture21.html#eq-eq-mode_ansatz">21.3</a>). To keep the algebra visible, it is worth evaluating the divergence
+component by component. First, <div class="math-display">\[\begin{aligned}(\divergence \tens {\Pi }^{\mathrm {gv}})_x &amp;=\pp {\Pi _{xx}^{\mathrm {gv}}}{x}+\pp {\Pi _{yx}^{\mathrm {gv}}}{y} \\ &amp;=\pp {}{x}\left [-\rho _0\nu _0\left (\pp {V_y}{x}+ikV_x\right )\right ] +ik\left [\rho _0\nu _0\left (\pp {V_x}{x}-ikV_y\right )\right ].\end{aligned}\]</div>
+</p><!--l. 234--><p class="noindent" >Under the local ordering (<a href="lecture21.html#eq-eq-local_ordering">21.4</a>) we neglect \(\pp {V_x}{x}\) and \(\pp {V_y}{x}\) in the perturbation amplitudes but retain the equilibrium
+variation of \(\rho _0\nu _0\). Therefore <a id="eq-eq-Pi_div_x_general"></a><div class="math-display">\[(\divergence \tens {\Pi }^{\mathrm {gv}})_x=-(\rho _0\nu _0)'ikV_x+\rho _0\nu _0k^2V_y. \tag{21.21}\]</div>
+Likewise, <div class="math-display">\[\begin{aligned}(\divergence \tens {\Pi }^{\mathrm {gv}})_y &amp;=\pp {\Pi _{xy}^{\mathrm {gv}}}{x}+\pp {\Pi _{yy}^{\mathrm {gv}}}{y} \\ &amp;=\pp {}{x}\left [\rho _0\nu _0\left (\pp {V_x}{x}-ikV_y\right )\right ] +ik\left [\rho _0\nu _0\left (\pp {V_y}{x}+ikV_x\right )\right ] \\ &amp;=-(\rho _0\nu _0)'ikV_y-\rho _0\nu _0k^2V_x.\end{aligned}\]</div>
+</p><!--l. 249--><p class="noindent" >Hence <a id="eq-eq-Pi_div_y_general"></a><div class="math-display">\[(\divergence \tens {\Pi }^{\mathrm {gv}})_y=-(\rho _0\nu _0)'ikV_y-\rho _0\nu _0k^2V_x. \tag{21.22}\]</div>
+If \(\nu _0\) is treated as constant and the equilibrium variation is carried entirely by the density, then \((\rho _0\nu _0)'=\eta \rho _0\nu _0\), and
+(<a href="lecture21.html#eq-eq-Pi_div_x_general">21.21</a>)&#8211;(<a href="lecture21.html#eq-eq-Pi_div_y_general">21.22</a>) become <a id="eq-eq-Pi_div_x"></a><div class="math-display">\[\begin{aligned}(\divergence \tens {\Pi }^{\mathrm {gv}})_x&amp;=-\nu _0\eta \rho _0 ikV_x+\rho _0\nu _0k^2V_y,  \\ (\divergence \tens {\Pi }^{\mathrm {gv}})_y&amp;=-\nu _0\eta \rho _0 ikV_y-\rho _0\nu _0k^2V_x.\end{aligned} \tag{21.23}\]</div>
+</p><!--l. 264--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 264--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Important point. </tspan>The equilibrium-gradient piece \((\rho _0\nu _0)'\propto \eta \rho _0\nu _0\) is not an optional detail. It is exactly
+     this piece that becomes the FLR stabilization term in the final quadratic. Dropping it
+     would remove the effect one is trying to calculate.</p></blockquote></div></div>
+<a 
+ id="x1-49001r56"></a>
+<h3 class="sectionHead"><span class="titlemark">21.5   </span> <a 
+ id="x1-500005"></a>Linearized extended-MHD system</h3>
+<!--l. 269--><p class="noindent" >The benchmark is obtained by linearizing three equations: continuity (<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), one-fluid force balance (<a href="lecture21.html#eq-eq-momentum_onefluid">21.7</a>),
+and the non-solenoidal closure (<a href="lecture21.html#eq-eq-schnack_closure">21.15</a>).
+</p><!--l. 271--><p class="noindent" >From continuity, \[ \pp {\rho _1}{t}+\uvec _1\cdot \grad \rho _0+\rho _0\divergence \uvec _1=0. \] Using \(\grad \rho _0=\eta \rho _0\,\vect {e}_x\), \(\uvec _1=V_x\,\vect {e}_x+V_y\,\vect {e}_y\), and the local approximation \(\divergence \uvec _1\simeq ikV_y\), one finds <a id="eq-eq-L1"></a><div class="math-display">\[i\omega \rho _1+\eta \rho _0V_x+ik\rho _0V_y=0. \tag{21.25}\]</div>
+</p><!--l. 281--><p class="noindent" >The \(x\)-component of the momentum equation is \[ \rho _0 i\omega V_x=-\pp {p_{T1}}{x}-g\rho _1-(\divergence \tens {\Pi }^{\mathrm {gv}})_x. \] In the local electrostatic treatment the \(x\)-variation of \(p_{T1}\) is
+neglected, so using (<a href="lecture21.html#eq-eq-Pi_div_x">21.23</a>) gives <a id="eq-eq-L2"></a><div class="math-display">\[\frac {g}{\rho _0}\rho _1+(i\omega -\nu _0\eta ik)V_x+\nu _0k^2V_y=0. \tag{21.26}\]</div>
+Similarly, the \(y\)-component reads \[ \rho _0 i\omega V_y=-ikp_{T1}-(\divergence \tens {\Pi }^{\mathrm {gv}})_y, \] so that <a id="eq-eq-L3"></a><div class="math-display">\[-\nu _0k^2V_x+(i\omega -\nu _0\eta ik)V_y+\frac {ik}{\rho _0}p_T=0. \tag{21.27}\]</div>
+</p><!--l. 300--><p class="noindent" >Now linearize the closure (<a href="lecture21.html#eq-eq-schnack_closure">21.15</a>). The three terms are <div class="math-display">\[\begin{aligned}\divergence \uvec _1&amp;\simeq ikV_y, \\ \frac {1}{\Omega _i}\vect {e}_z\cdot \curl \frac {D\uvec _1}{Dt} &amp;=\frac {1}{\Omega _i}\left [\pp {}{x}(i\omega V_y)-\pp {}{y}(i\omega V_x)\right ] \simeq \frac {\omega k}{\Omega _i}V_x, \\ -\frac {1}{\Omega _i\rho _0^2}\vect {e}_z\cdot \Big (\grad \rho _0\times (\divergence \tens {\Pi }^{\mathrm {gv}})\Big ) &amp;=-\frac {\eta }{\Omega _i\rho _0}(\divergence \tens {\Pi }^{\mathrm {gv}})_y \\ &amp;=\frac {\nu _0\eta }{\Omega _i}k^2V_x+\frac {\nu _0\eta ^2}{\Omega _i}ikV_y.\end{aligned}\]</div>
+</p><!--l. 313--><p class="noindent" >Adding them yields <a id="eq-eq-L4"></a><div class="math-display">\[\left (\frac {\omega k}{\Omega _i}+\frac {\nu _0\eta }{\Omega _i}k^2\right )V_x +\left (1+\frac {\eta ^2\nu _0}{\Omega _i}\right )ikV_y=0. \tag{21.28}\]</div>
+Equation (<a href="lecture21.html#eq-eq-L4">21.28</a>) is the linearized form of the extended-MHD closure. Equations (<a href="lecture21.html#eq-eq-L1">21.25</a>)&#8211;(<a href="lecture21.html#eq-eq-L4">21.28</a>) are
+already the complete local Roberts&#8211;Taylor benchmark.
+</p><!--l. 321--><p class="noindent" >For later use, it is convenient to note the three simple limits obtained by turning terms on and off: <a id="eq-eq-ideal_limit"></a><div class="math-display">\[\begin{aligned}\text {ideal MHD:}&amp;&amp; \omega ^2+g\eta &amp;=0,  \\ \text {gyroviscosity only:}&amp;&amp; \omega ^2-\nu _0\eta k\,\omega +g\eta &amp;=0,  \\ \text {two-fluid only:}&amp;&amp; \omega ^2-\frac {gk}{\Omega _i}\,\omega +g\eta &amp;=0.\end{aligned} \tag{21.29}\]</div>
+</p><!--l. 332--><p class="noindent" >The full result is obtained next.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-50001r57"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.6   </span> <a 
+ id="x1-510006"></a>Deriving the full local dispersion relation step by step</h3>
+<!--l. 336--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-520006"></a>Step 1: eliminate \(V_y\) with the closure.</span>
+From (<a href="lecture21.html#eq-eq-L4">21.28</a>), define <a id="eq-eq-SD_def"></a><div class="math-display">\[S\equiv \frac {\omega k}{\Omega _i}+\frac {\nu _0\eta }{\Omega _i}k^2, \qquad D\equiv 1+\frac {\eta ^2\nu _0}{\Omega _i}, \tag{21.32}\]</div>
+so that <a id="eq-eq-Vy_from_closure"></a><div class="math-display">\[ikV_y=-\frac {S}{D}V_x, \qquad V_y=\frac {iS}{kD}V_x. \tag{21.33}\]</div>
+</p>
+<!--l. 352--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-530006"></a>Step 2: eliminate \(\rho _1\) with continuity.</span>
+Using (<a href="lecture21.html#eq-eq-Vy_from_closure">21.33</a>) in (<a href="lecture21.html#eq-eq-L1">21.25</a>), <a id="eq-eq-rho_from_cont"></a><div class="math-display">\[\frac {\rho _1}{\rho _0}=-\frac {\eta V_x+ikV_y}{i\omega } =\frac {i}{\omega }\left (\eta -\frac {S}{D}\right )V_x. \tag{21.34}\]</div>
+</p>
+<!--l. 360--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-540006"></a>Step 3: insert into the \(x\)-momentum equation.</span>
+Substituting (<a href="lecture21.html#eq-eq-Vy_from_closure">21.33</a>) and (<a href="lecture21.html#eq-eq-rho_from_cont">21.34</a>) into (<a href="lecture21.html#eq-eq-L2">21.26</a>) gives \[ \frac {g}{\rho _0}\left [\rho _0\frac {i}{\omega }\left (\eta -\frac {S}{D}\right )V_x\right ] +(i\omega -\nu _0\eta ik)V_x +\nu _0k^2\left (\frac {iS}{kD}V_x\right )=0. \] Dividing by \(iV_x\) gives the compact intermediate form
+<a id="eq-eq-intermediate_dispersion"></a><div class="math-display">\[g\left (\eta -\frac {S}{D}\right )+\omega (\omega -\nu _0\eta k)+\frac {\omega \nu _0 kS}{D}=0. \tag{21.35}\]</div>
+Now substitute \[ S=\frac {k}{\Omega _i}(\omega +\nu _0\eta k), \qquad D=1+\frac {\eta ^2\nu _0}{\Omega _i}. \] Multiplying (<a href="lecture21.html#eq-eq-intermediate_dispersion">21.35</a>) by \(D\) and grouping like powers of \(\omega \) gives <div class="math-display">\[\begin{aligned}0={}&amp;g(\eta D-S)+D\omega (\omega -\nu _0\eta k)+\omega \nu _0kS \\ ={}&amp;\left [1+\frac {\nu _0}{\Omega _i}(\eta ^2+k^2)\right ]\omega ^2 \\ &amp;-\left \{\frac {gk}{\Omega _i}+\nu _0\eta k\left [1+\frac {\nu _0}{\Omega _i}(\eta ^2-k^2)\right ]\right \}\omega \\ &amp;+g\eta \left [1+\frac {\nu _0}{\Omega _i}(\eta ^2-k^2)\right ].\end{aligned}\]</div>
+</p><!--l. 388--><p class="noindent" >Hence the local exact quadratic is <a id="eq-eq-full_exact_local"></a><div class="math-display">\[\boxed {\; \left [1+\frac {\nu _0}{\Omega _i}(\eta ^2+k^2)\right ]\omega ^2 -\left \{\frac {gk}{\Omega _i}+\nu _0\eta k\left [1+\frac {\nu _0}{\Omega _i}(\eta ^2-k^2)\right ]\right \}\omega +g\eta \left [1+\frac {\nu _0}{\Omega _i}(\eta ^2-k^2)\right ]=0 \;} \tag{21.36}\]</div>
+which is Schnack&#8217;s local exact quadratic.
+</p>
+<!--l. 399--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-550006"></a>Step 4: reduce to the Roberts&#8211;Taylor ordering.</span>
+Roberts and Taylor then use the short-wavelength FLR ordering <a id="eq-eq-rt_ordering"></a><div class="math-display">\[\frac {\nu _0k^2}{\Omega _i}=\frac {(k\rho _i)^2}{2}\ll 1, \qquad \eta ^2\ll k^2. \tag{21.37}\]</div>
+Keeping the lowest nontrivial order in these small quantities reduces (<a href="lecture21.html#eq-eq-full_exact_local">21.36</a>) to <a id="eq-eq-ordered_quadratic"></a><div class="math-display">\[\boxed {\; \omega ^2-\left (\frac {gk}{\Omega _i}+\nu _0\eta k\right )\omega +g\eta =0 \;} \tag{21.38}\]</div>
+with solution <a id="eq-eq-ordered_root"></a><div class="math-display">\[2\omega =\frac {gk}{\Omega _i}+\nu _0\eta k \pm \sqrt {\left (\frac {gk}{\Omega _i}+\nu _0\eta k\right )^2-4g\eta }. \tag{21.39}\]</div>
+The instability is stabilized when the discriminant becomes nonnegative, i.e. <a id="eq-eq-k_threshold"></a><div class="math-display">\[k^2&gt;k_{\text {EMHD}}^2 =\frac {4g\eta }{\left (\dfrac {g}{\Omega _i}+\nu _0\eta \right )^2}. \tag{21.40}\]</div>
+</p>
+<div class="center" 
+>
+<!--l. 427--><p class="noindent" >
+</p>
+<div class="tabular">
+ <table id="TBL-5" class="tabular" 
+ 
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1" /><col 
+id="TBL-5-2" /><col 
+id="TBL-5-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-1-1"  
+class="td01">Model          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-1-2"  
+class="td11"> Quadratic  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-1-3"  
+class="td10"> Stability threshold</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-2-1"  
+class="td01">ideal MHD     </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-2-2"  
+class="td11"> \(\omega ^2+g\eta =0\)          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-2-3"  
+class="td10"> none                  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-3-1"  
+class="td01">2-fluid only </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-3-2"  
+class="td11"> \(\omega ^2-\dfrac {gk}{\Omega _i}\omega +g\eta =0\) </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-3-3"  
+class="td10"> \(k^2&gt;4\eta \Omega _i^2/g\)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-4-1"  
+class="td01">FLR only       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-4-2"  
+class="td11"> \(\omega ^2-\nu _0\eta k\,\omega +g\eta =0\)          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-4-3"  
+class="td10"> \(k^2&gt;4g/(\nu _0^2\eta )\)                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-5-1"  
+class="td01">full ext-MHD  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-5-2"  
+class="td11"> (<a href="lecture21.html#eq-eq-ordered_quadratic">21.38</a>)      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-5-5-3"  
+class="td10"> (<a href="lecture21.html#eq-eq-k_threshold">21.40</a>)               </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-6-1"  
+class="td01">            </td></tr></table>
+</div></div>
+<a 
+ id="x1-55001r58"></a>
+<h3 class="sectionHead"><span class="titlemark">21.7   </span> <a 
+ id="x1-560007"></a>Writing the FLR term in \(k_\perp \rho _i\) form</h3>
+<!--l. 444--><p class="noindent" >Because <a id="eq-eq-nu_rhoi"></a><div class="math-display">\[\nu _0=\frac {\rho _i^2\Omega _i}{2}, \tag{21.41}\]</div>
+                                                                                         
+                                                                                         
+the FLR coefficient in (<a href="lecture21.html#eq-eq-ordered_quadratic">21.38</a>) is <a id="eq-eq-flr_kperprhoi"></a><div class="math-display">\[\nu _0\eta k_\perp =\frac {\rho _i^2\Omega _i}{2}\,\eta k_\perp =\frac {\Omega _i}{2}\frac {1}{k_\perp L_n}(k_\perp \rho _i)^2. \tag{21.42}\]</div>
+Thus the ordered quadratic can be written directly as <a id="eq-eq-kperprhoi_form"></a><div class="math-display">\[\boxed {\; \omega ^2- \left [ \frac {gk_\perp }{\Omega _i} +\frac {\Omega _i}{2}\frac {1}{k_\perp L_n}(k_\perp \rho _i)^2 \right ]\omega +\frac {g}{L_n}=0 \;} \tag{21.43}\]</div>
+for this slab geometry, where \(k_\perp =k_y\).
+</p><!--l. 470--><p class="noindent" >A convenient frequency notation is <a id="eq-eq-freq_defs"></a><div class="math-display">\[\omega _g^2\equiv \frac {g}{L_n}, \qquad \omega _H\equiv \frac {gk_\perp }{\Omega _i}, \qquad \omega _\pi \equiv \nu _0\eta k_\perp , \tag{21.44}\]</div>
+so that the stability condition becomes <a id="eq-eq-freq_threshold"></a><div class="math-display">\[(\omega _H+\omega _\pi )^2&gt;4\omega _g^2. \tag{21.45}\]</div>
+</p><!--l. 486--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 486--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Where exactly does the FLR correction live? </tspan>In this fluid benchmark it appears
+     as the linear-in-\(\omega \) coefficient \(\omega _\pi =\nu _0\eta k_\perp \), not as a direct additive correction to the gravitational drive
+     \(g/L_n\). The stabilizing term comes from the equilibrium-gradient part of the gyroviscous force
+     and then feeds into the non-solenoidal closure.</p></blockquote></div></div>
+<!--l. 489--><p class="noindent" >It is also useful to note the Hall&#8211;FLR cross-term estimate <a id="eq-eq-cross_term_smallness"></a><div class="math-display">\[(\nu _0\eta k_\perp )\left (\frac {gk_\perp }{\Omega _i}\right ) =\frac {g}{L_n}\frac {(k_\perp \rho _i)^2}{2}, \tag{21.46}\]</div>
+which is smaller than the gravitational drive by the ordered quantity \((k_\perp \rho _i)^2/2\ll 1\). This is why the Roberts&#8211;Taylor
+reduction keeps Hall and FLR terms in the coefficient of \(\omega \) while discarding higher-order cross-couplings
+elsewhere.
+<a 
+ id="x1-56001r63"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.8   </span> <a 
+ id="x1-570008"></a>Separate ion/electron derivation and physical interpretation</h3>
+<!--l. 500--><p class="noindent" >One of Schnack&#8217;s nicest additions is to return to separate ion and electron equations. Ignoring electron
+inertia, the equilibrium drifts are <a id="eq-eq-equilibrium_drifts"></a><div class="math-display">\[V_{xi0}=0, \qquad V_{yi0}=\frac {g}{\Omega _i}+\frac {C_{Si}^2}{\Omega _iL_n}-\frac {E_{x0}}{B}, \qquad V_{xe0}=0, \qquad V_{ye0}=-\frac {E_{x0}}{B}. \tag{21.47}\]</div>
+This is already a useful bookkeeping result: </p>
+   <ul class="itemize1">
+   <li class="itemize">\(g/\Omega _i\) is the ion gravity drift,
+   </li>
+   <li class="itemize">\(C_{Si}^2/(\Omega _iL_n)\) is the ion diamagnetic drift,
+   </li>
+   <li class="itemize">\(-E_{x0}/B\) is the common equilibrium \(E\times B\) frame velocity.</li></ul>
+<!--l. 517--><p class="noindent" >Thus the separate-fluid derivation makes the diamagnetic piece explicit even before linearization.
+</p><!--l. 519--><p class="noindent" >After linearization, quasi-neutrality, and the same low-\(\beta \) ordering used above, the perturbed electron \(E\times B\) drift
+satisfies <a id="eq-eq-VE_relation"></a><div class="math-display">\[V_E\equiv \frac {E_y}{B} =\frac {W+W_{e0}}{W+W_{i0}}\left (v_{xi}+i\alpha v_{yi}\right ), \tag{21.48}\]</div>
+where \(W=\omega /\Omega _i\), \(\alpha =kL_n\), and \(W_{\alpha 0}=kV_{y\alpha 0}/\Omega _i\). Eliminating the remaining variables gives <a id="eq-eq-twofluid_reduced_nondim"></a><div class="math-display">\[\alpha (W+W_{i0})(W+W_{e0})+W_{i0}-W_{e0}=0. \tag{21.49}\]</div>
+In dimensional form this becomes <a id="eq-eq-twofluid_dimensional_general"></a><div class="math-display">\[\omega ^2 +k\left (\frac {g}{\Omega _i}-2\frac {E_{x0}}{B}\right )\omega -k^2\frac {E_{x0}}{B}\left (\frac {g}{\Omega _i}-\frac {E_{x0}}{B}\right ) +\frac {g}{L_n}=0. \tag{21.50}\]</div>
+Two standard frame choices are then <a id="eq-eq-twofluid_e_rest"></a><div class="math-display">\[\begin{aligned}E_{x0}=0 \quad \text {(stationary electrons)} &amp;\Longrightarrow \omega ^2+\frac {gk}{\Omega _i}\omega +\frac {g}{L_n}=0,  \\ E_{x0}=\frac {gB}{\Omega _i} \quad \text {(stationary ions)} &amp;\Longrightarrow \omega ^2-\frac {gk}{\Omega _i}\omega +\frac {g}{L_n}=0.\end{aligned} \tag{21.51}\]</div>
+</p><!--l. 551--><p class="noindent" >The sign of the linear \(\omega \)-coefficient changes because it is a frame effect. The stability threshold does
+not.
+</p><!--l. 554--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 554--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Physical picture. </tspan>In ideal MHD, electrostatic perturbations together with (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) force
+     \(\divergence \uvec =0\),  so  ions  and  electrons  share  a  common  \(E\times B\)  motion.  In  the  two-fluid  problem  the  ion
+     and electron drifts differ. Quasi-neutrality then requires just enough compression or
+     expansion of the ion fluid to prevent charge separation. That non-solenoidal ion motion
+     is what the closure equation captures. Gyroviscosity adds a second ion drift channel,
+     and that extra FLR drift shifts the linear \(\omega \)-coefficient in the stabilizing direction.</p></blockquote></div></div>
+<!--l. 557--><p class="noindent" >Two cautions are worth recording.
+</p>
+<!--l. 559--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-580008"></a>Equilibrium force balance matters.</span>
+The benchmark is not just about linearization. The equilibrium must be thermodynamically and
+mechanically consistent with (<a href="lecture21.html#eq-eq-rt-equilibrium">21.2</a>); otherwise the coefficient multiplying the FLR term is altered and one
+can manufacture spurious cancellations.
+</p>
+<!--l. 562--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-590008"></a>Higher-order ion heat-stress corrections are subleading here.</span>
+Schnack shows that collisionless ion heat-stress corrections modify the result only at higher order in the
+same short-wavelength expansion. The leading Roberts&#8211;Taylor stabilization mechanism is already isolated
+by the Hall term plus gyroviscosity.
+<a 
+ id="x1-59001r64"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.9   </span> <a 
+ id="x1-600009"></a>Comparison with the original Roberts&#8211;Taylor PRL</h3>
+<!--l. 567--><p class="noindent" >Roberts and Taylor write the gyroviscous coefficient as \[ \nu _{\mathrm {RT}}=\frac {a^2\Omega _i}{4}, \qquad \nu _0=2\nu _{\mathrm {RT}}, \] and their one-fluid quadratic is <a id="eq-eq-rt_original_form"></a><div class="math-display">\[F_0(\omega )=\omega ^2+\left (2\nu _{\mathrm {RT}}\eta k+\frac {gk}{\Omega _i}\right )\omega +g\eta =0. \tag{21.53}\]</div>
+This differs from (<a href="lecture21.html#eq-eq-ordered_quadratic">21.38</a>) only by sign conventions for \(g\) and the equilibrium density gradient, together with
+the factor-of-two notation change from \(\nu _{\mathrm {RT}}\) to \(\nu _0\).
+<a 
+ id="x1-60001r67"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">21.10   </span> <a 
+ id="x1-6100010"></a>Experimental and modern perspective</h3>
+<!--l. 581--><p class="noindent" >Roberts&#8211;Taylor is a slab calculation, but the lesson survives far beyond the slab. Whenever ideal MHD
+predicts that interchange or bad-curvature modes grow faster and faster with \(k_\perp \), one should immediately
+ask what kinetic or extended-fluid physics cuts off that trend. In many magnetized plasma
+experiments the answer is some combination of ion gyroradius physics, diamagnetic drifts, parallel
+dynamics, and finite collisionality. This lecture isolates the cleanest possible fluid version of that
+logic.
+</p><!--l. 583--><p class="noindent" >That is why this benchmark keeps showing up in lecture notes and reduced models. It is not because
+laboratory plasmas are literally the Roberts&#8211;Taylor slab, but because the calculation teaches where the
+FLR correction lives, how it enters a closure, and why the shortest wavelengths are often the first place
+ideal MHD fails.
+</p><!--l. 586--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+                                                                                         
+                                                                                         
+   <li class="itemize">The Roberts&#8211;Taylor problem is the cleanest analytic example of finite-Larmor-radius
+   stabilization in an extended-MHD fluid model.
+   </li>
+   <li class="itemize">The  Hall  term  and  the  gyroviscous  term  both  modify  the  coefficient  of  \(\omega \)  in  the
+   dispersion relation; the gravitational drive remains \(g/L_n\).
+   </li>
+   <li class="itemize">The  equilibrium-gradient  piece  of  \(\rho _0\nu _0\)  is  essential.  Dropping  it  drops  the  FLR
+   stabilization effect.
+   </li>
+   <li class="itemize">The  non-solenoidal  closure  (<a href="lecture21.html#eq-eq-schnack_closure">21.15</a>)  is  the  extended-MHD  replacement  for  the
+   ideal-MHD condition \(\divergence \uvec =0\).</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-6200010"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <tspan font-family="ecti" font-size="1095">Matematisk-fysiske Meddelelser</tspan>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. <tspan font-family="ecti" font-size="1095">Cosmical Electrodynamics</tspan>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XElsasser1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Walter&#x00A0;M. Elsasser. Hydromagnetic dynamo theory. <tspan font-family="ecti" font-size="1095">Reviews of Modern Physics</tspan>, 28(2):135&#8211;163,
+  1956. doi:<a 
+href="https://doi.org/10.1103/RevModPhys.28.135" >10.1103/RevModPhys.28.135</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcowling1957mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> T.&#x00A0;G. Cowling. <tspan font-family="ecti" font-size="1095">Magnetohydrodynamics</tspan>. Interscience Publishers, New York, 1957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchandrasekhar1961hydrodynamic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <tspan font-family="ecti" font-size="1095">Hydrodynamic and Hydromagnetic Stability</tspan>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <tspan font-family="ecti" font-size="1095">An Introduction to Magnetohydrodynamics</tspan>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <tspan font-family="ecti" font-size="1095">Advances in Applied Mechanics</tspan>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <tspan font-family="ecti" font-size="1095">Magnetic Field Generation in Electrically Conducting Fluids</tspan>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <tspan font-family="ecti" font-size="1095">Plasma Physics for Astrophysics</tspan>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfreidberg1987ideal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jeffrey&#x00A0;P. Freidberg. <tspan font-family="ecti" font-size="1095">Ideal Magnetohydrodynamics</tspan>. Plenum Press, New York, NY, USA, 1987.
+  ISBN 9780306425127.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSchnack2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dalton&#x00A0;D. Schnack. <tspan font-family="ecti" font-size="1095">Lectures in Magnetohydrodynamics: With an Appendix on Extended MHD</tspan>,
+  volume 780 of <tspan font-family="ecti" font-size="1095">Lecture Notes in Physics</tspan>. Springer, Berlin, Heidelberg, 2009. ISBN 9783642006876.
+  doi:<a 
+href="https://doi.org/10.1007/978-3-642-00688-3" >10.1007/978-3-642-00688-3</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-6300010"></a>Problems</h3>
+<a 
+ id="x1-63001r1"></a>
+<!--l. 599--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 21.1. Gyroviscous Algebra in the Roberts&#8211;Taylor Slab</tspan>
+</p><!--l. 601--><p class="noindent" >Starting from the gyroviscous tensor (<a href="lecture21.html#eq-eq-Pi_components">21.19</a>):
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Using the mode ansatz (<a href="lecture21.html#eq-eq-mode_ansatz">21.3</a>), derive (<a href="lecture21.html#eq-eq-Pi_div_x_general">21.21</a>) and (<a href="lecture21.html#eq-eq-Pi_div_y_general">21.22</a>) step by step. Be explicit about which
+   \(x\)-derivatives are neglected and which equilibrium-gradient terms are retained.
+   </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Show that if one incorrectly sets \((\rho _0\nu _0)'=0\), the FLR stabilization term in (<a href="lecture21.html#eq-eq-ordered_quadratic">21.38</a>) disappears.
+   </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Explain why the gyroviscous force is nondissipative even though it is written as a divergence of
+   a stress tensor.</dd></dl>
+<a 
+ id="x1-63002r2"></a>
+<!--l. 610--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 21.2. From the Exact Local Quadratic to the Roberts&#8211;Taylor Limit</tspan>
+</p><!--l. 612--><p class="noindent" >Starting from the exact local dispersion relation (<a href="lecture21.html#eq-eq-full_exact_local">21.36</a>):
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Apply the ordering (<a href="lecture21.html#eq-eq-rt_ordering">21.37</a>) and recover the reduced quadratic (<a href="lecture21.html#eq-eq-ordered_quadratic">21.38</a>).
+   </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Derive the stabilization threshold (<a href="lecture21.html#eq-eq-k_threshold">21.40</a>) directly from the discriminant.
+   </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Rewrite the FLR term in \(k_\perp \rho _i\) form and recover (<a href="lecture21.html#eq-eq-flr_kperprhoi">21.42</a>).
+   </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">Compare  the  ideal-MHD,  Hall-only,  and  FLR-only  limits  (<a href="lecture21.html#eq-eq-ideal_limit">21.29</a>)&#8211;(<a href="lecture21.html#eq-eq-hall_only">21.31</a>).  Which  term  is
+   responsible for the short-wavelength cutoff in each case?</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

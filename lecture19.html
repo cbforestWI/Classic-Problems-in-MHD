@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 19 The Magnetorotational Instability</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_waves.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture18.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture20.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;19</span><br /><a 
+ id="x1-9800019"></a>The Magnetorotational Instability</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" >This lecture is the classic local calculation behind the modern theory of angular-momentum
+     transport in accretion disks.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem"><span 
+class="ecbx-1095">Rayleigh&#8217;s criterion </span>is already an energy principle for axisymmetric interchange
+   in a rotating fluid.
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">The <span 
+class="ecbx-1095">epicyclic frequency </span>emerges directly from the cylindrical equations of motion,
+   so one can see exactly how centrifugal and Coriolis effects combine.
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">A weak vertical magnetic field adds a spring-like coupling between neighboring rings,
+   and the decisive gradient changes from \(\dd {}{R}(R^4\Omega ^2)\) to \(\dd {\Omega }{R}\).</dd></dl>
+     </blockquote></div></div>
+<!--l. 13--><p class="noindent" >Accretion disks appear around young stars, compact binaries, and black holes. The basic difficulty is easy
+to state: gravity wants matter to move inward, but angular momentum conservation prevents that unless
+angular momentum is transported outward. In cylindrical coordinates the specific angular momentum is
+<a id="eq-eq-mri-Ldef"></a><div class="math-display">\[L(R)=R^2\Omega (R). \tag{19.1}\]</div>
+If transport were due only to molecular viscosity, the characteristic accretion time would be
+<a id="eq-eq-mri-taunu"></a><div class="math-display">\[\tau _\nu \sim \frac {R^2}{\nu }, \tag{19.2}\]</div>
+which is generally far too long. This is why the effective-viscosity parameterization <a id="eq-eq-mri-alpha"></a><div class="math-display">\[\nu _{\rm eff}=\alpha c_s H \tag{19.3}\]</div>
+was historically so influential: it captured the phenomenology of transport long before the underlying
+mechanism was understood.
+</p><!--l. 31--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 31--><p class="noindent" >The historical arc of the MRI is unusually clean. Rayleigh&#8217;s work on rotating fluids
+     showed that axisymmetric hydrodynamic stability is controlled by the outward increase
+     of              specific              angular              momentum,              a              result
+     summarized beautifully in Chandrasekhar&#8217;s classic monograph <a 
+href="lecture16.html#Xchandrasekhar1961hydrodynamic">Chandrasekhar</a>&#x00A0;[<a 
+href="lecture16.html#Xchandrasekhar1961hydrodynamic">1961</a>].
+     Velikhov and Chandrasekhar then discovered that an axial magnetic field changes this
+     criterion in a profound way <a 
+href="#Xvelikhov1959stability-567">Velikhov</a>&#x00A0;[<a 
+href="#Xvelikhov1959stability-567">1959</a>],&#x00A0;<a 
+href="#Xchandrasekhar1960stability-111">Chandrasekhar</a>&#x00A0;[<a 
+href="#Xchandrasekhar1960stability-111">1960</a>]. For several decades
+     the subject lived mainly inside hydromagnetic Couette flow. Balbus and Hawley&#8217;s 1991
+     paper then reframed the same instability as the missing local transport mechanism in
+     accretion disks <a 
+href="#Xbalbus1991powerful-c9a">Balbus and Hawley</a>&#x00A0;[<a 
+href="#Xbalbus1991powerful-c9a">1991</a>]. In hindsight that reinterpretation is one of
+     the classic moments in astrophysical MHD: an old stability calculation suddenly became
+     the answer to a much larger physical problem.</p></blockquote></div></div>
+<a 
+ id="x1-98004r89"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">19.1   </span> <a 
+ id="x1-990001"></a>Rayleigh&#8217;s Criterion as a Rotational Energy Principle</h3>
+<!--l. 38--><p class="noindent" >The ideal-MHD energy principle in Lecture&#x00A0;15 teaches a general lesson: stability can often be read from
+the sign of a quadratic energy functional. Rayleigh&#8217;s criterion is the rotating-fluid version of that same
+idea.
+</p>
+<!--l. 40--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1000001"></a>Ring interchange.</span>
+Consider an inviscid axisymmetric flow <a id="eq-eq-mri-equilflow"></a><div class="math-display">\[\uvec _0 = R\Omega (R)\,\ephi . \tag{19.4}\]</div>
+Take two thin rings of equal mass \(m\) at radii \(R_1&lt;R_2\). During an axisymmetric interchange each ring conserves
+its own specific angular momentum because the motion is inviscid and axisymmetric. Let
+<div class="math-display">\[L_1=L(R_1), \qquad L_2=L(R_2).\]</div>
+The initial rotational kinetic energy is <a id="eq-eq-mri-Ki"></a><div class="math-display">\[K_{\rm i} = \frac {m}{2} \left ( \frac {L_1^2}{R_1^2} + \frac {L_2^2}{R_2^2} \right ), \tag{19.6}\]</div>
+while after interchange it is <a id="eq-eq-mri-Kf"></a><div class="math-display">\[K_{\rm f} = \frac {m}{2} \left ( \frac {L_1^2}{R_2^2} + \frac {L_2^2}{R_1^2} \right ). \tag{19.7}\]</div>
+Therefore <a id="eq-eq-mri-interchange_energy"></a><div class="math-display">\[\begin{aligned}\Delta W_{\rm rot} &amp;\equiv K_{\rm f}-K_{\rm i} \nonumber \\ &amp;= \frac {m}{2} \left [ L_1^2\left (\frac {1}{R_2^2}-\frac {1}{R_1^2}\right ) + L_2^2\left (\frac {1}{R_1^2}-\frac {1}{R_2^2}\right ) \right ] \nonumber \\ &amp;= \frac {m}{2} \left (L_1^2-L_2^2\right ) \left (\frac {1}{R_2^2}-\frac {1}{R_1^2}\right ).\end{aligned} \tag{19.8}\]</div>
+</p><!--l. 95--><p class="noindent" >Since \(R_2&gt;R_1\), the geometric factor \((R_2^{-2}-R_1^{-2})\) is negative. Stability to every such interchange therefore requires
+<div class="math-display">\[L_2^2&gt;L_1^2 \qquad \text {whenever}\qquad R_2&gt;R_1,\]</div>
+or equivalently <a id="eq-eq-mri-rayleigh"></a><div class="math-display">\[\boxed {\dd {}{R}\left (L^2\right )&gt;0} \qquad \Longleftrightarrow \qquad \boxed {\dd {}{R}\left (R^4\Omega ^2\right )&gt;0}. \tag{19.10}\]</div>
+This is Rayleigh&#8217;s criterion.
+</p>
+<!--l. 110--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010001"></a>Direct derivation from the cylindrical equations of motion.</span>
+The same criterion appears directly in the cylindrical inertial terms. For axisymmetric motion, the radial
+and azimuthal components of the convective derivative are <div class="math-display">\[\begin{aligned}\left (\pp {}{t}+\uvec \cdot \grad \right )u_R &amp;= \pp {u_R}{t} + u_R\pp {u_R}{R} + u_Z\pp {u_R}{Z} - \frac {u_\phi ^2}{R}, \\ \left (\pp {}{t}+\uvec \cdot \grad \right )u_\phi &amp;= \pp {u_\phi }{t} + u_R\pp {u_\phi }{R} + u_Z\pp {u_\phi }{Z} + \frac {u_Ru_\phi }{R}.\end{aligned}\]</div>
+</p><!--l. 133--><p class="noindent" >Now linearize about the rotating equilibrium (<a href="lecture19.html#eq-eq-mri-equilflow">19.4</a>). Write <div class="math-display">\[u_R=u_{1R}, \qquad u_\phi =R\Omega (R)+u_{1\phi }, \qquad u_Z=u_{1Z},\]</div>
+and keep only linear terms. Using the equilibrium radial force balance to cancel the background gravity
+and centrifugal force, the remaining inertial terms are <a id="eq-eq-mri-hydro_r"></a><div class="math-display">\[\begin{aligned}\pp {u_{1R}}{t}-2\Omega u_{1\phi }&amp;=0,  \\ \pp {u_{1\phi }}{t}+ \left (2\Omega +R\pp {\Omega }{R}\right )u_{1R}&amp;=0.\end{aligned} \tag{19.14}\]</div>
+</p><!--l. 150--><p class="noindent" >Differentiate (<a href="lecture19.html#eq-eq-mri-hydro_r">19.14</a>) with respect to time and use (<a href="lecture19.html#eq-eq-mri-hydro_phi">19.15</a>) to eliminate \(\pp {u_{1\phi }}{t}\): <div class="math-display">\[\begin{aligned}\pp {^2 u_{1R}}{t^2} -2\Omega \pp {u_{1\phi }}{t} &amp;=0, \nonumber \\ \pp {^2 u_{1R}}{t^2} +2\Omega \left (2\Omega +R\pp {\Omega }{R}\right )u_{1R} &amp;=0.\end{aligned}\]</div>
+</p><!--l. 160--><p class="noindent" >This identifies the epicyclic frequency, <a id="eq-eq-mri-kappa"></a><div class="math-display">\[\kappa ^2 \equiv 2\Omega \left (2\Omega +R\pp {\Omega }{R}\right ) = 4\Omega ^2+R\pp {\Omega ^2}{R} = \frac {1}{R^3}\dd {}{R}\left (R^4\Omega ^2\right ). \tag{19.17}\]</div>
+If we write \(u_{1R}=\pp {\xi _R}{t}\) and choose the integration constant appropriate to a parcel released from equilibrium, this
+becomes <a id="eq-eq-mri-epicycle"></a><div class="math-display">\[\pp {^2 \xi _R}{t^2}+\kappa ^2\xi _R=0. \tag{19.18}\]</div>
+The corresponding quadratic energy is <a id="eq-eq-mri-epienergy"></a><div class="math-display">\[\mathcal {E}_{\rm epi} = \frac {1}{2}\left (\pp {\xi _R}{t}\right )^2 + \frac {1}{2}\kappa ^2\xi _R^2. \tag{19.19}\]</div>
+Thus Rayleigh&#8217;s criterion is literally an energy principle: <div class="math-display">\[\boxed {\mathcal {E}_{\rm epi}&gt;0 \iff \kappa ^2&gt;0.}\]</div>
+For a Keplerian disk, \(\Omega \propto R^{-3/2}\), so \(\kappa ^2=\Omega ^2&gt;0\). Keplerian rotation is therefore hydrodynamically stable even though it contains
+strong shear.
+</p><!--l. 192--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 192--><p class="noindent" >The Rayleigh calculation isolates the <span 
+class="ecti-1095">centrifugal  </span>part of the problem. More general
+     rotating fluids can also support acoustic, buoyant, and baroclinic responses, and those
+     may  matter  in  other  lectures.  Here,  however,  the  point  is  exactly  that  the  purely
+                                                                                         
+                                                                                         
+     rotational piece already has the structure of an energy principle.</p></blockquote></div></div>
+<a 
+ id="x1-101001r103"></a>
+<h3 class="sectionHead"><span class="titlemark">19.2   </span> <a 
+ id="x1-1020002"></a>MRI from the Cylindrical Ideal-MHD Equations</h3>
+<!--l. 199--><p class="noindent" >We now return to the ideal-MHD equations of the introduction, especially the momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>),
+the ideal Ohm law (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), and the induction equation (<a href="lecture1.html#eq-eq-intro-induction">1.13</a>). Rather than adopting shearing-sheet notation,
+we keep the cylindrical equations visible so the centrifugal and epicyclic terms can be read off
+directly.
+</p>
+<!--l. 201--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1030002"></a>Choice of equilibrium and perturbation.</span>
+Take the equilibrium flow and magnetic field to be <a id="eq-eq-mri-equilibrium"></a><div class="math-display">\[\uvec _0 = R\Omega (R)\,\ephi , \qquad \B _0 = B_0\,\ez . \tag{19.21}\]</div>
+We consider local, axisymmetric perturbations of the form <a id="eq-eq-mri-normalmode"></a><div class="math-display">\[\propto e^{ikZ-i\omega t}, \tag{19.22}\]</div>
+with \(\vect {k}=k\ez \). For the classic worked example we choose incompressible vertical modes. Then the pressure
+perturbation enforces the constraint but does not determine the onset criterion, so the MRI mechanism
+can be seen without additional algebra from sound waves.
+</p><!--l. 216--><p class="noindent" >Define Alfvn-speed units for the perturbed field, <a id="eq-eq-mri-alfven_defs"></a><div class="math-display">\[\vect {b}\equiv \frac {\B _1}{\sqrt {\muo \rho _0}}, \qquad V_A\equiv \frac {B_0}{\sqrt {\muo \rho _0}}, \qquad \omega _A\equiv kV_A. \tag{19.23}\]</div>
+</p>
+<!--l. 226--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040002"></a>Linearized cylindrical momentum equations.</span>
+The same cylindrical linearization used above now gives <a id="eq-eq-mri-linmom_r"></a><div class="math-display">\[\begin{aligned}-i\omega u_R - 2\Omega u_\phi &amp;= f_R,  \\ -i\omega u_\phi + \left (2\Omega +R\pp {\Omega }{R}\right )u_R &amp;= f_\phi ,\end{aligned} \tag{19.24}\]</div>
+</p><!--l. 235--><p class="noindent" >where \(f_R\) and \(f_\phi \) are the perturbed Lorentz forces per unit mass. It is convenient to rewrite the azimuthal
+coefficient using (<a href="lecture19.html#eq-eq-mri-kappa">19.17</a>): <div class="math-display">\[2\Omega +R\pp {\Omega }{R} = \frac {\kappa ^2}{2\Omega }.\]</div>
+Therefore <a id="eq-eq-mri-linmom_phi"></a><div class="math-display">\[-i\omega u_\phi + \frac {\kappa ^2}{2\Omega }u_R = f_\phi . \tag{19.27}\]</div>
+This is the point of doing the derivation in cylindrical coordinates: the epicyclic restoring force is visible
+from the start, rather than inserted later by a change of variables.
+</p>
+<!--l. 246--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1050002"></a>Linearized induction equations.</span>
+From the induction equation with the equilibrium (<a href="lecture19.html#eq-eq-mri-equilibrium">19.21</a>) and perturbations (<a href="lecture19.html#eq-eq-mri-normalmode">19.22</a>), the radial and
+azimuthal components are <a id="eq-eq-mri-linind_r"></a><div class="math-display">\[\begin{aligned}-i\omega b_R &amp;= i\omega _A u_R,  \\ -i\omega b_\phi &amp;= -R\pp {\Omega }{R} b_R + i\omega _A u_\phi .\end{aligned} \tag{19.28}\]</div>
+</p><!--l. 255--><p class="noindent" >The first term in (<a href="lecture19.html#eq-eq-mri-linind_phi">19.29</a>) is the crucial shear-winding term: a perturbed radial field is wound into an
+azimuthal field by the background differential rotation.
+</p>
+<!--l. 257--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1060002"></a>Lorentz force.</span>
+For these vertical modes the perturbed Lorentz force is simply magnetic tension along the background
+field, <a id="eq-eq-mri-lorentz"></a><div class="math-display">\[f_R = i\omega _A b_R, \qquad f_\phi = i\omega _A b_\phi . \tag{19.30}\]</div>
+Substituting (<a href="lecture19.html#eq-eq-mri-lorentz">19.30</a>) into (<a href="lecture19.html#eq-eq-mri-linmom_r">19.24</a>) and (<a href="lecture19.html#eq-eq-mri-linmom_phi">19.27</a>) gives the four-equation system <a id="eq-eq-mri-full_r"></a><div class="math-display">\[\begin{aligned}-i\omega u_R - 2\Omega u_\phi &amp;= i\omega _A b_R,  \\ -i\omega u_\phi + \frac {\kappa ^2}{2\Omega }u_R &amp;= i\omega _A b_\phi ,  \\ -i\omega b_R &amp;= i\omega _A u_R,  \\ -i\omega b_\phi &amp;= -R\pp {\Omega }{R} b_R + i\omega _A u_\phi .\end{aligned} \tag{19.31}\]</div>
+</p>
+                                                                                         
+                                                                                         
+<!--l. 280--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1070002"></a>First elimination: remove \(b_R\).</span>
+From (<a href="lecture19.html#eq-eq-mri-full_br">19.33</a>), <a id="eq-eq-mri-br_from_u"></a><div class="math-display">\[b_R = -\frac {\omega _A}{\omega }u_R. \tag{19.35}\]</div>
+Substitute this into (<a href="lecture19.html#eq-eq-mri-full_r">19.31</a>): <a id="eq-eq-mri-pair1"></a><div class="math-display">\[\begin{aligned}-i\omega u_R - 2\Omega u_\phi &amp;= i\omega _A\left (-\frac {\omega _A}{\omega }u_R\right ) = -i\frac {\omega _A^2}{\omega }u_R, \nonumber \\ \omega u_R + 2i\Omega u_\phi &amp;= \frac {\omega _A^2}{\omega }u_R, \nonumber \\ \left (\omega ^2-\omega _A^2\right )u_R + 2i\Omega \omega u_\phi &amp;= 0.\end{aligned} \tag{19.36}\]</div>
+</p><!--l. 298--><p class="noindent" >So the radial momentum equation becomes a balance between the epicyclic motion and a magnetic
+spring.
+</p>
+<!--l. 300--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1080002"></a>Second elimination: remove \(b_\phi \).</span>
+Use (<a href="lecture19.html#eq-eq-mri-br_from_u">19.35</a>) in (<a href="lecture19.html#eq-eq-mri-full_bphi">19.34</a>): <div class="math-display">\[\begin{aligned}-i\omega b_\phi &amp;= -R\pp {\Omega }{R}\left (-\frac {\omega _A}{\omega }u_R\right ) + i\omega _A u_\phi \nonumber \\ &amp;= \frac {R\omega _A}{\omega }\pp {\Omega }{R}u_R + i\omega _A u_\phi .\end{aligned}\]</div>
+</p><!--l. 314--><p class="noindent" >Divide by \(-i\omega \): <a id="eq-eq-mri-bphi_from_u"></a><div class="math-display">\[\begin{aligned}b_\phi &amp;= \frac {iR\omega _A}{\omega ^2}\pp {\Omega }{R}u_R - \frac {\omega _A}{\omega }u_\phi .\end{aligned} \tag{19.38}\]</div>
+</p><!--l. 323--><p class="noindent" >Now multiply by \(i\omega _A\): <a id="eq-eq-mri-forcephi_from_u"></a><div class="math-display">\[\begin{aligned}i\omega _A b_\phi &amp;= i\omega _A\left ( \frac {iR\omega _A}{\omega ^2}\pp {\Omega }{R}u_R - \frac {\omega _A}{\omega }u_\phi \right ) \nonumber \\ &amp;= - \frac {R\omega _A^2}{\omega ^2}\pp {\Omega }{R}u_R - i\frac {\omega _A^2}{\omega }u_\phi .\end{aligned} \tag{19.39}\]</div>
+</p><!--l. 340--><p class="noindent" >Substitute this into (<a href="lecture19.html#eq-eq-mri-full_phi">19.32</a>) and multiply through by \(i\omega \): <a id="eq-eq-mri-pair2"></a><div class="math-display">\[\begin{aligned}\omega ^2 u_\phi + i\omega \frac {\kappa ^2}{2\Omega }u_R &amp;= - i\omega \frac {R\omega _A^2}{\omega ^2}\pp {\Omega }{R}u_R + \omega _A^2 u_\phi , \nonumber \\ \left (\omega ^2-\omega _A^2\right )u_\phi + i\omega \left [ \frac {\kappa ^2}{2\Omega } + \frac {R\omega _A^2}{\omega ^2}\pp {\Omega }{R} \right ]u_R &amp;=0.\end{aligned} \tag{19.40}\]</div>
+</p>
+<!--l. 360--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1090002"></a>Dispersion relation.</span>
+Equation (<a href="lecture19.html#eq-eq-mri-pair1">19.36</a>) gives <a id="eq-eq-mri-uphi_from_ur"></a><div class="math-display">\[u_\phi = \frac {i\left (\omega _A^2-\omega ^2\right )}{2\Omega \omega }u_R. \tag{19.41}\]</div>
+Insert this into (<a href="lecture19.html#eq-eq-mri-pair2">19.40</a>): <div class="math-display">\[\begin{aligned}0 &amp;= \left (\omega ^2-\omega _A^2\right ) \frac {i\left (\omega _A^2-\omega ^2\right )}{2\Omega \omega }u_R + i\omega \left [ \frac {\kappa ^2}{2\Omega } + \frac {R\omega _A^2}{\omega ^2}\pp {\Omega }{R} \right ]u_R \nonumber \\ &amp;= \frac {i u_R}{2\Omega \omega } \left [ - \left (\omega ^2-\omega _A^2\right )^2 + \kappa ^2\omega ^2 + 2\Omega R\pp {\Omega }{R}\omega _A^2 \right ].\end{aligned}\]</div>
+</p><!--l. 391--><p class="noindent" >A nontrivial solution therefore requires <div class="math-display">\[\left (\omega ^2-\omega _A^2\right )^2 - \kappa ^2\omega ^2 - 2\Omega R\pp {\Omega }{R}\omega _A^2 =0.\]</div>
+Expanding, <div class="math-display">\[\omega ^4 - \omega ^2\left (\kappa ^2+2\omega _A^2\right ) + \omega _A^2 \left ( \omega _A^2 + 2\Omega R\pp {\Omega }{R} \right ) =0.\]</div>
+Since <div class="math-display">\[2\Omega R\pp {\Omega }{R} = \dd {\Omega ^2}{\ln R},\]</div>
+the standard MRI dispersion relation is <a id="eq-eq-mri-dispersion"></a><div class="math-display">\[\boxed { \omega ^4 - \omega ^2\left (\kappa ^2+2\omega _A^2\right ) + \omega _A^2 \left ( \omega _A^2 + \dd {\Omega ^2}{\ln R} \right ) =0.} \tag{19.46}\]</div>
+This is the clean payoff of the cylindrical derivation: the term \(\kappa ^2\) comes directly from the hydrodynamic
+inertial structure, while the term \(\dd {\Omega ^2}{\ln R}\) comes from winding the perturbed radial field into an azimuthal
+field.
+</p>
+<!--l. 432--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1100002"></a>Hydrodynamic and magnetic limits.</span>
+If \(\omega _A=0\), then (<a href="lecture19.html#eq-eq-mri-dispersion">19.46</a>) reduces to <div class="math-display">\[\omega ^2\left (\omega ^2-\kappa ^2\right )=0,\]</div>
+so the nontrivial branch is the epicyclic oscillation \(\omega ^2=\kappa ^2\). If the field is weak but nonzero, the instability
+threshold is obtained by setting \(\omega ^2=0\): <a id="eq-eq-mri-criterion_field"></a><div class="math-display">\[\omega _A^2 + \dd {\Omega ^2}{\ln R} &lt; 0. \tag{19.48}\]</div>
+In the weak-field limit this becomes <a id="eq-eq-mri-criterion"></a><div class="math-display">\[\boxed {\dd {\Omega }{R}&lt;0.} \tag{19.49}\]</div>
+This is the famous MRI criterion. It should be contrasted with Rayleigh&#8217;s hydrodynamic criterion
+(<a href="lecture19.html#eq-eq-mri-rayleigh">19.10</a>). A Keplerian disk satisfies \(\kappa ^2&gt;0\) and is therefore hydrodynamically stable, but because \(\dd {\Omega }{R}&lt;0\), it is
+magnetorotationally unstable.
+</p>
+<!--l. 449--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1110002"></a>Keplerian growth rate.</span>
+For a Keplerian disk, <a id="eq-eq-mri-keplerian_data"></a><div class="math-display">\[\Omega \propto R^{-3/2}, \qquad \kappa ^2=\Omega ^2, \qquad \dd {\Omega ^2}{\ln R}=-3\Omega ^2. \tag{19.50}\]</div>
+                                                                                         
+                                                                                         
+Then (<a href="lecture19.html#eq-eq-mri-dispersion">19.46</a>) becomes <a id="eq-eq-mri-dispersion_kepler"></a><div class="math-display">\[\omega ^4 - \omega ^2\left (\Omega ^2+2\omega _A^2\right ) + \omega _A^2\left (\omega _A^2-3\Omega ^2\right )=0. \tag{19.51}\]</div>
+Treat this as a quadratic in \(\omega ^2\): <a id="eq-eq-mri-omegapm"></a><div class="math-display">\[\omega ^2_{\pm } = \frac {1}{2} \left [ \Omega ^2+2\omega _A^2 \pm \sqrt {\Omega ^4+16\Omega ^2\omega _A^2} \right ]. \tag{19.52}\]</div>
+The unstable branch is \(\omega _-^2&lt;0\). Write \(\omega _-^2=-\gamma ^2\), so that <a id="eq-eq-mri-gamma2"></a><div class="math-display">\[\gamma ^2 = \frac {1}{2} \left [ \sqrt {\Omega ^4+16\Omega ^2\omega _A^2} - \Omega ^2 - 2\omega _A^2 \right ]. \tag{19.53}\]</div>
+Introduce the dimensionless parameter <div class="math-display">\[x \equiv \frac {\omega _A^2}{\Omega ^2}.\]</div>
+Then <a id="eq-eq-mri-gamma2x"></a><div class="math-display">\[\frac {\gamma ^2}{\Omega ^2} = \frac {1}{2}\left [\sqrt {1+16x}-1-2x\right ]. \tag{19.55}\]</div>
+Differentiate with respect to \(x\): <div class="math-display">\[\dd {}{x}\left (\frac {\gamma ^2}{\Omega ^2}\right ) = \frac {4}{\sqrt {1+16x}} - 1.\]</div>
+The maximum occurs when <div class="math-display">\[\frac {4}{\sqrt {1+16x}} - 1 = 0 \qquad \Longrightarrow \qquad \sqrt {1+16x}=4,\]</div>
+so <div class="math-display">\[x = \frac {15}{16} \qquad \Longrightarrow \qquad \omega _A^2 = \frac {15}{16}\Omega ^2.\]</div>
+Substitute this back into (<a href="lecture19.html#eq-eq-mri-gamma2x">19.55</a>): <div class="math-display">\[\frac {\gamma _{\max }^2}{\Omega ^2} = \frac {1}{2}\left (4-1-\frac {30}{16}\right ) = \frac {9}{16},\]</div>
+which gives the standard result <a id="eq-eq-mri-gammamax"></a><div class="math-display">\[\boxed {\gamma _{\max } = \frac {3}{4}\Omega .} \tag{19.60}\]</div>
+</p><!--l. 538--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 538--><p class="noindent" >This worked example suppresses pressure by choosing incompressible vertical modes.
+     That is a feature, not a bug: it isolates the rotational and magnetic coupling with the
+     minimum algebra. More general compressible or stratified calculations certainly exist,
+     and they introduce additional branches, but the essential MRI criterion (<a href="lecture19.html#eq-eq-mri-criterion">19.49</a>) is already
+     visible here.</p></blockquote></div></div>
+<!--l. 541--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120002"></a>Physical interpretation.</span>
+In pure hydrodynamics, a displaced ring executes epicyclic motion at frequency \(\kappa \). The magnetic field ties
+neighboring rings together like a weak spring. When \(\dd {\Omega }{R}&lt;0\), the inner ring rotates faster than the outer ring. A
+small radial displacement therefore causes magnetic tension to transfer angular momentum
+outward: the inner ring loses angular momentum and falls inward, while the outer ring gains
+angular momentum and moves outward. The restoring epicyclic motion is then turned into a
+positive-feedback mechanism. The field must be weak enough that the rings are not simply locked
+together, but strong enough to communicate tension. That is precisely what the quartic (<a href="lecture19.html#eq-eq-mri-dispersion">19.46</a>)
+says.
+<a 
+ id="x1-112001r106"></a>
+</p>
+<div class="video-shell"><p class="video-title">MRI Field-Line Stretching Movie</p><p class="video-caption">Watch for how a small radial displacement lets magnetic tension link neighboring rings, so the inner ring is pulled inward while the outer ring is pulled outward. This is the geometric spring picture behind the MRI positive feedback.</p><video controls preload="metadata"><source src="media/MRI_FieldLineStretch.mp4" type="video/mp4" />Your browser does not appear to support this video directly.</video><p class="video-caption">Movie clip paired with the physical interpretation of magnetic tension, differential rotation, and field-line stretching in this lecture.</p></div>
+<h3 class="sectionHead"><span class="titlemark">19.3   </span> <a 
+ id="x1-1130003"></a>Historical and Experimental Perspective</h3>
+<!--l. 548--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1140003"></a>From Couette flow to accretion disks.</span>
+Velikhov and Chandrasekhar formulated the problem in rotating-cylinder geometry, where the question
+was whether an imposed axial magnetic field destabilizes a centrifugally stable Couette profile
+<a 
+href="#Xvelikhov1959stability-567">Velikhov</a>&#x00A0;[<a 
+href="#Xvelikhov1959stability-567">1959</a>],&#x00A0;<a 
+href="#Xchandrasekhar1960stability-111">Chandrasekhar</a>&#x00A0;[<a 
+href="#Xchandrasekhar1960stability-111">1960</a>]. Balbus and Hawley&#8217;s insight was that the same local mathematics
+applies to accretion disks <a 
+href="#Xbalbus1991powerful-c9a">Balbus and Hawley</a>&#x00A0;[<a 
+href="#Xbalbus1991powerful-c9a">1991</a>]. Once that point was made, the MRI moved from
+being a specialized hydromagnetic stability problem to being one of the central ideas in modern
+astrophysical MHD.
+</p><!--l. 552--><div class="callout callout-opinion"><div class="callout-title">Opinion</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 552--><p class="noindent" >Laboratory studies of MRI-like physics naturally focused on Taylor&#8211;Couette flow. Early
+     work  associated  with  Lathrop  and  collaborators  helped  motivate  the  experimental
+     program, and later liquid-metal efforts at Princeton and Potsdam showed how delicately
+     the  background  shear  and  boundary  conditions  must  be  engineered  before  one  can
+     isolate the desired instability <a 
+href="#Xlathrop2011magnetic-be2">Lathrop and Forest</a>&#x00A0;[<a 
+href="#Xlathrop2011magnetic-be2">2011</a>]. In the author&#8217;s admittedly
+     editorial view, these were valuable but rather specialized experiments: they were not
+     especially rich plasma experiments, and they were not designed to explore fully developed
+     turbulence either, since much of the work went into suppressing or controlling unwanted
+     hydrodynamic  structure.  Once  the  correct  base  flow  had  been  prepared,  Maxwell&#8217;s
+     equations had very little choice but to couple neighboring rings in the way the theory
+     predicts.</p></blockquote></div></div>
+<!--l. 555--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1150003"></a>Why plasma experiments were different.</span>
+Plasma MRI experiments opened a broader door. Hall physics, global eigenmodes, line-tying, equilibrium
+modification, and boundary-driven current systems allowed behaviors that were absent from the most
+stripped-down liquid-metal realizations. In that sense the plasma experiments were not merely
+confirmations of the textbook dispersion relation; they also exposed additional physics that is probably
+relevant in real astrophysical systems <a 
+href="#XCollins2012">Collins et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCollins2012">2012</a>,&#x00A0;<a 
+href="#XCollins2014">2014</a>],&#x00A0;<a 
+href="#XFlanagan2020">Flanagan et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFlanagan2020">2020</a>],&#x00A0;<a 
+href="#XMilhone2021oi">Milhone
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XMilhone2021oi">2021</a>],&#x00A0;<a 
+href="#XEbrahimi2011">Ebrahimi et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XEbrahimi2011">2011</a>].
+</p><!--l. 559--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 559--><p class="noindent" >The MRI lecture is really three classic results nested inside one another.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">Rayleigh&#8217;s criterion is already a rotational energy principle: \(\kappa ^2&gt;0\) means the epicyclic
+   energy is positive.
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">The cylindrical equations of motion make the role of centrifugal and Coriolis forces
+   transparent.
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">Magnetic tension plus differential rotation changes the decisive gradient from \(\dd {}{R}(R^4\Omega ^2)\) to \(\dd {\Omega }{R}\),
+   making Keplerian disks unstable.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1160003"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <span 
+class="ecti-1095">Proceedings  of  the  Royal</span>
+  <span 
+class="ecti-1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</span>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnorthrop1963adiabatic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Theodore&#x00A0;G. Northrop.  <span 
+class="ecti-1095">The Adiabatic Motion of Charged Particles</span>.  Interscience, New York,
+  1963.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud1983_mhd_description"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> R.&#x00A0;M. Kulsrud.   Mhd description of plasma.   In A.&#x00A0;A. Galeev and R.&#x00A0;N. Sudan, editors,
+  <span 
+class="ecti-1095">Handbook of Plasma Physics, Volume 1: Basic Plasma Physics I</span>, chapter 1.4, pages 115&#8211;145.
+  North-Holland, Amsterdam, 1983. Series editors: M. N. Rosenbluth and R. Z. Sagdeev.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-1170003"></a>Problems</h3>
+<a 
+ id="x1-117001r1"></a>
+<!--l. 573--><p class="noindent" ><span 
+class="ecbx-1095">Problem 19.1. Rayleigh criterion and epicyclic energy</span>
+</p><!--l. 574--><p class="noindent" >Consider an inviscid axisymmetric rotating flow with angular velocity \(\Omega (R)\).
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Starting from the interchange argument, derive (<a href="lecture19.html#eq-eq-mri-rayleigh">19.10</a>).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Starting from the cylindrical equations (<a href="lecture19.html#eq-eq-mri-hydro_r">19.14</a>)&#8211;(<a href="lecture19.html#eq-eq-mri-hydro_phi">19.15</a>), derive (<a href="lecture19.html#eq-eq-mri-kappa">19.17</a>).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Show that the radial displacement energy (<a href="lecture19.html#eq-eq-mri-epienergy">19.19</a>) is positive definite if and only if \(\kappa ^2&gt;0\).</dd></dl>
+<a 
+ id="x1-117005r2"></a>
+<!--l. 582--><p class="noindent" ><span 
+class="ecbx-1095">Problem 19.2. MRI quartic from the cylindrical equations</span>
+</p><!--l. 583--><p class="noindent" >Take the four linearized equations (<a href="lecture19.html#eq-eq-mri-full_r">19.31</a>)&#8211;(<a href="lecture19.html#eq-eq-mri-full_bphi">19.34</a>).
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Eliminate \(b_R\) and derive (<a href="lecture19.html#eq-eq-mri-pair1">19.36</a>).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Eliminate \(b_\phi \) and derive (<a href="lecture19.html#eq-eq-mri-pair2">19.40</a>).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Complete the algebra leading to the dispersion relation (<a href="lecture19.html#eq-eq-mri-dispersion">19.46</a>).
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">Identify explicitly which term in the derivation comes from winding of the perturbed radial field
+    by the background shear.</dd></dl>
+<a 
+ id="x1-117010r3"></a>
+<!--l. 592--><p class="noindent" ><span 
+class="ecbx-1095">Problem 19.3. Keplerian MRI</span>
+</p><!--l. 593--><p class="noindent" >For \(\Omega \propto R^{-3/2}\):
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">verify (<a href="lecture19.html#eq-eq-mri-keplerian_data">19.50</a>);
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">derive (<a href="lecture19.html#eq-eq-mri-dispersion_kepler">19.51</a>);
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">solve for \(\omega _\pm ^2\) and derive the unstable branch (<a href="lecture19.html#eq-eq-mri-gamma2">19.53</a>);
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">show that the fastest growth occurs at \(\omega _A^2=15\Omega ^2/16\) and that \(\gamma _{\max }=3\Omega /4\).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+ 
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+

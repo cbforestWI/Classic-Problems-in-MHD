@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 29 Ballooning Modes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture28.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture30.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;29</span><br /><a 
+ id="x1-23600029"></a>Ballooning Modes</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" >Ballooning is best thought of as <tspan font-family="ecti" font-size="1095">toroidal buoyancy</tspan>. The same basic physics that produced
+     the  Brunt&#8211;Väisälä  frequency  in  (<a href="lecture18.html#eq-eq-grav-BV">18.8</a>)  and  the  magnetic-buoyancy  criterion  (<a href="lecture18.html#eq-eq-grav-magbuoy">18.67</a>)
+     reappears in a torus, except that the role of gravity is now played by magnetic-field
+     curvature. A pressure perturbation on the bad-curvature outboard side behaves like a
+     buoyant parcel or flux tube: it wants to move farther in that same direction. The two
+     ingredients that keep this from becoming a trivial flute instability are magnetic field-line
+     bending and magnetic shear.
+     </p><!--l. 14--><p class="noindent" >So  the  logical  chain  is  \[ \text {ordinary buoyancy} \ \Longrightarrow \
+\text {magnetic buoyancy / interchange} \ \Longrightarrow \
+\text {toroidal ballooning}. \]  The  high-\(n\)  ballooning  equation  is  the  mathematical  way  of
+     expressing that chain on a closed toroidal field line.</p></blockquote></div></div>
+<!--l. 27--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 27--><p class="noindent" >The  ballooning  problem  sits  at  a  beautiful  crossroads  in  the  history  of  MHD.  The
+     earliest fusion stability worries were already interchange worries: Kruskal, Schwarzschild,
+     and others realized that a confined plasma in bad curvature could lower its energy by
+     exchanging plasma and field line positions. Mercier then gave the axisymmetric toroidal
+     interchange criterion, showing how toroidicity and shaping modify the local balance
+     <a 
+href="#Xmercier1960necessary-a83">Mercier</a>&#x00A0;[<a 
+href="#Xmercier1960necessary-a83">1960</a>]. The next conceptual step was to recognize that the most dangerous
+     toroidal mode is not usually a globally flute-like distortion, but a perturbation that
+     localizes where the curvature drive is most unfavorable. That viewpoint emerged in the
+     large-\(n\) work of Dobrott, Greene, Glasser, Chance, Frieman, Coppi, Todd, and others <a 
+href="#XTodd1977">Todd
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XTodd1977">1977</a>],&#x00A0;<a 
+href="#XCoppi1977">Coppi</a>&#x00A0;[<a 
+href="#XCoppi1977">1977</a>],&#x00A0;<a 
+href="#XDobrott1977">Dobrott et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XDobrott1977">1977</a>], and it was put into its definitive
+     modern form by Connor, Hastie, and Taylor through the ballooning transformation
+     <a 
+href="#XConnor1978">Connor et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XConnor1978">1978</a>,&#x00A0;<a 
+href="#XConnor1979">1979</a>].
+     </p><!--l. 42--><p class="noindent" >A later and very illuminating reframing, emphasized in the Wilson&#8211;Cowley flux-tube
+     viewpoint, is that a ballooning perturbation may be read as a <tspan font-family="ecti" font-size="1095">sliding buoyant flux tube</tspan>
+     that tries to exploit bad curvature while bending the field as little as possible. That
+     language is especially useful because it makes the connection to buoyancy completely
+     explicit: the linear ballooning equation is not a new kind of drive, but the toroidal,
+     line-bending-modified descendant of interchange.</p></blockquote></div></div>
+<!--l. 51--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 51--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Lecture  structure.  </tspan>This  lecture  naturally  separates  into  two  layers.  The  main
+     line of argument runs through &#8220;Ballooning as toroidal buoyancy,&#8221;  &#8220;How shear turns
+     interchange into ballooning,&#8221; and &#8220;The reduced variational problem.&#8221; The more detailed
+     tokamak-coordinate algebra in &#8220;Two-dimensional tokamak energy functional&#8221;  can be
+     treated as a supporting derivation and revisited later if desired.
+                                                                                         
+                                                                                         
+     </p><!--l. 58--><p class="noindent" >The full term-by-term derivation of the ballooning equation is given in Appendix&#x00A0;I. There the
+     entire chain is worked out explicitly, <div class="math-display">\[\begin {gathered} (\xi _\psi ,\xi _\chi ,\xi _\parallel ) \longrightarrow (X,U,Z) \longrightarrow \text {eliminate }\xi _\parallel \longrightarrow \text {high-}n\text { eliminate }U \\ \longrightarrow \text {ballooning transform} \longrightarrow \text {local field-line ODE} \longrightarrow \hat s\text {--}\alpha , \end {gathered}\]</div>
+     with the notation dictionary \(I \leftrightarrow \muo I_{\mathrm {pol}}\) and \(B_\chi \leftrightarrow B_p\) made explicit along the way.
+     </p><!--l. 81--><p class="noindent" >So the division of labor is deliberate: this lecture keeps the physical picture readable, while the
+     appendix carries the Connor&#8211;Hastie&#8211;Taylor derivation in full detail.</p></blockquote></div></div>
+<a 
+ id="x1-236001r243"></a>
+<h3 class="sectionHead"><span class="titlemark">29.1   </span> <a 
+ id="x1-2370001"></a>Two-dimensional tokamak energy functional</h3>
+<!--l. 87--><p class="noindent" >For ballooning and Mercier stability in an axisymmetric tokamak, it is convenient to work in flux
+coordinates \((\Psi ,\chi ,\phi )\), where \(\Psi \) labels the flux surfaces, \(\phi \) is the ignorable toroidal angle, and \(\chi \) is a poloidal angle chosen
+such that \[ \nabla \Psi \cdot \nabla \chi = 0. \] The volume element is <div class="math-display">\[d^3x = J\,d\Psi \,d\chi \,d\phi ,\]</div>
+with \(J\) the Jacobian. By axisymmetry, the displacement may be Fourier decomposed in the toroidal angle as
+<a id="eq-eq-tokamak_xi_fourier"></a><div class="math-display">\[\vect {\xi } = \vect {\xi }(\Psi ,\chi )e^{in\phi }. \tag{29.3}\]</div>
+</p><!--l. 101--><p class="noindent" >Starting from the ideal-MHD energy principle, and imposing incompressibility, \[ \nabla \cdot \vect {\xi } = 0, \] the perpendicular
+displacement can be written in terms of two scalar functions \(X\) and \(U\): <a id="eq-eq-tokamak_X_def"></a><div class="math-display">\[\begin{aligned}X &amp;= R B_p\,\xi _\Psi , \\ U &amp;= \frac {\xi _\phi }{R} - \frac {\mu _0 I_{\mathrm {pol}}}{R^2 B_p}\,\xi _\chi ,\end{aligned} \tag{29.4}\]</div>
+</p><!--l. 113--><p class="noindent" >where \(B_p\) is the poloidal magnetic field.
+</p><!--l. 115--><p class="noindent" >With these definitions, the volume contribution to the energy functional for toroidal mode number \(n\)
+becomes <a id="eq-eq-tokamak_deltaWf"></a><div class="math-display">\[\begin {aligned} \delta W_f = \pi \int J\,d\Psi \,d\chi \Biggl ( &amp;\frac {B^2}{R^2 B_p^2}\,\left |k_{\parallel }X\right |^2 + \frac {R^2}{J^2} \left | \frac {\partial U}{\partial \chi } - \mu _0 I_{\mathrm {pol}} \frac {\partial }{\partial \Psi } \left ( \frac {JX}{R^2} \right ) \right |^2 \\[0.5em] &amp;\qquad + B_p^2 \left | i n U + \frac {\partial X}{\partial \Psi } + \frac {j_\phi }{R B_p^2}X \right |^2 - 2K|X|^2 \Biggr ). \end {aligned} \tag{29.6}\]</div>
+</p><!--l. 144--><p class="noindent" >The equilibrium-dependent coefficients \(K\) and \(j_\phi \) are <a id="eq-eq-tokamak_K_def"></a><div class="math-display">\[\begin{aligned}K &amp;= \frac {\mu _0 I_{\mathrm {pol}} I'_{\mathrm {pol}}}{R^2} \frac {\partial (\log R)}{\partial \Psi } - \frac {j_\phi }{R} \frac {\partial \!\bigl (\log (JB_p)\bigr )}{\partial \Psi }, \\ j_\phi &amp;= 2\pi R p' + \frac {\mu _0 I_{\mathrm {pol}} I'_{\mathrm {pol}}}{R} = -\frac {R}{J}\frac {\partial }{\partial \Psi }\!\left (JB_p^2\right ),\end{aligned} \tag{29.7}\]</div>
+</p><!--l. 163--><p class="noindent" >where the last relation is essentially the Grad&#8211;Shafranov equation, and primes denote derivatives with
+respect to \(\Psi \).
+</p><!--l. 165--><p class="noindent" >The derivative along the field line is <a id="eq-eq-tokamak_kpar_def"></a><div class="math-display">\[\begin{aligned}i k_{\parallel } &amp;= \frac {1}{JB} \left ( \frac {\partial }{\partial \chi } + i n \nu \right ),\end{aligned} \tag{29.9}\]</div>
+</p><!--l. 176--><p class="noindent" >with <a id="eq-eq-tokamak_nu_def"></a><div class="math-display">\[\begin{aligned}\nu (\Psi ,\chi ) &amp;= \frac {d\phi }{d\chi } = \frac {\mu _0 I_{\mathrm {pol}}J}{R^2},\end{aligned} \tag{29.10}\]</div>
+</p><!--l. 185--><p class="noindent" >so that the safety factor is <a id="eq-eq-tokamak_q_def"></a><div class="math-display">\[q(\Psi ) = \frac {1}{2\pi }\oint \nu (\Psi ,\chi )\,d\chi . \tag{29.11}\]</div>
+</p><!--l. 193--><p class="noindent" >Equation&#x00A0;(<a href="lecture29.html#eq-eq-tokamak_deltaWf">29.6</a>) is the exact volume contribution to \(\delta W\) for an axisymmetric tokamak with arbitrary poloidal
+cross-section. In this form, the field-line bending and shear terms appear explicitly as positive-definite
+contributions, while the term proportional to \(K\) contains the destabilizing curvature and pressure-gradient
+drive. This makes the formulation a natural starting point for both Mercier analysis and the large-\(n\)
+ballooning limit.
+<a 
+ id="x1-237001r250"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">29.2   </span> <a 
+ id="x1-2380002"></a>Ballooning as toroidal buoyancy</h3>
+<!--l. 197--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2390002"></a>From the momentum equation to a flux-tube force law</span>
+The starting point is still the ideal MHD momentum equation (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) together with the frozen-in
+induction law (<a href="lecture1.html#eq-eq-intro-induction">1.13</a>). In the gravitational interchange lecture we wrote the ordinary buoyancy
+                                                                                         
+                                                                                         
+problem in the form \[ \ddot {\xi } + N^2 \xi = 0, \] with \(N^2\) from (<a href="lecture18.html#eq-eq-grav-BV">18.8</a>), and then generalized that result to magnetic buoyancy
+in (<a href="lecture18.html#eq-eq-grav-magbuoy">18.67</a>). The toroidal ballooning problem is the same game, but with curvature replacing
+gravity.
+</p><!--l. 209--><p class="noindent" >To see this as directly as possible, imagine a thin flux tube of cross-sectional area \(A\) displaced a small
+distance \(\xi _n\) across flux surfaces in the outward normal direction \(\vect {n}\). Across the tube there is rapid pressure
+balance, <a id="eq-eq-balloon-pressure_balance"></a><div class="math-display">\[p_{\rm in} + \frac {B_{\rm in}^2}{2\muo } = p_0 + \frac {B_0^2}{2\muo }. \tag{29.12}\]</div>
+The lateral curvature force per unit length is the difference between the magnetic curvature forces inside
+and outside the tube. If we define <div class="math-display">\[\kappa _n \equiv -\vect {n}\cdot \vect {\kappa }, \qquad \vect {\kappa } \equiv (\vect {b}\cdot \grad )\vect {b},\]</div>
+then on the outboard side of a large-aspect-ratio tokamak one has \(\kappa _n&gt;0\), while on the inboard side \(\kappa _n&lt;0\). The net
+sideways force per unit length is therefore <a id="eq-eq-balloon-archimedes"></a><div class="math-display">\[\begin{aligned}F_n &amp;\simeq A\,\kappa _n \left ( \frac {B_0^2}{\muo }-\frac {B_{\rm in}^2}{\muo } \right ) \nonumber \\ &amp;= 2A\,\kappa _n\,(p_{\rm in}-p_0),\end{aligned} \tag{29.14}\]</div>
+</p><!--l. 240--><p class="noindent" >where in the second line we used (<a href="lecture29.html#eq-eq-balloon-pressure_balance">29.12</a>). Equation&#x00A0;(<a href="lecture29.html#eq-eq-balloon-archimedes">29.14</a>) is the toroidal MHD version of Archimedes&#8217;
+law: a pressure excess inside the displaced tube produces a lateral force whose sign is set by the
+curvature.
+</p>
+<!--l. 245--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2400002"></a>Linearizing the generalized Archimedes force</span>
+Now linearize. A tube displaced outward from \(r\) to \(r+\xi _n\) carries with it the pressure of its original
+location, while the surrounding plasma at the new location has a slightly smaller pressure. Thus
+<a id="eq-eq-balloon-dp_linear"></a><div class="math-display">\[p_{\rm in}-p_0 \simeq -\xi _n\,\dd {p_0}{r}. \tag{29.15}\]</div>
+Substituting (<a href="lecture29.html#eq-eq-balloon-dp_linear">29.15</a>) into (<a href="lecture29.html#eq-eq-balloon-archimedes">29.14</a>) gives <a id="eq-eq-balloon-buoyancy_force"></a><div class="math-display">\[F_n \simeq -2A\,\kappa _n\,\dd {p_0}{r}\,\xi _n. \tag{29.16}\]</div>
+This is the key sign test. Because \(\dd {p_0}{r}&lt;0\) in a confined plasma, <div class="math-display">\[-2\kappa _n\dd {p_0}{r} \left \{ \begin {array}{ll} &gt;0, &amp; \text {outboard side } (\kappa _n&gt;0), \\ &lt;0, &amp; \text {inboard side } (\kappa _n&lt;0). \end {array} \right .\]</div>
+So the same radial displacement is buoyantly driven on the outside of the torus and restored on the inside.
+This is the cleanest possible statement of bad and good curvature.
+</p>
+<!--l. 278--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2410002"></a>Field-line bending as the restoring force</span>
+A pure interchange would like to slide a tube sideways without bending the field. A torus does not allow
+that so easily. If the tube displacement varies along the field-line coordinate \(l\), then the bent field produces
+a tension force <a id="eq-eq-balloon-bending_force"></a><div class="math-display">\[F_{n,{\rm bend}} \simeq A\,\frac {B^2}{\muo }\,\dd {^2 \xi _n}{l^2}. \tag{29.18}\]</div>
+Combining (<a href="lecture29.html#eq-eq-balloon-buoyancy_force">29.16</a>) and (<a href="lecture29.html#eq-eq-balloon-bending_force">29.18</a>), the local normal equation of motion becomes <a id="eq-eq-balloon-local_force_balance"></a><div class="math-display">\[\rho A\pp {^2 \xi _n}{t^2} = A\,\frac {B^2}{\muo }\,\dd {^2 \xi _n}{l^2} - 2A\,\kappa _n\,\dd {p_0}{r}\,\xi _n. \tag{29.19}\]</div>
+For a harmonic dependence \(\xi _n\propto e^{ik_{\parallel } l-i\omega t}\), <a id="eq-eq-balloon-local_dispersion"></a><div class="math-display">\[\omega ^2 = v_A^2 k_{\parallel }^2 + \frac {2\kappa _n}{\rho }\,\dd {p_0}{r}. \tag{29.20}\]</div>
+Since \(\dd {p_0}{r}&lt;0\), the second term is destabilizing on the outboard side. It is natural to define a toroidal buoyancy
+frequency by <a id="eq-eq-balloon-Nt"></a><div class="math-display">\[N_{\rm tor}^2(\theta ) \equiv \frac {2\kappa _n}{\rho }\,\dd {p_0}{r}. \tag{29.21}\]</div>
+Then (<a href="lecture29.html#eq-eq-balloon-local_dispersion">29.20</a>) reads <div class="math-display">\[\omega ^2 = v_A^2 k_{\parallel }^2 + N_{\rm tor}^2.\]</div>
+This is exactly analogous to the buoyancy oscillator from (<a href="lecture18.html#eq-eq-grav-BV">18.8</a>), except that now the &#8220;gravity&#8221; is curvature
+and the stabilizing term is magnetic line bending.
+</p><!--l. 324--><p class="noindent" >This is not quite the whole story though. The interchange-like character of the flux tube naturally
+produces long, thin eddies in the radial direction, with short wavelength in the perpendicular direction
+within a flux surface. Magnetic shear then changes the radial alignment of that eddy as one moves along
+the field line. The clean way to describe this is with a Clebsch field-line label. To avoid confusing this label
+with the usual pressure-gradient parameter \(\alpha \), write <a id="eq-eq-balloon-lambda_label"></a><div class="math-display">\[\lambda = \phi -q(r)\theta , \qquad \vect {B}_0 \propto \nabla r\times \nabla \lambda . \tag{29.23}\]</div>
+Surfaces of constant \(\lambda \) are the natural surfaces on which the sliding flux tube lives. Since \(\vect {B}_0\cdot \nabla \lambda =0\), a perpendicular
+displacement that stays on one such surface is in the direction <a id="eq-eq-balloon-eperp_clebsch"></a><div class="math-display">\[\vect {e}_\perp = \frac {\nabla \lambda \times \vect {B}_0}{B_0}. \tag{29.24}\]</div>
+This is the vector called \(\vect {e}_\perp =\nabla \alpha \times \vect {B}/B\) in a generic Clebsch notation. It is tangent to the constant-\(\lambda \) surface and
+perpendicular to \(\vect {B}_0\), but it is not normalized to unit length. Magnetic shear appears because
+                                                                                         
+                                                                                         
+<div class="math-display">\[\left (\pp {\lambda }{r}\right )_{\theta } = -q'(r)\theta ,\]</div>
+so a tube that remains aligned at \(\theta =0\) develops a growing radial tilt as \(|\theta |\) increases.
+</p><!--l. 356--><p class="noindent" >For a large-aspect-ratio tokamak, <div class="math-display">\[\kappa _n \simeq \frac {\cos \theta }{R_0},\]</div>
+so <a id="eq-eq-balloon-Nt_large_aspect"></a><div class="math-display">\[N_{\rm tor}^2(\theta ) \simeq \frac {2}{\rho R_0}\,\dd {p_0}{r}\,\cos \theta . \tag{29.27}\]</div>
+Because \(\dd {p_0}{r}&lt;0\), one has \(N_{\rm tor}^2&lt;0\) at \(\theta =0\) and \(N_{\rm tor}^2&gt;0\) at \(\theta =\pi \). So the outboard side is buoyant and the inboard side is stable. This is why
+the mode &#8220;balloons&#8221; outward.
+</p><!--l. 373--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 373--><p class="noindent" >Equation&#x00A0;(<a href="lecture29.html#eq-eq-balloon-local_dispersion">29.20</a>)   is   <tspan font-family="ecti" font-size="1095">not   yet   </tspan>the   full   ballooning   problem.   It   is   the   local
+     interchange-buoyancy estimate. It ignores the fact that a periodic toroidal perturbation
+     must live on a sheared magnetic field, and that the mode will therefore pay an increasing
+     bending penalty as it spreads away from the point of best alignment. Ballooning theory
+     begins when that shear geometry is added.</p></blockquote></div></div>
+<a 
+ id="x1-241001r251"></a>
+<h3 class="sectionHead"><span class="titlemark">29.3   </span> <a 
+ id="x1-2420003"></a>How shear turns interchange into ballooning</h3>
+<!--l. 382--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2430003"></a>Shear-generated radial wave number</span>
+Take a large-aspect-ratio tokamak and introduce the field-line label <div class="math-display">\[\chi = \zeta - q(r)\theta .\]</div>
+A high-\(n\) perturbation naturally contains a rapid phase factor \(e^{in\chi }\). Expand about a reference surface \(r=r_0+x\):
+<div class="math-display">\[q(r)=q_0 + \dd {q}{r}x + \cdots .\]</div>
+Then <div class="math-display">\[\begin{aligned}n\chi &amp;= n(\zeta -q_0\theta ) - n\theta \,\dd {q}{r}x + \cdots ,\end{aligned}\]</div>
+</p><!--l. 399--><p class="noindent" >so the local radial wave number is <div class="math-display">\[k_x(\theta ) = \pp {}{x}(n\chi ) \simeq -n\theta \,\dd {q}{r}.\]</div>
+Introducing the binormal wave number \(k_y\simeq nq/r\) and the usual magnetic shear parameter <div class="math-display">\[\hat s \equiv \frac {r}{q}\dd {q}{r},\]</div>
+one obtains <a id="eq-eq-balloon-kx_shear"></a><div class="math-display">\[k_x(\theta ) \simeq k_y\,\hat s\,\theta . \tag{29.33}\]</div>
+This is one of the central formulas in toroidal stability theory. It says that even if the mode is perfectly
+aligned at one poloidal location, magnetic shear forces \(k_x\)&#8212;and therefore \(k_\perp \)&#8212;to grow linearly as one moves
+away along the field.
+</p>
+<!--l. 424--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2440003"></a>Why this produces localization</span>
+The tension energy is roughly <div class="math-display">\[\delta W_{\rm bend} \sim \frac {1}{2\muo }\int dV\,| \vect {Q} |^2.\]</div>
+Using the frozen-in relation, <div class="math-display">\[\delta \B = \vect {Q} = \curl (\vect {\xi }\times \B ),\]</div>
+from (<a href="lecture15.html#eq-eq-B1_explicit">15.4</a>) one finds schematically that <a id="eq-eq-balloon-bending_energy_schematic"></a><div class="math-display">\[\delta W_{\rm bend} \sim \frac {B^2}{2\muo } \int dV \left [ \left |\dd {\xi _n}{l}\right |^2 + k_\perp ^2|\xi _n|^2 \right ]. \tag{29.36}\]</div>
+The first term is the obvious line-bending penalty associate with \(\delta \vect {B}_\perp \) while the second comes magnetic
+compression and from the tells us that even a mode with long parallel wavelength becomes expensive if
+shear drives \(k_\perp \) large. Because of (<a href="lecture29.html#eq-eq-balloon-kx_shear">29.33</a>), the mode can only remain cheap near the poloidal location where it
+is best aligned. It therefore chooses to align where the buoyancy drive is strongest: on the bad-curvature,
+outboard side.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 458--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2450003"></a>Why the ordinary Fourier picture is clumsy</span>
+A periodic perturbation is often written as <a id="eq-eq-balloon-fourier"></a><div class="math-display">\[\xi (r,\theta ,\zeta ) = e^{in\zeta } \sum _m \xi _m(r)e^{-im\theta }. \tag{29.37}\]</div>
+This is perfectly correct, but for a high-\(n\) ballooning mode many neighboring values of \(m\) with \(m\simeq nq\) are strongly
+coupled. The physical mode is not one isolated \((m,n)\) harmonic. It is a wave packet centered on one field line and
+localized near a bad-curvature region.
+</p><!--l. 472--><p class="noindent" >That is why the ballooning transformation is so useful. Instead of insisting on periodicity at the beginning,
+it first solves for the envelope on an unwrapped field line and only then reconstructs the periodic toroidal
+perturbation.
+</p>
+<!--l. 477--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2460003"></a>The ballooning transformation</span>
+One convenient representation is <a id="eq-eq-balloon-transform"></a><div class="math-display">\[\xi (r,\theta ,\zeta ) = e^{in\chi } \sum _{p=-\infty }^{\infty } \hat \xi (\theta +2\pi p,r) e^{2\pi i n q(r)p}, \tag{29.38}\]</div>
+with \(\chi =\zeta -q(r)\theta \). The envelope \(\hat \xi (\theta ,r)\) is defined on the infinite interval \(-\infty &lt;\theta &lt;\infty \). It need not be periodic in \(\theta \), and that freedom is
+exactly what allows the mode to balloon on the outboard side.
+<a 
+ id="x1-246001r255"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">29.4   </span> <a 
+ id="x1-2470004"></a>The Cowley&#8211;Ham nonlinear sliding-tube model</h3>
+<!--l. 498--><p class="noindent" >The linear \(\hat s\)&#8211;\(\alpha \) equation is the infinitesimal limit of a more geometric picture developed by Cowley, Ham,
+Brochard, and Wilson: follow one isolated, highly elongated flux tube as it slides on a constant
+field-line-label surface <a 
+href="#Xham2016nonlinear-1fb">Ham et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xham2016nonlinear-1fb">2016</a>]. This is a useful bridge between the buoyancy language above and
+the nonlinear saturation problem.
+</p>
+<!--l. 504--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2480004"></a>Field-line label and perpendicular direction</span>
+Use the same large-aspect-ratio coordinates as above and write <a id="eq-eq-balloon-ham_B0_clebsch"></a><div class="math-display">\[S=\phi -q(r)\theta , \qquad \vect {B}_0=-\bar B_0 R_0 f(r)\,\nabla r\times \nabla S . \tag{29.39}\]</div>
+The paper calls the field-line label \(S\); in generic Clebsch notation it is the label that one might call \(\alpha _{\rm f}\). We
+avoid that notation here because \(\alpha (r)\) will shortly denote the pressure-gradient parameter. The perpendicular
+vector on the \(S={\rm const.}\) surface is <a id="eq-eq-balloon-ham_eperp"></a><div class="math-display">\[\vect {e}_\perp = \frac {\nabla S\times \vect {B}_0}{B_0}. \tag{29.40}\]</div>
+This is exactly the &#8220;\(\nabla \alpha \times \vect {B}/B\)&#8221; direction when the Clebsch field-line label is called \(\alpha \). It is perpendicular to \(\vect {B}_0\) and
+tangent to \(S={\rm const.}\), but it is not a unit vector. The displaced tube is described by the radial position of one of its
+field lines, <a id="eq-eq-balloon-ham_r_shape"></a><div class="math-display">\[r=r(\theta ,r_0,t), \qquad r(\theta ,r_0,t)\rightarrow r_0 \quad \hbox {as}\quad |\theta |\rightarrow \infty . \tag{29.41}\]</div>
+The label \(r_0\) is the flux surface to which the field line remains frozen at large \(|\theta |\).
+</p>
+<!--l. 536--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2490004"></a>Pressure balance and generalized Archimedes force</span>
+The tube is assumed thin enough that the external plasma and field at the same point \((r,\theta )\) may be
+treated as unperturbed. Across the narrow direction of the tube, total pressure balance gives
+<a id="eq-eq-balloon-ham_total_pressure_balance"></a><div class="math-display">\[p_{\rm in}+\frac {B_{\rm in}^2}{2\muo } = p_0(r)+\frac {B_0^2(r,\theta )}{2\muo }. \tag{29.42}\]</div>
+The pressure is rapidly equalized along the tube, so the tube keeps the pressure of its original surface,
+<a id="eq-eq-balloon-ham_Bin_pressure_balance"></a><div class="math-display">\[p_{\rm in}=p_0(r_0), \qquad B_{\rm in}^2 = B_0^2(r,\theta )+2\muo \left [p_0(r)-p_0(r_0)\right ]. \tag{29.43}\]</div>
+The ideal-MHD force projected along the sliding direction is then <a id="eq-eq-balloon-ham_archimedes_force"></a><div class="math-display">\[\begin{aligned}F_\perp &amp;= \frac {1}{\muo } \left [ \vect {B}_{\rm in}\cdot \nabla \vect {B}_{\rm in} -\nabla \left (\frac {B_{\rm in}^2}{2}+\muo p_{\rm in}\right ) \right ]\cdot \vect {e}_\perp \nonumber \\ &amp;= \frac {1}{\muo } \left [ \vect {B}_{\rm in}\cdot \nabla \vect {B}_{\rm in} -\vect {B}_0\cdot \nabla \vect {B}_0 \right ]\cdot \vect {e}_\perp .\end{aligned} \tag{29.44}\]</div>
+</p><!--l. 574--><p class="noindent" >The second line is the useful form. It follows from (<a href="lecture29.html#eq-eq-balloon-ham_Bin_pressure_balance">29.43</a>) and the equilibrium relation <div class="math-display">\[\nabla \left (\frac {B_0^2}{2}+\muo p_0\right ) = \vect {B}_0\cdot \nabla \vect {B}_0 .\]</div>
+This is the exact nonlinear version of the Archimedes idea: the sideways force is the curvature force of the
+                                                                                         
+                                                                                         
+displaced tube minus the curvature force of the tube it has replaced.
+</p>
+<!--l. 585--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2500004"></a>Algebraic reduction on the sliding surface</span>
+Because \(\vect {B}_{\rm in}\cdot \nabla S=0\), the field inside the tube may be resolved as <a id="eq-eq-balloon-ham_Bin_decomp"></a><div class="math-display">\[\vect {B}_{\rm in} = B_\parallel (\theta ,r_0,t)\,\vect {B}_0 + B_\perp (\theta ,r_0,t)\,\vect {e}_\perp . \tag{29.46}\]</div>
+Define the geometric factors <a id="eq-eq-balloon-ham_u_defs"></a><div class="math-display">\[\begin{aligned}u_\parallel &amp;\equiv -\bar B_0R_0f\,\frac {\vect {B}_0\cdot \nabla \theta }{B_0}, &amp; u_\perp &amp;\equiv \bar B_0R_0f\,\frac {\vect {e}_\perp \cdot \nabla \theta }{B_0}, &amp; w^2 &amp;\equiv \frac {u_\parallel ^2|\vect {e}_\perp |^2}{B_0^2}.\end{aligned} \tag{29.47}\]</div>
+</p><!--l. 610--><p class="noindent" >The field-line equation is <a id="eq-eq-balloon-ham_fieldline_eq"></a><div class="math-display">\[r_\theta \equiv \left (\pp {r}{\theta }\right )_{r_0,t} = \frac {\vect {B}_{\rm in}\cdot \nabla r} {\vect {B}_{\rm in}\cdot \nabla \theta } = \frac {B_\perp }{B_\parallel u_\parallel -B_\perp u_\perp }. \tag{29.48}\]</div>
+Combining this relation with (<a href="lecture29.html#eq-eq-balloon-ham_Bin_pressure_balance">29.43</a>) gives <a id="eq-eq-balloon-ham_Bparallel_exact"></a><div class="math-display">\[\begin{aligned}B_\parallel &amp;= \left [ \frac {1+2\muo [p_0(r)-p_0(r_0)]/B_0^2} {(1+u_\perp r_\theta )^2+w^2 r_\theta ^2} \right ]^{1/2} (1+u_\perp r_\theta ), \\ B_\perp &amp;= \left [ \frac {1+2\muo [p_0(r)-p_0(r_0)]/B_0^2} {(1+u_\perp r_\theta )^2+w^2 r_\theta ^2} \right ]^{1/2} u_\parallel r_\theta .\end{aligned} \tag{29.49}\]</div>
+</p><!--l. 641--><p class="noindent" >These two formulas are the main algebraic step: once the shape \(r(\theta ,r_0,t)\) is known, the magnetic field inside the
+tube is determined.
+</p><!--l. 644--><p class="noindent" >Substituting (<a href="lecture29.html#eq-eq-balloon-ham_Bin_decomp">29.46</a>) into (<a href="lecture29.html#eq-eq-balloon-ham_archimedes_force">29.44</a>) and collecting the components along \(\vect {e}_\perp \) gives <a id="eq-eq-balloon-ham_force_decomposed"></a><div class="math-display">\[\begin{aligned}\muo F_\perp ={}&amp; (B_\parallel ^2-1) (\vect {B}_0\cdot \nabla \vect {B}_0)\cdot \vect {e}_\perp \nonumber \\ &amp; +B_0(\vect {B}_{\rm in}\cdot \nabla ) \left ( \frac {|\vect {e}_\perp |^2}{B_0}B_\perp \right ) -B_\perp ^2B_0^2\, \vect {e}_\perp \cdot \nabla \left ( \frac {|\vect {e}_\perp |^2}{2B_0^2} \right ).\end{aligned} \tag{29.51}\]</div>
+</p><!--l. 665--><p class="noindent" >The first term is the nonlinear buoyancy or interchange drive. The second is the field-line-bending term.
+The third is a nonlinear correction from the radial variation of the perpendicular metric.
+</p>
+<!--l. 669--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2510004"></a>Large-aspect-ratio \(s\)&#8211;\(\alpha \) ordering</span>
+Now specialize to the large-aspect-ratio circular model. Define <a id="eq-eq-balloon-ham_beta_alpha_defs"></a><div class="math-display">\[s(r)=\frac {r q'(r)}{q(r)}, \qquad \beta _N(r)=\frac {2\muo R_0q^2p_0(r)}{\bar B_0^2}, \qquad \alpha _p(r)=-\dd {\beta _N}{r}, \tag{29.52}\]</div>
+where the subscript on \(\alpha _p\) is only a reminder that this is the pressure-gradient parameter, not the Clebsch
+field-line label. Put <a id="eq-eq-balloon-ham_Lambda_A_defs"></a><div class="math-display">\[\Lambda (r,\theta )=s(r)\theta -\alpha _p(r)\sin \theta , \qquad A(r,\theta )=1+\Lambda ^2 . \tag{29.53}\]</div>
+The needed metric and curvature factors are, to leading order in inverse aspect ratio, <a id="eq-eq-balloon-ham_metric_A"></a><div class="math-display">\[\begin{aligned}|\vect {e}_\perp |^2 &amp;= \frac {q^2}{r^2}A+O(\epsilon ), &amp; w^2 &amp;= \frac {A}{q^2R_0^2}+O(\epsilon ), \\ u_\parallel &amp;= -\frac {\bar B_0 r}{q^2R_0}+O(\bar B_0\epsilon ^2), &amp; \vect {B}_{\rm in}\cdot \nabla \theta &amp;= \frac {\bar B_0}{qR_0}+O\left (\frac {\bar B_0\epsilon }{qR_0}\right ), \\ (\vect {B}_0\cdot \nabla \vect {B}_0)\cdot \vect {e}_\perp &amp;= \frac {q\bar B_0^2}{rR_0} \left (\cos \theta +\Lambda \sin \theta \right ).\end{aligned} \tag{29.54}\]</div>
+</p><!--l. 711--><p class="noindent" >For the finite-amplitude ballooning displacement of interest, \(r-r_0=O(\epsilon r)\) and hence \(r_\theta =O(\epsilon r)\). Equations (<a href="lecture29.html#eq-eq-balloon-ham_Bparallel_exact">29.49</a>)&#8211;(<a href="lecture29.html#eq-eq-balloon-ham_Bperp_exact">29.50</a>) then
+reduce to the leading-order estimates <a id="eq-eq-balloon-ham_small_estim"></a><div class="math-display">\[B_\perp = -\frac {\bar B_0 r}{q^2R_0}r_\theta +\cdots , \qquad B_\parallel ^2-1=O(\epsilon ^2). \tag{29.57}\]</div>
+Using (<a href="lecture29.html#eq-eq-balloon-ham_metric_A">29.54</a>)&#8211;(<a href="lecture29.html#eq-eq-balloon-ham_small_estim">29.57</a>) in the three pieces of (<a href="lecture29.html#eq-eq-balloon-ham_force_decomposed">29.51</a>) gives the following three leading-order contributions: <a id="eq-eq-balloon-ham_drive_piece"></a><div class="math-display">\[\begin{aligned}\frac {qR_0^2r}{\bar B_0^2} (B_\parallel ^2-1) (\vect {B}_0\cdot \nabla \vect {B}_0)\cdot \vect {e}_\perp &amp;= [\beta _N(r_0)-\beta _N(r)] \left (\cos \theta +\Lambda \sin \theta \right ), \\ \frac {qR_0^2r}{\bar B_0^2} B_0(\vect {B}_{\rm in}\cdot \nabla ) \left ( \frac {|\vect {e}_\perp |^2}{B_0}B_\perp \right ) &amp;= \left (\pp {}{\theta }\right )_{r_0} \left (A r_\theta \right ), \\ -\frac {qR_0^2r}{\bar B_0^2} B_\perp ^2B_0^2\, \vect {e}_\perp \cdot \nabla \left ( \frac {|\vect {e}_\perp |^2}{2B_0^2} \right ) &amp;= -\frac {1}{2}r_\theta ^2 \left (\pp {}{r}\right )_{\theta }\Lambda ^2 .\end{aligned} \tag{29.58}\]</div>
+</p><!--l. 754--><p class="noindent" >Adding the three pieces and defining the normalized force <a id="eq-eq-balloon-ham_Fprime_def"></a><div class="math-display">\[F'_\perp \equiv \frac {\muo qR_0^2r}{\bar B_0^2}F_\perp , \tag{29.61}\]</div>
+one obtains the nonlinear force operator <a id="eq-eq-balloon-ham_force_operator"></a><div class="math-display">\[\begin{aligned}F'_\perp [r] ={}&amp; [\beta _N(r_0)-\beta _N(r)] \left (\cos \theta +\Lambda \sin \theta \right ) + \left (\pp {}{\theta }\right )_{r_0} \left (A r_\theta \right ) \nonumber \\ &amp; -\frac {1}{2}r_\theta ^2 \left (\pp {}{r}\right )_{\theta }\Lambda ^2 .\end{aligned} \tag{29.62}\]</div>
+</p><!--l. 776--><p class="noindent" >This is already the right-hand side of Eq.&#x00A0;(4) of Ham et al., written with \(\Lambda =s\theta -\alpha _p\sin \theta \) and \(A=1+\Lambda ^2\).
+</p>
+<!--l. 779--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2520004"></a>Drag evolution and Eq.&#x00A0;(4) of the PRL</span>
+To turn the force into a simple evolution equation, Ham et al. balance it against a phenomenological drag.
+Write the velocity as <div class="math-display">\[\vect {v}=v_\perp \vect {e}_\perp , \qquad F_\perp =\nu \,\vect {v}\cdot \vect {e}_\perp .\]</div>
+Using (<a href="lecture29.html#eq-eq-balloon-ham_metric_A">29.54</a>) and \(\vect {v}\cdot \nabla r=(\partial r/\partial t)_{r_0,\theta }\) gives <a id="eq-eq-balloon-ham_drag_norm"></a><div class="math-display">\[F'_\perp = \nu _0 A \left (\pp {r}{t}\right )_{r_0,\theta }, \qquad \nu _0 = \frac {\nu \muo q^2R_0^2}{\bar B_0^2}. \tag{29.64}\]</div>
+Therefore <a id="eq-eq-balloon-ham_prl_eq4"></a><div class="math-display">\[\begin{aligned}\nu _0 \left (\pp {r}{t}\right )_{r_0,\theta } \left [1+\left (\alpha _p\sin \theta -s\theta \right )^2\right ] ={}&amp; [\beta _N(r_0)-\beta _N(r)] \left [\cos \theta + \sin \theta \left (s\theta -\alpha _p\sin \theta \right )\right ] \nonumber \\ &amp;+ \left (\pp {}{\theta }\right )_{r_0} \left \{ \left [1+\left (\alpha _p\sin \theta -s\theta \right )^2\right ] \left (\pp {r}{\theta }\right )_{r_0} \right \} \nonumber \\ &amp;- \frac {1}{2} \left (\pp {r}{\theta }\right )_{r_0}^2 \left (\pp {}{r}\right )_{\theta } \left (\alpha _p\sin \theta -s\theta \right )^2 .\end{aligned} \tag{29.65}\]</div>
+</p><!--l. 824--><p class="noindent" >Dropping the subscript \(p\) on \(\alpha _p\) gives exactly the notation used in the PRL. The three terms on the right-hand
+side have transparent meanings: nonlinear toroidal buoyancy, field-line bending, and nonlinear variation of
+the shear metric.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 828--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2530004"></a>Check: the linear limit</span>
+Set <div class="math-display">\[r(\theta ,r_0,t)=r_0+\xi (\theta ,t), \qquad |\xi |\ll r_0 .\]</div>
+Then, to first order, <div class="math-display">\[\beta _N(r_0)-\beta _N(r) = \alpha _p(r_0)\xi , \qquad A(r,\theta )=A_0(\theta )+O(\xi ),\]</div>
+and the last term in (<a href="lecture29.html#eq-eq-balloon-ham_prl_eq4">29.65</a>) is quadratic. Thus <a id="eq-eq-balloon-ham_linear_limit"></a><div class="math-display">\[\begin{aligned}\nu _0 A_0\pp {\xi }{t} ={}&amp; \left (\pp {}{\theta }\right ) \left (A_0\pp {\xi }{\theta }\right ) \nonumber \\ &amp;+ \alpha _p(r_0) \left [\cos \theta + \sin \theta \left (s_0\theta -\alpha _p(r_0)\sin \theta \right ) \right ]\xi ,\end{aligned} \tag{29.68}\]</div>
+</p><!--l. 857--><p class="noindent" >with <div class="math-display">\[A_0=1+\left [\alpha _p(r_0)\sin \theta -s_0\theta \right ]^2, \qquad s_0=s(r_0).\]</div>
+This is the drag form of the usual \(\hat s\)&#8211;\(\alpha \) ballooning operator. In the next section we will show explicitly that
+the reduced functional (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>) generates exactly the same spatial operator. The PRL model is therefore
+not a different instability; it is the finite-displacement extension of the same shear-localized
+toroidal-buoyancy physics.
+<a 
+ id="x1-253001r260"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">29.5   </span> <a 
+ id="x1-2540005"></a>The reduced variational problem</h3>
+<!--l. 871--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2550005"></a>A one-dimensional energy functional</span>
+The high-\(n\) ballooning equation is best viewed as a reduced energy principle. Starting from
+the ideal-MHD functional of the energy-principle lecture, Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>), and minimizing over
+the less important pieces of the displacement, one arrives at a one-dimensional functional
+for the field-line envelope \(X(\theta )\). In the large-aspect-ratio circular model this may be written as
+<a id="eq-eq-balloon-deltaW"></a><div class="math-display">\[\delta W[X] \propto \int _{-\infty }^{\infty } d\theta \, \left [ \left (1+\Lambda ^2\right ) \left |\dd {X}{\theta }\right |^2 - \alpha \left (\cos \theta +\Lambda \sin \theta \right )|X|^2 \right ], \tag{29.70}\]</div>
+where <a id="eq-eq-balloon-salpha_defs"></a><div class="math-display">\[\Lambda (\theta )=\hat s\,\theta -\alpha \sin \theta , \qquad \hat s = \frac {r}{q}\dd {q}{r}, \qquad \alpha = -\frac {2\muo R_0 q^2}{B^2}\dd {p}{r}. \tag{29.71}\]</div>
+A corresponding positive norm is <a id="eq-eq-balloon-norm"></a><div class="math-display">\[\mathcal N[X] \propto \int _{-\infty }^{\infty } d\theta \, \left (1+\Lambda ^2\right )|X|^2. \tag{29.72}\]</div>
+</p><!--l. 908--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 908--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Same operator, different time law. </tspan>On the reference surface \(r=r_0\), identify \[ \alpha _0\equiv \alpha _p(r_0), \qquad \Lambda _0(\theta )=s_0\theta -\alpha _0\sin \theta , \qquad A_0(\theta )=1+\Lambda _0^2, \] and \[ V_0(\theta )=\alpha _0\bigl (\cos \theta +\Lambda _0\sin \theta \bigr ). \] Then the
+     linear Ham&#8211;Wilson&#8211;Cowley equation (<a href="lecture29.html#eq-eq-balloon-ham_linear_limit">29.68</a>) can be written as <a id="eq-eq-balloon-common_operator"></a><div class="math-display">\[\nu _0 A_0\pp {\xi }{t}=\mathcal L_0[\xi ], \qquad \mathcal L_0[f] \equiv \frac {d}{d\theta }\left (A_0\frac {df}{d\theta }\right )+V_0f. \tag{29.73}\]</div>
+     The reduced energy principle gives <a id="eq-eq-balloon-common_operator_energy"></a><div class="math-display">\[\mathcal L_0[X]=-\hat \omega ^2A_0X. \tag{29.74}\]</div>
+     So the spatial ballooning operator is literally the same; only the time law differs.</p></blockquote></div></div>
+<!--l. 939--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2560005"></a>One-to-one map to the Ham linear limit</span>
+To make the equivalence explicit, evaluate (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>) on the same reference surface and identify \[ X\leftrightarrow \xi , \qquad \hat s\leftrightarrow s_0, \qquad \alpha \leftrightarrow \alpha _0\equiv \alpha _p(r_0). \] Then (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>)
+becomes <a id="eq-eq-balloon-ham_deltaW_common"></a><div class="math-display">\[\delta W[\xi ] \propto \int _{-\infty }^{\infty } d\theta \, \left [ A_0\left |\frac {d\xi }{d\theta }\right |^2 - V_0|\xi |^2 \right ]. \tag{29.75}\]</div>
+Its first variation is <a id="eq-eq-balloon-ham_deltaW_variation"></a><div class="math-display">\[\left .\frac {d}{d\epsilon }\delta W[\xi +\epsilon \eta ]\right |_{\epsilon =0} \propto -2\int d\theta \,\eta \,\mathcal L_0[\xi ], \tag{29.76}\]</div>
+so the functional derivative is proportional to \(-2\mathcal L_0[\xi ]\). Hence the Euler&#8211;Lagrange problem obtained from \(\delta W-\hat \omega ^2\mathcal N\) is
+precisely Eq.&#x00A0;(<a href="lecture29.html#eq-eq-balloon-common_operator_energy">29.74</a>), while a drag or gradient-flow dynamics in the positive metric \(A_0\) gives
+<a id="eq-eq-balloon-ham_gradient_flow"></a><div class="math-display">\[\nu _0 A_0\pp {\xi }{t}=\mathcal L_0[\xi ], \tag{29.77}\]</div>
+which is exactly (<a href="lecture29.html#eq-eq-balloon-ham_linear_limit">29.68</a>). With this choice, <a id="eq-eq-balloon-ham_energy_descent"></a><div class="math-display">\[\frac {d}{dt}\delta W[\xi ] \propto -2\nu _0\int d\theta \,A_0\left (\pp {\xi }{t}\right )^2 \le 0, \tag{29.78}\]</div>
+so the Ham evolution is literally a downhill flow of the same reduced functional. For a modal ansatz
+<a id="eq-eq-balloon-ham_modal_ansatz"></a><div class="math-display">\[\xi (\theta ,t)=X(\theta )e^{\gamma t}, \tag{29.79}\]</div>
+Eq.&#x00A0;(<a href="lecture29.html#eq-eq-balloon-ham_gradient_flow">29.77</a>) becomes <a id="eq-eq-balloon-ham_modal_operator"></a><div class="math-display">\[\mathcal L_0[X]=\nu _0\gamma A_0X. \tag{29.80}\]</div>
+Therefore, up to the same positive overall normalization already hidden in the proportionality sign of
+                                                                                         
+                                                                                         
+(<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>), <a id="eq-eq-balloon-ham_omega_gamma_map"></a><div class="math-display">\[\nu _0\gamma =-\hat \omega ^2. \tag{29.81}\]</div>
+At marginal stability both formulations reduce to \[ \mathcal L_0[X]=0, \] so they have exactly the same \(\hat s\)&#8211;\(\alpha \) threshold and the same
+eigenfunction shape along the field line.
+</p><!--l. 1009--><p class="noindent" >This is also the clean place to connect back to the appendix. Appendix Eq.&#x00A0;(I.136) derives the same local
+operator from the Connor&#8211;Hastie&#8211;Taylor reduction of the full two-dimensional tokamak energy principle.
+That route is conceptually different from the Ham&#8211;Wilson&#8211;Cowley buoyancy argument: Connor, Hastie,
+and Taylor start from the exact ideal-MHD functional and perform the large-\(n\) ballooning asymptotics,
+whereas Ham, Wilson, and Cowley start from the force balance of a sliding buoyant flux tube and choose a
+phenomenological drag law. But in the large-aspect-ratio circular limit the two routes land on the same \(\hat s\)&#8211;\(\alpha \)
+operator.
+</p><!--l. 1019--><p class="noindent" >The first term in (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>) is the field-line bending energy, weighted by the shear-generated perpendicular
+scale factor. The second term is the toroidal buoyancy drive. So the famous \(\hat s\)&#8211;\(\alpha \) problem is not a third,
+separate construction: it is the same spatial operator viewed in three equivalent ways&#8212;as a reduced
+energy functional, as a conservative ideal-MHD eigenvalue problem, and as the drag-linearized
+Ham&#8211;Wilson&#8211;Cowley buoyant flux-tube equation.
+</p>
+<!--l. 1027--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2570005"></a>Euler&#8211;Lagrange equation</span>
+At finite frequency one extremizes <div class="math-display">\[\mathcal F[X] \equiv \delta W[X]-\hat \omega ^2\mathcal N[X].\]</div>
+Write <div class="math-display">\[A(\theta )=1+\Lambda ^2, \qquad V(\theta )=\alpha \left (\cos \theta +\Lambda \sin \theta \right ).\]</div>
+Then <div class="math-display">\[\mathcal F[X] \propto \int d\theta \, \left [ A\left (\dd {X}{\theta }\right )^2 - V X^2 - \hat \omega ^2 A X^2 \right ].\]</div>
+Now vary \(X\rightarrow X+\epsilon \eta \), with \(\eta \rightarrow 0\) as \(|\theta |\rightarrow \infty \): <div class="math-display">\[\begin{aligned}\delta \mathcal F &amp;\propto 2\epsilon \int d\theta \, \left [ A\dd {X}{\theta }\dd {\eta }{\theta } -\left (V+\hat \omega ^2 A\right )X\eta \right ] \nonumber \\ &amp;= -2\epsilon \int d\theta \, \eta \left [ \dd {}{\theta }\left (A\dd {X}{\theta }\right ) +\left (V+\hat \omega ^2 A\right )X \right ].\end{aligned}\]</div>
+</p><!--l. 1070--><p class="noindent" >Since this must vanish for arbitrary \(\eta \), the Euler&#8211;Lagrange equation is <a id="eq-eq-balloon-salpha"></a><div class="math-display">\[\dd {}{\theta } \left [ \left (1+\Lambda ^2\right )\dd {X}{\theta } \right ] + \alpha \left (\cos \theta +\Lambda \sin \theta \right )X = -\hat \omega ^2\left (1+\Lambda ^2\right )X. \tag{29.86}\]</div>
+This is the standard \(\hat s\)&#8211;\(\alpha \) ballooning equation. At marginal stability \(\hat \omega ^2=0\).
+</p>
+<!--l. 1085--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2580005"></a>Numerical solution of the \(\hat s\)&#8211;\(\alpha \) ballooning equation</span>
+To solve Eq.&#x00A0;(<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>) numerically, we truncate the extended poloidal interval to \(-\theta _{\max }\le \theta \le \theta _{\max }\) and impose Dirichlet
+decay conditions \(X(\pm \theta _{\max })=0\). On a uniform mesh \(\theta _i\), the operator \[ \mathcal L[X] \equiv \frac {d}{d\theta }\!\left (A\frac {dX}{d\theta }\right )+VX \] with \[ A(\theta )=1+\Lambda ^2,\qquad V(\theta )=\alpha \bigl (\cos \theta +\Lambda \sin \theta \bigr ),\qquad \Lambda (\theta )=\hat s\,\theta -\alpha \sin \theta , \] is discretized in conservative flux form, \[ \bigl (\mathcal L X\bigr )_i \approx \frac {A_{i+1/2}(X_{i+1}-X_i)-A_{i-1/2}(X_i-X_{i-1})}{\Delta \theta ^2} +V_i X_i. \] This
+gives a generalized matrix eigenvalue problem \[ L\,\mathbf X = \lambda \,W\,\mathbf X, \qquad W_{ij} = A_i\delta _{ij}, \] with \(\lambda =\nu _0\gamma =-\hat \omega ^2\). Because \(W\) is diagonal and positive, we solve the
+equivalent symmetric tridiagonal problem \[ W^{-1/2} L W^{-1/2} \mathbf u = \lambda \mathbf u, \qquad \mathbf X = W^{-1/2}\mathbf u, \] and identify the largest eigenvalue as the dominant growth rate.
+Positive \(\lambda \) corresponds to an unstable ballooning envelope, while negative \(\lambda \) corresponds to decay in the drag
+formulation.
+</p>
+<!--l. 1123--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2590005"></a>Choice of \(n\) and interpretation of the \(m\) spectrum</span>
+The field-line envelope \(X(\theta )\) is the high-\(n\) ballooning object. It does not represent one isolated Fourier harmonic;
+instead it reconstructs a packet of poloidal sidebands with \(m\simeq nq\). For illustration we choose a large but finite
+toroidal mode number \(n=20\) and a reference safety factor \(q_{\rm ref}=3.0\) on the chosen reference surface, so the packet
+is centered on \[ m_0 \approx n q_{\rm ref} = 20\times 3.0 \approx 60. \] Writing \[ m = m_0 + k, \] the ballooning transform implies that the sideband amplitudes are
+obtained from the Fourier content of the envelope through \[ \xi _m \propto \int _{-\infty }^{\infty } X(\theta )e^{-ik\theta }\,d\theta , \qquad k = m-m_0. \] The envelope therefore brackets a
+narrow packet of neighboring \(m\) values around the centroid \(m_0\), rather than selecting one isolated \((m,n)\)
+harmonic.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 1146--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2600005"></a>Representative unstable example</span>
+For the example shown in Fig.&#x00A0;29.1 we use \(\hat s=0.60\) and \(\alpha =1.20\), which gives \[ \nu _0\gamma = -\hat \omega ^2 \approx 0.231. \] This point lies inside the unstable region of
+the \(\hat s\)&#8211;\(\alpha \) diagram and produces a strongly localized outboard ballooning envelope.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2600011"></a>
+                                                                                         
+                                                                                         
+<!--l. 1157--><p class="noindent" ><img 
+src="figures/ballooning_linear_eigenfunction.png" alt="PIC"  
+width="432" height="351"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;29.1: </span><span  
+class="content">Representative unstable solution of the linear ballooning equation (<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>). The upper
+panel shows the field-line envelope \(X(\theta )\) for the unstable point \(\hat s=0.60\), \(\alpha =1.20\). The lower panel shows the corresponding
+packet of coupled poloidal harmonics for a representative large toroidal mode number \(n=20\) and reference
+safety factor \(q_{\rm ref}=3\), so that the centroid of the packet is \(m_0\simeq n q_{\rm ref}\simeq 60\). Writing \(m=m_0+k\), the sideband amplitudes are the
+Fourier components of the envelope in the extended coordinate \(\theta \), so the ballooning mode is a narrow
+packet of neighboring \((m,n)\) harmonics rather than a single Fourier component.</span></div><!--tex4ht:label?: x1-2600011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 1170--><p class="noindent" >The general growth-rate map and the stable/unstable partition obtained from the same numerical
+eigensolver are shown in Fig.&#x00A0;29.2.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2600022"></a>
+                                                                                         
+                                                                                         
+<!--l. 1175--><p class="noindent" ><img 
+src="figures/ballooning_linear_salpha_map.png" alt="PIC"  
+width="460" height="223"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;29.2: </span><span  
+class="content">Numerically computed \(\hat s\)&#8211;\(\alpha \) stability diagram from Eq.&#x00A0;(<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>). The left panel shows the
+dominant eigenvalue \(\nu _0\gamma =-\hat \omega ^2\) over the scanned parameter space; the marginal curve is the zero contour. The
+right panel isolates the same information into stable and unstable regions. The black dot marks the
+representative unstable point used in Fig.&#x00A0;29.1.</span></div><!--tex4ht:label?: x1-2600022 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 1186--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2610005"></a>Reading the equation term by term</span>
+Equation&#x00A0;(<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>) looks complicated at first glance, but its logic is simple.
+</p><!--l. 1190--><p class="noindent" >If \(\alpha =0\), there is no pressure-gradient drive and the equation contains only stabilizing pieces. If \(\hat s\) is increased at
+fixed pressure gradient, the factor \(1+\Lambda ^2\) grows more rapidly away from the outboard side, so the mode pays a
+stronger shear-generated bending penalty. And because the coefficient multiplying \(X\) changes sign around
+the torus, the mode finds it energetically favorable to concentrate where the curvature is bad and to avoid
+where it is good.
+</p><!--l. 1199--><p class="noindent" >That is the entire subject in one sentence: <tspan font-family="ecti" font-size="1095">ballooning is toroidal buoyancy localized by shear and opposed by</tspan>
+<tspan font-family="ecti" font-size="1095">line bending.</tspan>
+</p>
+<!--l. 1202--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2620005"></a>A local expansion near the outboard side</span>
+Near \(\theta =0\) one has <div class="math-display">\[\cos \theta \simeq 1-\frac {\theta ^2}{2}, \qquad \Lambda \simeq \hat s\,\theta .\]</div>
+Then the reduced equation behaves like a one-dimensional bound-state problem: the curvature term makes
+a potential well centered at the outboard side, while magnetic shear makes the well narrower by increasing
+the stiffness away from \(\theta =0\). This is a crude analogy, but it is a very good one. The ballooning eigenfunction is
+a bound state created by toroidal buoyancy.
+</p>
+<!--l. 1215--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2630005"></a>Rayleigh quotient and the sign of the mode</span>
+Multiplying (<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>) by \(X\) and integrating by parts gives <a id="eq-eq-balloon-rayleigh"></a><div class="math-display">\[\delta W[X] = \hat \omega ^2\mathcal N[X]. \tag{29.88}\]</div>
+Since \(\mathcal N[X]&gt;0\), instability is equivalent to <div class="math-display">\[\delta W[X]&lt;0 \qquad \Longleftrightarrow \qquad \hat \omega ^2&lt;0.\]</div>
+In the drag formulation (<a href="lecture29.html#eq-eq-balloon-ham_linear_limit">29.68</a>), the same condition is \(\gamma &gt;0\), because Eq.&#x00A0;(<a href="lecture29.html#eq-eq-balloon-ham_omega_gamma_map">29.81</a>) gives \(\nu _0\gamma =-\hat \omega ^2\). So the wave problem,
+the energy principle, and the Ham sliding-tube linearization are not three different stories. They are the
+same story written in three different languages.
+<a 
+ id="x1-263001r267"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">29.6   </span> <a 
+ id="x1-2640006"></a>What ballooning adds beyond interchange</h3>
+<!--l. 1236--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2650006"></a>Mercier, Suydam, and the high-\(n\) limit</span>
+There is a useful hierarchy here. Suydam and Mercier ask whether an equilibrium is locally vulnerable to
+interchange-like distortions once shear and compressibility are taken into account. Ballooning theory then
+asks a sharper question: if the plasma is allowed to choose <tspan font-family="ecti" font-size="1095">where </tspan>along a toroidal field line it will
+bulge, what is the most dangerous localization it can find? In that sense ballooning theory is
+not a separate instability from interchange. It is the high-\(n\), toroidally localized refinement of
+interchange.
+</p><!--l. 1246--><p class="noindent" >This is why the connection to buoyancy is so important. If one forgets the buoyancy picture, the \(\hat s\)&#8211;\(\alpha \)
+equation can look like a mysterious toroidal differential equation. If one remembers it, the meaning of the
+equation is immediate: it is the optimal competition between bad-curvature buoyancy and line-bending
+stabilization on a sheared field.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 1253--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2660006"></a>First and second stability</span>
+One of the classic lessons of ballooning theory is that increasing pressure gradient does not produce a
+single monotone stability boundary. For some combinations of shaping and shear, a tokamak can pass
+through a first unstable ballooning region and then re-enter a second stable region at higher pressure
+<a 
+href="#XStrauss1980">Strauss et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XStrauss1980">1980</a>],&#x00A0;<a 
+href="#XFreidberg1982">Freidberg</a>&#x00A0;[<a 
+href="#XFreidberg1982">1982</a>]. The reason is now easy to state in words: toroidal buoyancy is
+trying to drive the mode, but the same toroidal geometry also changes the way the mode bends the field.
+So the equilibrium can become unstable and then stable again as the geometry of the best localized
+eigenfunction changes.
+</p>
+<!--l. 1264--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2670006"></a>The flux-tube viewpoint</span>
+The later nonlinear flux-tube picture is worth mentioning even in a linear lecture. Instead of treating
+ballooning as an abstract eigenfunction problem, one imagines a narrow tube sliding on a Clebsch surface,
+feeling a generalized Archimedes force of the type in (<a href="lecture29.html#eq-eq-balloon-archimedes">29.14</a>), while field-line bending and shear constrain
+the trajectory. The linear ballooning equation is then the small-amplitude limit of a much richer nonlinear
+problem. The eigenfunction is not just a mathematical object. It is the infinitesimal version of a real
+erupting flux tube.
+</p><!--l. 1275--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">Ballooning is the toroidal descendant of buoyancy and interchange, not a wholly
+     new kind of drive.
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">A thin displaced flux tube feels a generalized Archimedes force \(F_n\simeq 2A\kappa _n(p_{\rm in}-p_0)\), which becomes
+     destabilizing on the outboard side because \(\dd {p_0}{r}&lt;0\) and \(\kappa _n&gt;0\) there.
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">The local force balance \(\omega ^2=v_A^2k_{\parallel }^2 + 2\kappa _n\rho ^{-1}\dd {p_0}{r}\) is the toroidal analog of the Brunt&#8211;Väisälä oscillator.
+     </dd><dt class="enumerate-enumitem">
+  4. </dt><dd 
+class="enumerate-enumitem">Magnetic shear makes \(k_x\simeq k_y\hat s\theta \), so a mode cannot remain cheap everywhere along a field
+     line. It localizes where the buoyancy drive is strongest.
+     </dd><dt class="enumerate-enumitem">
+  5. </dt><dd 
+class="enumerate-enumitem">The   \(\hat s\)&#8211;\(\alpha \)   equation   is   simply   the   reduced   Euler&#8211;Lagrange   equation   of   that
+     one-dimensional variational problem.
+     </dd><dt class="enumerate-enumitem">
+  6. </dt><dd 
+class="enumerate-enumitem">The  Cowley&#8211;Ham  sliding-tube  equation  promotes  the  linear  displacement  to  a
+     finite field-line shape \(r(\theta ,r_0,t)\), while preserving the same geometric factor \(1+(\alpha \sin \theta -\hat s\theta )^2\) that measures
+     shear-amplified line bending.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-2680006"></a>Bibliography</h3>
+  <div class="thebibliography">
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgqb"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> H.&#x00A0;Grad.  The guiding center plasma.  <tspan font-family="ecti" font-size="1095">Proc. Symp. App. Math.</tspan>, 18:162, 1967a.  H Grad. The
+  guiding center plasma. In Proc. Symp. App. Math. (Am. Math. Soc., Providence, RI 1966), volume
+  18, page 162, 1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpxl"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad. Toroidal containment of a plasma. <tspan font-family="ecti" font-size="1095">The Physics of Fluids</tspan>, 10(1):137&#8211;154, 1967b.
+  doi:<a 
+href="https://doi.org/10.1063/1.1761965" >10.1063/1.1761965</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1981equilibrium-c17"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> William&#x00A0;A. Newcomb.  Equilibrium and stability of collisionless systems in the paraxial limit.
+  <tspan font-family="ecti" font-size="1095">Journal of Plasma Physics</tspan>, 26(3):529&#8211;584, 1981. doi:<a 
+href="https://doi.org/10.1017/s0022377800010904" >10.1017/s0022377800010904</a>.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-2690006"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.1.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from the force balance (<a href="lecture29.html#eq-eq-balloon-local_force_balance">29.19</a>), show directly that for a large-aspect-ratio
+                tokamak the curvature term can be written in the form \(\rho N_{\rm tor}^2(\theta )\xi _n\) with (<a href="lecture29.html#eq-eq-balloon-Nt_large_aspect">29.27</a>). Identify
+                explicitly the regions of good and bad curvature.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.2.</tspan>  </dt><dd 
+class="enumerate-enumitem">Derive  (<a href="lecture29.html#eq-eq-balloon-archimedes">29.14</a>)  from  the  pressure-balance  condition  (<a href="lecture29.html#eq-eq-balloon-pressure_balance">29.12</a>).  Then  linearize  to
+                obtain (<a href="lecture29.html#eq-eq-balloon-buoyancy_force">29.16</a>). Explain in words why the sign changes between the outboard and
+                inboard sides of the torus.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.3.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from \(\chi =\zeta -q(r)\theta \), derive (<a href="lecture29.html#eq-eq-balloon-kx_shear">29.33</a>). Then estimate how the bending energy in (<a href="lecture29.html#eq-eq-balloon-bending_energy_schematic">29.36</a>)
+                changes  with  increasing  \(|\theta |\)  and  explain  why  a  mode  centered  at  the  outboard
+                midplane becomes localized.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.4.</tspan>  </dt><dd 
+class="enumerate-enumitem">Take the reduced functional (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>) together with the norm (<a href="lecture29.html#eq-eq-balloon-norm">29.72</a>) and rederive
+                the ballooning equation (<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>) by varying \(\delta W[X]-\hat \omega ^2\mathcal N[X]\). Be careful with the boundary term
+                at \(|\theta |\rightarrow \infty \).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.5.</tspan>  </dt><dd 
+class="enumerate-enumitem">Using the physical interpretation of the coefficients in (<a href="lecture29.html#eq-eq-balloon-salpha">29.86</a>), explain qualitatively
+                how a tokamak can pass from stability to instability and then back to stability
+                as \(\alpha \) is increased at fixed shear. What ingredients of toroidal geometry make such
+                behavior possible?
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 29.6.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture29.html#eq-eq-balloon-ham_prl_eq4">29.65</a>), set \(r(\theta ,r_0,t)=r_0+\xi (\theta ,t)\) and keep only terms linear in \(\xi \). Show that the nonlinear
+                buoyancy term gives \(\alpha (r_0)[\cos \theta +\sin \theta (s_0\theta -\alpha (r_0)\sin \theta )]\xi \) and that the last term in (<a href="lecture29.html#eq-eq-balloon-ham_prl_eq4">29.65</a>) is quadratic. Recover
+                (<a href="lecture29.html#eq-eq-balloon-ham_linear_limit">29.68</a>).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+ 
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

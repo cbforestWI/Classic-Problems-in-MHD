@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hartmann and Shercliff Flow Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --accent-soft: #dcecf7;
+      --target: #b64646;
+      --green: #2f7d49;
+      --gold: #b98a3d;
+      --purple: #7059b8;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 78ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      width: 100%;
+      border: 1px solid #cdd8df;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      background: #fcfeff;
+      color: #254458;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.92rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 72ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .cross-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .plot-card,
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .plot-card.wide {
+      grid-column: 1 / -1;
+    }
+    .plot-card h3,
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .plot-card p,
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    canvas,
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+      border: 1px solid #dfe8ef;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    @media (max-width: 980px) {
+      .layout,
+      .cross-grid,
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hartmann and Shercliff Flow Explorer</h1>
+  <p class="lede">
+    This browser-side companion solves the low-<em>Rm</em> cross-section problem for fully developed duct or pipe flow
+    in a transverse magnetic field. The tool keeps the coupled velocity and electric-potential equations, lets the
+    Hartmann and Shercliff walls be either conducting or insulating, and compares rectangular and circular sections.
+    The result is a compact way to see the Hartmann-layer scale <em>&delta;<sub>H</sub> &sim; a / Ha</em>, the broader
+    Shercliff scale <em>&delta;<sub>S</sub> &sim; a / &radic;Ha</em>, and the pressure gradient required to sustain a
+    chosen bulk speed.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="preset">Preset case</label>
+        </div>
+        <select id="preset">
+          <option value="custom">Custom</option>
+          <option value="hartmann-plates">Hartmann plates</option>
+          <option value="all-insulating">All insulating walls</option>
+          <option value="all-conducting">All conducting walls</option>
+          <option value="hunt-i">Hunt I (Hartmann conducting, Shercliff insulating)</option>
+          <option value="hunt-ii">Hunt II (Hartmann insulating, Shercliff conducting)</option>
+          <option value="circle-mixed">Circular pipe, mixed sectors</option>
+        </select>
+        <p class="help">The preset only initializes the sliders and wall conditions; you can still fine-tune everything afterward.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="material">Liquid-metal preset</label>
+        </div>
+        <select id="material">
+          <option value="custom">Custom material</option>
+          <option value="li">Lithium (Li)</option>
+          <option value="pbli">Pb-17Li (PbLi)</option>
+          <option value="na">Sodium (Na)</option>
+          <option value="nak">NaK</option>
+        </select>
+        <p class="help">These presets initialize representative density, viscosity, conductivity, and melting temperature values for quick estimates.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="geometry">Cross-section geometry</label>
+        </div>
+        <select id="geometry">
+          <option value="rectangle">Rectangular duct</option>
+          <option value="circle">Circular pipe</option>
+        </select>
+        <p class="help">For the circular case, the top and bottom arcs are treated as the Hartmann sectors and the left and right arcs as the Shercliff sectors.</p>
+      </div>
+
+      <div class="control rectangle-only">
+        <div class="control-header">
+          <label for="aspect">Half-width ratio <span style="font-weight:500;">b / a</span></label>
+          <span class="value" id="aspect-value"></span>
+        </div>
+        <input id="aspect" type="range" min="1.0" max="4.0" step="0.05" value="2.0" />
+        <p class="help">The Hartmann half-gap is <code>a</code>; the Shercliff half-span is <code>b</code>. Larger <code>b/a</code> separates the two layer scales more clearly.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="bc-hartmann">Hartmann walls</label>
+        </div>
+        <select id="bc-hartmann">
+          <option value="conducting">Conducting (Dirichlet φ = 0)</option>
+          <option value="insulating">Insulating (Neumann ∂nφ = 0)</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="bc-shercliff">Shercliff walls</label>
+        </div>
+        <select id="bc-shercliff">
+          <option value="insulating">Insulating (Neumann ∂nφ = 0)</option>
+          <option value="conducting">Conducting (Dirichlet φ = 0)</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="ha">Hartmann number <span style="font-weight:500;">Ha</span></label>
+          <span class="value" id="ha-value"></span>
+        </div>
+        <input id="ha" type="range" min="0.0" max="60.0" step="0.5" value="12.0" />
+        <p class="help">The solver now reaches moderately larger Hartmann numbers while still keeping enough grid points near the walls to resolve the boundary layers honestly in the browser.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="a">Hartmann half-gap or radius <span style="font-weight:500;">a</span></label>
+          <span class="value" id="a-value"></span>
+        </div>
+        <input id="a" type="range" min="0.01" max="0.20" step="0.005" value="0.05" />
+        <p class="help">For rectangles, this is the half-gap between the Hartmann walls. For the circular case, it is the pipe radius.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="ubulk">Bulk flow speed <span style="font-weight:500;">Ū</span></label>
+          <span class="value" id="ubulk-value"></span>
+        </div>
+        <input id="ubulk" type="range" min="0.05" max="5.00" step="0.05" value="1.00" />
+        <p class="help">The solver first computes the unit-forcing shape, then rescales it to this chosen bulk speed to report the dimensional pressure drop.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="rho">Density <span style="font-weight:500;">ρ</span></label>
+          <span class="value" id="rho-value"></span>
+        </div>
+        <input id="rho" type="range" min="500" max="12000" step="100" value="9300" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="sigma">Electrical conductivity <span style="font-weight:500;">σ</span></label>
+          <span class="value" id="sigma-value"></span>
+        </div>
+        <input id="sigma" type="range" min="5e5" max="1.2e7" step="5e4" value="1.0e6" />
+        <p class="help">With <code>a</code>, <code>ρ</code>, and <code>ν</code>, this turns the Hartmann-number slider into an actual applied-field estimate.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="nu">Kinematic viscosity <span style="font-weight:500;">ν</span></label>
+          <span class="value" id="nu-value"></span>
+        </div>
+        <input id="nu" type="range" min="1e-7" max="2.5e-5" step="1e-7" value="3.5e-7" />
+        <p class="help">Together with <code>ρ</code>, this sets <code>μ = ρν</code> and therefore the dimensional pressure gradient required for the target flow.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The rectangular Hunt-style cases are especially good for seeing how a thin Hartmann layer and a broader Shercliff layer can coexist in the same duct.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Cross-Section Solver, Potential Closure, and Chord Profiles</h2>
+          <p>
+            In this cross-section model the applied field points in the positive <em>y</em> direction, the flow is along
+            <em>z</em>, and the only induced magnetic correction retained is the axial field <em>b<sub>z</sub>(x,y)</em>.
+            The panels below therefore separate the streamwise velocity, electrostatic potential, induced current
+            closure, and reconstructed axial magnetic response rather than mixing them together.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--accent);"><span class="swatch"></span>Hartmann chord</li>
+        <li style="color: var(--target);"><span class="swatch"></span>Shercliff chord</li>
+        <li style="color: var(--purple);"><span class="swatch dashed"></span>Diagonal chord</li>
+      </ul>
+
+      <div class="cross-grid">
+        <div class="plot-card">
+          <h3>Velocity Map</h3>
+          <p id="velocity-caption">Colors show <em>u / Ū</em>. The guide arrows mark the imposed magnetic field pointing in the positive <em>y</em> direction, while the chord overlays mark the vertical Hartmann cut, the horizontal Shercliff cut, and the diagonal comparison cut.</p>
+          <canvas id="velocity-canvas" width="540" height="420" aria-label="Velocity cross-section"></canvas>
+        </div>
+        <div class="plot-card">
+          <h3>Electrostatic Potential</h3>
+          <p id="potential-caption">Colors show the dimensionless electrostatic potential <em>φ</em>. Conducting walls pin <em>φ</em>, while insulating walls let the potential float so that <em>J·n = 0</em>.</p>
+          <canvas id="potential-canvas" width="540" height="420" aria-label="Electrostatic potential cross-section"></canvas>
+        </div>
+        <div class="plot-card">
+          <h3>Induced Current Closure</h3>
+          <p id="current-caption">Colors show <em>|J<sub>⊥</sub>|</em>, while contours show the current-streamline family reconstructed from the same streamfunction that generates <em>b<sub>z</sub></em>. Conducting walls pin the potential strongly enough to redirect those loops at the boundary; insulating walls force them tangent to the wall.</p>
+          <canvas id="current-canvas" width="540" height="420" aria-label="Current-closure cross-section"></canvas>
+        </div>
+        <div class="plot-card">
+          <h3>Induced Axial Magnetic Response</h3>
+          <p id="magnetic-caption">Colors show the reconstructed induced axial field <em>b<sub>z</sub> / B<sub>0</sub></em>. This reduced model does not evolve any separate transverse or poloidal magnetic field; only the axial correction <em>b<sub>z</sub></em> is reconstructed. Its contours are also streamlines of <em>J<sub>⊥</sub></em>.</p>
+          <canvas id="magnetic-canvas" width="540" height="420" aria-label="Induced axial magnetic response"></canvas>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <h3>Velocity Along Representative Chords</h3>
+        <p>The vertical cut sees the Hartmann layers most directly; the horizontal cut sees the Shercliff layers; the diagonal cut helps compare the fully two-dimensional cases.</p>
+        <svg id="chord-plot" viewBox="0 0 760 280" aria-label="Chord velocity profiles"></svg>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p><strong>Model summary.</strong> The cross-section solve keeps the low-<em>Rm</em> quasi-static system with imposed field <code>B<sub>0</sub> || +ŷ</code> and flow <code>u || ẑ</code>:</p>
+        <p><code>∇<sub>⊥</sub><sup>2</sup>u - Ha<sup>2</sup>(u + ∂<sub>x</sub>φ) + 1 = 0</code>, <code>∇<sub>⊥</sub><sup>2</sup>φ = -∂<sub>x</sub>u</code>,</p>
+        <p>with <code>J<sub>x</sub> = -(∂<sub>x</sub>φ + u)</code> and <code>J<sub>y</sub> = -∂<sub>y</sub>φ</code>. No-slip gives <code>u = 0</code> at every wall. Conducting walls set <code>φ = 0</code>, while insulating walls impose <code>J·n = 0</code>, which reduces to homogeneous Neumann here because the wall speed vanishes. The dimensional pressure gradient is then inferred from the unit-forcing solve and the chosen bulk speed.</p>
+        <p>Afterward the explorer reconstructs only the induced axial field from Ampère's law by solving <code>J<sub>x</sub> = ∂<sub>y</sub>β</code>, <code>J<sub>y</sub> = -∂<sub>x</sub>β</code>, equivalently <code>∇<sub>⊥</sub><sup>2</sup>β = ∂<sub>y</sub>J<sub>x</sub> - ∂<sub>x</sub>J<sub>y</sub></code>, where <code>β ∝ b<sub>z</sub></code> and the additive constant is fixed by a zero-mean gauge. No separate transverse or poloidal magnetic field is evolved in this reduced model.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const controls = {
+      preset: document.getElementById("preset"),
+      material: document.getElementById("material"),
+      geometry: document.getElementById("geometry"),
+      aspect: document.getElementById("aspect"),
+      bcHartmann: document.getElementById("bc-hartmann"),
+      bcShercliff: document.getElementById("bc-shercliff"),
+      ha: document.getElementById("ha"),
+      a: document.getElementById("a"),
+      ubulk: document.getElementById("ubulk"),
+      rho: document.getElementById("rho"),
+      sigma: document.getElementById("sigma"),
+      nu: document.getElementById("nu")
+    };
+
+    const valueLabels = {
+      aspect: document.getElementById("aspect-value"),
+      ha: document.getElementById("ha-value"),
+      a: document.getElementById("a-value"),
+      ubulk: document.getElementById("ubulk-value"),
+      rho: document.getElementById("rho-value"),
+      sigma: document.getElementById("sigma-value"),
+      nu: document.getElementById("nu-value")
+    };
+
+    const rectangleOnly = Array.from(document.querySelectorAll(".rectangle-only"));
+    const warningBox = document.getElementById("warning-box");
+    const velocityCanvas = document.getElementById("velocity-canvas");
+    const potentialCanvas = document.getElementById("potential-canvas");
+    const currentCanvas = document.getElementById("current-canvas");
+    const magneticCanvas = document.getElementById("magnetic-canvas");
+    const chordPlot = document.getElementById("chord-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+
+    let solveTimer = null;
+    let currentMaterialMeta = { label: "Custom material", meltingC: null };
+    const MU0 = 4e-7 * Math.PI;
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function fmtSci(value) {
+      if (!Number.isFinite(value) || value === 0) {
+        return "0";
+      }
+      const exponent = Math.floor(Math.log10(Math.abs(value)));
+      const mantissa = value / 10 ** exponent;
+      return `${mantissa.toFixed(3)} × 10<sup>${exponent}</sup>`;
+    }
+
+    function fmtPressure(value) {
+      const abs = Math.abs(value);
+      if (abs >= 1e6) return `${fmt(value / 1e6, 3)} MPa m<sup>-1</sup>`;
+      if (abs >= 1e3) return `${fmt(value / 1e3, 3)} kPa m<sup>-1</sup>`;
+      return `${fmt(value, 3)} Pa m<sup>-1</sup>`;
+    }
+
+    function fmtLength(value) {
+      const abs = Math.abs(value);
+      if (abs >= 1) return `${fmt(value, 3)} m`;
+      if (abs >= 1e-3) return `${fmt(value * 1e3, 3)} mm`;
+      return `${fmt(value * 1e6, 3)} μm`;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function applyPreset(name) {
+      if (name === "custom") {
+        return;
+      }
+      if (name === "hartmann-plates") {
+        controls.geometry.value = "rectangle";
+        controls.aspect.value = "4.0";
+        controls.bcHartmann.value = "conducting";
+        controls.bcShercliff.value = "insulating";
+        controls.ha.value = "8.0";
+      } else if (name === "all-insulating") {
+        controls.geometry.value = "rectangle";
+        controls.aspect.value = "2.0";
+        controls.bcHartmann.value = "insulating";
+        controls.bcShercliff.value = "insulating";
+        controls.ha.value = "12.0";
+      } else if (name === "all-conducting") {
+        controls.geometry.value = "rectangle";
+        controls.aspect.value = "2.0";
+        controls.bcHartmann.value = "conducting";
+        controls.bcShercliff.value = "conducting";
+        controls.ha.value = "12.0";
+      } else if (name === "hunt-i") {
+        controls.geometry.value = "rectangle";
+        controls.aspect.value = "2.5";
+        controls.bcHartmann.value = "conducting";
+        controls.bcShercliff.value = "insulating";
+        controls.ha.value = "16.0";
+      } else if (name === "hunt-ii") {
+        controls.geometry.value = "rectangle";
+        controls.aspect.value = "2.5";
+        controls.bcHartmann.value = "insulating";
+        controls.bcShercliff.value = "conducting";
+        controls.ha.value = "16.0";
+      } else if (name === "circle-mixed") {
+        controls.geometry.value = "circle";
+        controls.bcHartmann.value = "conducting";
+        controls.bcShercliff.value = "insulating";
+        controls.ha.value = "12.0";
+      }
+    }
+
+    function applyMaterialPreset(name) {
+      const materials = {
+        custom: { label: "Custom material", rho: null, nu: null, sigma: null, meltingC: null },
+        li: { label: "Lithium (Li)", rho: 510, nu: 1.15e-6, sigma: 1.05e7, meltingC: 180.5 },
+        pbli: { label: "Pb-17Li (PbLi)", rho: 9300, nu: 3.5e-7, sigma: 1.0e6, meltingC: 234 },
+        na: { label: "Sodium (Na)", rho: 860, nu: 3.7e-7, sigma: 8.7e6, meltingC: 97.8 },
+        nak: { label: "NaK", rho: 850, nu: 3.2e-7, sigma: 2.9e6, meltingC: -12.6 }
+      };
+      const mat = materials[name] || materials.custom;
+      currentMaterialMeta = { label: mat.label, meltingC: mat.meltingC };
+      if (name === "custom") {
+        return;
+      }
+      controls.rho.value = String(mat.rho);
+      controls.nu.value = String(mat.nu);
+      controls.sigma.value = String(mat.sigma);
+    }
+
+    function updateVisibility() {
+      const isRectangle = controls.geometry.value === "rectangle";
+      rectangleOnly.forEach((el) => {
+        el.style.display = isRectangle ? "" : "none";
+      });
+    }
+
+    function updateLabels() {
+      updateVisibility();
+      valueLabels.aspect.innerHTML = fmt(parseFloat(controls.aspect.value), 2);
+      valueLabels.ha.innerHTML = fmt(parseFloat(controls.ha.value), 1);
+      valueLabels.a.innerHTML = fmt(parseFloat(controls.a.value), 3) + " m";
+      valueLabels.ubulk.innerHTML = fmt(parseFloat(controls.ubulk.value), 2) + " m s<sup>-1</sup>";
+      valueLabels.rho.innerHTML = fmt(parseFloat(controls.rho.value), 0) + " kg m<sup>-3</sup>";
+      valueLabels.sigma.innerHTML = fmtSci(parseFloat(controls.sigma.value)) + " S m<sup>-1</sup>";
+      valueLabels.nu.innerHTML = fmtSci(parseFloat(controls.nu.value)) + " m<sup>2</sup> s<sup>-1</sup>";
+    }
+
+    function buildGrid(geometry, aspect, baseNy) {
+      const Ly = 1;
+      const Lx = geometry === "rectangle" ? aspect : 1;
+      const ny = baseNy;
+      const h = 2 * Ly / (ny - 1);
+      let nx = Math.round((2 * Lx) / h) + 1;
+      nx = Math.min(Math.max(nx, 61), 361);
+      const hx = 2 * Lx / (nx - 1);
+      const hy = 2 * Ly / (ny - 1);
+      const x = new Float64Array(nx);
+      const y = new Float64Array(ny);
+      for (let i = 0; i < nx; i += 1) x[i] = -Lx + i * hx;
+      for (let j = 0; j < ny; j += 1) y[j] = -Ly + j * hy;
+
+      const active = new Uint8Array(nx * ny);
+      const boundaryKind = new Uint8Array(nx * ny); // 0 interior, 1 Hartmann, 2 Shercliff
+      const interior = [];
+      const boundary = [];
+      const inside = (xx, yy) => geometry === "rectangle" ? (Math.abs(xx) <= Lx + 1e-12 && Math.abs(yy) <= Ly + 1e-12) : (xx * xx + yy * yy <= 1 + 1e-12);
+      const idx = (i, j) => j * nx + i;
+
+      for (let j = 0; j < ny; j += 1) {
+        for (let i = 0; i < nx; i += 1) {
+          if (inside(x[i], y[j])) {
+            active[idx(i, j)] = 1;
+          }
+        }
+      }
+
+      for (let j = 0; j < ny; j += 1) {
+        for (let i = 0; i < nx; i += 1) {
+          const k = idx(i, j);
+          if (!active[k]) continue;
+          let isBoundary = false;
+          for (const [di, dj] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+            const ii = i + di;
+            const jj = j + dj;
+            if (ii < 0 || ii >= nx || jj < 0 || jj >= ny || !active[idx(ii, jj)]) {
+              isBoundary = true;
+              break;
+            }
+          }
+          if (isBoundary) {
+            let kind = 2;
+            if (geometry === "rectangle") {
+              kind = (j === 0 || j === ny - 1) ? 1 : 2;
+            } else {
+              kind = Math.abs(y[j]) >= Math.abs(x[i]) ? 1 : 2;
+            }
+            boundaryKind[k] = kind;
+            boundary.push(k);
+          } else {
+            interior.push(k);
+          }
+        }
+      }
+
+      let centerIndex = idx(Math.floor(nx / 2), Math.floor(ny / 2));
+      if (!active[centerIndex]) {
+        centerIndex = interior.length ? interior[Math.floor(interior.length / 2)] : boundary[0];
+      }
+
+      const areaCell = hx * hy;
+      return { geometry, nx, ny, hx, hy, Lx, Ly, x, y, active, boundaryKind, interior, boundary, idx, areaCell, centerIndex };
+    }
+
+    function applyBoundary(field, grid, bcHartmann, bcShercliff) {
+      const { nx, ny, active, boundaryKind, boundary, idx } = grid;
+      for (const k of boundary) {
+        const kind = boundaryKind[k];
+        const bc = kind === 1 ? bcHartmann : bcShercliff;
+        if (bc === "conducting") {
+          field[k] = 0;
+          continue;
+        }
+        const i = k % nx;
+        const j = (k - i) / nx;
+        let sum = 0;
+        let count = 0;
+        for (const [di, dj] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+          const ii = i + di;
+          const jj = j + dj;
+          if (ii < 0 || ii >= nx || jj < 0 || jj >= ny) continue;
+          const kk = idx(ii, jj);
+          if (!active[kk]) continue;
+          if (boundaryKind[kk] !== 0) continue;
+          sum += field[kk];
+          count += 1;
+        }
+        if (count === 0) {
+          for (const [di, dj] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+            const ii = i + di;
+            const jj = j + dj;
+            if (ii < 0 || ii >= nx || jj < 0 || jj >= ny) continue;
+            const kk = idx(ii, jj);
+            if (!active[kk]) continue;
+            sum += field[kk];
+            count += 1;
+          }
+        }
+        field[k] = count > 0 ? sum / count : 0;
+      }
+    }
+
+    function gaugeFix(phi, grid, allInsulating) {
+      if (!allInsulating) return;
+      const shift = phi[grid.centerIndex];
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (grid.active[k]) phi[k] -= shift;
+        }
+      }
+    }
+
+    function zeroMean(field, grid) {
+      let sum = 0;
+      let count = 0;
+      for (let k = 0; k < field.length; k += 1) {
+        if (!grid.active[k]) continue;
+        sum += field[k];
+        count += 1;
+      }
+      const mean = sum / Math.max(count, 1);
+      for (let k = 0; k < field.length; k += 1) {
+        if (!grid.active[k]) continue;
+        field[k] -= mean;
+      }
+    }
+
+    function boundaryNormal(grid, k) {
+      const i = k % grid.nx;
+      const j = (k - i) / grid.nx;
+      if (grid.geometry === "rectangle") {
+        const nx = (i === 0 ? -1 : 0) + (i === grid.nx - 1 ? 1 : 0);
+        const ny = (j === 0 ? -1 : 0) + (j === grid.ny - 1 ? 1 : 0);
+        const norm = Math.hypot(nx, ny);
+        return norm > 0 ? [nx / norm, ny / norm] : [0, 1];
+      }
+      const xx = grid.x[i];
+      const yy = grid.y[j];
+      const norm = Math.max(Math.hypot(xx, yy), 1e-12);
+      return [xx / norm, yy / norm];
+    }
+
+    function applyMagneticBoundary(beta, grid, jx, jy) {
+      const { nx, ny, active, boundaryKind, boundary, idx, x, y } = grid;
+      for (const k of boundary) {
+        const i = k % nx;
+        const j = (k - i) / nx;
+        const normal = boundaryNormal(grid, k);
+        const g = -jy[k] * normal[0] + jx[k] * normal[1];
+        let sum = 0;
+        let count = 0;
+        for (const [di, dj] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const ii = i + di;
+          const jj = j + dj;
+          if (ii < 0 || ii >= nx || jj < 0 || jj >= ny) continue;
+          const kk = idx(ii, jj);
+          if (!active[kk]) continue;
+          if (boundaryKind[kk] !== 0) continue;
+          const dx = x[i] - x[ii];
+          const dy = y[j] - y[jj];
+          sum += beta[kk] + g * (normal[0] * dx + normal[1] * dy);
+          count += 1;
+        }
+        if (count === 0) {
+          for (const [di, dj] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+            const ii = i + di;
+            const jj = j + dj;
+            if (ii < 0 || ii >= nx || jj < 0 || jj >= ny) continue;
+            const kk = idx(ii, jj);
+            if (!active[kk]) continue;
+            const dx = x[i] - x[ii];
+            const dy = y[j] - y[jj];
+            sum += beta[kk] + g * (normal[0] * dx + normal[1] * dy);
+            count += 1;
+          }
+        }
+        beta[k] = count > 0 ? sum / count : 0;
+      }
+      zeroMean(beta, grid);
+    }
+
+    function solveCase(options) {
+      const isRectangle = options.geometry === "rectangle";
+      const baseNy = Math.min(181, Math.max(81, 81 + Math.round(1.6 * options.ha)));
+      const grid = buildGrid(options.geometry, options.aspect, baseNy);
+      const size = grid.nx * grid.ny;
+      const w = new Float64Array(size);
+      const phi = new Float64Array(size);
+      const denom = 2 / (grid.hx * grid.hx) + 2 / (grid.hy * grid.hy);
+      const wDenom = denom + options.ha * options.ha;
+      const omegaW = 1.55;
+      const omegaPhi = 1.62;
+      const maxIter = 380;
+      const tol = 8e-6;
+      const allInsulating = options.bcHartmann === "insulating" && options.bcShercliff === "insulating";
+
+      for (let iter = 0; iter < maxIter; iter += 1) {
+        let maxChange = 0;
+        applyBoundary(phi, grid, options.bcHartmann, options.bcShercliff);
+        gaugeFix(phi, grid, allInsulating);
+        for (const k of grid.interior) {
+          const i = k % grid.nx;
+          const j = (k - i) / grid.nx;
+          const kE = grid.idx(i + 1, j);
+          const kW = grid.idx(i - 1, j);
+          const kN = grid.idx(i, j + 1);
+          const kS = grid.idx(i, j - 1);
+          const phiX = (phi[kE] - phi[kW]) / (2 * grid.hx);
+          const rhs = options.ha * options.ha * phiX - 1;
+          const candidate =
+            (((w[kE] + w[kW]) / (grid.hx * grid.hx)) + ((w[kN] + w[kS]) / (grid.hy * grid.hy)) - rhs) / wDenom;
+          const updated = (1 - omegaW) * w[k] + omegaW * candidate;
+          maxChange = Math.max(maxChange, Math.abs(updated - w[k]));
+          w[k] = updated;
+        }
+        for (const k of grid.boundary) {
+          w[k] = 0;
+        }
+
+        applyBoundary(phi, grid, options.bcHartmann, options.bcShercliff);
+        gaugeFix(phi, grid, allInsulating);
+        for (const k of grid.interior) {
+          const i = k % grid.nx;
+          const j = (k - i) / grid.nx;
+          const kE = grid.idx(i + 1, j);
+          const kW = grid.idx(i - 1, j);
+          const kN = grid.idx(i, j + 1);
+          const kS = grid.idx(i, j - 1);
+          const wX = (w[kE] - w[kW]) / (2 * grid.hx);
+          const candidate =
+            (((phi[kE] + phi[kW]) / (grid.hx * grid.hx)) + ((phi[kN] + phi[kS]) / (grid.hy * grid.hy)) + wX) / denom;
+          const updated = (1 - omegaPhi) * phi[k] + omegaPhi * candidate;
+          maxChange = Math.max(maxChange, Math.abs(updated - phi[k]));
+          phi[k] = updated;
+        }
+        applyBoundary(phi, grid, options.bcHartmann, options.bcShercliff);
+        gaugeFix(phi, grid, allInsulating);
+        if (maxChange < tol && iter > 40) {
+          break;
+        }
+      }
+
+      let area = 0;
+      let mean = 0;
+      let umax = 0;
+      let phimin = Infinity;
+      let phimax = -Infinity;
+      for (let k = 0; k < size; k += 1) {
+        if (!grid.active[k]) continue;
+        area += grid.areaCell;
+        mean += w[k] * grid.areaCell;
+        umax = Math.max(umax, w[k]);
+        phimin = Math.min(phimin, phi[k]);
+        phimax = Math.max(phimax, phi[k]);
+      }
+      mean /= Math.max(area, 1e-12);
+      const scale = options.ubulk / Math.max(mean, 1e-12);
+      const wScaled = new Float64Array(size);
+      const phiScaled = new Float64Array(size);
+      for (let k = 0; k < size; k += 1) {
+        if (!grid.active[k]) continue;
+        wScaled[k] = w[k] * scale;
+        phiScaled[k] = phi[k] * scale;
+      }
+
+      const mu = options.rho * options.nu;
+      const b0 = options.ha * Math.sqrt(mu / Math.max(options.sigma, 1e-20)) / Math.max(options.a, 1e-20);
+      const dpdz = mu * options.ubulk / (options.a * options.a * Math.max(mean, 1e-12));
+      const re = options.ubulk * options.a / Math.max(options.nu, 1e-20);
+      const interaction = options.ha * options.ha / Math.max(re, 1e-12);
+      const ls = options.a;
+      const jx = new Float64Array(size);
+      const jy = new Float64Array(size);
+      let jmax = 0;
+      let jmean = 0;
+      let jcountArea = 0;
+
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          let phix = 0;
+          let phiy = 0;
+          if (i > 0 && i < grid.nx - 1 && grid.active[grid.idx(i - 1, j)] && grid.active[grid.idx(i + 1, j)]) {
+            phix = (phiScaled[grid.idx(i + 1, j)] - phiScaled[grid.idx(i - 1, j)]) / (2 * grid.hx);
+          } else if (i < grid.nx - 1 && grid.active[grid.idx(i + 1, j)]) {
+            phix = (phiScaled[grid.idx(i + 1, j)] - phiScaled[k]) / grid.hx;
+          } else if (i > 0 && grid.active[grid.idx(i - 1, j)]) {
+            phix = (phiScaled[k] - phiScaled[grid.idx(i - 1, j)]) / grid.hx;
+          }
+          if (j > 0 && j < grid.ny - 1 && grid.active[grid.idx(i, j - 1)] && grid.active[grid.idx(i, j + 1)]) {
+            phiy = (phiScaled[grid.idx(i, j + 1)] - phiScaled[grid.idx(i, j - 1)]) / (2 * grid.hy);
+          } else if (j < grid.ny - 1 && grid.active[grid.idx(i, j + 1)]) {
+            phiy = (phiScaled[grid.idx(i, j + 1)] - phiScaled[k]) / grid.hy;
+          } else if (j > 0 && grid.active[grid.idx(i, j - 1)]) {
+            phiy = (phiScaled[k] - phiScaled[grid.idx(i, j - 1)]) / grid.hy;
+          }
+          const jxVal = -(phix + wScaled[k]);
+          const jyVal = -phiy;
+          jx[k] = jxVal;
+          jy[k] = jyVal;
+          const jmag = Math.hypot(jxVal, jyVal);
+          jmax = Math.max(jmax, jmag);
+          jmean += jmag * grid.areaCell;
+          jcountArea += grid.areaCell;
+        }
+      }
+      jmean /= Math.max(jcountArea, 1e-12);
+
+      return {
+        grid,
+        w: wScaled,
+        phi: phiScaled,
+        jx,
+        jy,
+        stats: {
+          meanUnit: mean,
+          umaxUnit: umax,
+          b0,
+          dpdz,
+          mu,
+          re,
+          interaction,
+          ls,
+          jmax,
+          jmean,
+          phiMin: phimin * scale,
+          phiMax: phimax * scale,
+          rm: MU0 * options.sigma * options.a * options.ubulk
+        }
+      };
+    }
+
+    function solveInducedField(grid, currents, stats) {
+      const size = grid.nx * grid.ny;
+      const beta = new Float64Array(size);
+      const source = new Float64Array(size);
+      const denom = 2 / (grid.hx * grid.hx) + 2 / (grid.hy * grid.hy);
+      const omega = 1.55;
+      const maxIter = 320;
+      const tol = 7e-6;
+
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          let dJxdy = 0;
+          let dJydx = 0;
+          if (j > 0 && j < grid.ny - 1 && grid.active[grid.idx(i, j - 1)] && grid.active[grid.idx(i, j + 1)]) {
+            dJxdy = (currents.jx[grid.idx(i, j + 1)] - currents.jx[grid.idx(i, j - 1)]) / (2 * grid.hy);
+          } else if (j < grid.ny - 1 && grid.active[grid.idx(i, j + 1)]) {
+            dJxdy = (currents.jx[grid.idx(i, j + 1)] - currents.jx[k]) / grid.hy;
+          } else if (j > 0 && grid.active[grid.idx(i, j - 1)]) {
+            dJxdy = (currents.jx[k] - currents.jx[grid.idx(i, j - 1)]) / grid.hy;
+          }
+          if (i > 0 && i < grid.nx - 1 && grid.active[grid.idx(i - 1, j)] && grid.active[grid.idx(i + 1, j)]) {
+            dJydx = (currents.jy[grid.idx(i + 1, j)] - currents.jy[grid.idx(i - 1, j)]) / (2 * grid.hx);
+          } else if (i < grid.nx - 1 && grid.active[grid.idx(i + 1, j)]) {
+            dJydx = (currents.jy[grid.idx(i + 1, j)] - currents.jy[k]) / grid.hx;
+          } else if (i > 0 && grid.active[grid.idx(i - 1, j)]) {
+            dJydx = (currents.jy[k] - currents.jy[grid.idx(i - 1, j)]) / grid.hx;
+          }
+          source[k] = dJxdy - dJydx;
+        }
+      }
+
+      for (let iter = 0; iter < maxIter; iter += 1) {
+        let maxChange = 0;
+        applyMagneticBoundary(beta, grid, currents.jx, currents.jy);
+        for (const k of grid.interior) {
+          const i = k % grid.nx;
+          const j = (k - i) / grid.nx;
+          const kE = grid.idx(i + 1, j);
+          const kW = grid.idx(i - 1, j);
+          const kN = grid.idx(i, j + 1);
+          const kS = grid.idx(i, j - 1);
+          const candidate =
+            (((beta[kE] + beta[kW]) / (grid.hx * grid.hx)) + ((beta[kN] + beta[kS]) / (grid.hy * grid.hy)) - source[k]) / denom;
+          const updated = (1 - omega) * beta[k] + omega * candidate;
+          maxChange = Math.max(maxChange, Math.abs(updated - beta[k]));
+          beta[k] = updated;
+        }
+        applyMagneticBoundary(beta, grid, currents.jx, currents.jy);
+        if (maxChange < tol && iter > 35) break;
+      }
+
+      let betaMax = 0;
+      let bRatioMax = 0;
+      const bRatio = new Float64Array(size);
+      for (let k = 0; k < size; k += 1) {
+        if (!grid.active[k]) continue;
+        betaMax = Math.max(betaMax, Math.abs(beta[k]));
+        bRatio[k] = beta[k] * stats.rm;
+        bRatioMax = Math.max(bRatioMax, Math.abs(bRatio[k]));
+      }
+      return { beta, bRatio, betaMax, bRatioMax };
+    }
+
+    function bilinearSample(field, grid, xx, yy) {
+      if (xx < -grid.Lx || xx > grid.Lx || yy < -grid.Ly || yy > grid.Ly) return null;
+      if (grid.geometry === "circle" && xx * xx + yy * yy > 1 + 1e-9) return null;
+      const tx = (xx + grid.Lx) / grid.hx;
+      const ty = (yy + grid.Ly) / grid.hy;
+      const i0 = Math.max(0, Math.min(grid.nx - 2, Math.floor(tx)));
+      const j0 = Math.max(0, Math.min(grid.ny - 2, Math.floor(ty)));
+      const fx = tx - i0;
+      const fy = ty - j0;
+      const corners = [
+        grid.idx(i0, j0),
+        grid.idx(i0 + 1, j0),
+        grid.idx(i0, j0 + 1),
+        grid.idx(i0 + 1, j0 + 1)
+      ];
+      if (!corners.every((k) => grid.active[k])) {
+        return null;
+      }
+      const f00 = field[corners[0]];
+      const f10 = field[corners[1]];
+      const f01 = field[corners[2]];
+      const f11 = field[corners[3]];
+      return (
+        (1 - fx) * (1 - fy) * f00 +
+        fx * (1 - fy) * f10 +
+        (1 - fx) * fy * f01 +
+        fx * fy * f11
+      );
+    }
+
+    function vectorSample(fieldX, fieldY, grid, xx, yy) {
+      const vx = bilinearSample(fieldX, grid, xx, yy);
+      const vy = bilinearSample(fieldY, grid, xx, yy);
+      if (vx === null || vy === null) return null;
+      return [vx, vy];
+    }
+
+    function sampleChord(field, grid, p0, p1, samples = 240) {
+      const s = [];
+      const values = [];
+      for (let i = 0; i < samples; i += 1) {
+        const t = i / (samples - 1);
+        const x = p0[0] + t * (p1[0] - p0[0]);
+        const y = p0[1] + t * (p1[1] - p0[1]);
+        const value = bilinearSample(field, grid, x, y);
+        s.push(2 * t - 1);
+        values.push(value === null ? NaN : value);
+      }
+      return { s, values };
+    }
+
+    function measureLayerHalf(coords, values, wallCoord, coreFraction = 0.35) {
+      const finite = values.filter((v) => Number.isFinite(v));
+      if (!finite.length) return NaN;
+      const n = finite.length;
+      const i0 = Math.max(0, Math.floor((0.5 - 0.5 * coreFraction) * n));
+      const i1 = Math.min(n, Math.ceil((0.5 + 0.5 * coreFraction) * n));
+      const coreSlice = finite.slice(i0, i1);
+      const core = coreSlice.length
+        ? coreSlice.reduce((sum, v) => sum + v, 0) / coreSlice.length
+        : Math.max(...finite);
+      const target = 0.6321205588 * core;
+      for (let i = values.length - 1; i >= 1; i -= 1) {
+        if (!Number.isFinite(values[i]) || !Number.isFinite(values[i - 1])) continue;
+        if (values[i] <= target && values[i - 1] >= target) {
+          const t = (target - values[i]) / Math.max(values[i - 1] - values[i], 1e-12);
+          const coord = coords[i] + t * (coords[i - 1] - coords[i]);
+          return Math.abs(wallCoord - coord);
+        }
+      }
+      return NaN;
+    }
+
+    function measureShercliffLayer(coords, values, wallCoord) {
+      function smooth(data) {
+        return data.map((value, i) => {
+          const i0 = Math.max(0, i - 1);
+          const i1 = Math.min(data.length - 1, i + 1);
+          let sum = 0;
+          let count = 0;
+          for (let k = i0; k <= i1; k += 1) {
+            if (!Number.isFinite(data[k])) continue;
+            sum += data[k];
+            count += 1;
+          }
+          return count ? sum / count : value;
+        });
+      }
+
+      function plateauSide(distances, rawValues) {
+        const finitePairs = distances
+          .map((d, i) => [d, rawValues[i]])
+          .filter((pair) => Number.isFinite(pair[0]) && Number.isFinite(pair[1]));
+        if (finitePairs.length < 6) return NaN;
+        const d = finitePairs.map((pair) => pair[0]);
+        const v = smooth(finitePairs.map((pair) => pair[1]));
+        const startCore = Math.max(0, Math.floor(0.72 * v.length));
+        const coreSlice = v.slice(startCore);
+        const uCore = coreSlice.reduce((sum, value) => sum + value, 0) / Math.max(coreSlice.length, 1);
+        const maxAbs = Math.max(...v.map((value) => Math.abs(value)), Math.abs(uCore), 1e-12);
+        const tolValue = 0.05 * maxAbs;
+        const tolSlope = 0.06 * maxAbs / Math.max(d[d.length - 1], 1e-12);
+        const window = Math.min(6, Math.max(3, Math.floor(0.08 * v.length)));
+
+        const deriv = v.map((value, i) => {
+          if (i === 0) return (v[1] - v[0]) / Math.max(d[1] - d[0], 1e-12);
+          if (i === v.length - 1) return (v[i] - v[i - 1]) / Math.max(d[i] - d[i - 1], 1e-12);
+          return (v[i + 1] - v[i - 1]) / Math.max(d[i + 1] - d[i - 1], 1e-12);
+        });
+
+        for (let i = 1; i < v.length - window; i += 1) {
+          let plateau = true;
+          for (let j = 0; j < window; j += 1) {
+            const k = i + j;
+            if (Math.abs(v[k] - uCore) > tolValue || Math.abs(deriv[k]) > tolSlope) {
+              plateau = false;
+              break;
+            }
+          }
+          if (plateau) {
+            return d[i];
+          }
+        }
+
+        let bestIndex = Math.max(1, Math.floor(0.55 * v.length));
+        let bestScore = Infinity;
+        for (let i = 1; i < v.length; i += 1) {
+          const score = Math.abs(v[i] - uCore) + 0.4 * d[i] * Math.abs(deriv[i]);
+          if (score < bestScore) {
+            bestScore = score;
+            bestIndex = i;
+          }
+        }
+        return d[bestIndex];
+      }
+
+      const leftDistances = [];
+      const leftValues = [];
+      const rightDistances = [];
+      const rightValues = [];
+      for (let i = 0; i < coords.length; i += 1) {
+        const x = coords[i];
+        const value = values[i];
+        if (!Number.isFinite(value)) continue;
+        if (x <= 0) {
+          leftDistances.push(x + wallCoord);
+          leftValues.push(value);
+        }
+        if (x >= 0) {
+          rightDistances.push(wallCoord - x);
+          rightValues.push(value);
+        }
+      }
+      rightDistances.reverse();
+      rightValues.reverse();
+      const left = plateauSide(leftDistances, leftValues);
+      const right = plateauSide(rightDistances, rightValues);
+      if (Number.isFinite(left) && Number.isFinite(right)) return 0.5 * (left + right);
+      if (Number.isFinite(left)) return left;
+      if (Number.isFinite(right)) return right;
+      return NaN;
+    }
+
+    function traceStreamline(grid, fieldX, fieldY, seed, step, maxSteps, direction) {
+      const pts = [];
+      let x = seed[0];
+      let y = seed[1];
+      for (let iter = 0; iter < maxSteps; iter += 1) {
+        const v1 = vectorSample(fieldX, fieldY, grid, x, y);
+        if (!v1) break;
+        const mag1 = Math.hypot(v1[0], v1[1]);
+        if (!(mag1 > 1e-4)) break;
+        pts.push([x, y]);
+        const ds = direction * step / mag1;
+        const xm = x + 0.5 * ds * v1[0];
+        const ym = y + 0.5 * ds * v1[1];
+        const v2 = vectorSample(fieldX, fieldY, grid, xm, ym);
+        if (!v2) break;
+        const mag2 = Math.hypot(v2[0], v2[1]);
+        if (!(mag2 > 1e-4)) break;
+        x += direction * step * v2[0] / mag2;
+        y += direction * step * v2[1] / mag2;
+        if (x < -grid.Lx || x > grid.Lx || y < -grid.Ly || y > grid.Ly) break;
+        if (grid.geometry === "circle" && x * x + y * y > 1.0005) break;
+      }
+      return pts;
+    }
+
+    function currentColorValue(fieldX, fieldY, grid, i, j) {
+      const k = grid.idx(i, j);
+      return Math.hypot(fieldX[k], fieldY[k]);
+    }
+
+    function profileForScaling(result) {
+      const { grid, w } = result;
+      const hartmannChord = sampleChord(w, grid, [0, -grid.Ly], [0, grid.Ly], 280);
+      const shercliffChord = sampleChord(w, grid, [-grid.Lx, 0], [grid.Lx, 0], 280);
+      const diagEnd = grid.geometry === "rectangle" ? [grid.Lx, grid.Ly] : [Math.SQRT1_2, Math.SQRT1_2];
+      const diagChord = sampleChord(w, grid, [-diagEnd[0], -diagEnd[1]], [diagEnd[0], diagEnd[1]], 280);
+
+      const yCoords = hartmannChord.s.map((s) => s * grid.Ly);
+      const xCoords = shercliffChord.s.map((s) => s * grid.Lx);
+      const deltaH = 0.5 * (
+        measureLayerHalf(yCoords.map((v) => v), hartmannChord.values, grid.Ly) +
+        measureLayerHalf(yCoords.map((v) => -v).reverse(), [...hartmannChord.values].reverse(), grid.Ly)
+      );
+      const deltaS = measureShercliffLayer(xCoords, shercliffChord.values, grid.Lx);
+      return { hartmannChord, shercliffChord, diagChord, deltaH, deltaS, shercliffHalfSpan: grid.Lx };
+    }
+
+    function colorVelocity(value, maxVal) {
+      const t = Math.max(0, Math.min(1, value / Math.max(maxVal, 1e-12)));
+      const r = Math.round(241 * t + 22 * (1 - t));
+      const g = Math.round(199 * t + 52 * (1 - t));
+      const b = Math.round(109 * t + 113 * (1 - t));
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function colorCurrent(value, maxVal) {
+      const t = Math.max(0, Math.min(1, value / Math.max(maxVal, 1e-12)));
+      const r = Math.round(33 + 205 * t);
+      const g = Math.round(76 + 130 * (1 - Math.abs(2 * t - 1)));
+      const b = Math.round(160 + 70 * (1 - t));
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function colorPotential(value, minVal, maxVal) {
+      const maxAbs = Math.max(Math.abs(minVal), Math.abs(maxVal), 1e-12);
+      const t = Math.max(-1, Math.min(1, value / maxAbs));
+      if (t >= 0) {
+        const s = t;
+        const r = Math.round(246 - 18 * s);
+        const g = Math.round(244 - 122 * s);
+        const b = Math.round(251 - 188 * s);
+        return `rgb(${r},${g},${b})`;
+      }
+      const s = -t;
+      const r = Math.round(246 - 128 * s);
+      const g = Math.round(244 - 84 * s);
+      const b = Math.round(251 - 20 * s);
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function colorMagnetic(value, maxAbs) {
+      const t = Math.max(-1, Math.min(1, value / Math.max(maxAbs, 1e-12)));
+      if (t >= 0) {
+        const s = t;
+        const r = Math.round(245 - 28 * s);
+        const g = Math.round(247 - 118 * s);
+        const b = Math.round(250 - 170 * s);
+        return `rgb(${r},${g},${b})`;
+      }
+      const s = -t;
+      const r = Math.round(245 - 150 * s);
+      const g = Math.round(247 - 105 * s);
+      const b = Math.round(250 - 20 * s);
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function drawContours(ctx, grid, field, levels, width, height, pad, plotW, plotH) {
+      const sx = plotW / (2 * grid.Lx);
+      const sy = plotH / (2 * grid.Ly);
+      const toPx = (xx) => pad + (xx + grid.Lx) * sx;
+      const toPy = (yy) => height - pad - (yy + grid.Ly) * sy;
+      const edgePoint = (v1, v2, p1, p2, level) => {
+        const dv = v2 - v1;
+        const t = Math.abs(dv) < 1e-12 ? 0.5 : (level - v1) / dv;
+        return [p1[0] + t * (p2[0] - p1[0]), p1[1] + t * (p2[1] - p1[1])];
+      };
+      ctx.save();
+      ctx.strokeStyle = "rgba(24, 44, 62, 0.55)";
+      ctx.lineWidth = 1.1;
+      for (const level of levels) {
+        for (let j = 0; j < grid.ny - 1; j += 1) {
+          for (let i = 0; i < grid.nx - 1; i += 1) {
+            const ids = [
+              grid.idx(i, j),
+              grid.idx(i + 1, j),
+              grid.idx(i + 1, j + 1),
+              grid.idx(i, j + 1)
+            ];
+            if (!ids.every((k) => grid.active[k])) continue;
+            const vals = ids.map((k) => field[k] - level);
+            const pts = [
+              [grid.x[i], grid.y[j]],
+              [grid.x[i + 1], grid.y[j]],
+              [grid.x[i + 1], grid.y[j + 1]],
+              [grid.x[i], grid.y[j + 1]]
+            ];
+            const crossings = [];
+            const edges = [[0, 1], [1, 2], [2, 3], [3, 0]];
+            edges.forEach(([a, b]) => {
+              if ((vals[a] <= 0 && vals[b] >= 0) || (vals[a] >= 0 && vals[b] <= 0)) {
+                if (vals[a] === vals[b]) return;
+                crossings.push(edgePoint(field[ids[a]], field[ids[b]], pts[a], pts[b], level));
+              }
+            });
+            if (crossings.length === 2) {
+              ctx.beginPath();
+              ctx.moveTo(toPx(crossings[0][0]), toPy(crossings[0][1]));
+              ctx.lineTo(toPx(crossings[1][0]), toPy(crossings[1][1]));
+              ctx.stroke();
+            } else if (crossings.length === 4) {
+              ctx.beginPath();
+              ctx.moveTo(toPx(crossings[0][0]), toPy(crossings[0][1]));
+              ctx.lineTo(toPx(crossings[1][0]), toPy(crossings[1][1]));
+              ctx.moveTo(toPx(crossings[2][0]), toPy(crossings[2][1]));
+              ctx.lineTo(toPx(crossings[3][0]), toPy(crossings[3][1]));
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      ctx.restore();
+    }
+
+    function drawCurrentMap(canvas, grid, currents, stats, magnetic) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#f7fbfd";
+      ctx.fillRect(0, 0, width, height);
+      const pad = 28;
+      const plotW = width - 2 * pad;
+      const plotH = height - 2 * pad;
+      const sx = plotW / (2 * grid.Lx);
+      const sy = plotH / (2 * grid.Ly);
+      const dx = Math.max(1, sx * grid.hx + 0.6);
+      const dy = Math.max(1, sy * grid.hy + 0.6);
+
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          const px = pad + (grid.x[i] + grid.Lx) * sx - 0.5 * dx;
+          const py = height - pad - (grid.y[j] + grid.Ly) * sy - 0.5 * dy;
+          const jmag = currentColorValue(currents.jx, currents.jy, grid, i, j);
+          ctx.fillStyle = colorCurrent(jmag, stats.jmax);
+          ctx.fillRect(px, py, dx, dy);
+        }
+      }
+
+      drawBaseGuides(ctx, grid, width, height, pad, plotW, plotH);
+      const levels = [];
+      for (let m = -5; m <= 5; m += 1) {
+        if (m === 0) continue;
+        levels.push((m / 6) * Math.max(magnetic.betaMax, 1e-12));
+      }
+      drawContours(ctx, grid, magnetic.beta, levels, width, height, pad, plotW, plotH);
+
+      ctx.fillStyle = "#365466";
+      ctx.font = '13px "Avenir Next", "Gill Sans", sans-serif';
+      ctx.fillText("|J⊥| with current-stream contours", pad + 6, 18);
+    }
+
+    function drawPotentialMap(canvas, grid, phi, stats) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#f7fbfd";
+      ctx.fillRect(0, 0, width, height);
+      const pad = 28;
+      const plotW = width - 2 * pad;
+      const plotH = height - 2 * pad;
+      const sx = plotW / (2 * grid.Lx);
+      const sy = plotH / (2 * grid.Ly);
+      const dx = Math.max(1, sx * grid.hx + 0.6);
+      const dy = Math.max(1, sy * grid.hy + 0.6);
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          const px = pad + (grid.x[i] + grid.Lx) * sx - 0.5 * dx;
+          const py = height - pad - (grid.y[j] + grid.Ly) * sy - 0.5 * dy;
+          ctx.fillStyle = colorPotential(phi[k], stats.phiMin, stats.phiMax);
+          ctx.fillRect(px, py, dx, dy);
+        }
+      }
+      drawBaseGuides(ctx, grid, width, height, pad, plotW, plotH);
+      const maxAbs = Math.max(Math.abs(stats.phiMin), Math.abs(stats.phiMax), 1e-12);
+      const levels = [];
+      for (let m = -4; m <= 4; m += 1) {
+        if (m === 0) continue;
+        levels.push((m / 5) * maxAbs);
+      }
+      drawContours(ctx, grid, phi, levels, width, height, pad, plotW, plotH);
+      ctx.fillStyle = "#365466";
+      ctx.font = '13px "Avenir Next", "Gill Sans", sans-serif';
+      ctx.fillText("electrostatic φ", pad + 6, 18);
+    }
+
+    function drawMagneticMap(canvas, grid, magnetic) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#f7fbfd";
+      ctx.fillRect(0, 0, width, height);
+      const pad = 28;
+      const plotW = width - 2 * pad;
+      const plotH = height - 2 * pad;
+      const sx = plotW / (2 * grid.Lx);
+      const sy = plotH / (2 * grid.Ly);
+      const dx = Math.max(1, sx * grid.hx + 0.6);
+      const dy = Math.max(1, sy * grid.hy + 0.6);
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          const px = pad + (grid.x[i] + grid.Lx) * sx - 0.5 * dx;
+          const py = height - pad - (grid.y[j] + grid.Ly) * sy - 0.5 * dy;
+          ctx.fillStyle = colorMagnetic(magnetic.bRatio[k], magnetic.bRatioMax);
+          ctx.fillRect(px, py, dx, dy);
+        }
+      }
+      drawBaseGuides(ctx, grid, width, height, pad, plotW, plotH);
+      const levels = [];
+      for (let m = -4; m <= 4; m += 1) {
+        if (m === 0) continue;
+        levels.push((m / 5) * Math.max(magnetic.bRatioMax, 1e-12));
+      }
+      drawContours(ctx, grid, magnetic.bRatio, levels, width, height, pad, plotW, plotH);
+      ctx.fillStyle = "#365466";
+      ctx.font = '13px "Avenir Next", "Gill Sans", sans-serif';
+      ctx.fillText("induced b_z / B₀", pad + 6, 18);
+    }
+
+    function drawBaseGuides(ctx, grid, width, height, pad, plotW, plotH) {
+      ctx.save();
+      ctx.strokeStyle = "#1f4e79";
+      ctx.lineWidth = 2.2;
+      if (grid.geometry === "rectangle") {
+        ctx.strokeRect(pad, pad, plotW, plotH);
+      } else {
+        ctx.beginPath();
+        ctx.ellipse(width / 2, height / 2, plotW / 2, plotH / 2, 0, 0, 2 * Math.PI);
+        ctx.stroke();
+      }
+
+      ctx.setLineDash([]);
+      ctx.strokeStyle = "#1f4e79";
+      ctx.beginPath();
+      ctx.moveTo(width / 2, pad);
+      ctx.lineTo(width / 2, height - pad);
+      ctx.stroke();
+      ctx.strokeStyle = "#b64646";
+      ctx.beginPath();
+      ctx.moveTo(pad, height / 2);
+      ctx.lineTo(width - pad, height / 2);
+      ctx.stroke();
+      ctx.setLineDash([7, 6]);
+      ctx.strokeStyle = "#7059b8";
+      ctx.beginPath();
+      const diagStart = grid.geometry === "rectangle" ? [pad, height - pad] : [width / 2 - (plotW / 2) * Math.SQRT1_2, height / 2 + (plotH / 2) * Math.SQRT1_2];
+      const diagEnd = grid.geometry === "rectangle" ? [width - pad, pad] : [width / 2 + (plotW / 2) * Math.SQRT1_2, height / 2 - (plotH / 2) * Math.SQRT1_2];
+      ctx.moveTo(diagStart[0], diagStart[1]);
+      ctx.lineTo(diagEnd[0], diagEnd[1]);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawAppliedFieldGuides(ctx, width, height, pad, plotW, plotH) {
+      ctx.save();
+      ctx.strokeStyle = "rgba(30, 79, 121, 0.55)";
+      ctx.fillStyle = "rgba(30, 79, 121, 0.75)";
+      ctx.lineWidth = 1.4;
+      const xPositions = [0.2, 0.5, 0.8].map((f) => pad + f * plotW);
+      for (const x of xPositions) {
+        const y0 = height - pad - 0.12 * plotH;
+        const y1 = pad + 0.12 * plotH;
+        ctx.beginPath();
+        ctx.moveTo(x, y0);
+        ctx.lineTo(x, y1);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x - 5, y1 + 9);
+        ctx.lineTo(x + 5, y1 + 9);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.font = '13px "Avenir Next", "Gill Sans", sans-serif';
+      ctx.fillText("applied B₀", pad + 8, pad + 16);
+      ctx.restore();
+    }
+
+    function drawVelocityMap(canvas, grid, field, stats) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#f7fbfd";
+      ctx.fillRect(0, 0, width, height);
+      const pad = 28;
+      const plotW = width - 2 * pad;
+      const plotH = height - 2 * pad;
+      const sx = plotW / (2 * grid.Lx);
+      const sy = plotH / (2 * grid.Ly);
+      const dx = Math.max(1, sx * grid.hx + 0.6);
+      const dy = Math.max(1, sy * grid.hy + 0.6);
+
+      let maxU = 0;
+      for (let k = 0; k < field.length; k += 1) {
+        if (!grid.active[k]) continue;
+        maxU = Math.max(maxU, field[k]);
+      }
+
+      for (let j = 0; j < grid.ny; j += 1) {
+        for (let i = 0; i < grid.nx; i += 1) {
+          const k = grid.idx(i, j);
+          if (!grid.active[k]) continue;
+          const px = pad + (grid.x[i] + grid.Lx) * sx - 0.5 * dx;
+          const py = height - pad - (grid.y[j] + grid.Ly) * sy - 0.5 * dy;
+          ctx.fillStyle = colorVelocity(field[k], maxU);
+          ctx.fillRect(px, py, dx, dy);
+        }
+      }
+
+      drawBaseGuides(ctx, grid, width, height, pad, plotW, plotH);
+      drawAppliedFieldGuides(ctx, width, height, pad, plotW, plotH);
+
+      ctx.fillStyle = "#365466";
+      ctx.font = '13px "Avenir Next", "Gill Sans", sans-serif';
+      ctx.fillText("u / Ū", pad + 6, 18);
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + ((x + 1) / 2) * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / Math.max(ymax - ymin, 1e-12);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function drawChordPlot(chords) {
+      const frame = svgFrame(760, 280, { left: 62, right: 24, top: 22, bottom: 42 });
+      const all = chords.hartmannChord.values
+        .concat(chords.shercliffChord.values)
+        .concat(chords.diagChord.values)
+        .filter((v) => Number.isFinite(v));
+      const ymax = Math.max(...all, 1.05);
+      const ymin = Math.min(...all, -0.02);
+      let markup = "";
+      markup += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      markup += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      for (let i = 0; i <= 4; i += 1) {
+        const x = -1 + 0.5 * i;
+        const px = xScale(frame, x);
+        markup += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        markup += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+      for (let i = 0; i <= 4; i += 1) {
+        const y = ymin + (i / 4) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        markup += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        markup += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        markup += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+      markup += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 4}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">Normalized chord coordinate</text>`;
+      markup += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">u / Ū</text>`;
+
+      if (Number.isFinite(chords.deltaH)) {
+        const sH = 1 - chords.deltaH;
+        const yTop = frame.margins.top + 10;
+        const yBot = frame.height - frame.margins.bottom - 10;
+        for (const side of [-1, 1]) {
+          const px = xScale(frame, side * sH);
+          markup += `<line x1="${px}" y1="${yTop}" x2="${px}" y2="${yBot}" stroke="#1f4e79" stroke-width="1.35" stroke-dasharray="5 4" opacity="0.72" />`;
+        }
+        markup += `<text x="${xScale(frame, -sH)}" y="${frame.margins.top + 4}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="12" fill="#1f4e79">δ_H</text>`;
+        markup += `<text x="${xScale(frame, sH)}" y="${frame.margins.top + 4}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="12" fill="#1f4e79">δ_H</text>`;
+      }
+      if (Number.isFinite(chords.deltaS)) {
+        const sS = 1 - chords.deltaS / Math.max(chords.shercliffHalfSpan || 1, 1e-12);
+        const yTop = frame.margins.top + 26;
+        const yBot = frame.height - frame.margins.bottom - 10;
+        for (const side of [-1, 1]) {
+          const px = xScale(frame, side * sS);
+          markup += `<line x1="${px}" y1="${yTop}" x2="${px}" y2="${yBot}" stroke="#b64646" stroke-width="1.35" stroke-dasharray="7 4" opacity="0.76" />`;
+        }
+        markup += `<text x="${xScale(frame, -sS)}" y="${frame.margins.top + 20}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="12" fill="#b64646">δ_S</text>`;
+        markup += `<text x="${xScale(frame, sS)}" y="${frame.margins.top + 20}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="12" fill="#b64646">δ_S</text>`;
+      }
+
+      const lines = [
+        { chord: chords.hartmannChord, color: "#1f4e79", dash: "" },
+        { chord: chords.shercliffChord, color: "#b64646", dash: "" },
+        { chord: chords.diagChord, color: "#7059b8", dash: 'stroke-dasharray="7 5"' }
+      ];
+      lines.forEach(({ chord, color, dash }) => {
+        const points = [];
+        for (let i = 0; i < chord.s.length; i += 1) {
+          const v = chord.values[i];
+          if (!Number.isFinite(v)) continue;
+          points.push([xScale(frame, chord.s[i]), yScale(frame, v, ymin, ymax)]);
+        }
+        if (points.length > 1) {
+          markup += `<path d="${makePath(points)}" fill="none" stroke="${color}" stroke-width="3" ${dash} stroke-linecap="round" stroke-linejoin="round" />`;
+        }
+      });
+      chordPlot.innerHTML = markup;
+    }
+
+    function renderStats(options, result, chords) {
+      const theoryH = options.a / Math.max(options.ha, 1e-12);
+      const theoryS = options.a / Math.sqrt(Math.max(options.ha, 1e-12));
+      const exactHighHa = result.stats.mu * options.ubulk * options.ha * options.ha / (options.a * options.a);
+      const materialLine = currentMaterialMeta.meltingC === null
+        ? currentMaterialMeta.label
+        : `${currentMaterialMeta.label}; T<sub>m</sub> = ${fmt(currentMaterialMeta.meltingC, 1)} °C`;
+      statusGrid.innerHTML = [
+        card("Applied magnetic field", `B<sub>0</sub> = ${fmt(result.stats.b0, 3)} T`),
+        card("Pressure gradient", `|dp/dz| = ${fmtPressure(result.stats.dpdz)}`),
+        card("High-Ha estimate", `μ Ha² Ū / a² = ${fmtPressure(exactHighHa)}`),
+        card("Bulk-to-peak flattening", `u<sub>max</sub> / Ū = ${fmt(Math.max(...chords.hartmannChord.values.filter((v) => Number.isFinite(v))), 3)}`),
+        card("Hartmann layer", Number.isFinite(chords.deltaH)
+          ? `Measured edge width ${fmtLength(chords.deltaH * options.a)}; asymptotic ${fmtLength(theoryH)}`
+          : `Asymptotic ${fmtLength(theoryH)}`),
+        card("Shercliff layer", Number.isFinite(chords.deltaS)
+          ? `Measured plateau width ${fmtLength(chords.deltaS * options.a)}; asymptotic ${fmtLength(theoryS)}`
+          : `Asymptotic ${fmtLength(theoryS)}`),
+        card("Current-closure regime", `${options.bcHartmann} Hartmann walls, ${options.bcShercliff} Shercliff walls`),
+        card("Peak cross-section current", `max |J<sub>⊥</sub>| = ${fmt(result.stats.jmax, 3)} (normalized)`),
+        card("Mean current magnitude", `⟨|J<sub>⊥</sub>|⟩ = ${fmt(result.stats.jmean, 3)} (normalized)`),
+        card("Material state", materialLine)
+      ].join("");
+
+      coeffGrid.innerHTML = [
+        coeff("Grid", `${result.grid.nx} × ${result.grid.ny}`),
+        coeff("Mean unit response", fmt(result.stats.meanUnit, 5)),
+        coeff("Re", fmtSci(result.stats.re)),
+        coeff("N = Ha² / Re", fmt(result.stats.interaction, 3)),
+        coeff("μ", `${fmtSci(result.stats.mu)} Pa·s`),
+        coeff("σ", `${fmtSci(options.sigma)} S m<sup>-1</sup>`),
+        coeff("Potential span", `${fmt(result.stats.phiMin, 3)} to ${fmt(result.stats.phiMax, 3)}`)
+      ].join("");
+
+      if (options.geometry === "circle") {
+        warningBox.innerHTML = "For the circular pipe, the Hartmann sectors are the top and bottom arcs while the Shercliff sectors are the left and right arcs. The finite-difference boundary is stair-stepped, so the tool is best read as a clean qualitative guide rather than a benchmark code.";
+      } else if (options.bcHartmann === "conducting" && options.bcShercliff === "insulating") {
+        warningBox.innerHTML = "This is the classic Hunt-I flavor: the Hartmann walls pin the potential and intensify the magnetic braking, while the sidewalls interrupt current closure and leave thicker Shercliff layers.";
+      } else if (options.bcHartmann === "insulating" && options.bcShercliff === "conducting") {
+        warningBox.innerHTML = "This reversal of the wall roles is a good way to see how differently the Hartmann and Shercliff boundaries control current closure, even at the same Hartmann number.";
+      } else {
+        warningBox.innerHTML = "The low-Rm solver keeps the cross-section potential explicitly, so changing the wall conductivity does more than move a coefficient: it changes how the current loops can close through the section.";
+      }
+    }
+
+    function currentOptions() {
+      return {
+        geometry: controls.geometry.value,
+        aspect: parseFloat(controls.aspect.value),
+        bcHartmann: controls.bcHartmann.value,
+        bcShercliff: controls.bcShercliff.value,
+        ha: parseFloat(controls.ha.value),
+        a: parseFloat(controls.a.value),
+        ubulk: parseFloat(controls.ubulk.value),
+        rho: parseFloat(controls.rho.value),
+        sigma: parseFloat(controls.sigma.value),
+        nu: parseFloat(controls.nu.value)
+      };
+    }
+
+    function render() {
+      updateLabels();
+      const options = currentOptions();
+      const result = solveCase(options);
+      const magnetic = solveInducedField(result.grid, { jx: result.jx, jy: result.jy }, result.stats);
+      const chords = profileForScaling(result);
+      drawVelocityMap(velocityCanvas, result.grid, result.w, result.stats);
+      drawPotentialMap(potentialCanvas, result.grid, result.phi, result.stats);
+      drawCurrentMap(currentCanvas, result.grid, { jx: result.jx, jy: result.jy }, result.stats, magnetic);
+      drawMagneticMap(magneticCanvas, result.grid, magnetic);
+      drawChordPlot(chords);
+      renderStats(options, result, chords);
+    }
+
+    function scheduleRender() {
+      updateLabels();
+      if (solveTimer) {
+        clearTimeout(solveTimer);
+      }
+      solveTimer = setTimeout(render, 35);
+    }
+
+    controls.preset.addEventListener("change", () => {
+      applyPreset(controls.preset.value);
+      scheduleRender();
+    });
+
+    controls.material.addEventListener("change", () => {
+      applyMaterialPreset(controls.material.value);
+      scheduleRender();
+    });
+
+    Object.values(controls).forEach((control) => {
+      if (control === controls.preset || control === controls.material) return;
+      control.addEventListener("input", scheduleRender);
+      control.addEventListener("change", scheduleRender);
+    });
+
+    controls.material.value = "pbli";
+    applyMaterialPreset(controls.material.value);
+    updateLabels();
+    render();
+  </script>
+</body>
+</html>

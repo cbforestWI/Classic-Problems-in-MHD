@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 30 Furth, Killeen and Rosenbluth: Tearing Modes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_resistive.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture29.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture31.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;30</span><br /><a 
+ id="x1-200030"></a>Furth, Killeen and Rosenbluth: Tearing Modes</h2>
+<!--l. 7--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 7--><p class="noindent" >Tearing  modes  are  the  first  place  in  these  notes  where  the  ideal-MHD  stability
+     machinery  must  be  used  with  a  small  but  essential  non-ideal  correction.  Outside  a
+     very narrow resistive layer, the plasma is still described by the ideal equations and by
+     the same Newcomb-style outer matching used in the pinch lectures. At the rational
+     surface, however, the ideal solution becomes singular. Finite resistivity regularizes that
+     singularity, allows magnetic reconnection, and introduces the outer matching parameter
+     \( \Delta ' = \bigl [\psi '/\psi \bigr ]_{r_s^-}^{r_s^+}. \) In the classical constant-\(\psi \) regime the mode is unstable when \(\Delta '&gt;0\), and the growth rate scales
+     like \(\gamma \propto \eta ^{3/5}(\Delta ')^{4/5}\).
+     </p><!--l. 19--><p class="noindent" >What makes tearing so important is not merely that it is unstable, but that it changes
+     magnetic topology. In toroidal confinement the same basic mechanism underlies sawtooth
+     reconnection, low-order \(3/2\) and \(2/1\) islands, neoclassical tearing modes, locked modes, and
+     ultimately the stochastic transport produced by island overlap. Tearing is therefore
+     one of the main bridges between linear stability theory, nonlinear self-organization, and
+     disruption physics.</p></blockquote></div></div>
+<!--l. 28--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 28--><p class="noindent" >The modern tearing-mode story begins with the paper of Furth, Killeen, and Rosenbluth,
+     who showed that a plasma that is almost ideal everywhere can still reconnect if a thin
+     resistive boundary layer forms at a resonant surface <a 
+href="#XFurth1963FiniteResistivity">Furth et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>]. That was the
+     real conceptual step: the instability is not an ordinary ideal-MHD mode, but neither is
+     it a uniformly resistive diffusion problem. It is a matched asymptotic problem, with an
+     ideal outer region and a non-ideal inner layer.
+     </p><!--l. 35--><p class="noindent" >Coppi, Greene, and Johnson soon carried this logic into cylindrical pinch geometry,
+     showing how the same layer-matching procedure works for screw-pinch equilibria <a 
+href="#XCoppi1966ResistiveInstabilities">Coppi
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCoppi1966ResistiveInstabilities">1966</a>].  Rutherford  then  showed  that  once  an  island  is  larger  than  the  linear
+     resistive layer, the growth becomes algebraic rather than exponential, giving the weakly
+     nonlinear evolution law now called the Rutherford equation <span 
+class="ecbx-1095">?</span>. In toroidal confinement
+     this physics entered the mainstream through the interpretation of the tokamak sawtooth
+     as a current-profile relaxation driven by the \(m=n=1\) internal tearing mode <span 
+class="ecbx-1095">?</span>. By the 1990s and
+     2000s the same island physics had reappeared in a new form: low-order \(3/2\) and \(2/1\) islands
+     driven nonlinearly by the bootstrap current, and wall-locked modes that often mark the
+     last stage before disruption <span 
+class="ecbx-1095">???</span>.</p></blockquote></div></div>
+<!--l. 50--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 50--><p class="noindent" ><span 
+class="ecbx-1095">Two cautions are worth stating at the start.</span>
+                                                                                         
+                                                                                         
+     </p><!--l. 52--><p class="noindent" >First, \(\Delta '\) is an <span 
+class="ecti-1095">outer-region </span>quantity. It tells us how the ideal solution leans into the resonant
+     layer, not the growth rate by itself. The inner-layer physics is still needed to convert \(\Delta '\)
+     into a dispersion relation.
+     </p><!--l. 56--><p class="noindent" >Second,  the  classical  FKR  result  assumes  the  constant-\(\psi \)  ordering.  Large-\(\Delta '\),  viscous,
+     two-fluid, or collisionless layers modify both the layer width and the dispersion relation.
+     The virtue of the classical problem is not that it contains everything, but that it teaches
+     the matching idea once and for all.</p></blockquote></div></div>
+<a 
+ id="x1-2001r1"></a>
+<h3 class="sectionHead"><span class="titlemark">30.1   </span> <a 
+ id="x1-30001"></a>Why tearing is different from ideal MHD</h3>
+<!--l. 64--><p class="noindent" >The starting point is the induction equation introduced in the opening lecture, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>). In ideal MHD
+the resistive term vanishes and magnetic flux is frozen into the fluid. The ideal perturbation theory
+developed in the diffuse-pinch lecture then leads to the Newcomb equation, and its singular points occur
+where the helical field-line bending term vanishes. In cylindrical language that singularity sits at the
+rational surface <a id="eq-eq-tear_F_def"></a><div class="math-display">\[F(r) \equiv \frac {m B_\theta (r)}{r} + k B_z(r) = \frac {m B_\theta (r)}{r}\left (1-\frac {n q(r)}{m}\right )=0, \tag{30.1}\]</div>
+with \(k=-n/R\) and \(q=r B_z/(R B_\theta )\). This is the same resonant surface that appeared in the ideal calculation, compare Eq.&#x00A0;(<a href="lecture25.html#eq-eq-resonant_surface">25.5</a>).
+In ideal MHD one must demand a regular solution through that surface. In tearing theory we do
+something more subtle: we keep the ideal solution everywhere <span 
+class="ecti-1095">except </span>in a thin neighborhood of \(r=r_s\), and we let
+resistivity regularize the singularity there.
+</p><!--l. 81--><p class="noindent" >The physical picture is simple. If the outer ideal solution arrives at the resonant surface with a positive
+logarithmic derivative jump, <a id="eq-eq-tearing_delta_def"></a><div class="math-display">\[\Delta ' \equiv \left .\frac {\psi '}{\psi }\right |_{r=r_s^-}^{r=r_s^+}, \tag{30.2}\]</div>
+then the field lines on the two sides of the resonant surface are trying to reconnect in a way that lowers the
+magnetic energy. The inner resistive layer provides the actual reconnection, while the outer region supplies
+the free-energy bookkeeping.
+<a 
+ id="x1-3001r3"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">30.2   </span> <a 
+ id="x1-40002"></a>Linear cylindrical equations</h3>
+<!--l. 94--><p class="noindent" >Take a screw-pinch equilibrium <div class="math-display">\[\B _0(r)=B_\theta (r)\,\etheta + B_z(r)\,\ez , \qquad \J _0(r)=J_z(r)\,\ez ,\]</div>
+and perturb it by a single helical harmonic <div class="math-display">\[\sim e^{\gamma t + i m \theta + i k z}, \qquad k=-\frac {n}{R}.\]</div>
+For the magnetic perturbation it is convenient to introduce the flux function \(\psi (r)\) by <a id="eq-eq-tear_b1_def"></a><div class="math-display">\[\B _1 = -\curl \bigl (\psi \,\ez \bigr ) = -\frac {i m}{r}\psi \,\er + \psi '\,\etheta , \qquad \psi = -i\frac {r}{m} b_r. \tag{30.5}\]</div>
+The dominant perturbed current is then the axial component <a id="eq-eq-tear_j1z"></a><div class="math-display">\[\muo j_{1z} = \frac {1}{r}(r\psi ')' - \frac {m^2}{r^2}\psi \equiv \nabla _\perp ^2 \psi . \tag{30.6}\]</div>
+</p><!--l. 120--><p class="noindent" >For incompressible motion we may similarly introduce a streamfunction \(\phi \): <a id="eq-eq-tear_phi_def"></a><div class="math-display">\[\uvec _1 = \curl (\phi \,\ez ), \qquad v_r = -\frac {i m}{r}\phi , \qquad v_\theta = \phi '. \tag{30.7}\]</div>
+</p><!--l. 131--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 131--><p class="noindent" ><span 
+class="ecbx-1095">From the full linearized equations to the reduced tearing pair. </span>The cleanest way to see
+     what is being kept and what is being discarded is to start from the full linearized
+     resistive-MHD system for a single helical harmonic. Write <a id="eq-eq-tear_tutorial_momentum"></a><div class="math-display">\[\rho _0\gamma \,\uvec _1 = \J _1\times \B _0 + \J _0\times \B _1 - \nabla p_1, \tag{30.8}\]</div>
+     <div class="math-display">\[\gamma \B _1 = \nabla \times (\uvec _1\times \B _0) + \frac {\eta }{\muo }\nabla ^2\B _1,\]</div>
+     <div class="math-display">\[\gamma p_1 + v_r p_0' + \Gamma p_0\nabla \cdot \uvec _1 = 0, \qquad \nabla \cdot \B _1 = 0.\]</div>
+     We keep \(p_0(r)\) for the moment because this is exactly the same starting point that will be needed
+                                                                                         
+                                                                                         
+     again in the resistive-interchange lecture.
+     </p><!--l. 151--><p class="noindent" >Now take the \(\hat z\) component of the curl of (<a href="lecture30.html#eq-eq-tear_tutorial_momentum">30.8</a>). Since \(\nabla \times \nabla p_1=0\), the pressure term is annihilated by this
+     step: <div class="math-display">\[\bigl (\nabla \times \rho _0\gamma \uvec _1\bigr )_z = \rho _0\gamma \,\nabla _\perp ^2\phi .\]</div>
+     On a single helical harmonic, \(\B _0\cdot \nabla \to iF(r)\), while \(b_r=-im\psi /r\) and \(\muo j_{1z}=\nabla _\perp ^2\psi \). Therefore <div class="math-display">\[\begin{aligned}\bigl (\nabla \times (\J _1\times \B _0 + \J _0\times \B _1)\bigr )_z &amp;= \bigl (\B _0\cdot \nabla \,j_{1z}\bigr ) + \bigl (\B _1\cdot \nabla \,J_{0z}\bigr ) \\ &amp;= \frac {iF(r)}{\muo }\,\nabla _\perp ^2\psi - \frac {i m}{r}J_z'(r)\,\psi .\end{aligned}\]</div>
+     </p><!--l. 166--><p class="noindent" >This gives the reduced vorticity equation <a id="eq-eq-tear_vorticity"></a><div class="math-display">\[\boxed { \rho \gamma \,\nabla _\perp ^2\phi = \frac {iF(r)}{\muo }\,\nabla _\perp ^2\psi - \frac {i m}{r}J_z'(r)\,\psi . } \tag{30.14}\]</div>
+     </p><!--l. 175--><p class="noindent" >The induction equation is just as direct. Its radial component is <div class="math-display">\[\gamma b_r = iF(r) v_r + \frac {\eta }{\muo }\nabla _\perp ^2 b_r.\]</div>
+     Using \(b_r=-im\psi /r\) and \(v_r=-im\phi /r\) then yields <a id="eq-eq-tear_ohm"></a><div class="math-display">\[\boxed { \gamma \psi + iF(r)\phi = \frac {\eta }{\muo }\,\nabla _\perp ^2\psi . } \tag{30.16}\]</div>
+     </p><!--l. 187--><p class="noindent" >So pressure has not been &#8220;forgotten&#8221;; it disappears from the leading tearing equations
+     because we projected the dynamics onto the \(z\)-vorticity and induction sectors. The
+     resistive- interchange lecture will return to the same linearized starting point but will
+     keep the perpendicular force-balance / total-pressure sector instead of annihilating
+     it.</p></blockquote></div></div>
+<!--l. 193--><p class="noindent" >Equations (<a href="lecture30.html#eq-eq-tear_vorticity">30.14</a>) and (<a href="lecture30.html#eq-eq-tear_ohm">30.16</a>) already display the layered structure of the problem. The factor \(F(r)\) vanishes at
+the resonant surface, so the ideal relation between \(\phi \) and \(\psi \) breaks down there. Away from \(r_s\), however, both
+resistivity and inertia are small, so the outer problem is nearly ideal.
+</p>
+<!--l. 198--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-50002"></a>The outer equation.</span>
+In the outer region we drop the inertial term in (<a href="lecture30.html#eq-eq-tear_vorticity">30.14</a>) and the resistive term in (<a href="lecture30.html#eq-eq-tear_ohm">30.16</a>). The
+second equation then gives \( \phi = i\gamma \psi /F. \) Substituting into the first and neglecting the small factor \(\gamma ^2\) produces
+<a id="eq-eq-tear_outer_general"></a><div class="math-display">\[\frac {1}{r}(r\psi ')' - \frac {m^2}{r^2}\psi - \frac {\muo m J_z'(r)}{r F(r)}\,\psi = 0. \tag{30.17}\]</div>
+This is the cylindrical tearing analogue of the Newcomb equation: it is an ideal-MHD problem everywhere
+except at the resonant surface, where \(F(r_s)=0\).
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-50011"></a>
+                                                                                         
+                                                                                         
+<!--l. 215--><p class="noindent" ><img 
+src="figures/tearing_mode_profiles.png" alt="PIC"  
+width="399" height="238"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;30.1: </span><span  
+class="content">The top hat current profile used in text. Both m/n=2/1 and 3/2 are unstable for the
+choice of <span 
+class="ecsl-1095">c/a </span></span></div><!--tex4ht:label?: x1-50011 -->
+.
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 218--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-60002"></a>What \(\Delta '\) measures.</span>
+Once (<a href="lecture30.html#eq-eq-tear_outer_general">30.17</a>) is solved from the magnetic axis outward and from the wall inward, the only
+information the inner layer needs from the outer ideal region is the jump (<a href="lecture30.html#eq-eq-tearing_delta_def">30.2</a>). The parameter \(\Delta '\) is
+therefore the cylindrical tearing counterpart of the ideal-MHD boundary data that appeared
+in the energy-principle lectures. When \(\Delta '&gt;0\), the two outer solutions arrive at the resonant layer
+with a kink in \(\psi '\) that can be healed by reconnection; when \(\Delta '&lt;0\), the outer solution resists such
+healing.
+<a 
+ id="x1-6001r4"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">30.3   </span> <a 
+ id="x1-70003"></a>A fully analytic worked example for \(\Delta '\)</h3>
+<!--l. 229--><p class="noindent" >The most useful first example is not the smoothest equilibrium but the one for which the algebra
+can be carried all the way to the end. We therefore take the reduced-MHD current profile
+<a id="eq-eq-tear_stepJ"></a><div class="math-display">\[J_z(r)= \begin {cases} J_0, &amp; 0&lt;r&lt;c,\\[4pt] 0, &amp; c&lt;r&lt;a, \end {cases} \tag{30.18}\]</div>
+with a perfectly conducting wall at \(r=a\). The equilibrium poloidal field follows from Ampère&#8217;s law,
+<a id="eq-eq-tear_stepBtheta"></a><div class="math-display">\[B_\theta (r)= \begin {cases} \dfrac {\muo J_0 r}{2}, &amp; 0&lt;r&lt;c,\\[10pt] \dfrac {\muo J_0 c^2}{2r}, &amp; c&lt;r&lt;a. \end {cases} \tag{30.19}\]</div>
+If \(B_z\) is taken constant, then the safety factor is <a id="eq-eq-tear_stepq"></a><div class="math-display">\[q(r)=\frac {rB_z}{R B_\theta }= \begin {cases} q_c, &amp; 0&lt;r&lt;c,\\[4pt] q_c\,\dfrac {r^2}{c^2}, &amp; c&lt;r&lt;a, \end {cases} \qquad q_c \equiv \frac {2B_z}{\muo J_0 R}. \tag{30.20}\]</div>
+A rational surface in the current-free annulus therefore satisfies <a id="eq-eq-tear_rs_step"></a><div class="math-display">\[q(r_s)=\frac {m}{n} \qquad \Longrightarrow \qquad r_s = c\sqrt {\frac {m}{n q_c}}. \tag{30.21}\]</div>
+We shall work out the case \(m=2\). The reason for not choosing \(m=1\) is structural: for \(m=1\) the tearing problem sits much
+closer to the ideal kink problem, whereas \(m=2\) cleanly exhibits the sign change of \(\Delta '\).
+</p>
+<!--l. 272--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-80003"></a>Piecewise outer solutions.</span>
+Away from the current jump at \(r=c\) and away from the resonant layer at \(r=r_s\), the current gradient vanishes, so
+(<a href="lecture30.html#eq-eq-tear_outer_general">30.17</a>) reduces to Laplace&#8217;s equation, <a id="eq-eq-tear_laplace_outer"></a><div class="math-display">\[\frac {1}{r}(r\psi ')' - \frac {m^2}{r^2}\psi = 0, \tag{30.22}\]</div>
+with solutions \(\psi = A r^m + B r^{-m}\). The three relevant pieces are therefore <a id="eq-eq-tear_psiI"></a><div class="math-display">\[\begin{aligned}\psi _I(r) &amp;= A\,r^m, \qquad 0&lt;r&lt;c,  \\ \psi _{II}(r) &amp;= B\,r^m + C\,r^{-m}, \qquad c&lt;r&lt;r_s,  \\ \psi _{III}(r) &amp;= D\left (r^m-a^{2m}r^{-m}\right ), \qquad r_s&lt;r&lt;a,\end{aligned} \tag{30.23}\]</div>
+</p><!--l. 290--><p class="noindent" >where regularity at the axis killed the \(r^{-m}\) term in region I and the wall condition \(\psi (a)=0\) fixed the form in region
+III.
+</p>
+<!--l. 293--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-90003"></a>Jump condition at the current step.</span>
+Because \(J_z\) jumps discontinuously at \(r=c\), the derivative of \(\psi \) also jumps there. Integrating (<a href="lecture30.html#eq-eq-tear_outer_general">30.17</a>) across \(r=c\) gives
+<a id="eq-eq-tear_jump_general"></a><div class="math-display">\[\bigl [r\psi '\bigr ]_{c^-}^{c^+} = \int _{c^-}^{c^+} \frac {\muo m J_z'(r)}{F(r)}\,\psi \,dr. \tag{30.26}\]</div>
+For the step profile (<a href="lecture30.html#eq-eq-tear_stepJ">30.18</a>), \( J_z'=-J_0\delta (r-c), \) and using (<a href="lecture30.html#eq-eq-tear_stepq">30.20</a>)&#8211;(<a href="lecture30.html#eq-eq-tear_rs_step">30.21</a>) one finds <div class="math-display">\[F(c)=\frac {mB_\theta (c)}{c}\left (1-\frac {n q(c)}{m}\right ) = \frac {m\muo J_0}{2}\left (1-\frac {c^2}{r_s^2}\right ).\]</div>
+Equation (<a href="lecture30.html#eq-eq-tear_jump_general">30.26</a>) therefore becomes <a id="eq-eq-tear_jump_step"></a><div class="math-display">\[\bigl [r\psi '\bigr ]_{c^-}^{c^+} = -\frac {2}{1-c^2/r_s^2}\,\psi (c) = -\frac {2r_s^2}{r_s^2-c^2}\,\psi (c). \tag{30.28}\]</div>
+Together with continuity of \(\psi \), this determines the coefficients \(B\) and \(C\) in terms of \(A\): <a id="eq-eq-tear_B_coeff"></a><div class="math-display">\[\begin{aligned}B &amp;= A\,\frac {m(c^2-r_s^2)+r_s^2}{m(c^2-r_s^2)},  \\ C &amp;= -A\,\frac {c^{2m}r_s^2}{m(c^2-r_s^2)}.\end{aligned} \tag{30.29}\]</div>
+</p><!--l. 327--><p class="noindent" >At this point the only remaining task is to evaluate the logarithmic derivatives at the resonant
+surface.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 330--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-100003"></a>The right-hand derivative.</span>
+From (<a href="lecture30.html#eq-eq-tear_psiIII">30.25</a>) we obtain immediately <a id="eq-eq-tear_dplus"></a><div class="math-display">\[\left .\frac {\psi '}{\psi }\right |_{r_s^+} = \frac {m}{r_s}\,\frac {1+(a/r_s)^{2m}}{1-(a/r_s)^{2m}} = -\frac {m}{r_s}\,\frac {1+y^{2m}}{y^{2m}-1}, \tag{30.31}\]</div>
+where for compactness we introduced <a id="eq-eq-tear_xy_def"></a><div class="math-display">\[x \equiv \frac {c}{r_s}, \qquad y \equiv \frac {a}{r_s}. \tag{30.32}\]</div>
+</p><hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-100012"></a>
+                                                                                         
+                                                                                         
+<!--l. 346--><p class="noindent" ><img 
+src="figures/tearing_mode_delta_sign.png" alt="PIC"  
+width="399" height="207"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;30.2: </span><span  
+class="content">Left: A unstable current profile and Right: stable current profile. The kink in the \(\psi \)
+profile determines whether flux increases or decreases in the layer. Concave up \(\Delta '&gt;0\) leads to growth.</span></div><!--tex4ht:label?: x1-100012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 350--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-110003"></a>The left-hand derivative.</span>
+Using (<a href="lecture30.html#eq-eq-tear_psiII">30.24</a>), (<a href="lecture30.html#eq-eq-tear_B_coeff">30.29</a>), and (<a href="lecture30.html#eq-eq-tear_C_coeff">30.30</a>) gives <a id="eq-eq-tear_dminus"></a><div class="math-display">\[\left .\frac {\psi '}{\psi }\right |_{r_s^-} = \frac {m}{r_s} \frac {x^{2m}+m x^2-m+1}{m x^2-m-x^{2m}+1}. \tag{30.33}\]</div>
+Subtracting (<a href="lecture30.html#eq-eq-tear_dminus">30.33</a>) from (<a href="lecture30.html#eq-eq-tear_dplus">30.31</a>) yields the desired matching parameter. For \(m=2\) the result is especially
+transparent: <a id="eq-eq-tear_Delta_m2"></a><div class="math-display">\[\Delta ' = \frac {4}{r_s} \frac {2x^2 y^4 - x^4 - y^4}{(1-x^2)^2(y^4-1)}. \tag{30.34}\]</div>
+This is the main reason for choosing the step profile as the worked example: the sign of \(\Delta '\) can be seen
+directly.
+</p><!--l. 369--><p class="noindent" >In the large-wall limit \(a\gg r_s\) (so \(y\to \infty \)), Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_Delta_m2">30.34</a>) reduces to <a id="eq-eq-tear_Delta_largewall"></a><div class="math-display">\[\Delta ' \longrightarrow \frac {4}{r_s}\,\frac {2x^2-1}{(1-x^2)^2}. \tag{30.35}\]</div>
+Hence the same equilibrium can be either tearing-stable or tearing-unstable depending on where the
+resonant surface sits: <a id="eq-eq-tear_signchange"></a><div class="math-display">\[\Delta '&gt;0 \quad \Longleftrightarrow \quad x&gt;\frac {1}{\sqrt {2}} \quad \Longleftrightarrow \quad r_s&lt;\sqrt {2}\,c. \tag{30.36}\]</div>
+Every step is analytic, and yet the mode does not have a predetermined sign.
+</p>
+<!--l. 386--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-120003"></a>The same profile can host \(3/2\) and \(2/1\) surfaces.</span>
+Because the annular safety-factor profile (<a href="lecture30.html#eq-eq-tear_stepq">30.20</a>) is monotone, <div class="math-display">\[q_c &lt; \frac {m}{n} &lt; q_a \qquad \Longrightarrow \qquad r_{m/n}=c\sqrt {\frac {m}{n q_c}}.\]</div>
+In particular, <a id="eq-eq-tear_32_21_radii"></a><div class="math-display">\[r_{3/2}=c\sqrt {\frac {3}{2q_c}}, \qquad r_{2/1}=c\sqrt {\frac {2}{q_c}}. \tag{30.38}\]</div>
+So the step profile supports both a \(3/2\) and a \(2/1\) tearing surface whenever <a id="eq-eq-tear_32_21_exist"></a><div class="math-display">\[q_c&lt;\frac {3}{2}, \qquad q_a&gt;2. \tag{30.39}\]</div>
+This is the regime one would naturally use for a field-line-tracing exercise aimed at island
+overlap.
+</p><!--l. 410--><p class="noindent" >It is also useful to record the large-wall result for general \(m\). Taking \(y=a/r_s\to \infty \) in the algebra above gives
+<a id="eq-eq-tear_Delta_general_largewall"></a><div class="math-display">\[\Delta '_m \longrightarrow \frac {2m\bigl [mx^2-(m-1)\bigr ]} {r_s(1-x^2)^2\displaystyle \sum _{\ell =0}^{m-2}(m-1-\ell )x^{2\ell }}, \qquad x\equiv \frac {c}{r_s}. \tag{30.40}\]</div>
+Since the denominator is positive for \(0&lt;x&lt;1\), the sign is set by the numerator: <a id="eq-eq-tear_sign_general"></a><div class="math-display">\[\Delta '_m&gt;0 \qquad \Longleftrightarrow \qquad x^2&gt;\frac {m-1}{m}. \tag{30.41}\]</div>
+Using \(x^2 = q_c/(m/n)=n q_c/m\), this becomes <a id="eq-eq-tear_sign_general_qc"></a><div class="math-display">\[\Delta '_m&gt;0 \qquad \Longleftrightarrow \qquad n q_c &gt; m-1. \tag{30.42}\]</div>
+Hence this simple profile makes a neat point: both the \(2/1\) and \(3/2\) branches are tearing-unstable in the large-wall
+limit when \(q_c&gt;1\), marginal when \(q_c=1\), and tearing-stable when \(q_c&lt;1\) (provided the corresponding rational surfaces still
+exist).
+</p><!--l. 438--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 438--><p class="noindent" ><span 
+class="ecbx-1095">Why use the step profile? </span>It is not the most realistic current profile, but it is probably
+     the best first \(\Delta '\) example because the outer equation reduces to power laws in every region.
+     A smooth profile such as \(J_z=J_0(1-r^2/a^2)^\nu \) is a very good next step.</p></blockquote></div></div>
+<a 
+ id="x1-12001r8"></a><div class="interactive-shell"><p class="interactive-title">Interactive Tearing-Mode Explorer</p><p class="interactive-caption">Open a browser companion to the lecture&#8217;s smooth-profile extension. The app uses \(J_z(r)=\hat J(1-r^2/a^2)^\nu\), reconstructs \(q(r)\) and \(F(r)\), solves the outer tearing equation on both sides of the resonant layer, and reports \(\Delta\!\!\prime\) for selectable \(m/n\) branches.</p><p><a class="interactive-button" href="media/tearing_mode_explorer.html">Open the tearing-mode explorer</a></p><p class="interactive-caption">For the timescale ingredients that enter the FKR and Lundquist-number estimates, jump to the <a href="media/braginskii_formulary_explorer.html">Braginskii formulary calculator</a>.</p></div>
+<h3 class="sectionHead"><span class="titlemark">30.4   </span> <a 
+ id="x1-130004"></a>The resistive inner layer and the FKR scaling</h3>
+<!--l. 445--><p class="noindent" >Near the resonant surface we set <a id="eq-eq-tear_Flinear"></a><div class="math-display">\[s=r-r_s, \qquad F(r)\simeq F'(r_s)s = -\frac {m B_{\theta s}}{r_s}\left (\frac {q_s'}{q_s}\right )s \equiv -\frac {mB_{\theta s}}{r_s L_s}s, \tag{30.43}\]</div>
+where <div class="math-display">\[L_s \equiv \frac {q_s}{|q_s'|}\]</div>
+is the shear length and subscript \(s\) means evaluation at \(r=r_s\). In the constant-\(\psi \) regime the perturbed flux is
+nearly constant across the layer, so we keep \(\psi \simeq \psi _s\) whenever it is not differentiated and where is differentiated we
+will assume "slab" like behavior <div class="math-display">\[\nabla _\perp ^2 \approx \frac {\partial ^2}{\partial s^2};\]</div>
+locally most variation is normal the the surface (the \(\theta \) dependence is much smaller).
+                                                                                         
+                                                                                         
+</p><!--l. 466--><p class="noindent" >With the streamfunction definition (<a href="lecture30.html#eq-eq-tear_phi_def">30.7</a>), the leading inner equations
+become<span class="footnote-mark"><a 
+href="main_html_mathjax_preview_resistive2.html#fn1x1"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-13001f1"></a>  <a id="eq-eq-tear_inner_phi"></a><div class="math-display">\[\begin{aligned}\gamma \phi '' &amp;= -\frac {m B_{\theta s}}{\muo \rho L_s}\,s\,\psi ''- \frac {m^2}{\rho r^2} \frac {d J_\phi }{d r} \psi ,  \\ \gamma \psi - \frac {m B_{\theta s}}{r_sL_s}\,s\,\phi &amp;= \frac {\eta }{\muo }\,\psi ''.\end{aligned} \tag{30.46}\]</div>
+</p><!--l. 476--><p class="noindent" >The equations are greatly simplified if we assume \(b_r\sim \psi \) (not \(\psi ''\)) is constant over the inner region. We can later
+computer the solution directly and check. In this case we can substitute \(\psi ''\) from Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_inner_ohm">30.47</a>) into Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_inner_phi">30.46</a>)
+to derive <div class="math-display">\[\begin{aligned}\gamma \phi '' &amp; = -\frac {m B_{\theta s}}{\muo \rho r_s L_s}\,s\, \frac {\mu _0}{\eta } ( \gamma \psi _s - \frac {m B_{\theta s}}{r_sL_s}\,s\,\phi ) \\ \gamma \phi '' - s^2 \frac {m^2 B_\theta ^2}{\eta \rho r_s^2 L_s^2} \phi &amp; = \underbrace {s \frac {B_{\theta s}\psi _s }{\eta r_s \rho L_s}}_{odd} - \underbrace {\frac { m^2}{\rho r^2} J_z'(r_s)\,\psi _s}_{even}.\end{aligned}\]</div>
+</p><!--l. 482--><p class="noindent" >The characteristic layer width is obtained by balancing the two terms on the right-hand side of (<a href="lecture30.html#eq-eq-tear_inner_ohm">30.47</a>)
+against the inertial response implied by (<a href="lecture30.html#eq-eq-tear_inner_phi">30.46</a>): <a id="eq-eq-tear_d4"></a><div class="math-display">\[d^4 \sim \frac {\eta }{\muo }\,\frac {\gamma L_s^2}{k_\perp ^2 V_{A\theta }^2}, \qquad k_\perp \equiv \frac {m}{r_s}, \qquad V_{A\theta }\equiv \frac {B_{\theta s}}{\sqrt {\muo \rho }}. \tag{30.50}\]</div>
+</p><!--l. 494--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 494--><p class="noindent" ><span 
+class="ecbx-1095">Putting back the numerical factor in the FKR matching. </span>To go beyond the scaling
+     argument, introduce the dimensionless variables <a id="eq-eq-tear_xy_def_inner"></a><div class="math-display">\[x \equiv \frac {s}{d}, \qquad y(x) \equiv -\frac {\muo }{\eta }\frac {d}{r_s }\frac { m B_{\theta s}}{L_s}\frac {\phi }{\psi _s}. \tag{30.51}\]</div>
+     Focusing on the odd part of Eqs.&#x00A0;(<a href="lecture30.html#eq-eq-tear_inner_phi">30.46</a>) and (<a href="lecture30.html#eq-eq-tear_inner_ohm">30.47</a>) the inner equation of motion reduces to <a id="eq-eq-tear_FKR_y"></a><div class="math-display">\[\begin{aligned}\left (\frac {d^2 y}{dx^2}-x^2 y\right )&amp; =-x,\\ \frac {d^2 y}{dx^2} &amp; = -x (1 - x y)\end{aligned} \tag{30.53}\]</div>
+     </p><!--l. 508--><p class="noindent" >which can be solved in different ways include simple numerical integration.
+     </p><!--l. 510--><p class="noindent" >The constant-\(\psi \) form of Ohm&#8217;s law (Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_ohm">30.16</a>)) becomes <a id="eq-eq-tear_psixx_inner"></a><div class="math-display">\[\psi _{xx} = \frac {\muo \gamma d^2}{\eta }\,\psi _s\,[1+x y(x)]. \tag{30.54}\]</div>
+     Once the function \(y\) is known, the jump in \(\psi '\) from one side to the other of the inner region can be
+     calculated by extending the limit of integration to infinity: <a id="eq-eq-tear_matching_exact"></a><div class="math-display">\[\begin{aligned}\Delta ' &amp;= \frac {1}{\psi _s d}\int _{-\infty }^{\infty }\psi _{xx}\,dx \\ &amp;= \frac {\muo \gamma d}{\eta } \int _{-\infty }^{\infty }[1+x y(x)]\,dx.\end{aligned} \tag{30.56}\]</div>
+     </p><!--l. 524--><p class="noindent" >This problem is solved analytically in Appendix H and numerical solutions are showing in Fig.
+     30.3 <a id="eq-eq-tear_CDelta"></a><div class="math-display">\[\int _{-\infty }^{\infty }[1+x y(x)]\,dx = C_\Delta , \qquad C_\Delta = \frac {\Gamma (1/4)}{2\pi \Gamma (3/4)} \approx 2.12 \tag{30.57}\]</div>
+     Hence <a id="eq-eq-tear_matching_prefactor"></a><div class="math-display">\[\Delta ' = C_\Delta \,\frac {\muo \gamma d}{\eta }. \tag{30.58}\]</div>
+     Substituting (<a href="lecture30.html#eq-eq-tear_d4">30.50</a>) then yields the classical constant-\(\psi \) dispersion relation with its familiar
+     numerical coefficient, <a id="eq-eq-tear_FKR_scaling"></a><div class="math-display">\[\gamma \simeq 0.55 \left [ \frac {\eta ^3}{\muo ^3} \frac {k_\perp ^2 V_{A\theta }^2}{L_s^2} \left (\Delta '\right )^4 \right ]^{1/5}. \tag{30.59}\]</div>
+     </p></blockquote></div></div>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-130023"></a>
+                                                                                         
+                                                                                         
+<!--l. 551--><p class="noindent" ><img 
+src="figures/tearing_mode_inner_matched_solution.png" alt="PIC"  
+width="375" height="156"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;30.3: </span><span  
+class="content">Matched odd solution of the inner tearing-mode equation \(y''=-x(1-xy)\) with \(y(0)=0\) and \(xy\to 1\) as \(x\to \infty \). Left: the odd
+profile \(y(x)\) together with the outer-match guide \(y\sim 1/x\). Right: the even integrand \(1-xy\), whose dominant positive
+core and weak negative tails combine to give the finite matching integral \(2\int _0^\infty (1-xy)\,dx = 2.12364827298\ldots \). The zero crossing occurs
+at \(x\simeq \pm 2.367\).</span></div><!--tex4ht:label?: x1-130023 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 557--><p class="noindent" >If one only wants the exponents, the algebra can be read off directly from (<a href="lecture30.html#eq-eq-tear_d4">30.50</a>) and (<a href="lecture30.html#eq-eq-tear_matching_prefactor">30.58</a>): <div class="math-display">\[\begin{aligned}\Delta ' &amp;\sim \frac {\muo \gamma }{\eta } \left (\frac {\eta }{\muo }\frac {\gamma L_s^2}{k_\perp ^2V_{A\theta }^2}\right )^{1/4} \\ &amp;= \left (\frac {\muo }{\eta }\right )^{3/4} \gamma ^{5/4} \left (\frac {L_s^2}{k_\perp ^2V_{A\theta }^2}\right )^{1/4},\end{aligned}\]</div>
+</p><!--l. 568--><p class="noindent" >so <div class="math-display">\[\gamma ^{5/4} =\frac {1}{2.12} \left (\frac {\eta }{\muo }\right )^{3/4} \left (\frac {k_\perp ^2V_{A\theta }^2}{L_s^2}\right )^{1/4} \Delta '.\]</div>
+which reduces to <div class="math-display">\[\gamma = 0.55 \left (\frac {\eta }{\muo a^2}\right )^{3/5} \left (\frac { V_{A\theta }}{a}\right )^{2/5} \left (\frac {k_\perp a^2 }{L_s }\right )^{2/5} (a\Delta ')^{4/5} = \frac {0.55}{\tau _R^{3/5}\tau _A^{2/5}} (k_\perp a)^{2/5} \left (\frac {a}{L_s}\right )^{2/5}(a\Delta ')^{4/5}.\]</div>
+Raising the last relation to the \(4/5\) power reproduces the FKR exponents, while the preceding tutorial box
+fixes the numerical coefficient. The corresponding layer width is <a id="eq-eq-tear_d_scaling"></a><div class="math-display">\[d \sim \left (\frac {\eta L_s^2}{\muo \gamma }\right )^{1/4} \propto \eta ^{2/5}(\Delta ')^{-1/5}. \tag{30.64}\]</div>
+<a 
+ id="x1-13003r15"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">30.5   </span> <a 
+ id="x1-140005"></a>Magnetic islands, Rutherford evolution, and why tearing matters</h3>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-140014"></a>
+                                                                                         
+                                                                                         
+<!--l. 617--><p class="noindent" ><img 
+src="figures/tearing_mode_rtheta_island.png" alt="PIC"  
+width="433" height="216"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;30.4: </span><span  
+class="content">The tearing perturbation changes the topology of the magentic field surrounding the
+rational surface.</span></div><!--tex4ht:label?: x1-140014 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 620--><p class="noindent" >Once reconnection has begun, the helical flux function may be written locally as <div class="math-display">\[\Psi (r,\theta ,z) = \Psi _0(r) + \tilde \psi \cos (m\theta +kz), \qquad k=-\frac {n}{R}.\]</div>
+Near the resonant surface, \( \Psi _0(r)\simeq \Psi _0(r_s)+\tfrac 12\Psi _0''(r_s)(r-r_s)^2, \) so the island half-width follows from balancing the perturbation against the
+quadratic variation of the equilibrium flux: <div class="math-display">\[\frac 12\,|\Psi _0''(r_s)|\left (\frac {w}{2}\right )^2 \sim |\tilde \psi |.\]</div>
+Therefore <a id="eq-eq-tear_island_width"></a><div class="math-display">\[w \sim 4\sqrt {\frac {|\tilde \psi |}{|\Psi _0''(r_s)|}}. \tag{30.67}\]</div>
+</p><!--l. 641--><p class="noindent" >When the island width becomes larger than the linear resistive layer, \(w\gg d\), inertia falls out of the inner problem
+and the growth turns algebraic. In that Rutherford regime <span 
+class="ecbx-1095">?</span>, <a id="eq-eq-tear_rutherford"></a><div class="math-display">\[\frac {dw}{dt} \sim \frac {\eta }{\muo }\,\Delta ', \tag{30.68}\]</div>
+up to a geometry-dependent factor of order \(r_s^{-1}\). The important physical point is that the instability
+now evolves on the resistive time scale and gradually flattens the current profile across the
+island.
+</p>
+<!--l. 652--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-150005"></a>Why this matters for confinement.</span>
+Tearing is not just another eigenmode in a spectrum. Ideal modes can displace a flux surface and then
+return it. A tearing mode changes the connectivity of field lines, flattens current and pressure across a
+rational surface, and leaves behind a magnetic island chain. In tokamaks the \(m=n=1\) internal tearing mode
+explains the sawtooth crash, while the low-order \(3/2\) and \(2/1\) surfaces are the classic seats of neoclassical
+tearing modes. In reversed-field pinches a broad spectrum of tearing modes can overlap and
+stochasticize a large fraction of the plasma column. So the real importance of tearing is that it
+is simultaneously a stability problem, a transport problem, and a self-organization problem
+<span 
+class="ecbx-1095">??</span>.
+</p>
+<!--l. 663--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-160005"></a>A schematic generalized Rutherford equation.</span>
+Once pressure flattening, bootstrap current, curvature, and applied current drive are included, the weakly
+nonlinear evolution is no longer described by the single term (<a href="lecture30.html#eq-eq-tear_rutherford">30.68</a>). There is no unique universal normal
+form, because different authors package the transport thresholds and small-island physics in slightly
+different ways, but a very useful schematic version is <a id="eq-eq-tear_generalized_rutherford"></a><div class="math-display">\[I_1\tau _R\frac {a}{r_s}\frac {d\hat w}{dt} = \Delta ' - f_{\rm sat}\hat w + f_{\rm bs}\frac {\hat w}{\hat w^2+\hat w_d^2} - \frac {f_{\rm curv}}{\sqrt {\hat w^2+\hat w_d^2}} - \frac {f_{\rm pol}}{(\hat w^2+\hat w_d^2)^{3/2}} - f_{\rm CD}(\hat w). \tag{30.69}\]</div>
+where \(\hat w\equiv w/a\) is the normalized island width and \(\hat w_d\equiv w_d/a\) is the small-island scale below which transport does not fully
+flatten the pressure inside the separatrix. The first term is the classical tearing drive from the outer ideal
+solution, the second is Rutherford saturation, the third is the destabilizing bootstrap-current loss, the
+fourth and fifth represent stabilizing curvature and polarization effects, and the last term represents active
+control by driven current or heating <span 
+class="ecbx-1095">???</span>.
+</p><!--l. 705--><p class="noindent" >The really important lesson is that a neoclassical tearing mode is a <span 
+class="ecti-1095">nonlinear </span>instability. A surface can be
+linearly stable in the classical sense, \(\Delta '&lt;0\), and still grow once a seed island becomes wide enough that the
+bootstrap term dominates the classical stabilizing term. In tokamak language this is why sawteeth,
+edge-localized events, error fields, or nonlinear mode coupling can seed a \(3/2\) or \(2/1\) island which then grows on
+its own. The low-order island is not merely a passenger on the equilibrium; it becomes a new
+current-transport channel.
+</p>
+<!--l. 713--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-170005"></a>Mode locking and the emergence of external character.</span>
+As long as an island rotates relative to the wall, plasma response and wall eddy currents partially shield
+the external resonant field. A simple toroidal torque balance may be written schematically as
+                                                                                         
+                                                                                         
+<a id="eq-eq-tear_torque_balance"></a><div class="math-display">\[I_{\rm eff}\frac {d\Omega }{dt} = \underbrace {T_{\rm EM}}_{\text {error field + wall}} +\underbrace {T_{\rm visc}}_{\text {viscous / neoclassical drag}} +\underbrace {T_{\rm src}}_{\text {beam or rf torque}}. \tag{30.70}\]</div>
+When electromagnetic braking wins and \(\Omega \to 0\), the island locks to the wall. At that point the perturbation
+ceases to behave like a nearly internal rotating chain and acquires a more external character: the vacuum
+region and the wall response participate directly, the edge magnetic perturbation becomes larger, shielding
+is lost, and disruption probability rises sharply <span 
+class="ecbx-1095">???</span>. That is why in real devices the topics &#8220;tearing mode,&#8221;
+&#8220;error field,&#8221; and &#8220;locked mode&#8221; are not separate stories but successive stages of one island
+problem.
+</p><!--l. 733--><p class="noindent" >A single tearing mode gives an island chain. A spectrum of tearing modes gives many island chains. Once
+neighboring separatrices overlap, <a id="eq-eq-tear_chirikov"></a><div class="math-display">\[\mathcal {S} \equiv \frac {w_1+w_2}{\Delta r} \gtrsim 1, \tag{30.71}\]</div>
+field lines wander stochastically and transport rises sharply. In this sense the tearing mode is the simplest
+topological route from a nested set of flux surfaces to a stochastic magnetic web. The field-line diffusion
+and electron-heat-transport estimates of Rechester&#8211;Stix and Rechester&#8211;Rosenbluth are the classical
+asymptotic descriptions of that stochastic regime <span 
+class="ecbx-1095">??</span>.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-170015"></a>
+                                                                                         
+                                                                                         
+<!--l. 747--><p class="noindent" ><img 
+src="figures/tearing_mode_puncture.png" alt="PIC"  
+width="446" height="203"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;30.5: </span><span  
+class="content">Poincaré sections for two resonant tearing perturbations in the cylindrical step-profile
+equilibrium, showing the transition from intact flux surfaces to overlap-driven stochasticity. Left:
+weak \(2/1\) and \(3/2\) perturbations produce two distinct island chains with nominal single-island widths \(w_{2/1}/a \approx 0.013\) and \(w_{3/2}/a \approx 0.010\),
+separated by \(\Delta r/a \approx 0.078\), so nested flux surfaces remain between the resonances. Right: stronger perturbations
+increase the nominal widths to \(w_{2/1}/a \approx 0.048\) and \(w_{3/2}/a \approx 0.041\), while the resonant-surface separation is unchanged, and the
+puncture points begin to wander through the inter-island region, indicating the onset of ergodicity.</span></div><!--tex4ht:label?: x1-170015 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-17002r17"></a>
+<h3 class="sectionHead"><span class="titlemark">30.6   </span> <a 
+ id="x1-180006"></a>Rechester&#8211;Rosenbluth transport in stochastic fields</h3>
+<!--l. 753--><p class="noindent" >Once neighboring island chains overlap strongly enough that \(\mathcal {S}\gtrsim 1\), field lines cease to remain on smooth flux
+surfaces and instead execute a radial random walk. The stochastic-field picture itself goes back to
+Rechester and Stix, who analyzed magnetic braiding due to weak asymmetry, while the associated electron
+heat-transport estimate most often used in confinement theory is due to Rechester and Rosenbluth <span 
+class="ecbx-1095">??</span>. A
+standard way to characterize the stochastic field is through the magnetic-field-line diffusion coefficient,
+<div class="math-display">\[D_M \equiv \lim _{L\to \infty }\frac {\left \langle \left [r(L)-r(0)\right ]^2\right \rangle }{2L},\]</div>
+where \(L\) is the distance measured along the field. In the quasilinear island-overlap picture one writes
+<div class="math-display">\[D_M \sim L_c\left (\frac {\delta B_\perp }{B}\right )^2,\]</div>
+with \(L_c\) (or \(L_{ac}\)) the field-line autocorrelation length. Because the electron parallel thermal conductivity is so
+large, the stochastic radial heat diffusivity is obtained by combining the parallel heat flow with the
+field-line random walk, <div class="math-display">\[\chi _{e,\perp } \sim \frac {\chi _{\parallel e}}{\lambda _{\mathrm {mfp},e}}\,D_M \sim v_{th,e} D_M,\]</div>
+in the collisionless Rechester&#8211;Rosenbluth limit \(\lambda _{\mathrm {mfp},e}\gg L_c\). A useful interpolation that makes contact with
+experimental analysis is <div class="math-display">\[\chi _{RR} \sim v_{th,e}L_{\rm eff}\left (\frac {\delta B_\perp }{B}\right )^2, \qquad L_{\rm eff}^{-1}=L_{ac}^{-1}+\lambda _{\mathrm {mfp},e}^{-1}.\]</div>
+This should be understood as an asymptotic transport law for a strongly stochastic region: near the
+overlap threshold, partial barriers, surviving island remnants, and finite-correlation effects can all modify
+the simple diffusive picture.
+<a 
+ id="x1-18001r23"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">30.7   </span> <a 
+ id="x1-190007"></a>Experimental tests of Rechester-Rosenbluth in the RFP</h3>
+<!--l. 786--><p class="noindent" >The reversed-field pinch provides a particularly clean laboratory test of stochastic magnetic transport
+because its standard state contains a broad spectrum of internally resonant tearing modes driven by the
+current-density gradient, and the resulting islands overlap across a substantial radial interval. In the
+Madison Symmetric Torus, Biewer, Forest, and collaborators used power balance, equilibrium
+reconstruction, and modeled internal fluctuations to compare the measured electron thermal diffusivity to
+stochastic-field transport. They found that the electron heat flux was primarily conductive rather than
+convective, that the measured \(\chi _e\) agreed well with both field-line tracing and Rechester&#8211; Rosenbluth-like
+estimates in the overlap region, and that transport fell near the reversal surface where magnetic diffusion is
+small <span 
+class="ecbx-1095">?</span>. Follow-on experiments documenting the behavior of fast electrons showed that the
+thermal diffusivity depended strongly on \(v_\parallel \), further supporting the Rechester-Rosenbluth picture
+<span 
+class="ecbx-1095">?</span>.
+</p><!--l. 796--><p class="noindent" >A sharper test was later carried out through the full sawtooth cycle by Reusch, Forest, and collaborators
+using high-time-resolution Thomson scattering together with nonlinear resistive-MHD simulations at the
+experimental Lundquist number. If one estimates the transport directly from field-line wandering,
+<div class="math-display">\[\chi _{MD}=v_{th,e}D_{\rm mag},\]</div>
+the result tends to overpredict the measured diffusion. Agreement with experiment was recovered when the
+parallel transport was reduced by the circulating-particle fraction, <div class="math-display">\[\chi _e \simeq f_c\,v_{th,e}D_{\rm mag},\]</div>
+which makes explicit that trapped particles do not freely stream along the stochastic web <span 
+class="ecbx-1095">?</span>. This is closely
+analogous to the suppression of conduction in tangled astrophysical magnetic fields discussed by Chandran,
+Cowley, and collaborators for galaxy-cluster plasmas <span 
+class="ecbx-1095">??</span>.
+<a 
+ id="x1-19001r24"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">30.8   </span> <a 
+ id="x1-200008"></a>Closing bridge: unified \(m=1\) theory and the two tearing branches</h3>
+<!--l. 817--><p class="noindent" >The cylindrical tearing calculation above deliberately emphasized the ordinary \(m&gt;1\) tearing mode because it
+gives a clean first example of \(\Delta '\). The historical tokamak problem, however, is the \(m=n=1\) internal mode. This case is
+special because the same displacement of the core can appear as an ideal internal kink, a resistive internal
+kink, or an \(m=1\) tearing mode, depending on how close the equilibrium is to ideal marginal stability. Coppi,
+Galvão, Pellat, Rosenbluth, and Rutherford showed that these are not three unrelated instabilities: they
+are different limits of a single inner&#8211;outer matching problem <span 
+class="ecbx-1095">?</span>. The later review by Ara and collaborators
+and the tokamak-focused review by Migliuolo are useful road maps through this literature
+<span 
+class="ecbx-1095">??</span>.
+</p><!--l. 829--><p class="noindent" >For the \(m=1\) internal mode the ideal outer eigenfunction is nearly a rigid translation of the plasma inside the \(q=1\)
+surface, and is small outside it: <a id="eq-eq-tear_m1_rigid_displacement"></a><div class="math-display">\[\xi (r) \simeq \xi _0 \text { for } r&lt;r_1, \qquad \xi (r) \simeq 0 \text { for } r&gt;r_1, \qquad q(r_1)=1. \tag{30.78}\]</div>
+The thin layer at \(r=r_1\) must decide how that discontinuous ideal displacement is healed. Two local times are
+useful: <a id="eq-eq-tear_m1_times"></a><div class="math-display">\[\tau _H \equiv \left (\frac {\sqrt {\mu _0\rho }}{q'B_\theta }\right )_{r_1}, \qquad \tau _R \equiv \left (\frac {\mu _0 r^2}{\eta }\right )_{r_1}. \tag{30.79}\]</div>
+Here \(\tau _H\) is the Alfvénic time based on the magnetic shear at the \(q=1\) surface, while \(\tau _R\) is the resistive diffusion time
+across the local radius. Near ideal marginality the outer-region potential energy controls the matching. In
+the ideal-stable, positive-\(\Delta '\) limit one finds, schematically, <a id="eq-eq-tear_m1_delta_from_deltaW"></a><div class="math-display">\[\Delta ' = \frac {\pi ^2 R\left (r q'^2 B_\theta ^2/\mu _0\right )_{r_1}} {\delta W/\xi _0^2}, \tag{30.80}\]</div>
+so a small stabilizing ideal energy denominator produces a large tearing drive. This is the cleanest way to
+state the \(m=1\) peculiarity: the mode is ideal-stable in energy-principle language, but the resistive layer can still
+reconnect the displaced core.
+</p><!--l. 874--><p class="noindent" >The three limits are then easy to remember. The ideal internal kink is obtained when the resistive layer is
+irrelevant. The resistive internal kink is obtained near \(\delta W\simeq 0\), where the layer itself sets the rate,
+<a id="eq-eq-tear_m1_resistive_kink"></a><div class="math-display">\[\gamma _{\eta k}\sim \tau _H^{-2/3}\tau _R^{-1/3}. \tag{30.81}\]</div>
+The \(m=1\) tearing limit is obtained on the ideal-stable side, where Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_m1_delta_from_deltaW">30.80</a>) may be inserted into the
+constant-\(\psi \) tearing law. With the normalization of Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_m1_times">30.79</a>), this gives <a id="eq-eq-tear_m1_tearing_growth"></a><div class="math-display">\[\gamma \simeq 0.55 \left [ \frac {\pi ^2 R\left (r q'^2B_\theta ^2/\mu _0\right )_{r_1}} {\delta W/\xi _0^2} \right ]^{4/5} \tau _H^{-2/5}\tau _R^{-3/5}. \tag{30.82}\]</div>
+The same calculation can be written as a single Coppi dispersion relation. With the energy-principle sign
+convention used here, \(\delta W&lt;0\) is ideal-kink unstable, so I write the interpolation with an explicit minus sign.
+Defining <a id="eq-eq-tear_m1_deltaWH"></a><div class="math-display">\[\delta W_H \equiv \frac {\delta W/\xi _0^2} {2R\left (rB_\theta q'\right )_{r_1}^2/\mu _0}, \tag{30.83}\]</div>
+one convenient form is <a id="eq-eq-tear_m1_unified_dispersion"></a><div class="math-display">\[\gamma \tau _H = -\delta W_H \left \{ \frac {1}{8}\left (\frac {\gamma }{\gamma _{\eta k}}\right )^{9/4} \frac { \Gamma \!\left [\left ((\gamma /\gamma _{\eta k})^{3/2}-1\right )/4\right ]} {\Gamma \!\left [\left ((\gamma /\gamma _{\eta k})^{3/2}+5\right )/4\right ]} \right \}. \tag{30.84}\]</div>
+One should not get lost in the gamma functions. Their purpose is to make the interpolation exact: large \(\gamma /\gamma _{\eta k}\)
+gives the ideal internal-kink limit \(\gamma \tau _H\simeq -\delta W_H\), \(\delta W_H\rightarrow 0\) gives the resistive-kink rate (<a href="lecture30.html#eq-eq-tear_m1_resistive_kink">30.81</a>), and \(\gamma \ll \gamma _{\eta k}\) on the ideal-stable side gives
+the tearing law (<a href="lecture30.html#eq-eq-tear_m1_tearing_growth">30.82</a>).
+</p><!--l. 922--><p class="noindent" >The reason this belongs at the end of the tearing lecture is that it prepares the reader for the
+plasmoid calculation in Lecture&#x00A0;33, especially the high-Lundquist-number current-sheet analysis of
+Loureiro, Schekochihin, and Cowley <span 
+class="ecbx-1095">?</span>. In the plasmoid problem the control parameter is not \(\delta W_H\) but
+the wavelength along a long current sheet. Take a local sheet half-thickness \(a\), local Alfvén
+time \(\tau _{A,a}=a/V_A\), magnetic diffusivity \(\eta _m=\eta /\mu _0\), and \(S_a=aV_A/\eta _m\). For a Harris-like sheet, the outer matching parameter is
+<a id="eq-eq-tear_harris_delta_bridge"></a><div class="math-display">\[\Delta 'a = 2\left (\frac {1}{ka}-ka\right ). \tag{30.85}\]</div>
+Thus the unstable long-wave side has \(ka&lt;1\), but within that unstable interval there are still two asymptotic
+branches. The constant-\(\psi \), or FKR, branch is <a id="eq-eq-tear_fkr_local_bridge"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-3/5}(\Delta 'a)^{4/5}(ka)^{2/5}, \qquad \Delta '\delta _{\rm in}\ll 1. \tag{30.86}\]</div>
+For the Harris sheet at \(ka\ll 1\), this becomes <a id="eq-eq-tear_fkr_harris_bridge"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-3/5}(ka)^{-2/5}, \qquad ka\,S_a^{1/4}\gg 1, \tag{30.87}\]</div>
+which is the high-\(k\) tearing branch used later in Eq.&#x00A0;(<a href="lecture33.html#eq-eq-recon-fkr_local">33.31</a>). Here &#8220;high-\(k\)&#8221; means high relative to the
+crossover scale \(S_a^{-1/4}/a\), not \(ka&gt;1\), since \(ka&gt;1\) is already stable for this simple sheet.
+</p><!--l. 956--><p class="noindent" >At smaller \(k\), the FKR approximation predicts an inner layer so wide that \(\Delta '\delta _{\rm in}\) is no longer small. The
+perturbation is then nonconstant across the layer, and the Coppi branch replaces the FKR branch:
+<a id="eq-eq-tear_coppi_harris_bridge"></a><div class="math-display">\[\gamma \tau _{A,a} \sim S_a^{-1/3}(ka)^{2/3}, \qquad ka\,S_a^{1/4}\ll 1. \tag{30.88}\]</div>
+This is the low-\(k\) branch used later in Eq.&#x00A0;(<a href="lecture33.html#eq-eq-recon-plasmoid_nonconstantpsi">33.33</a>). The fastest plasmoid mode sits where the two branches
+                                                                                         
+                                                                                         
+meet, <a id="eq-eq-tear_plasmoid_crossover_bridge"></a><div class="math-display">\[ka\,S_a^{1/4}\sim 1, \qquad k_{\,max}a\sim S_a^{-1/4}, \qquad \gamma _{\max }\tau _{A,a}\sim S_a^{-1/2}. \tag{30.89}\]</div>
+This is the same lesson as the unified \(m=1\) theory, translated from a tokamak core to an elongated reconnection
+layer: a single resistive inner-layer problem has several outer limits, and the observed branch is selected by
+the matching parameter.
+</p><!--l. 982--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <ul class="itemize1">
+     <li class="itemize">Tearing modes are <span 
+class="ecti-1095">matched-asymptotic </span>instabilities: ideal outside, resistive inside.
+     </li>
+     <li class="itemize">The outer ideal problem determines the single number \(\Delta '\), defined in Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tearing_delta_def">30.2</a>).
+     </li>
+     <li class="itemize">In the constant-\(\psi \) regime the classical growth law is \(\gamma \propto \eta ^{3/5}(\Delta ')^{4/5}\).
+     </li>
+     <li class="itemize">The  two-region  current  profile  (<a href="lecture30.html#eq-eq-tear_stepJ">30.18</a>)  is  an  especially  useful  worked  example
+     because \(\Delta '\) can be computed analytically, changes sign, and can host both \(3/2\) and \(2/1\)
+     resonant surfaces.
+     </li>
+     <li class="itemize">The generalized Rutherford equation explains why neoclassical tearing modes are
+     <span 
+class="ecti-1095">subcritical</span>: even a classically stable surface can grow if a seed island is large enough.
+     </li>
+     <li class="itemize">Once an island locks to the wall, the perturbation takes on a more external character
+     and can become a direct disruption precursor.
+     </li>
+     <li class="itemize">The unified \(m=1\) theory organizes the ideal kink, resistive kink, and \(m=1\) tearing mode as
+     limits of one matching problem.
+     </li>
+     <li class="itemize">The same matching logic produces the high-\(k\) FKR and low-\(k\) Coppi branches that
+     underlie the plasmoid instability in Lecture&#x00A0;33.
+     </li>
+     <li class="itemize">In the nonlinear phase, multiple islands can overlap and make the magnetic field
+     stochastic.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-210008"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes généraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mémoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;équilibre et le mouvement intérieur des corps solides
+  ou fluides, élastiques ou non élastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">ét</span><span 
+class="ecti-1095">é Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-220008"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture30.html#eq-eq-tear_outer_general">30.17</a>), rederive the jump condition (<a href="lecture30.html#eq-eq-tear_jump_step">30.28</a>) for the step profile
+                (<a href="lecture30.html#eq-eq-tear_stepJ">30.18</a>).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.2.</span>  </dt><dd 
+class="enumerate-enumitem">For the \(m=2\) example, verify Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_Delta_m2">30.34</a>) explicitly and show that the large-wall limit
+                gives Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_Delta_largewall">30.35</a>).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eqs.&#x00A0;(<a href="lecture30.html#eq-eq-tear_dplus">30.31</a>) and (<a href="lecture30.html#eq-eq-tear_dminus">30.33</a>), derive the general large-wall result (<a href="lecture30.html#eq-eq-tear_Delta_general_largewall">30.40</a>)
+                and the sign criterion (<a href="lecture30.html#eq-eq-tear_sign_general_qc">30.42</a>). Use it to discuss whether the step profile supports
+                tearing-unstable \(3/2\) and \(2/1\) surfaces for a given choice of \(q_c\) and \(q_a\).
+                                                                                         
+                                                                                         
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.4.</span>  </dt><dd 
+class="enumerate-enumitem">Using the schematic generalized Rutherford equation (<a href="lecture30.html#eq-eq-tear_generalized_rutherford">30.69</a>), explain in words
+                why a neoclassical tearing mode is a nonlinear instability even when \(\Delta '&lt;0\). Which terms
+                provide the seed threshold and which terms provide saturation?
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.5.</span>  </dt><dd 
+class="enumerate-enumitem">Repeat the outer calculation for a smooth current profile such as \(J_z=J_0(1-r^2/a^2)\) and compare
+                the sign of \(\Delta '\) with the step-profile result.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.6.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from the tutorial box around Eqs.&#x00A0;(<a href="lecture30.html#eq-eq-tear_matching_exact">30.56</a>)&#8211;(<a href="lecture30.html#eq-eq-tear_FKR_scaling">30.59</a>), show how the exact
+                matching coefficient modifies the pure scaling argument for the FKR law.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 30.7.</span>  </dt><dd 
+class="enumerate-enumitem">Using Eqs.&#x00A0;(<a href="lecture30.html#eq-eq-tear_fkr_harris_bridge">30.87</a>) and (<a href="lecture30.html#eq-eq-tear_coppi_harris_bridge">30.88</a>), show that the fastest tearing mode of a local
+                Harris sheet satisfies Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_plasmoid_crossover_bridge">30.89</a>). Then use the Sweet&#8211;Parker relation \(a/L\sim S^{-1/2}\) to recover
+                \(k_{\max }L\sim S^{3/8}\) and \(\gamma _{\max }\tau _{A,L}\sim S^{1/4}\), as in Lecture&#x00A0;33.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 37 Kinetic examples for \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture36.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture38.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;37</span><br /><a 
+ id="x1-9300037"></a>Kinetic examples for \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\)</h2>
+<!--l. 10--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 10--><p class="noindent" >This appendix gives four explicit kinetic realizations of the functions \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\) used in the
+     anisotropic-equilibrium lectures. The point is not that these are the only useful closures.
+     The point is that they make the <span 
+class="ecti-1095">local magnetic-field dependence </span>completely concrete.
+     Once a guiding-center distribution is written in terms of the invariants \((\psi ,E,\mu )\), the dependence
+     of the moments on the local field strength \(B\) can be computed directly.
+     </p><!--l. 17--><p class="noindent" >The four examples are:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">a fixed-pitch &#8220;sloshing-ion&#8221; distribution, appropriate to an idealized NBI population;
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">a  regularized  fixed-pitch/slowing-down  model  built  from  a  finite  midplane  pitch
+   spread;
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">the logarithmic mirror distribution obtained from the Lorentz pitch-angle-scattering
+   operator;
+   </dd><dt class="enumerate-enumitem">
+ 4. </dt><dd 
+class="enumerate-enumitem">the isotropic Maxwellian limit, for which the pressure is independent of \(B\).</dd></dl>
+     </blockquote></div></div>
+<!--l. 27--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 27--><p class="noindent" >These  examples  sit  at  the  meeting  point  of  two  classic  lines  of  thought.  One  is
+     mirror-machine  kinetics,  where  trapping,  turning  points,  and  pitch-angle  scattering
+     naturally  produce  anisotropic  pressures.  The  other  is  anisotropic  MHD  equilibrium
+     theory, where one wants to know not merely that \(p_\perp \neq p_\parallel \), but how those quantities vary along
+     a field line. The cleanest bridge between the two is to compute the velocity moments of
+     simple distributions written in the adiabatic invariants \((E,\mu )\).</p></blockquote></div></div>
+<!--l. 36--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 36--><p class="noindent" >This appendix is about <span 
+class="ecti-1095">kinetic realizations of equilibrium moments</span>, not about a full
+     transport  or  Fokker&#8211;Planck  solve.  The  formulas  below  are  therefore  best  read  as
+     analytically transparent models that show how a chosen pitch-angle structure maps into
+     \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\).</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<!--l. 42--><p class="noindent" >Throughout this appendix, \(T\) is measured in energy units, so that a Maxwellian factor is written as
+\(\exp (-E/T)\). We also assume that the distribution is even in \(v_\parallel \), unless explicitly stated otherwise. This
+means that both signs of the parallel velocity are included in the kinetic moments. Relative
+to some one-sided slide conventions, this changes only overall numerical prefactors, not the
+\(B\)-dependence.
+</p>
+<!--l. 48--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-9400037"></a>Strategy.</span>
+Every example follows the same pattern:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">write the distribution in the invariants \((\psi ,E,\mu )\) or \((v,\xi )\);
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">evaluate the density and pressure moments;
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">read off the resulting functions \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\).</dd></dl>
+<!--l. 55--><p class="noindent" >The basic kinematics are common to all four examples, so we begin there.
+<a 
+ id="x1-94004r89"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">37.1   </span> <a 
+ id="x1-950001"></a>General moment formulas in \((E,\mu )\) coordinates</h3>
+<!--l. 61--><p class="noindent" >Define <a id="eq-eq-app-defs_Emu_xi"></a><div class="math-display">\[E \equiv \frac {m}{2}\left (v_\parallel ^2+v_\perp ^2\right ), \qquad \mu \equiv \frac {m v_\perp ^2}{2B}, \qquad \xi \equiv \frac {v_\parallel }{v}. \tag{C.1}\]</div>
+Then <a id="eq-eq-app-vpar_vperp_Emu"></a><div class="math-display">\[v_\perp ^2 = \frac {2\mu B}{m}, \qquad |v_\parallel | = \sqrt {\frac {2}{m}\bigl (E-\mu B\bigr )}. \tag{C.2}\]</div>
+The inequality \(E-\mu B\ge 0\) is the local accessibility condition: at a point where the field strength is \(B\), only particles
+with enough parallel energy can be present.
+</p><!--l. 81--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 81--><p class="noindent" ><span 
+class="ecbx-1095">Why the local field strength enters the moments. </span>If the distribution is written as \(f=f(\psi ,E,\mu )\), then
+     it has no explicit dependence on the <span 
+class="ecti-1095">local </span>magnetic field other than through the kinematic
+     relation \(v_\parallel ^2 = 2(E-\mu B)/m\). This dependence appears in two places only:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">in the Jacobian for the transformation from velocity space to \((E,\mu )\), and
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">in the upper integration limit \(\mu \le E/B\), which enforces \(E-\mu B\ge 0\).</dd></dl>
+     <!--l. 89--><p class="noindent" >This is the entire origin of the \(B\)-dependence of \(n\), \(p_\perp \), and \(p_\parallel \) in the kinetic examples
+     below.</p></blockquote></div></div>
+<!--l. 93--><p class="noindent" >Starting from \[ d^3v = 2\pi v_\perp \,dv_\perp \,dv_\parallel , \] and using the fact that the distribution is even in \(v_\parallel \), we may integrate over \(|v_\parallel |\ge 0\) and include both
+signs at once: \[ d^3v = 4\pi v_\perp \,dv_\perp \,d|v_\parallel |. \] Now treat \((v_\perp ,|v_\parallel |)\) as functions of \((\mu ,E)\). From \[ E = \frac {m}{2}\left (v_\parallel ^2+v_\perp ^2\right ), \qquad \mu = \frac {m v_\perp ^2}{2B}, \] one finds \[ \frac {\partial (E,\mu )}{\partial (v_\perp ,|v_\parallel |)} = \begin {vmatrix} m v_\perp &amp; m |v_\parallel | \\ \dfrac {m v_\perp }{B} &amp; 0 \end {vmatrix} = -\frac {m^2 v_\perp |v_\parallel |}{B}. \] Therefore <div class="math-display">\[dv_\perp \,d|v_\parallel | = \frac {B}{m^2 v_\perp |v_\parallel |}\,dE\,d\mu ,\]</div>
+and hence <a id="eq-eq-app-jacobian_Emu"></a><div class="math-display">\[d^3v = \frac {4\pi B}{m^2 |v_\parallel |}\,dE\,d\mu = \frac {2\sqrt {2}\pi B}{m^{3/2}} \frac {dE\,d\mu }{\sqrt {E-\mu B}}. \tag{C.4}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 135--><p class="noindent" >With the standard gyrotropic definitions <a id="eq-eq-app-standard_moments"></a><div class="math-display">\[n = \int f\,d^3v, \qquad p_\parallel = m\int v_\parallel ^2 f\,d^3v, \qquad p_\perp = \frac {m}{2}\int v_\perp ^2 f\,d^3v, \tag{C.5}\]</div>
+Eqs.&#x00A0;(C.2)&#8211;(C.4) give <a id="eq-eq-app-n_Emu_general"></a><div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \frac {2\sqrt {2}\pi B}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \frac {f(\psi ,E,\mu )}{\sqrt {E-\mu B}}\,d\mu ,  \\[0.5em] p_\perp (\psi ,B) &amp;= \frac {2\sqrt {2}\pi B^2}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \frac {\mu \,f(\psi ,E,\mu )}{\sqrt {E-\mu B}}\,d\mu ,  \\[0.5em] p_\parallel (\psi ,B) &amp;= \frac {4\sqrt {2}\pi B}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \sqrt {E-\mu B}\,f(\psi ,E,\mu )\,d\mu .\end{aligned} \tag{C.6}\]</div>
+</p><!--l. 170--><p class="noindent" >The upper limit \(\mu =E/B\) is simply the statement that the local parallel energy \(E-\mu B\) must be non-negative.
+</p>
+<!--l. 173--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-960001"></a>A useful identity.</span>
+If the distribution is written in adiabatic variables as \(f=f(\psi ,E,\mu )\), with no explicit dependence on the <span 
+class="ecti-1095">local </span>field
+strength beyond the kinematic limit \(\mu \le E/B\), then the equilibrium identity derived in the main lecture
+follows directly from the moments above. Differentiate Eq.&#x00A0;(C.8) with respect to \(B\) at fixed \(\psi \): <div class="math-display">\[\begin{aligned}\frac {\partial p_\parallel }{\partial B} &amp;= \frac {p_\parallel }{B} + \frac {4\sqrt {2}\pi B}{m^{3/2}} \int _0^\infty dE\, \frac {\partial }{\partial B} \int _0^{E/B} \sqrt {E-\mu B}\,f\,d\mu .\end{aligned}\]</div>
+</p><!--l. 188--><p class="noindent" >Using Leibniz&#8217; rule, <div class="math-display">\[\begin{aligned}\frac {\partial }{\partial B} \int _0^{E/B} \sqrt {E-\mu B}\,f\,d\mu &amp;= \int _0^{E/B} \frac {\partial }{\partial B}\Bigl (\sqrt {E-\mu B}\Bigr )f\,d\mu + \left .\frac {d(E/B)}{dB}\sqrt {E-\mu B}\,f\right |_{\mu =E/B}.\end{aligned}\]</div>
+</p><!--l. 199--><p class="noindent" >The boundary term vanishes because \(\sqrt {E-\mu B}=0\) at \(\mu =E/B\). Therefore <div class="math-display">\[\begin{aligned}\frac {\partial p_\parallel }{\partial B} &amp;= \frac {p_\parallel }{B} - \frac {2\sqrt {2}\pi B}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \frac {\mu f}{\sqrt {E-\mu B}}\,d\mu \\ &amp;= \frac {p_\parallel -p_\perp }{B}.\end{aligned}\]</div>
+</p><!--l. 213--><p class="noindent" >Hence <a id="eq-eq-app-kinetic_CGL_constraint"></a><div class="math-display">\[\boxed { p_\perp = p_\parallel - B\left .\frac {\partial p_\parallel }{\partial B}\right |_{\psi }. } \tag{C.13}\]</div>
+This is exactly the \(p_\perp (\psi ,B)\)&#8211;\(p_\parallel (\psi ,B)\) relation needed in the equilibrium lecture. The point is worth emphasizing: it is
+not merely a fluid closure assumption. It follows directly from any distribution of the form
+\(f(\psi ,E,\mu )\).
+<a 
+ id="x1-96001r98"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">37.2   </span> <a 
+ id="x1-970002"></a>Fixed-pitch sloshing ions</h3>
+<!--l. 231--><p class="noindent" >A simple model for an idealized sloshing-ion population is that the pitch angle at the midplane remains
+fixed while the ions slow down. Let \(B_0(\psi )\) be the midplane field on a flux surface and let \(B_T(\psi )\) be the turning-point
+field associated with the injected pitch angle. Then <a id="eq-eq-app-fixedpitch_relation"></a><div class="math-display">\[\sin ^2\theta _0 = \frac {B_0}{B_T}, \qquad \frac {\mu }{E} = \frac {1}{B_T}. \tag{C.14}\]</div>
+A convenient invariant form for the distribution is <a id="eq-eq-app-fixedpitch_dist"></a><div class="math-display">\[f_{\rm sl}(\psi ,E,\mu ) = C_{\rm sl}(\psi )\,g(E) \,\delta \!\left (\mu -\frac {E}{B_T}\right ). \tag{C.15}\]</div>
+The original Bilikman&#8211;Mirnov sloshing-ion model corresponds to a slowing-down envelope \(g(E)\propto E^{-3/2}\) between
+injection and cutoff energies; however, the \(B\)-dependence derived below does <span 
+class="ecti-1095">not </span>depend on the detailed
+choice of \(g(E)\).
+</p><!--l. 249--><p class="noindent" >Substitute Eq.&#x00A0;(C.15) into Eq.&#x00A0;(C.6): <div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \frac {2\sqrt {2}\pi C_{\rm sl} B}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \frac {g(E)\,\delta \!\left (\mu -E/B_T\right )}{\sqrt {E-\mu B}}\,d\mu .\end{aligned}\]</div>
+</p><!--l. 258--><p class="noindent" >For \(B&lt;B_T\), the delta function lies inside the integration range, so <a id="eq-eq-app-n_fixedpitch_raw"></a><div class="math-display">\[n(\psi ,B) = \frac {2\sqrt {2}\pi C_{\rm sl} B}{m^{3/2}} \frac {1}{\sqrt {1-B/B_T}} \int _0^\infty \frac {g(E)}{\sqrt {E}}\,dE. \tag{C.17}\]</div>
+Likewise, <a id="eq-eq-app-pperp_fixedpitch_raw"></a><div class="math-display">\[\begin{aligned}p_\perp (\psi ,B) &amp;= \frac {2\sqrt {2}\pi C_{\rm sl} B^2}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \frac {\mu \,g(E)\,\delta \!\left (\mu -E/B_T\right )}{\sqrt {E-\mu B}}\,d\mu \\ &amp;= \frac {2\sqrt {2}\pi C_{\rm sl} B^2}{m^{3/2} B_T} \frac {1}{\sqrt {1-B/B_T}} \int _0^\infty \sqrt {E}\,g(E)\,dE,  \\[0.5em] p_\parallel (\psi ,B) &amp;= \frac {4\sqrt {2}\pi C_{\rm sl} B}{m^{3/2}} \int _0^\infty dE \int _0^{E/B} \sqrt {E-\mu B}\,g(E)\,\delta \!\left (\mu -E/B_T\right )d\mu \\ &amp;= \frac {4\sqrt {2}\pi C_{\rm sl} B}{m^{3/2}} \sqrt {1-B/B_T} \int _0^\infty \sqrt {E}\,g(E)\,dE.\end{aligned} \tag{C.19}\]</div>
+</p><!--l. 296--><p class="noindent" >It is often cleaner to normalize these profiles to their midplane values, defined at \(B=B_0\): <a id="eq-eq-app-n_fixedpitch_norm"></a><div class="math-display">\[\begin{aligned}\frac {n(\psi ,B)}{n_0(\psi )} &amp;= \frac {B}{B_0} \sqrt {\frac {1-B_0/B_T}{1-B/B_T}},  \\[0.5em] \frac {p_\perp (\psi ,B)}{p_{\perp 0}(\psi )} &amp;= \frac {B^2}{B_0^2} \sqrt {\frac {1-B_0/B_T}{1-B/B_T}},  \\[0.5em] \frac {p_\parallel (\psi ,B)}{p_{\parallel 0}(\psi )} &amp;= \frac {B}{B_0} \sqrt {\frac {1-B/B_T}{1-B_0/B_T}}.\end{aligned} \tag{C.22}\]</div>
+</p><!--l. 316--><p class="noindent" >These are the fixed-pitch sloshing-ion profiles in the form most convenient for equilibrium
+work.
+</p><!--l. 319--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 319--><p class="noindent" ><span 
+class="ecbx-1095">Turning-point singularity. </span>As \(B\to B_T\), <a id="eq-eq-app-fixedpitch_singularity"></a><div class="math-display">\[n,\ p_\perp \propto \frac {1}{\sqrt {1-B/B_T}}, \qquad p_\parallel \propto \sqrt {1-B/B_T}. \tag{C.25}\]</div>
+                                                                                         
+                                                                                         
+     So the strict delta-function pitch-angle model produces the familiar turning-point singularity in
+     \(n\) and \(p_\perp \). A small but finite angular spread regularizes this divergence. The fixed-pitch model is
+     therefore best regarded as an analytically useful limiting case. Section&#x00A0;C.3 shows how the
+     singularity is removed by replacing the delta-function pitch distribution by a finite-width
+     midplane kernel.</p></blockquote></div></div>
+<!--l. 332--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-980002"></a>If the energy envelope is Maxwellian.</span>
+For <a id="eq-eq-app-maxwellian_gE"></a><div class="math-display">\[g(E)=g_0 e^{-E/T}, \tag{C.26}\]</div>
+one may evaluate the energy integrals explicitly: <a id="eq-eq-app-maxwellian_energy_integrals"></a><div class="math-display">\[\int _0^\infty E^{-1/2}e^{-E/T}\,dE = \sqrt {\pi T}, \qquad \int _0^\infty E^{1/2}e^{-E/T}\,dE = \frac {\sqrt {\pi }}{2}T^{3/2}. \tag{C.27}\]</div>
+Hence Eqs.&#x00A0;(C.17)&#8211;(C.21) reduce to the same \(B\)-dependences as above, now with explicit amplitudes
+proportional to \(\sqrt {T}\) and \(T^{3/2}\).
+<a 
+ id="x1-98001r100"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">37.3   </span> <a 
+ id="x1-990003"></a>A regularized fixed-pitch model from the fast-ion Fokker&#8211;Planck equation</h3>
+<!--l. 354--><p class="noindent" >The strict fixed-pitch model of the previous section is the singular limit of a more realistic construction in
+which the midplane pitch variable has a small but finite width. For neutral-beam ions this width should
+increase as the ions slow down and scatter. A convenient way to organize the calculation is to start from
+the fast-ion Fokker&#8211;Planck equation, then rewrite the resulting midplane distribution in terms of the
+invariant pitch variable <a id="eq-eq-app-lambda_xi0_defs"></a><div class="math-display">\[\lambda \equiv \frac {\mu B_0}{E} = \sin ^2\theta _0 = 1-\xi _0^2, \qquad \xi _0 \equiv \frac {v_{\parallel ,0}}{v_0}, \qquad B_0 \equiv B_{\rm midplane}(\psi ). \tag{C.28}\]</div>
+Here \(\xi _0\) is the injected midplane pitch cosine and \(\lambda \) labels the turning-point field through <a id="eq-eq-app-BT_lambda_relation"></a><div class="math-display">\[B_T = \frac {B_0}{\lambda }, \qquad \lambda _0 = \frac {B_0}{B_T} = 1-\xi _0^2. \tag{C.29}\]</div>
+Thus the delta-function fixed-pitch model is simply the limit in which all particles sit at one value
+\(\lambda =\lambda _0\).
+</p>
+<!--l. 378--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1000003"></a>Fast-ion Fokker&#8211;Planck equation.</span>
+Following Callen&#8217;s treatment of a fast beam injected into a Maxwellian background, and neglecting the
+small initial speed-diffusion layer, the fast-ion distribution \(f_f(v,\zeta ,t)\) obeys <a id="eq-eq-app-callen_fp_equation"></a><div class="math-display">\[\tau _s\,\partial _t f_f = \frac {m_i v_c^3}{2m_f v^3} \frac {\partial }{\partial \zeta } \left [(1-\zeta ^2)\frac {\partial f_f}{\partial \zeta }\right ] + \frac {1}{v^2}\frac {\partial }{\partial v}\left [(v^3+v_c^3)f_f\right ] + \frac {\dot n_f\tau _s}{2\pi v_0^2} \delta (v-v_0)\,\delta (\zeta -\zeta _0)\,H(t). \tag{C.30}\]</div>
+Here \(m_f\) is the fast-ion mass, \(m_i\) is the background ion mass, \(\tau _s\) is the electron-drag slowing-down time, \(v_c\) is the
+critical speed, \(\dot n_f\) is the source rate, and \(\zeta \equiv v_\parallel /v\). The source is a delta-function beam injected at speed \(v_0\) and pitch
+cosine \(\zeta _0\), which we identify with the midplane injection angle, <a id="eq-eq-app-zeta0_xi0"></a><div class="math-display">\[\zeta _0 = \xi _0. \tag{C.31}\]</div>
+The first term on the right-hand side of Eq.&#x00A0;(C.30) is pitch-angle scattering, while the second term is the
+slowing-down drift in speed.
+</p>
+<!--l. 405--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010003"></a>Callen&#8217;s series solution.</span>
+Expanding in Legendre polynomials gives the explicit solution <a id="eq-eq-app-callen_series_solution"></a><div class="math-display">\[\boxed { f_f(v,\zeta ,t) = \frac {\dot n_f\tau _s}{2\pi \,(v^3+v_c^3)} \sum _{l=0}^{\infty } \left (l+\frac 12\right ) P_l(\zeta )P_l(\zeta _0) W_l(v) H\!\left [t-\tau (v)\right ]H(v_0-v), } \tag{C.32}\]</div>
+with <a id="eq-eq-app-callen_weight_and_tau"></a><div class="math-display">\[W_l(v) = \left [ \frac {v^3}{v_0^3} \frac {v_0^3+v_c^3}{v^3+v_c^3} \right ]^{\frac {m_i}{6m_f}l(l+1)}, \qquad \tau (v) = \frac {\tau _s}{3} \ln \!\left (\frac {v_0^3+v_c^3}{v^3+v_c^3}\right ). \tag{C.33}\]</div>
+For \(v\gg v_c\), the angular distribution remains narrowly concentrated around the injected pitch. As the ions slow
+through \(v\sim v_c\), the factors \(W_l(v)\) strongly damp the higher Legendre modes, producing the desired pitch
+broadening.
+</p>
+<!--l. 439--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1020003"></a>Even part relevant for pressure moments.</span>
+The density and pressure moments depend only on the part of the distribution that is even in \(v_\parallel \), so it is
+convenient to define <a id="eq-eq-app-callen_even_part_def"></a><div class="math-display">\[f_f^{(+)}(v,\zeta ,t) \equiv \frac 12\left [f_f(v,\zeta ,t)+f_f(v,-\zeta ,t)\right ]. \tag{C.34}\]</div>
+                                                                                         
+                                                                                         
+Using \(P_l(-\zeta )=(-1)^lP_l(\zeta )\), only even Legendre harmonics survive: <a id="eq-eq-app-callen_even_part_series"></a><div class="math-display">\[f_f^{(+)}(v,\zeta ,t) = \frac {\dot n_f\tau _s}{2\pi \,(v^3+v_c^3)} \sum _{j=0}^{\infty } \frac {4j+1}{2} P_{2j}(\zeta )P_{2j}(\xi _0) W_{2j}(v) H\!\left [t-\tau (v)\right ]H(v_0-v). \tag{C.35}\]</div>
+</p>
+<!--l. 461--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1030003"></a>Midplane pitch density in \(\lambda \).</span>
+For equilibrium work it is natural to convert from \(\mu \) to the midplane pitch variable \(\lambda =\mu B_0/E\). Define the midplane
+pitch density \(F_0\) by <a id="eq-eq-app-F0_definition"></a><div class="math-display">\[F_0(\psi ,E,\lambda ,t)\,d\lambda \equiv f(\psi ,E,\mu ,t)\,d\mu , \qquad \mu = \frac {E\lambda }{B_0}, \tag{C.36}\]</div>
+so that <a id="eq-eq-app-F0_from_f"></a><div class="math-display">\[F_0(\psi ,E,\lambda ,t) = \frac {E}{B_0} f\!\left (\psi ,E,\mu =\frac {E\lambda }{B_0},t\right ). \tag{C.37}\]</div>
+At the midplane, \(\lambda =1-\zeta ^2\), and therefore the Callen solution induces <a id="eq-eq-app-F0_Callen_def"></a><div class="math-display">\[\boxed { F_0^{\rm Callen}(\psi ,E,\lambda ,t) = \frac {E}{B_0} f_f^{(+)}\!\left (v(E),\sqrt {1-\lambda },t\right ), \qquad v(E)=\sqrt {\frac {2E}{m_f}}. } \tag{C.38}\]</div>
+Substituting Eq.&#x00A0;(C.35) gives <a id="eq-eq-app-F0_Callen_series"></a><div class="math-display">\[\begin{aligned}F_0^{\rm Callen}(\psi ,E,\lambda ,t) &amp;= \frac {E}{B_0} \frac {\dot n_f\tau _s}{2\pi \,[v(E)^3+v_c^3]} \sum _{j=0}^{\infty } \frac {4j+1}{2} P_{2j}(\sqrt {1-\lambda })P_{2j}(\xi _0) W_{2j}(E) \notag \\ &amp;\qquad \times H\!\left [t-\tau (E)\right ]H(E_0-E),\end{aligned} \tag{C.39}\]</div>
+</p><!--l. 508--><p class="noindent" >where <a id="eq-eq-app-E0_Ec_defs"></a><div class="math-display">\[E_0 \equiv \frac 12 m_f v_0^2, \qquad E_c \equiv \frac 12 m_f v_c^2, \tag{C.40}\]</div>
+<a id="eq-eq-app-callen_weight_E_form"></a><div class="math-display">\[W_l(E) = \left [ \left (\frac {E}{E_0}\right )^{3/2} \frac {E_0^{3/2}+E_c^{3/2}}{E^{3/2}+E_c^{3/2}} \right ]^{\frac {m_i}{6m_f}l(l+1)}, \qquad \tau (E) = \frac {\tau _s}{3} \ln \!\left (\frac {E_0^{3/2}+E_c^{3/2}}{E^{3/2}+E_c^{3/2}}\right ). \tag{C.41}\]</div>
+At late times after the beam has populated the accessible slowing-down interval, one may simply set \(H[t-\tau (E)]\to 1\) for
+the occupied energies.
+</p>
+<!--l. 532--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040003"></a>Moment formulas in \((E,\lambda )\) form.</span>
+Now let <a id="eq-eq-app-b_ratio_def"></a><div class="math-display">\[b \equiv \frac {B}{B_0}. \tag{C.42}\]</div>
+Since <a id="eq-eq-app-lambda_change_of_variables"></a><div class="math-display">\[E-\mu B = E(1-b\lambda ), \qquad \mu = \frac {E\lambda }{B_0}, \qquad d\mu = \frac {E}{B_0}\,d\lambda , \tag{C.43}\]</div>
+Eqs.&#x00A0;(C.6)&#8211;(C.8) become <a id="eq-eq-app-n_lambda_general"></a><div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \frac {2\sqrt {2}\pi B_0 b}{m_f^{3/2}} \int _0^\infty \frac {dE}{\sqrt {E}} \int _0^{1/b} \frac {F_0(\psi ,E,\lambda )}{\sqrt {1-b\lambda }}\,d\lambda ,  \\ p_\perp (\psi ,B) &amp;= \frac {2\sqrt {2}\pi B_0 b^2}{m_f^{3/2}} \int _0^\infty \sqrt {E}\,dE \int _0^{1/b} \frac {\lambda \,F_0(\psi ,E,\lambda )}{\sqrt {1-b\lambda }}\,d\lambda ,  \\ p_\parallel (\psi ,B) &amp;= \frac {4\sqrt {2}\pi B_0 b}{m_f^{3/2}} \int _0^\infty \sqrt {E}\,dE \int _0^{1/b} \sqrt {1-b\lambda }\,F_0(\psi ,E,\lambda )\,d\lambda .\end{aligned} \tag{C.44}\]</div>
+</p><!--l. 573--><p class="noindent" >The upper limit \(\lambda \le 1/b\) is just the local accessibility condition. If only mirror-trapped particles are desired on a
+field line with maximum field \(B_{\max }\), one may further restrict the support to \(\lambda \ge B_0/B_{\max }\).
+</p>
+<!--l. 577--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1050003"></a>Delta-function fixed-pitch limit in midplane variables.</span>
+The strict fixed-pitch model is recovered by taking <a id="eq-eq-app-F0_delta_limit"></a><div class="math-display">\[F_0^{(\delta )}(\psi ,E,\lambda ) = C_{\rm sl}(\psi )\,g(E)\,\delta (\lambda -\lambda _0), \qquad \lambda _0 = 1-\xi _0^2 = \frac {B_0}{B_T}. \tag{C.47}\]</div>
+Substitution into Eqs.&#x00A0;(C.44)&#8211;(C.46) gives <a id="eq-eq-app-n_delta_lambda_norm"></a><div class="math-display">\[\begin{aligned}\frac {n(\psi ,B)}{n_0(\psi )} &amp;= b\sqrt {\frac {1-\lambda _0}{1-b\lambda _0}},  \\[0.5em] \frac {p_\perp (\psi ,B)}{p_{\perp 0}(\psi )} &amp;= b^2\sqrt {\frac {1-\lambda _0}{1-b\lambda _0}} = b^2\frac {|\xi _0|}{\sqrt {1-b(1-\xi _0^2)}},  \\[0.5em] \frac {p_\parallel (\psi ,B)}{p_{\parallel 0}(\psi )} &amp;= b\sqrt {\frac {1-b\lambda _0}{1-\lambda _0}} = b\frac {\sqrt {1-b(1-\xi _0^2)}}{|\xi _0|}.\end{aligned} \tag{C.48}\]</div>
+</p><!--l. 608--><p class="noindent" >These are the previous fixed-pitch profiles rewritten directly in terms of the injection angle. The singularity
+occurs at the turning field \(b=1/\lambda _0\).
+</p>
+<!--l. 611--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1060003"></a>Generic finite-width regularization.</span>
+A mathematically clean regularization is obtained by replacing the delta function by a normalized kernel,
+<a id="eq-eq-app-generic_kernel_regularization"></a><div class="math-display">\[F_0(\psi ,E,\lambda ) = C_{\rm sl}(\psi )\,g(E) K\!\left (\lambda ;\lambda _0,\sigma _\lambda (E)\right ), \qquad \int _0^1 K\!\left (\lambda ;\lambda _0,\sigma _\lambda \right )d\lambda =1. \tag{C.51}\]</div>
+Then <a id="eq-eq-app-pperp_kernel_general"></a><div class="math-display">\[\begin{aligned}p_\perp (\psi ,B) &amp;= \frac {2\sqrt {2}\pi B_0 b^2 C_{\rm sl}}{m_f^{3/2}} \int _0^\infty \sqrt {E}\,g(E) \left [ \int _0^{1/b} \frac {\lambda \,K(\lambda ;\lambda _0,\sigma _\lambda (E))}{\sqrt {1-b\lambda }}\,d\lambda \right ]dE,  \\ p_\parallel (\psi ,B) &amp;= \frac {4\sqrt {2}\pi B_0 b C_{\rm sl}}{m_f^{3/2}} \int _0^\infty \sqrt {E}\,g(E) \left [ \int _0^{1/b} \sqrt {1-b\lambda } K(\lambda ;\lambda _0,\sigma _\lambda (E))\,d\lambda \right ]dE.\end{aligned} \tag{C.52}\]</div>
+</p><!--l. 645--><p class="noindent" >Because the endpoint singularity \(\int ^{1/b}d\lambda /\sqrt {1-b\lambda }\) is integrable, any finite-width kernel removes the fixed-pitch
+divergence.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1060011"></a>
+                                                                                         
+                                                                                         
+<!--l. 651--><p class="noindent" ><img 
+src="figures/callen_te_scan_distribution.png" alt="PIC"  
+width="469" height="137"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;37.1: </span><span  
+class="content">Velocity-space contours of the series expansion of the fast-ion distribution \(f(v_\perp ,v_\parallel )\) at the
+midplane field \(B/B_0=1\) for \(T_e=50\), \(100\), and \(500~\mathrm {eV}\), for \(25\,\mathrm {keV}\) injection at \(45^\circ \). As \(T_e\) increases, the critical speed \(v_c\) increases and the
+distribution broadens in pitch, reducing the strong low-\(T_e\) concentration near small \(v_\parallel \). </span></div><!--tex4ht:label?: x1-1060011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 657--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1070003"></a>A positive kernel approximation extracted from Callen&#8217;s solution.</span>
+The exact series solution in Eq.&#x00A0;(C.39) need not be evaluated term by term if one only wants a narrow
+positive kernel with the correct first few pitch moments. At fixed energy, <a id="eq-eq-app-Callen_P2P4_moments"></a><div class="math-display">\[\langle P_2(\zeta )\rangle _E = P_2(\xi _0)W_2(E), \qquad \langle P_4(\zeta )\rangle _E = P_4(\xi _0)W_4(E). \tag{C.54}\]</div>
+Using <a id="eq-eq-app-P2P4_defs"></a><div class="math-display">\[P_2(\zeta )=\frac 12(3\zeta ^2-1), \qquad P_4(\zeta )=\frac 18(35\zeta ^4-30\zeta ^2+3), \tag{C.55}\]</div>
+one obtains <a id="eq-eq-app-zeta2_from_W2"></a><div class="math-display">\[\langle \zeta ^2\rangle _E = \frac {1+2P_2(\xi _0)W_2(E)}{3}, \tag{C.56}\]</div>
+<a id="eq-eq-app-zeta4_from_W2W4"></a><div class="math-display">\[\langle \zeta ^4\rangle _E = \frac {7+20P_2(\xi _0)W_2(E)+8P_4(\xi _0)W_4(E)}{35}. \tag{C.57}\]</div>
+Therefore an energy-dependent Gaussian kernel in \(\lambda =1-\zeta ^2\) may be built from <a id="eq-eq-app-lambda_mean_variance_from_Callen"></a><div class="math-display">\[\bar \lambda (E) = 1-\langle \zeta ^2\rangle _E, \qquad \sigma _\lambda ^2(E) = \langle \zeta ^4\rangle _E-\langle \zeta ^2\rangle _E^2, \tag{C.58}\]</div>
+and <a id="eq-eq-app-truncated_gaussian_kernel"></a><div class="math-display">\[K_G(\lambda ;E) = \frac {\exp \!\left [-(\lambda -\bar \lambda (E))^2/2\sigma _\lambda ^2(E)\right ]} {\int _0^1 \exp \!\left [-(\lambda -\bar \lambda (E))^2/2\sigma _\lambda ^2(E)\right ]d\lambda }, \qquad 0\le \lambda \le 1. \tag{C.59}\]</div>
+This replaces the singular delta-function pitch model by a positive, energy-dependent kernel whose width
+automatically increases as the beam slows toward \(v_c\).
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1070012"></a>
+                                                                                         
+                                                                                         
+<!--l. 708--><p class="noindent" ><img 
+src="figures/callen_te_scan_moments.png" alt="PIC"  
+width="469" height="147"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;37.2: </span><span  
+class="content">Callen-series moments for \(25\,\mathrm {keV}\) fast ions injected at \(45^\circ \) to the midplane field, shown for \(T_e=50\), \(100\), and
+\(500~\mathrm {eV}\) using an even-Legendre expansion truncated at \(l_{\max }=48\). The dashed curves show the fixed-pitch \(\delta \)-function
+limit for the same injection angle, with \(\lambda _0=1/2\) and turning field \(B_T/B_0=2\). Lower electron temperature produces
+stronger mirror compression, larger \(p_\perp \), and a more rapid reduction of \(p_\parallel \) with increasing \(B/B_0\). </span></div><!--tex4ht:label?: x1-1070012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 715--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1080003"></a>Implementation formulas for \(v_0\), \(v_c\), \(E_c\), and \(\tau _s\).</span>
+For computer implementation, it is convenient to begin from the injected fast-ion energy \(E_{\rm inj}\) and the injected
+pitch angle \(\theta _{\rm inj}\) at the midplane: <a id="eq-eq-app-implementation_input_conversions"></a><div class="math-display">\[E_0 = e\,E_{\rm inj}[\mathrm {eV}], \qquad T_e = e\,T_e[\mathrm {eV}], \qquad \xi _0 = \cos \theta _{\rm inj}, \qquad \lambda _0 = 1-\xi _0^2. \tag{C.60}\]</div>
+Then <a id="eq-eq-app-v0_from_E0"></a><div class="math-display">\[v_0 = \sqrt {\frac {2E_0}{m_f}}. \tag{C.61}\]</div>
+The background-electron thermal speed is <a id="eq-eq-app-vthe_def"></a><div class="math-display">\[v_{the} = \sqrt {\frac {2T_e}{m_e}}, \tag{C.62}\]</div>
+and the critical speed is <a id="eq-eq-app-vc_formula"></a><div class="math-display">\[v_c = \left [\frac {3\sqrt {\pi }}{4}\frac {m_e}{m_i}\right ]^{1/3}v_{the}. \tag{C.63}\]</div>
+Equivalently, <a id="eq-eq-app-Ec_formula"></a><div class="math-display">\[E_c = \frac 12 m_f v_c^2 = \left [\frac {3\sqrt {\pi }}{4}\sqrt {\frac {m_f}{m_e}}\frac {m_f}{m_i}\right ]^{2/3}T_e. \tag{C.64}\]</div>
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1080013"></a>
+                                                                                         
+                                                                                         
+<!--l. 755--><p class="noindent" ><img 
+src="figures/callen_mirror_condition.png" alt="PIC"  
+width="234" height="151"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;37.3: </span><span  
+class="content">Mirror-condition scan for the Callen-series fast-ion closure with \(E_{\rm inj}=25~\mathrm {keV}\), \(\theta _{\rm inj}=45^\circ \), \(T_e=100~\mathrm {eV}\), and even-Legendre
+truncation at \(l_{\max }=48\). The curves show the normalized total perpendicular pressure, as the midplane
+perpendicular beta is increased. The highlighted marginal curve corresponds to the first loss of
+positive compressive response, giving \(\beta _{\perp 0,\mathrm {crit}}\approx 0.378\) at \(B/B_0\approx 2.10\).</span></div><!--tex4ht:label?: x1-1080013 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 761--><p class="noindent" >In SI units the slowing-down time is <a id="eq-eq-app-taus_formula_SI"></a><div class="math-display">\[\tau _s = \frac {m_f}{m_e} \frac {3(4\pi \epsilon _0)^2\sqrt {m_e}\,T_e^{3/2}} {4\sqrt {2\pi }\,n_e Z_f^2 e^4\ln \Lambda }. \tag{C.65}\]</div>
+Thus \(\tau _s\) requires, in addition to \(T_e\), the electron density \(n_e\), the fast-ion charge state \(Z_f\), and the Coulomb logarithm
+\(\ln \Lambda \). The slowing-down law may be written either as <a id="eq-eq-app-dvdt_slowdown"></a><div class="math-display">\[\frac {dv}{dt} = -\frac {v}{\tau _s} \left [1+\left (\frac {v_c}{v}\right )^3\right ], \tag{C.66}\]</div>
+or, in energy form, <a id="eq-eq-app-dEdt_slowdown"></a><div class="math-display">\[\frac {dE}{dt} = -\frac {2E}{\tau _s} \left [1+\left (\frac {E_c}{E}\right )^{3/2}\right ]. \tag{C.67}\]</div>
+Its integrated solution is <a id="eq-eq-app-integrated_slowdown_law"></a><div class="math-display">\[t = \frac {\tau _s}{3} \ln \!\left (\frac {v_0^3+v_c^3}{v^3+v_c^3}\right ) = \frac {\tau _s}{3} \ln \!\left (\frac {E_0^{3/2}+E_c^{3/2}}{E^{3/2}+E_c^{3/2}}\right ). \tag{C.68}\]</div>
+These are the formulas needed to build either the full Callen series model, Eq.&#x00A0;(C.39), or its finite-width
+kernel approximation, Eq.&#x00A0;(C.59), and then evaluate \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\) from Eqs.&#x00A0;(C.44)&#8211;(C.46).
+<a 
+ id="x1-108002r102"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">37.4   </span> <a 
+ id="x1-1090004"></a>The mirror distribution from the Lorentz pitch-angle operator</h3>
+<!--l. 810--><p class="noindent" >The logarithmic mirror distribution follows from the simplest collision operator that retains pitch-angle
+scattering, <a id="eq-eq-app-lorentz_operator"></a><div class="math-display">\[C(f)=\nu (E)\,\mathcal {L}f, \qquad \mathcal {L} = \frac {1}{\sin \theta }\frac {\partial }{\partial \theta } \left (\sin \theta \frac {\partial }{\partial \theta }\right ) = \frac {1}{2}\frac {\partial }{\partial \xi } \left [(1-\xi ^2)\frac {\partial }{\partial \xi }\right ], \tag{C.69}\]</div>
+with \(\xi =\cos \theta =v_\parallel /v\).
+</p><!--l. 824--><p class="noindent" >Assume a steady, pitch-angle-independent source at fixed energy, <a id="eq-eq-app-steady_pitch_eqn"></a><div class="math-display">\[0 = C(f)+S(E) = \frac {\nu (E)}{2}\frac {\partial }{\partial \xi } \left [(1-\xi ^2)\frac {\partial f}{\partial \xi }\right ] + S(E). \tag{C.70}\]</div>
+We solve this on the trapped interval \(|\xi |&lt;\xi _T\), where \(\xi _T\) is the local loss-cone boundary. The boundary conditions are
+<a id="eq-eq-app-mirror_BC"></a><div class="math-display">\[f(E,\xi _T)=0, \qquad \left .\frac {\partial f}{\partial \xi }\right |_{\xi =0}=0. \tag{C.71}\]</div>
+The second condition expresses symmetry between \(+v_\parallel \) and \(-v_\parallel \).
+</p><!--l. 841--><p class="noindent" >Integrating Eq.&#x00A0;(C.70) once gives <a id="eq-eq-app-mirror_once_integrated"></a><div class="math-display">\[(1-\xi ^2)\frac {\partial f}{\partial \xi } = -\frac {2S(E)}{\nu (E)}\xi + C_1(E). \tag{C.72}\]</div>
+The symmetry condition at \(\xi =0\) sets \(C_1(E)=0\), so <a id="eq-eq-app-mirror_df_dxi"></a><div class="math-display">\[\frac {\partial f}{\partial \xi } = -\frac {2S(E)}{\nu (E)}\frac {\xi }{1-\xi ^2}. \tag{C.73}\]</div>
+Integrating again, <a id="eq-eq-app-mirror_second_integration"></a><div class="math-display">\[f(E,\xi ) = \frac {S(E)}{\nu (E)}\ln (1-\xi ^2)+C_2(E). \tag{C.74}\]</div>
+Now use the absorbing boundary condition at \(\xi =\xi _T\): <div class="math-display">\[0 = \frac {S(E)}{\nu (E)}\ln (1-\xi _T^2)+C_2(E),\]</div>
+so that <a id="eq-eq-app-mirror_log_solution"></a><div class="math-display">\[\boxed { f_{\rm mir}(E,\xi ) = \frac {S(E)}{\nu (E)} \ln \!\left (\frac {1-\xi ^2}{1-\xi _T^2}\right ), \qquad |\xi |&lt;\xi _T. } \tag{C.76}\]</div>
+This is the logarithmic mirror distribution used on the slides.
+</p>
+<!--l. 876--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1100004"></a>The same solution gives the classical mirror confinement time.</span>
+If the source is uniform in \(\xi \) over \(|\xi |&lt;\xi _c\), then the particle content is proportional to <div class="math-display">\[N \propto 2\int _0^{\xi _c} f\,d\xi = \frac {2S}{\nu }\int _0^{\xi _c} \ln \!\left (\frac {1-\xi ^2}{1-\xi _c^2}\right )d\xi ,\]</div>
+while the source rate is proportional to \(2\xi _c S\). Therefore <a id="eq-eq-app-taup_integral"></a><div class="math-display">\[\tau _p = \frac {1}{\nu \xi _c} \int _0^{\xi _c} \ln \!\left (\frac {1-\xi ^2}{1-\xi _c^2}\right )d\xi . \tag{C.78}\]</div>
+Using <a id="eq-eq-app-int_log1minusxi2"></a><div class="math-display">\[\int \ln (1-\xi ^2)\,d\xi = \xi \ln (1-\xi ^2)-2\xi +\ln \!\left (\frac {1+\xi }{1-\xi }\right ), \tag{C.79}\]</div>
+one finds <a id="eq-eq-app-taup_exact"></a><div class="math-display">\[\boxed { \tau _p = \frac {1}{\nu \,\xi _c} \left [ \ln \!\left (\frac {1+\xi _c}{1-\xi _c}\right )-2\xi _c \right ]. } \tag{C.80}\]</div>
+For a square-well mirror with \(\xi _c^2 = 1-1/R_M\), <div class="math-display">\[\xi _c \simeq 1-\frac {1}{2R_M}, \qquad R_M\gg 1,\]</div>
+and thus <a id="eq-eq-app-taup_largeRM"></a><div class="math-display">\[\tau _p \simeq \frac {1}{\nu }\left (\ln R_M - 0.62\right ). \tag{C.82}\]</div>
+This is the standard classical mirror scaling obtained from the Lorentz pitch-angle-scattering
+operator.
+</p>
+<!--l. 924--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1110004"></a>Rewrite the logarithmic solution in invariant form.</span>
+At a given point along a field line, <a id="eq-eq-app-xi_to_mu"></a><div class="math-display">\[1-\xi ^2 = \frac {\mu B}{E}. \tag{C.83}\]</div>
+For particles that turn where the field reaches \(B_T\), the trapped-particle boundary is <a id="eq-eq-app-xiT_definition"></a><div class="math-display">\[\xi _T^2(B) = 1-\frac {B}{B_T}, \qquad 1-\xi _T^2 = \frac {B}{B_T}. \tag{C.84}\]</div>
+Therefore Eq.&#x00A0;(C.76) can be rewritten as <a id="eq-eq-app-mirror_invariant_form"></a><div class="math-display">\[\ln \!\left (\frac {1-\xi ^2}{1-\xi _T^2}\right ) = \ln \!\left (\frac {\mu B/E}{B/B_T}\right ) = \ln \!\left (\frac {\mu B_T}{E}\right ). \tag{C.85}\]</div>
+That is, the same mirror distribution can be written as <a id="eq-eq-app-mirror_Emu_general"></a><div class="math-display">\[f_{\rm mir}(\psi ,E,\mu ) = A_{\rm mir}(\psi ,E) \ln \!\left (\frac {\mu B_T}{E}\right ), \qquad \frac {E}{B_T}\le \mu \le \frac {E}{B}. \tag{C.86}\]</div>
+For analytic pressure profiles it is convenient to take a Maxwellian energy envelope, <a id="eq-eq-app-mirror_maxwell_envelope"></a><div class="math-display">\[A_{\rm mir}(\psi ,E)=A_M(\psi )e^{-E/T}. \tag{C.87}\]</div>
+This is not meant to replace the full energy-space Fokker&#8211;Planck solution; it is just the cleanest separable
+                                                                                         
+                                                                                         
+model for exposing the \(B\)-dependence.
+</p>
+<!--l. 964--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120004"></a>Now compute the moments.</span>
+At fixed \(B\), define <a id="eq-eq-app-s_and_L_defs"></a><div class="math-display">\[s(B) \equiv \xi _T(B)=\sqrt {1-B/B_T}, \qquad L(s) \equiv \ln \!\left (\frac {1+s}{1-s}\right ). \tag{C.88}\]</div>
+Then Eq.&#x00A0;(C.76) becomes <a id="eq-eq-app-mirror_vxi_maxwell"></a><div class="math-display">\[f_{\rm mir}(v,\xi ;B) = A_M e^{-mv^2/2T} \ln \!\left (\frac {1-\xi ^2}{1-s^2}\right ), \qquad |\xi |&lt;s. \tag{C.89}\]</div>
+The moments may be written as <a id="eq-eq-app-n_mirror_vxi"></a><div class="math-display">\[\begin{aligned}n(B) &amp;= 2\pi A_M \int _0^\infty v^2 e^{-mv^2/2T}\,dv \int _{-s}^{s} \ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi ,  \\[0.5em] p_\parallel (B) &amp;= 2\pi m A_M \int _0^\infty v^4 e^{-mv^2/2T}\,dv \int _{-s}^{s} \xi ^2\ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi ,  \\[0.5em] p_\perp (B) &amp;= \pi m A_M \int _0^\infty v^4 e^{-mv^2/2T}\,dv \int _{-s}^{s} (1-\xi ^2)\ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi .\end{aligned} \tag{C.90}\]</div>
+</p><!--l. 1008--><p class="noindent" >The speed integrals are elementary: <a id="eq-eq-app-mirror_speed_integrals"></a><div class="math-display">\[\int _0^\infty v^2 e^{-mv^2/2T}dv = \frac {\sqrt {\pi }}{4}\left (\frac {2T}{m}\right )^{3/2}, \qquad \int _0^\infty v^4 e^{-mv^2/2T}dv = \frac {3\sqrt {\pi }}{8}\left (\frac {2T}{m}\right )^{5/2}. \tag{C.93}\]</div>
+So the problem reduces to three angular integrals.
+</p>
+<!--l. 1019--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1130004"></a>Density integral.</span>
+Define <a id="eq-eq-app-Ns_def"></a><div class="math-display">\[\mathcal {N}(s) \equiv \int _{-s}^{s} \ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi = 2\int _0^{s}\left [\ln (1-\xi ^2)-\ln (1-s^2)\right ]d\xi . \tag{C.94}\]</div>
+Using Eq.&#x00A0;(C.79), <a id="eq-eq-app-Ns_result"></a><div class="math-display">\[\begin{aligned}\mathcal {N}(s) &amp;= 2\left [ \xi \ln (1-\xi ^2)-2\xi +\ln \!\left (\frac {1+\xi }{1-\xi }\right ) \right ]_0^s -2s\ln (1-s^2) \\ &amp;= 2\ln \!\left (\frac {1+s}{1-s}\right )-4s = 2L-4s.\end{aligned} \tag{C.96}\]</div>
+</p>
+<!--l. 1045--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1140004"></a>Parallel-pressure integral.</span>
+Define <a id="eq-eq-app-Ppars_def"></a><div class="math-display">\[\mathcal {P}_\parallel (s) \equiv \int _{-s}^{s} \xi ^2\ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi . \tag{C.97}\]</div>
+An antiderivative is <a id="eq-eq-app-int_xi2log"></a><div class="math-display">\[\int \xi ^2\ln (1-\xi ^2)\,d\xi = \frac {\xi ^3}{3}\ln (1-\xi ^2) -\frac {2}{9}\xi ^3 -\frac {2}{3}\xi +\frac {1}{3}\ln \!\left (\frac {1+\xi }{1-\xi }\right ). \tag{C.98}\]</div>
+Therefore <a id="eq-eq-app-Ppars_result"></a><div class="math-display">\[\begin{aligned}\mathcal {P}_\parallel (s) &amp;= 2\left [ \frac {\xi ^3}{3}\ln (1-\xi ^2) -\frac {2}{9}\xi ^3 -\frac {2}{3}\xi +\frac {1}{3}\ln \!\left (\frac {1+\xi }{1-\xi }\right ) \right ]_0^s - \frac {2}{3}s^3\ln (1-s^2) \nonumber \\ &amp;= \frac {2}{3}\ln \!\left (\frac {1+s}{1-s}\right ) -\frac {4}{3}s -\frac {4}{9}s^3 \nonumber \\ &amp;= \frac {2}{3}L - \frac {4}{3}s - \frac {4}{9}s^3.\end{aligned} \tag{C.99}\]</div>
+</p>
+<!--l. 1087--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1150004"></a>Perpendicular-pressure integral.</span>
+Define <a id="eq-eq-app-Pperps_def"></a><div class="math-display">\[\mathcal {P}_\perp (s) \equiv \int _{-s}^{s} (1-\xi ^2)\ln \!\left (\frac {1-\xi ^2}{1-s^2}\right )d\xi . \tag{C.100}\]</div>
+Since \((1-\xi ^2)=1-\xi ^2\), <div class="math-display">\[\mathcal {P}_\perp (s)=\mathcal {N}(s)-\mathcal {P}_\parallel (s),\]</div>
+and thus <a id="eq-eq-app-Pperps_result"></a><div class="math-display">\[\begin{aligned}\mathcal {P}_\perp (s) &amp;= \left (2L-4s\right )-\left (\frac {2}{3}L-\frac {4}{3}s-\frac {4}{9}s^3\right ) \\ &amp;= \frac {4}{3}L-\frac {8}{3}s+\frac {4}{9}s^3.\end{aligned} \tag{C.103}\]</div>
+</p><!--l. 1111--><p class="noindent" >Substituting Eqs.&#x00A0;(C.93), (C.96), (C.99), and (C.103) into Eqs.&#x00A0;(C.90)&#8211;(C.92) gives <a id="eq-eq-app-n_mirror_final"></a><div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \pi ^{3/2}A_M(\psi ) \left (\frac {2T}{m}\right )^{3/2} \Bigl [L(s)-2s\Bigr ],  \\[0.5em] p_\parallel (\psi ,B) &amp;= \pi ^{3/2}A_M(\psi )T \left (\frac {2T}{m}\right )^{3/2} \Bigl [L(s)-2s-\frac {2}{3}s^3\Bigr ],  \\[0.5em] p_\perp (\psi ,B) &amp;= \pi ^{3/2}A_M(\psi )T \left (\frac {2T}{m}\right )^{3/2} \Bigl [L(s)-2s+\frac {1}{3}s^3\Bigr ].\end{aligned} \tag{C.104}\]</div>
+</p><!--l. 1136--><p class="noindent" >These are the desired analytic mirror-distribution profiles.
+</p><!--l. 1138--><p class="noindent" >If one prefers midplane normalization, define <div class="math-display">\[s_0 \equiv \sqrt {1-B_0/B_T}, \qquad L_0 \equiv \ln \!\left (\frac {1+s_0}{1-s_0}\right ),\]</div>
+and then <a id="eq-eq-app-n_mirror_norm"></a><div class="math-display">\[\begin{aligned}\frac {n(\psi ,B)}{n_0(\psi )} &amp;= \frac {L(s)-2s}{L_0-2s_0},  \\[0.5em] \frac {p_\parallel (\psi ,B)}{p_{\parallel 0}(\psi )} &amp;= \frac {L(s)-2s-(2/3)s^3}{L_0-2s_0-(2/3)s_0^3},  \\[0.5em] \frac {p_\perp (\psi ,B)}{p_{\perp 0}(\psi )} &amp;= \frac {L(s)-2s+(1/3)s^3}{L_0-2s_0+(1/3)s_0^3}.\end{aligned} \tag{C.108}\]</div>
+</p>
+<!--l. 1162--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1160004"></a>Behavior near the turning point.</span>
+As \(B\to B_T\), one has \(s\to 0\) and <div class="math-display">\[L(s)=2\left (s+\frac {s^3}{3}+\frac {s^5}{5}+\cdots \right ).\]</div>
+Therefore <a id="eq-eq-app-mirror_turning_scaling"></a><div class="math-display">\[n \sim \frac {2}{3}n_M s^3, \qquad p_\perp \sim p_M s^3, \qquad p_\parallel \sim \frac {2}{5}p_M s^5, \tag{C.112}\]</div>
+with \(n_M=\pi ^{3/2}A_M(2T/m)^{3/2}\) and \(p_M=n_M T\). Unlike the fixed-pitch delta-function model, the logarithmic mirror distribution is regular at
+the turning point.
+<a 
+ id="x1-116001r115"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">37.5   </span> <a 
+ id="x1-1170005"></a>The isotropic Maxwellian: pressure independent of \(B\)</h3>
+<!--l. 1182--><p class="noindent" >Now take the distribution to depend only on energy, <a id="eq-eq-app-isotropic_dist"></a><div class="math-display">\[f_{\rm iso}(\psi ,E)=A_{\rm iso}(\psi )e^{-E/T}, \tag{C.113}\]</div>
+with no \(\mu \)-dependence. This is the kinetic expression of isotropy. Substitute Eq.&#x00A0;(C.113) into the general
+moments, and in each case set <a id="eq-eq-app-lambda_substitution"></a><div class="math-display">\[\lambda \equiv \frac {\mu B}{E}, \qquad 0\le \lambda \le 1, \qquad \mu = \frac {E\lambda }{B}, \qquad d\mu = \frac {E}{B}d\lambda . \tag{C.114}\]</div>
+Then Eq.&#x00A0;(C.6) becomes <a id="eq-eq-app-n_iso_before_lambda_int"></a><div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \frac {2\sqrt {2}\pi A_{\rm iso} B}{m^{3/2}} \int _0^\infty dE\,e^{-E/T} \int _0^{E/B} \frac {d\mu }{\sqrt {E-\mu B}} \\ &amp;= \frac {2\sqrt {2}\pi A_{\rm iso}}{m^{3/2}} \int _0^\infty \sqrt {E}\,e^{-E/T}dE \int _0^1 \frac {d\lambda }{\sqrt {1-\lambda }}.\end{aligned} \tag{C.116}\]</div>
+</p><!--l. 1213--><p class="noindent" >The factor of \(B\) has canceled completely.
+</p><!--l. 1215--><p class="noindent" >Similarly, <a id="eq-eq-app-pperp_iso_before_lambda_int"></a><div class="math-display">\[\begin{aligned}p_\perp (\psi ,B) &amp;= \frac {2\sqrt {2}\pi A_{\rm iso} B^2}{m^{3/2}} \int _0^\infty dE\,e^{-E/T} \int _0^{E/B} \frac {\mu }{\sqrt {E-\mu B}}\,d\mu \\ &amp;= \frac {2\sqrt {2}\pi A_{\rm iso}}{m^{3/2}} \int _0^\infty E^{3/2}e^{-E/T}dE \int _0^1 \frac {\lambda \,d\lambda }{\sqrt {1-\lambda }},  \\[0.5em] p_\parallel (\psi ,B) &amp;= \frac {4\sqrt {2}\pi A_{\rm iso} B}{m^{3/2}} \int _0^\infty dE\,e^{-E/T} \int _0^{E/B} \sqrt {E-\mu B}\,d\mu \\ &amp;= \frac {4\sqrt {2}\pi A_{\rm iso}}{m^{3/2}} \int _0^\infty E^{3/2}e^{-E/T}dE \int _0^1 \sqrt {1-\lambda }\,d\lambda .\end{aligned} \tag{C.118}\]</div>
+</p><!--l. 1243--><p class="noindent" >Again, all explicit \(B\)-dependence has canceled.
+</p><!--l. 1245--><p class="noindent" >The elementary \(\lambda \)-integrals are <a id="eq-eq-app-lambda_integrals"></a><div class="math-display">\[\int _0^1 \frac {d\lambda }{\sqrt {1-\lambda }} = 2, \qquad \int _0^1 \frac {\lambda \,d\lambda }{\sqrt {1-\lambda }} = \frac {4}{3}, \qquad \int _0^1 \sqrt {1-\lambda }\,d\lambda = \frac {2}{3}. \tag{C.121}\]</div>
+Therefore <a id="eq-eq-app-n_iso_final"></a><div class="math-display">\[\begin{aligned}n(\psi ,B) &amp;= \frac {4\sqrt {2}\pi A_{\rm iso}}{m^{3/2}} \int _0^\infty \sqrt {E}\,e^{-E/T}dE,  \\[0.5em] p_\perp (\psi ,B) &amp;= \frac {8\sqrt {2}\pi A_{\rm iso}}{3m^{3/2}} \int _0^\infty E^{3/2}e^{-E/T}dE,  \\[0.5em] p_\parallel (\psi ,B) &amp;= \frac {8\sqrt {2}\pi A_{\rm iso}}{3m^{3/2}} \int _0^\infty E^{3/2}e^{-E/T}dE.\end{aligned} \tag{C.122}\]</div>
+</p><!--l. 1274--><p class="noindent" >Hence <a id="eq-eq-app-isotropic_constant_pressure"></a><div class="math-display">\[\boxed { p_\perp (\psi ,B)=p_\parallel (\psi ,B), \qquad \frac {\partial p}{\partial B}=0. } \tag{C.125}\]</div>
+This is the clean kinetic statement behind the familiar equilibrium result that an isotropic pressure is
+constant along a field line: if the distribution depends only on energy and not on pitch angle, then the local
+field strength drops out of the moments entirely.
+</p><!--l. 1285--><p class="noindent" >With the standard Maxwellian normalization, <div class="math-display">\[f_M(\psi ,v) = n(\psi )\left (\frac {m}{2\pi T}\right )^{3/2} e^{-mv^2/2T},\]</div>
+Eqs.&#x00A0;(C.122)&#8211;(C.124) reduce to the textbook result <a id="eq-eq-app-ideal_gas_isotropic"></a><div class="math-display">\[\boxed { p_\perp = p_\parallel = nT. } \tag{C.127}\]</div>
+So isotropic really does mean constant pressure in the sense needed by the equilibrium lecture.
+<a 
+ id="x1-117001r123"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">37.6   </span> <a 
+ id="x1-1180006"></a>A useful slowing-down envelope and the relation to FBIS</h3>
+<!--l. 1305--><p class="noindent" >The examples above were chosen because their \(B\)-dependence is analytically transparent. For beam-driven
+mirrors, however, the energy envelope is not generally Maxwellian. A standard slowing-down estimate is
+<a id="eq-eq-app-slowing_down_model"></a><div class="math-display">\[\frac {dv_f}{dt} \simeq -\nu _{f/e}^{s}\left (1+\frac {v_c^3}{v_f^3}\right )v_f, \qquad \frac {1}{2}m_f v_c^2 = E_c, \tag{C.128}\]</div>
+which may be rewritten as <a id="eq-eq-app-slowing_down_cube"></a><div class="math-display">\[\frac {d(v_f^3)}{dt} = -\frac {3}{\tau _s}\left (v_f^3+v_c^3\right ). \tag{C.129}\]</div>
+Integrating from \(v_0\) at \(t=0\) to \(v\) at time \(t\) gives <a id="eq-eq-app-slowing_down_solution"></a><div class="math-display">\[t = \frac {\tau _s}{3} \ln \!\left (\frac {v_0^3+v_c^3}{v^3+v_c^3}\right ), \qquad v^3 = (v_0^3+v_c^3)e^{-3t/\tau _s}-v_c^3. \tag{C.130}\]</div>
+This is the origin of the familiar slowing-down-like energy envelopes used in simple sloshing-ion
+models.
+</p>
+<!--l. 1333--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1190006"></a>Relation to FBIS.</span>
+It is important, though, not to confuse these clean analytic models with the full Fokker&#8211;Planck treatment.
+In the WHAM/FBIS work, the fast-ion distribution is solved together with the self-consistent
+ambipolar potential and electron temperature along a flux tube, and those results are then passed
+to the anisotropic equilibrium calculation. The simple distributions in this appendix should
+therefore be read as transparent analytic limits of that more complete bounce-averaged kinetic
+picture.
+</p><!--l. 1341--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1341--><p class="noindent" ><span 
+class="ecbx-1095">Bottom line. </span>For equilibrium purposes, the key lesson is that very different pitch-angle
+                                                                                         
+                                                                                         
+     physics leads to very different \(p_\perp (B)\) and \(p_\parallel (B)\):
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+ 1. </dt><dd 
+class="enumerate-enumitem">fixed-pitch sloshing ions produce strong anisotropy and, in the zero-width limit, a
+   turning-point singularity;
+   </dd><dt class="enumerate-enumitem">
+ 2. </dt><dd 
+class="enumerate-enumitem">a  finite-width  slowing-down  kernel,  especially  one  inferred  from  the  Callen
+   Fokker&#8211;Planck   solution,   removes   that   singularity   while   keeping   the   strong
+   \(B\)-dependence;
+   </dd><dt class="enumerate-enumitem">
+ 3. </dt><dd 
+class="enumerate-enumitem">the logarithmic mirror distribution generated by pitch-angle scattering gives smooth
+   analytic pressure profiles;
+   </dd><dt class="enumerate-enumitem">
+ 4. </dt><dd 
+class="enumerate-enumitem">an isotropic Maxwellian is the exceptional case in which the pressure is independent
+   of \(B\).</dd></dl>
+     <!--l. 1350--><p class="noindent" >That is exactly why the equilibrium lecture should be formulated in terms of generic functions \(p_\perp (\psi ,B)\)
+     and \(p_\parallel (\psi ,B)\), rather than assuming isotropy from the outset.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

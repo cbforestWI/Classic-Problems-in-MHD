@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>External Kink Explorer</title>
+  <style>
+    :root {
+      --ink: #173042;
+      --muted: #5b7482;
+      --panel: #f7fbfd;
+      --line: #c8d9e2;
+      --accent: #255f86;
+      --accent-soft: #d7e8f3;
+      --smooth: #2d7a55;
+      --constant: #a45d24;
+      --warning: #9d3d3d;
+      --highlight: #6f4aa6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1.2rem;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #fbfdff 0%, #f3f8fb 100%);
+    }
+    h1 {
+      margin: 0 0 0.55rem 0;
+      font-size: 1.9rem;
+      letter-spacing: 0.01em;
+    }
+    .lede {
+      max-width: 74rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.55;
+      color: #3f5967;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(20rem, 23rem) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .panel, .viewer {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(126, 156, 176, 0.34);
+      border-radius: 1rem;
+      box-shadow: 0 18px 40px rgba(31, 58, 77, 0.08);
+      padding: 1rem 1rem 1.1rem;
+    }
+    .panel { position: sticky; top: 0.7rem; }
+    .control {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 0.9rem;
+      padding: 0.8rem 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.45rem;
+    }
+    label, legend {
+      font-weight: 700;
+      color: #29485a;
+    }
+    .value {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    input[type="range"], select {
+      width: 100%;
+    }
+    select {
+      padding: 0.5rem 0.55rem;
+      border-radius: 0.7rem;
+      border: 1px solid #b7ccd8;
+      font: inherit;
+      color: var(--ink);
+      background: white;
+    }
+    .help {
+      margin: 0.35rem 0 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.93rem;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.8rem;
+    }
+    .status-card {
+      border: 1px solid var(--line);
+      background: #fbfdfe;
+      border-radius: 0.9rem;
+      padding: 0.75rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.3rem 0;
+      font-size: 0.94rem;
+      color: #29485a;
+    }
+    .status-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+    .viewer-header p, .footer-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 0.9rem 0 0.95rem 0;
+    }
+    .metric-badge {
+      border: 1px solid rgba(126, 156, 176, 0.34);
+      background: linear-gradient(180deg, #f9fcff 0%, #eef6fb 100%);
+      border-radius: 0.95rem;
+      padding: 0.85rem 0.95rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .metric-badge h3 {
+      margin: 0 0 0.2rem 0;
+      font-size: 0.9rem;
+      color: #486170;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .metric-main {
+      font-size: 1.7rem;
+      line-height: 1.05;
+      font-weight: 700;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-sub {
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+    .metric-good .metric-main { color: var(--smooth); }
+    .metric-bad .metric-main { color: var(--warning); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.7rem 0 0.9rem 0;
+      color: #3f5967;
+      font-size: 0.95rem;
+    }
+    .legend li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .swatch {
+      width: 1.25rem;
+      height: 0.2rem;
+      border-radius: 999px;
+      background: currentColor;
+      display: inline-block;
+    }
+    .swatch.dashed {
+      background: repeating-linear-gradient(90deg, currentColor 0 7px, transparent 7px 12px);
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.85rem;
+      background: linear-gradient(180deg, #fcfeff 0%, #f4f9fc 100%);
+      border: 1px solid rgba(126, 156, 176, 0.28);
+    }
+    .stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .twocolumn {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .equations {
+      margin-top: 0.8rem;
+      color: #486170;
+      line-height: 1.55;
+      font-size: 0.94rem;
+    }
+    .warning {
+      margin-top: 0.8rem;
+      border-left: 4px solid #cf8755;
+      background: #fff5ed;
+      padding: 0.7rem 0.8rem;
+      color: #7a5231;
+      border-radius: 0.7rem;
+      line-height: 1.45;
+    }
+    code {
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.95em;
+      background: rgba(214, 231, 241, 0.52);
+      border-radius: 0.35rem;
+      padding: 0.08rem 0.3rem;
+    }
+    @media (max-width: 980px) {
+      body { padding: 0.8rem; }
+      .layout { grid-template-columns: 1fr; }
+      .panel { position: static; }
+      .status-grid { grid-template-columns: 1fr; }
+      .metric-row { grid-template-columns: 1fr; }
+      .twocolumn { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>External Kink Explorer</h1>
+  <p class="lede">
+    This browser-side companion follows the external-kink lecture directly. It keeps the lecture&rsquo;s
+    exact constant-<em>q</em> wall bands, then replaces the analytic interior with a smooth tokamak current
+    profile built from the same family used in the tearing explorer. The edge safety factor <em>q<sub>a</sub></em>,
+    core value <em>q<sub>0</sub></em>, and wall ratio <em>b/a</em> then feed a numerical Newcomb solve for the
+    edge logarithmic derivative <code>a&xi;&prime;(a)/&xi;(a)</code>, which is inserted back into the surface-energy
+    formula for the external mode.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="mode">Selected mode</label>
+        </div>
+        <select id="mode"></select>
+        <p class="help">Choose one low-order external-kink branch at a time, then inspect the resulting <code>q(r)</code>, <code>f(r)</code>, <code>g(r)</code>, and the two Newcomb plasma solutions directly.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="qa">Edge safety factor <em>q<sub>a</sub></em></label>
+          <span class="value" id="qa-value"></span>
+        </div>
+        <input id="qa" type="range" min="0.55" max="4.00" step="0.01" value="3.00" />
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q0">Core safety factor <em>q<sub>0</sub></em></label>
+          <span class="value" id="q0-value"></span>
+        </div>
+        <input id="q0" type="range" min="0.45" max="2.60" step="0.01" value="0.85" />
+        <p class="help">Together with <em>q<sub>a</sub></em>, this sets the smooth current profile <code>j<sub>z</sub>(r) &propto; (1-r²/a²)<sup>&nu;</sup></code> through <code>&nu; = q<sub>a</sub>/q<sub>0</sub> - 1</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="pressure">Pressure-drive scale</label>
+          <span class="value" id="pressure-value"></span>
+        </div>
+        <input id="pressure" type="range" min="0.00" max="1.80" step="0.02" value="0.30" />
+        <p class="help">Sets a simple dimensionless peaked pressure profile in the large-aspect-ratio <code>g(r)</code> term. Here the reduced model uses a smooth edge-vanishing gradient, so pressure changes <code>g(r)</code> directly while <code>f(r)</code> remains the magnetic line-bending coefficient.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="wall">Ideal wall radius ratio <em>b/a</em></label>
+          <span class="value" id="wall-value"></span>
+        </div>
+        <input id="wall" type="range" min="1.02" max="3.00" step="0.01" value="1.35" />
+        <p class="help">Sets <code>&alpha;<sub>m</sub> = (a/b)<sup>2m</sup></code>. Bringing the wall in widens the classic ideal-wall stabilization strip below each rational edge value <code>q<sub>a</sub> = m/n</code>.</p>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <h3>Current state</h3>
+          <p id="state-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Selected mode</h3>
+          <p id="mode-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Vacuum matching</h3>
+          <p id="band-summary">Awaiting solve.</p>
+        </div>
+        <div class="status-card">
+          <h3>Stability / growth</h3>
+          <p id="smooth-summary">Awaiting solve.</p>
+        </div>
+      </div>
+
+      <div class="equations">
+        The explorer evaluates the lecture&rsquo;s surface form
+        <code>&delta;W &sim; [ (F²/k₀²)(a&xi;&prime;/&xi;) + FF&#8224;/k₀² + (a²F²/m)&Lambda;<sub>m</sub> ]<sub>a</sub></code>.
+        The interior solution comes from the reduced Euler&ndash;Lagrange form
+        <code>(f&xi;&prime;)&#8242; - g&xi; = 0</code>, integrated from the axis to the edge with the smooth
+        current profile set by <code>q<sub>0</sub></code> and <code>q<sub>a</sub></code>. The exterior segment is the
+        ideal-wall vacuum continuation that matches the edge displacement and vanishes at <code>r=b</code>.
+        When a rational surface lies inside the plasma, the explorer now follows Newcomb&rsquo;s logic more explicitly:
+        one solution is regular at the axis, a second is regular at the edge/vacuum side, and their small-solution
+        behavior is compared across <code>F=0</code>. The side-by-side panels separate the line-bending coefficient
+        <code>f(r)</code> from the total <code>g(r)</code>, including the added pressure contribution.
+      </div>
+      <div class="warning">
+        The smooth-profile branch is only plotted where the profile stays free of an internal rational
+        surface for the selected mode. If <code>q(r)=m/n</code> occurs inside the plasma, the explorer now switches
+        to a piecewise Newcomb construction and shows the axis-regular and edge-regular plasma branches separately.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <h2 style="margin:0 0 0.35rem 0;">Single-Profile External-Kink Structure</h2>
+        <p>The first panel shows the smooth <em>q(r)</em> profile for the chosen current profile and selected rational level. The second panel now shows the two plasma-side Newcomb solutions: one regular at the axis and one regular at the outer boundary. The matching panel below shows the normalized radial magnetic perturbation <em>b<sub>r</sub></em>, which is the quantity naturally continued through the vacuum out to the ideal wall. The lower pair separates the reduced coefficients <em>f(r)</em> and <em>g(r)</em>, making the magnetic and pressure weighting behind the mode structure easier to read.</p>
+      </div>
+      <div class="metric-row">
+        <div class="metric-badge" id="growth-badge">
+          <h3>Growth Proxy</h3>
+          <div class="metric-main" id="growth-main">--</div>
+          <div class="metric-sub" id="growth-sub">Awaiting solve.</div>
+        </div>
+        <div class="metric-badge" id="deltaw-badge">
+          <h3>Normalized δW</h3>
+          <div class="metric-main" id="deltaw-main">--</div>
+          <div class="metric-sub" id="deltaw-sub">Awaiting solve.</div>
+        </div>
+      </div>
+      <ul class="legend">
+        <li style="color:var(--smooth);"><span class="swatch"></span>Axis-regular plasma branch</li>
+        <li style="color:var(--highlight);"><span class="swatch dashed"></span>Outer-regular plasma branch</li>
+        <li style="color:var(--constant);"><span class="swatch dashed"></span>Vacuum b<sub>r</sub> continuation to the wall</li>
+        <li style="color:var(--accent);"><span class="swatch"></span><em>f(r)</em> line-bending coefficient</li>
+        <li style="color:var(--warning);"><span class="swatch"></span><em>g(r)</em> total coefficient</li>
+        <li style="color:#b24a4a;"><span class="swatch dashed"></span>Pressure part of <em>g(r)</em></li>
+      </ul>
+      <div class="stack">
+        <svg id="q-plot" viewBox="0 0 860 340" aria-label="q profile plot"></svg>
+        <svg id="xi-plot" viewBox="0 0 860 360" aria-label="xi matching plot"></svg>
+        <svg id="match-plot" viewBox="0 0 860 300" aria-label="radial magnetic perturbation matching plot"></svg>
+        <svg id="brlog-plot" viewBox="0 0 860 280" aria-label="radial magnetic logarithmic derivative plot"></svg>
+        <div class="twocolumn">
+          <svg id="f-plot" viewBox="0 0 420 320" aria-label="f coefficient plot"></svg>
+          <svg id="g-plot" viewBox="0 0 420 320" aria-label="g coefficient plot"></svg>
+        </div>
+      </div>
+      <p class="footer-note">A positive drive proxy corresponds to instability in this reduced model. The quoted growth rate is an approximate normalized proxy <code>&gamma;&tau;<sub>A</sub> &sim; sqrt(max(0, drive))</code>, intended to distinguish stable from unstable cases rather than replace a full eigenvalue solve.</p>
+    </section>
+  </div>
+
+  <script>
+    const ns = "http://www.w3.org/2000/svg";
+    const MU = 1e-6;
+    const COLORS = {
+      accent: "#255f86",
+      smooth: "#2d7a55",
+      outer: "#6f4aa6",
+      constant: "#a45d24",
+      marker: "#6f4aa6",
+      grid: "#deebf1",
+      axis: "#89a2b2",
+      text: "#486170",
+      rational: "#275f86",
+      invalid: "#b55252",
+      band: "#ead6c7"
+    };
+    const MODES = [
+      { m: 1, n: 1 },
+      { m: 2, n: 1 },
+      { m: 3, n: 1 },
+      { m: 4, n: 1 },
+      { m: 3, n: 2 },
+      { m: 4, n: 3 },
+      { m: 5, n: 2 },
+      { m: 5, n: 3 }
+    ];
+
+    const modeSelect = document.getElementById("mode");
+    const sliders = {
+      qa: document.getElementById("qa"),
+      q0: document.getElementById("q0"),
+      pressure: document.getElementById("pressure"),
+      wall: document.getElementById("wall")
+    };
+    const labels = {
+      qa: document.getElementById("qa-value"),
+      q0: document.getElementById("q0-value"),
+      pressure: document.getElementById("pressure-value"),
+      wall: document.getElementById("wall-value")
+    };
+    const summaries = {
+      state: document.getElementById("state-summary"),
+      mode: document.getElementById("mode-summary"),
+      band: document.getElementById("band-summary"),
+      smooth: document.getElementById("smooth-summary")
+    };
+    const metrics = {
+      growthBadge: document.getElementById("growth-badge"),
+      growthMain: document.getElementById("growth-main"),
+      growthSub: document.getElementById("growth-sub"),
+      deltaWBadge: document.getElementById("deltaw-badge"),
+      deltaWMain: document.getElementById("deltaw-main"),
+      deltaWSub: document.getElementById("deltaw-sub")
+    };
+    const qPlot = document.getElementById("q-plot");
+    const xiPlot = document.getElementById("xi-plot");
+    const matchPlot = document.getElementById("match-plot");
+    const brLogPlot = document.getElementById("brlog-plot");
+    const fPlot = document.getElementById("f-plot");
+    const gPlot = document.getElementById("g-plot");
+
+    function svgElement(tag, attrs = {}) {
+      const el = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
+      return el;
+    }
+
+    function fmt(value, digits = 2) {
+      return Number(value).toFixed(digits);
+    }
+
+    function linspace(min, max, count) {
+      if (count <= 1) return [min];
+      const arr = [];
+      for (let i = 0; i < count; i += 1) arr.push(min + (max - min) * i / (count - 1));
+      return arr;
+    }
+
+    function modeLabel(mode) {
+      return `${mode.m}/${mode.n}`;
+    }
+
+    function qProfileAt(s, q0, qa) {
+      if (s < 1e-6) return q0;
+      const nu = qa / q0 - 1;
+      const p = nu + 1;
+      const oneMinus = Math.max(0, 1 - s * s);
+      const enclosed = 1 - Math.pow(oneMinus, p);
+      if (Math.abs(enclosed) < 1e-12) return q0;
+      return qa * s * s / enclosed;
+    }
+
+    function qProfileArray(q0, qa, count = 220) {
+      const xs = linspace(0, 1, count);
+      return xs.map((s) => ({ s, q: qProfileAt(s, q0, qa) }));
+    }
+
+    function deltaAtS(s, mode, q0, qa) {
+      return mode.n - mode.m / qProfileAt(s, q0, qa);
+    }
+
+    function hasInternalRational(mode, q0, qa) {
+      const target = mode.m / mode.n;
+      const qMin = Math.min(q0, qa);
+      const qMax = Math.max(q0, qa);
+      return qMin < target && target < qMax;
+    }
+
+    function findResonance(mode, q0, qa) {
+      if (!hasInternalRational(mode, q0, qa)) return null;
+      const target = mode.m / mode.n;
+      let lo = 0;
+      let hi = 1;
+      let qLo = qProfileAt(lo, q0, qa) - target;
+      let qHi = qProfileAt(hi, q0, qa) - target;
+      if (qLo === 0) return 0;
+      if (qHi === 0) return 1;
+      for (let i = 0; i < 80; i += 1) {
+        const mid = 0.5 * (lo + hi);
+        const qMid = qProfileAt(mid, q0, qa) - target;
+        if (Math.abs(qMid) < 1e-10) return mid;
+        if (qLo * qMid <= 0) {
+          hi = mid;
+          qHi = qMid;
+        } else {
+          lo = mid;
+          qLo = qMid;
+        }
+      }
+      return 0.5 * (lo + hi);
+    }
+
+    function dqdsAt(s, q0, qa) {
+      const h = Math.max(5e-5, Math.min(2e-3, 0.02 * Math.max(s, 1 - s, 0.2)));
+      const s0 = Math.max(0, s - h);
+      const s1 = Math.min(1, s + h);
+      return (qProfileAt(s1, q0, qa) - qProfileAt(s0, q0, qa)) / Math.max(s1 - s0, 1e-9);
+    }
+
+    function dDeltaDsAt(s, mode, q0, qa) {
+      const h = Math.max(5e-5, Math.min(2e-3, 0.02 * Math.max(s, 1 - s, 0.2)));
+      const s0 = Math.max(0, s - h);
+      const s1 = Math.min(1, s + h);
+      return (deltaAtS(s1, mode, q0, qa) - deltaAtS(s0, mode, q0, qa)) / Math.max(s1 - s0, 1e-9);
+    }
+
+    function fgAtS(mode, q0, qa, pressureScale, s) {
+      const q = qProfileAt(s, q0, qa);
+      const delta = mode.n - mode.m / q;
+      const delta2 = delta * delta;
+      const f = Math.max(Math.pow(s, 3) * delta2 / (mode.m * mode.m), 1e-12);
+      const gMag = s * (mode.m * mode.m - 1) * delta2 / (mode.m * mode.m);
+      const gPressure = pressureScale * 2 * mode.n * mode.n * s * s * pressureGradientShape(s) / (mode.m * mode.m);
+      return {
+        q,
+        delta,
+        f,
+        gMag,
+        gPressure,
+        g: gMag + gPressure
+      };
+    }
+
+    function integrateXiSegment(mode, q0, qa, pressureScale, sStart, sEnd, xi0, dxi0, steps) {
+      let xi = xi0;
+      let fg0 = fgAtS(mode, q0, qa, pressureScale, sStart);
+      let y2 = fg0.f * dxi0;
+      const h = (sEnd - sStart) / steps;
+      const profile = [{
+        s: sStart, xi, dxi: dxi0,
+        logDerivative: Math.abs(xi) > 1e-12 ? sStart * dxi0 / xi : 0,
+        f: fg0.f, g: fg0.g, gMag: fg0.gMag, gPressure: fg0.gPressure
+      }];
+
+      function rhs(s, a1, a2) {
+        const fg = fgAtS(mode, q0, qa, pressureScale, s);
+        return { y1: a2 / fg.f, y2: fg.g * a1 };
+      }
+
+      for (let i = 0; i < steps; i += 1) {
+        const s = sStart + i * h;
+        const k1 = rhs(s, xi, y2);
+        const k2 = rhs(s + 0.5 * h, xi + 0.5 * h * k1.y1, y2 + 0.5 * h * k1.y2);
+        const k3 = rhs(s + 0.5 * h, xi + 0.5 * h * k2.y1, y2 + 0.5 * h * k2.y2);
+        const k4 = rhs(s + h, xi + h * k3.y1, y2 + h * k3.y2);
+        xi += h * (k1.y1 + 2 * k2.y1 + 2 * k3.y1 + k4.y1) / 6;
+        y2 += h * (k1.y2 + 2 * k2.y2 + 2 * k3.y2 + k4.y2) / 6;
+        const sn = sStart + (i + 1) * h;
+        const fg = fgAtS(mode, q0, qa, pressureScale, sn);
+        const dxi = y2 / fg.f;
+        profile.push({
+          s: sn, xi, dxi,
+          logDerivative: Math.abs(xi) > 1e-12 ? sn * dxi / xi : 0,
+          f: fg.f, g: fg.g, gMag: fg.gMag, gPressure: fg.gPressure
+        });
+        if (!Number.isFinite(xi) || !Number.isFinite(y2)) return { valid: false, reason: "integration failure" };
+      }
+      return { valid: true, xi, y2, profile };
+    }
+
+    function scaleXiSolution(solution, scale) {
+      if (!solution || !solution.profile) return solution;
+      return {
+        ...solution,
+        xi: solution.xi * scale,
+        y2: solution.y2 * scale,
+        profile: solution.profile.map((p) => ({
+          ...p,
+          xi: p.xi * scale,
+          dxi: p.dxi * scale
+        }))
+      };
+    }
+
+    function outerRegularFromEdge(mode, q0, qa, pressureScale, wall, rightEdge, steps) {
+      const deltaEdge = deltaAtS(1, mode, q0, qa);
+      if (Math.abs(deltaEdge) < 1e-10) return { valid: false, reason: "edge resonance" };
+      const brEdge = vacuumBr(mode, wall, 1);
+      const dbrEdge = vacuumBrPrime(mode, wall, 1);
+      const dDeltaEdge = dDeltaDsAt(1, mode, q0, qa);
+      const xiEdge = brEdge / deltaEdge;
+      const dxiEdge = (dbrEdge - dDeltaEdge * xiEdge) / deltaEdge;
+      return integrateXiSegment(
+        mode, q0, qa, pressureScale,
+        1, rightEdge,
+        xiEdge, dxiEdge,
+        steps
+      );
+    }
+
+    function normalizeBranchAtResonance(rawProfile, resonance, pSmall, side) {
+      if (!rawProfile || !rawProfile.length || resonance == null || pSmall == null) {
+        return { scale: 1, profile: rawProfile ? rawProfile.map((p) => ({ ...p })) : [] };
+      }
+      const edgePoint = side === "inner" ? rawProfile[rawProfile.length - 1] : rawProfile[0];
+      const eps = Math.max(Math.abs(edgePoint.s - resonance), 1e-9);
+      const coeff = Math.max(Math.abs(edgePoint.br) / Math.pow(eps, pSmall + 1), 1e-12);
+      return {
+        scale: coeff,
+        profile: rawProfile.map((p) => ({ ...p, br: p.br / coeff }))
+      };
+    }
+
+    function solveModeStructure(mode, q0, qa, pressureScale, wall) {
+      const m = mode.m;
+      const s0 = 1e-4;
+      const resonance = findResonance(mode, q0, qa);
+      if (resonance == null) {
+        const regular = integrateXiSegment(
+          mode, q0, qa, pressureScale,
+          s0, 1,
+          Math.pow(s0, Math.max(0, m - 1)),
+          m === 1 ? 0 : (m - 1) * Math.pow(s0, m - 2),
+          1800
+        );
+        if (!regular.valid || Math.abs(regular.xi) < 1e-12) {
+          return { valid: false, reason: regular.reason || "edge singularity" };
+        }
+        const edgeDerivative = regular.y2 / fgAtS(mode, q0, qa, pressureScale, 1).f;
+        const edgeLogDerivative = edgeDerivative / regular.xi;
+        const norm = regular.xi;
+        regular.profile.forEach((p) => { p.xi /= norm; });
+        const plasmaBrBase = addBrProfiles(regular.profile, mode, q0, qa);
+        const plasmaBrProfile = addBrLogDerivative(plasmaBrBase.profile);
+        return {
+          valid: true,
+          edgeLogDerivative,
+          profile: regular.profile,
+          plasmaBrProfile,
+          piecewise: false,
+          resonance: null
+        };
+      }
+
+      const qPrime = dqdsAt(resonance, q0, qa);
+      const deltaPrime = mode.m * qPrime / Math.max(Math.pow(mode.m / mode.n, 2), 1e-9);
+      const f2 = Math.max(Math.pow(resonance, 3) * deltaPrime * deltaPrime / (mode.m * mode.m), 1e-12);
+      const localFg = fgAtS(mode, q0, qa, pressureScale, resonance);
+      const G = localFg.g / f2;
+      const disc = 1 + 4 * G;
+      if (disc <= 0) {
+        return {
+          valid: false,
+          reason: "local singular stability violated",
+          resonance,
+          localIndex: G
+        };
+      }
+      const pSmall = 0.5 * (-1 + Math.sqrt(disc));
+      const eps = Math.max(0.003, Math.min(0.012, 0.06 * resonance, 0.06 * (1 - resonance)));
+      const leftEdge = Math.max(s0, resonance - eps);
+      const rightEdge = Math.min(1 - 1e-4, resonance + eps);
+      const core = integrateXiSegment(
+        mode, q0, qa, pressureScale,
+        s0, leftEdge,
+        Math.pow(s0, Math.max(0, m - 1)),
+        m === 1 ? 0 : (m - 1) * Math.pow(s0, m - 2),
+        Math.max(900, Math.round(3200 * (leftEdge - s0)))
+      );
+      if (!core.valid) return { valid: false, reason: core.reason };
+      const outerRegularRaw = outerRegularFromEdge(
+        mode, q0, qa, pressureScale, wall, rightEdge,
+        Math.max(1200, Math.round(3600 * (1 - rightEdge)))
+      );
+      if (!outerRegularRaw.valid || Math.abs(outerRegularRaw.profile[outerRegularRaw.profile.length - 1].xi) < 1e-12) {
+        return { valid: false, reason: outerRegularRaw.reason || "edge singularity" };
+      }
+      const coreEdgeXi = core.profile[core.profile.length - 1].xi;
+      const outerRightXi = outerRegularRaw.profile[outerRegularRaw.profile.length - 1].xi;
+      const matchScale = coreEdgeXi / outerRightXi;
+      const outerRegular = scaleXiSolution(outerRegularRaw, matchScale);
+      const edgePoint = outerRegular.profile[0];
+      const edgeDerivative = edgePoint.dxi;
+      const edgeLogDerivative = edgeDerivative / edgePoint.xi;
+      const norm = outerRegular.profile[0].xi;
+      core.profile.forEach((p) => { p.xi /= norm; });
+      outerRegular.profile.forEach((p) => { p.xi /= norm; });
+      const outerProfile = outerRegular.profile.slice().reverse();
+      const coreBrRaw = addBrProfiles(core.profile, mode, q0, qa).profile;
+      const outerBrRaw = addBrProfiles(outerProfile, mode, q0, qa).profile;
+      const coreBrBase = normalizeBranchAtResonance(coreBrRaw, resonance, pSmall, "inner");
+      const outerBrBase = normalizeBranchAtResonance(outerBrRaw, resonance, pSmall, "outer");
+      const coreBrProfile = addBrLogDerivative(coreBrBase.profile);
+      const plasmaBrProfile = addBrLogDerivative(outerBrBase.profile);
+      const newcombJump = plasmaBrProfile[0].brLogDerivative - coreBrProfile[coreBrProfile.length - 1].brLogDerivative;
+      return {
+        valid: true,
+        edgeLogDerivative,
+        profile: outerProfile,
+        coreProfile: core.profile,
+        coreBrProfile,
+        plasmaBrProfile,
+        piecewise: true,
+        resonance,
+        localIndex: G,
+        pSmall,
+        newcombJump
+      };
+    }
+
+    function alphaM(mode, wall) {
+      return Math.pow(1 / wall, 2 * mode.m);
+    }
+
+    function lambdaM(mode, wall) {
+      const a = alphaM(mode, wall);
+      return (1 + a) / (1 - a);
+    }
+
+    function constantQProxy(mode, qa, wall) {
+      const m = mode.m;
+      const n = mode.n;
+      const a = alphaM(mode, wall);
+      const upper = m / n;
+      const lower = (m - 1 + a) / n;
+      const numerator = -2 * (n * qa - m) * (n * qa - (m - 1 + a));
+      return {
+        value: numerator / (Math.max(qa * qa * (1 - a), 1e-9) * m),
+        lower,
+        upper,
+        unstable: qa > lower && qa < upper
+      };
+    }
+
+    function smoothProxy(mode, q0, qa, pressureScale, wall) {
+      const structure = solveModeStructure(mode, q0, qa, pressureScale, wall);
+      if (!structure.valid) {
+        return {
+          valid: false,
+          reason: structure.reason,
+          resonance: structure.resonance ?? null,
+          localIndex: structure.localIndex ?? null
+        };
+      }
+      const m = mode.m;
+      const n = mode.n;
+      const nqaMinusM = n * qa - m;
+      const raw = (
+        structure.edgeLogDerivative * nqaMinusM * nqaMinusM
+        + (n * n * qa * qa - m * m)
+        + m * lambdaM(mode, wall) * nqaMinusM * nqaMinusM
+      ) / (m * m * qa * qa);
+      const neutralTolerance = structure.piecewise ? 1e-3 : 3e-4;
+      const rawEffective = Math.abs(raw) < neutralTolerance ? 0 : raw;
+      return {
+        valid: true,
+        edgeLogDerivative: structure.edgeLogDerivative,
+        value: -rawEffective,
+        rawDeltaW: rawEffective,
+        rawDeltaWUnclamped: raw,
+        neutralTolerance,
+        structure,
+        piecewise: structure.piecewise,
+        resonance: structure.resonance,
+        localIndex: structure.localIndex ?? null,
+        pSmall: structure.pSmall ?? null
+      };
+    }
+
+    function pressureGradientShape(s) {
+      return -4 * s * Math.max(0, 1 - s * s);
+    }
+
+    function addBrProfiles(profile, mode, q0, qa, scale = null) {
+      const raw = profile.map((p) => {
+        const delta = deltaAtS(p.s, mode, q0, qa);
+        return { ...p, br: delta * p.xi };
+      });
+      const edgeBr = scale ?? (Math.abs(raw[raw.length - 1].br) > 1e-12 ? raw[raw.length - 1].br : 1);
+      return {
+        scale: edgeBr,
+        profile: raw.map((p) => ({ ...p, br: p.br / edgeBr }))
+      };
+    }
+
+    function addBrLogDerivative(profile) {
+      return profile.map((p, i) => {
+        const prev = profile[Math.max(0, i - 1)];
+        const next = profile[Math.min(profile.length - 1, i + 1)];
+        const dbr = (next.br - prev.br) / Math.max(next.s - prev.s, 1e-9);
+        return {
+          ...p,
+          brPrime: dbr,
+          brLogDerivative: Math.abs(p.br) > 1e-10 ? p.s * dbr / p.br : NaN
+        };
+      });
+    }
+
+    function fgProfileArray(mode, q0, qa, pressureScale, count = 220) {
+      const xs = linspace(0.001, 1, count);
+      return xs.map((s) => ({ s, ...fgAtS(mode, q0, qa, pressureScale, s) }));
+    }
+
+    function drawAxes(svg, width, height, margin, xMin, xMax, yMin, yMax, xLabel, yLabel, yTicks = 5) {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const plotW = width - margin.left - margin.right;
+      const plotH = height - margin.top - margin.bottom;
+      const mapX = (x) => margin.left + (x - xMin) / (xMax - xMin || 1) * plotW;
+      const mapY = (y) => margin.top + plotH - (y - yMin) / (yMax - yMin || 1) * plotH;
+
+      for (let i = 0; i <= 5; i += 1) {
+        const xv = xMin + (xMax - xMin) * i / 5;
+        const px = mapX(xv);
+        svg.appendChild(svgElement("line", { x1: px, y1: margin.top, x2: px, y2: height - margin.bottom, stroke: COLORS.grid, "stroke-width": "1" }));
+        const t = svgElement("text", {
+          x: px, y: height - margin.bottom + 18, "text-anchor": "middle",
+          fill: COLORS.text, "font-size": "12", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        t.textContent = fmt(xv, 2);
+        svg.appendChild(t);
+      }
+
+      for (let i = 0; i <= yTicks; i += 1) {
+        const yv = yMin + (yMax - yMin) * i / yTicks;
+        const py = mapY(yv);
+        svg.appendChild(svgElement("line", { x1: margin.left, y1: py, x2: width - margin.right, y2: py, stroke: COLORS.grid, "stroke-width": "1" }));
+        const t = svgElement("text", {
+          x: margin.left - 8, y: py + 4, "text-anchor": "end",
+          fill: COLORS.text, "font-size": "12", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        t.textContent = fmt(yv, 2);
+        svg.appendChild(t);
+      }
+
+      if (yMin < 0 && yMax > 0) {
+        const py0 = mapY(0);
+        svg.appendChild(svgElement("line", { x1: margin.left, y1: py0, x2: width - margin.right, y2: py0, stroke: COLORS.axis, "stroke-width": "1.5" }));
+      }
+
+      svg.appendChild(svgElement("line", { x1: margin.left, y1: height - margin.bottom, x2: width - margin.right, y2: height - margin.bottom, stroke: COLORS.axis, "stroke-width": "1.1" }));
+      svg.appendChild(svgElement("line", { x1: margin.left, y1: margin.top, x2: margin.left, y2: height - margin.bottom, stroke: COLORS.axis, "stroke-width": "1.1" }));
+
+      const xt = svgElement("text", {
+        x: width / 2, y: height - 8, "text-anchor": "middle",
+        fill: COLORS.text, "font-size": "13", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      xt.textContent = xLabel;
+      svg.appendChild(xt);
+      const yt = svgElement("text", {
+        x: 16, y: height / 2, "text-anchor": "middle",
+        fill: COLORS.text, "font-size": "13", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif",
+        transform: `rotate(-90 16 ${height / 2})`
+      });
+      yt.textContent = yLabel;
+      svg.appendChild(yt);
+
+      return { mapX, mapY, plotW, plotH };
+    }
+
+    function pathFromSeries(points, mapX, mapY, keyX, keyY, validFn = null) {
+      let d = "";
+      let pen = false;
+      for (const point of points) {
+        const ok = validFn ? validFn(point) : Number.isFinite(point[keyY]);
+        if (!ok) {
+          pen = false;
+          continue;
+        }
+        const x = mapX(point[keyX]);
+        const y = mapY(point[keyY]);
+        d += `${pen ? " L" : "M"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+        pen = true;
+      }
+      return d.trim();
+    }
+
+    function bridgeSeries(leftSeries, rightSeries, bridgePoint, keyY) {
+      const merged = [];
+      if (leftSeries && leftSeries.length) merged.push(...leftSeries);
+      if (bridgePoint) merged.push({ s: bridgePoint.s, [keyY]: bridgePoint[keyY] });
+      if (rightSeries && rightSeries.length) merged.push(...rightSeries);
+      return merged;
+    }
+
+    function renderQPlot(state, mode, profile, targetQ, resonance = null) {
+      const width = 860, height = 340, margin = { left: 54, right: 18, top: 16, bottom: 38 };
+      const qVals = profile.map((p) => p.q);
+      const yMin = Math.min(...qVals, targetQ) * 0.92;
+      const yMax = Math.max(...qVals, targetQ) * 1.08;
+      const axes = drawAxes(qPlot, width, height, margin, 0, 1, yMin, yMax, "r / a", "Safety factor q");
+      const qPath = pathFromSeries(profile, axes.mapX, axes.mapY, "s", "q");
+      qPlot.appendChild(svgElement("path", {
+        d: qPath, fill: "none", stroke: COLORS.smooth, "stroke-width": "2.8",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const py = axes.mapY(targetQ);
+      qPlot.appendChild(svgElement("line", {
+        x1: margin.left, y1: py, x2: width - margin.right, y2: py,
+        stroke: COLORS.rational, "stroke-width": "1.5", "stroke-dasharray": "7 5"
+      }));
+      const label = svgElement("text", {
+        x: width - margin.right - 6, y: py - 6, "text-anchor": "end",
+        fill: COLORS.rational, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      label.textContent = `q = ${modeLabel(mode)}`;
+      qPlot.appendChild(label);
+      const qaLabel = svgElement("text", {
+        x: axes.mapX(1), y: axes.mapY(state.qa) - 8, "text-anchor": "end",
+        fill: COLORS.marker, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      qaLabel.textContent = `qₐ = ${fmt(state.qa, 2)}`;
+      qPlot.appendChild(qaLabel);
+      if (resonance !== null) {
+        const rx = axes.mapX(resonance);
+        qPlot.appendChild(svgElement("line", {
+          x1: rx, y1: margin.top, x2: rx, y2: height - margin.bottom,
+          stroke: COLORS.invalid, "stroke-width": "1.4", "stroke-dasharray": "5 5"
+        }));
+        const rt = svgElement("text", {
+          x: rx + 6, y: height - margin.bottom - 12, "text-anchor": "start",
+          fill: COLORS.invalid, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        rt.textContent = `rₛ/a = ${fmt(resonance, 2)}`;
+        qPlot.appendChild(rt);
+      }
+    }
+
+    function renderFPlot(mode, fgProfile) {
+      const width = 420, height = 320, margin = { left: 48, right: 14, top: 20, bottom: 36 };
+      const fVals = fgProfile.map((p) => p.f);
+      const yMin = Math.min(0, ...fVals) - 0.04 * Math.max(1, Math.abs(Math.max(...fVals)));
+      const yMax = Math.max(...fVals) * 1.08;
+      const axes = drawAxes(fPlot, width, height, margin, 0, 1, yMin, yMax, "r / a", "f(r)");
+      const fPath = pathFromSeries(fgProfile, axes.mapX, axes.mapY, "s", "f");
+      fPlot.appendChild(svgElement("path", {
+        d: fPath, fill: "none", stroke: COLORS.accent, "stroke-width": "2.6",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const t = svgElement("text", {
+        x: width - margin.right - 6, y: margin.top + 14, "text-anchor": "end",
+        fill: COLORS.text, "font-size": "12", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      t.textContent = `mode ${modeLabel(mode)} line bending`;
+      fPlot.appendChild(t);
+    }
+
+    function renderGPlot(mode, fgProfile) {
+      const width = 420, height = 320, margin = { left: 48, right: 14, top: 20, bottom: 36 };
+      const vals = fgProfile.flatMap((p) => [p.g, p.gMag, p.gPressure]);
+      const span = Math.max(0.08, ...vals.map((v) => Math.abs(v)));
+      const axes = drawAxes(gPlot, width, height, margin, 0, 1, -1.08 * span, 1.08 * span, "r / a", "g(r)");
+
+      const gMagPath = pathFromSeries(fgProfile, axes.mapX, axes.mapY, "s", "gMag");
+      gPlot.appendChild(svgElement("path", {
+        d: gMagPath, fill: "none", stroke: "#c58a5a", "stroke-width": "1.8",
+        "stroke-dasharray": "7 5", "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const gPressPath = pathFromSeries(fgProfile, axes.mapX, axes.mapY, "s", "gPressure");
+      gPlot.appendChild(svgElement("path", {
+        d: gPressPath, fill: "none", stroke: "#b24a4a", "stroke-width": "1.7",
+        "stroke-dasharray": "3 4", "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const gPath = pathFromSeries(fgProfile, axes.mapX, axes.mapY, "s", "g");
+      gPlot.appendChild(svgElement("path", {
+        d: gPath, fill: "none", stroke: COLORS.invalid, "stroke-width": "2.8",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const t = svgElement("text", {
+        x: width - margin.right - 6, y: margin.top + 14, "text-anchor": "end",
+        fill: COLORS.text, "font-size": "12", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      t.textContent = "magnetic + pressure weighting";
+      gPlot.appendChild(t);
+    }
+
+    function vacuumBr(mode, wall, s) {
+      const b2m = Math.pow(wall, 2 * mode.m);
+      return (Math.pow(s, mode.m - 1) - b2m * Math.pow(s, -mode.m - 1)) / (1 - b2m);
+    }
+
+    function vacuumBrPrime(mode, wall, s) {
+      const b2m = Math.pow(wall, 2 * mode.m);
+      return ((mode.m - 1) * Math.pow(s, mode.m - 2) + (mode.m + 1) * b2m * Math.pow(s, -mode.m - 2)) / (1 - b2m);
+    }
+
+    function renderXiPlot(state, mode, structure) {
+      const width = 860, height = 360, margin = { left: 54, right: 18, top: 16, bottom: 40 };
+      const coreVals = structure.coreProfile ? structure.coreProfile.map((p) => p.xi) : [];
+      const outerVals = structure.piecewise ? structure.profile.map((p) => p.xi) : [];
+      const vals = [...coreVals, ...outerVals, ...(structure.piecewise ? [] : structure.profile.map((p) => p.xi)), 0];
+      const span = Math.max(0.08, ...vals.map((v) => Math.abs(v)));
+      const axes = drawAxes(xiPlot, width, height, margin, 0, 1, -1.08 * span, 1.08 * span, "r / a", "ξ(r)");
+
+      if (structure.coreProfile) {
+        const corePath = pathFromSeries(structure.coreProfile, axes.mapX, axes.mapY, "s", "xi");
+        xiPlot.appendChild(svgElement("path", {
+          d: corePath, fill: "none", stroke: "#8db99d", "stroke-width": "2.1",
+          "stroke-linecap": "round", "stroke-linejoin": "round"
+        }));
+      }
+      const interiorPath = pathFromSeries(structure.profile, axes.mapX, axes.mapY, "s", "xi");
+      xiPlot.appendChild(svgElement("path", {
+        d: interiorPath, fill: "none", stroke: structure.piecewise ? COLORS.outer : COLORS.smooth, "stroke-width": "2.8",
+        "stroke-dasharray": structure.piecewise ? "8 5" : "",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const edgeX = axes.mapX(1);
+      xiPlot.appendChild(svgElement("line", {
+        x1: edgeX, y1: margin.top, x2: edgeX, y2: height - margin.bottom,
+        stroke: COLORS.marker, "stroke-width": "1.4", "stroke-dasharray": "6 5"
+      }));
+      const edgeText = svgElement("text", {
+        x: edgeX + 6, y: margin.top + 16, "text-anchor": "start",
+        fill: COLORS.marker, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      edgeText.textContent = "plasma edge";
+      xiPlot.appendChild(edgeText);
+      if (structure.resonance !== null) {
+        const rsX = axes.mapX(structure.resonance);
+        xiPlot.appendChild(svgElement("line", {
+          x1: rsX, y1: margin.top, x2: rsX, y2: height - margin.bottom,
+          stroke: COLORS.invalid, "stroke-width": "1.4", "stroke-dasharray": "4 4"
+        }));
+        const rsText = svgElement("text", {
+          x: rsX + 6, y: margin.top + 34, "text-anchor": "start",
+          fill: COLORS.invalid, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        rsText.textContent = "rational surface";
+        xiPlot.appendChild(rsText);
+      }
+      const matchText = svgElement("text", {
+        x: width - margin.right - 6, y: height - margin.bottom - 10, "text-anchor": "end",
+        fill: COLORS.text, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      matchText.textContent = structure.piecewise
+        ? "axis-regular and edge-regular ξ branches"
+        : "plasma displacement to the edge";
+      xiPlot.appendChild(matchText);
+    }
+
+    function renderMatchPlot(state, mode, structure) {
+      const width = 860, height = 300, margin = { left: 54, right: 18, top: 18, bottom: 40 };
+      const vacuumScale = structure.plasmaBrProfile[structure.plasmaBrProfile.length - 1].br;
+      const vacuum = linspace(1, state.wall, 120).map((s) => {
+        const br = vacuumScale * vacuumBr(mode, state.wall, s);
+        const dbr = vacuumScale * vacuumBrPrime(mode, state.wall, s);
+        return {
+          s,
+          br,
+          dbr,
+          brLogDerivative: Math.abs(br) > 1e-12 ? s * dbr / br : NaN
+        };
+      });
+      const coreVals = structure.coreBrProfile ? structure.coreBrProfile.map((p) => p.br) : [];
+      const vals = [...coreVals, ...structure.plasmaBrProfile.map((p) => p.br), ...vacuum.map((p) => p.br), 0];
+      const span = Math.max(0.08, ...vals.map((v) => Math.abs(v)).filter(Number.isFinite));
+      const axes = drawAxes(matchPlot, width, height, margin, 0, state.wall, -1.08 * span, 1.08 * span, "r / a", "normalized b_r");
+
+      if (structure.coreBrProfile) {
+        const corePath = pathFromSeries(structure.coreBrProfile, axes.mapX, axes.mapY, "s", "br");
+        matchPlot.appendChild(svgElement("path", {
+          d: corePath, fill: "none", stroke: "#8db99d", "stroke-width": "2.0",
+          "stroke-linecap": "round", "stroke-linejoin": "round"
+        }));
+      }
+      const plasmaPath = pathFromSeries(structure.plasmaBrProfile, axes.mapX, axes.mapY, "s", "br");
+      matchPlot.appendChild(svgElement("path", {
+        d: plasmaPath, fill: "none", stroke: structure.piecewise ? COLORS.outer : COLORS.smooth, "stroke-width": "2.8",
+        "stroke-dasharray": structure.piecewise ? "8 5" : "",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const vacuumPath = pathFromSeries(vacuum, axes.mapX, axes.mapY, "s", "br");
+      matchPlot.appendChild(svgElement("path", {
+        d: vacuumPath, fill: "none", stroke: COLORS.constant, "stroke-width": "2.3",
+        "stroke-dasharray": "8 5", "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+
+      const edgeX = axes.mapX(1);
+      const wallX = axes.mapX(state.wall);
+      matchPlot.appendChild(svgElement("line", {
+        x1: edgeX, y1: margin.top, x2: edgeX, y2: height - margin.bottom,
+        stroke: COLORS.marker, "stroke-width": "1.4", "stroke-dasharray": "6 5"
+      }));
+      matchPlot.appendChild(svgElement("line", {
+        x1: wallX, y1: margin.top, x2: wallX, y2: height - margin.bottom,
+        stroke: COLORS.axis, "stroke-width": "1.2", "stroke-dasharray": "5 5"
+      }));
+      if (structure.resonance !== null) {
+        const rsX = axes.mapX(structure.resonance);
+        matchPlot.appendChild(svgElement("line", {
+          x1: rsX, y1: margin.top, x2: rsX, y2: height - margin.bottom,
+          stroke: COLORS.invalid, "stroke-width": "1.2", "stroke-dasharray": "4 4"
+        }));
+        matchPlot.appendChild(svgElement("circle", {
+          cx: rsX, cy: axes.mapY(0), r: 4.2,
+          fill: "white", stroke: COLORS.invalid, "stroke-width": "1.5"
+        }));
+      }
+
+      const insideEdge = structure.plasmaBrProfile[structure.plasmaBrProfile.length - 1].brLogDerivative;
+      const outsideEdge = vacuum[0].brLogDerivative;
+      const t = svgElement("text", {
+        x: width - margin.right - 6, y: margin.top + 14, "text-anchor": "end",
+        fill: COLORS.text, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      t.textContent = structure.piecewise
+        ? `outer regular b_r crosses through zero at r_s, then matches vacuum with edge a b_r′/b_r: plasma ${fmt(insideEdge, 2)}   vacuum ${fmt(outsideEdge, 2)}`
+        : `edge a b_r′/b_r: plasma ${fmt(insideEdge, 2)}   vacuum ${fmt(outsideEdge, 2)}`;
+      matchPlot.appendChild(t);
+    }
+
+    function renderBrLogPlot(state, mode, structure) {
+      const width = 860, height = 280, margin = { left: 54, right: 18, top: 18, bottom: 40 };
+      const vacuum = linspace(1, state.wall, 120).map((s) => {
+        const br = vacuumBr(mode, state.wall, s);
+        const dbr = vacuumBrPrime(mode, state.wall, s);
+        return {
+          s,
+          br,
+          brLogDerivative: Math.abs(br) > 1e-12 ? s * dbr / br : NaN
+        };
+      });
+      const coreLog = structure.coreBrProfile ? structure.coreBrProfile.filter((p) => Number.isFinite(p.brLogDerivative)) : [];
+      const outerLog = structure.plasmaBrProfile.filter((p) => Number.isFinite(p.brLogDerivative));
+      const vals = [
+        ...coreLog.map((p) => p.brLogDerivative),
+        ...outerLog.map((p) => p.brLogDerivative),
+        ...vacuum.map((p) => p.brLogDerivative).filter(Number.isFinite)
+      ];
+      const span = Math.max(0.8, ...vals.map((v) => Math.abs(v)));
+      const axes = drawAxes(brLogPlot, width, height, margin, 0, state.wall, -1.08 * span, 1.08 * span, "r / a", "a b_r′ / b_r");
+
+      if (coreLog.length) {
+        const corePath = pathFromSeries(coreLog, axes.mapX, axes.mapY, "s", "brLogDerivative", (p) => Number.isFinite(p.brLogDerivative));
+        brLogPlot.appendChild(svgElement("path", {
+          d: corePath, fill: "none", stroke: "#8db99d", "stroke-width": "2.2",
+          "stroke-linecap": "round", "stroke-linejoin": "round"
+        }));
+      }
+      const plasmaPath = pathFromSeries(outerLog, axes.mapX, axes.mapY, "s", "brLogDerivative", (p) => Number.isFinite(p.brLogDerivative));
+      brLogPlot.appendChild(svgElement("path", {
+        d: plasmaPath, fill: "none", stroke: structure.piecewise ? COLORS.outer : COLORS.smooth, "stroke-width": "2.6",
+        "stroke-dasharray": structure.piecewise ? "8 5" : "",
+        "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+      const vacuumPath = pathFromSeries(vacuum, axes.mapX, axes.mapY, "s", "brLogDerivative", (p) => Number.isFinite(p.brLogDerivative));
+      brLogPlot.appendChild(svgElement("path", {
+        d: vacuumPath, fill: "none", stroke: COLORS.constant, "stroke-width": "2.2",
+        "stroke-dasharray": "8 5", "stroke-linecap": "round", "stroke-linejoin": "round"
+      }));
+
+      const edgeX = axes.mapX(1);
+      const wallX = axes.mapX(state.wall);
+      brLogPlot.appendChild(svgElement("line", {
+        x1: edgeX, y1: margin.top, x2: edgeX, y2: height - margin.bottom,
+        stroke: COLORS.marker, "stroke-width": "1.4", "stroke-dasharray": "6 5"
+      }));
+      brLogPlot.appendChild(svgElement("line", {
+        x1: wallX, y1: margin.top, x2: wallX, y2: height - margin.bottom,
+        stroke: COLORS.axis, "stroke-width": "1.2", "stroke-dasharray": "5 5"
+      }));
+      if (structure.resonance !== null) {
+        const rsX = axes.mapX(structure.resonance);
+        brLogPlot.appendChild(svgElement("line", {
+          x1: rsX, y1: margin.top, x2: rsX, y2: height - margin.bottom,
+          stroke: COLORS.invalid, "stroke-width": "1.2", "stroke-dasharray": "4 4"
+        }));
+      }
+      const t = svgElement("text", {
+        x: width - margin.right - 6, y: margin.top + 14, "text-anchor": "end",
+        fill: COLORS.text, "font-size": "12.5", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+      });
+      t.textContent = structure.piecewise
+        ? `finite-ε Newcomb jump ≈ ${fmt(structure.newcombJump ?? 0, 2)}`
+        : "logarithmic derivative of the matched b_r branches";
+      brLogPlot.appendChild(t);
+    }
+
+    function currentState() {
+      const mode = MODES[parseInt(modeSelect.value, 10)];
+      return {
+        mode,
+        qa: parseFloat(sliders.qa.value),
+        q0: parseFloat(sliders.q0.value),
+        pressure: parseFloat(sliders.pressure.value),
+        wall: parseFloat(sliders.wall.value)
+      };
+    }
+
+    function render() {
+      const state = currentState();
+      labels.qa.textContent = fmt(state.qa, 2);
+      labels.q0.textContent = fmt(state.q0, 2);
+      labels.pressure.textContent = fmt(state.pressure, 2);
+      labels.wall.textContent = fmt(state.wall, 2);
+
+      const profile = qProfileArray(state.q0, state.qa);
+      const fgProfile = fgProfileArray(state.mode, state.q0, state.qa, state.pressure);
+      const targetQ = state.mode.m / state.mode.n;
+      const constInfo = constantQProxy(state.mode, state.qa, state.wall);
+      const smoothInfo = smoothProxy(state.mode, state.q0, state.qa, state.pressure, state.wall);
+
+      renderQPlot(state, state.mode, profile, targetQ, smoothInfo.resonance ?? null);
+      renderFPlot(state.mode, fgProfile);
+      renderGPlot(state.mode, fgProfile);
+      if (smoothInfo.valid) {
+        renderXiPlot(state, state.mode, smoothInfo.structure);
+        renderMatchPlot(state, state.mode, smoothInfo.structure);
+        renderBrLogPlot(state, state.mode, smoothInfo.structure);
+      } else {
+        while (xiPlot.firstChild) xiPlot.removeChild(xiPlot.firstChild);
+        drawAxes(xiPlot, 860, 360, { left: 54, right: 18, top: 16, bottom: 40 }, 0, 1, -1, 1, "r / a", "ξ(r)");
+        const txt = svgElement("text", {
+          x: 430, y: 170, "text-anchor": "middle",
+          fill: COLORS.invalid, "font-size": "15", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        txt.textContent = smoothInfo.reason === "local singular stability violated"
+          ? "A rational surface is present, and the local singular-point test rejects the ideal small solution."
+          : "This branch cannot be continued cleanly with the present ideal treatment.";
+        xiPlot.appendChild(txt);
+
+        while (matchPlot.firstChild) matchPlot.removeChild(matchPlot.firstChild);
+        drawAxes(matchPlot, 860, 300, { left: 54, right: 18, top: 18, bottom: 40 }, 0, state.wall, -1, 1, "r / a", "normalized b_r");
+        const txt2 = svgElement("text", {
+          x: 430, y: 145, "text-anchor": "middle",
+          fill: COLORS.invalid, "font-size": "15", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        txt2.textContent = "No consistent ideal b_r continuation is shown for this branch.";
+        matchPlot.appendChild(txt2);
+
+        while (brLogPlot.firstChild) brLogPlot.removeChild(brLogPlot.firstChild);
+        drawAxes(brLogPlot, 860, 280, { left: 54, right: 18, top: 18, bottom: 40 }, 0, state.wall, -1, 1, "r / a", "a b_r′ / b_r");
+        const txt3 = svgElement("text", {
+          x: 430, y: 135, "text-anchor": "middle",
+          fill: COLORS.invalid, "font-size": "15", "font-family": "Avenir Next, Gill Sans, Trebuchet MS, sans-serif"
+        });
+        txt3.textContent = "No consistent logarithmic-derivative comparison is shown for this branch.";
+        brLogPlot.appendChild(txt3);
+      }
+
+      const nu = state.qa / state.q0 - 1;
+      const growthProxy = smoothInfo.valid && smoothInfo.value > 0 ? Math.sqrt(Math.max(smoothInfo.value, 0)) : 0;
+      metrics.growthBadge.classList.toggle("metric-good", smoothInfo.valid && smoothInfo.value <= 0);
+      metrics.growthBadge.classList.toggle("metric-bad", smoothInfo.valid && smoothInfo.value > 0);
+      metrics.deltaWBadge.classList.toggle("metric-good", smoothInfo.valid && smoothInfo.rawDeltaW >= 0);
+      metrics.deltaWBadge.classList.toggle("metric-bad", smoothInfo.valid && smoothInfo.rawDeltaW < 0);
+      metrics.growthMain.textContent = smoothInfo.valid ? `γτ_A ≈ ${fmt(growthProxy, 3)}` : "invalid";
+      metrics.growthSub.textContent = smoothInfo.valid
+        ? (smoothInfo.rawDeltaW === 0
+            ? "within Newcomb matching tolerance: marginal / stable"
+            : (smoothInfo.value > 0 ? "positive drive proxy: unstable branch" : "non-positive drive proxy: stable branch"))
+        : "ideal external-kink reduction not admissible for this branch";
+      metrics.deltaWMain.textContent = smoothInfo.valid ? `${smoothInfo.rawDeltaW < 0 ? "−" : ""}${fmt(Math.abs(smoothInfo.rawDeltaW), 3)}` : "--";
+      metrics.deltaWSub.textContent = smoothInfo.valid
+        ? (smoothInfo.rawDeltaW === 0
+            ? `marginal after applying a neutrality tolerance of ${smoothInfo.neutralTolerance.toExponential(0)}`
+            : `raw normalized δW proxy (${smoothInfo.rawDeltaW < 0 ? "destabilizing" : "stabilizing"})`)
+        : "no consistent normalized δW proxy";
+      summaries.state.textContent = `Using q(r) from the smooth current family with ν = ${fmt(nu, 2)} and a pressure-drive scale ${fmt(state.pressure, 2)}. ${nu >= 0 ? "This is a centrally peaked current profile." : "This is a hollow current profile within the same analytic family."}`;
+      summaries.mode.textContent = smoothInfo.valid
+        ? `${smoothInfo.piecewise ? "Piecewise" : "Direct"} mode ${modeLabel(state.mode)} gives a plasma-edge logarithmic derivative aξ′/ξ ≈ ${fmt(smoothInfo.edgeLogDerivative, 2)} and a smooth-profile drive proxy ${fmt(smoothInfo.value, 3)} at qₐ = ${fmt(state.qa, 2)}.`
+        : `Mode ${modeLabel(state.mode)} cannot be continued with the present ideal treatment at qₐ = ${fmt(state.qa, 2)} because the local singular-point test fails or the edge solve loses regularity.`;
+      summaries.band.textContent = smoothInfo.valid && smoothInfo.piecewise
+        ? `At the internal F=0 surface, the explorer now follows Newcomb’s procedure explicitly: the green branch is regular at the axis, the purple branch is regular at the outer boundary and matched to the vacuum/wall condition, and both are scaled so their small-solution amplitudes agree near r_s. The finite-ε jump in a b_r′/b_r is then shown as a Newcomb-style matching diagnostic, reminiscent of the later Δ′ language. At the edge, only b_r is continued into the vacuum and then forced to vanish at b/a = ${fmt(state.wall, 2)}.`
+        : `Without an internal rational surface, the plasma solution is integrated directly to the edge and matched to the ideal-wall vacuum continuation. Its edge slope a b_r′/b_r is shown for both the plasma and vacuum sides because that mismatch is what feeds the surface-energy balance; it is not expected to vanish in general. For b/a = ${fmt(state.wall, 2)}, the lecture’s constant-q strip would still place mode ${modeLabel(state.mode)} in ${(constInfo.lower > 0 ? fmt(constInfo.lower, 3) : "0")} < qₐ < ${fmt(constInfo.upper, 3)}.`;
+      summaries.smooth.textContent = smoothInfo.valid
+        ? `${smoothInfo.rawDeltaW === 0 ? "This case is effectively marginal/stable in the reduced external-kink proxy." : (smoothInfo.value > 0 ? "This case is unstable in the reduced external-kink proxy." : "This case is stable in the reduced external-kink proxy.")} The approximate normalized growth proxy is γτ_A ≈ ${fmt(growthProxy, 3)}.${smoothInfo.piecewise ? ` The profile contains a rational surface at r/a ≈ ${fmt(smoothInfo.resonance, 2)}, the local index G ≈ ${fmt(smoothInfo.localIndex, 2)} still permits the small-solution branch, and the plotted Newcomb jump proxy is Δ_N^(ε) ≈ ${fmt(smoothInfo.structure.newcombJump ?? 0, 2)}.` : ""}${smoothInfo.rawDeltaW === 0 ? ` Here the unclamped surface-energy proxy is only ${fmt(smoothInfo.rawDeltaWUnclamped, 5)}, so it is being treated as numerical near-neutrality rather than real drive.` : ""} Pressure modifies g(r), so it can reshape the interior ξ solution as well as the final drive.`
+        : `${smoothInfo.reason === "local singular stability violated" ? "The profile contains a rational surface, and the local Newcomb singular-point index is too strong for the admissible small solution." : "The present ideal reduction breaks down for this branch."} The q(r), f(r), and g(r) panels still show why the selected mode stops behaving like a pure external kink.`;
+    }
+
+    MODES.forEach((mode, idx) => {
+      const option = document.createElement("option");
+      option.value = String(idx);
+      option.textContent = `${modeLabel(mode)} external kink`;
+      if (mode.m === 2 && mode.n === 1) option.selected = true;
+      modeSelect.appendChild(option);
+    });
+
+    [modeSelect, ...Object.values(sliders)].forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

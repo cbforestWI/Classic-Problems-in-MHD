@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 23 Newcomb&#8217;s Formulation for the Diffuse Pinch</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture22.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture24.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;23</span><br /><a 
+ id="x1-9000023"></a>Newcomb&#8217;s Formulation for the Diffuse Pinch</h2>
+<!--l. 18--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 18--><p class="noindent" >The cleanest way to organize ideal-MHD pinch stability is to start with Newcomb&#8217;s
+     reduction  of  the  screw  pinch  to  a  one-dimensional  variational  problem.  Once  that
+     structure is visible, the diffuse-pinch limits become much easier to read: the \(\theta \) pinch
+     isolates line bending and magnetic compression, while the \(z\) pinch isolates curvature and
+     pressure drive. Together they show exactly what later gets compressed into the coefficient
+     functions \(f(r)\) and \(g(r)\).</p></blockquote></div></div>
+<!--l. 28--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 28--><p class="noindent" >Diffuse-pinches forced the subject to move beyond surface-current intuition and toward
+     genuinely  distributed  current  profiles,  while  Newcomb  supplied  the  mathematical
+     language that made the general problem tractable <a 
+href="#Xnewcomb1960hydromagnetic-853">Newcomb</a>&#x00A0;[<a 
+href="#Xnewcomb1960hydromagnetic-853">1960</a>]. In that transition
+     one sees, in unusually clean algebra, the three stabilizing agents that recur throughout
+     ideal MHD: field-line bending, plasma compression, and boundary control. The payoff is
+     that internal and external modes can be treated in one common variational framework
+     rather than as disconnected special cases.</p></blockquote></div></div>
+<!--l. 40--><p class="noindent" >We use the energy principle developed earlier in Lecture&#x00A0;15, especially the plasma contribution (<a href="lecture15.html#eq-eq-B1_def">15.3</a>),
+repeated here <a id="eq-eq-newcomb_deltaW_plasma_expanded"></a><div class="math-display">\[\delta W_P = \frac 12\int _P dV\Bigg [ \begin {gathered} \underbrace {\frac {|\vect {Q}_\perp |^2}{\muo }}_{\text {field-line bending}} + \underbrace {\frac {B^2}{\muo } \left |\divergence \vect {\xi }_\perp + 2\,\vect {\xi }_\perp \cdot \vect {\kappa }\right |^2}_{\text {magnetic compression}} + \underbrace {\gamma p\,|\divergence \vect {\xi }|^2}_{\text {plasma compression}} \\[0.5em] - \underbrace {2\,(\vect {\xi }_\perp \cdot \grad p) (\vect {\xi }_\perp ^{*}\cdot \vect {\kappa })}_{\text {pressure--curvature coupling}} - \underbrace {\frac {J_\parallel }{B} (\vect {\xi }_\perp ^{*}\times \B )\cdot \vect {Q}_\perp }_{\text {current-driven term}} \end {gathered} \Bigg ]. \tag{23.1}\]</div>
+</p>
+<!--l. 67--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-9100023"></a>Diffuse-pinch limits.</span>
+With that logical sequence in hand, it is useful to return to the two diffuse-pinch limits. They show, in the
+cleanest possible algebra, how line bending, compression, and curvature populate \(\delta W\) before addressing the
+general screw pinch.
+</p><!--l. 72--><p class="noindent" >Perturbations are taken in the normal-mode form <a id="eq-eq-theta_xi_form"></a><div class="math-display">\[\bm {\xi }(r,\theta ,z) = \left [\xi _r(r)\,\vect {e}_r+\xi _\theta (r)\,\vect {e}_\theta +\xi _z(r)\,\vect {e}_z\right ] e^{i m\theta +i k z}. \tag{23.2}\]</div>
+<a 
+ id="x1-91001r96"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">23.1   </span> <a 
+ id="x1-920001"></a>The \(\theta \) pinch</h3>
+<!--l. 87--><p class="noindent" >A \(\theta \) pinch carries only axial field, <div class="math-display">\[\B _0 = B_z(r)\,\vect {e}_z, \qquad \J = -\frac {1}{\muo }\,\dd {B_z}{r}\,\vect {e}_\theta , \qquad J_\parallel = 0, \qquad \bm {\kappa }=0.\]</div>
+Radial force balance is therefore the total-pressure statement <a id="eq-eq-theta_eq"></a><div class="math-display">\[\dd {}{r}\left (p+\frac {B_z^2}{2\muo }\right )=0 \qquad \Longrightarrow \qquad p(r)+\frac {B_z^2(r)}{2\muo }=\text {const}. \tag{23.4}\]</div>
+This is the cylindrical version of the static balance already encountered in the introductory equations,
+Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>).
+</p>
+                                                                                         
+                                                                                         
+<!--l. 107--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-930001"></a>Incompressibility constraint.</span>
+From (<a href="lecture23.html#eq-eq-theta_xi_form">23.2</a>), <div class="math-display">\[\divergence \bm {\xi } = \left [ \frac {1}{r}\dd {}{r}(r\xi _r)+\frac {i m}{r}\xi _\theta +i k \xi _z \right ]e^{i m\theta +i k z}.\]</div>
+If we minimize the compressional part of \(\delta W\) by taking \(\divergence \bm {\xi }=0\), then for \(k\neq 0\), <a id="eq-eq-theta_xipar_incomp"></a><div class="math-display">\[\xi _\parallel \equiv \xi _z = \frac {i}{k r}\left [\dd {}{r}(r\xi _r)+i m \xi _\theta \right ], \tag{23.6}\]</div>
+and equivalently <a id="eq-eq-theta_div_xiperp"></a><div class="math-display">\[\divergence \bm {\xi }_\perp = \frac {1}{r}\dd {}{r}(r\xi _r)+\frac {i m}{r}\xi _\theta = -ik\,\xi _\parallel . \tag{23.7}\]</div>
+
+</p><!--l. 155--><p class="noindent" ><a id="eq-eq-deltaW_theta"></a><div class="math-display">\[\begin{aligned}\delta W_P = \frac 12\int _P dV\Bigg [ &amp; \frac {|\vect {Q}_\perp |^2}{\muo } + \frac {B^2}{\muo } \left |\divergence \vect {\xi }_\perp + \cancelto {0}{2\,\vect {\xi }_\perp \cdot \vect {\kappa }}\right |^2 + \cancelto {0}{\gamma p\,|\divergence \vect {\xi }|^2} \nonumber \\[0.5em] &amp; - \cancelto {0}{2\,(\vect {\xi }_\perp \cdot \grad p) (\vect {\xi }_\perp ^{*}\cdot \vect {\kappa })} - {\cancelto {0}{\frac {J_\parallel }{B} (\vect {\xi }_\perp ^{*}\times \B )\cdot \vect {Q}_\perp }} \Bigg ].\end{aligned} \tag{23.8}\]</div>
+</p>
+<!--l. 158--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-940001"></a>Perturbed field.</span>
+Because \(\B _0=B_z\vect {e}_z\), <div class="math-display">\[\bm {\xi }\times \B _0 = \xi _\theta B_z\,\vect {e}_r-\xi _r B_z\,\vect {e}_\theta ,\]</div>
+so <a id="eq-eq-theta_Q"></a><div class="math-display">\[\begin{aligned}\bm {Q} &amp;\equiv \curl (\bm {\xi }\times \B _0) \nonumber \\ &amp;= \underbrace {ik B_z\,\xi _r\,\vect {e}_r+ik B_z\,\xi _\theta \,\vect {e}_\theta }_{\bm {Q}_\perp } + \underbrace {\left [ \frac {1}{r}\dd {}{r}(rB_z\xi _r)-\frac {i m}{r}B_z\xi _\theta \right ]}_{Q_\parallel }\vect {e}_z .\end{aligned} \tag{23.10}\]</div>
+</p><!--l. 178--><p class="noindent" >Hence <div class="math-display">\[\bm {Q}_\perp = ik B_z(\xi _r\vect {e}_r+\xi _\theta \vect {e}_\theta ).\]</div>
+</p>
+<!--l. 183--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-950001"></a>Reduced energy and completion of the square.</span>
+With \(J_\parallel =0\) and \(\bm {\kappa }=0\), the general plasma functional (<a href="lecture23.html#eq-eq-newcomb_deltaW_plasma_expanded">23.1</a>) reduces, under incompressibility, to <a id="eq-eq-theta_dW_start"></a><div class="math-display">\[\begin{aligned}\delta W &amp;= \frac {1}{2\muo }\int _P dV \left ( |\bm {Q}_\perp |^2 + B_z^2\,|\divergence \bm {\xi }_\perp |^2 \right ) \nonumber \\ &amp;= \frac {1}{2\muo }\int _P dV\,B_z^2 \left [ k^2\left (|\xi _r|^2+|\xi _\theta |^2\right ) + \left | \frac {1}{r}\dd {}{r}(r\xi _r)+\frac {i m}{r}\xi _\theta \right |^2 \right ].\end{aligned} \tag{23.12}\]</div>
+</p><!--l. 207--><p class="noindent" >Expanding the last modulus gives <div class="math-display">\[\begin{aligned}\delta W &amp;= \frac {1}{2\muo }\int _P dV\,B_z^2 \Bigg [ k^2|\xi _r|^2 +\frac {|(r\xi _r)'|^2}{r^2} +\left (k^2+\frac {m^2}{r^2}\right )|\xi _\theta |^2 \nonumber \\ &amp;\hspace {3.4cm} +\frac {i m}{r^2}(r\xi _r)'^{*}\xi _\theta -\frac {i m}{r^2}(r\xi _r)'\xi _\theta ^* \Bigg ].\end{aligned}\]</div>
+</p><!--l. 222--><p class="noindent" >Define <div class="math-display">\[k_0^2(r)\equiv k^2+\frac {m^2}{r^2}.\]</div>
+Then the square completion is <a id="eq-eq-theta_dW_square"></a><div class="math-display">\[\begin{aligned}\delta W &amp;= \frac {1}{2\muo }\int _P dV\,B_z^2 \Bigg [ k^2|\xi _r|^2 + \left (\frac {1}{r^2}-\frac {m^2}{k_0^2 r^4}\right )|(r\xi _r)'|^2 + \left | k_0\xi _\theta -\frac {i m}{k_0 r^2}(r\xi _r)' \right |^2 \Bigg ].\end{aligned} \tag{23.15}\]</div>
+</p><!--l. 242--><p class="noindent" >The minimizing choice is therefore <a id="eq-eq-theta_xitheta_opt"></a><div class="math-display">\[\xi _\theta = \frac {i m}{k_0^2 r^2}\,\frac {1}{r}\dd {}{r}(r\xi _r) = \frac {i m}{k^2r^2+m^2}\,\frac {1}{r}\dd {}{r}(r\xi _r), \tag{23.16}\]</div>
+and substituting it back gives <a id="eq-eq-theta_dW_final"></a><div class="math-display">\[\delta W_{\min } = \frac {1}{2\muo }\int _P dV\,B_z^2 \left [ k^2|\xi _r|^2 + \frac {k^2}{k_0^2 r^2}|(r\xi _r)'|^2 \right ]. \tag{23.17}\]</div>
+For every finite \(k\neq 0\) <tspan font-family="ecbx" font-size="1095">the</tspan> \(\theta \) <tspan font-family="ecbx" font-size="1095">pinch is ideally stable</tspan>: \(\delta W_{\min }&gt;0\). The limit \(k\rightarrow 0\) is only marginal, reflecting the absence of line
+bending in a perfectly long-wavelength translation.
+<a 
+ id="x1-95001r101"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">23.2   </span> <a 
+ id="x1-960002"></a>The \(z\) pinch</h3>
+<!--l. 272--><p class="noindent" >The \(z\) pinch reverses the geometry: <div class="math-display">\[\B _0 = B_\theta (r)\,\vect {e}_\theta , \qquad \J = \frac {1}{\muo r}\dd {}{r}\!\left (rB_\theta \right )\vect {e}_z, \qquad J_\parallel = 0.\]</div>
+Now the field lines are circles and have curvature <div class="math-display">\[\bm {\kappa }=(\bvec \cdot \grad )\bvec =-\frac {\vect {e}_r}{r}.\]</div>
+Radial equilibrium becomes <a id="eq-eq-zpinch_eq"></a><div class="math-display">\[\dd {p}{r}+\frac {B_\theta }{\muo r}\dd {}{r}(rB_\theta )=0 \qquad \Longleftrightarrow \qquad \dd {p}{r} = -\frac {1}{2\muo r}\dd {}{r}(rB_\theta ^2). \tag{23.20}\]</div>
+Equation (<a href="lecture23.html#eq-eq-zpinch_eq">23.20</a>) is exactly the \(Z\)-pinch balance discussed in the anisotropic-equilibrium lecture,
+Eq.&#x00A0;(<a href="lecture11.html#eq-eq-zpinch_balance">11.30</a>).
+</p>
+<!--l. 296--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-970002"></a>Case \(m\neq 0\): curvature enters \(\delta W\).</span>
+Here the parallel displacement is \(\xi _\parallel =\xi _\theta \). If we again minimize the compressional energy by taking \(\divergence \bm {\xi }=0\), then
+<a id="eq-eq-zpinch_incomp"></a><div class="math-display">\[\xi _\parallel \equiv \xi _\theta = \frac {i}{m}\left [\dd {}{r}(r\xi _r)+ik r\,\xi _z\right ], \qquad (m\neq 0). \tag{23.21}\]</div>
+The perpendicular perturbed field is <a id="eq-eq-zpinch_Qperp"></a><div class="math-display">\[\bm {Q}_\perp = \curl \Big [(\xi _r\vect {e}_r+\xi _z\vect {e}_z)\times B_\theta \vect {e}_\theta \Big ] = \frac {i m B_\theta }{r}\left (\xi _r\vect {e}_r+\xi _z\vect {e}_z\right ). \tag{23.22}\]</div>
+                                                                                         
+                                                                                         
+Substituting \(\bm {\kappa }=-\vect {e}_r/r\) and \(J_\parallel =0\) into (<a href="lecture23.html#eq-eq-newcomb_deltaW_plasma_expanded">23.1</a>) gives <a id="eq-eq-zpinch_dW_intermediate"></a><div class="math-display">\[\delta W = \frac {1}{2\muo }\int _P dV \left [ |\bm {Q}_\perp |^2 + B_\theta ^2\left |\divergence \bm {\xi }_\perp -2\frac {\xi _r}{r}\right |^2 + \frac {2\muo }{r}p'(r)\,|\xi _r|^2 \right ]. \tag{23.23}\]</div>
+Because <div class="math-display">\[\divergence \bm {\xi }_\perp -2\frac {\xi _r}{r} = r\left (\frac {\xi _r}{r}\right )'+ik\xi _z,\]</div>
+the functional becomes <a id="eq-eq-zpinch_dW_start"></a><div class="math-display">\[\delta W = \frac {1}{2\muo }\int _P dV \left [ \frac {m^2B_\theta ^2}{r^2}\left (|\xi _r|^2+|\xi _z|^2\right ) + B_\theta ^2\left |r\left (\frac {\xi _r}{r}\right )'+ik\xi _z\right |^2 + \frac {2\muo }{r}p'(r)\,|\xi _r|^2 \right ]. \tag{23.25}\]</div>
+Now complete the square in \(\xi _z\): <a id="eq-eq-zpinch_xiz_opt"></a><div class="math-display">\[\xi _z = \frac {i k r^2}{m^2+k^2r^2}\, r\left (\frac {\xi _r}{r}\right )'. \tag{23.26}\]</div>
+Substituting (<a href="lecture23.html#eq-eq-zpinch_xiz_opt">23.26</a>) back into (<a href="lecture23.html#eq-eq-zpinch_dW_start">23.25</a>) gives the reduced radial functional <a id="eq-eq-zpinch_dW_final"></a><div class="math-display">\[\delta W_{\min } = \frac {1}{2\muo }\int _P dV \left [ \left (2\muo r\,p'(r)+m^2B_\theta ^2\right )\frac {|\xi _r|^2}{r^2} + \frac {m^2r^2B_\theta ^2}{m^2+k^2r^2} \left | \left (\frac {\xi _r}{r}\right )' \right |^2 \right ]. \tag{23.27}\]</div>
+The second term is stabilizing line bending. A simple sufficient condition for stability of a given \(m\neq 0\) family is
+therefore <a id="eq-eq-zpinch_stab_basic"></a><div class="math-display">\[2 r\,p'(r)+\frac {m^2B_\theta ^2}{\muo }&gt;0 \qquad \text {for all } r, \tag{23.28}\]</div>
+or, using (<a href="lecture23.html#eq-eq-zpinch_eq">23.20</a>), <a id="eq-eq-zpinch_stab_form2"></a><div class="math-display">\[-\,\dd {}{r}(rB_\theta ^2)+(1+m^2)B_\theta ^2&gt;0, \tag{23.29}\]</div>
+equivalently <a id="eq-eq-zpinch_stab_form3"></a><div class="math-display">\[\frac {1}{B_\theta ^2}\dd {}{r}(rB_\theta ^2)&lt;m^2-1. \tag{23.30}\]</div>
+Near the axis \(B_\theta \sim (\muo J_0/2)r\), so the left-hand side tends to \(3\). Hence the \(m=1\) kink necessarily violates (<a href="lecture23.html#eq-eq-zpinch_stab_form3">23.30</a>) near the axis.
+That is the classic ideal \(z\)-pinch kink.
+</p>
+<!--l. 395--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-980002"></a>Case \(m=0\): sausage and compressibility.</span>
+For the sausage mode compressibility matters and one cannot simply impose \(\divergence \bm {\xi }=0\). Eliminating \(\xi _z\) from the full
+compressible functional gives <a id="eq-eq-m0_xiz_opt"></a><div class="math-display">\[\xi _z = \frac {i}{\gamma p + B_\theta ^2/\muo } \left [ \frac {rB_\theta ^2}{\muo }\left (\frac {\xi _r}{r}\right )' + \frac {\gamma p}{r}(r\xi _r)' \right ], \tag{23.31}\]</div>
+and a reduced energy of the schematic form <a id="eq-eq-m0_reduced"></a><div class="math-display">\[\delta W_E = \int _0^a r\,dr \left [ \frac {4\gamma p\,B_\theta ^2/\muo }{\gamma p + B_\theta ^2/\muo } + 2 r\,p' \right ]\frac {|\xi _r|^2}{r^2}. \tag{23.32}\]</div>
+A convenient way to read this is <a id="eq-eq-m0_condition"></a><div class="math-display">\[-\,\frac {r p'}{p} &lt; \frac {2\gamma \,B_\theta ^2/\muo }{\gamma p + B_\theta ^2/\muo }, \qquad (m=0), \tag{23.33}\]</div>
+which makes the competition between pressure-gradient drive and compressional restoring forces explicit:
+this is simply the interchange instability manifested in the \(z\) pinch geometry.
+</p><!--l. 434--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 434--><p class="noindent" >The  \(\theta \)  pinch  teaches  that  line  bending  and  magnetic  compression  can  make  a  high-\(\beta \)
+     equilibrium ideally stable. The \(z\) pinch teaches the opposite lesson: once field lines are
+     curved, pressure and current can feed kink and sausage modes. Those same ingredients
+     are exactly what Newcomb&#8217;s coefficients organize in the general screw-pinch problem.</p></blockquote></div></div>
+<a 
+ id="x1-98001r105"></a>
+<h3 class="sectionHead"><span class="titlemark">23.3   </span> <a 
+ id="x1-990003"></a>The Screw Pinch</h3>
+<!--l. 443--><p class="noindent" >The general screw pinch contains both limiting cases at once. The axial field allows field-line bending along
+\(z\), the azimuthal field introduces curvature, and their mixture produces the resonant combination \(F(r)\).
+Newcomb&#8217;s reduction is therefore not a new physical principle; it is the careful algebraic organization of
+the same energy principle used above.
+</p><!--l. 449--><p class="noindent" >Newcomb starts with the straight screw-pinch equilibrium <a id="eq-eq-screw_B_equil"></a><div class="math-display">\[\B (r)=B_\theta (r)\,\vect {e}_\theta +B_z(r)\,\vect {e}_z, \qquad p=p(r), \tag{23.34}\]</div>
+with radial force balance <a id="eq-eq-screw_equil_radial"></a><div class="math-display">\[\dd {}{r}\left (p+\frac {B_\theta ^2+B_z^2}{2\muo }\right ) +\frac {B_\theta ^2}{\muo r}=0. \tag{23.35}\]</div>
+Equivalently, <a id="eq-eq-screw_equil_mu0pprime"></a><div class="math-display">\[\muo p' =-\frac 12(B^2)'-\frac {B_\theta ^2}{r}, \qquad B^2\equiv B_\theta ^2+B_z^2, \tag{23.36}\]</div>
+where a prime denotes \(d/dr\). This identity is what later removes the explicit equilibrium-field derivatives from
+\(g(r)\).
+</p>
+<!--l. 475--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1000003"></a>Mode decomposition.</span>
+Take <a id="eq-eq-screw_xi_mode"></a><div class="math-display">\[\bm {\xi }(r,\theta ,z)=\bm {\xi }(r)e^{i(m\theta +kz)}, \qquad m\in \mathbb {Z}, \tag{23.37}\]</div>
+and introduce the field-aligned basis <a id="eq-eq-e_eta_def"></a><div class="math-display">\[\bvec \equiv \frac {\B }{B}, \qquad B\equiv \sqrt {B_\theta ^2+B_z^2}, \qquad \bm {e}_\eta \equiv -\vect {e}_r\times \bvec = \frac {B_z}{B}\vect {e}_\theta -\frac {B_\theta }{B}\vect {e}_z. \tag{23.38}\]</div>
+                                                                                         
+                                                                                         
+Decompose the displacement as <a id="eq-eq-screw_xi_decomp"></a><div class="math-display">\[\bm {\xi } = \xi (r)\,\vect {e}_r+\eta (r)\,\bm {e}_\eta +\xi _\parallel (r)\,\bvec . \tag{23.39}\]</div>
+Thus <a id="eq-eq-screw_xi_components"></a><div class="math-display">\[\xi =\xi _r, \qquad \xi _\parallel =\frac {\xi _\theta B_\theta +\xi _z B_z}{B}, \qquad \eta =\frac {\xi _\theta B_z-\xi _z B_\theta }{B}. \tag{23.40}\]</div>
+The useful inverse relations are <a id="eq-eq-screw_xi_inverse_components"></a><div class="math-display">\[\xi _\theta =\frac {B_z}{B}\eta +\frac {B_\theta }{B}\xi _\parallel , \qquad \xi _z=-\frac {B_\theta }{B}\eta +\frac {B_z}{B}\xi _\parallel . \tag{23.41}\]</div>
+</p>
+<!--l. 517--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010003"></a>The two helical combinations \(F\) and \(G\).</span>
+Two combinations of \((m,k)\) and the equilibrium field occur everywhere: <a id="eq-eq-F_G_def"></a><div class="math-display">\[F(r)\equiv \frac {m B_\theta }{r}+k B_z, \qquad G(r)\equiv \frac {m B_z}{r}-k B_\theta , \qquad k_0^2(r)\equiv k^2+\frac {m^2}{r^2}. \tag{23.42}\]</div>
+They are simply the projections of the wave vector parallel and perpendicular to the equilibrium field:
+<a id="eq-eq-Bdotgrad_iF"></a><div class="math-display">\[\B \cdot \grad =iF, \qquad \bm {e}_\eta \cdot \grad =i\frac {G}{B}. \tag{23.43}\]</div>
+They also satisfy the two identities <a id="eq-eq-FG_identities"></a><div class="math-display">\[F^2+G^2=B^2k_0^2, \qquad F B_z-G B_\theta =kB^2. \tag{23.44}\]</div>
+Both identities are used in the square completion below.
+</p>
+<!--l. 544--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1020003"></a>Incompressibility eliminates the parallel displacement.</span>
+Away from a rational surface, the plasma-compression term in (<a href="lecture23.html#eq-eq-newcomb_deltaW_plasma_expanded">23.1</a>) is minimized by taking
+<a id="eq-eq-screw_incompressible_constraint"></a><div class="math-display">\[\divergence \bm {\xi }=0. \tag{23.45}\]</div>
+Since the basis vectors depend only on \(r\) and the field has no radial component, <div class="math-display">\[\divergence \bm {\xi } = \bvec \cdot \grad \xi _\parallel + \divergence \bm {\xi }_\perp , \qquad \bm {\xi }_\perp =\xi \,\vect {e}_r+\eta \,\bm {e}_\eta .\]</div>
+Moreover, <a id="eq-eq-screw_div_xiperp"></a><div class="math-display">\[\divergence \bm {\xi }_\perp = \frac {(r\xi )'}{r}+i\frac {G}{B}\eta . \tag{23.47}\]</div>
+Using \(\bvec \cdot \grad =(\B \cdot \grad )/B=iF/B\), the incompressibility constraint becomes <div class="math-display">\[0=\frac {iF}{B}\xi _\parallel + \frac {(r\xi )'}{r}+i\frac {G}{B}\eta ,\]</div>
+so <a id="eq-eq-xi_parallel_from_incomp"></a><div class="math-display">\[\xi _\parallel = \frac {iB}{F}\left [\frac {(r\xi )'}{r}+i\frac {G}{B}\eta \right ] = \frac {iB}{F}\,\divergence \bm {\xi }_\perp , \qquad (F\neq 0). \tag{23.49}\]</div>
+At a rational surface \(r=r_s\) where \(F(r_s)=0\), this algebraic elimination becomes singular. That singularity is the
+mathematical signal that the parallel field-line-bending restoring force has vanished for that helical
+perturbation.
+</p>
+<!--l. 589--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1030003"></a>The curvature and the compression factor.</span>
+For the straight screw pinch, <a id="eq-eq-curvature_screw"></a><div class="math-display">\[\bm {\kappa }=(\bvec \cdot \grad )\bvec = -\frac {B_\theta ^2}{B^2}\,\frac {\vect {e}_r}{r}. \tag{23.50}\]</div>
+Therefore <a id="eq-eq-div_xi_perp_plus_curv"></a><div class="math-display">\[\begin{aligned}\divergence \bm {\xi }_\perp +2\bm {\kappa }\cdot \bm {\xi }_\perp &amp;= \frac {(r\xi )'}{r}+i\frac {G}{B}\eta -\frac {2B_\theta ^2}{rB^2}\xi .\end{aligned} \tag{23.51}\]</div>
+</p><!--l. 605--><p class="noindent" >It is convenient to name the radial derivative that appears here: <a id="eq-eq-S_def_screw"></a><div class="math-display">\[S\equiv \frac {(r\xi )'}{r}=\xi '+\frac {\xi }{r}. \tag{23.52}\]</div>
+Then the magnetic-compression factor is <a id="eq-eq-D_screw_def"></a><div class="math-display">\[\divergence \bm {\xi }_\perp +2\bm {\kappa }\cdot \bm {\xi }_\perp = S-\frac {2B_\theta ^2}{rB^2}\xi +i\frac {G}{B}\eta . \tag{23.53}\]</div>
+</p>
+<!--l. 618--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040003"></a>The perpendicular perturbed magnetic field.</span>
+The part of \(\bm {\xi }\times \B \) that matters is independent of \(\xi _\parallel \): <a id="eq-eq-screw_xi_cross_B"></a><div class="math-display">\[\bm {\xi }\times \B =B\eta \,\vect {e}_r-B\xi \,\bm {e}_\eta =B\eta \,\vect {e}_r-B_z\xi \,\vect {e}_\theta +B_\theta \xi \,\vect {e}_z. \tag{23.54}\]</div>
+Taking the curl component by component gives <a id="eq-eq-screw_Qr_step"></a><div class="math-display">\[\begin{aligned}Q_r &amp;= \frac {1}{r}\frac {\partial }{\partial \theta }(B_\theta \xi e^{i(m\theta +kz)}) -\frac {\partial }{\partial z}(-B_z\xi e^{i(m\theta +kz)}) = iF\xi ,  \\[0.4em] Q_\theta &amp;= ikB\eta -(B_\theta \xi )',  \\[0.4em] Q_z &amp;= -\frac {1}{r}(rB_z\xi )'-i\frac {m}{r}B\eta .\end{aligned} \tag{23.55}\]</div>
+</p><!--l. 647--><p class="noindent" >Projecting onto \(\bm {e}_\eta =(B_z\vect {e}_\theta -B_\theta \vect {e}_z)/B\) gives <a id="eq-eq-screw_Qeta_step"></a><div class="math-display">\[\begin{aligned}Q_\eta &amp;= \frac {B_zQ_\theta -B_\theta Q_z}{B} \nonumber \\ &amp;= iF\eta + \frac {\xi }{B} \left [ B_\theta B_z'-B_zB_\theta '+\frac {B_\theta B_z}{r} \right ].\end{aligned} \tag{23.58}\]</div>
+</p><!--l. 661--><p class="noindent" >Define the bracketed equilibrium combination <a id="eq-eq-A_screw_def"></a><div class="math-display">\[\mathcal {A} \equiv B_\theta B_z'-B_zB_\theta '+\frac {B_\theta B_z}{r}. \tag{23.59}\]</div>
+Then <a id="eq-eq-Qperp_screw"></a><div class="math-display">\[\bm {Q}_\perp =Q_r\vect {e}_r+Q_\eta \bm {e}_\eta = iF\xi \,\vect {e}_r+ \left (iF\eta +\frac {\mathcal {A}}{B}\xi \right )\bm {e}_\eta . \tag{23.60}\]</div>
+The parallel current is <a id="eq-eq-Jparallel_def"></a><div class="math-display">\[\muo J_\parallel = \frac {B_z}{rB}(rB_\theta )' - \frac {B_\theta }{B}B_z', \tag{23.61}\]</div>
+and the combination \(\mathcal {A}\) is related to it by <a id="eq-eq-A_J_identity"></a><div class="math-display">\[\mathcal {A}+\muo J_\parallel B = \frac {2B_\theta B_z}{r}. \tag{23.62}\]</div>
+This identity is one of the main cancellations in the derivation.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 695--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1050003"></a>Write the energy density before eliminating \(\eta \).</span>
+With \(\divergence \bm {\xi }=0\), the plasma-compression term is gone. Multiplying the remaining integrand in (<a href="lecture23.html#eq-eq-newcomb_deltaW_plasma_expanded">23.1</a>) by \(\muo \), write
+<a id="eq-eq-screw_deltaW_L_def"></a><div class="math-display">\[\delta W = \frac {1}{2\muo }\int dV\,\mathcal {L}, \tag{23.63}\]</div>
+where <a id="eq-eq-screw_L_before_eta_expand"></a><div class="math-display">\[\begin{aligned}\mathcal {L} =&amp;\;|\bm {Q}_\perp |^2 +B^2\left |S-\frac {2B_\theta ^2}{rB^2}\xi +i\frac {G}{B}\eta \right |^2 +\frac {2\muo p'B_\theta ^2}{rB^2}|\xi |^2 \nonumber \\[0.4em] &amp;\;- \muo J_\parallel \left [ \frac {1}{B}(\bm {\xi }_\perp ^*\times \B )\cdot \bm {Q}_\perp \right ].\end{aligned} \tag{23.64}\]</div>
+</p><!--l. 718--><p class="noindent" >The pressure&#8211;curvature term has become <a id="eq-eq-screw_pressure_curvature_term"></a><div class="math-display">\[-2(\bm {\xi }_\perp \cdot \grad p)(\bm {\xi }_\perp ^*\cdot \bm {\kappa }) = \frac {2p'B_\theta ^2}{rB^2}|\xi |^2. \tag{23.65}\]</div>
+For the current term, use <div class="math-display">\[\bm {\xi }_\perp ^*\times \B =B\eta ^*\vect {e}_r-B\xi ^*\bm {e}_\eta ,\]</div>
+so that <a id="eq-eq-screw_current_dot_Q"></a><div class="math-display">\[\frac {1}{B}(\bm {\xi }_\perp ^*\times \B )\cdot \bm {Q}_\perp = iF(\eta ^*\xi -\xi ^*\eta )-\frac {\mathcal {A}}{B}|\xi |^2. \tag{23.67}\]</div>
+</p>
+<!--l. 738--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1060003"></a>Collect only the terms that contain \(\eta \).</span>
+The coefficient of \(|\eta |^2\) comes from \(|Q_\eta |^2\) and magnetic compression: <a id="eq-eq-eta_quadratic_coefficient"></a><div class="math-display">\[F^2|\eta |^2+G^2|\eta |^2=(F^2+G^2)|\eta |^2=B^2k_0^2|\eta |^2. \tag{23.68}\]</div>
+The cross term between \(\eta \) and \(S\) comes only from magnetic compression: <a id="eq-eq-eta_S_cross"></a><div class="math-display">\[iBG(\eta S^*-\eta ^*S). \tag{23.69}\]</div>
+The cross term between \(\eta \) and \(\xi \) is where the cancellation is easiest to miss. From \(|Q_\eta |^2\) and the current term one
+obtains <a id="eq-eq-eta_xi_cross_Q_current"></a><div class="math-display">\[\begin{aligned}&amp; iF\left (\frac {\mathcal {A}}{B}+\muo J_\parallel \right ) (\eta \xi ^*-\eta ^*\xi ) \nonumber \\ &amp;\hspace {2cm}= \frac {2iF B_\theta B_z}{rB} (\eta \xi ^*-\eta ^*\xi ),\end{aligned} \tag{23.70}\]</div>
+</p><!--l. 760--><p class="noindent" >where (<a href="lecture23.html#eq-eq-A_J_identity">23.62</a>) was used. From the curvature shift inside the magnetic-compression square one obtains
+<a id="eq-eq-eta_xi_cross_compression"></a><div class="math-display">\[-\frac {2iG B_\theta ^2}{rB} (\eta \xi ^*-\eta ^*\xi ). \tag{23.71}\]</div>
+Adding (<a href="lecture23.html#eq-eq-eta_xi_cross_Q_current">23.70</a>) and (<a href="lecture23.html#eq-eq-eta_xi_cross_compression">23.71</a>), and using \(F B_z-G B_\theta =kB^2\), gives <a id="eq-eq-eta_xi_cross_total"></a><div class="math-display">\[\frac {2ikBB_\theta }{r}(\eta \xi ^*-\eta ^*\xi ). \tag{23.72}\]</div>
+Therefore the full \(\eta \)-dependent part of \(\mathcal {L}\) is <a id="eq-eq-L_eta_before_square"></a><div class="math-display">\[\begin{aligned}\mathcal {L}_\eta =&amp;\; B^2k_0^2|\eta |^2 +iBG(\eta S^*-\eta ^*S) +\frac {2ikBB_\theta }{r}(\eta \xi ^*-\eta ^*\xi ) \nonumber \\ =&amp;\; B^2k_0^2|\eta |^2 +iB\left [\eta \left (GS+\frac {2kB_\theta }{r}\xi \right )^* -\eta ^*\left (GS+\frac {2kB_\theta }{r}\xi \right )\right ].\end{aligned} \tag{23.73}\]</div>
+</p><!--l. 788--><p class="noindent" >Now the square completion is explicit: <a id="eq-eq-L_eta_square_completed"></a><div class="math-display">\[\begin{aligned}\mathcal {L}_\eta =&amp;\; B^2k_0^2 \left | \eta - \frac {i}{Bk_0^2}\left (GS+\frac {2kB_\theta }{r}\xi \right ) \right |^2 \nonumber \\ &amp;\;- \frac {1}{k_0^2} \left | GS+\frac {2kB_\theta }{r}\xi \right |^2.\end{aligned} \tag{23.74}\]</div>
+</p><!--l. 805--><p class="noindent" >Thus the minimizing value of the binormal displacement is <a id="eq-eq-eta_eliminated"></a><div class="math-display">\[\eta = \frac {i}{Bk_0^2}\left (GS+\frac {2kB_\theta }{r}\xi \right ) = \frac {i}{r\,k_0^2\,B} \left [G(r\xi )'+2kB_\theta \xi \right ]. \tag{23.75}\]</div>
+This is the precise point at which \(\eta \) disappears from Newcomb&#8217;s problem. The square itself is non-negative,
+so minimizing sets it to zero; the negative last term in (<a href="lecture23.html#eq-eq-L_eta_square_completed">23.74</a>) must still be kept in the reduced radial
+functional.
+</p>
+<!--l. 820--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1070003"></a>The reduced integrand before integration by parts.</span>
+After substituting (<a href="lecture23.html#eq-eq-eta_eliminated">23.75</a>), the reduced integrand can be written in the compact form <a id="eq-eq-L_red_abc"></a><div class="math-display">\[\mathcal {L}_{\rm red} =a|S|^2+b(S\xi ^*+S^*\xi )+c|\xi |^2, \tag{23.76}\]</div>
+where <a id="eq-eq-a_coeff_screw"></a><div class="math-display">\[a=\frac {F^2}{k_0^2}. \tag{23.77}\]</div>
+This coefficient comes from <div class="math-display">\[B^2|S|^2-\frac {G^2}{k_0^2}|S|^2 =\frac {B^2k_0^2-G^2}{k_0^2}|S|^2 =\frac {F^2}{k_0^2}|S|^2.\]</div>
+The mixed coefficient is <a id="eq-eq-b_coeff_screw"></a><div class="math-display">\[b =-\frac {2B_\theta ^2}{r} -\frac {2kB_\theta G}{rk_0^2}. \tag{23.79}\]</div>
+The first term in \(b\) comes from the curvature shift in \(B^2|S-2B_\theta ^2\xi /(rB^2)|^2\); the second comes from the negative square term in
+(<a href="lecture23.html#eq-eq-L_eta_square_completed">23.74</a>). Finally, <a id="eq-eq-c_coeff_screw"></a><div class="math-display">\[\begin{aligned}c =&amp;\; \underbrace {F^2}_{|Q_r|^2} + \underbrace {\frac {2B_\theta B_z}{rB^2}\mathcal {A}}_{|Q_\eta |^2\;{\rm plus\;current}} + \underbrace {\frac {4B_\theta ^4}{r^2B^2}}_{{\rm curvature\;shift}} + \underbrace {\frac {2\muo p'B_\theta ^2}{rB^2}}_{{\rm pressure\text {--}curvature}} - \underbrace {\frac {4k^2B_\theta ^2}{r^2k_0^2}}_{{\rm eliminated}\;\eta \;{\rm square}} .\end{aligned} \tag{23.80}\]</div>
+</p><!--l. 863--><p class="noindent" >This equation is often the most useful bookkeeping step: it shows exactly where the pieces of the final \(g(r)\)
+originate before the equilibrium relation has hidden the derivatives of \(B_\theta \) and \(B_z\).
+</p>
+                                                                                         
+                                                                                         
+<!--l. 867--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1080003"></a>Convert from \(S=(r\xi )'/r\) to \(\xi '\).</span>
+The volume element supplies a factor of \(r\), so the radial integrand is \(r\mathcal {L}_{\rm red}\). Since \(S=\xi '+\xi /r\), <a id="eq-eq-rLred_before_parts"></a><div class="math-display">\[\begin{aligned}r\mathcal {L}_{\rm red} =&amp;\; r a|\xi '|^2 + (a+rb)(\xi '\xi ^*+\xi '^*\xi ) + \left (\frac {a}{r}+2b+rc\right )|\xi |^2.\end{aligned} \tag{23.81}\]</div>
+</p><!--l. 880--><p class="noindent" >The middle term is a total derivative plus a leftover radial coefficient: <a id="eq-eq-screw_parts_cross_term"></a><div class="math-display">\[\int _0^a (a+rb)(\xi '\xi ^*+\xi '^*\xi )\,dr = \left [(a+rb)|\xi |^2\right ]_0^a - \int _0^a (a+rb)'|\xi |^2\,dr . \tag{23.82}\]</div>
+Regularity removes the axis contribution. Therefore <a id="eq-eq-f_def"></a><div class="math-display">\[f(r)=ra=\frac {rF^2}{k_0^2}, \tag{23.83}\]</div>
+and, before simplification, <a id="eq-eq-g_unsimplified_abc"></a><div class="math-display">\[g(r)=\frac {a}{r}+2b+rc-(a+rb)'. \tag{23.84}\]</div>
+The boundary coefficient is also explicit. Directly from (<a href="lecture23.html#eq-eq-b_coeff_screw">23.79</a>), <a id="eq-eq-boundary_coeff_derivation"></a><div class="math-display">\[\begin{aligned}a+rb &amp;= \frac {F^2}{k_0^2}-2B_\theta ^2-\frac {2kB_\theta G}{k_0^2} \nonumber \\ &amp;= \frac {F^2-2kB_\theta G-2B_\theta ^2k_0^2}{k_0^2} = \frac {F F^\dagger }{k_0^2},\end{aligned} \tag{23.85}\]</div>
+</p><!--l. 912--><p class="noindent" >where <a id="eq-eq-Fdagger_def"></a><div class="math-display">\[F^\dagger (r)\equiv kB_z-\frac {mB_\theta }{r}. \tag{23.86}\]</div>
+Thus the surface term left by integration by parts is <a id="eq-eq-screw_boundary_term"></a><div class="math-display">\[\left [\frac {F F^\dagger }{k_0^2}\right ]_{r=a}|\xi _a|^2, \qquad \xi _a\equiv \xi (a). \tag{23.87}\]</div>
+</p>
+<!--l. 925--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1090003"></a>Simplify \(g(r)\).</span>
+Substitute (<a href="lecture23.html#eq-eq-a_coeff_screw">23.77</a>)&#8211;(<a href="lecture23.html#eq-eq-c_coeff_screw">23.80</a>) into (<a href="lecture23.html#eq-eq-g_unsimplified_abc">23.84</a>). Before using force balance, the coefficient of \(|\xi |^2\) is <a id="eq-eq-g_long_screw"></a><div class="math-display">\[\begin{aligned}\widetilde g =&amp;\; \underbrace {\frac {F^2}{rk_0^2}}_{a/r} - \underbrace {\frac {4B_\theta ^2}{r} +\frac {4kB_\theta G}{rk_0^2}}_{2b} + \underbrace {rF^2 +\frac {2B_\theta B_z}{B^2}\mathcal {A} +\frac {4B_\theta ^4}{rB^2} +\frac {2\muo p'B_\theta ^2}{B^2} -\frac {4k^2B_\theta ^2}{rk_0^2}}_{rc} - \underbrace {\left (\frac {F F^\dagger }{k_0^2}\right )'}_{(a+rb)'} .\end{aligned} \tag{23.88}\]</div>
+</p><!--l. 946--><p class="noindent" >This long expression is the raw collection of terms. To reduce it, insert <div class="math-display">\[\mathcal {A}=B_\theta B_z'-B_zB_\theta '+\frac {B_\theta B_z}{r}, \qquad F^\dagger =kB_z-\frac {mB_\theta }{r},\]</div>
+and collect powers of \(k\) and \(m/r\). The result can be written as <a id="eq-eq-g_force_balance_cancellation"></a><div class="math-display">\[\begin{aligned}\widetilde g =&amp;\; \frac {2k^2}{k_0^2}\,\muo p' + \left (\frac {k_0^2r^2-1}{k_0^2r^2}\right )rF^2 + \frac {2k^2}{r k_0^4} \left (kB_z-\frac {mB_\theta }{r}\right )F \nonumber \\ &amp;\;- \frac {2F F^\dagger }{B^2k_0^2} \left [ \muo p'+\frac 12(B^2)'+\frac {B_\theta ^2}{r} \right ].\end{aligned} \tag{23.90}\]</div>
+</p><!--l. 970--><p class="noindent" >The bracket in the second line is exactly the radial force-balance condition (<a href="lecture23.html#eq-eq-screw_equil_mu0pprime">23.36</a>). Hence the last line
+vanishes, leaving <a id="eq-eq-g_def"></a><div class="math-display">\[g(r) = \underbrace {\frac {2k^2}{k_0^2}\,\muo p'}_{\text {pressure drive}} + \underbrace {\left (\frac {k_0^2r^2-1}{k_0^2r^2}\right )rF^2}_{\text {line bending / geometry}} + \underbrace {\frac {2k^2}{r k_0^4} \left (kB_z-\frac {mB_\theta }{r}\right )F}_{\text {helical coupling}} . \tag{23.91}\]</div>
+The origin of the three terms is now visible. The pressure-drive term is the part of the pressure&#8211;curvature
+contribution that survives the equilibrium simplification. The line-bending/geometric term comes from
+expanding \(S=\xi '+\xi /r\) and integrating the mixed term by parts. The final coupling term comes from the same
+integration-by-parts coefficient \(a+rb\), together with the subtraction produced by the completed \(\eta \)
+square.
+</p>
+<!--l. 990--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1100003"></a>Newcomb&#8217;s one-dimensional functional.</span>
+Combining the radial integral with the angular and axial integrals gives <a id="eq-eq-deltaW_f_g_form"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \int _0^{a} \left [ f(r)\,|\xi '|^2+g(r)\,|\xi |^2 \right ]dr + \left [ \frac {F F^\dagger }{k_0^2} \right ]_{r=a} |\xi _a|^2. \tag{23.92}\]</div>
+The key point is that all of the dangerous local behavior is concentrated where \(f\propto F^2\) becomes small. At a
+rational surface, \(F(r_s)=0\), the leading coefficient of the radial derivative vanishes, and the Newcomb equation
+becomes singular.
+<a 
+ id="x1-110001r108"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">23.4   </span> <a 
+ id="x1-1110004"></a>How the Euler&#8211;Lagrange equation emerges</h3>
+<!--l. 1016--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1017--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120004"></a>Start with a one-dimensional functional.</span>
+     After the angular and parallel structure have been eliminated, the reduced energy has the
+     generic form <a id="eq-eq-EL_template"></a><div class="math-display">\[\mathcal {W}[\xi ] = \int _0^a \left (f|\xi '|^2+g|\xi |^2\right )dr +\mathcal {B}\,|\xi _a|^2, \tag{23.93}\]</div>
+                                                                                         
+                                                                                         
+     where \(\xi _a\equiv \xi (a)\) and \(\mathcal {B}\) represents whatever boundary term is left after the vacuum or wall has been
+     integrated out.
+</p>
+     <!--l. 1030--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1130004"></a>Take a variation.</span>
+     Write <div class="math-display">\[\xi (r)\rightarrow \xi (r)+\epsilon \,\eta (r), \qquad \eta (0)\ \text {regular},\]</div>
+     and differentiate with respect to \(\epsilon \) at \(\epsilon =0\). For a real trial function, <a id="eq-eq-EL_variation_start"></a><div class="math-display">\[\begin{aligned}\frac {1}{2}\,\delta \mathcal {W} &amp;= \int _0^a \left (f\xi '\eta '+g\xi \eta \right )dr +\mathcal {B}\,\xi _a\eta _a .\end{aligned} \tag{23.95}\]</div>
+     </p><!--l. 1046--><p class="noindent" >If one keeps \(\xi \) complex, the same result follows by varying \(\xi \) and \(\xi ^\ast \) independently and then taking
+     the real part at the end.
+</p>
+     <!--l. 1049--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1140004"></a>Do the integration by parts explicitly.</span>
+     The derivative on \(\eta \) is the awkward term. Move it onto \(\xi \): <div class="math-display">\[\begin{aligned}\int _0^a f\xi '\eta '\,dr &amp;= \left [f\xi '\eta \right ]_0^a-\int _0^a (f\xi ')'\eta \,dr.\end{aligned}\]</div>
+     </p><!--l. 1056--><p class="noindent" >Therefore <a id="eq-eq-EL_variation"></a><div class="math-display">\[\begin{aligned}\frac {1}{2}\,\delta \mathcal {W} &amp;= \left [f\xi '\eta \right ]_0^a -\int _0^a \left [(f\xi ')'-g\xi \right ]\eta \,dr +\mathcal {B}\,\xi _a\eta _a .\end{aligned} \tag{23.97}\]</div>
+     </p><!--l. 1065--><p class="noindent" >This is the key step: the entire ODE comes from moving one derivative off the test
+     function.
+</p>
+     <!--l. 1068--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1150004"></a>Interior Euler&#8211;Lagrange equation.</span>
+     If the edge displacement is fixed, then \(\eta (a)=0\). Regularity also removes the axis term, and the
+     remaining interior variation is <div class="math-display">\[\delta \mathcal {W} = -2\int _0^a \left [(f\xi ')'-g\xi \right ]\eta \,dr .\]</div>
+     Since \(\eta (r)\) is otherwise arbitrary, the minimizing displacement must satisfy <a id="eq-eq-newcomb_internal_EL"></a><div class="math-display">\[\dd {}{r}\left (f(r)\,\dd {\xi }{r}\right )-g(r)\,\xi =0. \tag{23.99}\]</div>
+     This is the Newcomb equation.
+</p>
+     <!--l. 1083--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1160004"></a>Natural boundary condition.</span>
+     If the boundary is free, then \(\eta (a)\) is arbitrary as well. The coefficient of \(\eta (a)\) in (<a href="lecture23.html#eq-eq-EL_variation">23.97</a>) must therefore
+     vanish: <a id="eq-eq-newcomb_natural_bc"></a><div class="math-display">\[f(a)\,\xi '(a)+\mathcal {B}\,\xi (a)=0. \tag{23.100}\]</div>
+     The vacuum or wall changes only \(\mathcal {B}\); it does not change the interior Euler&#8211;Lagrange
+     operator.
+</p>
+     <!--l. 1093--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1170004"></a>Why this matters in practice.</span>
+     The minimizing perturbation is not guessed. It is the solution of (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>) that is regular at the
+     axis and satisfies either a fixed or natural boundary condition at the edge. This is why one can
+     turn a variational stability problem into an ordinary differential equation without losing the
+     energy-principle content.</p></blockquote></div></div>
+<a 
+ id="x1-117001r120"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">23.5   </span> <a 
+ id="x1-1180005"></a>How Newcomb&#8217;s logic should be applied</h3>
+<!--l. 1104--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1190005"></a>First restrict to internal perturbations.</span>
+The first question is whether the plasma can lower its energy without moving the boundary. So one first
+minimizes the reduced functional over displacements that are regular at the axis and satisfy
+<a id="eq-eq-xi_a_internal_constraint"></a><div class="math-display">\[\xi _a \equiv \xi (a)=0. \tag{23.101}\]</div>
+This is the fixed-boundary problem. Any negative \(\delta W\) found in this restricted class is an internal
+instability.
+</p>
+<!--l. 1115--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1200005"></a>Then check the singular local limits.</span>
+Within that fixed-boundary class, the most delicate radii are the rational surfaces \(F(r_s)=0\), where field-line
+bending disappears. The localized pressure-driven tests developed in the next lecture&#8212;Suydam in a
+cylinder and Mercier in a torus&#8212;are therefore part of the internal problem, not a separate external
+calculation.
+</p>
+<!--l. 1123--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1210005"></a>Then solve the global Newcomb equation.</span>
+If the local tests are passed, one integrates the regular solution of (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>) from the axis outward and checks
+for nodes. A node signals that a lower-energy trial function exists. A node-free solution in the
+fixed-boundary class is the candidate internally stable solution.
+</p>
+<!--l. 1129--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1220005"></a>Only after the fixed-boundary problem is stable does one release the edge.</span>
+The external problem is the enlarged variational problem in which the boundary is allowed to move, so \(\xi _a\) is
+no longer constrained to vanish. In that sector one must add the vacuum and wall energy. A nonzero \(\xi _a\)
+means the plasma boundary participates in the perturbation; that is what makes the mode
+external.
+</p><!--l. 1137--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1137--><p class="noindent" >It is worth being explicit about notation. For internal modes one imposes \(\xi _a=0\). For external
+     modes one allows \(\xi _a\neq 0\). The sign of \(\xi _a\) is just an amplitude convention, so writing \(\xi _a&gt;0\) does <tspan font-family="ecti" font-size="1095">not</tspan>
+     by itself prove instability. Instability means that the minimized total energy is negative.
+     What \(\xi _a\neq 0\) tells you is that the boundary has moved and the mode belongs to the external
+     sector.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1230005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChapmanCowling1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Sydney  Chapman  and  T.&#x00A0;G.  Cowling.   <tspan font-family="ecti" font-size="1095">The Mathematical Theory of Non-Uniform Gases:</tspan>
+  <tspan font-family="ecti" font-size="1095">An Account of the Kinetic Theory of Viscosity, Thermal Conduction and Diffusion in Gases</tspan>.
+  Cambridge University Press, Cambridge, 2 edition, 1952.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Härm.  Transport phenomena in a completely ionized gas.
+  <tspan font-family="ecti" font-size="1095">Physical Review</tspan>, 89(5):977&#8211;981, 1953. doi:<a 
+href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBraginskii1958TwoTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;I. Braginskii. Transport phenomena in a completely ionized two-temperature plasma. <tspan font-family="ecti" font-size="1095">Soviet</tspan>
+  <tspan font-family="ecti" font-size="1095">Physics JETP</tspan>, 6(2):358&#8211;369, 1958. English translation of Zh. Eksp. Teor. Fiz. 33, 459&#8211;472 (1957).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XKaufman1960PlasmaViscosity"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Allan&#x00A0;N. Kaufman. Plasma viscosity in a magnetic field. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 3(4):610&#8211;616, 1960.
+  doi:<a 
+href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XThompson1961HighTemperature"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;B. Thompson. The dynamics of high temperature plasmas. <tspan font-family="ecti" font-size="1095">Reports on Progress in Physics</tspan>,
+  24(1):363&#8211;424, 1961. doi:<a 
+href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
+  plasma.   <tspan font-family="ecti" font-size="1095">Journal  of  Nuclear  Energy,  Part  C:  Plasma  Physics,  Accelerators,  Thermonuclear</tspan>
+  <tspan font-family="ecti" font-size="1095">Research</tspan>, 8(4):373, 1966. doi:<a 
+href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <tspan font-family="ecti" font-size="1095">Proceedings  of  the  Royal</tspan>
+  <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <tspan font-family="ecti" font-size="1095">Plasma Physics for Astrophysics</tspan>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

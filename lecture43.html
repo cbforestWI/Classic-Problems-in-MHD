@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 43 The 2-D Toroidal Energy Principle and the High-\(n\) Ballooning Limit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture42.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture44.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;43</span><br /><a 
+ id="x1-22200043"></a>The 2-D Toroidal Energy Principle and the High-\(n\) Ballooning Limit</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" >This appendix carries the ballooning reduction all the way from the exact two-dimensional
+     tokamak energy functional to the local one-dimensional field-line equation. The chain is \[ \begin {aligned} \delta W[\xi _\psi ,\xi _\chi ,\xi _\parallel ] &amp;\longrightarrow \delta W[X,U,Z] \longrightarrow \text {eliminate }Z \equiv \text {eliminate }\xi _\parallel \\ &amp;\longrightarrow \text {high-}n\text { eliminate }U \longrightarrow \delta W[X] \longrightarrow \widehat X(\Psi ,y) \longrightarrow F_0(y;\Psi ,y_0). \end {aligned} \] The
+     two central ideas are:
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">the first minimization is exact and removes the parallel degree of freedom by enforcing
+   \(\nabla \cdot \vect {\xi }=0\);
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">the ballooning transform removes the awkward periodicity constraint, so the large-\(n\)
+   mode can be treated as a slowly varying envelope on an unwrapped field line.</dd></dl>
+     </blockquote></div></div>
+<!--l. 37--><p class="noindent" >This appendix is written as a working derivation rather than a summary. I keep the intermediate algebra
+visible, especially in the two minimizations and in the ordering steps that turn the exact \(X\)-only functional
+into the local field-line equation.
+</p><!--l. 43--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 43--><p class="noindent" >The conceptual obstacle solved by Connor, Hastie, and Taylor was not merely &#8220;doing
+     large-\(n\) MHD more carefully.&#8221; The real obstacle was geometric: ballooning modes want
+     short perpendicular wavelength and long parallel wavelength, but a sheared torus insists
+     on periodicity in both the poloidal and toroidal directions. Their transform to an infinite
+     field-line domain resolves that tension cleanly. Once that is done, the high-\(n\) problem
+     becomes a systematic asymptotic expansion, and the leading-order stability problem
+     collapses to an ordinary differential equation on a single unwrapped field line.</p></blockquote></div></div>
+<!--l. 54--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 54--><p class="noindent" ><span 
+class="ecbx-1095">Notation  dictionary.  </span>Connor&#8211;Hastie&#8211;Taylor  write  the  toroidal-field  function  as  \[ I(\Psi )=RB_\phi , \]
+     and  they  write  the  poloidal  field  as  \(B_\chi \).  In  the  notation  of  these  notes,  \[ I \;\longrightarrow \; \muo I_{\mathrm {pol}}, \qquad B_\chi \;\longrightarrow \; B_p. \]  I  keep  the
+     Connor&#8211;Hastie&#8211;Taylor  notation  inside  most  of  the  derivation  because  it  makes  the
+     operator algebra shorter. Also, to avoid confusion with the displacement variable \(X\), I
+     denote the fast radial scale by \[ s \equiv \sqrt {n}\,(\Psi -\Psi _0), \] rather than by \(x\).</p></blockquote></div></div>
+<a 
+ id="x1-222003r212"></a>
+<h3 class="sectionHead"><span class="titlemark">43.1   </span> <a 
+ id="x1-2230001"></a>Geometry, Variables, and the Exact 2-D Functional</h3>
+<!--l. 77--><p class="noindent" >We work in orthogonal axisymmetric coordinates \((\Psi ,\chi ,\phi )\), where \(\Psi \) labels flux surfaces, \(\chi \) is a poloidal angle-like
+                                                                                         
+                                                                                         
+coordinate on each surface, and \(\phi \) is the ignorable toroidal angle. The metric is taken in the
+Connor&#8211;Hastie&#8211;Taylor form <a id="eq-eq-balloon-app-metric"></a><div class="math-display">\[ds^2 = \frac {d\Psi ^2}{R^2B_\chi ^2} + (JB_\chi )^2 d\chi ^2 + R^2 d\phi ^2, \qquad dV = J\,d\Psi \,d\chi \,d\phi . \tag{I.1}\]</div>
+Thus the scale factors are <a id="eq-eq-balloon-app-scale_factors"></a><div class="math-display">\[h_\Psi = \frac {1}{RB_\chi }, \qquad h_\chi = JB_\chi , \qquad h_\phi = R. \tag{I.2}\]</div>
+The magnetic field is written as <a id="eq-eq-balloon-app-Bfield"></a><div class="math-display">\[\B = \nabla \Psi \times \nabla \phi + I(\Psi )\,\nabla \phi = B_\chi \,\hat {\vect {e}}_\chi + \frac {I}{R}\,\hat {\vect {e}}_\phi . \tag{I.3}\]</div>
+It is convenient to introduce <a id="eq-eq-balloon-app-nu"></a><div class="math-display">\[\nu (\Psi ,\chi ) \equiv \frac {IJ}{R^2}, \qquad \B \cdot \nabla = \frac {1}{J}\left (\pp {}{\chi }+\nu \pp {}{\phi }\right ). \tag{I.4}\]</div>
+For a single toroidal Fourier harmonic <a id="eq-eq-balloon-app-fourier"></a><div class="math-display">\[\vect {\xi }(\Psi ,\chi ,\phi ) = \vect {\xi }(\Psi ,\chi )e^{in\phi }, \tag{I.5}\]</div>
+we therefore have <a id="eq-eq-balloon-app-kpar"></a><div class="math-display">\[\B \cdot \nabla \;\longrightarrow \; \frac {1}{J}\left (\pp {}{\chi }+in\nu \right ), \qquad ik_\parallel = \frac {1}{JB}\left (\pp {}{\chi }+in\nu \right ). \tag{I.6}\]</div>
+The safety factor is <a id="eq-eq-balloon-app-q"></a><div class="math-display">\[q(\Psi )=\frac {1}{2\pi }\oint \nu (\Psi ,\chi )\,d\chi . \tag{I.7}\]</div>
+</p><!--l. 146--><p class="noindent" >The equilibrium current components needed below are <a id="eq-eq-balloon-app-equilibrium_current"></a><div class="math-display">\[J_\chi = B_\chi I', \qquad j_\phi \equiv J_\phi = -\frac {R}{J}\pp {}{\Psi }(JB_\chi ^2), \qquad \frac {j_\phi }{R}=p'+\frac {II'}{R^2}, \tag{I.8}\]</div>
+where the prime denotes \(d/d\Psi \) and the last identity is the Grad&#8211;Shafranov force-balance relation in this
+notation.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2240001"></a>Displacement components and the variables \(X,U,Z\)</h4>
+<!--l. 160--><p class="noindent" >Write the displacement in the orthonormal basis associated with Eq.&#x00A0;(I.1) as <a id="eq-eq-balloon-app-xi_components"></a><div class="math-display">\[\vect {\xi } = \xi _\psi \,\hat {\vect {e}}_\Psi + \xi _\chi \,\hat {\vect {e}}_\chi + \xi _\phi \,\hat {\vect {e}}_\phi . \tag{I.9}\]</div>
+Connor&#8211;Hastie&#8211;Taylor then package these components into the variables <a id="eq-eq-balloon-app-XUZ"></a><div class="math-display">\[X \equiv RB_\chi \,\xi _\psi , \qquad U \equiv \frac {\xi _\phi }{R}-\frac {I}{R^2B_\chi }\,\xi _\chi , \qquad Z \equiv \frac {\xi _\phi }{B_\chi }. \tag{I.10}\]</div>
+The variable \(X\) is the normal displacement written in a metric-weighted form. The variable \(U\)
+measures the displacement inside the flux surface and perpendicular to the magnetic field. The
+variable \(Z\) is the combination in which the parallel degree of freedom enters the compressional
+term.
+</p>
+<!--l. 186--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2250001"></a>Relation to the user-facing variable \(\xi _\parallel \).</span>
+The actual parallel displacement is <a id="eq-eq-balloon-app-xi_parallel_def"></a><div class="math-display">\[\xi _\parallel \equiv \bvec \cdot \vect {\xi } = \frac {B_\chi }{B}\,\xi _\chi + \frac {I}{RB}\,\xi _\phi . \tag{I.11}\]</div>
+Substituting Eq.&#x00A0;(I.10) into this gives <a id="eq-eq-balloon-app-xi_parallel_relation"></a><div class="math-display">\[\begin{aligned}\xi _\parallel &amp;= \frac {B_\chi }{B}(B_\chi Z) + \frac {I}{RB}\left (RU+\frac {I}{R}Z\right ) \nonumber \\ &amp;= \frac {B_\chi ^2+I^2/R^2}{B}\,Z + \frac {I}{B}\,U \nonumber \\ &amp;= BZ + \frac {I}{B}U.\end{aligned} \tag{I.12}\]</div>
+</p><!--l. 211--><p class="noindent" >Equivalently, <a id="eq-eq-balloon-app-Z_vs_xipar"></a><div class="math-display">\[Z = \frac {\xi _\parallel }{B}-\frac {I}{B^2}U. \tag{I.13}\]</div>
+This is the important point for the first minimization: at fixed \(U\) and \(X\), varying \(Z\) is exactly the same as
+varying \(\xi _\parallel \).
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2260001"></a>Three basic identities</h4>
+<!--l. 221--><p class="noindent" >The reduction of the energy functional rests on three simple coordinate identities.
+</p>
+<!--l. 224--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2270001"></a>The pressure-gradient term</span>
+Because \(p=p(\Psi )\), <a id="eq-eq-balloon-app-gradp"></a><div class="math-display">\[\nabla p = p'(\Psi )\,\nabla \Psi = p' RB_\chi \,\hat {\vect {e}}_\Psi . \tag{I.14}\]</div>
+Hence <a id="eq-eq-balloon-app-xi_gradp"></a><div class="math-display">\[\vect {\xi }\cdot \nabla p = p' RB_\chi \,\xi _\psi = p'X. \tag{I.15}\]</div>
+</p>
+<!--l. 241--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2280001"></a>The compressibility operator</span>
+In orthogonal coordinates, the divergence of a vector with physical components \(A_\Psi \), \(A_\chi \), \(A_\phi \) is <a id="eq-eq-balloon-app-div_formula"></a><div class="math-display">\[\nabla \cdot \vect {A} = \frac {1}{h_\Psi h_\chi h_\phi } \left [ \pp {}{\Psi }(h_\chi h_\phi A_\Psi ) + \pp {}{\chi }(h_\phi h_\Psi A_\chi ) + \pp {}{\phi }(h_\Psi h_\chi A_\phi ) \right ]. \tag{I.16}\]</div>
+Applying this to \(\vect {\xi }\) and using Eq.&#x00A0;(I.2) gives <a id="eq-eq-balloon-app-div_xi"></a><div class="math-display">\[\begin{aligned}\nabla \cdot \vect {\xi } &amp;= \frac {1}{J} \left [ \pp {}{\Psi }(JRB_\chi \xi _\psi ) + \pp {}{\chi }\left (\frac {\xi _\chi }{B_\chi }\right ) + \pp {}{\phi }\left (\frac {J\xi _\phi }{R}\right ) \right ] \nonumber \\ &amp;= \frac {1}{J}\pp {}{\Psi }(JX) + \frac {1}{J}\pp {Z}{\chi } + \frac {1}{J}\pp {}{\phi }\left [J\left (U+\frac {IZ}{R^2}\right )\right ] \nonumber \\ &amp;= \frac {1}{J}\pp {}{\Psi }(JX) + inU + \frac {1}{J}\left (\pp {}{\chi }+in\nu \right )Z \nonumber \\ &amp;= \frac {1}{J}\pp {}{\Psi }(JX) + inU + iBk_\parallel Z.\end{aligned} \tag{I.17}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 294--><p class="noindent" >This is exactly the combination that appears in the last square of the exact functional.
+</p>
+<!--l. 297--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2290001"></a>The perturbed magnetic field</span>
+Define <a id="eq-eq-balloon-app-Q_def"></a><div class="math-display">\[\vect {Q} \equiv \B _1 = \nabla \times (\vect {\xi }\times \B ). \tag{I.18}\]</div>
+The cross product \(\vect {\xi }\times \B \) is already suggestive. Using Eq.&#x00A0;(I.3) and the definitions in Eq.&#x00A0;(I.10), one finds <a id="eq-eq-balloon-app-xi_cross_B"></a><div class="math-display">\[\begin{aligned}\vect {\xi }\times \B &amp;= \left (\frac {\xi _\phi }{R}-\frac {I}{R^2B_\chi }\xi _\chi \right ) RB_\chi \,\hat {\vect {e}}_\Psi + \frac {IX}{R^2B_\chi }\,\hat {\vect {e}}_\chi - \frac {X}{R}\,\hat {\vect {e}}_\phi \nonumber \\ &amp;= RB_\chi U\,\hat {\vect {e}}_\Psi + \frac {IX}{R^2B_\chi }\,\hat {\vect {e}}_\chi - \frac {X}{R}\,\hat {\vect {e}}_\phi .\end{aligned} \tag{I.19}\]</div>
+</p><!--l. 324--><p class="noindent" >Now apply the standard orthogonal-coordinate curl formula. A direct calculation shows that the physical
+components of \(\vect {Q}\) are <a id="eq-eq-balloon-app-Qpsi"></a><div class="math-display">\[\begin{aligned}Q_\Psi &amp;= \frac {1}{JRB_\chi }\left (\pp {}{\chi }+in\nu \right )X = \frac {B}{RB_\chi }\,ik_\parallel X, \\[0.4em] Q_\phi &amp;= \frac {R}{J} \left [ \pp {U}{\chi }-\pp {}{\Psi }\left (\frac {IJX}{R^2}\right ) \right ], \\[0.4em] Q_\chi &amp;= -B_\chi \left (inU+\pp {X}{\Psi }\right ).\end{aligned} \tag{I.20}\]</div>
+</p><!--l. 345--><p class="noindent" >It is convenient to peel the \(I'\) piece out of \(Q_\phi \) by writing <a id="eq-eq-balloon-app-Qphi_split"></a><div class="math-display">\[Q_\phi = \frac {R}{J} \left [ \pp {U}{\chi }-I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) \right ] - \frac {I'}{R}X. \tag{I.23}\]</div>
+Equations&#x00A0;(I.20)&#8211;(I.23) are the raw algebraic identities behind the two field-line-bending squares.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2300001"></a>The exact 2-D functional before eliminating \(\xi _\parallel \)</h4>
+<!--l. 362--><p class="noindent" >Start from the Bernstein energy principle in the form used by Connor&#8211;Hastie&#8211;Taylor, <a id="eq-eq-balloon-app-bernstein_form"></a><div class="math-display">\[\delta W = \frac 12\int dV\left [ |\vect {Q}|^2 - \vect {J}\cdot (\vect {Q}\times \vect {\xi }^*) + (\vect {\xi }\cdot \nabla p)(\nabla \cdot \vect {\xi }^*) + \gamma p\,|\nabla \cdot \vect {\xi }|^2 \right ]. \tag{I.24}\]</div>
+Here and below the \(e^{in\phi }\) dependence is understood, so the \(\phi \) integral simply produces a factor \(2\pi \); consequently
+<a id="eq-eq-balloon-app-deltaW_density"></a><div class="math-display">\[\delta W = \pi \int J\,d\Psi \,d\chi \;\mathcal {L}. \tag{I.25}\]</div>
+Substituting Eqs.&#x00A0;(I.15), (I.17), (I.20), (I.22), and (I.23), and then using the equilibrium relations in
+Eq.&#x00A0;(I.8), one can regroup the density into the exact Connor&#8211;Hastie&#8211;Taylor form <a id="eq-eq-balloon-app-exact2D"></a><div class="math-display">\[\boxed { \begin {aligned} \delta W =\pi \int J\,d\Psi \,d\chi \Biggl [ &amp;\frac {B^2}{R^2B_\chi ^2}|k_\parallel X|^2 +\frac {R^2}{J^2}\left |\pp {U}{\chi }-I\pp {}{\Psi }\left (\frac {JX}{R^2}\right )\right |^2 \\[0.4em] &amp;\qquad +B_\chi ^2\left |inU+\pp {X}{\Psi }+\frac {j_\phi }{RB_\chi ^2}X\right |^2 -2K|X|^2 \\[0.4em] &amp;\qquad +\gamma p\left |\frac {1}{J}\pp {}{\Psi }(JX)+inU+iBk_\parallel Z\right |^2 \Biggr ]. \end {aligned}} \tag{I.26}\]</div>
+The coefficient \(K\) is <a id="eq-eq-balloon-app-K"></a><div class="math-display">\[K = \frac {II'}{R^2}\pp {\ln R}{\Psi } - \frac {j_\phi }{R}\pp {}{\Psi }\ln (JB_\chi ). \tag{I.27}\]</div>
+Equation&#x00A0;(I.26) is the exact 2-D tokamak functional before the parallel degree of freedom is
+eliminated.
+</p>
+<!--l. 423--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2310001"></a>How the exact 2-D pieces map onto the intuitive form.</span>
+This is the bookkeeping bridge back to the intuitive energy-principle language. <a id="eq-eq-balloon-app-ledger1"></a><div class="math-display">\[\begin{aligned}\text {field-line bending} &amp;\longleftrightarrow \frac {B^2}{R^2B_\chi ^2}|k_\parallel X|^2, \\ \text {sheared in-surface bending} &amp;\longleftrightarrow \frac {R^2}{J^2}\left |\pp {U}{\chi }-I\pp {}{\Psi }\left (\frac {JX}{R^2}\right )\right |^2, \\ \text {magnetic compression + current/pressure shift} &amp;\longleftrightarrow B_\chi ^2\left |inU+\pp {X}{\Psi }+\frac {j_\phi }{RB_\chi ^2}X\right |^2, \\ \text {bad-curvature remainder} &amp;\longleftrightarrow -2K|X|^2, \\ \text {plasma compression} &amp;\longleftrightarrow \gamma p\left |\frac {1}{J}\pp {}{\Psi }(JX)+inU+iBk_\parallel Z\right |^2.\end{aligned} \tag{I.28}\]</div>
+</p><!--l. 447--><p class="noindent" >The exact functional is therefore the coordinate version of the intuitive energy principle, not a different
+stability principle.
+<a 
+ id="x1-231001r229"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">43.2   </span> <a 
+ id="x1-2320002"></a>Eliminating \(\xi _\parallel \) and \(U\)</h3>
+<!--l. 452--><p class="noindent" >The point of the variables \(U\) and \(Z\) is now clear: </p>
+     <ul class="itemize1">
+     <li class="itemize">\(U\) contains the in-surface displacement perpendicular to \(\B \),
+     </li>
+     <li class="itemize">\(Z\) contains the parallel degree of freedom through Eq.&#x00A0;(I.12).</li></ul>
+<!--l. 458--><p class="noindent" >Hence the first minimization with respect to \(\xi _\parallel \) is the same thing as minimization with respect to \(Z\) at fixed \(X\)
+and \(U\).
+</p><!--l. 461--><p class="noindent" >Introduce the shorthand <a id="eq-eq-balloon-app-Cdef"></a><div class="math-display">\[\mathcal {C}[X,U,Z] \equiv \frac {1}{J}\pp {}{\Psi }(JX)+inU+iBk_\parallel Z. \tag{I.33}\]</div>
+Then the \(Z\)-dependent part of Eq.&#x00A0;(I.26) is simply <a id="eq-eq-balloon-app-WZ"></a><div class="math-display">\[\delta W_Z = \pi \int J\,d\Psi \,d\chi \;\gamma p\,|\mathcal {C}|^2. \tag{I.34}\]</div>
+Because \(\gamma p&gt;0\), this contribution is manifestly non-negative. Therefore its absolute minimum is zero, and the
+                                                                                         
+                                                                                         
+minimizing choice of \(Z\) is obtained by setting <a id="eq-eq-balloon-app-Czero"></a><div class="math-display">\[\mathcal {C}=0. \tag{I.35}\]</div>
+Written out explicitly, this is <a id="eq-eq-balloon-app-incompressibility1"></a><div class="math-display">\[\frac {1}{J}\pp {}{\Psi }(JX)+inU+iBk_\parallel Z = 0, \tag{I.36}\]</div>
+or, using Eq.&#x00A0;(I.6), <a id="eq-eq-balloon-app-incompressibility2"></a><div class="math-display">\[\left (\pp {}{\chi }+in\nu \right )Z = -\pp {}{\Psi }(JX)-inJU. \tag{I.37}\]</div>
+But Eq.&#x00A0;(I.17) shows that Eq.&#x00A0;(I.36) is exactly <a id="eq-eq-balloon-app-divzero"></a><div class="math-display">\[\nabla \cdot \vect {\xi } = 0. \tag{I.38}\]</div>
+So the first minimization is not an ad hoc assumption of incompressibility. It is the actual variational
+elimination of the parallel displacement.
+</p>
+<!--l. 502--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2330002"></a>Explicit field-line solution for \(Z\).</span>
+Equation&#x00A0;(I.37) is a first-order ODE along the field line. Define <a id="eq-eq-balloon-app-alpha"></a><div class="math-display">\[\alpha (\Psi ,\chi )\equiv \int _{\chi _0}^{\chi }\nu (\Psi ,\bar \chi )\,d\bar \chi . \tag{I.39}\]</div>
+Multiplying Eq.&#x00A0;(I.37) by \(e^{in\alpha }\) gives <a id="eq-eq-balloon-app-integrating_factor"></a><div class="math-display">\[\pp {}{\chi }\left (e^{in\alpha }Z\right ) = -e^{in\alpha }\left [\pp {}{\Psi }(JX)+inJU\right ]. \tag{I.40}\]</div>
+Integrating once along the field line, <a id="eq-eq-balloon-app-Zsolution"></a><div class="math-display">\[Z(\Psi ,\chi ) = e^{-in\alpha (\Psi ,\chi )} \left [ C(\Psi ) - \int _{\chi _0}^{\chi } e^{in\alpha (\Psi ,\chi ')} \left (\pp {}{\Psi }(JX)+inJU\right )(\Psi ,\chi ')\,d\chi ' \right ], \tag{I.41}\]</div>
+with \(C(\Psi )\) fixed by the periodicity or ballooning boundary condition. This is the precise statement behind the
+comment in Connor&#8211;Hastie&#8211;Taylor that the last square may be made to vanish.
+</p>
+<!--l. 535--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2340002"></a>Variational check.</span>
+If one varies Eq.&#x00A0;(I.34) directly, then <a id="eq-eq-balloon-app-variation1"></a><div class="math-display">\[\delta _Z\delta W_Z = \pi \int J\,d\Psi \,d\chi \;\gamma p \left [ \mathcal {C}^*(iBk_\parallel \delta Z) + \mathcal {C}(-iBk_\parallel \delta Z^*) \right ]. \tag{I.42}\]</div>
+Integrating \(k_\parallel \) by parts along the field line gives the stationarity condition <a id="eq-eq-balloon-app-variation2"></a><div class="math-display">\[k_\parallel (\gamma p\,\mathcal {C})=0. \tag{I.43}\]</div>
+However the stronger condition \(\mathcal {C}=0\) is available and gives the absolute minimum \(\delta W_Z=0\). That is why the minimizer
+is precisely the incompressible choice.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2350002"></a>The reduced exact 2-D functional</h4>
+<!--l. 560--><p class="noindent" >Once Eq.&#x00A0;(I.35) is imposed, the compressional square in Eq.&#x00A0;(I.26) vanishes identically. The functional
+reduces to <a id="eq-eq-balloon-app-reduced2D"></a><div class="math-display">\[\boxed { \begin {aligned} \delta W =\pi \int J\,d\Psi \,d\chi \Biggl [ &amp;\frac {B^2}{R^2B_\chi ^2}|k_\parallel X|^2 +\frac {R^2}{J^2}\left |\pp {U}{\chi }-I\pp {}{\Psi }\left (\frac {JX}{R^2}\right )\right |^2 \\[0.4em] &amp;\qquad +B_\chi ^2\left |inU+\pp {X}{\Psi }+\frac {j_\phi }{RB_\chi ^2}X\right |^2 -2K|X|^2 \Biggr ]. \end {aligned}} \tag{I.44}\]</div>
+This is the exact 2-D tokamak functional after elimination of the parallel displacement. In the notation of
+these notes, it is exactly the reduced two-dimensional tokamak functional quoted in the ballooning
+lecture.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2360002"></a>Second minimization: eliminating \(U\) in the high-\(n\) limit</h4>
+<!--l. 582--><p class="noindent" >We now take the next step and minimize Eq.&#x00A0;(I.44) with respect to the in-surface displacement \(U\). Unlike
+the elimination of \(Z\), this is not an exact algebraic minimization because \(\partial U/\partial \chi \) appears explicitly. The
+simplification comes from the ballooning ordering at large toroidal mode number \(n\).
+</p>
+<!--l. 588--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2370002"></a>Ballooning ordering</span>
+For high-\(n\) ballooning modes one assumes <a id="eq-eq-balloon-app-ordering"></a><div class="math-display">\[k_\parallel X = O(1), \qquad k_\parallel U = O(1), \qquad \frac {1}{n}\pp {X}{\Psi }=O(1). \tag{I.45}\]</div>
+The last statement says that \(X\) varies across flux surfaces on the short perpendicular scale \(k_\perp \sim n\), so that \(\partial X/\partial \Psi \) is itself
+an \(O(n)\) quantity. By contrast, the combinations \(k_\parallel X\) and \(k_\parallel U\) remain \(O(1)\) because ballooning modes keep a long
+wavelength along the field.
+</p><!--l. 605--><p class="noindent" >The \(U\)-dependent part of Eq.&#x00A0;(I.44) is <a id="eq-eq-balloon-app-LU_start"></a><div class="math-display">\[\mathcal {L}_U = \frac {R^2}{J^2} \left | \pp {U}{\chi } - I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) \right |^2 + B_\chi ^2 \left | inU+\pp {X}{\Psi }+\frac {j_\phi }{RB_\chi ^2}X \right |^2. \tag{I.46}\]</div>
+Using Eq.&#x00A0;(I.6), <a id="eq-eq-balloon-app-Uchi_iteration"></a><div class="math-display">\[\pp {U}{\chi } = -in\nu U + iJBk_\parallel U. \tag{I.47}\]</div>
+Also, <a id="eq-eq-balloon-app-IXexpand"></a><div class="math-display">\[\begin{aligned}I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) &amp;= I\left ( \frac {J}{R^2}\pp {X}{\Psi } + X\pp {}{\Psi }\frac {J}{R^2} \right ) \nonumber \\ &amp;= \nu \pp {X}{\Psi } + IX\pp {}{\Psi }\frac {J}{R^2},\end{aligned} \tag{I.48}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 645--><p class="noindent" >because \(\nu =IJ/R^2\). Therefore the first square in Eq.&#x00A0;(I.46) becomes <a id="eq-eq-balloon-app-first_square_rewrite"></a><div class="math-display">\[\begin{aligned}\pp {U}{\chi } - I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) &amp;= -in\nu U +iJBk_\parallel U - \nu \pp {X}{\Psi } - IX\pp {}{\Psi }\frac {J}{R^2} \nonumber \\ &amp;= -\nu \left (inU+\pp {X}{\Psi }\right ) - IX\pp {}{\Psi }\frac {J}{R^2} + iJBk_\parallel U.\end{aligned} \tag{I.49}\]</div>
+</p>
+<!--l. 668--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2380002"></a>Choosing the combination that diagonalizes the leading quadratic form</span>
+Introduce <a id="eq-eq-balloon-app-a_def"></a><div class="math-display">\[a \equiv \frac {j_\phi }{RB_\chi ^2}, \tag{I.50}\]</div>
+so that the second square in Eq.&#x00A0;(I.46) is simply <a id="eq-eq-balloon-app-second_square_a"></a><div class="math-display">\[B_\chi ^2\left |inU+\pp {X}{\Psi }+aX\right |^2. \tag{I.51}\]</div>
+</p><!--l. 681--><p class="noindent" >The right combination to isolate is <a id="eq-eq-balloon-app-S_def"></a><div class="math-display">\[S \equiv inU+\pp {X}{\Psi }+cX, \tag{I.52}\]</div>
+with \(c(\Psi ,\chi )\) chosen so that the two large squares combine into \(B^2|S|^2\) at leading order. The required choice is
+<a id="eq-eq-balloon-app-c_def1"></a><div class="math-display">\[c \equiv \frac {1}{B^2} \left [ \frac {j_\phi }{R} + \frac {I^2}{J}\pp {}{\Psi }\left (\frac {J}{R^2}\right ) \right ]. \tag{I.53}\]</div>
+Let us now show that this is the same coefficient written by Connor&#8211;Hastie&#8211;Taylor.
+</p><!--l. 704--><p class="noindent" >First expand the second term: <a id="eq-eq-balloon-app-c_expand1"></a><div class="math-display">\[\begin{aligned}\frac {I^2}{J}\pp {}{\Psi }\left (\frac {J}{R^2}\right ) &amp;= \frac {I^2}{R^2} \left ( \frac {1}{J}\pp {J}{\Psi } - \frac {2}{R}\pp {R}{\Psi } \right ).\end{aligned} \tag{I.54}\]</div>
+</p><!--l. 716--><p class="noindent" >Next use the equilibrium relation <a id="eq-eq-balloon-app-c_expand2"></a><div class="math-display">\[\frac {j_\phi }{R}=p'+\frac {II'}{R^2}, \tag{I.55}\]</div>
+so Eq.&#x00A0;(I.53) becomes <a id="eq-eq-balloon-app-c_expand3"></a><div class="math-display">\[\begin{aligned}c &amp;= \frac {1}{B^2} \left [ p' + \frac {II'}{R^2} + \frac {I^2}{R^2} \left ( \frac {1}{J}\pp {J}{\Psi } - \frac {2}{R}\pp {R}{\Psi } \right ) \right ] \nonumber \\ &amp;= \frac {p'}{B^2} + \frac {I^2}{R^2B^2} \left [ \frac {I'}{I} + \frac {1}{J}\pp {J}{\Psi } - \frac {2}{R}\pp {R}{\Psi } \right ].\end{aligned} \tag{I.56}\]</div>
+</p><!--l. 752--><p class="noindent" >But <a id="eq-eq-balloon-app-nuprime_over_nu"></a><div class="math-display">\[\frac {\nu '}{\nu } = \frac {I'}{I} + \frac {1}{J}\pp {J}{\Psi } - \frac {2}{R}\pp {R}{\Psi }, \tag{I.57}\]</div>
+since \(\nu =IJ/R^2\). Hence <a id="eq-eq-balloon-app-c_def2"></a><div class="math-display">\[\boxed { c = \frac {p'}{B^2} + \frac {I^2}{R^2B^2}\frac {\nu '}{\nu }.} \tag{I.58}\]</div>
+</p><!--l. 774--><p class="noindent" >Now rewrite the two large squares in terms of \(S\). From Eq.&#x00A0;(I.52), <a id="eq-eq-balloon-app-inUplus"></a><div class="math-display">\[inU+\pp {X}{\Psi }=S-cX, \tag{I.59}\]</div>
+so Eq.&#x00A0;(I.49) becomes <a id="eq-eq-balloon-app-first_square_S"></a><div class="math-display">\[\pp {U}{\chi } - I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) = -\nu S + \left [ \nu c - I\pp {}{\Psi }\left (\frac {J}{R^2}\right ) \right ]X + iJBk_\parallel U, \tag{I.60}\]</div>
+while Eq.&#x00A0;(I.51) becomes <a id="eq-eq-balloon-app-second_square_S"></a><div class="math-display">\[B_\chi ^2\left |S+(a-c)X\right |^2. \tag{I.61}\]</div>
+</p><!--l. 803--><p class="noindent" >At leading order we may ignore \(iJBk_\parallel U\) inside the first square because it is down by one power of \(1/n\) relative to the
+pieces containing \(inU+\partial X/\partial \Psi \). Expanding the two squares then produces a term linear in \(S\) of the form
+<a id="eq-eq-balloon-app-cross_term"></a><div class="math-display">\[2\Re \left \{ S^* \left [ -\frac {R^2}{J^2}\nu \left ( \nu c - I\pp {}{\Psi }\frac {J}{R^2} \right ) + B_\chi ^2(a-c) \right ]X \right \}. \tag{I.62}\]</div>
+Now simplify the coefficient: <a id="eq-eq-balloon-app-cross_cancel"></a><div class="math-display">\[\begin{aligned}&amp;-\frac {R^2}{J^2}\nu \left ( \nu c - I\pp {}{\Psi }\frac {J}{R^2} \right ) + B_\chi ^2(a-c) \nonumber \\ &amp;\qquad = -\frac {R^2}{J^2}\nu ^2 c + \frac {R^2}{J^2}\nu I\pp {}{\Psi }\frac {J}{R^2} + \frac {j_\phi }{R} - B_\chi ^2 c \nonumber \\ &amp;\qquad = -\frac {I^2}{R^2}c + \frac {I^2}{J}\pp {}{\Psi }\frac {J}{R^2} + \frac {j_\phi }{R} - B_\chi ^2 c \nonumber \\ &amp;\qquad = -B^2 c + \frac {I^2}{J}\pp {}{\Psi }\frac {J}{R^2} + \frac {j_\phi }{R} \nonumber \\ &amp;\qquad =0,\end{aligned} \tag{I.63}\]</div>
+</p><!--l. 858--><p class="noindent" >where the last step is exactly the definition of \(c\) in Eq.&#x00A0;(I.53). Therefore, to leading order in the large-\(n\)
+expansion, the two big squares collapse to <a id="eq-eq-balloon-app-LU_leading"></a><div class="math-display">\[\mathcal {L}_U = B^2|S|^2 + (\text {$X$-only terms}) + O(1/n). \tag{I.64}\]</div>
+So the leading-order minimizer is simply \(S=0\), i.e. <a id="eq-eq-balloon-app-U_leading"></a><div class="math-display">\[inU+\pp {X}{\Psi } + X \left ( \frac {p'}{B^2} + \frac {I^2}{R^2B^2}\frac {\nu '}{\nu } \right ) =0. \tag{I.65}\]</div>
+</p>
+<!--l. 885--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2390002"></a>The first correction in \(1/n\)</span>
+To obtain the accuracy retained by Connor&#8211;Hastie&#8211;Taylor we must also keep the first correction coming
+from \(iJBk_\parallel U\). From Eq.&#x00A0;(I.52), <a id="eq-eq-balloon-app-U_from_S"></a><div class="math-display">\[inU = S-\pp {X}{\Psi }-cX, \qquad U=\frac {i}{n}\left (\pp {X}{\Psi }+cX-S\right ). \tag{I.66}\]</div>
+Now use the ordering (I.45): </p>
+     <ul class="itemize1">
+     <li class="itemize">\(\partial X/\partial \Psi = O(n)\),
+     </li>
+     <li class="itemize">\(X=O(1)\),
+     </li>
+                                                                                         
+                                                                                         
+     <li class="itemize">\(S=O(1)\).</li></ul>
+<!--l. 902--><p class="noindent" >Therefore <a id="eq-eq-balloon-app-U_ordered"></a><div class="math-display">\[U = \frac {i}{n}\pp {X}{\Psi } + O(1/n), \tag{I.67}\]</div>
+and hence <a id="eq-eq-balloon-app-iJBkU"></a><div class="math-display">\[iJBk_\parallel U = iJBk_\parallel \left (\frac {i}{n}\pp {X}{\Psi }\right ) + O(1/n) = - JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) + O(1/n). \tag{I.68}\]</div>
+Substituting this into Eq.&#x00A0;(I.60) gives <a id="eq-eq-balloon-app-first_square_corrected"></a><div class="math-display">\[\pp {U}{\chi } - I\pp {}{\Psi }\left (\frac {JX}{R^2}\right ) = -\nu S + \left [ \nu c - I\pp {}{\Psi }\left (\frac {J}{R^2}\right ) \right ]X - JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) + O(1/n). \tag{I.69}\]</div>
+When Eq.&#x00A0;(I.69) is substituted into Eq.&#x00A0;(I.46), the \(SX^*\) cross term still cancels by Eq.&#x00A0;(I.63); the only new
+term linear in \(S\) is the one involving the parallel-gradient correction: <a id="eq-eq-balloon-app-LU_with_correction"></a><div class="math-display">\[\begin{aligned}\mathcal {L}_U &amp;= B^2|S|^2 + 2\frac {R^2\nu }{J^2} \Re \left \{ S^*\,JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) \right \} + (\text {$X$-only terms}) + O(1/n) \nonumber \\ &amp;= B^2|S|^2 + 2\frac {I^2}{\nu R^2} \Re \left \{ S^*\,JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) \right \} + (\text {$X$-only terms}) + O(1/n),\end{aligned} \tag{I.70}\]</div>
+</p><!--l. 975--><p class="noindent" >because <a id="eq-eq-balloon-app-nu_identity"></a><div class="math-display">\[\frac {R^2\nu }{J^2} = \frac {I}{J} = \frac {I^2}{\nu R^2}. \tag{I.71}\]</div>
+</p><!--l. 985--><p class="noindent" >Now complete the square: <a id="eq-eq-balloon-app-LU_complete_square"></a><div class="math-display">\[\begin{aligned}\mathcal {L}_U &amp;= B^2 \left | S + \frac {I^2}{\nu R^2B^2} JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) \right |^2 \nonumber \\ &amp;\qquad - \frac {I^4}{\nu ^2R^4B^2} \left | JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) \right |^2 + (\text {$X$-only terms}) + O(1/n).\end{aligned} \tag{I.72}\]</div>
+</p><!--l. 1009--><p class="noindent" >The minimizing choice of \(U\) is therefore obtained by setting the square to zero: <a id="eq-eq-balloon-app-U_minimizer"></a><div class="math-display">\[\boxed { inU+\pp {X}{\Psi } + X\left ( \frac {p'}{B^2} + \frac {I^2}{R^2B^2}\frac {\nu '}{\nu } \right ) + \frac {I^2}{\nu R^2B^2} JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) =0.} \tag{I.73}\]</div>
+This is exactly Connor&#8211;Hastie&#8211;Taylor Eq.&#x00A0;(12), now written out with the intermediate algebra
+visible.
+</p><!--l. 1028--><p class="noindent" >Equivalently, <a id="eq-eq-balloon-app-U_explicit"></a><div class="math-display">\[U = \frac {i}{n} \left [ \pp {X}{\Psi } + X\left ( \frac {p'}{B^2} + \frac {I^2}{R^2B^2}\frac {\nu '}{\nu } \right ) + \frac {I^2}{\nu R^2B^2} JBk_\parallel \left (\frac {1}{n}\pp {X}{\Psi }\right ) \right ] + O(1/n^2). \tag{I.74}\]</div>
+So in the high-\(n\) ballooning limit the in-surface displacement is no longer an independent variable: it is
+slaved to the radial displacement \(X\) and its radial derivative.
+</p>
+<!--l. 1053--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2400002"></a>Result of substituting the minimizing \(U\) back into the functional</span>
+At this point the remaining algebra is long but straightforward: one substitutes Eq.&#x00A0;(I.73) into Eq.&#x00A0;(I.44),
+keeps all contributions through \(O(1/n)\), rewrites every occurrence of \(JBk_\parallel (\partial X/\partial \Psi )\) in terms of \(\partial (JBk_\parallel X)/\partial \Psi \), and then groups the leftover
+pieces into the three combinations <a id="eq-eq-balloon-app-PQsigma"></a><div class="math-display">\[P = X\sigma - \frac {B_\chi ^2}{\nu B^2} \frac {I}{n} \pp {}{\Psi }(JBk_\parallel X), \qquad Q = \frac {Xp'}{B^2} + \frac {I^2}{\nu R^2B^2} \frac {1}{n} \pp {}{\Psi }(JBk_\parallel X), \qquad \sigma = \frac {Ip'}{B^2}+I'. \tag{I.75}\]</div>
+After also moving the outside Jacobian \(J\) inside the braces, the result is <a id="eq-eq-balloon-app-X_only_functional"></a><div class="math-display">\[\boxed { \begin {aligned} \delta W = \pi \int d\Psi \,d\chi \Biggl \{ &amp;\frac {JB^2}{R^2B_\chi ^2}|k_\parallel X|^2 + \frac {R^2B_\chi ^2}{JB^2} \left | \frac {1}{n}\pp {}{\Psi }(JBk_\parallel X) \right |^2 \\[0.4em] &amp;\qquad - \frac {2J}{B^2}p' \left [ |X|^2\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {iI}{JB^2}\pp {}{\chi }\left (\frac {B^2}{2}\right )\frac {X^*}{n}\pp {X}{\Psi } \right ] \\[0.4em] &amp;\qquad + \frac {X^*}{n}JBk_\parallel (X\sigma ') - \frac {1}{n} \left [ P^*JBk_\parallel Q + P\,JBk_\parallel ^*Q^* \right ] \Biggr \}, \end {aligned}} \tag{I.76}\]</div>
+which is Connor&#8211;Hastie&#8211;Taylor Eq.&#x00A0;(13).
+</p><!--l. 1123--><p class="noindent" >For the purposes of the notes, the crucial structural point is already contained in Eq.&#x00A0;(I.73): the \(U\)
+minimization is another square completion, but now only after the large-\(n\) ordering has converted the
+\(\chi \)-derivative of \(U\) into an algebraic expression plus a controlled \(1/n\) correction.
+<a 
+ id="x1-240001r238"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">43.3   </span> <a 
+ id="x1-2410003"></a>Ballooning Transform and the Local High-\(n\) Functional</h3>
+<!--l. 1131--><p class="noindent" >The remaining task is to turn the exact periodic problem for \(X(\Psi ,\chi )\) into a local problem on an unwrapped field
+line. Let <a id="eq-eq-balloon-app-chi0"></a><div class="math-display">\[\chi _0 \equiv \oint d\chi \tag{I.77}\]</div>
+denote one poloidal period. The ballooning transform writes the periodic function \(X(\Psi ,\chi )\) as <a id="eq-eq-balloon-app-transform"></a><div class="math-display">\[X(\Psi ,\chi ) = \sum _{m=-\infty }^{\infty } \exp \!\left (-\frac {2\pi i m\chi }{\chi _0}\right ) \int _{-\infty }^{\infty } dy\, \exp \!\left (\frac {2\pi i my}{\chi _0}\right ) \widehat X(\Psi ,y). \tag{I.78}\]</div>
+The transformed function \(\widehat X(\Psi ,y)\) lives on the infinite interval \(-\infty &lt;y&lt;\infty \) and need not be periodic. That is the whole
+point: the rapid phase variation responsible for large perpendicular wavenumber is now carried
+by an eikonal factor, while the envelope is free to localize where the curvature drive is most
+unfavorable.
+</p>
+<!--l. 1156--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2420003"></a>Eikonal representation.</span>
+Choose <a id="eq-eq-balloon-app-eikonal"></a><div class="math-display">\[\widehat X(\Psi ,y) = F(\Psi ,y)\, \exp \!\left [-in\alpha (\Psi ,y;y_0)\right ], \qquad \alpha (\Psi ,y;y_0)\equiv \int _{y_0}^{y}\nu (\Psi ,\bar y)\,d\bar y. \tag{I.79}\]</div>
+Here \(y_0\) is the ballooning origin. Its value is not yet fixed. The point of the phase choice (I.79) is that
+<a id="eq-eq-balloon-app-phase_derivative"></a><div class="math-display">\[\pp {\alpha }{y}=\nu , \qquad JBk_\parallel = \frac {1}{i}\left (\pp {}{y}+in\nu \right ), \tag{I.80}\]</div>
+                                                                                         
+                                                                                         
+so the large \(in\nu \) contribution cancels immediately: <a id="eq-eq-balloon-app-kpar_hatX"></a><div class="math-display">\[\begin{aligned}JBk_\parallel \widehat X &amp;= \frac {1}{i}\left (\pp {}{y}+in\nu \right ) \left (F e^{-in\alpha }\right ) \nonumber \\ &amp;= \frac {1}{i}e^{-in\alpha }\pp {F}{y} = -i\,e^{-in\alpha }\pp {F}{y}.\end{aligned} \tag{I.81}\]</div>
+</p><!--l. 1190--><p class="noindent" >Therefore <a id="eq-eq-balloon-app-kpar_abs"></a><div class="math-display">\[|k_\parallel \widehat X|^2 = \frac {1}{J^2B^2}\left |\pp {F}{y}\right |^2. \tag{I.82}\]</div>
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2430003"></a>Large-\(n\) ordering after the ballooning transform</h4>
+<!--l. 1200--><p class="noindent" >To make the asymptotics explicit, introduce a fast radial scale <a id="eq-eq-balloon-app-s_fast"></a><div class="math-display">\[s \equiv \sqrt {n}\,(\Psi -\Psi _0). \tag{I.83}\]</div>
+Then any slowly varying envelope is regarded as a function \(F=F(\Psi ,s,y)\) with <a id="eq-eq-balloon-app-psi_split"></a><div class="math-display">\[\pp {}{\Psi } = \sqrt {n}\,\pp {}{s} + \left .\pp {}{\Psi }\right |_{s}. \tag{I.84}\]</div>
+Consequently, <a id="eq-eq-balloon-app-Fpsi_order"></a><div class="math-display">\[\frac {1}{n}\pp {F}{\Psi } = \frac {1}{\sqrt {n}}\pp {F}{s} + \frac {1}{n}\left .\pp {F}{\Psi }\right |_{s} = O(n^{-1/2}). \tag{I.85}\]</div>
+</p><!--l. 1227--><p class="noindent" >The other key quantity is the radial derivative of the phase: <a id="eq-eq-balloon-app-Theta"></a><div class="math-display">\[\Theta (\Psi ,y;y_0) \equiv \pp {\alpha }{\Psi } = \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y, \tag{I.86}\]</div>
+where, at this order, \(y_0\) is treated as independent of \(\Psi \). Now differentiate (I.79) with respect to \(\Psi \): <a id="eq-eq-balloon-app-Xpsi_order"></a><div class="math-display">\[\begin{aligned}\frac {1}{n}\pp {\widehat X}{\Psi } &amp;= \frac {1}{n}\pp {}{\Psi }\left (F e^{-in\alpha }\right ) \nonumber \\ &amp;= e^{-in\alpha } \left [ \frac {1}{n}\pp {F}{\Psi } -i\Theta F \right ] \nonumber \\ &amp;= e^{-in\alpha } \left [ -i\Theta F + O(n^{-1/2}) \right ].\end{aligned} \tag{I.87}\]</div>
+</p><!--l. 1259--><p class="noindent" >This one line is the essential large-\(n\) bookkeeping step: the explicit \(1/n\) sitting in front of \(\partial /\partial \Psi \) is cancelled by the \(n\)
+hidden in the eikonal phase, so radial derivatives of the phase survive at leading order while radial
+derivatives of the envelope are smaller by \(n^{-1/2}\).
+</p><!--l. 1264--><p class="noindent" >The same logic gives <a id="eq-eq-balloon-app-psi_of_kparX"></a><div class="math-display">\[\begin{aligned}\frac {1}{n}\pp {}{\Psi }\!\left (JBk_\parallel \widehat X\right ) &amp;= \frac {1}{n}\pp {}{\Psi } \left ( -i e^{-in\alpha }\pp {F}{y} \right ) \nonumber \\ &amp;= -e^{-in\alpha }\Theta \,\pp {F}{y} + O(n^{-1/2}),  \\[0.4em] \widehat X^*\,\frac {1}{n}\pp {\widehat X}{\Psi } &amp;= -i\Theta |F|^2 + O(n^{-1/2}).\end{aligned} \tag{I.88}\]</div>
+</p>
+<!--l. 1287--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2440003"></a>Leading behavior of the auxiliary combinations \(P\) and \(Q\).</span>
+Using (I.88) in the definitions (I.75) gives <a id="eq-eq-balloon-app-P_leading"></a><div class="math-display">\[\begin{aligned}P &amp;= e^{-in\alpha } \left [ \sigma F + \frac {IB_\chi ^2}{\nu B^2}\, \Theta \,\pp {F}{y} \right ] + O(n^{-1/2}),  \\[0.4em] Q &amp;= e^{-in\alpha } \left [ \frac {p'}{B^2}F - \frac {I^2}{\nu R^2B^2}\, \Theta \,\pp {F}{y} \right ] + O(n^{-1/2}).\end{aligned} \tag{I.90}\]</div>
+</p><!--l. 1317--><p class="noindent" >Because the last two terms in (I.76) are already multiplied by an explicit factor \(1/n\), they contribute only at \(O(1/n)\)
+and hence drop out of the lowest-order local problem.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2450003"></a>Term-by-term reduction of the \(X\)-only functional</h4>
+<!--l. 1323--><p class="noindent" >We now substitute the transformed field (I.79) into the exact \(X\)-only functional (I.76) and keep the leading \(O(1)\)
+terms.
+</p>
+<!--l. 1327--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2460003"></a>The two bending terms</span>
+From (I.82), <a id="eq-eq-balloon-app-bending1_local"></a><div class="math-display">\[\frac {JB^2}{R^2B_\chi ^2}|k_\parallel \widehat X|^2 = \frac {1}{JR^2B_\chi ^2} \left |\pp {F}{y}\right |^2. \tag{I.92}\]</div>
+From (I.88), <a id="eq-eq-balloon-app-bending2_local"></a><div class="math-display">\[\frac {R^2B_\chi ^2}{JB^2} \left | \frac {1}{n}\pp {}{\Psi }(JBk_\parallel \widehat X) \right |^2 = \frac {R^2B_\chi ^2}{JB^2}\, \Theta ^2 \left |\pp {F}{y}\right |^2 + O(n^{-1/2}). \tag{I.93}\]</div>
+Adding (I.92) and (I.93), <a id="eq-eq-balloon-app-bending_combined"></a><div class="math-display">\[\begin{aligned}&amp;\frac {JB^2}{R^2B_\chi ^2}|k_\parallel \widehat X|^2 + \frac {R^2B_\chi ^2}{JB^2} \left | \frac {1}{n}\pp {}{\Psi }(JBk_\parallel \widehat X) \right |^2 \nonumber \\[0.4em] &amp;\qquad = \frac {1}{JR^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B}\,\Theta \right )^2 \right ] \left |\pp {F}{y}\right |^2 + O(n^{-1/2}).\end{aligned} \tag{I.94}\]</div>
+</p>
+<!--l. 1375--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2470003"></a>The pressure-curvature term</span>
+The term proportional to \(p'\) in (I.76) is <a id="eq-eq-balloon-app-pressure_curvature_start"></a><div class="math-display">\[-\frac {2J}{B^2}p' \left [ |X|^2\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {iI}{JB^2}\pp {}{\chi }\left (\frac {B^2}{2}\right ) \frac {X^*}{n}\pp {X}{\Psi } \right ]. \tag{I.95}\]</div>
+After the ballooning transform the periodic coordinate \(\chi \) is replaced by \(y\), and (I.89) gives <a id="eq-eq-balloon-app-XstarXpsi_simple"></a><div class="math-display">\[\begin{aligned}\frac {X^*}{n}\pp {X}{\Psi } &amp;= -i\Theta |F|^2 + O(n^{-1/2}).\end{aligned} \tag{I.96}\]</div>
+</p><!--l. 1399--><p class="noindent" >Substituting this into (I.95) yields <a id="eq-eq-balloon-app-pressure_curvature_local"></a><div class="math-display">\[\begin{aligned}&amp;-\frac {2J}{B^2}p' \left [ |X|^2\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {iI}{JB^2}\pp {}{\chi }\left (\frac {B^2}{2}\right ) \frac {X^*}{n}\pp {X}{\Psi } \right ] \nonumber \\[0.4em] &amp;\qquad = -\frac {2J}{B^2}p' \left [ |F|^2\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {iI}{JB^2}\pp {}{y}\left (\frac {B^2}{2}\right ) \left (-i\Theta |F|^2\right ) \right ] + O(n^{-1/2}) \nonumber \\[0.4em] &amp;\qquad = - \left [ \frac {2Jp'}{B^2}\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {Ip'}{B^4}\Theta \,\pp {B^2}{y} \right ] |F|^2 + O(n^{-1/2}).\end{aligned} \tag{I.97}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 1433--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2480003"></a>Terms that are subleading at lowest order</span>
+The term <a id="eq-eq-balloon-app-sigma_term"></a><div class="math-display">\[\frac {X^*}{n}\,JBk_\parallel (X\sigma ') \tag{I.98}\]</div>
+is explicitly \(O(1/n)\) because \(JBk_\parallel (X\sigma ')=O(1)\) for ballooning orderings. The final bracket in (I.76) is also \(O(1/n)\) because the leading parts
+of \(P\) and \(Q\) are \(O(1)\), while \(JBk_\parallel P\) and \(JBk_\parallel Q\) are likewise \(O(1)\). Therefore none of those terms contribute to the lowest-order local
+field-line problem.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2490003"></a>The leading-order one-dimensional functional</h4>
+<!--l. 1448--><p class="noindent" >At lowest order the exact \(X\)-only functional becomes <a id="eq-eq-balloon-app-W0"></a><div class="math-display">\[\delta W_0[F;\Psi ,y_0] = \pi \int _{-\infty }^{\infty }dy \left \{ A(\Psi ,y;y_0)\left |\pp {F}{y}\right |^2 - V(\Psi ,y;y_0)|F|^2 \right \}, \tag{I.99}\]</div>
+with <a id="eq-eq-balloon-app-A_local"></a><div class="math-display">\[\begin{aligned}A(\Psi ,y;y_0) &amp;= \frac {1}{JR^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B}\,\Theta \right )^2 \right ],  \\[0.4em] V(\Psi ,y;y_0) &amp;= \frac {2Jp'}{B^2}\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {Ip'}{B^4}\Theta \,\pp {B^2}{y}.\end{aligned} \tag{I.100}\]</div>
+</p><!--l. 1480--><p class="noindent" >The corresponding leading-order kinetic normalization follows from (I.87): <a id="eq-eq-balloon-app-N0"></a><div class="math-display">\[\begin{aligned}\mathcal N_0[F;\Psi ,y_0] &amp;= \pi \int _{-\infty }^{\infty }dy\; \frac {J}{R^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B}\,\Theta \right )^2 \right ] |F|^2 \nonumber \\ &amp;\equiv \pi \int _{-\infty }^{\infty }dy\;M(\Psi ,y;y_0)|F|^2,\end{aligned} \tag{I.102}\]</div>
+</p><!--l. 1499--><p class="noindent" >with <a id="eq-eq-balloon-app-M_local"></a><div class="math-display">\[M(\Psi ,y;y_0) = \frac {J}{R^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B}\,\Theta \right )^2 \right ]. \tag{I.103}\]</div>
+</p>
+<!--l. 1513--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2500003"></a>What has happened physically?</span>
+At this order each flux surface has decoupled from its neighbors. The local problem depends on \(\Psi \) and on the
+ballooning origin \(y_0\) only as parameters. The field-line structure along the unwrapped coordinate \(y\) is
+determined by the one-dimensional functional (I.99), while the transverse radial envelope is left for higher
+order.
+</p>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2510003"></a>Variation of the local functional: the field-line ODE</h4>
+<!--l. 1522--><p class="noindent" >Define the local eigenvalue problem by extremizing <a id="eq-eq-balloon-app-F0_functional"></a><div class="math-display">\[\mathcal F_0[F] \equiv \delta W_0[F;\Psi ,y_0] - \omega ^2(\Psi ,y_0)\,\mathcal N_0[F;\Psi ,y_0]. \tag{I.104}\]</div>
+Let \(F\rightarrow F+\epsilon \eta \) with \(\eta (\pm \infty )=0\), and vary with respect to \(F^*\). Using (I.99) and (I.102), <a id="eq-eq-balloon-app-variation_local"></a><div class="math-display">\[\begin{aligned}\delta \mathcal F_0 &amp;= \pi \epsilon \int _{-\infty }^{\infty }dy \left [ A\,\pp {F}{y}\,\pp {\eta ^*}{y} - \left (V+\omega ^2 M\right )F\eta ^* \right ] + \text {c.c.} \nonumber \\ &amp;= -\pi \epsilon \int _{-\infty }^{\infty }dy\; \eta ^* \left [ \pp {}{y}\!\left (A\,\pp {F}{y}\right ) + \left (V+\omega ^2 M\right )F \right ] + \text {c.c.},\end{aligned} \tag{I.105}\]</div>
+</p><!--l. 1559--><p class="noindent" >where the boundary term vanishes because \(\eta (\pm \infty )=0\). Since \(\eta \) is arbitrary, the coefficient of \(\eta ^*\) must vanish:
+<a id="eq-eq-balloon-app-local_abstract"></a><div class="math-display">\[\pp {}{y}\!\left (A\,\pp {F_0}{y}\right ) + \left (V+\omega ^2 M\right )F_0 = 0. \tag{I.106}\]</div>
+Now substitute (I.100), (I.101), and (I.103). The result is <a id="eq-eq-balloon-app-local_ode"></a><div class="math-display">\[\boxed { \begin {aligned} \pp {}{y} \Biggl \{ \frac {1}{JR^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B} \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right )^2 \right ] \pp {F_0}{y} \Biggr \} \\[0.5em] \qquad + F_0 \Biggl [ \frac {2Jp'}{B^2}\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {Ip'}{B^4} \left ( \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right ) \pp {B^2}{y} \Biggr ] \\[0.5em] \qquad + \omega ^2(\Psi ,y_0)\, \frac {J}{R^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B} \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right )^2 \right ] F_0 = 0. \end {aligned}} \tag{I.107}\]</div>
+This is the local field-line equation. It is the lowest-order Connor&#8211;Hastie&#8211;Taylor ballooning equation before
+any large-aspect-ratio or circular-cross-section specialization.
+</p><!--l. 1621--><p class="noindent" >If one divides (I.107) by \(J\), it takes the printed form of Connor&#8211;Hastie&#8211;Taylor Eq.&#x00A0;(24): <a id="eq-eq-balloon-app-local_ode_divJ"></a><div class="math-display">\[\boxed { \begin {aligned} \frac {1}{J}\pp {}{y} \Biggl \{ \frac {1}{JR^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B} \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right )^2 \right ] \pp {F_0}{y} \Biggr \} \\[0.5em] \qquad + 2\frac {F_0p'}{B^2} \left [ \pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {I}{B^2} \left ( \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right ) \frac {1}{J}\pp {}{y}\left (\frac {B^2}{2}\right ) \right ] \\[0.5em] \qquad + \omega ^2(\Psi ,y_0)\, \frac {1}{R^2B_\chi ^2} \left [ 1+ \left ( \frac {R^2B_\chi ^2}{B} \int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y \right )^2 \right ] F_0 = 0. \end {aligned}} \tag{I.108}\]</div>
+</p><!--l. 1671--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1671--><p class="noindent" ><span 
+class="ecbx-1095">Boundary  condition  on  the  unwrapped  field  line. </span>For  unstable  modes,  \(\omega ^2&lt;0\),  the
+     acceptable solution of  (I.107) is the one that decays as \(|y|\rightarrow \infty \). At marginality, \(\omega ^2=0\), the large-\(|y|\)
+     asymptotics  are  more  subtle  and  one  recovers  the  Mercier  index  from  the  indicial
+     equation. So the transform to the infinite domain is not just a formal trick; it changes
+                                                                                         
+                                                                                         
+     the stability problem into a well-posed boundary-value problem on an unwrapped field
+     line.</p></blockquote></div></div>
+<a 
+ id="x1-251001r247"></a>
+<h3 class="sectionHead"><span class="titlemark">43.4   </span> <a 
+ id="x1-2520004"></a>Bridge to the Standard High-\(n\) Ballooning Equation</h3>
+<!--l. 1685--><div class="callout callout-note"><div class="callout-title">Note</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1685--><p class="noindent" >Equation&#x00A0;(I.108) is the general axisymmetric high-\(n\) ballooning equation. To recover the
+     familiar lecture-level \(\hat s\)&#8211;\(\alpha \) equation, we now make one more specialization: large aspect
+     ratio, circular flux surfaces, and the standard local shifted-circle model for the integrated
+     shear. Once those geometric assumptions are inserted, all of the remaining algebra is
+     just bookkeeping.</p></blockquote></div></div>
+<!--l. 1693--><p class="noindent" >From this point onward I switch to the notation used in the ballooning lecture: \[ B_\chi \to B_p, \qquad y \to \theta , \qquad F_0(y) \to X(\theta ). \] We also place the
+ballooning origin at the outboard midplane, <a id="eq-eq-balloon-app-y0_zero"></a><div class="math-display">\[y_0=0, \tag{I.109}\]</div>
+which is the usual symmetric choice for the most unstable local mode in the simple large-aspect-ratio
+model.
+</p><!--l. 1710--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1710--><p class="noindent" ><span 
+class="ecbx-1095">What is being assumed here. </span>The reduction from Eq.&#x00A0;(I.108) to the standard \(\hat s\)&#8211;\(\alpha \)
+     equation uses <span 
+class="ecti-1095">more </span>than just the large-\(n\) asymptotics. It also assumes a specific local
+     equilibrium model. So the logical structure is \[ \text {general axisymmetric high-}n\text { equation} \Longrightarrow \text {large-aspect-ratio local model} \Longrightarrow \hat s\text {--}\alpha . \] That is why Connor&#8211;Hastie&#8211;Taylor is
+     more general than the textbook \(\hat s\)&#8211;\(\alpha \) equation.</p></blockquote></div></div>
+<!--l. 1726--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2530004"></a>Large-aspect-ratio circular identities</span>
+Take a circular flux surface of minor radius \(r\) in a tokamak of major radius \(R_0\), with geometric poloidal angle \(\theta \):
+<a id="eq-eq-balloon-app-RZ_circular"></a><div class="math-display">\[R(\theta )=R_0+r\cos \theta , \qquad Z(\theta )=r\sin \theta , \qquad \epsilon \equiv \frac {r}{R_0}\ll 1. \tag{I.110}\]</div>
+To leading order in \(\epsilon \), the toroidal field dominates, <a id="eq-eq-balloon-app-B_largeaspect"></a><div class="math-display">\[B(\theta ) \simeq B\left (1-\frac {r}{R_0}\cos \theta \right ), \tag{I.111}\]</div>
+so that <a id="eq-eq-balloon-app-B_derivatives_largeaspect"></a><div class="math-display">\[\pp {}{\theta }\left (\frac {B^2}{2}\right ) \simeq \frac {B^2 r}{R_0}\sin \theta , \qquad \pp {}{r}\left (\frac {B^2}{2}\right ) \simeq -\frac {B^2}{R_0}\cos \theta . \tag{I.112}\]</div>
+The poloidal field and Jacobian are approximated by <a id="eq-eq-balloon-app-J_Bp_largeaspect"></a><div class="math-display">\[B_p \simeq \frac {rB}{qR_0}, \qquad J \simeq \frac {qR_0}{B}, \qquad JB_p \simeq r, \tag{I.113}\]</div>
+so that <a id="eq-eq-balloon-app-psi_to_r"></a><div class="math-display">\[\frac {d\Psi }{dr}=RB_p\simeq \frac {rB}{q}, \qquad \pp {}{\Psi } \simeq \frac {q}{rB}\pp {}{r}. \tag{I.114}\]</div>
+Two combinations that occur repeatedly are <a id="eq-eq-balloon-app-JR2Bp2_largeaspect"></a><div class="math-display">\[JR^2B_p^2 \simeq \frac {BR_0r^2}{q}, \qquad J^2R^2B_p^2 \simeq R_0^2r^2. \tag{I.115}\]</div>
+The toroidal-field function is <a id="eq-eq-balloon-app-I_largeaspect"></a><div class="math-display">\[I=RB_\phi \simeq R_0B. \tag{I.116}\]</div>
+</p>
+<!--l. 1791--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2540004"></a>The general shear integral becomes \(\Lambda (\theta )\)</span>
+In the general local equation the quantity that multiplies the derivative term is <a id="eq-eq-balloon-app-Lambda_general_start"></a><div class="math-display">\[1+ \left ( \frac {R^2B_p^2}{B} \int _0^{\theta }\nu '(r,\bar \theta )\,d\bar \theta \right )^2. \tag{I.117}\]</div>
+Define the standard large-aspect-ratio shear combination <a id="eq-eq-balloon-app-Lambda_def"></a><div class="math-display">\[\Lambda (\theta ) \equiv \frac {R^2B_p^2}{B} \int _0^{\theta }\nu '(r,\bar \theta )\,d\bar \theta . \tag{I.118}\]</div>
+Then the derivative and inertial weights become simply \(1+\Lambda ^2\).
+                                                                                         
+                                                                                         
+</p><!--l. 1812--><p class="noindent" >The ordinary magnetic-shear contribution is easy to identify explicitly. If we keep only the \(\theta \)-independent
+part of \(\nu \), namely \(\nu \simeq q(r)\), then <a id="eq-eq-balloon-app-qprime_largeaspect"></a><div class="math-display">\[\nu '\simeq q' =\pp {q}{\Psi } =\frac {dq/dr}{d\Psi /dr} \simeq \frac {q}{rB}\dd {q}{r}. \tag{I.119}\]</div>
+Hence <a id="eq-eq-balloon-app-Lambda_shear_piece"></a><div class="math-display">\[\begin{aligned}\frac {R^2B_p^2}{B}\int _0^{\theta } q'\,d\bar \theta &amp;\simeq \frac {R_0^2}{B} \left (\frac {rB}{qR_0}\right )^2 \left (\frac {q}{rB}\dd {q}{r}\right )\theta \nonumber \\ &amp;= \frac {r}{q}\dd {q}{r}\,\theta \nonumber \\ &amp;\equiv \hat s\,\theta ,\end{aligned} \tag{I.120}\]</div>
+</p><!--l. 1834--><p class="noindent" >with <a id="eq-eq-balloon-app-shat_def_bridge"></a><div class="math-display">\[\hat s\equiv \frac {r}{q}\dd {q}{r}. \tag{I.121}\]</div>
+In the standard shifted-circle local equilibrium one keeps one additional toroidal correction, the
+pressure-gradient contribution to the local magnetic shear. It is written as <a id="eq-eq-balloon-app-Lambda_salpha"></a><div class="math-display">\[\Lambda (\theta ) \simeq \hat s\,\theta -\alpha \sin \theta , \tag{I.122}\]</div>
+where <a id="eq-eq-balloon-app-alpha_bridge"></a><div class="math-display">\[\alpha \equiv -\frac {2\muo R_0 q^2}{B^2}\dd {p}{r}. \tag{I.123}\]</div>
+Equivalently, if one keeps the original Connor&#8211;Hastie&#8211;Taylor convention \(\muo =1\) inside the appendix algebra, the
+same definition reads \[ \alpha = -\frac {2R_0 q^2}{B^2}\dd {p}{r}. \] Equation&#x00A0;(I.122) is exactly the \(\Lambda (\theta )\) that appears in the reduced variational problem of
+the ballooning lecture.
+</p>
+<!--l. 1863--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2550004"></a>Reducing the derivative term</span>
+Start from Eq.&#x00A0;(I.108) and rewrite it using \(\Lambda (\theta )\): <a id="eq-eq-balloon-app-local_ode_bridge_start"></a><div class="math-display">\[\frac {1}{J}\pp {}{\theta } \left \{ \frac {1}{JR^2B_p^2}(1+\Lambda ^2)\pp {X}{\theta } \right \} + 2\frac {Xp'}{B^2} \left [ \pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {I}{B^2}\Theta \frac {1}{J}\pp {}{\theta }\left (\frac {B^2}{2}\right ) \right ] + \omega ^2\frac {1}{R^2B_p^2}(1+\Lambda ^2)X = 0, \tag{I.124}\]</div>
+where <a id="eq-eq-balloon-app-Theta_vs_Lambda"></a><div class="math-display">\[\Theta (\theta ) \equiv \int _0^{\theta }\nu '(r,\bar \theta )\,d\bar \theta = \frac {B}{R^2B_p^2}\,\Lambda (\theta ). \tag{I.125}\]</div>
+At leading order in \(\epsilon \), the prefactor \(1/(JR^2B_p^2)\) is independent of \(\theta \), so the first term becomes <a id="eq-eq-balloon-app-derivative_term_bridge"></a><div class="math-display">\[\frac {1}{J}\pp {}{\theta } \left \{ \frac {1}{JR^2B_p^2}(1+\Lambda ^2)\pp {X}{\theta } \right \} \simeq \frac {1}{J^2R^2B_p^2} \pp {}{\theta } \left [(1+\Lambda ^2)\pp {X}{\theta }\right ]. \tag{I.126}\]</div>
+Now multiply the whole equation by \(J^2R^2B_p^2\). Using Eq.&#x00A0;(I.115), the derivative term becomes simply <a id="eq-eq-balloon-app-derivative_term_final"></a><div class="math-display">\[\pp {}{\theta } \left [(1+\Lambda ^2)\pp {X}{\theta }\right ]. \tag{I.127}\]</div>
+</p>
+<!--l. 1915--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2560004"></a>Reducing the curvature-drive term</span>
+The remaining task is to simplify <a id="eq-eq-balloon-app-D_def"></a><div class="math-display">\[\mathcal {D}(\theta ) \equiv J^2R^2B_p^2\,2\frac {p'}{B^2} \left [ \pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) - \frac {I}{B^2}\Theta \frac {1}{J}\pp {}{\theta }\left (\frac {B^2}{2}\right ) \right ]. \tag{I.128}\]</div>
+First convert \(p'\) from a \(\Psi \) derivative to an \(r\) derivative: <a id="eq-eq-balloon-app-pprime_bridge"></a><div class="math-display">\[p' = \pp {p}{\Psi } \simeq \frac {q}{rB}\dd {p}{r}. \tag{I.129}\]</div>
+The first term inside the square bracket is <a id="eq-eq-balloon-app-ptot_prime_split"></a><div class="math-display">\[\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) = p' + \pp {}{\Psi }\left (\frac {B^2}{2}\right ). \tag{I.130}\]</div>
+In the standard \(\hat s\)&#8211;\(\alpha \) reduction one drops the \(p'^2\) piece, because it is higher order than the toroidal-field-curvature
+term that one wants to keep. Therefore <a id="eq-eq-balloon-app-ptot_prime_largeaspect"></a><div class="math-display">\[\pp {}{\Psi }\left (p+\frac {B^2}{2}\right ) \simeq \pp {}{\Psi }\left (\frac {B^2}{2}\right ) \simeq \frac {q}{rB}\pp {}{r}\left (\frac {B^2}{2}\right ) \simeq -\frac {qB}{rR_0}\cos \theta . \tag{I.131}\]</div>
+Substituting Eqs.&#x00A0;(I.115), (I.129), and (I.131) into the first part of Eq.&#x00A0;(I.128) gives <a id="eq-eq-balloon-app-D1_bridge"></a><div class="math-display">\[\begin{aligned}\mathcal {D}_1(\theta ) &amp;\equiv J^2R^2B_p^2\,2\frac {p'}{B^2} \pp {}{\Psi }\left (\frac {B^2}{2}\right )\nonumber \\ &amp;\simeq R_0^2r^2\times 2\left (\frac {q}{rB}\dd {p}{r}\right )\frac {1}{B^2} \left (-\frac {qB}{rR_0}\cos \theta \right )\nonumber \\ &amp;= -\frac {2R_0q^2}{B^2}\dd {p}{r}\cos \theta \nonumber \\ &amp;= \alpha \cos \theta ,\end{aligned} \tag{I.132}\]</div>
+</p><!--l. 1975--><p class="noindent" >where the last step uses Eq.&#x00A0;(I.123).
+</p><!--l. 1977--><p class="noindent" >Now turn to the second part of Eq.&#x00A0;(I.128). Using Eqs.&#x00A0;(I.116), (I.125), and (I.112), <a id="eq-eq-balloon-app-theta_term_middle"></a><div class="math-display">\[\begin{aligned}\frac {I}{B^2}\Theta \frac {1}{J}\pp {}{\theta }\left (\frac {B^2}{2}\right ) &amp;\simeq \frac {R_0B}{B^2} \left (\frac {B}{R^2B_p^2}\Lambda \right ) \left (\frac {B}{qR_0}\right ) \left (\frac {B^2r}{R_0}\sin \theta \right )\nonumber \\ &amp;= \frac {qB}{rR_0}\,\Lambda \sin \theta .\end{aligned} \tag{I.133}\]</div>
+</p><!--l. 1992--><p class="noindent" >Therefore <a id="eq-eq-balloon-app-D2_bridge"></a><div class="math-display">\[\begin{aligned}\mathcal {D}_2(\theta ) &amp;\equiv -J^2R^2B_p^2\,2\frac {p'}{B^2} \frac {I}{B^2}\Theta \frac {1}{J}\pp {}{\theta }\left (\frac {B^2}{2}\right )\nonumber \\ &amp;\simeq -R_0^2r^2\times 2\left (\frac {q}{rB}\dd {p}{r}\right )\frac {1}{B^2} \left (\frac {qB}{rR_0}\Lambda \sin \theta \right )\nonumber \\ &amp;= -\frac {2R_0q^2}{B^2}\dd {p}{r}\,\Lambda \sin \theta \nonumber \\ &amp;= \alpha \Lambda \sin \theta .\end{aligned} \tag{I.134}\]</div>
+</p><!--l. 2008--><p class="noindent" >Adding Eqs.&#x00A0;(I.132) and (I.134), the total drive coefficient is <a id="eq-eq-balloon-app-D_total_bridge"></a><div class="math-display">\[\mathcal {D}(\theta ) = \alpha \bigl (\cos \theta +\Lambda \sin \theta \bigr ). \tag{I.135}\]</div>
+</p>
+<!--l. 2017--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2570004"></a>The final \(\hat s\)&#8211;\(\alpha \) equation</span>
+After multiplying Eq.&#x00A0;(I.124) by \(J^2R^2B_p^2\), using Eq.&#x00A0;(I.135), and absorbing the remaining positive constant
+multiplying the inertial term into a dimensionless frequency \(\hat \omega ^2\), we obtain <a id="eq-eq-balloon-app-salpha_bridge_eq"></a><div class="math-display">\[\boxed { \dd {}{\theta } \left [ \left (1+\Lambda ^2\right )\dd {X}{\theta } \right ] + \alpha \left (\cos \theta +\Lambda \sin \theta \right )X = -\hat \omega ^2\left (1+\Lambda ^2\right )X,} \tag{I.136}\]</div>
+with <a id="eq-eq-balloon-app-salpha_bridge_Lambda"></a><div class="math-display">\[\Lambda (\theta )=\hat s\,\theta -\alpha \sin \theta . \tag{I.137}\]</div>
+This is exactly the \(\hat s\)&#8211;\(\alpha \) ballooning equation written in the main ballooning lecture.
+</p><!--l. 2043--><p class="noindent" >Because the same approximations can be applied at the variational level, the local functional (I.99) reduces
+                                                                                         
+                                                                                         
+to <a id="eq-eq-balloon-app-salpha_bridge_functional"></a><div class="math-display">\[\delta W[X] \propto \int _{-\infty }^{\infty }d\theta \left [ \left (1+\Lambda ^2\right ) \left |\dd {X}{\theta }\right |^2 - \alpha \left (\cos \theta +\Lambda \sin \theta \right )|X|^2 \right ], \tag{I.138}\]</div>
+which is the one-dimensional energy functional quoted in the lecture. So the lecture-level \(\hat s\)&#8211;\(\alpha \) model is not a
+separate derivation; it is the large-aspect-ratio circular specialization of the general axisymmetric local
+ballooning equation.
+</p><!--l. 2063--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The general coefficient \[ \frac {R^2B_p^2}{B}\int _0^{\theta }\nu '\,d\bar \theta \] becomes the familiar \[ \Lambda (\theta )=\hat s\,\theta -\alpha \sin \theta . \]
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">After multiplying the general local equation by \(J^2R^2B_p^2\), the derivative term becomes \[ \dd {}{\theta }\left [(1+\Lambda ^2)\dd {X}{\theta }\right ]. \]
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The two pieces of the curvature-drive coefficient reduce separately to \[ \alpha \cos \theta , \qquad \alpha \Lambda \sin \theta , \] and therefore
+   combine into \[ \alpha \bigl (\cos \theta +\Lambda \sin \theta \bigr ). \]
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">Those   two   steps   are   the   whole   bridge   from   the   general   axisymmetric
+   Connor&#8211;Hastie&#8211;Taylor  equation  to  the  standard  large-aspect-ratio  circular  \(\hat s\)&#8211;\(\alpha \)
+   ballooning equation.</dd></dl>
+     </blockquote></div></div>
+<h4 class="likesubsectionHead"><a 
+ id="x1-2580004"></a>What the lowest-order equation fixes, and what it leaves for higher order</h4>
+<!--l. 2095--><p class="noindent" >The field-line ODE (I.107) determines, for each flux surface \(\Psi \) and each ballooning origin \(y_0\), a local eigenvalue \(\omega ^2(\Psi ,y_0)\)
+and an eigenfunction along the extended field-line coordinate. Because \(\Psi \) enters only parametrically, the
+lowest-order solution has the form <a id="eq-eq-balloon-app-F0_factor"></a><div class="math-display">\[F_0(\Psi ,s,y) = A(s)\,f_0(y;\Psi ,y_0), \tag{I.139}\]</div>
+where the function \(f_0\) is fixed by the one-dimensional problem in \(y\), but the radial envelope \(A(s)\) is not yet
+determined.
+</p><!--l. 2108--><p class="noindent" >That remaining freedom is resolved one order higher in the asymptotic expansion. The solvability
+condition gives <a id="eq-eq-balloon-app-y0_stationary"></a><div class="math-display">\[\pp {\omega ^2(\Psi ,y_0)}{y_0}=0, \tag{I.140}\]</div>
+so the ballooning origin must sit at an extremum of the local eigenvalue, and the next-order
+radial equation localizes \(A(s)\) near the surface where that local eigenvalue is smallest. This is the
+precise sense in which the leading-order ballooning theory fixes the structure along the field
+line first and only afterwards determines how the mode is assembled across neighboring flux
+surfaces.
+</p><!--l. 2120--><p class="noindent" >In the large-aspect-ratio circular limit, the general local equation (I.107) reduces to the familiar \(\hat s\)&#8211;\(\alpha \)
+ballooning equation used in the main ballooning lecture. So the \(\hat s\)&#8211;\(\alpha \) model is not a different theory; it is a
+specialization of the general axisymmetric high-\(n\) field-line equation derived here.
+</p><!--l. 2127--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The first minimization is exact: \[ \text {vary }Z \Longleftrightarrow \text {vary }\xi _\parallel \Longleftrightarrow \nabla \cdot \vect {\xi }=0. \]
+                                                                                         
+                                                                                         
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The second minimization is asymptotic: \[ \text {high-}n\text { vary }U \Longrightarrow U \text { is slaved to }X \text { by Eq.~\eqref {eq:balloon:app:U_minimizer}}. \]
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">After those two steps, the exact periodic problem is encoded in the \(X\)-only functional
+   (I.76).
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">The ballooning transform (I.78) removes periodicity without discarding shear, and
+   the eikonal phase (I.79) converts the large parallel gradient into the shear integral \[ \Theta (\Psi ,y;y_0)=\int _{y_0}^{y}\nu '(\Psi ,\bar y)\,d\bar y. \]
+   </dd><dt class="enumerate-enumitem">
+5. </dt><dd 
+class="enumerate-enumitem">The lowest-order local stability problem is the ordinary differential equation (I.107).
+   That equation fixes the mode structure along a single unwrapped field line; higher
+   order chooses \(y_0\) and determines the radial envelope.</dd></dl>
+     </blockquote></div></div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

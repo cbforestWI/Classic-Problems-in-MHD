@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TAE Continuum and Gap Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --dash: #8ea8ba;
+      --green: #2f7d49;
+      --gold: #b98a3d;
+      --purple: #7059b8;
+      --red: #b64646;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 78ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 66ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>TAE Continuum and Gap Explorer</h1>
+  <p class="lede">
+    This browser-side companion to the TAE lecture shows exactly what the continuum-gap figures are plotting.
+    The dashed curves are the uncoupled cylindrical continua
+    <em>&Omega;<sub>m</sub> = |n - m/q| v<sub>A</sub>/v<sub>A0</sub></em> and
+    <em>&Omega;<sub>m+1</sub> = |n - (m+1)/q| v<sub>A</sub>/v<sub>A0</sub></em>.
+    The solid curves are the local toroidal eigenvalues <em>&Omega;<sub>&plusmn;</sub></em> obtained by diagonalizing
+    the same two-harmonic continuum matrix that appears in the lecture. This is not yet the discrete TAE
+    eigenmode; it is the local avoided crossing and the resulting gap.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="q-axis">Axis safety factor <span style="font-weight:500;">q(0)</span></label>
+          <span class="value" id="q-axis-value"></span>
+        </div>
+        <input id="q-axis" type="range" min="0.80" max="2.20" step="0.01" value="1.00" />
+        <p class="help">The lecture’s basic example uses <code>q(0)=1</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q-edge">Edge safety factor <span style="font-weight:500;">q(a)</span></label>
+          <span class="value" id="q-edge-value"></span>
+        </div>
+        <input id="q-edge" type="range" min="2.00" max="8.00" step="0.01" value="4.00" />
+        <p class="help">For <code>q(r)=1+3r²/a²</code>, the edge value is <code>q(a)=4</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="m-mode">Poloidal harmonic <span style="font-weight:500;">m</span></label>
+          <span class="value" id="m-mode-value"></span>
+        </div>
+        <input id="m-mode" type="range" min="1" max="8" step="1" value="2" />
+        <p class="help">The paired branch is always <code>m+1</code>, as in the simplest TAE coupling.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="n-mode">Toroidal mode number <span style="font-weight:500;">n</span></label>
+          <span class="value" id="n-mode-value"></span>
+        </div>
+        <input id="n-mode" type="range" min="1" max="6" step="1" value="1" />
+        <p class="help">Toroidal axisymmetry keeps <code>n</code> fixed while toroidicity couples neighboring <code>m</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="epsilon">Toroidicity <span style="font-weight:500;">&epsilon; = a / R<sub>0</sub></span></label>
+          <span class="value" id="epsilon-value"></span>
+        </div>
+        <input id="epsilon" type="range" min="0.02" max="0.50" step="0.005" value="0.333" />
+        <p class="help">This sets the local two-harmonic coupling strength and therefore the gap width.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="density-drop">Density-drop coefficient <span style="font-weight:500;">c<sub>&rho;</sub></span></label>
+          <span class="value" id="density-drop-value"></span>
+        </div>
+        <input id="density-drop" type="range" min="0.00" max="0.80" step="0.01" value="0.55" />
+        <p class="help">Uses the lecture’s illustrative profile <code>&rho;(r)=&rho;<sub>0</sub>[1-c<sub>&rho;</sub>(r/a)²]</code>, so <code>v<sub>A</sub>/v<sub>A0</sub> = [1-c<sub>&rho;</sub>(r/a)²]<sup>-1/2</sup></code>.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The default setting reproduces the lecture’s first concrete example: <code>q(r)=1+3r²/a²</code> with the <code>(m,m+1,n)=(2,3,1)</code> crossing near <code>q=2.5</code>.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Local Continuum Branches and the TAE Gap</h2>
+          <p>
+            The large panel overlays the dashed cylindrical continua with the solid toroidally split branches.
+            The two smaller panels show the underlying <em>q(r)</em> geometry and the local avoided crossing
+            in a Heidbrink-style frequency view. This is the local continuum picture on each surface, before
+            the later radial eigenmode problem is imposed.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--dash);"><span class="swatch dashed"></span>Cylindrical continua</li>
+        <li style="color: var(--accent);"><span class="swatch"></span>Toroidal split branches</li>
+        <li style="color: var(--gold);"><span class="swatch"></span>Crossing surface</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="continuum-plot" viewBox="0 0 760 420" aria-label="TAE continuum and gap plot"></svg>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>q Profile and Special Surfaces</h3>
+          <p>The rational surfaces <code>q = m/n</code> and <code>q = (m+1)/n</code> bracket the TAE crossing surface <code>q = (2m+1)/(2n)</code>.</p>
+          <svg id="q-plot" viewBox="0 0 360 240" aria-label="q profile and crossing surfaces"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Heidbrink-Style Local Avoided Crossing</h3>
+          <p>The upper-style view isolates the two counterpropagating cylindrical branches and shows the avoided crossing once toroidicity is retained.</p>
+          <svg id="gap-plot" viewBox="0 0 360 240" aria-label="Local avoided crossing"></svg>
+        </div>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p>
+          The explorer uses the two-harmonic continuum matrix
+          <code>(Ω²-Δ<sub>m</sub>²) ξ<sub>m</sub> + ε Δ<sub>m</sub>Δ<sub>m+1</sub> ξ<sub>m+1</sub> = 0</code>,
+          with the partner equation for <code>m+1</code>, where
+          <code>Δ<sub>m</sub> = n - m/q(r)</code> and <code>Ω = ωR<sub>0</sub>/v<sub>A0</sub></code>.
+          The solid branches are the positive-frequency eigenvalues of that local matrix.
+        </p>
+        <p>
+          At the crossing surface <code>Δ<sub>m</sub> = -Δ<sub>m+1</sub></code>, the cylindrical crossing is replaced
+          by an avoided crossing, and the gap edges are split by toroidicity. A true TAE would still need
+          the later radial localization problem to turn this local gap into a global mode.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const controls = {
+      qAxis: document.getElementById("q-axis"),
+      qEdge: document.getElementById("q-edge"),
+      mMode: document.getElementById("m-mode"),
+      nMode: document.getElementById("n-mode"),
+      epsilon: document.getElementById("epsilon"),
+      densityDrop: document.getElementById("density-drop")
+    };
+
+    const labels = {
+      qAxis: document.getElementById("q-axis-value"),
+      qEdge: document.getElementById("q-edge-value"),
+      mMode: document.getElementById("m-mode-value"),
+      nMode: document.getElementById("n-mode-value"),
+      epsilon: document.getElementById("epsilon-value"),
+      densityDrop: document.getElementById("density-drop-value")
+    };
+
+    const continuumPlot = document.getElementById("continuum-plot");
+    const qPlot = document.getElementById("q-plot");
+    const gapPlot = document.getElementById("gap-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+    const warningBox = document.getElementById("warning-box");
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+      for (let i = 0; i <= tickCount; i += 1) {
+        const y = ymin + (i / tickCount) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function densityFactor(rho, densityDrop) {
+      return 1 / Math.sqrt(Math.max(1 - densityDrop * rho * rho, 0.08));
+    }
+
+    function qProfile(rho, qAxis, qEdge) {
+      return qAxis + (qEdge - qAxis) * rho * rho;
+    }
+
+    function rhoForQ(qTarget, qAxis, qEdge) {
+      if (qTarget < qAxis || qTarget > qEdge) {
+        return null;
+      }
+      const denom = qEdge - qAxis;
+      if (denom <= 0) {
+        return null;
+      }
+      return Math.sqrt((qTarget - qAxis) / denom);
+    }
+
+    function localBranches(qValue, densityDrop, epsilon, mMode, nMode, rho) {
+      const vaHat = densityFactor(rho, densityDrop);
+      const deltaM = nMode - mMode / qValue;
+      const deltaMp = nMode - (mMode + 1) / qValue;
+      const omegaM = Math.abs(deltaM) * vaHat;
+      const omegaMp = Math.abs(deltaMp) * vaHat;
+      const a = deltaM * deltaM;
+      const d = deltaMp * deltaMp;
+      const b = epsilon * deltaM * deltaMp;
+      const disc = Math.sqrt((a - d) * (a - d) + 4 * b * b);
+      const lamPlus = 0.5 * (a + d + disc);
+      const lamMinus = Math.max(0, 0.5 * (a + d - disc));
+      return {
+        deltaM,
+        deltaMp,
+        vaHat,
+        omegaM,
+        omegaMp,
+        omegaPlus: Math.sqrt(Math.max(lamPlus, 0)) * vaHat,
+        omegaMinus: Math.sqrt(Math.max(lamMinus, 0)) * vaHat
+      };
+    }
+
+    function computeModel() {
+      let qAxis = parseFloat(controls.qAxis.value);
+      let qEdge = parseFloat(controls.qEdge.value);
+      if (qAxis >= qEdge) {
+        qAxis = qEdge - 0.05;
+        controls.qAxis.value = qAxis.toFixed(2);
+      }
+      let mMode = parseInt(controls.mMode.value, 10);
+      let nMode = parseInt(controls.nMode.value, 10);
+      const epsilon = parseFloat(controls.epsilon.value);
+      const densityDrop = parseFloat(controls.densityDrop.value);
+
+      const qM = mMode / nMode;
+      const qMp = (mMode + 1) / nMode;
+      const qCross = (2 * mMode + 1) / (2 * nMode);
+      const rhoM = rhoForQ(qM, qAxis, qEdge);
+      const rhoMp = rhoForQ(qMp, qAxis, qEdge);
+      const rhoCross = rhoForQ(qCross, qAxis, qEdge);
+      const crossingInside = rhoCross !== null;
+
+      const points = 321;
+      const rho = [];
+      const q = [];
+      const omegaM = [];
+      const omegaMp = [];
+      const omegaPlus = [];
+      const omegaMinus = [];
+      let ymax = 0.4;
+
+      for (let i = 0; i < points; i += 1) {
+        const x = i / (points - 1);
+        const qValue = qProfile(x, qAxis, qEdge);
+        const local = localBranches(qValue, densityDrop, epsilon, mMode, nMode, x);
+        rho.push(x);
+        q.push(qValue);
+        omegaM.push(local.omegaM);
+        omegaMp.push(local.omegaMp);
+        omegaPlus.push(local.omegaPlus);
+        omegaMinus.push(local.omegaMinus);
+        ymax = Math.max(ymax, local.omegaM, local.omegaMp, local.omegaPlus, local.omegaMinus);
+      }
+
+      let crossingData = null;
+      if (crossingInside) {
+        const vaHatC = densityFactor(rhoCross, densityDrop);
+        const omega0 = nMode / (2 * mMode + 1) * vaHatC;
+        const omegaGapPlus = omega0 * Math.sqrt(1 + epsilon);
+        const omegaGapMinus = omega0 * Math.sqrt(Math.max(1 - epsilon, 0));
+        crossingData = {
+          qCross,
+          rhoCross,
+          vaHatC,
+          omega0,
+          omegaGapPlus,
+          omegaGapMinus,
+          gapWidth: omegaGapPlus - omegaGapMinus
+        };
+      }
+
+      return {
+        qAxis,
+        qEdge,
+        mMode,
+        nMode,
+        epsilon,
+        densityDrop,
+        qM,
+        qMp,
+        qCross,
+        rhoM,
+        rhoMp,
+        rhoCross,
+        crossingInside,
+        rho,
+        q,
+        omegaM,
+        omegaMp,
+        omegaPlus,
+        omegaMinus,
+        ymax: ymax * 1.08,
+        crossingData
+      };
+    }
+
+    function drawContinuumPlot(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const ymax = model.ymax;
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "Ω = ωR₀ / v_A0", 0, ymax, 6);
+
+      const dashed = getComputedStyle(document.documentElement).getPropertyValue("--dash").trim();
+      const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
+      const gold = getComputedStyle(document.documentElement).getPropertyValue("--gold").trim();
+
+      const cylMPath = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.omegaM[idx], 0, ymax)]));
+      const cylMpPath = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.omegaMp[idx], 0, ymax)]));
+      const plusPath = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.omegaPlus[idx], 0, ymax)]));
+      const minusPath = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.omegaMinus[idx], 0, ymax)]));
+
+      markup += `<path d="${cylMPath}" fill="none" stroke="${dashed}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6" />`;
+      markup += `<path d="${cylMpPath}" fill="none" stroke="${dashed}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6" />`;
+      markup += `<path d="${plusPath}" fill="none" stroke="${accent}" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${minusPath}" fill="none" stroke="${accent}" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+
+      if (model.crossingInside) {
+        const xCross = xScale(frame, model.rhoCross);
+        markup += `<line x1="${xCross}" y1="${frame.margins.top}" x2="${xCross}" y2="${frame.height - frame.margins.bottom}" stroke="${gold}" stroke-width="2" stroke-dasharray="6 5" />`;
+        markup += `<text x="${xCross + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">q = ${(model.qCross).toFixed(2)}</text>`;
+      }
+      continuumPlot.innerHTML = markup;
+    }
+
+    function drawQPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const ymin = Math.min(model.qAxis * 0.95, model.qAxis - 0.1);
+      const ymax = model.qEdge * 1.05;
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "q(r)", ymin, ymax, 4);
+      const qPath = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, model.q[idx], ymin, ymax)]));
+      markup += `<path d="${qPath}" fill="none" stroke="#2f7d49" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+
+      [
+        { rho: model.rhoM, label: `q=${fmt(model.qM, 2)}`, color: "#b64646" },
+        { rho: model.rhoCross, label: `q=${fmt(model.qCross, 2)}`, color: "#b98a3d" },
+        { rho: model.rhoMp, label: `q=${fmt(model.qMp, 2)}`, color: "#7059b8" }
+      ].forEach((item) => {
+        if (item.rho === null) {
+          return;
+        }
+        const px = xScale(frame, item.rho);
+        const py = yScale(frame, qProfile(item.rho, model.qAxis, model.qEdge), ymin, ymax);
+        markup += `<line x1="${px}" y1="${frame.margins.top}" x2="${px}" y2="${frame.height - frame.margins.bottom}" stroke="${item.color}" stroke-width="1.8" stroke-dasharray="6 5" />`;
+        markup += `<circle cx="${px}" cy="${py}" r="3.8" fill="${item.color}" />`;
+      });
+      qPlot.innerHTML = markup;
+    }
+
+    function drawGapPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      if (!model.crossingInside) {
+        gapPlot.innerHTML = `<text x="180" y="120" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="16" fill="#78501f">The selected q profile does not contain the m↔m+1 crossing.</text>`;
+        return;
+      }
+
+      const ymax = Math.max(model.crossingData.omegaGapPlus * 1.15, 0.35);
+      let markup = "";
+      markup += buildAxes(frame, "q - q_c (scaled)", "Ω", 0, ymax, 4);
+
+      const points = 180;
+      const xValues = [];
+      const cylLeft = [];
+      const cylRight = [];
+      const plusValues = [];
+      const minusValues = [];
+
+      for (let i = 0; i < points; i += 1) {
+        const s = -1 + 2 * i / (points - 1);
+        const qValue = model.qCross + 0.45 * s;
+        const qClamped = Math.min(Math.max(qValue, model.qAxis), model.qEdge);
+        const rho = rhoForQ(qClamped, model.qAxis, model.qEdge);
+        const local = localBranches(qClamped, model.densityDrop, model.epsilon, model.mMode, model.nMode, rho === null ? 0 : rho);
+        xValues.push(0.5 * (s + 1));
+        cylLeft.push(local.omegaM);
+        cylRight.push(local.omegaMp);
+        plusValues.push(local.omegaPlus);
+        minusValues.push(local.omegaMinus);
+      }
+
+      const cylMPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, cylLeft[idx], 0, ymax)]));
+      const cylMpPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, cylRight[idx], 0, ymax)]));
+      const plusPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, plusValues[idx], 0, ymax)]));
+      const minusPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, minusValues[idx], 0, ymax)]));
+
+      markup += `<path d="${cylMPath}" fill="none" stroke="#8ea8ba" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6" />`;
+      markup += `<path d="${cylMpPath}" fill="none" stroke="#8ea8ba" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6" />`;
+      markup += `<path d="${plusPath}" fill="none" stroke="#1f4e79" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${minusPath}" fill="none" stroke="#1f4e79" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<line x1="${xScale(frame, 0.5)}" y1="${frame.margins.top}" x2="${xScale(frame, 0.5)}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="1.8" stroke-dasharray="6 5" />`;
+      gapPlot.innerHTML = markup;
+    }
+
+    function updateLabels() {
+      labels.qAxis.innerHTML = fmt(parseFloat(controls.qAxis.value), 2);
+      labels.qEdge.innerHTML = fmt(parseFloat(controls.qEdge.value), 2);
+      labels.mMode.innerHTML = String(parseInt(controls.mMode.value, 10));
+      labels.nMode.innerHTML = String(parseInt(controls.nMode.value, 10));
+      labels.epsilon.innerHTML = fmt(parseFloat(controls.epsilon.value), 3);
+      labels.densityDrop.innerHTML = fmt(parseFloat(controls.densityDrop.value), 2);
+    }
+
+    function renderCards(model) {
+      const crossingBody = model.crossingInside
+        ? `q_c = ${fmt(model.qCross, 3)}, r_c/a = ${fmt(model.rhoCross, 3)}`
+        : "The selected q profile does not contain the m↔m+1 crossing surface.";
+      const omegaBody = model.crossingInside
+        ? `Ω₀ = ${fmt(model.crossingData.omega0, 4)}, ΔΩ = ${fmt(model.crossingData.gapWidth, 4)}`
+        : "Move q(a), q(0), m, or n until q_c lies inside the profile.";
+
+      statusGrid.innerHTML = [
+        card("Crossing surface", crossingBody),
+        card("Gap center and width", omegaBody),
+        card("m rational surface", model.rhoM === null ? "q = m/n is outside the selected profile." : `q = ${fmt(model.qM, 3)}, r/a = ${fmt(model.rhoM, 3)}`),
+        card("m+1 rational surface", model.rhoMp === null ? "q = (m+1)/n is outside the selected profile." : `q = ${fmt(model.qMp, 3)}, r/a = ${fmt(model.rhoMp, 3)}`),
+        card("Toroidicity", `ε = ${fmt(model.epsilon, 3)} controls the local splitting.`),
+        card("Alfvén profile", `c_ρ = ${fmt(model.densityDrop, 2)} gives v_A/v_A0 = [1-c_ρ(r/a)^2]^{-1/2}.`)
+      ].join("");
+
+      coeffGrid.innerHTML = [
+        coeff("q_c", fmt(model.qCross, 4)),
+        coeff("m/n", `${model.mMode}/${model.nMode}`),
+        coeff("(m+1)/n", `${model.mMode + 1}/${model.nMode}`),
+        coeff("q(a)", fmt(model.qEdge, 4)),
+        coeff("q(0)", fmt(model.qAxis, 4)),
+        coeff("ε", fmt(model.epsilon, 4)),
+        coeff("c_ρ", fmt(model.densityDrop, 4)),
+        coeff("inside profile?", model.crossingInside ? "yes" : "no")
+      ].join("");
+    }
+
+    function updateWarning(model) {
+      if (!model.crossingInside) {
+        warningBox.innerHTML = "The selected <code>q(r)</code> profile does not contain the <code>m↔m+1</code> crossing surface <code>q_c=(2m+1)/(2n)</code>. Adjust <code>q(0)</code>, <code>q(a)</code>, <code>m</code>, or <code>n</code> until that crossing lies inside the plasma.";
+      } else if (Math.abs(model.qAxis - 1.0) < 0.03 && Math.abs(model.qEdge - 4.0) < 0.03 && model.mMode === 2 && model.nMode === 1) {
+        warningBox.innerHTML = "This is the lecture’s first concrete TAE example: <code>q(r)=1+3r²/a²</code> and the <code>(m,m+1,n)=(2,3,1)</code> pair cross at <code>q=2.5</code>, opening a gap around <code>Ω₀ = v_A(r_c)/(5R₀)</code>.";
+      } else {
+        warningBox.innerHTML = "The dashed curves are still the cylindrical continua, while the solid curves are the local toroidal split branches. You are looking at the local avoided crossing only; a true TAE still needs the later radial localization problem.";
+      }
+    }
+
+    function render() {
+      updateLabels();
+      const model = computeModel();
+      updateLabels();
+      drawContinuumPlot(model);
+      drawQPlot(model);
+      drawGapPlot(model);
+      renderCards(model);
+      updateWarning(model);
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

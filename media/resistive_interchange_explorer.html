@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resistive Interchange Parity Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --even: #2f7d49;
+      --odd: #b64646;
+      --gold: #b98a3d;
+      --purple: #7059b8;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 78ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control.inactive {
+      opacity: 0.55;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      width: 100%;
+      border: 1px solid #cdd8df;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      background: #fcfeff;
+      color: #254458;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.92rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 66ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Resistive Interchange Parity Explorer</h1>
+  <p class="lede">
+    This browser-side companion to the resistive-interchange lecture organizes the local story around
+    the cylindrical drive parameter <em>D<sub>s</sub></em>, finite-compressibility parameter
+    <em>&Gamma;&beta;</em>, geometric stabilization <em>𝒮</em>, and outer tearing index
+    <em>&Delta;&prime;</em>. The goal is not to replace the full CGJ shooting calculation, but to make
+    the lecture’s parity competition visible: the interchange-like branch reacts strongly to finite
+    pressure and geometric stabilization, while the tearing-like branch remains the natural
+    island-forming continuation when pressure drive is present in a low-shear layer.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="mode-select">Explorer mode</label>
+        </div>
+        <select id="mode-select">
+          <option value="finite-beta">Finite-β branch continuation</option>
+          <option value="low-beta">Low-β Coppi benchmark view</option>
+        </select>
+        <p class="help">Switch between the lecture’s finite-pressure branch splitting and the nearly degenerate low-β benchmark.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="pressure-scale">Pressure-gradient scale <span style="font-weight:500;">g<sub>p</sub></span></label>
+          <span class="value" id="pressure-scale-value"></span>
+        </div>
+        <input id="pressure-scale" type="range" min="0.00" max="1.80" step="0.01" value="1.00" />
+        <p class="help">Scales the local bad-curvature pressure drive entering <em>D<sub>s</sub></em>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="shear-scale">Magnetic-shear scale <span style="font-weight:500;">g<sub>s</sub></span></label>
+          <span class="value" id="shear-scale-value"></span>
+        </div>
+        <input id="shear-scale" type="range" min="0.40" max="2.20" step="0.01" value="1.00" />
+        <p class="help">Larger local shear suppresses <em>D<sub>s</sub></em> through the usual Suydam denominator.</p>
+      </div>
+
+      <div class="control" id="gamma-beta-control">
+        <div class="control-header">
+          <label for="gamma-beta">Finite-compressibility parameter <span style="font-weight:500;">&Gamma;&beta;</span></label>
+          <span class="value" id="gamma-beta-value"></span>
+        </div>
+        <input id="gamma-beta" type="range" min="0.00" max="0.35" step="0.005" value="0.167" />
+        <p class="help">The lecture’s representative finite-pressure case uses <code>&Gamma;&beta; = 1/6</code>.</p>
+      </div>
+
+      <div class="control" id="geom-s-control">
+        <div class="control-header">
+          <label for="geom-s">Geometric stabilization <span style="font-weight:500;">𝒮</span></label>
+          <span class="value" id="geom-s-value"></span>
+        </div>
+        <input id="geom-s" type="range" min="0.00" max="1.50" step="0.01" value="1.00" />
+        <p class="help">This is the stabilizing geometric term that pushes the even branch down much more strongly.</p>
+      </div>
+
+      <div class="control" id="delta-prime-control">
+        <div class="control-header">
+          <label for="delta-prime">Outer tearing index <span style="font-weight:500;">a&Delta;&prime;</span></label>
+          <span class="value" id="delta-prime-value"></span>
+        </div>
+        <input id="delta-prime" type="range" min="-6.0" max="3.0" step="0.05" value="-2.0" />
+        <p class="help">Negative values are classically tearing-stable, but the odd parity can still survive on pressure-gradient free energy.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The default point follows the lecture’s representative finite-pressure picture: <code>D<sub>s</sub> = 3/16</code>, <code>&Gamma;&beta; ≈ 1/6</code>, and <code>𝒮 ≈ 1</code>.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Parity Competition in the Resistive Layer</h2>
+          <p>
+            The large panel shows the branch growth proxies <em>Q = &gamma;/&gamma;<sub>R</sub></em> as the pressure-gradient scale is varied at fixed shear. The small panels then show how the same two parity branches respond to shear and what their local basis functions look like right at the resonant layer.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--even);"><span class="swatch"></span>Interchange-like parity</li>
+        <li style="color: var(--odd);"><span class="swatch"></span>Tearing-like parity</li>
+        <li style="color: var(--gold);"><span class="swatch dashed"></span>Current slider value</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="pressure-plot" viewBox="0 0 760 420" aria-label="Parity response to pressure gradient"></svg>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Response to Shear</h3>
+          <p>At fixed pressure drive, both branches feel shear stabilization, but the tearing-like branch remains much more robust.</p>
+          <svg id="shear-plot" viewBox="0 0 360 240" aria-label="Parity response to shear"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Interchange-Like Basis</h3>
+          <p><code>&Xi;(0) &ne; 0</code>, <code>&Psi;(0) = 0</code>: finite radial displacement at the surface, but no leading-order island.</p>
+          <svg id="even-parity-plot" viewBox="0 0 360 240" aria-label="Interchange-like parity basis"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Tearing-Like Basis</h3>
+          <p><code>&Xi;(0) = 0</code>, <code>&Psi;(0) &ne; 0</code>: the odd branch carries finite helical flux and is the island-forming one.</p>
+          <svg id="odd-parity-plot" viewBox="0 0 360 240" aria-label="Tearing-like parity basis"></svg>
+        </div>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p>
+          The explorer uses the lecture’s organizing variables
+          <code>D<sub>s</sub> &propto; g<sub>p</sub> / g<sub>s</sub><sup>2</sup></code>,
+          <code>Q = &gamma;/&gamma;<sub>R</sub></code>,
+          and parity-resolved finite-pressure corrections anchored to the low-β Coppi benchmark
+          <code>Q ≈ 0.39685</code> at <code>D<sub>s</sub> = 3/16</code>.
+        </p>
+        <p>
+          The absolute numbers should be read as lecture-faithful branch proxies, not as a replacement for the full CGJ boundary-value solve. The pedagogical point is the branch ordering: once finite pressure and weak shear are present, the tearing-like parity tends to remain the dominant island-forming continuation.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const D0 = 3 / 16;
+    const Q0_BENCH = 0.39685;
+
+    const controls = {
+      mode: document.getElementById("mode-select"),
+      pressureScale: document.getElementById("pressure-scale"),
+      shearScale: document.getElementById("shear-scale"),
+      gammaBeta: document.getElementById("gamma-beta"),
+      geomS: document.getElementById("geom-s"),
+      deltaPrime: document.getElementById("delta-prime")
+    };
+
+    const labels = {
+      pressureScale: document.getElementById("pressure-scale-value"),
+      shearScale: document.getElementById("shear-scale-value"),
+      gammaBeta: document.getElementById("gamma-beta-value"),
+      geomS: document.getElementById("geom-s-value"),
+      deltaPrime: document.getElementById("delta-prime-value")
+    };
+
+    const pressurePlot = document.getElementById("pressure-plot");
+    const shearPlot = document.getElementById("shear-plot");
+    const evenParityPlot = document.getElementById("even-parity-plot");
+    const oddParityPlot = document.getElementById("odd-parity-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+    const warningBox = document.getElementById("warning-box");
+    const finiteBetaControls = [
+      document.getElementById("gamma-beta-control"),
+      document.getElementById("geom-s-control"),
+      document.getElementById("delta-prime-control")
+    ];
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+      for (let i = 0; i <= tickCount; i += 1) {
+        const y = ymin + (i / tickCount) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function regimeLabel(Ds) {
+      if (Ds <= 0) {
+        return "No pressure drive";
+      }
+      if (Ds < 0.25) {
+        return "Resistive-interchange window";
+      }
+      return "Ideal interchange already available";
+    }
+
+    function qCoppi(Ds) {
+      if (Ds <= 0) {
+        return 0;
+      }
+      const driveFactor = Math.sqrt(Math.max(Ds, 1e-6) / D0);
+      const turnoverWidth = 0.08;
+      const turnover = 0.5 * (1 + Math.tanh((Ds - D0) / turnoverWidth));
+      const highDriveCorrection = 1 - 0.45 * turnover;
+      return Q0_BENCH * driveFactor * highDriveCorrection;
+    }
+
+    function branchFactors(gammaBeta, geomS, deltaPrime) {
+      const oddFiniteBeta = Math.max(0.18, 1 - 0.347 * gammaBeta) * Math.exp(-0.621 * gammaBeta * geomS);
+      const evenFiniteBeta = Math.max(0.05, 1 - 1.316 * gammaBeta) * Math.exp(-4.10 * gammaBeta * geomS);
+      const deltaOdd = Math.max(0.35, 1 + 0.18 * Math.tanh(deltaPrime / 2));
+      const deltaEven = Math.max(0.55, 1 + 0.04 * Math.tanh(deltaPrime / 2));
+      return { oddFiniteBeta, evenFiniteBeta, deltaOdd, deltaEven };
+    }
+
+    function evaluateBranches(mode, pressureScale, shearScale, gammaBeta, geomS, deltaPrime) {
+      const Ds = D0 * pressureScale / (shearScale * shearScale);
+      const baseQ = qCoppi(Ds);
+      const gammaBetaEff = mode === "low-beta" ? 0 : gammaBeta;
+      const geomSEff = mode === "low-beta" ? 0 : geomS;
+      const deltaPrimeEff = mode === "low-beta" ? 0 : deltaPrime;
+      const factors = branchFactors(gammaBetaEff, geomSEff, deltaPrimeEff);
+      const qOdd = baseQ * factors.oddFiniteBeta * factors.deltaOdd;
+      const qEven = baseQ * factors.evenFiniteBeta * factors.deltaEven;
+      const winner = qOdd >= qEven ? "Tearing-like" : "Interchange-like";
+      return {
+        Ds,
+        baseQ,
+        qOdd,
+        qEven,
+        winner,
+        factors,
+        gammaBetaEff,
+        geomSEff,
+        deltaPrimeEff
+      };
+    }
+
+    function drawPressurePlot(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const samples = 160;
+      const xValues = [];
+      const oddValues = [];
+      const evenValues = [];
+      let ymax = Math.max(model.qOdd, model.qEven, model.baseQ, 0.4);
+
+      for (let i = 0; i < samples; i += 1) {
+        const x = 1.8 * i / (samples - 1);
+        const branch = evaluateBranches(model.mode, x, model.shearScale, model.gammaBeta, model.geomS, model.deltaPrime);
+        xValues.push(x / 1.8);
+        oddValues.push(branch.qOdd);
+        evenValues.push(branch.qEven);
+        ymax = Math.max(ymax, branch.qOdd, branch.qEven);
+      }
+
+      ymax *= 1.08;
+      let markup = "";
+      markup += buildAxes(frame, "pressure-gradient scale g_p", "Q = γ / γ_R", 0, ymax, 6);
+      const oddPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, oddValues[idx], 0, ymax)]));
+      const evenPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, evenValues[idx], 0, ymax)]));
+      markup += `<path d="${evenPath}" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--even').trim()}" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${oddPath}" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--odd').trim()}" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+      const xCurrent = xScale(frame, model.pressureScale / 1.8);
+      markup += `<line x1="${xCurrent}" y1="${frame.margins.top}" x2="${xCurrent}" y2="${frame.height - frame.margins.bottom}" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()}" stroke-width="2" stroke-dasharray="6 5" />`;
+      markup += `<text x="${xCurrent + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">current g_p</text>`;
+      pressurePlot.innerHTML = markup;
+    }
+
+    function drawShearPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const samples = 150;
+      const xValues = [];
+      const oddValues = [];
+      const evenValues = [];
+      let ymax = Math.max(model.qOdd, model.qEven, 0.4);
+
+      for (let i = 0; i < samples; i += 1) {
+        const shear = 0.4 + (2.2 - 0.4) * i / (samples - 1);
+        const branch = evaluateBranches(model.mode, model.pressureScale, shear, model.gammaBeta, model.geomS, model.deltaPrime);
+        xValues.push((shear - 0.4) / (2.2 - 0.4));
+        oddValues.push(branch.qOdd);
+        evenValues.push(branch.qEven);
+        ymax = Math.max(ymax, branch.qOdd, branch.qEven);
+      }
+
+      ymax *= 1.08;
+      let markup = "";
+      markup += buildAxes(frame, "shear scale g_s", "Q", 0, ymax, 4);
+      const oddPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, oddValues[idx], 0, ymax)]));
+      const evenPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, evenValues[idx], 0, ymax)]));
+      markup += `<path d="${evenPath}" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--even').trim()}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${oddPath}" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--odd').trim()}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      const xCurrent = xScale(frame, (model.shearScale - 0.4) / (2.2 - 0.4));
+      markup += `<line x1="${xCurrent}" y1="${frame.margins.top}" x2="${xCurrent}" y2="${frame.height - frame.margins.bottom}" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()}" stroke-width="1.9" stroke-dasharray="6 5" />`;
+      shearPlot.innerHTML = markup;
+    }
+
+    function drawParityBasis(svg, parity, model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const xValues = [];
+      const xi = [];
+      const psi = [];
+      const width = parity === "even"
+        ? Math.max(0.55, 1.25 - 0.45 * model.qEven)
+        : Math.max(0.55, 1.25 - 0.45 * model.qOdd);
+      const sigma = 1.2 * width;
+      for (let i = 0; i < 241; i += 1) {
+        const X = -3 + 6 * i / 240;
+        xValues.push((X + 3) / 6);
+        const env = Math.exp(-(X * X) / (2 * sigma * sigma));
+        if (parity === "even") {
+          xi.push(env);
+          psi.push((X / sigma) * env);
+        } else {
+          xi.push((X / sigma) * env);
+          psi.push(env);
+        }
+      }
+      const ymin = -1.05;
+      const ymax = 1.10;
+      let markup = "";
+      markup += buildAxes(frame, "layer coordinate X", "normalized amplitude", ymin, ymax, 4);
+      const xiPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, xi[idx], ymin, ymax)]));
+      const psiPath = makePath(xValues.map((x, idx) => [xScale(frame, x), yScale(frame, psi[idx], ymin, ymax)]));
+      markup += `<path d="${xiPath}" fill="none" stroke="${parity === "even" ? "#2f7d49" : "#b64646"}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${psiPath}" fill="none" stroke="#7059b8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 5" />`;
+      markup += `<line x1="${xScale(frame, 0.5)}" y1="${frame.margins.top}" x2="${xScale(frame, 0.5)}" y2="${frame.height - frame.margins.bottom}" stroke="#c8d5df" stroke-width="1.4" stroke-dasharray="5 5" />`;
+      markup += `<text x="${frame.margins.left + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#365466">Ξ</text>`;
+      markup += `<text x="${frame.margins.left + 30}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7059b8">Ψ</text>`;
+      svg.innerHTML = markup;
+    }
+
+    function updateLabels() {
+      labels.pressureScale.innerHTML = fmt(parseFloat(controls.pressureScale.value), 2);
+      labels.shearScale.innerHTML = fmt(parseFloat(controls.shearScale.value), 2);
+      labels.gammaBeta.innerHTML = fmt(parseFloat(controls.gammaBeta.value), 3);
+      labels.geomS.innerHTML = fmt(parseFloat(controls.geomS.value), 2);
+      labels.deltaPrime.innerHTML = fmt(parseFloat(controls.deltaPrime.value), 2);
+    }
+
+    function syncModeControls() {
+      const lowBeta = controls.mode.value === "low-beta";
+      finiteBetaControls.forEach((controlBlock) => {
+        controlBlock.classList.toggle("inactive", lowBeta);
+      });
+      controls.gammaBeta.disabled = lowBeta;
+      controls.geomS.disabled = lowBeta;
+      controls.deltaPrime.disabled = lowBeta;
+    }
+
+    function computeModel() {
+      const mode = controls.mode.value;
+      const pressureScale = parseFloat(controls.pressureScale.value);
+      const shearScale = parseFloat(controls.shearScale.value);
+      const gammaBeta = parseFloat(controls.gammaBeta.value);
+      const geomS = parseFloat(controls.geomS.value);
+      const deltaPrime = parseFloat(controls.deltaPrime.value);
+      const branch = evaluateBranches(mode, pressureScale, shearScale, gammaBeta, geomS, deltaPrime);
+      return {
+        mode,
+        pressureScale,
+        shearScale,
+        gammaBeta,
+        geomS,
+        deltaPrime,
+        ...branch
+      };
+    }
+
+    function renderCards(model) {
+      statusGrid.innerHTML = [
+        card("Mode", model.mode === "low-beta" ? "Low-β Coppi benchmark" : "Finite-β branch continuation"),
+        card("Drive parameter", `D<sub>s</sub> = ${fmt(model.Ds, 4)}`),
+        card("Regime", regimeLabel(model.Ds)),
+        card("Interchange-like branch", `Q<sub>even</sub> = ${fmt(model.qEven, 4)}`),
+        card("Tearing-like branch", `Q<sub>odd</sub> = ${fmt(model.qOdd, 4)}`),
+        card("Fastest branch", `${model.winner} parity`),
+        card("Topology", model.qOdd >= model.qEven ? "Odd parity is the island-forming continuation." : "Even parity is competitive, but remains non-island-forming at leading order.")
+      ].join("");
+
+      coeffGrid.innerHTML = [
+        coeff("Q<sub>Coppi</sub>", fmt(model.baseQ, 4)),
+        coeff("odd finite-β factor", fmt(model.factors.oddFiniteBeta, 4)),
+        coeff("even finite-β factor", fmt(model.factors.evenFiniteBeta, 4)),
+        coeff("odd Δ′ factor", fmt(model.factors.deltaOdd, 4)),
+        coeff("even Δ′ factor", fmt(model.factors.deltaEven, 4)),
+        coeff("aΔ′ (effective)", fmt(model.deltaPrimeEff, 3)),
+        coeff("𝒮 (effective)", fmt(model.geomSEff, 3)),
+        coeff("Γβ (effective)", fmt(model.gammaBetaEff, 3))
+      ].join("");
+    }
+
+    function updateWarning(model) {
+      if (model.mode === "low-beta") {
+        if (model.Ds <= 0) {
+          warningBox.innerHTML = "In low-β mode there is still no resistive-interchange branch unless <code>D<sub>s</sub> &gt; 0</code>. Increase the pressure-gradient scale or reduce the shear to recover the Coppi-like parity pair.";
+        } else {
+          warningBox.innerHTML = "Low-β mode suppresses the finite-pressure splitting terms, so the two parities stay close to the Coppi benchmark and are nearly degenerate unless the drive itself becomes very weak.";
+        }
+      } else if (model.Ds <= 0) {
+        warningBox.innerHTML = "With <code>D<sub>s</sub> ≤ 0</code> there is no pressure-driven resistive-interchange branch to compete with tearing. Increase the pressure-gradient scale or lower the shear to enter the lecture’s resistive window.";
+      } else if (model.Ds >= 0.25) {
+        warningBox.innerHTML = "This point has crossed the cylindrical Suydam threshold <code>D<sub>s</sub> = 1/4</code>, so ideal interchange is already available. The parity curves are still shown, but the clean resistive-only interpretation has been lost.";
+      } else if (model.qOdd > model.qEven) {
+        warningBox.innerHTML = "This is the lecture’s characteristic finite-pressure outcome: the tearing-like odd branch stays order-unity while the interchange-like branch is pushed down, so the island-forming parity is the most robust one.";
+      } else {
+        warningBox.innerHTML = "Here the even branch is still competitive, which is closer to the low-β near-degenerate limit. Raising <code>Γβ</code> or <code>𝒮</code> will usually separate the odd branch back out.";
+      }
+    }
+
+    function render() {
+      syncModeControls();
+      updateLabels();
+      const model = computeModel();
+      updateLabels();
+      drawPressurePlot(model);
+      drawShearPlot(model);
+      drawParityBasis(evenParityPlot, "even", model);
+      drawParityBasis(oddParityPlot, "odd", model);
+      renderCards(model);
+      updateWarning(model);
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

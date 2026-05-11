@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 13 The Shafranov Shift</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_equilibrium.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture12.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture14.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;13</span><br /><a 
+ id="x1-7900013"></a>The Shafranov Shift</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" ><span 
+class="ecbx-1095">Why this is a classic problem. </span>The Shafranov-shift calculation is the first place where the
+     Grad&#8211;Shafranov equation of Lecture&#x00A0;12 becomes a genuinely tokamak problem rather than a
+     dressed-up cylinder. In the large-aspect-ratio limit,
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">the zeroth-order equilibrium is the screw-pinch force balance already encountered in
+   Lecture&#x00A0;11,
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">the first toroidal correction displaces the magnetic axis outward by an amount of
+   order \(a^2/R_0\),
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">the same calculation shows why an external vertical field is required to hold the
+   plasma in toroidal force balance, and
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">the key dimensionless combinations \(\beta _p\) and \(\ell _i\) emerge naturally.</dd></dl>
+     </blockquote></div></div>
+<!--l. 16--><p class="noindent" >The Shafranov shift is one of the best examples in MHD of a calculation that is at once elegant, practical,
+and historically formative. It is elegant because the algebra can be carried explicitly in a controlled
+expansion in inverse aspect ratio. It is practical because the result connects directly with magnetic
+measurements, diamagnetic loops, and the vertical-field coils of a tokamak. And it is historically formative
+because it taught the field, very early, that toroidal curvature produces an outward &#8220;hoop&#8221; force that
+cannot be balanced by plasma currents alone.
+</p><!--l. 19--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 19--><p class="noindent" >Shafranov&#8217;s analysis of toroidal plasma equilibrium in the late 1950s and early 1960s
+     made clear that a torus is not just a bent cylinder: the toroidal curvature of the current
+     channel creates an outward force that must be balanced by externally applied fields
+     <a 
+href="#XShafranov1960JETP">Shafranov</a>&#x00A0;[<a 
+href="#XShafranov1960JETP">1960</a>,&#x00A0;<a 
+href="#XShafranov1966RvPP">1966</a>]. The modern language of &#8220;Shafranov shift,&#8221; &#8220;vertical field,&#8221; and
+     the  combinations  \(\beta _p+\ell _i/2\)  all  trace  back  to  this  line  of  work.  In  present-day  tokamaks  the
+     same  physics  is  embedded  in  equilibrium  solvers  and  reconstruction  codes,  but  the
+     large-aspect-ratio calculation remains the cleanest place to see where it comes from.</p></blockquote></div></div>
+<!--l. 22--><p class="noindent" >We begin from the isotropic MHD equilibrium implied by the static limit of the momentum equation,
+Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), and specialize to the axisymmetric Grad&#8211;Shafranov equation already derived in Lecture&#x00A0;12,
+<a id="eq-eq-tok-GS_master_repeat"></a><div class="math-display">\[\Delta ^\star \psi = -\muo R^2 \pp {p}{\psi } - F(\psi )\pp {F}{\psi }. \tag{13.1}\]</div>
+The purpose of this lecture is to solve Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_master_repeat">13.1</a>) asymptotically for a large-aspect-ratio tokamak with
+circular flux surfaces.
+                                                                                         
+                                                                                         
+</p><!--l. 34--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 34--><p class="noindent" ><span 
+class="ecbx-1095">Fixed boundary versus free boundary. </span>Two related but distinct questions are mixed
+     together in many first presentations of this problem.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">In a <span 
+class="ecti-1095">fixed-boundary </span>calculation one imagines the plasma edge held at a prescribed
+   circular boundary and solves for the internal shift of the flux surfaces.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">In a <span 
+class="ecti-1095">free-boundary </span>calculation one asks what external vertical field is required so that
+   the plasma does not simply drift radially outward.</dd></dl>
+     <!--l. 40--><p class="noindent" >The algebra below treats both, and keeping the distinction straight is important.</p></blockquote></div></div>
+<a 
+ id="x1-79007r66"></a>
+<h3 class="sectionHead"><span class="titlemark">13.1   </span> <a 
+ id="x1-800001"></a>Large-Aspect-Ratio Expansion of the Grad&#8211;Shafranov Equation</h3>
+<!--l. 47--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-810001"></a>Local coordinates about the magnetic axis.</span>
+We work in cylindrical coordinates \((R,\phi ,Z)\) and introduce local polar coordinates \((r,\theta )\) centered on the magnetic axis,
+<a id="eq-eq-tok-local_coords"></a><div class="math-display">\[R = R_0 + r\cos \theta , \qquad Z = r\sin \theta , \qquad \epsilon \equiv \frac {r}{R_0}\ll 1. \tag{13.2}\]</div>
+The coordinate derivatives needed below are <div class="math-display">\[\begin{aligned}\pp {R}{r} &amp;= \cos \theta , &amp; \pp {Z}{r} &amp;= \sin \theta , \\ \pp {R}{\theta } &amp;= -r\sin \theta , &amp; \pp {Z}{\theta } &amp;= r\cos \theta ,\end{aligned}\]</div>
+</p><!--l. 67--><p class="noindent" >and therefore <div class="math-display">\[\begin{aligned}\pp {r}{R} &amp;= \cos \theta , &amp; \pp {r}{Z} &amp;= \sin \theta , \\ \pp {\theta }{R} &amp;= -\frac {\sin \theta }{r}, &amp; \pp {\theta }{Z} &amp;= \frac {\cos \theta }{r}.\end{aligned}\]</div>
+</p>
+<!--l. 78--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-820001"></a>The Grad&#8211;Shafranov operator in local form.</span>
+The operator in Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_master_repeat">13.1</a>) is <a id="eq-eq-tok-GSop_cart"></a><div class="math-display">\[\Delta ^\star \psi = \pp {^2 \psi }{R^2} - \frac {1}{R}\pp {\psi }{R} + \pp {^2 \psi }{Z^2}. \tag{13.7}\]</div>
+The first and third terms form the planar Laplacian. Transforming them to the \((r,\theta )\) coordinates gives
+<a id="eq-eq-tok-laplace_polar"></a><div class="math-display">\[\pp {^2 \psi }{R^2} + \pp {^2 \psi }{Z^2} = \frac {1}{r}\pp {}{r}\!\left (r\pp {\psi }{r}\right ) + \frac {1}{r^2}\pp {^2 \psi }{\theta ^2}. \tag{13.8}\]</div>
+For the remaining term we use the chain rule: <a id="eq-eq-tok-dpsidR"></a><div class="math-display">\[\pp {\psi }{R} = \pp {\psi }{r}\pp {r}{R} + \pp {\psi }{\theta }\pp {\theta }{R} = \cos \theta \,\pp {\psi }{r} - \frac {\sin \theta }{r}\pp {\psi }{\theta }. \tag{13.9}\]</div>
+Substituting Eqs.&#x00A0;(<a href="lecture13.html#eq-eq-tok-laplace_polar">13.8</a>) and (<a href="lecture13.html#eq-eq-tok-dpsidR">13.9</a>) into Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GSop_cart">13.7</a>) yields the exact local form <a id="eq-eq-tok-GS_operator_local"></a><div class="math-display">\[\boxed { \Delta ^\star \psi = \frac {1}{r}\pp {}{r}\!\left (r\pp {\psi }{r}\right ) + \frac {1}{r^2}\pp {^2 \psi }{\theta ^2} - \frac {1}{R_0(1+\epsilon \cos \theta )} \left ( \cos \theta \,\pp {\psi }{r} - \frac {\sin \theta }{r}\pp {\psi }{\theta } \right ). } \tag{13.10}\]</div>
+</p>
+<!--l. 134--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830001"></a>Ordering of the equilibrium quantities.</span>
+We now assume a conventional large-aspect-ratio tokamak ordering. If the safety factor is order unity, \[ q \sim \frac {r B_\phi }{R_0 B_\theta }\sim 1, \]
+then <a id="eq-eq-tok-Btheta_ordering"></a><div class="math-display">\[B_\theta \sim \epsilon B_\phi . \tag{13.11}\]</div>
+If the poloidal beta is order unity, \[ \beta _p \sim \frac {2\muo p}{B_\theta ^2} \sim 1, \] then the pressure scales like <a id="eq-eq-tok-pressure_ordering"></a><div class="math-display">\[p \sim \frac {B_\theta ^2}{2\muo } \sim \epsilon ^2\frac {B_\phi ^2}{2\muo }. \tag{13.12}\]</div>
+Thus the equilibrium is close to a cylindrical screw pinch at leading order, with toroidal curvature entering
+as an \(\mathcal O(\epsilon )\) correction.
+</p>
+<!--l. 158--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-840001"></a>Expansion of the flux function.</span>
+We seek a regular expansion <a id="eq-eq-tok-psi_expansion"></a><div class="math-display">\[\psi (r,\theta ) = \psi _0(r) + \psi _1(r,\theta ) + \mathcal O(\epsilon ^2), \qquad \psi _1=\mathcal O(\epsilon ), \tag{13.13}\]</div>
+                                                                                         
+                                                                                         
+with a circular plasma boundary to lowest order. The free functions are expanded about \(\psi _0\): <div class="math-display">\[\begin{aligned}\pp {p}{\psi } &amp;= \left .\pp {p}{\psi }\right |_{\psi _0} + \left .\pp {^2 p}{\psi ^2}\right |_{\psi _0}\psi _1 +\cdots , \\ F\pp {F}{\psi } &amp;= \left .\frac {d}{d\psi }\left (\frac {F^2}{2}\right )\right |_{\psi _0} + \left .\frac {d^2}{d\psi ^2}\left (\frac {F^2}{2}\right )\right |_{\psi _0}\psi _1 +\cdots .\end{aligned}\]</div>
+<a 
+ id="x1-84001r81"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">13.2   </span> <a 
+ id="x1-850002"></a>Zeroth Order: The Cylindrical Equilibrium</h3>
+<!--l. 193--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-860002"></a>Order \(\mathcal O(1)\) Grad&#8211;Shafranov equation.</span>
+Collecting the \(\mathcal O(1)\) terms of Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_operator_local">13.10</a>) gives <a id="eq-eq-tok-GS_order1"></a><div class="math-display">\[\frac {1}{r}\dd {}{r}\!\left (r\dd {\psi _0}{r}\right ) = -\muo R_0^2 \left .\pp {p}{\psi }\right |_{\psi _0} - \left .F\pp {F}{\psi }\right |_{\psi _0}. \tag{13.16}\]</div>
+Define the leading-order poloidal field by <a id="eq-eq-tok-Btheta_def"></a><div class="math-display">\[B_{\theta 0}(r) \equiv \frac {1}{R_0}\dd {\psi _0}{r}. \tag{13.17}\]</div>
+At the same order the toroidal field is approximately cylindrical, so <a id="eq-eq-tok-Fapprox"></a><div class="math-display">\[F(\psi _0)=R B_\phi \simeq R_0 B_z(r). \tag{13.18}\]</div>
+Using <a id="eq-eq-tok-ddpsito_dr"></a><div class="math-display">\[\frac {d}{d\psi _0} = \frac {dr}{d\psi _0}\dd {}{r} = \frac {1}{R_0 B_{\theta 0}}\dd {}{r}, \tag{13.19}\]</div>
+Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_order1">13.16</a>) becomes <div class="math-display">\[\begin{aligned}\frac {R_0}{r}\dd {}{r}\!\left (rB_{\theta 0}\right ) &amp;= -\muo R_0^2 \dd {p}{r}\frac {dr}{d\psi _0} -\frac {1}{2}\dd {F^2}{r}\frac {dr}{d\psi _0} \nonumber \\ &amp;= -\muo R_0 \frac {1}{B_{\theta 0}}\dd {p}{r} -\frac {R_0}{2B_{\theta 0}}\dd {B_z^2}{r}.\end{aligned}\]</div>
+</p><!--l. 233--><p class="noindent" >Multiplying by \(B_{\theta 0}/R_0\) gives <a id="eq-eq-tok-GS_cyl_step"></a><div class="math-display">\[\frac {B_{\theta 0}}{r}\dd {}{r}\!\left (rB_{\theta 0}\right ) = -\muo \dd {p}{r} - \dd {}{r}\!\left (\frac {B_z^2}{2}\right ). \tag{13.21}\]</div>
+Expand the derivative on the left: <div class="math-display">\[\frac {B_{\theta 0}}{r}\dd {}{r}(rB_{\theta 0}) = \frac {B_{\theta 0}^2}{r} + B_{\theta 0}\dd {B_{\theta 0}}{r} = \frac {B_{\theta 0}^2}{r} + \dd {}{r}\!\left (\frac {B_{\theta 0}^2}{2}\right ).\]</div>
+Substitute this into Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_cyl_step">13.21</a>) and collect total derivatives: <a id="eq-eq-tok-screw_pinch_balance"></a><div class="math-display">\[\boxed { \dd {}{r}\!\left ( p+\frac {B_{\theta 0}^2+B_z^2}{2\muo } \right ) = -\frac {B_{\theta 0}^2}{\muo r}. } \tag{13.23}\]</div>
+This is the cylindrical screw-pinch force balance; toroidicity has not yet appeared.
+</p>
+<!--l. 267--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-870002"></a>A useful integrated identity.</span>
+Equation&#x00A0;(<a href="lecture13.html#eq-eq-tok-screw_pinch_balance">13.23</a>) becomes especially instructive after one integration. Define <div class="math-display">\[Q(r) \equiv p(r)+\frac {B_{\theta 0}^2(r)+B_z^2(r)}{2\muo }.\]</div>
+Then Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-screw_pinch_balance">13.23</a>) is \(dQ/dr=-B_{\theta 0}^2/(\muo r)\). Multiply by \(r^2\) and integrate from \(0\) to \(a\): <a id="eq-eq-tok-intbalance_start"></a><div class="math-display">\[\int _0^a r^2\dd {Q}{r}\,dr = -\int _0^a \frac {r B_{\theta 0}^2}{\muo }\,dr. \tag{13.25}\]</div>
+Integrating the left-hand side by parts gives <div class="math-display">\[\begin{aligned}\left [r^2 Q(r)\right ]_0^a - 2\int _0^a rQ(r)\,dr &amp;= -\int _0^a \frac {r B_{\theta 0}^2}{\muo }\,dr, \nonumber \\ a^2\left [p(a)+\frac {B_{\theta 0}^2(a)+B_z^2(a)}{2\muo }\right ] - 2\int _0^a r \left ( p+\frac {B_{\theta 0}^2+B_z^2}{2\muo } \right )\,dr &amp;= -\int _0^a \frac {r B_{\theta 0}^2}{\muo }\,dr.\end{aligned}\]</div>
+</p><!--l. 297--><p class="noindent" >The \(B_{\theta 0}^2\) terms cancel between the last two terms, leaving <a id="eq-eq-tok-integrated_balance"></a><div class="math-display">\[a^2\left [p(a)+\frac {B_{\theta 0}^2(a)+B_z^2(a)}{2\muo }\right ] - 2\int _0^a r \left ( p+\frac {B_z^2}{2\muo } \right )\,dr = 0. \tag{13.27}\]</div>
+</p>
+<!--l. 310--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-880002"></a>Volume averages, poloidal beta, and diamagnetism.</span>
+For a circular cylinder the natural volume average is <a id="eq-eq-tok-volavg_def"></a><div class="math-display">\[\langle f\rangle = \frac {2}{a^2}\int _0^a f(r)\,r\,dr. \tag{13.28}\]</div>
+Using Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-volavg_def">13.28</a>), Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-integrated_balance">13.27</a>) becomes <a id="eq-eq-tok-global_balance"></a><div class="math-display">\[2\muo \left [\langle p\rangle -p(a)\right ] + \langle B_z^2\rangle - B_z^2(a) - B_{\theta 0}^2(a) = 0. \tag{13.29}\]</div>
+If the pressure vanishes at the boundary, \(p(a)=0\), then <a id="eq-eq-tok-avg_pressure_diamag"></a><div class="math-display">\[\langle p\rangle = \frac {B_{\theta 0}^2(a)}{2\muo } + \frac {B_z^2(a)-\langle B_z^2\rangle }{2\muo }. \tag{13.30}\]</div>
+This motivates the standard definition of poloidal beta, <a id="eq-eq-beta_p_def2"></a><div class="math-display">\[\beta _p \equiv \frac {\langle p\rangle }{B_{\theta 0}^2(a)/(2\muo )} = \frac {4\muo }{a^2 B_{\theta 0}^2(a)}\int _0^a p(r)\,r\,dr. \tag{13.31}\]</div>
+If \(\langle B_z^2\rangle &lt; B_z^2(a)\), the plasma is diamagnetic and \(\beta _p&gt;1\). If \(\langle B_z^2\rangle &gt; B_z^2(a)\), the plasma is paramagnetic and \(\beta _p&lt;1\).
+</p>
+<!--l. 352--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-890002"></a>What does a diamagnetic loop measure?</span>
+Let the vacuum toroidal field at the plasma boundary be \(B_0\equiv B_z(a)\) and write <div class="math-display">\[B_z(r)=B_0+\Delta B_z(r).\]</div>
+The change in toroidal flux through the plasma cross-section is <a id="eq-eq-tok-dPhi_def"></a><div class="math-display">\[\Delta \Phi = 2\pi \int _0^a \Delta B_z(r)\,r\,dr. \tag{13.33}\]</div>
+To leading order in \(\Delta B_z\), <a id="eq-eq-tok-fluxloop_step"></a><div class="math-display">\[\begin{aligned}B_0^2-\langle B_z^2\rangle &amp;= B_0^2 - \frac {2}{a^2}\int _0^a \left (B_0+\Delta B_z\right )^2 r\,dr \nonumber \\ &amp;\simeq -\frac {4 B_0}{a^2}\int _0^a \Delta B_z(r)\,r\,dr = -\frac {2B_0}{\pi a^2}\Delta \Phi .\end{aligned} \tag{13.34}\]</div>
+</p><!--l. 378--><p class="noindent" >Combining Eqs.&#x00A0;(<a href="lecture13.html#eq-eq-tok-avg_pressure_diamag">13.30</a>) and (<a href="lecture13.html#eq-eq-tok-fluxloop_step">13.34</a>) shows that a diamagnetic loop measures the plasma energy content
+through the pressure-driven reduction in enclosed toroidal flux. This is one of the oldest and most robust
+equilibrium diagnostics.
+                                                                                         
+                                                                                         
+<a 
+ id="x1-89001r86"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">13.3   </span> <a 
+ id="x1-900003"></a>First Toroidal Correction and the Shift Equation</h3>
+<!--l. 384--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-910003"></a>Order \(\mathcal O(\epsilon )\) equation.</span>
+Collect the first-order terms of Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_operator_local">13.10</a>). A convenient form is <a id="eq-eq-tok-order_eps_general"></a><div class="math-display">\[\begin{aligned}\left ( \frac {1}{r}\pp {}{r}r\pp {}{r} + \frac {1}{r^2}\pp {^2}{\theta ^2} \right )\psi _1 - \frac {\cos \theta }{R_0}\dd {\psi _0}{r} &amp;= \frac {d}{d\psi _0}\!\left ( -\muo R_0^2 \pp {p}{\psi } -\frac {1}{2}\dd {F^2}{\psi } \right )_{\psi _0}\psi _1 - 2\muo R_0 r \dd {p}{\psi _0}\cos \theta .\end{aligned} \tag{13.35}\]</div>
+</p><!--l. 403--><p class="noindent" >The right-hand side comes from the first-order correction to the source term \(-\muo R^2 \pp {p}{\psi }-F\pp {F}{\psi }\), including the geometric
+factor \(R^2=R_0^2+2R_0 r\cos \theta +\mathcal O(\epsilon ^2)\).
+</p>
+<!--l. 407--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-920003"></a>Shift ansatz.</span>
+The dominant first-order correction is a radial displacement of otherwise circular flux surfaces. We
+therefore write <a id="eq-eq-tok-shift_ansatz"></a><div class="math-display">\[\psi (r,\theta ) = \psi _0\!\left (r-\Delta (r)\cos \theta \right ) + \mathcal O(\epsilon ^2). \tag{13.36}\]</div>
+Expand to first order in \(\Delta \): <div class="math-display">\[\psi (r,\theta ) = \psi _0(r) - \Delta (r)\cos \theta \,\dd {\psi _0}{r} + \mathcal O(\epsilon ^2).\]</div>
+Comparing with Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-psi_expansion">13.13</a>) gives <a id="eq-eq-tok-psi1_shift"></a><div class="math-display">\[\boxed { \psi _1(r,\theta ) = -\Delta (r)\cos \theta \,\dd {\psi _0}{r} = - R_0 B_{\theta 0}(r)\,\Delta (r)\cos \theta . } \tag{13.38}\]</div>
+If the plasma boundary is held fixed at \(r=a\), then <a id="eq-eq-tok-shift_bc"></a><div class="math-display">\[\Delta (a)=0, \qquad \left .\dd {\Delta }{r}\right |_{r=0}=0, \tag{13.39}\]</div>
+where the second condition enforces regularity at the magnetic axis.
+</p>
+<!--l. 447--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-930003"></a>Angular operator identity.</span>
+The left-hand side of Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-order_eps_general">13.35</a>) simplifies because <a id="eq-eq-tok-operator_identity"></a><div class="math-display">\[\left ( \frac {1}{r}\pp {}{r}r\pp {}{r} + \frac {1}{r^2}\pp {^2}{\theta ^2} \right )\!\left [f(r)\cos \theta \right ] = \cos \theta \left [ \frac {1}{r}\dd {}{r}\!\left (r\dd {f}{r}\right )-\frac {f}{r^2} \right ]. \tag{13.40}\]</div>
+Setting \(f(r)=-R_0 B_{\theta 0}(r)\Delta (r)\) and substituting Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-psi1_shift">13.38</a>) into Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-order_eps_general">13.35</a>) yields <a id="eq-eq-tok-pre_cancel"></a><div class="math-display">\[\begin{aligned}-\frac {1}{r}\dd {}{r}\!\left [r\dd {}{r}\!\left (R_0 B_{\theta 0}\Delta \right )\right ] + \frac {R_0 B_{\theta 0}\Delta }{r^2} - B_{\theta 0} &amp;= - R_0 B_{\theta 0}\Delta \frac {d}{d\psi _0}\!\left ( -\muo R_0^2 \pp {p}{\psi } -\frac {1}{2}\dd {F^2}{\psi } \right )_{\psi _0} - 2\muo R_0 r \dd {p}{\psi _0}.\end{aligned} \tag{13.41}\]</div>
+</p>
+<!--l. 480--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-940003"></a>The cancellation that makes the problem solvable.</span>
+The leading-order cylindrical equilibrium, Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-GS_order1">13.16</a>), may be written as <a id="eq-eq-tok-cyl_GS_again"></a><div class="math-display">\[\frac {R_0}{r}\dd {}{r}\!\left (rB_{\theta 0}\right ) = -\muo R_0^2 \pp {p}{\psi _0} - \frac {1}{2}\dd {F^2}{\psi _0}. \tag{13.42}\]</div>
+Differentiate Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-cyl_GS_again">13.42</a>) with respect to \(\psi _0\): <a id="eq-eq-tok-key_identity"></a><div class="math-display">\[\frac {d}{d\psi _0}\!\left ( -\muo R_0^2 \pp {p}{\psi } -\frac {1}{2}\dd {F^2}{\psi } \right )_{\psi _0} = \frac {1}{R_0 B_{\theta 0}}\dd {}{r}\!\left [ \frac {R_0}{r}\dd {}{r}\!\left (rB_{\theta 0}\right ) \right ]. \tag{13.43}\]</div>
+Insert Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-key_identity">13.43</a>) into Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-pre_cancel">13.41</a>). The terms proportional to \(\Delta \) then cancel after the radial derivatives on
+the left are expanded. What survives is the combination containing only \(d\Delta /dr\): <a id="eq-eq-tok-delta_reduced"></a><div class="math-display">\[-\frac {1}{rR_0 B_{\theta 0}} \dd {}{r}\!\left [r(R_0 B_{\theta 0})^2\dd {\Delta }{r}\right ] - B_{\theta 0} = -2\muo \frac {r}{B_{\theta 0}}\dd {p}{r}. \tag{13.44}\]</div>
+Multiply by \(-rB_{\theta 0}/R_0\) and use \((R_0 B_{\theta 0})^2=R_0^2 B_{\theta 0}^2\) to obtain <a id="eq-eq-shafranov_shift_eq"></a><div class="math-display">\[\boxed { \dd {}{r}\left (r B_{\theta 0}^2 \dd {\Delta }{r}\right ) = \frac {r}{R_0} \left ( 2\muo r\dd {p}{r} - B_{\theta 0}^2 \right ). } \tag{13.45}\]</div>
+This is the large-aspect-ratio Shafranov-shift equation.
+</p>
+<!--l. 528--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-950003"></a>Integrating once.</span>
+Apply the regularity condition at \(r=0\) and integrate Eq.&#x00A0;(<a href="lecture13.html#eq-eq-shafranov_shift_eq">13.45</a>) from \(0\) to \(r\): <div class="math-display">\[\begin{aligned}r B_{\theta 0}^2(r)\dd {\Delta }{r} &amp;= \frac {1}{R_0} \int _0^r \left ( 2\muo x^2\dd {p}{x} - x B_{\theta 0}^2(x) \right )\,dx.\end{aligned}\]</div>
+</p><!--l. 541--><p class="noindent" >Integrate the pressure term by parts: <div class="math-display">\[\begin{aligned}\int _0^r 2\muo x^2 \dd {p}{x}\,dx &amp;= 2\muo \left [x^2 p(x)\right ]_0^r - 4\muo \int _0^r x p(x)\,dx \nonumber \\ &amp;= 2\muo r^2 p(r) - 4\muo \int _0^r x p(x)\,dx.\end{aligned}\]</div>
+</p><!--l. 554--><p class="noindent" >Hence <a id="eq-eq-shafranovshift"></a><div class="math-display">\[\boxed { \dd {\Delta }{r} = \frac {2\muo r\,p(r)}{R_0 B_{\theta 0}^2(r)} - \frac {1}{R_0 r B_{\theta 0}^2(r)} \int _0^r \left [ 4\muo x p(x)+x B_{\theta 0}^2(x) \right ]dx. } \tag{13.48}\]</div>
+Equation&#x00A0;(<a href="lecture13.html#eq-eq-shafranovshift">13.48</a>) is usually the most useful working formula. Once \(p(r)\) and \(B_{\theta 0}(r)\) are specified, one more
+integration gives the shift \(\Delta (r)\) and in particular the magnetic-axis displacement \(\Delta _s=\Delta (0)\) relative to the fixed
+boundary.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 571--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-960003"></a>Sign of the shift.</span>
+At the plasma edge, where \(p(a)=0\), <a id="eq-eq-tok-Delta_prime_edge_raw"></a><div class="math-display">\[\left .\dd {\Delta }{r}\right |_{r=a} = -\frac {1}{R_0 a B_{\theta 0}^2(a)} \int _0^a \left [ 4\muo x p(x)+x B_{\theta 0}^2(x) \right ]dx &lt;0. \tag{13.49}\]</div>
+Thus a fixed boundary at \(\Delta (a)=0\) implies \(\Delta (r)&gt;0\) in the interior: the magnetic axis is shifted outward, toward larger
+major radius, exactly as expected.
+<a 
+ id="x1-96001r91"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">13.4   </span> <a 
+ id="x1-970004"></a>Edge Asymmetry, Internal Inductance, and the Vacuum Continuation</h3>
+<!--l. 590--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-980004"></a>Internal inductance and edge derivative.</span>
+Define the internal inductance <a id="eq-eq-li_def"></a><div class="math-display">\[\ell _i \equiv \frac {2}{a^2 B_{\theta 0}^2(a)} \int _0^a B_{\theta 0}^2(r)\,r\,dr, \tag{13.50}\]</div>
+together with the poloidal beta of Eq.&#x00A0;(<a href="lecture13.html#eq-eq-beta_p_def2">13.31</a>). Then Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-Delta_prime_edge_raw">13.49</a>) becomes <a id="eq-eq-tok-Delta_prime_edge"></a><div class="math-display">\[\boxed { \left .\dd {\Delta }{r}\right |_{r=a} = -\frac {a}{R_0} \left ( \beta _p+\frac {\ell _i}{2} \right ). } \tag{13.51}\]</div>
+The combination \(\beta _p+\ell _i/2\) therefore appears before any specific profile has been chosen.
+</p>
+<!--l. 613--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-990004"></a>Boundary poloidal-field asymmetry.</span>
+The first-order flux is \[ \psi (r,\theta )=\psi _0(r)-R_0 B_{\theta 0}(r)\Delta (r)\cos \theta . \] At the boundary, where \(\Delta (a)=0\), <div class="math-display">\[\begin{aligned}B_\theta (a,\theta ) &amp;= \frac {1}{R}\pp {\psi }{r}\bigg |_{r=a} \nonumber \\ &amp;= \frac {1}{R_0\left (1+\frac {a}{R_0}\cos \theta \right )} \left [ R_0 B_{\theta 0}(a) - R_0 B_{\theta 0}(a)\left .\dd {\Delta }{r}\right |_{r=a}\cos \theta \right ] + \mathcal O(\epsilon ^2) \nonumber \\ &amp;= B_{\theta 0}(a) \left [ 1 - \left ( \frac {a}{R_0} + \left .\dd {\Delta }{r}\right |_{r=a} \right )\cos \theta \right ].\end{aligned}\]</div>
+</p><!--l. 646--><p class="noindent" >Using Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-Delta_prime_edge">13.51</a>), <a id="eq-eq-tok-Btheta_edge_asym"></a><div class="math-display">\[\boxed { B_\theta (a,\theta ) = B_{\theta 0}(a) \left [ 1 + \frac {a}{R_0} \left ( \beta _p+\frac {\ell _i}{2}-1 \right )\cos \theta \right ]. } \tag{13.53}\]</div>
+This boundary asymmetry can be measured by arrays of magnetic probes. It is one of the simplest
+experimental signatures of the same large-aspect-ratio equilibrium physics.
+</p>
+<!--l. 665--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1000004"></a>Continuation into the vacuum region.</span>
+Outside the plasma, \(p=0\) and the enclosed current is constant, so <a id="eq-eq-tok-Btheta_vac"></a><div class="math-display">\[B_{\theta 0}(r) = B_{\theta 0}(a)\frac {a}{r}, \qquad r&gt;a. \tag{13.54}\]</div>
+Equation&#x00A0;(<a href="lecture13.html#eq-eq-shafranov_shift_eq">13.45</a>) becomes <a id="eq-eq-tok-vac_shift_eq"></a><div class="math-display">\[\dd {}{r}\left [ \frac {a^2 B_{\theta 0}^2(a)}{r}\dd {\Delta }{r} \right ] = -\frac {a^2 B_{\theta 0}^2(a)}{R_0 r}. \tag{13.55}\]</div>
+Integrate from \(a\) to \(r\): <div class="math-display">\[\begin{aligned}\frac {a^2 B_{\theta 0}^2(a)}{r}\dd {\Delta }{r} - a B_{\theta 0}^2(a)\left .\dd {\Delta }{r}\right |_{r=a} &amp;= -\frac {a^2 B_{\theta 0}^2(a)}{R_0}\ln \frac {r}{a}.\end{aligned}\]</div>
+</p><!--l. 692--><p class="noindent" >Divide through by \(a^2 B_{\theta 0}^2(a)\) and insert Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-Delta_prime_edge">13.51</a>): <a id="eq-eq-tok-Delta_prime_vac"></a><div class="math-display">\[\dd {\Delta }{r} = -\frac {r}{R_0} \left ( \beta _p+\frac {\ell _i}{2} + \ln \frac {r}{a} \right ). \tag{13.57}\]</div>
+Impose \(\Delta (a)=0\) and integrate once more: <a id="eq-eq-tok-Delta_vac"></a><div class="math-display">\[\Delta (r) = -\frac {1}{R_0} \left [ \left ( \beta _p+\frac {\ell _i}{2}-\frac 12 \right )\frac {r^2-a^2}{2} + \frac {r^2}{2}\ln \frac {r}{a} \right ]. \tag{13.58}\]</div>
+Because \(\Delta (r)\) is negative in the vacuum continuation, the first-order flux perturbation \[ \psi _1=-R_0 B_{\theta 0}\Delta \cos \theta \] is positive
+there.
+</p>
+<!--l. 724--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010004"></a>Vacuum form of the first-order flux.</span>
+Using \(B_{\theta 0}(r)=\muo I_p/(2\pi r)\) in the vacuum region, Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-Delta_vac">13.58</a>) gives <a id="eq-eq-tok-psi1_vac"></a><div class="math-display">\[\begin{aligned}\psi _1(r,\theta ) &amp;= - R_0 B_{\theta 0}(r)\Delta (r)\cos \theta \nonumber \\ &amp;= \frac {\muo I_p}{4\pi } \left [ \left ( \beta _p+\frac {\ell _i}{2}-\frac 12 \right ) \left ( 1-\frac {a^2}{r^2} \right ) + \ln \frac {r}{a} \right ]r\cos \theta .\end{aligned} \tag{13.59}\]</div>
+</p><!--l. 745--><p class="noindent" >This is the far-vacuum field generated by the plasma itself, still written in the local large-aspect-ratio
+variables.
+<a 
+ id="x1-101001r98"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">13.5   </span> <a 
+ id="x1-1020005"></a>Required Vertical Field</h3>
+<!--l. 751--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1030005"></a>Why a plasma current is not enough.</span>
+The outward curvature force of the toroidal current channel cannot be balanced by plasma currents alone.
+The plasma-generated vacuum field must be supplemented by an externally applied vertical field,
+traditionally supplied by poloidal-field coils. In the large-aspect-ratio ordering, the corresponding flux
+function is <a id="eq-eq-tok-psi_ext"></a><div class="math-display">\[\psi _{\rm ext}(r,\theta )=R_0 B_v r\cos \theta . \tag{13.60}\]</div>
+The full first-order flux in the vacuum is therefore <div class="math-display">\[\psi _1^{\rm total}=\psi _1^{\rm plasma}+\psi _{\rm ext}.\]</div>
+</p>
+<!--l. 762--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040005"></a>Toroidal current filament.</span>
+To determine the required \(B_v\) it is convenient to compare Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-psi1_vac">13.59</a>) with the exact vacuum
+field of a toroidal current filament at major radius \(R_0\). The poloidal flux of a ring current \(I_p\) is
+<a id="eq-eq-tok-G_psi_filament"></a><div class="math-display">\[\psi _{\rm ring}(R,Z) = \frac {\muo I_p}{\pi }\sqrt {R R_0}\, \frac {(2-k^2)K(k)-2E(k)}{2k}, \tag{13.62}\]</div>
+where \(K\) and \(E\) are complete elliptic integrals and <a id="eq-eq-tok-k_def"></a><div class="math-display">\[k^2 = \frac {4R R_0}{(R+R_0)^2+Z^2}. \tag{13.63}\]</div>
+Set \[ R=R_0+r\cos \theta , \qquad Z=r\sin \theta , \qquad \epsilon =\frac {r}{R_0}\ll 1. \] Then <div class="math-display">\[1-k^2 = \frac {r^2}{4R_0^2+4R_0 r\cos \theta +r^2} = \frac {r^2}{4R_0^2} \left [ 1-\frac {r}{R_0}\cos \theta +\mathcal O(\epsilon ^2) \right ].\]</div>
+Define the complementary modulus \(k'=\sqrt {1-k^2}\). To first order, <a id="eq-eq-tok-kprime"></a><div class="math-display">\[k' = \frac {r}{2R_0} \left ( 1-\frac {r}{2R_0}\cos \theta \right ) +\mathcal O(\epsilon ^3). \tag{13.65}\]</div>
+We also need <div class="math-display">\[\sqrt {R R_0} = R_0\sqrt {1+\epsilon \cos \theta } = R_0\left (1+\frac {\epsilon }{2}\cos \theta \right )+\mathcal O(\epsilon ^2),\]</div>
+and the standard asymptotic forms <a id="eq-eq-tok-KE_asym"></a><div class="math-display">\[K(k) = \ln \frac {4}{k'} + \mathcal O(k'^2\ln k'), \qquad E(k)=1+\mathcal O(k'^2\ln k'). \tag{13.67}\]</div>
+Since \(k'^2=\mathcal O(\epsilon ^2)\), Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-KE_asym">13.67</a>) gives, to first order, <div class="math-display">\[\begin{aligned}K(k) &amp;= \ln \frac {8R_0}{r} + \frac {r}{2R_0}\cos \theta + \mathcal O(\epsilon ^2), \\ E(k) &amp;= 1+\mathcal O(\epsilon ^2).\end{aligned}\]</div>
+</p><!--l. 841--><p class="noindent" >Substituting these expansions into Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-G_psi_filament">13.62</a>) yields <a id="eq-eq-tok-ring_flux_LAR"></a><div class="math-display">\[\boxed { \psi _{\rm ring}(r,\theta ) = -\frac {\muo I_p R_0}{2\pi } \left [ \ln \frac {8R_0}{r}-2 + \frac {r}{2R_0} \left ( \ln \frac {8R_0}{r}-1 \right )\cos \theta \right ]. } \tag{13.70}\]</div>
+The leading term immediately gives the expected cylindrical poloidal field, <div class="math-display">\[\frac {1}{R_0}\dd {\psi _{\rm ring}^{(0)}}{r} = \frac {\muo I_p}{2\pi r} = B_{\theta 0}(r).\]</div>
+</p>
+<!--l. 867--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1050005"></a>Matching the first-order terms.</span>
+The \(\cos \theta \) part of Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-ring_flux_LAR">13.70</a>) is <a id="eq-eq-tok-ring_flux_first"></a><div class="math-display">\[\psi _{\rm ring}^{(1)} = -\frac {\muo I_p}{4\pi } \left ( \ln \frac {8R_0}{r}-1 \right ) r\cos \theta . \tag{13.72}\]</div>
+The total first-order vacuum field must satisfy <div class="math-display">\[\psi _{\rm ring}^{(1)} + R_0 B_v r\cos \theta = \psi _1(r,\theta ),\]</div>
+with \(\psi _1(r,\theta )\) given by Eq.&#x00A0;(<a href="lecture13.html#eq-eq-tok-psi1_vac">13.59</a>). Divide by the common factor \(r\cos \theta \): <div class="math-display">\[\begin{aligned}-\frac {\muo I_p}{4\pi } \left ( \ln \frac {8R_0}{r}-1 \right ) + R_0 B_v &amp;= \frac {\muo I_p}{4\pi } \left [ \beta _p+\frac {\ell _i}{2}-\frac 12+\ln \frac {r}{a} \right ].\end{aligned}\]</div>
+</p><!--l. 897--><p class="noindent" >The \(r\) dependence cancels, leaving <a id="eq-eq-Bv_required"></a><div class="math-display">\[\boxed { B_v = \frac {\muo I_p}{4\pi R_0} \left [ \beta _p + \frac {\ell _i-3}{2} + \ln \frac {8R_0}{a} \right ]. } \tag{13.75}\]</div>
+This is Shafranov&#8217;s famous vertical-field formula. It states that toroidal equilibrium requires an externally
+applied field whose magnitude depends on both the internal pressure/current distribution and the global
+toroidal geometry through \(\ln (8R_0/a)\).
+</p>
+<div class="interactive-shell"><p class="interactive-title">Interactive Shafranov Profile Explorer</p><p class="interactive-caption">Open a browser companion to Problem 13.2. The app uses the lecture&#8217;s circular pressure and current profiles, solves for the peaking exponent from \(q(0)\) and \(q(a)\), and reports the resulting \(q(r)\), \(\ell_i\), \(\beta_p\), \(\Delta(r)\), required vertical field, and boundary asymmetry factor.</p><p><a class="interactive-button" href="media/shafranov_profile_explorer.html">Open the profile explorer</a></p></div><!--l. 915--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1060005"></a>Experimental perspective.</span>
+Equation&#x00A0;(<a href="lecture13.html#eq-eq-Bv_required">13.75</a>) is one reason the Shafranov-shift problem has remained so central. The combination \(\beta _p+\ell _i/2\) can
+be inferred from magnetic measurements and diamagnetic flux, and the required vertical field is set by the
+same force balance that governs plasma position control. In modern tokamaks this physics
+is buried inside free-boundary equilibrium solvers, feedback controllers, and reconstruction
+codes, but the large-aspect-ratio derivation remains the cleanest route to the intuition. It also
+highlights the limits of external magnetic information: global quantities such as \(\beta _p\), \(\ell _i\), and overall
+                                                                                         
+                                                                                         
+radial force balance are accessible magnetically, whereas the detailed internal \(q\) profile generally
+requires additional internal constraints, as discussed in the later equilibrium-reconstruction
+lecture.
+</p><!--l. 919--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 919--><p class="noindent" ><span 
+class="ecbx-1095">Takeaway. </span>The Shafranov shift is not an optional geometric correction. It is the leading
+     signature of toroidicity in a tokamak equilibrium. Starting from the Grad&#8211;Shafranov equation,
+     one finds
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">a zeroth-order cylindrical force balance,
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">a first-order shift equation, Eq.&#x00A0;(<a href="lecture13.html#eq-eq-shafranov_shift_eq">13.45</a>),
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">the appearance of the profile measures \(\beta _p\) and \(\ell _i\), and
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">the necessity of an external vertical field, Eq.&#x00A0;(<a href="lecture13.html#eq-eq-Bv_required">13.75</a>).</dd></dl>
+     <!--l. 927--><p class="noindent" >That is why this calculation remains a classic problem: it turns the geometry of a torus directly
+     into measurable equilibrium physics.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1070005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <span 
+class="ecti-1095">Nuclear</span>
+  <span 
+class="ecti-1095">Fusion Supplement, Part 2</span>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+                                                                                         
+                                                                                         
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-1080005"></a>Problems</h3>
+<a 
+ id="x1-108001r1"></a>
+<!--l. 934--><p class="noindent" ><span 
+class="ecbx-1095">Problem 13.1. Vertical field and hoop force</span>
+</p><!--l. 935--><p class="noindent" >Starting from Eq.&#x00A0;(<a href="lecture13.html#eq-eq-Bv_required">13.75</a>), show that Shafranov&#8217;s formula for the vertical field may be written in the
+intuitive form <div class="math-display">\[2\pi R_0 I_p B_v = \frac {I_p^2}{2}\dd {}{R_0}(L_e+L_i) + 4\pi ^2\int _0^a \left ( p-\frac {B_0\,\delta B_\phi }{\muo } \right )r\,dr,\]</div>
+where \(\delta B_\phi (r)=B_\phi (r)-B_0\), \(L_i=2\pi R_0 \ell _i/2\), and the external inductance of a thin circular current channel is \[ L_e=\muo R_0\left [\ln \frac {8R_0}{a}-2\right ]. \] Then evaluate the net outward
+hoop force by integrating the radial pressure force around a torus, <div class="math-display">\[F_R = -2\pi ^2 \int _0^a \int _0^{2\pi } \dd {p}{r}\cos ^2\theta \, r^2\,dr\,d\theta ,\]</div>
+and explain physically how each term in the &#8220;intuitive&#8221; form above contributes to toroidal force
+balance.
+<a 
+ id="x1-108002r2"></a>
+</p><!--l. 962--><p class="noindent" ><span 
+class="ecbx-1095">Problem 13.2. Shift of the magnetic axis</span>
+</p><!--l. 963--><p class="noindent" >Use Eq.&#x00A0;(<a href="lecture13.html#eq-eq-shafranovshift">13.48</a>) to compute the magnetic-axis displacement for explicit profiles. Let <div class="math-display">\[\begin{aligned}p(r) &amp;= \hat p\left (1-\frac {r^2}{a^2}\right ), \\ j_\phi (r) &amp;= \hat j\left (1-\frac {r^2}{a^2}\right )^\nu .\end{aligned}\]</div>
+</p><!--l. 969--><p class="noindent" >Assume \[ \beta _p=\frac 12, \qquad q(0)\approx 1, \qquad q(a)=3. \]
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Determine \(\hat p\), \(\hat j\), and \(\nu \).
+   </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Use Ampre&#8217;s law to obtain \(B_{\theta 0}(r)\).
+   </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Integrate Eq.&#x00A0;(<a href="lecture13.html#eq-eq-shafranovshift">13.48</a>) inward from the boundary condition \(\Delta (a)=0\) to determine the Shafranov shift of
+   the magnetic axis, \(\Delta _s/a\).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

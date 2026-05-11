@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 6 CGL: Collisionless, Anisotropic MHD</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture5.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture7.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;6</span><br /><a 
+ id="x1-810006"></a>CGL: Collisionless, Anisotropic MHD</h2>
+<!--l. 6--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 6--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">This lecture introduces CGL as a </tspan><tspan font-family="ecbi" font-size="1095">closure </tspan><tspan font-family="ecbx" font-size="1095">for magnetized, weakly collisional</tspan>
+     <tspan font-family="ecbx" font-size="1095">plasma.</tspan>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The scalar pressure in Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) is replaced by a gyrotropic tensor with separate
+   parallel and perpendicular pressures.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The double-adiabatic laws are derived from adiabatic invariants, flux freezing, and
+   particle conservation.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The point of this lecture is the closure itself. The detailed geometry of the mirror
+   force and the more general theory of anisotropic equilibrium are deferred to Lecture
+   11; the firehose and mirror <tspan font-family="ecti" font-size="1095">wave </tspan>instabilities are deferred still later.</dd></dl>
+     </blockquote></div></div>
+<!--l. 14--><p class="noindent" >The isotropic closure used in the introductory momentum equation, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), and in the Newtonian stress
+law, Eq.&#x00A0;(<a href="lecture2.html#eq-eq-visc-newtonian">2.10</a>), is appropriate when collisions rapidly drive the distribution toward a local Maxwellian.
+In many space and laboratory plasmas, however, the situation is more subtle: the particles
+remain strongly magnetized, so they remember the direction of \(\vect {B}\), while collisions are too weak
+to isotropize the pressure on the dynamical time. The leading-order pressure then becomes
+anisotropic.
+</p><!--l. 17--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 17--><p class="noindent" >Chew, Goldberger, and Low made the essential step in 1956: they did not abandon fluid
+     theory in the collisionless limit, but instead derived a new closure directly from kinetic
+     theory <a 
+href="lecture6.html#Xchew1956_boltzmann">Chew et&#x00A0;al.</a>&#x00A0;[<a 
+href="lecture6.html#Xchew1956_boltzmann">1956</a>]. That move made pressure anisotropy, adiabatic invariants,
+     and magnetic geometry central. Later work by Northrop, Kulsrud, and many others
+     clarified how the same ordering connects fluid MHD to guiding-center and drift-kinetic
+     theory <a 
+href="lecture6.html#Xnorthrop1963adiabatic">Northrop</a>&#x00A0;[<a 
+href="lecture6.html#Xnorthrop1963adiabatic">1963</a>],&#x00A0;<a 
+href="lecture6.html#Xkulsrud1983_mhd_description">Kulsrud</a>&#x00A0;[<a 
+href="lecture6.html#Xkulsrud1983_mhd_description">1983</a>].</p></blockquote></div></div>
+<a 
+ id="x1-81004r81"></a>
+<h3 class="sectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-820001"></a>Gyrotropic pressure tensor</h3>
+<!--l. 24--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830001"></a>What changes in the stress tensor?</span>
+For a magnetized species \(s\), the leading pressure tensor may be written as <a id="eq-eq-cgl-pressuretensor_species"></a><div class="math-display">\[\tens {P}_s = p_{\perp s}\,\tens {I} + \left (p_{\parallel s}-p_{\perp s}\right )\vect {b}\vect {b} + \tens {\Pi }_s, \tag{6.1}\]</div>
+where \[ \vect {b}\equiv \frac {\vect {B}}{B} \] is the magnetic-field unit vector and \(\tens {\Pi }_s\) contains higher-order finite-Larmor-radius and
+collisional corrections. At leading CGL order one neglects \(\tens {\Pi }_s\), sums over species, and obtains
+<a id="eq-eq-cgl-pressuretensor"></a><div class="math-display">\[\boxed { \tens {P} = p_\perp \,\tens {I} + \left (p_\parallel -p_\perp \right )\vect {b}\vect {b}. } \tag{6.2}\]</div>
+In a field-aligned basis this tensor is diagonal, with entries \(p_\perp ,p_\perp ,p_\parallel \).
+                                                                                         
+                                                                                         
+</p>
+<!--l. 53--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-840001"></a>Moment definitions.</span>
+In the local fluid frame, <a id="eq-eq-cgl-moments"></a><div class="math-display">\[n_s = \int f_s\,d^3v, \qquad p_{\perp s} = \int \frac {m_s v_\perp ^2}{2} f_s\, d^3v, \qquad p_{\parallel s} = \int m_s v_\parallel ^2 f_s\, d^3v. \tag{6.3}\]</div>
+The gyrophase has been averaged away, so the only distinguished direction is \(\vect {b}\). That is why the
+decomposition (<a href="lecture6.html#eq-eq-cgl-pressuretensor">6.2</a>) is the natural collisionless analog of the isotropic stress split discussed earlier in
+Eq.&#x00A0;(<a href="lecture2.html#eq-eq-visc-stresssplit">2.8</a>).
+<a 
+ id="x1-84001r85"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-850002"></a>Collisionless kinetic foundation</h3>
+<!--l. 69--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-860002"></a>The collisionless Vlasov equation.</span>
+The kinetic starting point is <a id="eq-eq-cgl-vlasov"></a><div class="math-display">\[\pp {f_s}{t} + \vect {v}\cdot \grad f_s + \frac {q_s}{m_s} \left ( \vect {E} + \vect {v}\times \vect {B} \right ) \cdot \pp {f_s}{\vect {v}} = 0. \tag{6.4}\]</div>
+Along phase-space characteristics, <a id="eq-eq-cgl-dfdt"></a><div class="math-display">\[\frac {D f_s}{Dt}=0. \tag{6.5}\]</div>
+For magnetized particles with \(\omega \ll \Omega _i\) and \(\rho _i/L\ll 1\), adiabatic invariants become available.
+</p>
+<!--l. 95--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-870002"></a>The adiabatic invariants.</span>
+The first adiabatic invariant is the magnetic moment, <a id="eq-eq-mu_def"></a><div class="math-display">\[\mu \equiv \frac {m_s v_\perp ^2}{2B}, \tag{6.6}\]</div>
+and the second is the bounce or longitudinal action, <a id="eq-eq-J_def"></a><div class="math-display">\[J \equiv \oint m_s v_\parallel \, d\ell . \tag{6.7}\]</div>
+The total kinetic energy may be written as <a id="eq-eq-energy_def"></a><div class="math-display">\[\epsilon \equiv \frac {1}{2}m_s v_\parallel ^2 + \mu B. \tag{6.8}\]</div>
+These are the basic ingredients behind the CGL equations.
+<a 
+ id="x1-87001r88"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x1-880003"></a>The drift-kinetic equation</h3>
+<!--l. 117--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-890003"></a>Expanded guiding-center form.</span>
+To first order in the drift expansion, the guiding-center distribution \(f(\vect {R},v_\parallel ,\mu ,t)\) satisfies <a id="eq-eq-DKE_full"></a><div class="math-display">\[\pp {f}{t} + \dot {\vect {R}}\cdot \grad f + \dot v_\parallel \,\pp {f}{v_\parallel } = 0, \tag{6.9}\]</div>
+with guiding-center velocity <a id="eq-eq-Rdot_expanded"></a><div class="math-display">\[\dot {\vect {R}} = v_\parallel \vect {b} + \vect {v}_E + \vect {v}_{\grad B} + \vect {v}_c +\cdots , \tag{6.10}\]</div>
+where <div class="math-display">\[\vect {v}_E = \frac {\vect {E}\times \vect {B}}{B^2}, \qquad \vect {v}_{\grad B} = \frac {\mu }{qB}\,\vect {b}\times \grad B,\]</div>
+<div class="math-display">\[\vect {v}_c = \frac {m v_\parallel ^2}{qB}\,\vect {b}\times \vect {\kappa }, \qquad \vect {\kappa } \equiv (\vect {b}\cdot \grad )\vect {b}.\]</div>
+In the magnetostatic limit with \(E_\parallel =0\), the parallel acceleration reduces to the single-particle mirror force,
+<a id="eq-eq-mirror_force"></a><div class="math-display">\[\dot v_\parallel \simeq -\frac {\mu }{m}\,\vect {b}\cdot \grad B. \tag{6.13}\]</div>
+The detailed geometry of this force is developed in Lecture&#x00A0;11; here it simply motivates why \(p_\parallel \) and \(p_\perp \) evolve
+differently.
+</p>
+<!--l. 172--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-900003"></a>Lowest-order reduced drift-kinetic equation.</span>
+Under the ideal-MHD ordering, Ohm&#8217;s law reduces to \(\vect {E}=-\vect {u}\times \vect {B}\) as in Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), so the leading perpendicular motion
+is the frozen-in \(\vect {E}\times \vect {B}\) drift discussed in Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>). A convenient reduced drift-kinetic equation is then
+<a id="eq-eq-DKE_mu_vpar"></a><div class="math-display">\[\pp {f}{t} + (\vect {v}_E+v_\parallel \vect {b})\cdot \grad f + \left ( -\vect {b}\cdot \frac {D\vect {v}_E}{Dt} -\frac {\mu }{m}\,\vect {b}\cdot \grad B +\frac {q}{m}E_\parallel \right ) \pp {f}{v_\parallel } = 0, \tag{6.14}\]</div>
+where <a id="eq-eq-convective_derivative"></a><div class="math-display">\[\frac {D}{Dt} \equiv \pp {}{t} + (\vect {v}_E+v_\parallel \vect {b})\cdot \grad . \tag{6.15}\]</div>
+This is the form we will return to later in the drift-kinetic appendix.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 200--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-910003"></a>Equivalent velocity-space form.</span>
+If one keeps \(v_\perp \) instead of \(\mu \), the same lowest-order equation becomes <a id="eq-eq-DKE_vperp_vpar"></a><div class="math-display">\[\pp {f}{t} + (\vect {v}_E+v_\parallel \vect {b})\cdot \grad f - \frac {v_\perp }{2} \left [ \divergence \vect {v}_E - \bigl ((\vect {b}\cdot \grad )\vect {v}_E\bigr )\cdot \vect {b} + v_\parallel \divergence \vect {b} \right ] \pp {f}{v_\perp } - \left [ \vect {b}\cdot \frac {D\vect {v}_E}{Dt} - \frac {v_\perp ^2}{2}\,\divergence \vect {b} - \frac {q}{m}E_\parallel \right ] \pp {f}{v_\parallel } = 0. \tag{6.16}\]</div>
+In this form the betatron response appears explicitly in the \(v_\perp \)-derivative term. In the \((\mu ,v_\parallel )\) form, Eq.&#x00A0;(<a href="lecture6.html#eq-eq-DKE_mu_vpar">6.14</a>), the
+same physics is absorbed into the choice of variables because \(\mu \) is an adiabatic invariant at this
+order.
+</p>
+<!--l. 231--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-920003"></a>Equivalent energy-moment form.</span>
+Because \((\mu ,\epsilon )\) does not distinguish \(v_\parallel &gt;0\) from \(v_\parallel &lt;0\), one supplements it with the sign \[ \sigma \equiv \sgn (v_\parallel ), \qquad v_\parallel = \sigma \sqrt {\frac {2(\epsilon -\mu B)}{m}}. \] Using \[ \left .\pp {}{v_\parallel }\right |_\mu = m v_\parallel \left .\pp {}{\epsilon }\right |_\mu , \] Eq.&#x00A0;(<a href="lecture6.html#eq-eq-DKE_mu_vpar">6.14</a>) becomes
+<a id="eq-eq-DKE_mu_energy"></a><div class="math-display">\[\pp {f}{t} + (\vect {v}_E+v_\parallel \vect {b})\cdot \grad f + \left [ \mu \left (\pp {}{t}+\vect {v}_E\cdot \grad \right )B - m v_\parallel \vect {b}\cdot \frac {D\vect {v}_E}{Dt} + q E_\parallel v_\parallel \right ] \pp {f}{\epsilon } = 0. \tag{6.17}\]</div>
+This form is fully equivalent, but for later linear work the \((\mu ,v_\parallel )\) form is usually more transparent.
+</p>
+<!--l. 266--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-930003"></a>Linearization</span>
+For the Lecture 17 we will look for waves and instabilities that depend upon the kinetic properties. S
+uppose \[ \vect {B}=B_0\ez +\delta B_\parallel \ez , \qquad \delta B_\parallel \propto e^{-i\omega t+i k_\parallel z}, \qquad E_{\parallel 1}=0. \] Then Eq.&#x00A0;(<a href="lecture6.html#eq-eq-DKE_mu_vpar">6.14</a>) linearizes to <a id="eq-eq-mirror_start_mu_vpar"></a><div class="math-display">\[-i(\omega -k_\parallel v_\parallel ) f_1 -\frac {\mu }{m}\, i k_\parallel \delta B_\parallel \, \pp {f_0}{v_\parallel } =0. \tag{6.18}\]</div>
+If one defines the magnetic moment per unit mass, \[ \mu _*\equiv \frac {v_\perp ^2}{2B}=\frac {\mu }{m}, \] then the same equation reads \[ -i(\omega -k_\parallel v_\parallel ) f_1 -\mu _*\, i k_\parallel \delta B_\parallel \, \pp {f_0}{v_\parallel } =0. \]
+<a 
+ id="x1-93001r91"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">6.4   </span> <a 
+ id="x1-940004"></a>The CGL closure</h3>
+<!--l. 299--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-950004"></a>From moments of the drift-kinetic equation.</span>
+Chew, Goldberger, and Low showed that higher moments of the kinetic equation produce separate
+perpendicular and parallel heat fluxes. In the ordering <a id="eq-eq-cgl-ordering"></a><div class="math-display">\[\nu _{ii} \ll \omega \ll \Omega _i, \tag{6.19}\]</div>
+the pressure equations may be written schematically as <a id="eq-eq-cgl-qperp_eq"></a><div class="math-display">\[\rho B\frac {D}{Dt}\!\left (\frac {p_\perp }{\rho B}\right ) = -\divergence (q_\perp \vect {b})-q_\perp \divergence \vect {b}, \tag{6.20}\]</div>
+<a id="eq-eq-cgl-qpar_eq"></a><div class="math-display">\[\frac {\rho ^3}{B^2}\frac {D}{Dt}\!\left (\frac {p_\parallel B^2}{\rho ^3}\right ) = -\divergence (q_\parallel \vect {b})-2 q_\perp \divergence \vect {b}. \tag{6.21}\]</div>
+The heat fluxes are third moments of the distribution function. When they may be neglected, one obtains
+the double-adiabatic CGL laws.
+</p>
+<!--l. 320--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-960004"></a>The heat-flux-free limit.</span>
+With \(q_\perp \to 0\) and \(q_\parallel \to 0\), Eqs.&#x00A0;(<a href="lecture6.html#eq-eq-cgl-qperp_eq">6.20</a>)&#8211;(<a href="lecture6.html#eq-eq-cgl-qpar_eq">6.21</a>) reduce to <a id="eq-eq-cgl_perp"></a><div class="math-display">\[\frac {D}{Dt}\!\left (\frac {p_\perp }{nB}\right ) = 0, \tag{6.22}\]</div>
+<a id="eq-eq-cgl_par"></a><div class="math-display">\[\frac {D}{Dt}\!\left (\frac {p_\parallel B^2}{n^3}\right ) = 0. \tag{6.23}\]</div>
+These are the CGL closure relations. Pressure anisotropy has become an independent dynamical degree of
+freedom generated by compression, expansion, and field-strength change.
+</p><!--l. 333--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 333--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Important separation of ideas. </tspan>The CGL equations are one particular <tspan font-family="ecti" font-size="1095">closure </tspan>for
+     the evolution of \(p_\perp \) and \(p_\parallel \). The next two lectures use the more general gyrotropic tensor
+     algebra without assuming that those pressures obey the double-adiabatic laws.</p></blockquote></div></div>
+<a 
+ id="x1-96001r97"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">6.5   </span> <a 
+ id="x1-970005"></a>Heuristic derivation of the double-adiabatic laws</h3>
+<!--l. 341--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-980005"></a>First adiabatic invariant and the perpendicular law.</span>
+Conservation of \[ \mu = \frac {m v_\perp ^2}{2B} \] means that for a single particle \[ \frac {v_\perp ^2}{B}=\text {const.} \] If the distribution remains gyrotropic and its shape
+changes self-similarly, then the ensemble average obeys \[ \langle v_\perp ^2\rangle \propto B \qquad \Longrightarrow \qquad T_\perp \propto B. \] Since \(p_\perp =nT_\perp \), one obtains <div class="math-display">\[\boxed {\frac {p_\perp }{nB}=\text {const. along a fluid element}.}\]</div>
+Writing the fluid-element derivative explicitly gives Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_perp">6.22</a>).
+</p>
+<!--l. 362--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-990005"></a>Second adiabatic invariant and the parallel law.</span>
+For trapped or rapidly bouncing particles, the second invariant \[ J=\oint m v_\parallel \,d\ell \] implies, at the scaling level, \[ J\sim m v_\parallel L_\parallel = \text {const.} \qquad \Longrightarrow \qquad v_\parallel \propto \frac {1}{L_\parallel }. \] Therefore \[ T_\parallel \propto \langle v_\parallel ^2\rangle \propto \frac {1}{L_\parallel ^2}. \] To
+relate \(L_\parallel \) to \(n\) and \(B\), consider a thin flux tube moving with the fluid. Ideal flux freezing implies \[ \Phi = BA = \text {const.} \qquad \Longrightarrow \qquad A\propto \frac {1}{B}, \] while particle
+conservation implies \[ N=nAL_\parallel =\text {const.} \qquad \Longrightarrow \qquad L_\parallel \propto \frac {1}{nA}\propto \frac {B}{n}. \] Hence \[ T_\parallel \propto \frac {1}{L_\parallel ^2} \propto \left (\frac {n}{B}\right )^2, \] and therefore <div class="math-display">\[\boxed {\frac {p_\parallel B^2}{n^3}=\text {const. along a fluid element}.}\]</div>
+Writing the convective derivative gives Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_par">6.23</a>).
+</p>
+<!--l. 401--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1000005"></a>A differential derivation using earlier MHD equations.</span>
+The heuristic argument above is memorable, but it is also useful to connect it directly to the
+fluid equations already derived earlier in the notes. In the ideal limit, Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-brho">4.7</a>) reduces to
+<a id="eq-eq-cgl-Boverrhoideal"></a><div class="math-display">\[\frac {D}{Dt}\left (\frac {\B }{\rho }\right ) = \left (\frac {\B }{\rho }\cdot \grad \right )\uvec . \tag{6.26}\]</div>
+Write \(\B = B\vect {b}\). Dot Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl-Boverrhoideal">6.26</a>) with \(\vect {b}\): <div class="math-display">\[\vect {b}\cdot \frac {D}{Dt}\left (\frac {B\vect {b}}{\rho }\right ) = \vect {b}\cdot \left (\frac {B\vect {b}}{\rho }\cdot \grad \right )\uvec .\]</div>
+Because \(\vect {b}\cdot \vect {b}=1\), differentiation gives <div class="math-display">\[\frac {1}{\rho }\frac {DB}{Dt} - \frac {B}{\rho ^2}\frac {D\rho }{Dt} = \frac {B}{\rho }\,\vect {b}\vect {b}:\grad \uvec .\]</div>
+Multiplying through by \(\rho /B\) yields <div class="math-display">\[\frac {1}{B}\frac {DB}{Dt} - \frac {1}{\rho }\frac {D\rho }{Dt} = \vect {b}\vect {b}:\grad \uvec .\]</div>
+Now use continuity, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), in convective form, <div class="math-display">\[\frac {1}{\rho }\frac {D\rho }{Dt} = -\divergence \uvec ,\]</div>
+so that <a id="eq-eq-cgl-Bscale"></a><div class="math-display">\[\frac {1}{B}\frac {DB}{Dt} = \vect {b}\vect {b}:\grad \uvec - \divergence \uvec . \tag{6.31}\]</div>
+This is the local field-strength evolution law hidden inside the ideal induction equation.
+</p><!--l. 446--><p class="noindent" >Starting from Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_perp">6.22</a>), \[ \frac {D}{Dt}\ln \left (\frac {p_\perp }{nB}\right )=0, \] one immediately gets <a id="eq-eq-cgl_perp_diff"></a><div class="math-display">\[\frac {1}{p_\perp }\frac {Dp_\perp }{Dt} = \frac {1}{n}\frac {Dn}{Dt} + \frac {1}{B}\frac {DB}{Dt}. \tag{6.32}\]</div>
+For fixed ion mass, \(n\propto \rho \), so using continuity and Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl-Bscale">6.31</a>) gives <div class="math-display">\[\frac {1}{p_\perp }\frac {Dp_\perp }{Dt} = -\divergence \uvec + \left (\vect {b}\vect {b}:\grad \uvec -\divergence \uvec \right ) = \vect {b}\vect {b}:\grad \uvec - 2\divergence \uvec .\]</div>
+Therefore <a id="eq-eq-cgl-perpevol"></a><div class="math-display">\[\frac {Dp_\perp }{Dt} + p_\perp \left (2\divergence \uvec -\vect {b}\vect {b}:\grad \uvec \right ) = 0. \tag{6.34}\]</div>
+Likewise, starting from Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_par">6.23</a>), \[ \frac {D}{Dt}\ln \left (\frac {p_\parallel B^2}{n^3}\right )=0, \] one finds <a id="eq-eq-cgl_par_diff"></a><div class="math-display">\[\frac {1}{p_\parallel }\frac {Dp_\parallel }{Dt} = 3\frac {1}{n}\frac {Dn}{Dt} - 2\frac {1}{B}\frac {DB}{Dt}. \tag{6.35}\]</div>
+Using continuity and Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl-Bscale">6.31</a>) again, <div class="math-display">\[\frac {1}{p_\parallel }\frac {Dp_\parallel }{Dt} = -3\divergence \uvec - 2\left (\vect {b}\vect {b}:\grad \uvec -\divergence \uvec \right ) = -\divergence \uvec - 2\vect {b}\vect {b}:\grad \uvec ,\]</div>
+so that <a id="eq-eq-cgl-parevol"></a><div class="math-display">\[\frac {Dp_\parallel }{Dt} + p_\parallel \left (\divergence \uvec +2\vect {b}\vect {b}:\grad \uvec \right ) = 0. \tag{6.37}\]</div>
+Equations (<a href="lecture6.html#eq-eq-cgl-perpevol">6.34</a>) and (<a href="lecture6.html#eq-eq-cgl-parevol">6.37</a>) are the differential forms most often used in actual calculations.
+</p><!--l. 513--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 513--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">What the double-adiabatic model omits. </tspan>CGL is not &#8220;collisionless plasma physics
+     in general.&#8221; It is a specific asymptotic closure. Heat fluxes, pitch-angle scattering, Landau
+     damping, and finite-Larmor-radius corrections are all omitted at leading order. The
+     model is therefore excellent for showing <tspan font-family="ecti" font-size="1095">how </tspan>anisotropy is generated, but one should
+     be  cautious  about  using  it  as  a  quantitatively  exact  closure  near  kinetic  instability
+     thresholds.</p></blockquote></div></div>
+<!--l. 519--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1010005"></a>Equivalent differential forms.</span>
+Taking convective derivatives of Eqs.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_perp">6.22</a>) and (<a href="lecture6.html#eq-eq-cgl_par">6.23</a>) yields <div class="math-display">\[\frac {1}{p_\perp }\frac {dp_\perp }{dt} = \frac {1}{n}\frac {dn}{dt} + \frac {1}{B}\frac {dB}{dt},\]</div>
+                                                                                         
+                                                                                         
+<div class="math-display">\[\frac {1}{p_\parallel }\frac {dp_\parallel }{dt} = 3\frac {1}{n}\frac {dn}{dt} - 2\frac {1}{B}\frac {dB}{dt}.\]</div>
+These are often combined with the continuity equation, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), and the ideal induction equation,
+Eqs.&#x00A0;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>) and (<a href="lecture4.html#eq-eq-flux-brho">4.7</a>).
+</p>
+<!--l. 537--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1020005"></a>Scope of the heuristic argument.</span>
+The derivation above assumes clear scale separation, negligible pitch-angle scattering, weak heat fluxes,
+and a distribution that remains close enough to bi-Maxwellian for \(p_\perp \) and \(p_\parallel \) to be meaningful state
+variables. Once heat fluxes, collisions, or FLR corrections matter, CGL is no longer the full
+story.
+<a 
+ id="x1-102001r100"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">6.6   </span> <a 
+ id="x1-1030006"></a>How CGL closes the fluid system</h3>
+<!--l. 544--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1040006"></a>The closed set.</span>
+The CGL model may be viewed as ideal MHD plus a gyrotropic pressure tensor and two extra
+pressure-evolution laws: <a id="eq-eq-cgl-continuity"></a><div class="math-display">\[\pp {\rho }{t}+\divergence (\rho \vect {u}) = 0, \tag{6.40}\]</div>
+<a id="eq-eq-cgl-momentum"></a><div class="math-display">\[\rho \left (\pp {\vect {u}}{t}+\vect {u}\cdot \grad \vect {u}\right ) = -\divergence \tens {P} + \vect {J}\times \vect {B}, \tag{6.41}\]</div>
+<a id="eq-eq-cgl-induction"></a><div class="math-display">\[\pp {\vect {B}}{t} = \curl (\vect {u}\times \vect {B}), \qquad \divergence \vect {B}=0, \tag{6.42}\]</div>
+<a id="eq-eq-cgl-P_again"></a><div class="math-display">\[\tens {P} = p_\perp \tens {I} + (p_\parallel -p_\perp )\vect {b}\vect {b}, \tag{6.43}\]</div>
+<a id="eq-eq-cgl-doubleadiabatic_again"></a><div class="math-display">\[\frac {D}{Dt}\!\left (\frac {p_\perp }{nB}\right ) = 0, \qquad \frac {D}{Dt}\!\left (\frac {p_\parallel B^2}{n^3}\right ) = 0. \tag{6.44}\]</div>
+The next lecture expands \(-\divergence \tens {P}\) in detail. That algebra is general to gyrotropic theory and should not be
+confused with the special CGL closure itself.
+<a 
+ id="x1-104001r106"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">6.7   </span> <a 
+ id="x1-1050007"></a>Relation to Braginskii and to kinetic MHD</h3>
+<!--l. 580--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1060007"></a>Two opposite collisional limits.</span>
+Braginskii theory starts from a strongly magnetized but collisional plasma. There, anisotropy appears as a
+constitutive correction to an otherwise nearly Maxwellian fluid, and the viscous tensor is ordered as a
+transport term. CGL sits at the opposite end: collisions are weak enough that pressure anisotropy survives
+as a leading-order dynamical variable.
+</p>
+<!--l. 583--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1070007"></a>A bridge rather than a contradiction.</span>
+These are not competing religions. They are different orderings of the same kinetic theory. Roughly
+speaking, \[ \text {Braginskii:} \qquad \Omega _i\tau _i\gg 1, \quad \nu _{ii}\ \text {still dynamically important}, \] whereas \[ \text {CGL:} \qquad \Omega _i\tau _i\gg 1, \quad \nu _{ii}\ll \omega . \] Kinetic MHD and Landau-fluid closures sit between and beyond these limits by
+retaining drift-kinetic information, heat fluxes, and resonant physics explicitly.
+<a 
+ id="x1-107001r108"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">6.8   </span> <a 
+ id="x1-1080008"></a>Physical perspective</h3>
+<!--l. 606--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1090008"></a>What this lecture does and does not do.</span>
+CGL is appropriate when </p>
+     <ul class="itemize1">
+     <li class="itemize">\(\rho _i\ll L\),
+     </li>
+     <li class="itemize">\(\omega \ll \Omega _i\),
+     </li>
+     <li class="itemize">the plasma remains magnetized, and
+     </li>
+     <li class="itemize">collisions and heat fluxes are weak enough that the double-adiabatic closure is a reasonable
+     first approximation.</li></ul>
+<!--l. 614--><p class="noindent" >It does <tspan font-family="ecti" font-size="1095">not </tspan>capture FLR stabilization, heat-flux physics, Landau damping, or the correct kinetic mirror
+threshold. Those effects belong to later lectures and to the drift-kinetic appendix.
+</p><!--l. 617--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">CGL is best thought of as <tspan font-family="ecti" font-size="1095">ideal MHD plus a new pressure closure</tspan>, not as a general
+   theory of all anisotropic plasmas.
+   </li>
+   <li class="itemize">The  two  invariants  \(p_\perp /(nB)\)  and  \(p_\parallel B^2/n^3\)  encode  perpendicular  betatron  heating  and  parallel
+   cooling/heating by field-line shortening or stretching.
+   </li>
+   <li class="itemize">The geometry of the mirror force and the equilibrium consequences of anisotropy are
+   broader than CGL and are treated separately in Lecture 11.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1100008"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <tspan font-family="ecti" font-size="1095">Proceedings  of  the  Royal</tspan>
+  <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnorthrop1963adiabatic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Theodore&#x00A0;G. Northrop.  <tspan font-family="ecti" font-size="1095">The Adiabatic Motion of Charged Particles</tspan>.  Interscience, New York,
+  1963.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud1983_mhd_description"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> R.&#x00A0;M. Kulsrud.   Mhd description of plasma.   In A.&#x00A0;A. Galeev and R.&#x00A0;N. Sudan, editors,
+  <tspan font-family="ecti" font-size="1095">Handbook of Plasma Physics, Volume 1: Basic Plasma Physics I</tspan>, chapter 1.4, pages 115&#8211;145.
+  North-Holland, Amsterdam, 1983. Series editors: M. N. Rosenbluth and R. Z. Sagdeev.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-1110008"></a>Problems</h3>
+<a 
+ id="x1-111001r1"></a>
+<!--l. 627--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 6.1. Estimating anisotropy generation with the CGL invariants</tspan>
+</p><!--l. 629--><p class="noindent" >Consider a steady radial outflow with speed \(u_r(r)\approx \text {const}\) beyond a few solar radii. First take a purely radial magnetic
+field \(B_r\propto r^{-2}\). Assume the plasma is sufficiently collisionless that the CGL invariants, Eqs.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_perp">6.22</a>) and (<a href="lecture6.html#eq-eq-cgl_par">6.23</a>), apply
+along streamlines.
+</p>
+<!--l. 631--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1120001"></a>Part A: radial field</span>
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Using mass conservation for a steady radial flow, \[ \rho u_r r^2 = \text {const.}, \] show that \(\rho \propto r^{-2}\).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Using \(B\propto r^{-2}\) together with Eqs.&#x00A0;(<a href="lecture6.html#eq-eq-cgl_perp">6.22</a>) and (<a href="lecture6.html#eq-eq-cgl_par">6.23</a>), show that \[ p_\perp (r)\propto r^{-4}, \qquad p_\parallel (r)\propto r^{-2}. \]
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Hence show that \[ \boxed {\frac {p_\perp }{p_\parallel }\propto r^{-2}.} \] Assuming isotropy at a reference radius \(r_0\), write \(p_\perp /p_\parallel \) at radius \(r\) in terms of \(r/r_0\).
+    </dd><dt class="enumerate-enumitem">
+(d) </dt><dd 
+class="enumerate-enumitem">Using \(p_\perp =nT_\perp \) and \(p_\parallel =nT_\parallel \), deduce the scaling of \(T_\perp /T_\parallel \).</dd></dl>
+<!--l. 655--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1130001"></a>Part B: Parker-spiral asymptotics</span>
+At sufficiently large radius a Parker spiral satisfies \(B\propto r^{-1}\) while the density still scales approximately as
+\(\rho \propto r^{-2}\).
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Show that in this limit \[ p_\perp (r)\propto r^{-3}, \qquad p_\parallel (r)\propto \text {const.} \] and therefore \[ \boxed {\frac {p_\perp }{p_\parallel }\propto r^{-3}.} \]
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Compare this result with the purely radial-field case. Which geometry drives stronger anisotropy
+    at large radius?</dd></dl>
+<!--l. 672--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1140001"></a>Part C: conceptual reflection</span>
+Give two reasons why the real solar wind need not follow the unrestricted CGL scalings all the way to
+arbitrarily large anisotropy. Do <tspan font-family="ecti" font-size="1095">not </tspan>quote threshold formulas; instead answer in terms of missing
+physics.
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p><!--l. 421--><p class="noindent" >
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

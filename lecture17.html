@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 17 Kinetic MHD: Collisionless Pressure Response</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_waves.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture16.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture18.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;17</span><br /><a 
+ id="x1-4800017"></a>Kinetic MHD: Collisionless Pressure Response</h2>
+<!--l. 30--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 30--><p class="noindent" ><span 
+class="ecbx-1095">Kinetic MHD keeps the low-frequency MHD force law but replaces the pressure</span>
+     <span 
+class="ecbx-1095">closure.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The magnetic geometry, field-line bending, and frozen-in motion are still governed
+   by  the  same  low-frequency  framework  developed  in  the  flux-freezing  lecture,  in
+   Lecture&#x00A0;6, and in Lecture&#x00A0;16.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The new physics enters through the collisionless pressure response, obtained from the
+   drift-kinetic equation rather than from a fluid closure.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The main lesson is beautifully sharp: the firehose mode is already visible in anisotropic
+   fluid theory, while the mirror mode is the place where the kinetic closure changes the
+   quantitative answer.</dd></dl>
+     </blockquote></div></div>
+<!--l. 39--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 39--><p class="noindent" >The  CGL  closure  showed  in  1956  that  a  magnetized  collisionless  plasma  can  still
+     be  described  by  a  fluid  system,  provided  one  respects  the  magnetic-field  direction
+     and  the  adiabatic  invariants  <a 
+href="lecture19.html#Xchew1956_boltzmann">Chew  et&#x00A0;al.</a>&#x00A0;[<a 
+href="lecture19.html#Xchew1956_boltzmann">1956</a>].  The  next  step  was  to  recognize
+     that not every low-frequency problem is captured accurately by a local fluid closure.
+     Kulsrud&#8217;s treatment made the low-frequency bridge from MHD to drift-kinetic theory
+     especially clear <a 
+href="lecture19.html#Xkulsrud1983_mhd_description">Kulsrud</a>&#x00A0;[<a 
+href="lecture19.html#Xkulsrud1983_mhd_description">1983</a>]. For anisotropy-driven instabilities, the classic mirror
+     calculations of Vedenov and Sagdeev and the later drift-mirror analysis of Hasegawa
+     showed  explicitly  where  the  kinetic  response  changes  the  answer  <a 
+href="#XVedenovSagdeev1958Mirror">Vedenov  and
+     Sagdeev</a>&#x00A0;[<a 
+href="#XVedenovSagdeev1958Mirror">1958a</a>,<a 
+href="#XVedenovSagdeev1958Dokl">b</a>],&#x00A0;<a 
+href="#Xhasegawa1969_drift_mirror">Hasegawa</a>&#x00A0;[<a 
+href="#Xhasegawa1969_drift_mirror">1969</a>]. The physical mechanism of the mirror mode was
+     later clarified in a particularly transparent way by Southwood and Kivelson <a 
+href="#XSouthwood1993">Southwood
+     and Kivelson</a>&#x00A0;[<a 
+href="#XSouthwood1993">1993</a>]. The modern language &#8220;kinetic MHD&#8221; is therefore well chosen: it is
+     still MHD in its force balance, but kinetic in its closure.</p></blockquote></div></div>
+<!--l. 56--><p class="noindent" >Kinetic MHD sits in the gap between ideal fluid theory and full kinetic theory. It is still a long-wavelength,
+low-frequency theory, so the magnetic field and bulk motion are treated in an MHD spirit. But it
+refuses to guess the pressure response. Instead it computes that response from the kinetic
+equation. That is why this lecture is worth separating from the ordinary Alfvn-wave lecture: it
+is not merely another dispersion relation, but a different lesson about how plasma theory is
+organized.
+<a 
+ id="x1-48004r39"></a>
+</p>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">17.1   </span> <a 
+ id="x1-490001"></a>What kinetic MHD keeps and what it changes</h3>
+<!--l. 69--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-500001"></a>Ordering.</span>
+We retain the low-frequency, magnetized ordering <a id="eq-eq-kinmhd-ordering"></a><div class="math-display">\[\omega \ll \Omega _i, \qquad k_\perp \rho _i \ll 1, \tag{17.1}\]</div>
+so the frozen-in relation of Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>) and the basic low-frequency force balance of Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) remain useful.
+What is <span 
+class="ecti-1095">not </span>assumed is rapid collisional relaxation to a local Maxwellian.
+</p>
+<!--l. 82--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-510001"></a>Force law versus closure.</span>
+In a uniform anisotropic equilibrium with \(\B _0=B_0\vect {e}_z\) and \(\vect {k}=k_\perp \vect {e}_x+k_\parallel \vect {e}_z\), the linearized momentum equation still has the same
+geometric pieces as in the previous lecture. For the compressive branch follows directly from perpendicular
+and parallel force balance: one may write schematically <a id="eq-eq-kinmhd-perp_force"></a><div class="math-display">\[\begin{aligned}-\omega ^2 \rho _0 \vect {\xi }_\perp &amp;= - i\vect {k}_\perp \left ( \delta p_\perp + \frac {B_0\delta B}{\muo } \right ) - k_\parallel ^2 \left ( \frac {B_0^2}{\muo }+p_{\perp 0}-p_{\parallel 0} \right )\vect {\xi }_\perp ,  \\ -\omega ^2 \rho _0 \xi _\parallel &amp;= - i k_\parallel \left [ \delta p_\parallel + \left (p_{\perp 0}-p_{\parallel 0}\right )\frac {\delta B}{B_0} \right ].\end{aligned} \tag{17.2}\]</div>
+</p><!--l. 111--><p class="noindent" >These are still MHD-looking equations. The real question is: what are \(\delta p_\perp \) and \(\delta p_\parallel \)? In CGL they come from the
+double-adiabatic laws. In kinetic MHD they come from the drift-kinetic equation.
+</p>
+<!--l. 116--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-520001"></a>The lesson in one sentence.</span>
+If a mode mainly tests magnetic tension, CGL and kinetic MHD often agree. If a mode mainly tests
+compressive pressure balance, the kinetic closure matters. That is why the firehose threshold is already
+visible in Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-firehose_threshold">16.46</a>), while the mirror threshold needs to be re-derived.
+<a 
+ id="x1-52001r50"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">17.2   </span> <a 
+ id="x1-530002"></a>Drift-kinetic pressure response of a bi-Maxwellian plasma</h3>
+<!--l. 127--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-540002"></a>Geometry and variables.</span>
+Take a uniform equilibrium field <a id="eq-eq-kinmhd-geometry"></a><div class="math-display">\[\B _0 = B_0 \vect {e}_z, \qquad \delta B \equiv \delta B_\parallel , \qquad E_\parallel = - i k_\parallel \tilde {\Phi }, \qquad \propto e^{-i\omega t + i k_\parallel z}. \tag{17.4}\]</div>
+For compressive perturbations, <a id="eq-eq-kinmhd-dBxi"></a><div class="math-display">\[\frac {\delta B}{B_0} = - i \vect {k}_\perp \cdot \vect {\xi }_\perp . \tag{17.5}\]</div>
+Use guiding-center variables \((\mu ,v_\parallel )\), where <a id="eq-eq-kinmhd-mu"></a><div class="math-display">\[\mu \equiv \frac {m_s v_\perp ^2}{2B_0}. \tag{17.6}\]</div>
+The equilibrium distribution for each species is taken to be bi-Maxwellian: <a id="eq-eq-kinmhd-f0"></a><div class="math-display">\[f_{0s}(\mu ,v_\parallel ) = n_0 \frac {m_s}{2\pi T_{\perp s}} \left (\frac {m_s}{2\pi T_{\parallel s}}\right )^{1/2} \exp \left ( -\frac {m_s v_\parallel ^2}{2T_{\parallel s}} -\frac {\mu B_0}{T_{\perp s}} \right ). \tag{17.7}\]</div>
+It is convenient to define <a id="eq-eq-kinmhd-defs"></a><div class="math-display">\[A_s \equiv \frac {T_{\perp s}}{T_{\parallel s}}, \qquad v_{{\rm th}\parallel s} \equiv \sqrt {\frac {2T_{\parallel s}}{m_s}}, \qquad x_s \equiv \frac {v_\parallel }{v_{{\rm th}\parallel s}}, \qquad \zeta _s \equiv \frac {\omega }{k_\parallel v_{{\rm th}\parallel s}}. \tag{17.8}\]</div>
+</p>
+<!--l. 174--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-550002"></a>Linearized drift-kinetic equation.</span>
+The parallel part of the drift-kinetic equation is <a id="eq-eq-kinmhd-dke_linear"></a><div class="math-display">\[-i(\omega -k_\parallel v_\parallel ) f_{1s} + \left ( \frac {q_s}{m_s}E_\parallel - \frac {\mu }{m_s} i k_\parallel \delta B \right ) \pp {f_{0s}}{v_\parallel } =0. \tag{17.9}\]</div>
+For the bi-Maxwellian equilibrium, <a id="eq-eq-kinmhd-df0dv"></a><div class="math-display">\[\pp {f_{0s}}{v_\parallel } = -\frac {m_s v_\parallel }{T_{\parallel s}} f_{0s}. \tag{17.10}\]</div>
+Insert \(E_\parallel =-ik_\parallel \tilde {\Phi }\) and Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-df0dv">17.10</a>) into Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dke_linear">17.9</a>): <a id="eq-eq-kinmhd-f1"></a><div class="math-display">\[\begin{aligned}f_{1s} &amp;= \frac {k_\parallel v_\parallel }{\omega -k_\parallel v_\parallel } \left ( \frac {q_s\tilde {\Phi }}{T_{\parallel s}} + \frac {\mu \delta B}{T_{\parallel s}} \right )f_{0s} \nonumber \\ &amp;= \frac {x_s}{\zeta _s-x_s} \left ( \frac {q_s\tilde {\Phi }}{T_{\parallel s}} + \frac {\mu B_0}{T_{\parallel s}}\frac {\delta B}{B_0} \right )f_{0s}.\end{aligned} \tag{17.11}\]</div>
+</p><!--l. 216--><p class="noindent" >This formula already shows the central resonance: \(\omega -k_\parallel v_\parallel \).
+</p>
+<!--l. 219--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-560002"></a>Plasma-dispersion notation.</span>
+Introduce <a id="eq-eq-kinmhd-ZR"></a><div class="math-display">\[Z(\zeta ) = \frac {1}{\sqrt {\pi }} \int _{-\infty }^{\infty } \frac {e^{-x^2}}{x-\zeta }\,dx, \qquad R(\zeta )\equiv 1+\zeta Z(\zeta ), \tag{17.12}\]</div>
+                                                                                         
+                                                                                         
+and define \(R_s\equiv R(\zeta _s)\). The required Gaussian integrals are <a id="eq-eq-kinmhd-int1"></a><div class="math-display">\[\frac {1}{\sqrt {\pi }} \int _{-\infty }^{\infty } \frac {x e^{-x^2}}{\zeta -x}\,dx = - R(\zeta ), \tag{17.13}\]</div>
+and <a id="eq-eq-kinmhd-int3"></a><div class="math-display">\[\frac {1}{\sqrt {\pi }} \int _{-\infty }^{\infty } \frac {x^3 e^{-x^2}}{\zeta -x}\,dx = -\left (\frac {1}{2}+\zeta ^2 R(\zeta )\right ). \tag{17.14}\]</div>
+</p>
+<!--l. 250--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-570002"></a>Density and pressure moments.</span>
+At fixed \((\mu ,v_\parallel )\), the phase-space measure is <a id="eq-eq-kinmhd-measure"></a><div class="math-display">\[d^3v = \frac {2\pi B_0}{m_s}\,d\mu \,dv_\parallel . \tag{17.15}\]</div>
+Evaluating the moments gives <a id="eq-eq-kinmhd-dns"></a><div class="math-display">\[\begin{aligned}\frac {\delta n_s}{n_0} &amp;= \left [1-A_s R_s\right ]\frac {\delta B}{B_0} - R_s\frac {q_s\tilde {\Phi }}{T_{\parallel s}},  \\[4pt] \delta p_{\perp s} &amp;= 2p_{\perp s}\left [1-A_s R_s\right ]\frac {\delta B}{B_0} - p_{\perp s} R_s \frac {q_s\tilde {\Phi }}{T_{\parallel s}},  \\[4pt] \delta p_{\parallel s} &amp;= p_{\parallel s} \left [1-A_s\left (1+2\zeta _s^2R_s\right )\right ]\frac {\delta B}{B_0} - p_{\parallel s}\left (1+2\zeta _s^2R_s\right )\frac {q_s\tilde {\Phi }}{T_{\parallel s}}.\end{aligned} \tag{17.16}\]</div>
+</p><!--l. 280--><p class="noindent" >For singly charged ions and electrons, quasineutrality \(\delta n_i=\delta n_e\) gives <a id="eq-eq-kinmhd-phi_general"></a><div class="math-display">\[\boxed { e\tilde {\Phi } = \frac {A_eR_e-A_iR_i} {R_i/T_{\parallel i}+R_e/T_{\parallel e}} \frac {\delta B}{B_0}. } \tag{17.19}\]</div>
+Equations (<a href="lecture17.html#eq-eq-kinmhd-dns">17.16</a>)&#8211;(<a href="lecture17.html#eq-eq-kinmhd-phi_general">17.19</a>) are the core of kinetic MHD for this problem.
+<a 
+ id="x1-57001r54"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">17.3   </span> <a 
+ id="x1-580003"></a>Slow mirror ordering</h3>
+<!--l. 299--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-590003"></a>Low-frequency limit.</span>
+The mirror and long-wavelength firehose instabilities live in the regime <a id="eq-eq-kinmhd-slow_ordering"></a><div class="math-display">\[|\zeta _s| = \left |\frac {\omega }{k_\parallel v_{{\rm th}\parallel s}}\right |\ll 1, \qquad \Longrightarrow \qquad R_s \to 1. \tag{17.20}\]</div>
+Then Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-phi_general">17.19</a>) becomes <a id="eq-eq-kinmhd-phi_slow"></a><div class="math-display">\[e\tilde {\Phi } = \frac {A_e-A_i} {1/T_{\parallel i}+1/T_{\parallel e}} \frac {\delta B}{B_0}. \tag{17.21}\]</div>
+</p>
+<!--l. 317--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-600003"></a>Equal anisotropy or vanishing \(E_\parallel \).</span>
+A particularly clean limit is <a id="eq-eq-kinmhd-noepar"></a><div class="math-display">\[A_i=A_e\equiv A, \qquad \tilde {\Phi }=0. \tag{17.22}\]</div>
+Then Eqs.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dns">17.16</a>)&#8211;(<a href="lecture17.html#eq-eq-kinmhd-dpars">17.18</a>) reduce to <a id="eq-eq-kinmhd-dn_slow"></a><div class="math-display">\[\begin{aligned}\frac {\delta n}{n_0} &amp;= (1-A)\frac {\delta B}{B_0},  \\ \delta p_{\parallel s} &amp;= p_{\parallel s}(1-A)\frac {\delta B}{B_0},  \\ \delta p_{\perp s} &amp;= 2p_{\perp s}(1-A)\frac {\delta B}{B_0}.\end{aligned} \tag{17.23}\]</div>
+</p><!--l. 342--><p class="noindent" >These are the formulas used below to derive the simplest collisionless mirror threshold.
+<a 
+ id="x1-60001r59"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">17.4   </span> <a 
+ id="x1-610004"></a>Firehose: loss of field-line tension</h3>
+<!--l. 350--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-620004"></a>Transverse polarization.</span>
+Take a purely shear perturbation <a id="eq-eq-kinmhd-shear_ansatz"></a><div class="math-display">\[\vect {\xi } = \xi _y \vect {e}_y, \qquad \vect {k}\cdot \vect {\xi }=0, \qquad \frac {\delta B}{B_0}=0. \tag{17.26}\]</div>
+Then the kinetic pressure response drops out because the perturbation is incompressible and contains no \(\delta B_\parallel \).
+The perturbed magnetic field is <a id="eq-eq-kinmhd-B1_shear"></a><div class="math-display">\[\B _1 = i k_\parallel B_0 \xi _y \vect {e}_y, \tag{17.27}\]</div>
+so the field-direction perturbation is <a id="eq-eq-kinmhd-b1_shear"></a><div class="math-display">\[\vect {b}_1 = i k_\parallel \xi _y \vect {e}_y. \tag{17.28}\]</div>
+</p>
+<!--l. 373--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-630004"></a>Force balance.</span>
+The magnetic tension force is <a id="eq-eq-kinmhd-magnetic_shear_force"></a><div class="math-display">\[\frac {1}{\muo }(i\vect {k}\times \B _1)\times \B _0 = - \frac {B_0^2}{\muo }k_\parallel ^2 \xi _y \vect {e}_y. \tag{17.29}\]</div>
+The anisotropic pressure tensor contributes <a id="eq-eq-kinmhd-pressure_shear_force"></a><div class="math-display">\[-\left (\divergence \tens {P}_1\right )_y = -\left (p_{\perp 0}-p_{\parallel 0}\right )k_\parallel ^2\xi _y. \tag{17.30}\]</div>
+Hence <a id="eq-eq-kinmhd-firehose_force"></a><div class="math-display">\[-\omega ^2 \rho _0 \xi _y = - k_\parallel ^2 \left ( \frac {B_0^2}{\muo }+p_{\perp 0}-p_{\parallel 0} \right )\xi _y. \tag{17.31}\]</div>
+Therefore <a id="eq-eq-kinmhd-firehose_dispersion"></a><div class="math-display">\[\boxed { \omega ^2 = k_\parallel ^2 \frac {B_0^2/\muo +p_{\perp 0}-p_{\parallel 0}}{\rho _0}. } \tag{17.32}\]</div>
+This is exactly the same result as Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-firehose_cgl">16.45</a>). The firehose threshold is therefore <a id="eq-eq-kinmhd-firehose_threshold"></a><div class="math-display">\[\boxed { p_{\parallel 0}-p_{\perp 0} &gt; \frac {B_0^2}{\muo }. } \tag{17.33}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 418--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-640004"></a>The lesson.</span>
+The firehose mode is already present in anisotropic fluid theory because its physics is the sign of the
+field-line tension. The closure hardly enters. In that sense the firehose instability is the easiest
+anisotropy-driven mode to understand.
+<a 
+ id="x1-64001r62"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">17.5   </span> <a 
+ id="x1-650005"></a>Mirror: failure of compressive balance</h3>
+<!--l. 428--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-660005"></a>Oblique compressive perturbation.</span>
+Now take a compressive perturbation in the \(x\)&#8211;\(z\) plane. From Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dBxi">17.5</a>), <a id="eq-eq-kinmhd-dB_relations"></a><div class="math-display">\[\frac {\delta B}{B_0} = - i k_\perp \xi _x, \qquad \frac {\delta \B _\perp }{B_0} = i k_\parallel \vect {\xi }_\perp . \tag{17.34}\]</div>
+The perturbed curvature of an initially straight field line is <a id="eq-eq-kinmhd-kappa1"></a><div class="math-display">\[\vect {\kappa }_1 = (\vect {b}\cdot \grad )\vect {b}_1 = i k_\parallel \vect {b}_1 = - k_\parallel ^2 \vect {\xi }_\perp . \tag{17.35}\]</div>
+Take the divergence of the perpendicular force balance (<a href="lecture17.html#eq-eq-kinmhd-perp_force">17.2</a>) and use Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dBxi">17.5</a>). One obtains
+<a id="eq-eq-kinmhd-mirror_master"></a><div class="math-display">\[\boxed { \omega ^2 \frac {\delta B}{B_0} = k_\perp ^2 \left ( \frac {\delta p_\perp }{\rho _0} + v_A^2 \frac {\delta B}{B_0} \right ) + k_\parallel ^2 \left ( v_A^2 + c_\perp ^2 - c_\parallel ^2 \right ) \frac {\delta B}{B_0}. } \tag{17.36}\]</div>
+The parallel force balance is <a id="eq-eq-kinmhd-mirror_parallel"></a><div class="math-display">\[-\omega ^2 \rho _0 \xi _\parallel = - i k_\parallel \left [ \delta p_\parallel + \left (p_{\perp 0}-p_{\parallel 0}\right )\frac {\delta B}{B_0} \right ]. \tag{17.37}\]</div>
+In the slow limit this says that the parallel force is nearly balanced, so the mirror mode is oblique rather
+than exactly perpendicular.
+</p>
+<!--l. 485--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670005"></a>Insert the kinetic closure.</span>
+Use the slow-ordering response (<a href="lecture17.html#eq-eq-kinmhd-dperp_slow">17.25</a>): <a id="eq-eq-kinmhd-dperp_insert"></a><div class="math-display">\[\delta p_\perp = 2p_{\perp 0}(1-A)\frac {\delta B}{B_0}, \qquad A \equiv \frac {T_\perp }{T_\parallel }. \tag{17.38}\]</div>
+Equation (<a href="lecture17.html#eq-eq-kinmhd-mirror_master">17.36</a>) becomes <a id="eq-eq-kinmhd-mirror_dispersion"></a><div class="math-display">\[\begin{aligned}\omega ^2 &amp;= k_\perp ^2 \left [ v_A^2 + 2\frac {p_{\perp 0}}{\rho _0}(1-A) \right ] + k_\parallel ^2 \left ( v_A^2+c_\perp ^2-c_\parallel ^2 \right ) \nonumber \\ &amp;= k_\perp ^2 v_A^2 \left [ 1+\beta _\perp ^\ast (1-A) \right ] + k_\parallel ^2 \left ( v_A^2+c_\perp ^2-c_\parallel ^2 \right ),\end{aligned} \tag{17.39}\]</div>
+</p><!--l. 522--><p class="noindent" >where for compactness we defined <a id="eq-eq-kinmhd-betaperp"></a><div class="math-display">\[\beta _\perp ^\ast \equiv \frac {2p_{\perp 0}}{\rho _0 v_A^2} = \frac {2\muo p_{\perp 0}}{B_0^2}. \tag{17.40}\]</div>
+The mirror mode is most unstable for \(k_\perp \gg k_\parallel \), so the first term controls the threshold: <a id="eq-eq-kinmhd-mirror_criterion_start"></a><div class="math-display">\[1+\beta _\perp ^\ast (1-A) &lt; 0. \tag{17.41}\]</div>
+Thus the simplest kinetic-MHD mirror criterion is <a id="eq-eq-kinmhd-mirror_threshold"></a><div class="math-display">\[\boxed { \frac {T_\perp }{T_\parallel } &gt; 1+\frac {1}{\beta _\perp ^\ast }. } \tag{17.42}\]</div>
+</p><!--l. 544--><p class="noindent" >It is also interesting that this "magnetosonic" branch also has a second type of  firehose instability. It, like
+the <span 
+class="ecsl-1095">mirror </span>is oblique but becomes large when the parallel wavelength is short and \(k_\parallel \gg k_\perp \). The firehose condition
+governing stability is exactly the same as before but the character of the wave is no longer a shear but
+rather compressional.
+</p>
+<!--l. 546--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-680005"></a>Comparison with CGL.</span>
+Compare Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-mirror_threshold">17.42</a>) with the CGL result (<a href="lecture16.html#eq-eq-alfven-cgl_mirror_threshold">16.54</a>). The magnetic part of the force balance is the
+same in both cases. The difference is entirely in the compressive pressure response. That is
+why it is worth separating this lecture from the ordinary wave lecture: the mirror mode is the
+cleanest example of a low-frequency problem whose geometry is fluid-like but whose closure is
+kinetic.
+</p>
+<!--l. 554--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-690005"></a>A useful physical picture.</span>
+The mirror mode bunches magnetic flux so that some regions have larger \(B\) and some smaller \(B\). When \(T_\perp &gt;T_\parallel \),
+                                                                                         
+                                                                                         
+particles with large magnetic moment prefer the weaker-\(B\) regions. That pile-up raises the perpendicular
+pressure where the field is already weak, which further deepens the magnetic well. The mode is therefore a
+compressive anti-restoring response. Southwood and Kivelson&#8217;s discussion makes this picture especially
+transparent <a 
+href="#XSouthwood1993">Southwood and Kivelson</a>&#x00A0;[<a 
+href="#XSouthwood1993">1993</a>].
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-690011"></a>
+                                                                                         
+                                                                                         
+<!--l. 565--><p class="noindent" ><img 
+src="figures/instability_mirror_firehose_solarwind.jpg" alt="PIC"  
+width="352" height="233"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;17.1:  </span><span  
+class="content">Solar-wind  proton  anisotropy  data  with  mirror  and  firehose  thresholds  overlaid.
+The point of the figure is not merely observational: nature actually populates the kinetic-MHD
+marginality boundaries. <a 
+href="#XBale2009Anisotropy">Bale et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBale2009Anisotropy">2009</a>]</span></div><!--tex4ht:label?: x1-690011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 573--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-700005"></a>Observational perspective.</span>
+The expanding solar wind provides the cleanest natural laboratory for these anisotropy-driven instabilities.
+As the plasma expands, \(T_\perp /T_\parallel \) is driven away from unity, but the proton distribution is observed to remain
+bounded by the mirror and oblique-firehose thresholds rather than wandering freely in anisotropy space
+<a 
+href="#XHellinger2006Anisotropy">Hellinger et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHellinger2006Anisotropy">2006</a>],&#x00A0;<a 
+href="#XBale2009Anisotropy">Bale et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBale2009Anisotropy">2009</a>]. That is a beautiful confirmation of the kinetic-MHD point of
+view: the plasma evolves under low-frequency MHD-like dynamics, but kinetic microinstabilities regulate
+the pressure tensor.
+</p><!--l. 584--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 584--><p class="noindent" >Kinetic MHD is still a reduced theory. It assumes \(\omega \ll \Omega _i\) and \(k_\perp \rho _i\ll 1\). Once finite-Larmor-radius
+     corrections,  cyclotron  resonances,  or  strongly  non-Maxwellian  particle  populations
+     become essential, one must go beyond kinetic MHD as well.</p></blockquote></div></div>
+<!--l. 591--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 591--><p class="noindent" >This lecture gives the cleanest lesson in anisotropic plasma theory.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The  <span 
+class="ecti-1095">force  law  </span>remains  MHD-like:  field-line  bending,  magnetic  compression,  and
+   anisotropic stress appear exactly where fluid intuition says they should.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The <span 
+class="ecti-1095">closure </span>is where the kinetic information lives. Equations (<a href="lecture17.html#eq-eq-kinmhd-dns">17.16</a>)&#8211;(<a href="lecture17.html#eq-eq-kinmhd-phi_general">17.19</a>) replace
+   the double-adiabatic laws.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The  shear  firehose  mode  is  basically  a  tension  problem  and  is  already  captured
+   by anisotropic fluid theory, whereas the mirror mode and a second firehose is a
+   compressive response problem and therefore tests the closure.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-710005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <span 
+class="ecti-1095">Nuclear</span>
+  <span 
+class="ecti-1095">Fusion Supplement, Part 2</span>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-720005"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dke_linear">17.9</a>), derive Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-f1">17.11</a>). Keep the signs of \(E_\parallel \) and \(\delta B\) explicit
+                throughout.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.2.</span>  </dt><dd 
+class="enumerate-enumitem">Use the Gaussian integrals (<a href="lecture17.html#eq-eq-kinmhd-int1">17.13</a>)&#8211;(<a href="lecture17.html#eq-eq-kinmhd-int3">17.14</a>) to derive Eqs.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-dns">17.16</a>)&#8211;(<a href="lecture17.html#eq-eq-kinmhd-dpars">17.18</a>).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.3.</span>  </dt><dd 
+class="enumerate-enumitem">Show directly that the firehose dispersion (<a href="lecture17.html#eq-eq-kinmhd-firehose_dispersion">17.32</a>) does not depend on the kinetic
+                pressure response for the shear polarization \(\vect {\xi }=\xi _y\vect {e}_y\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.4.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture17.html#eq-eq-kinmhd-mirror_master">17.36</a>), re-derive the mirror threshold (<a href="lecture17.html#eq-eq-kinmhd-mirror_threshold">17.42</a>). Identify clearly
+                where the ordering \(k_\perp \gg k_\parallel \) enters.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.5.</span>  </dt><dd 
+class="enumerate-enumitem">Compare the kinetic mirror threshold (<a href="lecture17.html#eq-eq-kinmhd-mirror_threshold">17.42</a>) with the CGL threshold (<a href="lecture16.html#eq-eq-alfven-cgl_mirror_threshold">16.54</a>).
+                Which part of the calculation is the same, and which part changes?
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 17.6.</span>  </dt><dd 
+class="enumerate-enumitem">Repeat  the  derivation  of  the  slow-ordering  pressure  response  for  the  case  of
+                isotropic electrons and anisotropic ions. How do the coefficients of \(\delta p_\perp \) and \(\delta p_\parallel \) change?</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

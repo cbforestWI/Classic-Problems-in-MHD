@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 24 External Kink Modes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture23.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture25.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;24</span><br /><a 
+ id="x1-12400024"></a>External Kink Modes</h2>
+<!--l. 8--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 8--><p class="noindent" >Only after the fixed-boundary problem has been cleared does it make sense to let the
+     plasma edge move. In the external problem \(\xi _a\) is free, the vacuum and wall contribute to
+     \(\delta W\), and instability occurs when the full plasma-plus-vacuum functional becomes negative
+     for a mode with \(\xi _a\neq 0\).</p></blockquote></div></div>
+<!--l. 15--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 15--><p class="noindent" >The external kink is where Newcomb&#8217;s framework becomes practically important. The
+     interior solution alone is not enough; one must also solve the vacuum problem and
+     impose the wall boundary condition. That logic, already clear in cylindrical pinch theory,
+     carried directly into tokamak design: internal profiles determine whether a regular plasma
+     solution exists, while the vacuum region and conducting structures decide whether the
+     boundary can bulge outward. That is one reason this sequence of lectures is so central
+     historically.</p></blockquote></div></div>
+<a 
+ id="x1-124001r127"></a>
+<h3 class="sectionHead"><span class="titlemark">24.1   </span> <a 
+ id="x1-1250001"></a>Vacuum energy and the surface form of \(\delta W\)</h3>
+<!--l. 28--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1260001"></a>Vacuum field.</span>
+Let the plasma occupy \(0\le r\le a\), with vacuum in \(a&lt;r&lt;b\) and a perfectly conducting wall at \(r=b\). In vacuum,
+<a id="eq-eq-vac_potential"></a><div class="math-display">\[\B _1 = -\grad \Phi , \qquad \lap \Phi = 0. \tag{24.1}\]</div>
+For a single helical harmonic, <a id="eq-eq-Phi_mode"></a><div class="math-display">\[\Phi (r,\theta ,z)=\phi (r)e^{i(m\theta +kz)}, \tag{24.2}\]</div>
+so <a id="eq-eq-laplace_radial"></a><div class="math-display">\[\frac {1}{r}\dd {}{r}\left (r\dd {\phi }{r}\right ) - \left (\frac {m^2}{r^2}+k^2\right )\phi =0. \tag{24.3}\]</div>
+The exact finite-\(k\) solutions are modified Bessel functions. For the large-aspect-ratio kink problem, however,
+\(|ka|\ll 1\), and it is more useful to display the long-wavelength form immediately: <a id="eq-eq-phi_longwave"></a><div class="math-display">\[\phi (r)=A r^{|m|}+B r^{-|m|}. \tag{24.4}\]</div>
+</p>
+<!--l. 57--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1270001"></a>Wall condition.</span>
+At a perfectly conducting wall, <a id="eq-eq-wall_bc"></a><div class="math-display">\[B_{1r}(b)=-\pp {\Phi }{r}\bigg |_{r=b}=0 \qquad \Longrightarrow \qquad \phi '(b)=0. \tag{24.5}\]</div>
+Applying (<a href="lecture24.html#eq-eq-wall_bc">24.5</a>) to (<a href="lecture24.html#eq-eq-phi_longwave">24.4</a>) gives <div class="math-display">\[B = A\,b^{2|m|},\]</div>
+so that <div class="math-display">\[\phi (r)=A\left (r^{|m|}+b^{2|m|}r^{-|m|}\right ).\]</div>
+</p>
+<!--l. 74--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1280001"></a>Matching at the plasma boundary.</span>
+At \(r=a\), ideal MHD requires <a id="eq-eq-Br_match"></a><div class="math-display">\[B_{1r}(a)= iF(a)\,\xi _a. \tag{24.8}\]</div>
+Since \(B_{1r}(a)=-\phi '(a)e^{i(m\theta +kz)}\), <a id="eq-eq-phi_prime_match"></a><div class="math-display">\[-\phi '(a)=iF(a)\,\xi _a. \tag{24.9}\]</div>
+                                                                                         
+                                                                                         
+This fixes the constant \(A\), and evaluating the vacuum magnetic energy then produces a pure boundary term,
+<a id="eq-eq-deltaWv_result"></a><div class="math-display">\[\delta W_v = \frac {\pi }{\muo }\,\frac {a^2F^2(a)}{|m|}\,\Lambda _m\,|\xi _a|^2, \tag{24.10}\]</div>
+where <a id="eq-eq-Lambda_approx"></a><div class="math-display">\[\Lambda _m = \frac {1+\alpha _m}{1-\alpha _m}, \qquad \alpha _m\equiv \left (\frac {a}{b}\right )^{2|m|}. \tag{24.11}\]</div>
+The no-wall limit is \(\Lambda _m\rightarrow 1\).
+</p>
+<!--l. 104--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1290001"></a>Full reduced functional.</span>
+Including the plasma term (<a href="lecture23.html#eq-eq-deltaW_f_g_form">23.92</a>), the total energy is <a id="eq-eq-deltaW_total_external"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \int _0^a\left (f|\xi '|^2+g|\xi |^2\right )dr + \left [ \left (\frac {FF^\dagger }{k_0^2}\right )_{r=a} + \frac {a^2F^2(a)}{|m|}\Lambda _m \right ]|\xi _a|^2. \tag{24.12}\]</div>
+This is the master expression for the external ideal problem.
+<a 
+ id="x1-129001r134"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">24.2   </span> <a 
+ id="x1-1300002"></a>From the internal solution to the surface energy</h3>
+<!--l. 125--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1310002"></a>What is assumed at this stage.</span>
+At this point the local pressure-driven tests of Lecture&#x00A0;25 have been passed and the fixed-boundary
+internal problem of Lecture&#x00A0;26 has no unstable mode. One now reopens the variational problem by
+allowing the edge displacement \(\xi _a\) to be nonzero and by keeping the vacuum term in (<a href="lecture24.html#eq-eq-deltaW_total_external">24.12</a>).
+</p>
+<!--l. 133--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1320002"></a>Convert the bulk term to a boundary term.</span>
+Starting from <div class="math-display">\[I\equiv \int _0^a\left (f|\xi '|^2+g|\xi |^2\right )dr,\]</div>
+use (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>) in the form \(g\xi =(f\xi ')'\): <div class="math-display">\[I = \int _0^a \left (f|\xi '|^2+(f\xi ')'\xi ^*\right )dr = \left [f\,\xi '\,\xi ^*\right ]_0^a .\]</div>
+Regularity makes the \(r=0\) term vanish, so <a id="eq-eq-bulk_to_boundary"></a><div class="math-display">\[\int _0^a\left (f|\xi '|^2+g|\xi |^2\right )dr = f(a)\,\xi _a'\,\xi _a^*. \tag{24.15}\]</div>
+Substituting (<a href="lecture24.html#eq-eq-bulk_to_boundary">24.15</a>) into (<a href="lecture24.html#eq-eq-deltaW_total_external">24.12</a>) yields the pure surface form <a id="eq-eq-deltaW_surface_only"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \left [ \left (\frac {F^2}{k_0^2}\frac {r\xi '}{\xi }\right )_{r=a} + \left (\frac {FF^\dagger }{k_0^2}\right )_{r=a} + \frac {a^2F^2(a)}{|m|}\Lambda _m \right ]|\xi _a|^2. \tag{24.16}\]</div>
+Everything has now been reduced to the boundary behavior of the minimizing interior solution.
+</p><!--l. 171--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 171--><p class="noindent" >Equation (<a href="lecture24.html#eq-eq-deltaW_surface_only">24.16</a>) is powerful precisely because it hides the labor in the interior problem.
+     The ratio \(a\xi '/\xi \) at the boundary is <tspan font-family="ecti" font-size="1095">not </tspan>arbitrary. It encodes the entire internal profile through
+     the solution of (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>). Also, the sign of \(\xi _a\) is just a normalization choice: the external
+     question is whether the free-boundary problem admits \(\xi _a\neq 0\) with total \(\delta W&lt;0\).</p></blockquote></div></div>
+<a 
+ id="x1-132001r139"></a>
+<h3 class="sectionHead"><span class="titlemark">24.3   </span> <a 
+ id="x1-1330003"></a>External kink and the role of the wall</h3>
+<!--l. 182--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1340003"></a>No-wall \(m=1\) limit.</span>
+If the plasma is internally stable and \(m=1\), the minimizing interior eigenfunction is rigid to leading
+order, so \(\xi '=0\) while the edge displacement \(\xi _a\) is now free to be nonzero. Using (<a href="lecture24.html#eq-eq-deltaW_surface_only">24.16</a>) with \(\Lambda _1=1\) gives
+<a id="eq-eq-tokamak_m1_nowall"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \frac {2B_0^2 a^2}{R_0^2} \left (1-\frac {1}{q_a}\right )|\xi _a|^2. \tag{24.17}\]</div>
+Hence <div class="math-display">\[q_a&gt;1\]</div>
+is the no-wall large-aspect-ratio external-kink threshold. This is exactly the same upper root that appeared
+in the periodic Kruskal&#8211;Shafranov discussion, Eq.&#x00A0;(<a href="lecture22.html#eq-eq-ks-threshold_periodic_nowall">22.39</a>).
+                                                                                         
+                                                                                         
+</p>
+<!--l. 202--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1350003"></a>A completely explicit analytic profile.</span>
+To make the full wall problem transparent, take the simplest analytic current profile: constant \(q(r)=q_a\),
+corresponding in the cylindrical model to a uniform axial current density. Then the factor \(\left (n-\frac {m}{q_a}\right )^2\) is constant, and
+the Euler&#8211;Lagrange equation (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>) becomes <a id="eq-eq-uniformq_EL"></a><div class="math-display">\[\dd {}{r}\left (r^3\dd {\xi }{r}\right )-(m^2-1)r\,\xi =0. \tag{24.19}\]</div>
+Try a power law \(\xi \sim r^s\). Then <div class="math-display">\[s(s+2)=m^2-1,\]</div>
+so <div class="math-display">\[s=m-1 \qquad \text {or}\qquad s=-m-1.\]</div>
+Regularity at the axis selects <a id="eq-eq-uniformq_regular"></a><div class="math-display">\[\xi (r)\propto r^{m-1}, \qquad \frac {a\xi '(a)}{\xi (a)}=m-1. \tag{24.22}\]</div>
+</p>
+<!--l. 230--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1360003"></a>Boundary energy for the analytic profile.</span>
+Insert (<a href="lecture24.html#eq-eq-uniformq_regular">24.22</a>) into (<a href="lecture24.html#eq-eq-deltaW_surface_only">24.16</a>). Using (<a href="lecture26.html#eq-eq-tokamak_F">26.5</a>)&#8211;(<a href="lecture26.html#eq-eq-tokamak_Fdagger">26.6</a>) and \(k_0^2a^2\simeq m^2\) gives <a id="eq-eq-tokamak_band_pre"></a><div class="math-display">\[\begin{aligned}\frac {\delta W}{2\pi ^2 R_0/\muo } &amp;= \frac {B_0^2a^2}{R_0^2 m^2 q_a^2} \Big [ (m-1)(nq_a-m)^2 + (n^2q_a^2-m^2) \nonumber \\ &amp;\hspace {3.3cm} + m\Lambda _m (nq_a-m)^2 \Big ]|\xi _a|^2 .\end{aligned} \tag{24.23}\]</div>
+</p><!--l. 248--><p class="noindent" >Now factor the bracket carefully: <div class="math-display">\[\begin{aligned}&amp;(m-1)(nq_a-m)^2+(n^2q_a^2-m^2)+m\Lambda _m(nq_a-m)^2 \nonumber \\ &amp;\qquad = m(nq_a-m)\left [(\Lambda _m+1)(nq_a-m)+2\right ].\end{aligned}\]</div>
+</p><!--l. 255--><p class="noindent" >Therefore <a id="eq-eq-tokamak_band_general"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \frac {B_0^2a^2}{R_0^2 m q_a^2} (nq_a-m)\left [(\Lambda _m+1)(nq_a-m)+2\right ]|\xi _a|^2. \tag{24.25}\]</div>
+Using (<a href="lecture24.html#eq-eq-Lambda_approx">24.11</a>), <div class="math-display">\[\Lambda _m+1 = \frac {2}{1-\alpha _m}, \qquad \alpha _m=\left (\frac {a}{b}\right )^{2m},\]</div>
+so (<a href="lecture24.html#eq-eq-tokamak_band_general">24.25</a>) becomes <a id="eq-eq-tokamak_band_factorized"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \frac {2B_0^2a^2}{R_0^2 m q_a^2(1-\alpha _m)} \, (nq_a-m) \left [nq_a-\left (m-1+\alpha _m\right )\right ] |\xi _a|^2. \tag{24.27}\]</div>
+Hence the ideal external mode is unstable only in the interval <a id="eq-eq-tokamak_band_interval"></a><div class="math-display">\[m-1+\alpha _m &lt; nq_a &lt; m, \qquad \alpha _m=\left (\frac {a}{b}\right )^{2m}, \tag{24.28}\]</div>
+or, equivalently, <a id="eq-eq-tokamak_band_interval_q"></a><div class="math-display">\[\boxed { \frac {m-1+\left (a/b\right )^{2m}}{n}&lt;q_a&lt;\frac {m}{n}. } \tag{24.29}\]</div>
+</p>
+<!--l. 297--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1370003"></a>Separate the no-wall and wall pieces.</span>
+For later resistive-wall use, it is convenient to write the ideal-wall result as <a id="eq-eq-tokamak_deltaW_split"></a><div class="math-display">\[\delta W_{\rm ideal}(b)=\delta W_\infty ^{\rm tok}+\delta W_b^{\rm tok}. \tag{24.30}\]</div>
+Setting \(\alpha _m=0\) in (<a href="lecture24.html#eq-eq-tokamak_band_factorized">24.27</a>) gives the no-wall energy <a id="eq-eq-tokamak_deltaW_infty"></a><div class="math-display">\[\frac {\delta W_\infty ^{\rm tok}}{2\pi ^2 R_0/\muo } = \frac {2B_0^2a^2}{R_0^2 m q_a^2} \, (nq_a-m)\left [nq_a-(m-1)\right ] |\xi _a|^2, \tag{24.31}\]</div>
+while the wall contribution is the difference <a id="eq-eq-tokamak_deltaW_b"></a><div class="math-display">\[\frac {\delta W_b^{\rm tok}}{2\pi ^2 R_0/\muo } = \frac {2B_0^2a^2}{R_0^2 m q_a^2} \, \frac {\alpha _m}{1-\alpha _m}(nq_a-m)^2 |\xi _a|^2. \tag{24.32}\]</div>
+The resistive-wall regime is the strip <a id="eq-eq-tokamak_rwm_strip"></a><div class="math-display">\[m-1&lt;nq_a&lt;m-1+\alpha _m, \tag{24.33}\]</div>
+where \(\delta W_\infty ^{\rm tok}&lt;0\) but \(\delta W_{\rm ideal}(b)=\delta W_\infty ^{\rm tok}+\delta W_b^{\rm tok}&gt;0\).
+</p>
+<!--l. 331--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1380003"></a>Connection back to Kruskal&#8211;Shafranov.</span>
+For \(m=n=1\), Eq.&#x00A0;(<a href="lecture24.html#eq-eq-tokamak_band_interval_q">24.29</a>) reduces to <div class="math-display">\[\left (\frac {a}{b}\right )^2&lt;q_a&lt;1,\]</div>
+which is exactly the periodic ideal-wall stability band derived earlier in Eq.&#x00A0;(<a href="lecture22.html#eq-eq-ks-periodic_reentrant_interval">22.62</a>). For general \((m,n)\) the same
+algebra produces a band immediately below each rational value \(q_a=m/n\). This is the diffuse-profile version of the
+same story: the wall introduces a second root, and that second root is what creates the stability
+window.
+</p>
+<div class="interactive-shell"><p class="interactive-title">Interactive External-Kink Explorer</p><p class="interactive-caption">Open a browser companion to the external-kink lecture. The app reproduces the lecture&#8217;s ideal-wall constant-\(q\) bands in \(q_a\), then replaces the analytic interior with a smooth tokamak current profile fixed by \(q_0\) and \(q_a\) so the edge logarithmic derivative \(a\xi\prime(a)/\xi(a)\) comes from a numerical Newcomb solve.</p><p><a class="interactive-button" href="media/external_kink_explorer.html">Open the external-kink explorer</a></p></div><hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1380011"></a>
+                                                                                         
+                                                                                         
+<!--l. 344--><p class="noindent" ><img 
+src="figures/external_kink_growth_comparison.png" alt="PIC"  
+width="446" height="188"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;24.1: </span><span  
+class="content">Comparison of external-kink growth-rate bands for analytic profile models with \(a/b=0.9\).
+Panel&#x00A0;(a) shows the tokamak-like constant-\(q\) case with \(n=1\) and several poloidal mode numbers \(m\), using
+Panel&#x00A0;(b) shows the RFP-like \(m=1\) branch for several toroidal mode numbers \(n\), using the rigid-core
+summary form of the constant-\(\lambda \) analogue, For reversed field, \(q_a&lt;0\), the unstable branches correspond to
+negative \(n\), so the toroidal mode number changes sign together with the edge safety factor. In both
+panels, growth occurs only where the plotted expression is positive.</span></div><!--tex4ht:label?: x1-1380011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 357--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1390003"></a>Kinetic energy and growth rate.</span>
+For a normal mode with time dependence \(e^{\gamma t}\), the ideal-MHD energy principle gives <div class="math-display">\[\delta W + \gamma ^2 \mathcal {K} = 0, \qquad \mathcal {K} \equiv \frac 12 \int \rho \, |\bm {\xi }|^2\, dV .\]</div>
+For the analytic constant-\(q\) profile, the regular internal solution is <div class="math-display">\[\xi _r(r) = \xi _a \left (\frac {r}{a}\right )^{m-1}.\]</div>
+If we approximate the inertia by the dominant radial displacement and take uniform density, then <div class="math-display">\[\begin{aligned}\mathcal {K} &amp;= \frac 12 \int _0^{2\pi } d\theta \int _0^{2\pi R_0} dz \int _0^a \rho \, |\xi _r|^2\, r\,dr \nonumber \\ &amp;= 2\pi ^2 R_0 \rho \int _0^a |\xi _a|^2 \left (\frac {r}{a}\right )^{2m-2} r\,dr \nonumber \\ &amp;= \frac {\pi ^2 \rho R_0 a^2}{m}\, |\xi _a|^2.\end{aligned}\]</div>
+</p><!--l. 382--><p class="noindent" >Using Eq.&#x00A0;(<a href="lecture24.html#eq-eq-tokamak_band_factorized">24.27</a>), <div class="math-display">\[\delta W = \frac {4\pi ^2 B_0^2 a^2}{\mu _0 R_0\, m q_a^2(1-\alpha _m)} \, (nq_a-m)\left [nq_a-(m-1+\alpha _m)\right ] |\xi _a|^2, \qquad \alpha _m=\left (\frac {a}{b}\right )^{2m}.\]</div>
+Therefore <div class="math-display">\[\gamma ^2 = -\frac {\delta W}{\mathcal {K}} = -\frac {4 B_0^2}{\mu _0 \rho R_0^2 q_a^2(1-\alpha _m)} \, (nq_a-m)\left [nq_a-(m-1+\alpha _m)\right ].\]</div>
+Writing \(v_A^2 = B_0^2/(\mu _0 \rho )\), this becomes <div class="math-display">\[\boxed { \left (\frac {\gamma R_0}{v_A}\right )^2 = \frac {-4 (nq_a-m)\left [nq_a-(m-1+\alpha _m)\right ]} {q_a^2(1-\alpha _m)} } \qquad \left (\alpha _m=\left (\frac {a}{b}\right )^{2m}\right ).\]</div>
+Hence instability requires \(\gamma ^2&gt;0\), i.e. <div class="math-display">\[\frac {m-1+\alpha _m}{n} &lt; q_a &lt; \frac {m}{n}.\]</div>
+</p>
+<!--l. 419--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1400003"></a>The resistive-wall continuation.</span>
+Once the shell conductivity is finite, the ideal-wall increment \(\delta W_b^{\rm tok}\) is only partially restored. The thin-wall
+interpolation and dispersion relation derived in the Kruskal&#8211;Shafranov lecture, Eqs.&#x00A0;(<a href="lecture22.html#eq-eq-ks-RWM_interpolation">22.107</a>) and (<a href="lecture22.html#eq-eq-ks-RWM_dispersion">22.110</a>),
+therefore give <a id="eq-eq-tokamak_rwm_growth"></a><div class="math-display">\[\gamma \tau _w = -\frac {2b^2}{b^2-a^2} \frac {\delta W_\infty ^{\rm tok}}{\delta W_{\rm ideal}(b)}. \tag{24.42}\]</div>
+That is the slow RWM branch sitting just below the ideal-wall threshold. The same bookkeeping
+will reappear in Appendix&#x00A0;E, where Eqs.&#x00A0;(E.44) and (E.45) give the corresponding \(m=1\) RFP
+energies.
+</p>
+<!--l. 437--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1410003"></a>Constant-\(\lambda \) RFP analogue.</span>
+The force-free Taylor equilibrium \(\curl \B =\lambda \B \) gives the RFP companion to the analytic constant-\(q\) exercise.
+Appendix&#x00A0;E works the derivation through explicitly, starting from the Bessel core (E.26) and the edge
+safety-factor relation (E.32) and ending at Eqs.&#x00A0;(E.37)&#8211;(E.42). In the same rigid-core \(m=1\) approximation used
+here, the result can be written as <a id="eq-eq-rfp_summary_surface"></a><div class="math-display">\[\frac {\delta W_{m=1}^{\rm RFP}}{2\pi ^2 R_0/\muo } \simeq \frac {2B_{\theta a}^2}{1-\alpha _1} \,(nq_a-1)(nq_a-\alpha _1)\,|\xi _a|^2, \qquad \alpha _1=\left (\frac {a}{b}\right )^2, \tag{24.43}\]</div>
+with \(B_{\theta a}\equiv B_\theta (a)\). For a uniform-density rigid core, <a id="eq-eq-rfp_summary_growth"></a><div class="math-display">\[\left (\frac {\gamma a}{v_{A\theta a}}\right )^2 \simeq \frac {-4 (nq_a-1)(nq_a-\alpha _1)}{1-\alpha _1}, \qquad v_{A\theta a}^2\equiv \frac {B_{\theta a}^2}{\mu _0\rho }. \tag{24.44}\]</div>
+So the same surface-energy logic predicts a low-\(q\) RFP band \(\alpha _1&lt;nq_a&lt;1\): the qualitative difference is that \(q_a&lt;1\) lets several
+toroidal harmonics fit below the same upper root.
+</p>
+<!--l. 467--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1420003"></a>What these analytic profiles are good for.</span>
+The constant-\(q\) profile is not the only choice. A constant-\(\lambda \) force-free profile leads to the familiar
+Bessel-function equilibrium, and its RFP free-boundary reduction is worked through in Appendix&#x00A0;E,
+Eqs.&#x00A0;(E.28)&#8211;(E.50). For the variational logic in the tokamak setting, the constant-\(q\) example is hard to beat
+because it makes the boundary ratio \(a\xi '/\xi \) analytic and therefore makes the stability bands, the no-wall/wall
+split, and the RWM continuation completely explicit.
+</p><!--l. 478--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 478--><p class="noindent" >This four-lecture sequence is the real payoff of Newcomb&#8217;s framework. We find:
+                                                                                         
+                                                                                         
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">a one-dimensional variational formulation for the screw pinch;
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">local pressure-driven tests (Suydam and Mercier);
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">the fixed-boundary \(m=1\) internal kink when \(q_0&lt;1\);
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">external kink bands below each rational \(q_a=m/n\) once the wall solution is kept, together with
+   the slow resistive-wall continuation when only a fraction of the ideal-wall increment
+   survives.</dd></dl>
+     <!--l. 488--><p class="noindent" >The wall does not merely shift a number. It changes the factorization of \(\delta W\) and introduces
+     a second root. That is exactly why the diffuse-pinch problem is richer than the
+     surface-current Kruskal&#8211;Shafranov model while still remaining close enough to it to teach
+     from.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1430003"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew1956_boltzmann"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;F. Chew, M.&#x00A0;L. Goldberger, and F.&#x00A0;E. Low.  The Boltzmann equation and the one-fluid
+  hydromagnetic  equations  in  the  absence  of  particle  collisions.    <tspan font-family="ecti" font-size="1095">Proceedings  of  the  Royal</tspan>
+  <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
+  doi:<a 
+href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnorthrop1963adiabatic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Theodore&#x00A0;G. Northrop.  <tspan font-family="ecti" font-size="1095">The Adiabatic Motion of Charged Particles</tspan>.  Interscience, New York,
+  1963.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud1983_mhd_description"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> R.&#x00A0;M. Kulsrud.   Mhd description of plasma.   In A.&#x00A0;A. Galeev and R.&#x00A0;N. Sudan, editors,
+  <tspan font-family="ecti" font-size="1095">Handbook of Plasma Physics, Volume 1: Basic Plasma Physics I</tspan>, chapter 1.4, pages 115&#8211;145.
+  North-Holland, Amsterdam, 1983. Series editors: M. N. Rosenbluth and R. Z. Sagdeev.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-1440003"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 24.1.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting  from  (<a href="lecture23.html#eq-eq-EL_template">23.93</a>),  rederive  (<a href="lecture23.html#eq-eq-newcomb_internal_EL">23.99</a>)  and  (<a href="lecture23.html#eq-eq-newcomb_natural_bc">23.100</a>)  without  skipping  the
+                integration-by-parts step.
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 24.2.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture25.html#eq-eq-deltaW_local">25.8</a>), derive the Suydam criterion (<a href="lecture25.html#eq-eq-suydam_criterion_shear">25.17</a>) and verify the factor of
+                \(8\) in front of \(\muo p'/B_z^2\).
+                </dd><dt class="enumerate-enumitem">
+                                                                                         
+                                                                                         
+<tspan font-family="ecbx" font-size="1095">Problem 24.3.</tspan>  </dt><dd 
+class="enumerate-enumitem">Starting from (<a href="lecture25.html#eq-eq-mercier_circular">25.37</a>), show that the toroidal correction relative to Suydam is \(\Delta _{\rm tor}=-q^2p'\).
+                For \(p'&lt;0\), determine the sign of the pressure term for \(q&lt;1\), \(q=1\), and \(q&gt;1\).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 24.4.</tspan>  </dt><dd 
+class="enumerate-enumitem">For  the  analytic  profile  \(q(r)=q_a\),  derive  (<a href="lecture24.html#eq-eq-tokamak_band_factorized">24.27</a>)  explicitly  for  \(m=2\),  \(n=1\)  and  identify  the
+                wall-stabilized interval in \(q_a\).
+                </dd><dt class="enumerate-enumitem">
+<tspan font-family="ecbx" font-size="1095">Problem 24.5.</tspan>  </dt><dd 
+class="enumerate-enumitem">Repeat the vacuum calculation leading to (<a href="lecture24.html#eq-eq-Lambda_approx">24.11</a>) for a no-wall plasma by taking
+                \(b\rightarrow \infty \), and show directly that \(\Lambda _m\rightarrow 1\).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

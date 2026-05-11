@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tearing Mode Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --accent-soft: #dcecf7;
+      --target: #b64646;
+      --flux: #2d6ea8;
+      --green: #2f7d49;
+      --gold: #b98a3d;
+      --purple: #7059b8;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 76ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    select {
+      width: 100%;
+      padding: 0.45rem 0.55rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fcfeff;
+      color: var(--ink);
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.95rem;
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 64ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .mini-plot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      margin-top: 0.9rem;
+      color: #59707f;
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tearing Mode Explorer</h1>
+  <p class="lede">
+    This browser-side companion now compares five outer-region tearing models. The tokamak-like branch uses the
+    smooth current profile <em>J<sub>z</sub>(r) = Ĵ (1 - r²/a²)<sup>&nu;</sup></em>. One RFP-like branch uses a
+    Robinson-style force-free equilibrium with a constant-<em>&lambda;</em> core and an edge roll-off to zero at the wall.
+    A second tokamak-like branch uses the lecture’s top-hat current profile, with a uniform current core and a
+    current-free annulus where the rational surface sits analytically.
+    A second RFP-like branch uses the phenomenological alpha-profile
+    <em>&lambda;(r)=&lambda;<sub>0</sub>[1-(r/a)<sup>&alpha;</sup>]</em>, which is a simple beyond-Taylor-state model.
+    A third RFP-like branch uses the Sprott-Shen modified polynomial function model as a non-Taylor-state profile with
+    finite-pressure structure. In every case the explorer reconstructs the equilibrium, solves the outer tearing equation
+    on both sides of the resonant surface, and reports the logarithmic-derivative jump <em>&Delta;&prime;</em>.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="config-model">Configuration family</label>
+        </div>
+        <select id="config-model">
+          <option value="tokamak">Tokamak-like smooth-current model</option>
+          <option value="tophat">Tokamak-like top-hat step profile</option>
+          <option value="rfp">RFP-like constant-&lambda; core with edge ramp</option>
+          <option value="alpha">RFP-like alpha-profile model</option>
+          <option value="sprott">RFP-like Sprott polynomial model</option>
+        </select>
+        <p class="help">Switches between two tokamak-like branches and three RFP-like current-profile models.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="aspect">Major-radius ratio <span style="font-weight:500;">R<sub>0</sub>/a</span></label>
+          <span class="value" id="aspect-value"></span>
+        </div>
+        <input id="aspect" type="range" min="1.2" max="8.0" step="0.01" value="2.88" />
+        <p class="help">Sets the long axial pitch scale through <code>k = -n / R<sub>0</sub></code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="minor-radius">Minor radius <span style="font-weight:500;">a</span></label>
+          <span class="value" id="minor-radius-value"></span>
+        </div>
+        <input id="minor-radius" type="range" min="0.20" max="2.00" step="0.01" value="0.52" />
+        <p class="help">Physical size in meters. This also sets the conducting-wall radius in the lecture model.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="b0">Axial field <span style="font-weight:500;">B<sub>z</sub> ≈ B<sub>0</sub></span></label>
+          <span class="value" id="b0-value"></span>
+        </div>
+        <input id="b0" type="range" min="0.20" max="8.00" step="0.01" value="1.00" />
+        <p class="help">Treated as constant, exactly as in the large-aspect-ratio smooth-profile extension of the lecture.</p>
+      </div>
+
+      <div class="control tokamak-only">
+        <div class="control-header">
+          <label for="q0">On-axis safety factor <span style="font-weight:500;">q(0)</span></label>
+          <span class="value" id="q0-value"></span>
+        </div>
+        <input id="q0" type="range" min="0.70" max="2.50" step="0.01" value="1.00" />
+        <p class="help">Together with <code>q(a)</code>, this fixes the smooth current peaking exponent.</p>
+      </div>
+
+      <div class="control tokamak-only">
+        <div class="control-header">
+          <label for="qedge">Edge safety factor <span style="font-weight:500;">q(a)</span></label>
+          <span class="value" id="qedge-value"></span>
+        </div>
+        <input id="qedge" type="range" min="1.20" max="8.00" step="0.01" value="3.00" />
+        <p class="help">Sets the total current through the cylindrical edge relation used in the equilibrium lecture.</p>
+      </div>
+
+      <div class="control tophat-only" style="display:none;">
+        <div class="control-header">
+          <label for="tophat-qc">Core safety factor <span style="font-weight:500;">q<sub>c</sub></span></label>
+          <span class="value" id="tophat-qc-value"></span>
+        </div>
+        <input id="tophat-qc" type="range" min="0.60" max="1.80" step="0.01" value="1.20" />
+        <p class="help">Inside the uniform-current core the safety factor is constant, <code>q(r)=q<sub>c</sub></code>.</p>
+      </div>
+
+      <div class="control tophat-only" style="display:none;">
+        <div class="control-header">
+          <label for="tophat-core-fraction">Current-core radius <span style="font-weight:500;">c / a</span></label>
+          <span class="value" id="tophat-core-fraction-value"></span>
+        </div>
+        <input id="tophat-core-fraction" type="range" min="0.25" max="0.85" step="0.01" value="0.60" />
+        <p class="help">The step current fills <code>0&lt;r&lt;c</code>, while the resonant surface lives in the current-free annulus <code>c&lt;r&lt;a</code>.</p>
+      </div>
+
+      <div class="control rfp-only" style="display:none;">
+        <div class="control-header">
+          <label for="lambda0a">Core force-free pitch <span style="font-weight:500;">&lambda;<sub>0</sub>a</span></label>
+          <span class="value" id="lambda0a-value"></span>
+        </div>
+        <input id="lambda0a" type="range" min="2.20" max="4.80" step="0.01" value="3.20" />
+        <p class="help">Controls the Taylor-like core and whether the edge axial field reverses before the wall.</p>
+      </div>
+
+      <div class="control alpha-only" style="display:none;">
+        <div class="control-header">
+          <label for="alpha-lambda0a">Core force-free pitch <span style="font-weight:500;">&lambda;<sub>0</sub>a</span></label>
+          <span class="value" id="alpha-lambda0a-value"></span>
+        </div>
+        <input id="alpha-lambda0a" type="range" min="2.20" max="4.80" step="0.01" value="4.00" />
+        <p class="help">Sets the on-axis parallel current scale for the phenomenological alpha-profile model.</p>
+      </div>
+
+      <div class="control alpha-only" style="display:none;">
+        <div class="control-header">
+          <label for="alpha-exponent">Profile exponent <span style="font-weight:500;">&alpha;</span></label>
+          <span class="value" id="alpha-exponent-value"></span>
+        </div>
+        <input id="alpha-exponent" type="range" min="1.0" max="10.0" step="0.1" value="1.8" />
+        <p class="help">Implements <code>&lambda;(r)=&lambda;<sub>0</sub>[1-(r/a)<sup>&alpha;</sup>]</code>, so larger <code>&alpha;</code> gives a flatter core and sharper edge roll-off.</p>
+      </div>
+
+      <div class="control rfp-only" style="display:none;">
+        <div class="control-header">
+          <label for="core-fraction">Flat-core radius <span style="font-weight:500;">c / a</span></label>
+          <span class="value" id="core-fraction-value"></span>
+        </div>
+        <input id="core-fraction" type="range" min="0.25" max="0.90" step="0.01" value="0.62" />
+        <p class="help">Inside <code>r&lt;c</code> the model keeps <code>&lambda;=&lambda;<sub>0</sub></code>; outside, it ramps linearly to zero at the wall.</p>
+      </div>
+
+      <div class="control sprott-only" style="display:none;">
+        <div class="control-header">
+          <label for="sprott-f">Field-reversal parameter <span style="font-weight:500;">F</span></label>
+          <span class="value" id="sprott-f-value"></span>
+        </div>
+        <input id="sprott-f" type="range" min="-0.60" max="0.10" step="0.01" value="-0.15" />
+        <p class="help">Uses the Sprott-Shen modified polynomial model parameter <code>F = B_z(a)/&lt;B_z&gt;</code>.</p>
+      </div>
+
+      <div class="control sprott-only" style="display:none;">
+        <div class="control-header">
+          <label for="sprott-theta">Pinch parameter <span style="font-weight:500;">&Theta;</span></label>
+          <span class="value" id="sprott-theta-value"></span>
+        </div>
+        <input id="sprott-theta" type="range" min="1.10" max="2.20" step="0.01" value="1.60" />
+        <p class="help">Sets the polynomial RFP profile together with <code>F</code>; this branch still scans the tearing resonances over <code>m=1</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="mmode">Poloidal mode number <span style="font-weight:500;">m</span></label>
+          <span class="value" id="mmode-value"></span>
+        </div>
+        <input id="mmode" type="range" min="1" max="6" step="1" value="2" />
+        <p class="help">The explorer evaluates the outer tearing equation for a single selected helical branch.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="nmode">Toroidal mode number <span style="font-weight:500;">n</span></label>
+          <span class="value" id="nmode-value"></span>
+        </div>
+        <input id="nmode" type="range" min="1" max="12" step="1" value="1" />
+        <p class="help" id="nmode-help">Modes are valid only when a resonant surface exists inside the plasma, that is, when <code>q(r<sub>s</sub>) = m/n</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="wall-model">Outer vacuum boundary</label>
+        </div>
+        <select id="wall-model">
+          <option value="nowall">No conducting wall</option>
+          <option value="conducting">Perfectly conducting shell</option>
+        </select>
+        <p class="help">Applies the lecture’s outer vacuum matching at the plasma boundary. The no-wall limit gives <code>&psi;&prime;(a)=-(m/a)&psi;(a)</code>.</p>
+      </div>
+
+      <div class="control wall-only" style="display:none;">
+        <div class="control-header">
+          <label for="wall-radius-ratio">Wall radius <span style="font-weight:500;">r<sub>w</sub>/a</span></label>
+          <span class="value" id="wall-radius-ratio-value"></span>
+        </div>
+        <input id="wall-radius-ratio" type="range" min="1.00" max="4.00" step="0.01" value="1.00" />
+        <p class="help">As <code>r<sub>w</sub> &rightarrow; a</code> the shell approaches the perfectly conducting boundary <code>&psi;(a)=0</code>. Larger <code>r<sub>w</sub></code> weakens the stabilization.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The default case reproduces the lecture’s natural low-order example family, with <code>q(0) ≈ 1</code>, <code>q(a) = 3</code>, and the <code>2/1</code> branch selected.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Outer Ideal Solutions and Resonant-Surface Matching</h2>
+          <p>
+            The large panel shows the left and right outer solutions, each normalized to unity as they approach
+            the resonant layer. The small panels show the underlying safety-factor and current profiles, so the
+            resonance can be read directly from the equilibrium rather than treated as an abstract input.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--accent);"><span class="swatch"></span>Left outer solution</li>
+        <li style="color: var(--target);"><span class="swatch dashed"></span>Right outer solution</li>
+        <li style="color: var(--gold);"><span class="swatch"></span>Resonant surface</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="main-plot" viewBox="0 0 760 420" aria-label="Outer tearing-mode solutions"></svg>
+      </div>
+
+      <div class="profile-card" style="margin-top: 1rem;">
+        <h3>Radial Derivative Near the Layer</h3>
+        <p>
+          This thinner panel shows the normalized radial slope <em>a &psi;&prime;(r)</em> on each side of the
+          rational surface. The left and right endpoints need not meet, and that mismatch is the visual signature
+          behind <em>&Delta;&prime;</em>.
+        </p>
+        <svg id="dpsi-plot" class="mini-plot" viewBox="0 0 760 180" aria-label="Radial derivative of tearing outer solution"></svg>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Safety-Factor Profile</h3>
+          <p id="q-profile-help">The resonant condition <em>q(r<sub>s</sub>) = m/n</em> is read directly from the smooth profile implied by the current model.</p>
+          <svg id="q-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="Safety factor profile"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Current and F(r)</h3>
+          <p id="profile-help">The tearing drive depends on the current gradient and on the helical bending term <em>F(r)</em>, which changes sign at the resonance.</p>
+          <svg id="profile-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="Current and resonant factor"></svg>
+        </div>
+      </div>
+
+      <div class="profile-card" id="field-card" style="margin-top: 1rem; display:none;">
+        <h3>Sprott Field Profiles</h3>
+        <p id="field-help">For the modified polynomial function model, the toroidal field <em>B<sub>&phi;</sub>(r)</em> and poloidal field <em>B<sub>&theta;</sub>(r)</em> are shown directly, both normalized to <em>B<sub>&phi;</sub>(0)</em>.</p>
+        <svg id="field-plot" class="mini-plot" viewBox="0 0 760 220" aria-label="Sprott field profiles"></svg>
+        <svg id="field-q-plot" class="mini-plot" viewBox="0 0 760 180" aria-label="Direct Sprott pitch ratio profile" style="margin-top:0.75rem;"></svg>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p><strong>Model summary.</strong> The explorer integrates the cylindrical outer equation</p>
+        <p id="equation-summary"><code>&psi;'' + (1/r)&psi;' - m²&psi;/r² - &mu;<sub>0</sub> m J'<sub>z</sub>(r)&psi;/[r F(r)] = 0</code>, with <code>F(r) = m B<sub>&theta;</sub>(r)/r - n B<sub>z</sub>/R<sub>0</sub></code>, and then evaluates <code>&Delta;&prime; = (&psi;'/&psi;)<sub>+</sub> - (&psi;'/&psi;)<sub>-</sub></code> just outside the resistive layer.</p>
+      </div>
+
+      <p class="footer-note">
+        Positive <em>&Delta;&prime;</em> means the two outer ideal solutions lean into the resonant layer in a way that reconnection can heal. Negative
+        <em>&Delta;&prime;</em> means the ideal outer region resists that healing.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const MU0 = 4 * Math.PI * 1e-7;
+
+    const controls = {
+      configModel: document.getElementById("config-model"),
+      aspect: document.getElementById("aspect"),
+      minorRadius: document.getElementById("minor-radius"),
+      b0: document.getElementById("b0"),
+      q0: document.getElementById("q0"),
+      qedge: document.getElementById("qedge"),
+      topHatQc: document.getElementById("tophat-qc"),
+      topHatCoreFraction: document.getElementById("tophat-core-fraction"),
+      lambda0a: document.getElementById("lambda0a"),
+      coreFraction: document.getElementById("core-fraction"),
+      alphaLambda0a: document.getElementById("alpha-lambda0a"),
+      alphaExponent: document.getElementById("alpha-exponent"),
+      sprottF: document.getElementById("sprott-f"),
+      sprottTheta: document.getElementById("sprott-theta"),
+      wallModel: document.getElementById("wall-model"),
+      wallRadiusRatio: document.getElementById("wall-radius-ratio"),
+      mmode: document.getElementById("mmode"),
+      nmode: document.getElementById("nmode")
+    };
+
+    const valueLabels = {
+      configModel: null,
+      aspect: document.getElementById("aspect-value"),
+      minorRadius: document.getElementById("minor-radius-value"),
+      b0: document.getElementById("b0-value"),
+      q0: document.getElementById("q0-value"),
+      qedge: document.getElementById("qedge-value"),
+      topHatQc: document.getElementById("tophat-qc-value"),
+      topHatCoreFraction: document.getElementById("tophat-core-fraction-value"),
+      lambda0a: document.getElementById("lambda0a-value"),
+      coreFraction: document.getElementById("core-fraction-value"),
+      alphaLambda0a: document.getElementById("alpha-lambda0a-value"),
+      alphaExponent: document.getElementById("alpha-exponent-value"),
+      sprottF: document.getElementById("sprott-f-value"),
+      sprottTheta: document.getElementById("sprott-theta-value"),
+      wallModel: null,
+      wallRadiusRatio: document.getElementById("wall-radius-ratio-value"),
+      mmode: document.getElementById("mmode-value"),
+      nmode: document.getElementById("nmode-value")
+    };
+
+    const warningBox = document.getElementById("warning-box");
+    const mainPlot = document.getElementById("main-plot");
+    const dpsiPlot = document.getElementById("dpsi-plot");
+    const qPlot = document.getElementById("q-plot");
+    const profilePlot = document.getElementById("profile-plot");
+    const fieldCard = document.getElementById("field-card");
+    const fieldHelp = document.getElementById("field-help");
+    const fieldPlot = document.getElementById("field-plot");
+    const fieldQPlot = document.getElementById("field-q-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+    const nmodeHelp = document.getElementById("nmode-help");
+    const qProfileHelp = document.getElementById("q-profile-help");
+    const profileHelp = document.getElementById("profile-help");
+    const equationSummary = document.getElementById("equation-summary");
+    const tokamakOnlyControls = Array.from(document.querySelectorAll(".tokamak-only"));
+    const tophatOnlyControls = Array.from(document.querySelectorAll(".tophat-only"));
+    const rfpOnlyControls = Array.from(document.querySelectorAll(".rfp-only"));
+    const alphaOnlyControls = Array.from(document.querySelectorAll(".alpha-only"));
+    const sprottOnlyControls = Array.from(document.querySelectorAll(".sprott-only"));
+    const wallOnlyControls = Array.from(document.querySelectorAll(".wall-only"));
+    let lastConfigModel = controls.configModel.value;
+    const modelDefaults = {
+      tokamak: {
+        q0: "1.00",
+        qedge: "3.00",
+        mmode: "2",
+        nmode: "1"
+      },
+      tophat: {
+        topHatQc: "1.20",
+        topHatCoreFraction: "0.60",
+        mmode: "2",
+        nmode: "1"
+      },
+      rfp: {
+        lambda0a: "3.20",
+        coreFraction: "0.62",
+        mmode: "1",
+        nmode: "6"
+      },
+      alpha: {
+        alphaLambda0a: "4.00",
+        alphaExponent: "1.8",
+        mmode: "1",
+        nmode: "6"
+      },
+      sprott: {
+        sprottF: "-0.15",
+        sprottTheta: "1.60",
+        mmode: "1",
+        nmode: "6"
+      }
+    };
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function fmtSci(value) {
+      if (!Number.isFinite(value) || value === 0) {
+        return "0";
+      }
+      const exponent = Math.floor(Math.log10(Math.abs(value)));
+      const mantissa = value / 10 ** exponent;
+      return `${mantissa.toFixed(3)} × 10<sup>${exponent}</sup>`;
+    }
+
+    function gcd(a, b) {
+      let x = Math.abs(a);
+      let y = Math.abs(b);
+      while (y !== 0) {
+        const t = x % y;
+        x = y;
+        y = t;
+      }
+      return x;
+    }
+
+    function findBracketedRoot(x, y, target) {
+      for (let i = 1; i < x.length; i += 1) {
+        const f0 = y[i - 1] - target;
+        const f1 = y[i] - target;
+        if (f0 === 0) {
+          return x[i - 1];
+        }
+        if (f0 * f1 <= 0) {
+          const t = f0 / (f0 - f1);
+          return x[i - 1] + t * (x[i] - x[i - 1]);
+        }
+      }
+      return null;
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function zeroAnchoredTicks(ymin, ymax) {
+      if (!(ymin <= 0 && ymax >= 0)) {
+        return null;
+      }
+      const ticks = [ymin, 0.5 * ymin, 0, 0.5 * ymax, ymax];
+      const cleaned = [];
+      for (const tick of ticks) {
+        if (!cleaned.some((value) => Math.abs(value - tick) < 1e-9 * Math.max(1, Math.abs(ymin), Math.abs(ymax)))) {
+          cleaned.push(tick);
+        }
+      }
+      return cleaned.sort((a, b) => a - b);
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5, customYTicks = null) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+
+      const yTicks = customYTicks ? [...customYTicks] : [];
+      if (!customYTicks) {
+        for (let i = 0; i <= tickCount; i += 1) {
+          yTicks.push(ymin + (i / tickCount) * (ymax - ymin));
+        }
+        if (ymin <= 0 && ymax >= 0) {
+          const nearZero = yTicks.some((value) => Math.abs(value) < 0.08 * Math.max(1e-12, ymax - ymin));
+          if (!nearZero) {
+            yTicks.push(0);
+            yTicks.sort((a, b) => a - b);
+          }
+        }
+      }
+
+      for (const y of yTicks) {
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        const label = Math.abs(y) < 5e-4 * Math.max(1, Math.abs(ymax), Math.abs(ymin)) ? "0" : y.toFixed(2);
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${label}</text>`;
+      }
+
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function modeLine(mode, a) {
+      const positive = mode.deltaPrime > 0;
+      const color = positive ? "#b64646" : "#314957";
+      const weight = positive ? "700" : "500";
+      return `<span style="color:${color}; font-weight:${weight};">${mode.m}/${mode.n}: q_s=${mode.qs.toFixed(3)}, Δ'=${mode.deltaPrime >= 0 ? "+" : ""}${mode.deltaPrime.toFixed(3)}, r_s/a=${(mode.rs / a).toFixed(3)}</span>`;
+    }
+
+    function interpProfile(radius, values, rr) {
+      let idx = 0;
+      while (idx < radius.length - 2 && radius[idx + 1] < rr) {
+        idx += 1;
+      }
+      const r0 = radius[idx];
+      const r1 = radius[idx + 1];
+      const t = (rr - r0) / Math.max(r1 - r0, 1e-12);
+      return values[idx] + t * (values[idx + 1] - values[idx]);
+    }
+
+    function integrateToroidalCurrent(radius, jphi) {
+      let integral = 0;
+      for (let i = 1; i < radius.length; i += 1) {
+        const r0 = radius[i - 1];
+        const r1 = radius[i];
+        const f0 = jphi[i - 1] * r0;
+        const f1 = jphi[i] * r1;
+        integral += 0.5 * (f0 + f1) * (r1 - r0);
+      }
+      return 2 * Math.PI * integral;
+    }
+
+    function outerBoundarySlope(a, m) {
+      const model = controls.wallModel.value;
+      if (model !== "conducting") {
+        return -m / a;
+      }
+      const ratio = parseFloat(controls.wallRadiusRatio.value);
+      if (ratio <= 1.005) {
+        return null;
+      }
+      const rw = ratio * a;
+      const rw2m = rw ** (2 * m);
+      const a2m = a ** (2 * m);
+      return -(m / a) * ((rw2m + a2m) / Math.max(rw2m - a2m, 1e-12));
+    }
+
+    function buildTokamakEquilibrium(params = {}) {
+      let q0 = parseFloat(controls.q0.value);
+      let qedge = parseFloat(controls.qedge.value);
+      if (q0 >= qedge) {
+        q0 = qedge - 0.05;
+        controls.q0.value = q0.toFixed(2);
+      }
+
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const m = params.m ?? parseInt(controls.mmode.value, 10);
+      const n = params.n ?? parseInt(controls.nmode.value, 10);
+      const R0 = aspect * a;
+      const nu = qedge / q0 - 1;
+      const ip = (2 * Math.PI * a * a * b0) / (MU0 * R0 * qedge);
+      const jHat = ip * (nu + 1) / (Math.PI * a * a);
+      const bEdge = MU0 * ip / (2 * Math.PI * a);
+
+      const points = 600;
+      const rho = [];
+      const radius = [];
+      const q = [];
+      const current = [];
+      const currentPrime = [];
+      const btheta = [];
+      const bz = [];
+      const Fr = [];
+
+      for (let i = 0; i < points; i += 1) {
+        const s = i / (points - 1);
+        const r = a * s;
+        const enclosedFraction = i === 0 ? 0 : 1 - Math.pow(1 - s * s, nu + 1);
+        const qValue = i === 0 ? q0 : qedge * s * s / enclosedFraction;
+        const jValue = jHat * Math.pow(1 - s * s, nu);
+        const jPrime = s === 1 ? 0 : (-2 * nu * jHat * r / (a * a)) * Math.pow(Math.max(1 - s * s, 0), Math.max(nu - 1, 0));
+        const bpol = i === 0 ? 0 : bEdge * enclosedFraction / s;
+        const fValue = i === 0 ? m * MU0 * jHat / 2 - (n * b0 / R0) : (m * bpol / r) - (n * b0 / R0);
+        rho.push(s);
+        radius.push(r);
+        q.push(qValue);
+        current.push(jValue);
+        currentPrime.push(jPrime);
+        btheta.push(bpol);
+        bz.push(b0);
+        Fr.push(fValue);
+      }
+
+      const modeRatio = m / n;
+      const rs = findBracketedRoot(radius, q, modeRatio);
+      const valid = rs !== null && modeRatio > q0 && modeRatio < qedge;
+      return {
+        kind: "tokamak",
+        aspect, a, b0, q0, qedge, R0, nu, ip, jHat, bEdge, m, n, modeRatio,
+        rho, radius, q, current, currentPrime, btheta, Fr,
+        bz,
+        lambdaValues: current.map((value) => MU0 * value / Math.max(Math.abs(b0), 1e-12)),
+        lambdaPrimeValues: currentPrime.map((value) => MU0 * value / Math.max(Math.abs(b0), 1e-12)),
+        rs, valid,
+        qResTarget: modeRatio,
+        summaryTitle: "Tokamak-like smooth-current outer problem"
+      };
+    }
+
+    function buildTopHatEquilibrium(params = {}) {
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const qCore = parseFloat(controls.topHatQc.value);
+      const coreFraction = parseFloat(controls.topHatCoreFraction.value);
+      const c = coreFraction * a;
+      const m = params.m ?? parseInt(controls.mmode.value, 10);
+      const n = params.n ?? parseInt(controls.nmode.value, 10);
+      const R0 = aspect * a;
+      const modeRatio = m / n;
+      const qEdge = qCore / Math.max(coreFraction * coreFraction, 1e-12);
+      const J0 = (2 * b0) / (MU0 * R0 * qCore);
+      const ip = Math.PI * c * c * J0;
+      const points = 700;
+      const rho = [];
+      const radius = [];
+      const q = [];
+      const current = [];
+      const currentPrime = [];
+      const btheta = [];
+      const bz = [];
+      const Fr = [];
+      const lambdaValues = [];
+      const lambdaPrimeValues = [];
+
+      for (let i = 0; i < points; i += 1) {
+        const s = i / (points - 1);
+        const r = a * s;
+        const insideCore = r <= c;
+        const bpol = insideCore
+          ? 0.5 * MU0 * J0 * r
+          : 0.5 * MU0 * J0 * c * c / Math.max(r, 1e-12);
+        const qVal = insideCore
+          ? qCore
+          : qCore * (r * r) / Math.max(c * c, 1e-12);
+        const jVal = insideCore ? J0 : 0;
+        const lambdaVal = insideCore ? MU0 * J0 / Math.max(Math.abs(b0), 1e-12) : 0;
+        const F = insideCore
+          ? (m * MU0 * J0) / 2 - (n * b0 / R0)
+          : (m * bpol / Math.max(r, 1e-12)) - (n * b0 / R0);
+        rho.push(s);
+        radius.push(r);
+        q.push(qVal);
+        current.push(jVal);
+        currentPrime.push(0);
+        btheta.push(bpol);
+        bz.push(b0);
+        Fr.push(F);
+        lambdaValues.push(lambdaVal);
+        lambdaPrimeValues.push(0);
+      }
+
+      const rs = qCore < modeRatio && modeRatio < qEdge
+        ? c * Math.sqrt(modeRatio / qCore)
+        : null;
+      const valid = rs !== null && rs > c && rs < a;
+      return {
+        kind: "tophat",
+        aspect, a, b0, R0, qCore, q0: qCore, qedge: qEdge, c, coreFraction, J0, ip,
+        m, n, modeRatio,
+        rho, radius, q, current, currentPrime, btheta, bz, Fr, lambdaValues, lambdaPrimeValues,
+        rs, valid,
+        qResTarget: modeRatio,
+        summaryTitle: "Tokamak-like top-hat outer problem"
+      };
+    }
+
+    function lambdaProfile(r, a, lambda0, coreFraction) {
+      const c = coreFraction * a;
+      if (r <= c) {
+        return lambda0;
+      }
+      if (r >= a) {
+        return 0;
+      }
+      return lambda0 * (1 - (r - c) / Math.max(a - c, 1e-10));
+    }
+
+    function lambdaPrimeProfile(r, a, lambda0, coreFraction) {
+      const c = coreFraction * a;
+      if (r < c || r > a) {
+        return 0;
+      }
+      return -lambda0 / Math.max(a - c, 1e-10);
+    }
+
+    function integrateForceFreeEquilibrium(a, b0, lambdaAt, lambdaPrimeAt, lambda0, points) {
+      const r0 = Math.max(a * 1e-5, 1e-6);
+      let r = r0;
+      let Bz = b0;
+      let Btheta = 0.5 * lambda0 * b0 * r0;
+
+      const radius = [0, r0];
+      const bzValues = [b0, Bz];
+      const btValues = [0, Btheta];
+      const lambdaValues = [lambda0, lambdaAt(r0)];
+      const lambdaPrimeValues = [lambdaPrimeAt(0), lambdaPrimeAt(r0)];
+
+      const h = (a - r0) / (points - 2);
+
+      function derivs(rr, zz, tt) {
+        const lam = lambdaAt(rr);
+        return {
+          dBz: -lam * tt,
+          dBt: lam * zz - tt / rr
+        };
+      }
+
+      for (let i = 0; i < points - 2; i += 1) {
+        const k1 = derivs(r, Bz, Btheta);
+        const k2 = derivs(r + 0.5 * h, Bz + 0.5 * h * k1.dBz, Btheta + 0.5 * h * k1.dBt);
+        const k3 = derivs(r + 0.5 * h, Bz + 0.5 * h * k2.dBz, Btheta + 0.5 * h * k2.dBt);
+        const k4 = derivs(r + h, Bz + h * k3.dBz, Btheta + h * k3.dBt);
+        Bz += (h / 6) * (k1.dBz + 2 * k2.dBz + 2 * k3.dBz + k4.dBz);
+        Btheta += (h / 6) * (k1.dBt + 2 * k2.dBt + 2 * k3.dBt + k4.dBt);
+        r += h;
+        radius.push(r);
+        bzValues.push(Bz);
+        btValues.push(Btheta);
+        lambdaValues.push(lambdaAt(r));
+        lambdaPrimeValues.push(lambdaPrimeAt(r));
+      }
+
+      return { radius, bzValues, btValues, lambdaValues, lambdaPrimeValues };
+    }
+
+    function buildRFPEquilibrium(params = {}) {
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const m = 1;
+      const n = params.n ?? parseInt(controls.nmode.value, 10);
+      const lambda0a = parseFloat(controls.lambda0a.value);
+      const coreFraction = parseFloat(controls.coreFraction.value);
+      const lambda0 = lambda0a / a;
+      const R0 = aspect * a;
+      const k = -n / R0;
+      const points = 700;
+
+      const eq = integrateForceFreeEquilibrium(
+        a,
+        b0,
+        (r) => lambdaProfile(r, a, lambda0, coreFraction),
+        (r) => lambdaPrimeProfile(r, a, lambda0, coreFraction),
+        lambda0,
+        points
+      );
+      const rho = [];
+      const q = [];
+      const current = [];
+      const currentPrime = [];
+      const Fr = [];
+
+      for (let i = 0; i < eq.radius.length; i += 1) {
+        const r = eq.radius[i];
+        const s = r / a;
+        const Bz = eq.bzValues[i];
+        const Btheta = eq.btValues[i];
+        const lam = eq.lambdaValues[i];
+        const lamPrime = eq.lambdaPrimeValues[i];
+        const qVal = r === 0 ? 2 / (R0 * lambda0) : (r * Bz) / (R0 * (Math.abs(Btheta) < 1e-14 ? 1e-14 : Btheta));
+        const Jz = lam * Bz / MU0;
+        const F = r === 0 ? m * lambda0 * b0 / 2 + k * b0 : (m * Btheta / r) + k * Bz;
+        rho.push(s);
+        q.push(qVal);
+        current.push(Jz);
+        currentPrime.push(lamPrime);
+        Fr.push(F);
+      }
+
+      const rs = findBracketedRoot(eq.radius, Fr, 0);
+      const valid = rs !== null && rs > 0 && rs < a;
+      const ip = integrateToroidalCurrent(eq.radius, current);
+      return {
+        kind: "rfp",
+        aspect, a, b0, R0, m, n, k, lambda0a, lambda0, coreFraction,
+        rho, radius: eq.radius, q,
+        current, currentPrime,
+        btheta: eq.btValues, bz: eq.bzValues, lambdaValues: eq.lambdaValues, lambdaPrimeValues: eq.lambdaPrimeValues,
+        Fr, ip, rs, valid,
+        q0: q[0], qedge: q[q.length - 1],
+        qResTarget: -m / n,
+        summaryTitle: "RFP-like Robinson outer problem"
+      };
+    }
+
+    function alphaLambdaProfile(r, a, lambda0, alphaExp) {
+      const s = Math.min(Math.max(r / Math.max(a, 1e-12), 0), 1);
+      return lambda0 * (1 - s ** alphaExp);
+    }
+
+    function alphaLambdaPrimeProfile(r, a, lambda0, alphaExp) {
+      if (r <= 0 || r >= a) {
+        return r >= a ? -(lambda0 * alphaExp) / Math.max(a, 1e-12) : 0;
+      }
+      const s = r / Math.max(a, 1e-12);
+      return -(lambda0 * alphaExp / Math.max(a, 1e-12)) * s ** (alphaExp - 1);
+    }
+
+    function buildAlphaEquilibrium(params = {}) {
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const m = 1;
+      const n = params.n ?? parseInt(controls.nmode.value, 10);
+      const lambda0a = parseFloat(controls.alphaLambda0a.value);
+      const alphaExp = parseFloat(controls.alphaExponent.value);
+      const lambda0 = lambda0a / a;
+      const R0 = aspect * a;
+      const k = -n / R0;
+      const points = 700;
+
+      const eq = integrateForceFreeEquilibrium(
+        a,
+        b0,
+        (r) => alphaLambdaProfile(r, a, lambda0, alphaExp),
+        (r) => alphaLambdaPrimeProfile(r, a, lambda0, alphaExp),
+        lambda0,
+        points
+      );
+      const rho = [];
+      const q = [];
+      const current = [];
+      const currentPrime = [];
+      const Fr = [];
+
+      for (let i = 0; i < eq.radius.length; i += 1) {
+        const r = eq.radius[i];
+        const s = r / a;
+        const Bz = eq.bzValues[i];
+        const Btheta = eq.btValues[i];
+        const lam = eq.lambdaValues[i];
+        const lamPrime = eq.lambdaPrimeValues[i];
+        const qVal = r === 0 ? 2 / (R0 * lambda0) : (r * Bz) / (R0 * (Math.abs(Btheta) < 1e-14 ? 1e-14 : Btheta));
+        const Jz = lam * Bz / MU0;
+        const JzPrime = (lamPrime * Bz - lam * lam * Btheta) / MU0;
+        const F = r === 0 ? m * lambda0 * b0 / 2 + k * b0 : (m * Btheta / r) + k * Bz;
+        rho.push(s);
+        q.push(qVal);
+        current.push(Jz);
+        currentPrime.push(JzPrime);
+        Fr.push(F);
+      }
+
+      const rs = findBracketedRoot(eq.radius, Fr, 0);
+      const valid = rs !== null && rs > 0 && rs < a;
+      const ip = integrateToroidalCurrent(eq.radius, current);
+      return {
+        kind: "alpha",
+        aspect, a, b0, R0, m, n, k, lambda0a, lambda0, alphaExp,
+        rho, radius: eq.radius, q,
+        current, currentPrime,
+        btheta: eq.btValues, bz: eq.bzValues, lambdaValues: eq.lambdaValues, lambdaPrimeValues: eq.lambdaPrimeValues,
+        Fr, ip, rs, valid,
+        q0: q[0], qedge: q[q.length - 1],
+        qResTarget: -m / n,
+        summaryTitle: "RFP-like alpha-profile outer problem"
+      };
+    }
+
+    function buildSprottEquilibrium(params = {}) {
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const Fparam = parseFloat(controls.sprottF.value);
+      const theta = parseFloat(controls.sprottTheta.value);
+      const m = 1;
+      const n = params.n ?? parseInt(controls.nmode.value, 10);
+      const R0 = aspect * a;
+      const x0 = Math.sqrt(Math.max((6 - 6 * Fparam) / Math.max(3 - 2 * Fparam, 1e-8), 1e-8));
+      const C = theta / Math.max(3 - 2 * Fparam, 1e-8);
+      const points = 700;
+
+      const rho = [];
+      const radius = [];
+      const q = [];
+      const current = [];
+      const currentPrime = [];
+      const btheta = [];
+      const bz = [];
+      const jtheta = [];
+      const Fr = [];
+      const lambdaValues = [];
+      const lambdaPrimeValues = [];
+
+      for (let i = 0; i < points; i += 1) {
+        const s = i / (points - 1);
+        const r = a * s;
+        const Bz = b0 * (1 - x0 * x0 * s * s + 0.5 * x0 * x0 * s ** 4);
+        const Btheta = b0 * s * (x0 - (2 * x0 - 3 * C) * s * s + (x0 - 2 * C) * s ** 4);
+        const Jz = (2 * b0 / (MU0 * a)) * (x0 - 2 * (2 * x0 - 3 * C) * s * s + 3 * (x0 - 2 * C) * s ** 4);
+        const Jtheta = (2 * b0 * x0 * x0 / (MU0 * a)) * s * (1 - s * s);
+        const dJzdr = (2 * b0 / (MU0 * a * a)) * (-4 * (2 * x0 - 3 * C) * s + 12 * (x0 - 2 * C) * s ** 3);
+        const qVal = s < 1e-7 ? 1 / Math.max(aspect * x0, 1e-10) : (r * Bz) / (R0 * (Math.abs(Btheta) < 1e-14 ? 1e-14 : Btheta));
+        const F = s < 1e-7 ? m * b0 * x0 / a - n * b0 / R0 : (m * Btheta / r) - (n * Bz / R0);
+        const b2 = Bz * Bz + Btheta * Btheta;
+        const lambda = b2 < 1e-14 ? 0 : MU0 * (Jz * Bz + Jtheta * Btheta) / b2;
+
+        rho.push(s);
+        radius.push(r);
+        q.push(qVal);
+        current.push(Jz);
+        currentPrime.push(dJzdr);
+        btheta.push(Btheta);
+        bz.push(Bz);
+        jtheta.push(Jtheta);
+        Fr.push(F);
+        lambdaValues.push(lambda);
+        lambdaPrimeValues.push(0);
+      }
+
+      const rs = findBracketedRoot(radius, Fr, 0);
+      const valid = rs !== null && rs > 0 && rs < a;
+      const ip = integrateToroidalCurrent(radius, current);
+      return {
+        kind: "sprott",
+        aspect, a, b0, R0, m, n, Fparam, theta, x0, C,
+        rho, radius, q, current, currentPrime, btheta, bz, Fr,
+        lambdaValues, lambdaPrimeValues, ip, rs, valid,
+        q0: q[0], qedge: q[q.length - 1],
+        qResTarget: -m / n,
+        summaryTitle: "RFP-like Sprott polynomial outer problem"
+      };
+    }
+
+    function buildEquilibrium(params = {}) {
+      if (controls.configModel.value === "tophat") {
+        return buildTopHatEquilibrium(params);
+      }
+      if (controls.configModel.value === "rfp") {
+        return buildRFPEquilibrium(params);
+      }
+      if (controls.configModel.value === "alpha") {
+        return buildAlphaEquilibrium(params);
+      }
+      if (controls.configModel.value === "sprott") {
+        return buildSprottEquilibrium(params);
+      }
+      return buildTokamakEquilibrium(params);
+    }
+
+    function integrateOuterCylindrical(model, side) {
+      const { a, m, n, R0, b0, rs } = model;
+      const wallEps = Math.max(a * 1e-4, 1e-5);
+      const layerEps = Math.max(a * 2e-3, 4 * wallEps);
+      const rStart = side === "left" ? wallEps : a - wallEps;
+      const rEnd = side === "left" ? rs - layerEps : rs + layerEps;
+      const steps = 900;
+      const h = (rEnd - rStart) / steps;
+      const rValues = [rStart];
+      const psiValues = [];
+      const dpsiValues = [];
+
+      let psi;
+      let dpsi;
+      if (side === "left") {
+        psi = Math.pow(rStart, m);
+        dpsi = m * Math.pow(rStart, m - 1);
+      } else {
+        const slope = outerBoundarySlope(a, m);
+        if (slope === null) {
+          psi = a - rStart;
+          dpsi = -1;
+        } else {
+          psi = 1;
+          dpsi = slope;
+        }
+      }
+      psiValues.push(psi);
+      dpsiValues.push(dpsi);
+
+      function interp(array, rr) {
+        const idx = Math.min(Math.max(Math.floor((rr / a) * (array.length - 1)), 0), array.length - 2);
+        const r0 = model.radius[idx];
+        const r1 = model.radius[idx + 1];
+        const t = (rr - r0) / Math.max(r1 - r0, 1e-12);
+        return array[idx] + t * (array[idx + 1] - array[idx]);
+      }
+
+      function coeffs(r, y1, y2) {
+        const bpol = interp(model.btheta, r);
+        const bzLocal = model.kind === "sprott" ? interp(model.bz, r) : b0;
+        const jPrime = interp(model.currentPrime, r);
+        const F = (m * bpol / r) - (n * bzLocal / R0);
+        const regularizedF = Math.abs(F) < 1e-12 ? (F >= 0 ? 1e-12 : -1e-12) : F;
+        const second = -(y2 / r) + ((m * m) / (r * r) + (MU0 * m * jPrime) / (r * regularizedF)) * y1;
+        return [y2, second];
+      }
+
+      for (let i = 0; i < steps; i += 1) {
+        const r = rValues[i];
+        const [k1y1, k1y2] = coeffs(r, psi, dpsi);
+        const [k2y1, k2y2] = coeffs(r + 0.5 * h, psi + 0.5 * h * k1y1, dpsi + 0.5 * h * k1y2);
+        const [k3y1, k3y2] = coeffs(r + 0.5 * h, psi + 0.5 * h * k2y1, dpsi + 0.5 * h * k2y2);
+        const [k4y1, k4y2] = coeffs(r + h, psi + h * k3y1, dpsi + h * k3y2);
+        psi += (h / 6) * (k1y1 + 2 * k2y1 + 2 * k3y1 + k4y1);
+        dpsi += (h / 6) * (k1y2 + 2 * k2y2 + 2 * k3y2 + k4y2);
+        rValues.push(r + h);
+        psiValues.push(psi);
+        dpsiValues.push(dpsi);
+      }
+
+      const scale = psiValues[psiValues.length - 1];
+      const scaledPsi = psiValues.map((value) => value / scale);
+      const scaledDpsi = dpsiValues.map((value) => value / scale);
+      return {
+        r: rValues,
+        rho: rValues.map((value) => value / a),
+        psi: scaledPsi,
+        dpsi: scaledDpsi,
+        dlog: scaledDpsi[scaledDpsi.length - 1] / scaledPsi[scaledPsi.length - 1],
+        matchRadius: rValues[rValues.length - 1]
+      };
+    }
+
+    function integrateOuterRFP(model, side) {
+      const { a, m, n, R0, b0, rs } = model;
+      const k = -n / R0;
+      const wallEps = Math.max(a * 1e-4, 1e-5);
+      const layerEps = Math.max(a * 2e-3, 4 * wallEps);
+      const rStart = side === "left" ? wallEps : a - wallEps;
+      const rEnd = side === "left" ? rs - layerEps : rs + layerEps;
+      const steps = 900;
+      const h = (rEnd - rStart) / steps;
+      const rValues = [rStart];
+      const psiValues = [];
+      const dpsiValues = [];
+
+      let psi;
+      let dpsi;
+      if (side === "left") {
+        psi = Math.pow(rStart, m + 0.5);
+        dpsi = (m + 0.5) * Math.pow(rStart, m - 0.5);
+      } else {
+        const slope = outerBoundarySlope(a, m);
+        if (slope === null) {
+          psi = a - rStart;
+          dpsi = -1;
+        } else {
+          psi = 1;
+          dpsi = slope;
+        }
+      }
+      psiValues.push(psi);
+      dpsiValues.push(dpsi);
+
+      function interp(array, rr) {
+        const idx = Math.min(Math.max(Math.floor((rr / a) * (array.length - 1)), 0), array.length - 2);
+        const r0 = model.radius[idx];
+        const r1 = model.radius[idx + 1];
+        const t = (rr - r0) / Math.max(r1 - r0, 1e-12);
+        return array[idx] + t * (array[idx + 1] - array[idx]);
+      }
+
+      function coeffs(r, y1, y2) {
+        const Bz = interp(model.bz, r);
+        const Btheta = interp(model.btheta, r);
+        const lam = interp(model.lambdaValues, r);
+        const lamPrime = interp(model.lambdaPrimeValues, r);
+        const denom1 = m * m + k * k * r * r;
+        const Fden = m * Btheta + k * r * Bz;
+        const safeFden = Math.abs(Fden) < 1e-10 ? (Fden >= 0 ? 1e-10 : -1e-10) : Fden;
+        const minusA =
+          denom1 / (r * r) -
+          lam * lam -
+          (2 * m * k * lam) / denom1 -
+          (m ** 4 + 10 * m * m * k * k * r * r - 3 * k ** 4 * r ** 4) / (4 * r * r * denom1 * denom1) +
+          lamPrime * ((m * Bz - k * r * Btheta) / safeFden);
+        const A = -minusA;
+        return [y2, -A * y1];
+      }
+
+      for (let i = 0; i < steps; i += 1) {
+        const r = rValues[i];
+        const [k1y1, k1y2] = coeffs(r, psi, dpsi);
+        const [k2y1, k2y2] = coeffs(r + 0.5 * h, psi + 0.5 * h * k1y1, dpsi + 0.5 * h * k1y2);
+        const [k3y1, k3y2] = coeffs(r + 0.5 * h, psi + 0.5 * h * k2y1, dpsi + 0.5 * h * k2y2);
+        const [k4y1, k4y2] = coeffs(r + h, psi + h * k3y1, dpsi + h * k3y2);
+        psi += (h / 6) * (k1y1 + 2 * k2y1 + 2 * k3y1 + k4y1);
+        dpsi += (h / 6) * (k1y2 + 2 * k2y2 + 2 * k3y2 + k4y2);
+        rValues.push(r + h);
+        psiValues.push(psi);
+        dpsiValues.push(dpsi);
+      }
+
+      const scale = psiValues[psiValues.length - 1];
+      const scaledPsi = psiValues.map((value) => value / scale);
+      const scaledDpsi = dpsiValues.map((value) => value / scale);
+      return {
+        r: rValues,
+        rho: rValues.map((value) => value / a),
+        psi: scaledPsi,
+        dpsi: scaledDpsi,
+        dlog: scaledDpsi[scaledDpsi.length - 1] / scaledPsi[scaledPsi.length - 1],
+        matchRadius: rValues[rValues.length - 1]
+      };
+    }
+
+    function integrateOuterTopHat(model, side) {
+      const { a, c, rs, m } = model;
+      const wallEps = Math.max(a * 1e-4, 1e-5);
+      const layerEps = Math.max(a * 2e-3, 4 * wallEps);
+      const leftEnd = Math.max(c + wallEps, rs - layerEps);
+      const rightStart = Math.min(a - wallEps, rs + layerEps);
+      const x2 = (c * c) / Math.max(rs * rs, 1e-12);
+      const cRel = (c ** (2 * m)) / (m * Math.max(1 - x2, 1e-12));
+      const bRel = 1 - 1 / (m * Math.max(1 - x2, 1e-12));
+
+      if (side === "left") {
+        const nCore = 220;
+        const nAnnulus = 260;
+        const rsPowM = rs ** m;
+        const rsPowMinusM = rs ** (-m);
+        const norm = bRel * rsPowM + cRel * rsPowMinusM;
+        const A = 1 / Math.max(norm, 1e-14);
+        const rValues = [];
+        const psiValues = [];
+        const dpsiValues = [];
+        for (let i = 0; i < nCore; i += 1) {
+          const t = i / Math.max(nCore - 1, 1);
+          const r = wallEps + t * (c - wallEps);
+          rValues.push(r);
+          psiValues.push(A * r ** m);
+          dpsiValues.push(A * m * r ** (m - 1));
+        }
+        for (let i = 1; i < nAnnulus; i += 1) {
+          const t = i / Math.max(nAnnulus - 1, 1);
+          const r = c + t * (leftEnd - c);
+          rValues.push(r);
+          psiValues.push(A * (bRel * r ** m + cRel * r ** (-m)));
+          dpsiValues.push(A * (m * bRel * r ** (m - 1) - m * cRel * r ** (-m - 1)));
+        }
+        const dlog = A * (m * bRel * rs ** (m - 1) - m * cRel * rs ** (-m - 1));
+        return {
+          r: rValues,
+          rho: rValues.map((value) => value / a),
+          psi: psiValues,
+          dpsi: dpsiValues,
+          dlog,
+          matchRadius: rs
+        };
+      }
+
+      const nWall = 360;
+      const slope = outerBoundarySlope(a, m);
+      let Acoef;
+      let Bcoef;
+      if (slope === null) {
+        Acoef = 1;
+        Bcoef = -(a ** (2 * m));
+      } else {
+        const denom = m + slope * a;
+        const ratio = Math.abs(denom) < 1e-12
+          ? 1e18
+          : (a ** (2 * m)) * (m - slope * a) / denom;
+        Acoef = Math.abs(rs ** m + ratio * rs ** (-m)) > 1e-14
+          ? 1 / (rs ** m + ratio * rs ** (-m))
+          : 1;
+        Bcoef = ratio * Acoef;
+      }
+      const rValues = [];
+      const psiValues = [];
+      const dpsiValues = [];
+      for (let i = 0; i < nWall; i += 1) {
+        const t = i / Math.max(nWall - 1, 1);
+        const r = rightStart + t * ((a - wallEps) - rightStart);
+        rValues.push(r);
+        psiValues.push(Acoef * r ** m + Bcoef * r ** (-m));
+        dpsiValues.push(Acoef * m * r ** (m - 1) - Bcoef * m * r ** (-m - 1));
+      }
+      const psiRs = Acoef * rs ** m + Bcoef * rs ** (-m);
+      const dpsiRs = Acoef * m * rs ** (m - 1) - Bcoef * m * rs ** (-m - 1);
+      const dlog = dpsiRs / Math.max(psiRs, 1e-14);
+      return {
+        r: rValues,
+        rho: rValues.map((value) => value / a),
+        psi: psiValues,
+        dpsi: dpsiValues,
+        dlog,
+        matchRadius: rs
+      };
+    }
+
+    function integrateOuter(model, side) {
+      if (model.kind === "rfp" || model.kind === "alpha") {
+        return integrateOuterRFP(model, side);
+      }
+      if (model.kind === "tophat") {
+        return integrateOuterTopHat(model, side);
+      }
+      return integrateOuterCylindrical(model, side);
+    }
+
+    function computeModeData() {
+      const model = buildEquilibrium();
+      if (!model.valid) {
+        return { model, valid: false };
+      }
+      const left = integrateOuter(model, "left");
+      const right = integrateOuter(model, "right");
+      const deltaPrime = right.dlog - left.dlog;
+      const wallModel = controls.wallModel.value;
+      const wallRadiusRatio = parseFloat(controls.wallRadiusRatio.value);
+
+      const modeTable = [];
+      const isRfpLikeModel = model.kind === "rfp" || model.kind === "alpha" || model.kind === "sprott";
+      const nMax = isRfpLikeModel ? 12 : 6;
+      const mMin = 1;
+      const mMax = isRfpLikeModel ? 1 : 6;
+      for (let n = 1; n <= nMax; n += 1) {
+        for (let m = mMin; m <= mMax; m += 1) {
+          if (gcd(m, n) !== 1) {
+            continue;
+          }
+          const candidate = buildEquilibrium({ m, n });
+          if (!candidate.valid) {
+            continue;
+          }
+          const candLeft = integrateOuter(candidate, "left");
+          const candRight = integrateOuter(candidate, "right");
+          modeTable.push({
+            m,
+            n,
+            ratio: candidate.qResTarget,
+            qs: interpProfile(candidate.radius, candidate.q, candidate.rs),
+            rs: candidate.rs,
+            deltaPrime: candRight.dlog - candLeft.dlog
+          });
+        }
+      }
+      return { model, left, right, deltaPrime, modeTable, valid: true, wallModel, wallRadiusRatio };
+    }
+
+    function formatModeScan(modeTable, a, isTokamakLike) {
+      if (!modeTable.length) {
+        return "No low-order rational surfaces in range";
+      }
+      const sorted = modeTable
+        .slice()
+        .sort((aMode, bMode) => {
+          if (Math.abs(aMode.ratio - bMode.ratio) > 1e-12) {
+            return aMode.ratio - bMode.ratio;
+          }
+          return bMode.deltaPrime - aMode.deltaPrime;
+        });
+      const preferredTokamak = ["1/1", "4/3", "3/2", "5/3", "2/1", "5/2", "3/1"];
+      const labels = sorted.map((mode) => `${mode.m}/${mode.n}`);
+      const ordered = isTokamakLike
+        ? [
+            ...preferredTokamak.filter((label) => labels.includes(label)).map((label) => sorted.find((mode) => `${mode.m}/${mode.n}` === label)),
+            ...sorted.filter((mode) => !preferredTokamak.includes(`${mode.m}/${mode.n}`))
+          ]
+        : sorted;
+      return ordered.map((mode) => modeLine(mode, a)).join("<br />");
+    }
+
+    function selectLeastStableBranch() {
+      const isRfpLike = controls.configModel.value === "rfp" || controls.configModel.value === "alpha" || controls.configModel.value === "sprott";
+      let best = null;
+      const nMax = isRfpLike ? 12 : 6;
+      const mMin = 1;
+      const mMax = isRfpLike ? 1 : 6;
+
+      for (let n = 1; n <= nMax; n += 1) {
+        for (let m = mMin; m <= mMax; m += 1) {
+          if (gcd(m, n) !== 1) {
+            continue;
+          }
+          const model = buildEquilibrium({ m, n });
+          if (!model.valid) {
+            continue;
+          }
+          const left = integrateOuter(model, "left");
+          const right = integrateOuter(model, "right");
+          const deltaPrime = right.dlog - left.dlog;
+          if (!best || deltaPrime > best.deltaPrime) {
+            best = { m, n, deltaPrime };
+          }
+        }
+      }
+
+      if (best) {
+        controls.mmode.value = String(best.m);
+        controls.nmode.value = String(best.n);
+      } else if (isRfpLike) {
+        controls.mmode.value = "1";
+        controls.nmode.value = "6";
+      } else {
+        controls.mmode.value = "2";
+        controls.nmode.value = "1";
+      }
+    }
+
+    function applyModelDefaults(modelName) {
+      const defaults = modelDefaults[modelName];
+      if (!defaults) {
+        return;
+      }
+      Object.entries(defaults).forEach(([key, value]) => {
+        if (controls[key]) {
+          controls[key].value = value;
+        }
+      });
+    }
+
+    function drawMainPlot(data) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const allPsi = data.left.psi.concat(data.right.psi);
+      const ymin = Math.min(...allPsi, -0.15);
+      const ymax = Math.max(...allPsi, 1.15);
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "Normalized outer ψ", ymin, ymax, 5);
+
+      const leftPath = makePath(data.left.rho.map((x, idx) => [xScale(frame, x), yScale(frame, data.left.psi[idx], ymin, ymax)]));
+      const rightPath = makePath(data.right.rho.map((x, idx) => [xScale(frame, x), yScale(frame, data.right.psi[idx], ymin, ymax)]));
+      markup += `<path d="${leftPath}" fill="none" stroke="#1f4e79" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${rightPath}" fill="none" stroke="#b64646" stroke-width="3.2" stroke-dasharray="8 6" stroke-linecap="round" stroke-linejoin="round" />`;
+
+      const xs = xScale(frame, data.model.rs / data.model.a);
+      markup += `<line x1="${xs}" y1="${frame.margins.top}" x2="${xs}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="2.2" stroke-dasharray="7 6" />`;
+      markup += `<text x="${xs + 8}" y="${frame.margins.top + 16}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">r<tspan baseline-shift="sub" font-size="11">s</tspan>/a = ${fmt(data.model.rs / data.model.a, 3)}</text>`;
+      markup += `<text x="${xs + 8}" y="${frame.margins.top + 34}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">mode ${data.model.m}/${data.model.n}</text>`;
+      mainPlot.innerHTML = markup;
+    }
+
+    function drawDerivativePlot(data) {
+      const frame = svgFrame(760, 180, { left: 62, right: 24, top: 20, bottom: 34 });
+      const leftValues = data.left.dpsi.map((value) => value * data.model.a);
+      const rightValues = data.right.dpsi.map((value) => value * data.model.a);
+      const allValues = leftValues.concat(rightValues);
+      let ymin = Math.min(...allValues);
+      let ymax = Math.max(...allValues);
+      if (Math.abs(ymax - ymin) < 1e-8) {
+        ymax += 1;
+        ymin -= 1;
+      } else {
+        const pad = 0.08 * (ymax - ymin);
+        ymax += pad;
+        ymin -= pad;
+      }
+
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "a ψ′", ymin, ymax, 4);
+
+      const leftPath = makePath(data.left.rho.map((x, idx) => [xScale(frame, x), yScale(frame, leftValues[idx], ymin, ymax)]));
+      const rightPath = makePath(data.right.rho.map((x, idx) => [xScale(frame, x), yScale(frame, rightValues[idx], ymin, ymax)]));
+      markup += `<path d="${leftPath}" fill="none" stroke="#1f4e79" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<path d="${rightPath}" fill="none" stroke="#b64646" stroke-width="2.8" stroke-dasharray="8 6" stroke-linecap="round" stroke-linejoin="round" />`;
+
+      const xs = xScale(frame, data.model.rs / data.model.a);
+      markup += `<line x1="${xs}" y1="${frame.margins.top}" x2="${xs}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="2.0" stroke-dasharray="7 6" />`;
+
+      const leftEndX = xScale(frame, data.left.rho[data.left.rho.length - 1]);
+      const rightEndX = xScale(frame, data.right.rho[data.right.rho.length - 1]);
+      const leftEndY = yScale(frame, leftValues[leftValues.length - 1], ymin, ymax);
+      const rightEndY = yScale(frame, rightValues[rightValues.length - 1], ymin, ymax);
+      markup += `<circle cx="${leftEndX}" cy="${leftEndY}" r="4.6" fill="#1f4e79" />`;
+      markup += `<circle cx="${rightEndX}" cy="${rightEndY}" r="4.6" fill="#b64646" />`;
+      const gapMidX = 0.5 * (leftEndX + rightEndX);
+      const lineHalfWidth = Math.max(10, 0.18 * Math.abs(rightEndX - leftEndX));
+      const tickHalf = 5;
+      const labelX = Math.min(frame.width - frame.margins.right - 8, gapMidX + 14);
+      const labelY = Math.min(frame.height - frame.margins.bottom - 10, 0.5 * (leftEndY + rightEndY) - 8);
+      markup += `<line x1="${leftEndX - lineHalfWidth}" y1="${leftEndY}" x2="${leftEndX + lineHalfWidth}" y2="${leftEndY}" stroke="#1f4e79" stroke-width="2.2" />`;
+      markup += `<line x1="${rightEndX - lineHalfWidth}" y1="${rightEndY}" x2="${rightEndX + lineHalfWidth}" y2="${rightEndY}" stroke="#b64646" stroke-width="2.2" />`;
+      markup += `<line x1="${gapMidX}" y1="${leftEndY}" x2="${gapMidX}" y2="${rightEndY}" stroke="#7b5f23" stroke-width="1.8" />`;
+      markup += `<line x1="${gapMidX - tickHalf}" y1="${leftEndY}" x2="${gapMidX + tickHalf}" y2="${leftEndY}" stroke="#7b5f23" stroke-width="1.8" />`;
+      markup += `<line x1="${gapMidX - tickHalf}" y1="${rightEndY}" x2="${gapMidX + tickHalf}" y2="${rightEndY}" stroke="#7b5f23" stroke-width="1.8" />`;
+      markup += `<text x="${labelX}" y="${labelY}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">Δ′ = ${fmt(data.deltaPrime, 3)} m<tspan baseline-shift="super" font-size="10">-1</tspan></text>`;
+      dpsiPlot.innerHTML = markup;
+    }
+
+    function drawSingleSeries(svg, x, y1, color1, yLabel, title, options = {}) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const extraSeries = options.extraSeries || [];
+      const all = y1.concat(...extraSeries.map((series) => series.values));
+      let ymin = options.ymin ?? Math.min(...all);
+      let ymax = options.ymax ?? Math.max(...all);
+      if (options.includeZero) {
+        ymin = Math.min(ymin, 0);
+        ymax = Math.max(ymax, 0);
+      }
+      let yhi;
+      let ylo;
+      if (ymax === ymin) {
+        yhi = ymax + 1;
+        ylo = ymin - 1;
+      } else {
+        const pad = 0.03 * (ymax - ymin);
+        yhi = ymax + pad;
+        ylo = ymin - pad;
+      }
+      if (options.includeZero) {
+        ylo = Math.min(ylo, 0);
+        yhi = Math.max(yhi, 0);
+        const span = Math.max(1e-6, yhi - ylo);
+        if (Math.abs(ylo) < 1e-12) {
+          ylo -= 0.06 * span;
+        }
+        if (Math.abs(yhi) < 1e-12) {
+          yhi += 0.06 * span;
+        }
+      }
+      const customYTicks = options.forceZeroTick ? zeroAnchoredTicks(ylo, yhi) : null;
+      let markup = "";
+      markup += buildAxes(frame, "r / a", yLabel, ylo, yhi, 4, customYTicks);
+
+      if (ylo <= 0 && yhi >= 0) {
+        const yZero = yScale(frame, 0, ylo, yhi);
+        markup += `<line x1="${frame.margins.left}" y1="${yZero}" x2="${frame.width - frame.margins.right}" y2="${yZero}" stroke="#8ea3b3" stroke-width="1.2" />`;
+      }
+
+      const path1 = makePath(x.map((value, idx) => [xScale(frame, value), yScale(frame, y1[idx], ylo, yhi)]));
+      markup += `<path d="${path1}" fill="none" stroke="${color1}" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" />`;
+
+      extraSeries.forEach((series) => {
+        const path = makePath(x.map((value, idx) => [xScale(frame, value), yScale(frame, series.values[idx], ylo, yhi)]));
+        markup += `<path d="${path}" fill="none" stroke="${series.color}" stroke-width="2.6" ${series.dashed ? 'stroke-dasharray="7 5"' : ""} stroke-linecap="round" stroke-linejoin="round" />`;
+      });
+
+      const xs = xScale(frame, options.markerX ?? 0);
+      if (options.markerX !== undefined) {
+        markup += `<line x1="${xs}" y1="${frame.margins.top}" x2="${xs}" y2="${frame.height - frame.margins.bottom}" stroke="#b98a3d" stroke-width="2.0" stroke-dasharray="6 5" />`;
+      }
+      markup += `<text x="${frame.margins.left + 4}" y="${frame.margins.top - 2}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${title}</text>`;
+      svg.innerHTML = markup;
+    }
+
+    function drawFieldPlot(data) {
+      const bphi = data.model.bz.map((value) => value / Math.max(Math.abs(data.model.b0), 1e-12));
+      const btheta = data.model.btheta.map((value) => value / Math.max(Math.abs(data.model.b0), 1e-12));
+      drawSingleSeries(fieldPlot, data.model.rho, bphi, "#1f4e79", "B / Bφ(0)", "Polynomial Bφ(r) and Bθ(r)", {
+        markerX: data.model.rs / data.model.a,
+        extraSeries: [{ values: btheta, color: "#b64646", dashed: false }],
+        ymin: Math.min(...bphi, ...btheta, 0),
+        ymax: Math.max(...bphi, ...btheta, 1.0),
+        includeZero: true,
+        forceZeroTick: true
+      });
+
+      const qdirect = data.model.radius.map((r, idx) => {
+        if (idx === 0) {
+          return data.model.q[0];
+        }
+        const bth = data.model.btheta[idx];
+        return (r * data.model.bz[idx]) / (data.model.R0 * (Math.abs(bth) < 1e-14 ? 1e-14 : bth));
+      });
+      drawSingleSeries(fieldQPlot, data.model.rho, qdirect, "#b98a3d", "rBφ / R₀Bθ", "Direct pitch ratio rBφ/(R₀Bθ)", {
+        markerX: data.model.rs / data.model.a,
+        extraSeries: [{ values: data.model.rho.map(() => 0), color: "#7059b8", dashed: true }],
+        ymin: Math.min(...qdirect, 0),
+        ymax: Math.max(...qdirect, 0),
+        includeZero: true,
+        forceZeroTick: true
+      });
+    }
+
+    function renderValid(data) {
+      drawMainPlot(data);
+      drawDerivativePlot(data);
+      const marker = data.model.rs / data.model.a;
+      const isRfpLike = data.model.kind === "rfp" || data.model.kind === "alpha" || data.model.kind === "sprott";
+      const isSprott = data.model.kind === "sprott";
+      const isAlpha = data.model.kind === "alpha";
+      const isTopHat = data.model.kind === "tophat";
+      const qSeries = [{ values: data.model.rho.map(() => data.model.qResTarget), color: "#b98a3d", dashed: true }];
+      if (isRfpLike) {
+        qSeries.push({ values: data.model.rho.map(() => 0), color: "#7059b8", dashed: true });
+      }
+      drawSingleSeries(qPlot, data.model.rho, data.model.q, "#1f4e79", "q(r)", "Safety factor", {
+        markerX: marker,
+        extraSeries: qSeries,
+        ymin: Math.min(...data.model.q, data.model.qResTarget) * 1.08,
+        ymax: Math.max(...data.model.q, data.model.qResTarget) * 1.08,
+        includeZero: isRfpLike,
+        forceZeroTick: isRfpLike
+      });
+
+      const currentNorm = isRfpLike
+        ? Math.max(...data.model.current.map((v) => Math.abs(v))) || 1
+        : isTopHat
+        ? Math.max(Math.abs(data.model.J0), 1e-12)
+        : data.model.jHat;
+      const normJ = data.model.current.map((value) => value / currentNorm);
+      const normF = data.model.Fr.map((value) => value / (Math.max(...data.model.Fr.map((v) => Math.abs(v))) || 1));
+      const lambdaNorm = Math.max(...data.model.lambdaValues.map((v) => Math.abs(v))) || 1;
+      const normLambda = data.model.lambdaValues.map((value) => value / lambdaNorm);
+      const profileTitle = data.model.kind === "rfp" ? "Parallel current, λ(r), and F(r)" : isTopHat ? "Step current, λ(r), and F(r)" : "Current, λ(r), and F(r)";
+      drawSingleSeries(profilePlot, data.model.rho, normJ, "#2d6ea8", "Profile amplitude", profileTitle, {
+        markerX: marker,
+        extraSeries: [
+          { values: normLambda, color: "#2f7d49", dashed: false },
+          { values: normF, color: "#7059b8", dashed: true }
+        ],
+        ymin: Math.min(...normF, ...normLambda, 0),
+        ymax: 1.05,
+        includeZero: true,
+        forceZeroTick: true
+      });
+
+      if (isSprott) {
+        fieldCard.style.display = "";
+        drawFieldPlot(data);
+      } else {
+        fieldCard.style.display = "none";
+        fieldPlot.innerHTML = "";
+        fieldQPlot.innerHTML = "";
+      }
+
+      const signText = data.deltaPrime > 0 ? "positive" : "negative";
+      const isRobinson = data.model.kind === "rfp";
+      statusGrid.innerHTML = [
+        card("Selected branch", `${data.model.m}/${data.model.n} at q = ${fmt(data.model.qResTarget, 3)}`),
+        card("Resonant surface", `r<sub>s</sub>/a = ${fmt(data.model.rs / data.model.a, 3)}`),
+        card("Log derivative from left", `(&psi;'/&psi;)<sub>-</sub> = ${fmt(data.left.dlog, 4)} m<sup>-1</sup>`),
+        card("Log derivative from right", `(&psi;'/&psi;)<sub>+</sub> = ${fmt(data.right.dlog, 4)} m<sup>-1</sup>`),
+        card("Delta prime", `&Delta;&prime; = ${fmt(data.deltaPrime, 4)} m<sup>-1</sup> (${signText})`),
+        card("Outer boundary", data.wallModel === "conducting"
+          ? (data.wallRadiusRatio <= 1.005
+            ? `Perfectly conducting shell at the plasma edge, so the right branch is driven toward <code>&psi;(a)=0</code>.`
+            : `Perfectly conducting shell at <code>r<sub>w</sub>/a = ${fmt(data.wallRadiusRatio, 3)}</code>.`)
+          : `No-wall vacuum limit, with <code>&psi;&prime;(a)=-(m/a)&psi;(a)</code>.`),
+        card(isRobinson ? "Core force-free pitch" : isAlpha ? "Alpha profile" : isSprott ? "Polynomial shape" : isTopHat ? "Step profile" : "Current peaking",
+          isRobinson ? `&lambda;<sub>0</sub>a = ${fmt(data.model.lambda0a, 3)}`
+          : isAlpha ? `&lambda;<sub>0</sub>a = ${fmt(data.model.lambda0a, 3)}, &alpha; = ${fmt(data.model.alphaExp, 2)}`
+          : isSprott ? `F = ${fmt(data.model.Fparam, 3)}, &Theta; = ${fmt(data.model.theta, 3)}`
+          : isTopHat ? `q<sub>c</sub> = ${fmt(data.model.qCore, 3)}, c/a = ${fmt(data.model.coreFraction, 3)}`
+          : `&nu; = ${fmt(data.model.nu, 3)}`),
+        card("Plasma current", `I<sub>p</sub> = ${fmt(data.model.ip / 1e6, 3)} MA`),
+        card("Edge toroidal field", `B<sub>&phi;</sub>(a) = ${fmt(data.model.bz[data.model.bz.length - 1], 3)} T`),
+        card("Edge field", `B<sub>&theta;</sub>(a) = ${fmt(data.model.btheta[data.model.btheta.length - 1], 3)} T`)
+      ].join("");
+
+      const scanLines = formatModeScan(data.modeTable, data.model.a, !isRfpLike);
+      coeffGrid.innerHTML = [
+        coeff(isRobinson || isAlpha || isSprott || isTopHat ? "J<sub>z</sub>(0)" : "Ĵ", `${fmtSci(data.model.current[1] || data.model.current[0])} A m<sup>-2</sup>`),
+        coeff("q(0)", fmt(data.model.q0, 3)),
+        coeff("q(a)", fmt(data.model.qedge, 3)),
+        coeff("B<sub>z</sub>", `${fmt(data.model.b0, 3)} T`),
+        coeff("R<sub>0</sub>", `${fmt(data.model.R0, 3)} m`),
+        coeff("Mode scan", scanLines || "No low-order rational surfaces in range")
+      ].join("");
+
+      const wallText = data.wallModel === "conducting"
+        ? (data.wallRadiusRatio <= 1.005
+          ? "A perfectly conducting shell at the plasma edge is active."
+          : `A perfectly conducting shell at <code>r<sub>w</sub>/a = ${fmt(data.wallRadiusRatio, 3)}</code> is active.`)
+        : "The no-wall vacuum limit is active.";
+      warningBox.innerHTML = data.deltaPrime > 0
+        ? `${wallText} For this ${isRfpLike ? "RFP-like" : "tokamak-like"} equilibrium the selected branch has <code>&Delta;&prime; &gt; 0</code>, so the outer ideal solution leans into the resistive layer in the classical tearing-unstable sense.`
+        : `${wallText} For this ${isRfpLike ? "RFP-like" : "tokamak-like"} equilibrium the selected branch has <code>&Delta;&prime; &lt; 0</code>, so the outer ideal region resists reconnection for this particular <code>${data.model.m}/${data.model.n}</code> branch.`;
+    }
+
+    function renderInvalid(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "Normalized outer ψ", -0.5, 1.5, 5);
+      markup += `<text x="${frame.width / 2}" y="${frame.height / 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="18" fill="#78501f">No resonant surface exists for ${model.m}/${model.n} in this q-profile.</text>`;
+      mainPlot.innerHTML = markup;
+      dpsiPlot.innerHTML = "";
+      qPlot.innerHTML = "";
+      profilePlot.innerHTML = "";
+      fieldCard.style.display = model.kind === "sprott" ? "" : "none";
+      fieldPlot.innerHTML = "";
+      fieldQPlot.innerHTML = "";
+      statusGrid.innerHTML = [
+        card("Selected branch", `${model.m}/${model.n} at q = ${fmt(model.qResTarget, 3)}`),
+        card("Resonance test", model.kind === "rfp" || model.kind === "alpha"
+          ? `Valid RFP branches require <code>F(r)=mB<sub>&theta;</sub>/r-nB<sub>z</sub>/R<sub>0</sub></code> to cross zero inside the plasma.`
+          : `Valid modes require q(0) &lt; m/n &lt; q(a). Here the profile spans ${fmt(model.q0, 3)} to ${fmt(model.qedge, 3)}.`)
+      ].join("");
+      coeffGrid.innerHTML = [
+        coeff(model.kind === "rfp" ? "Core force-free pitch" : model.kind === "alpha" ? "Alpha profile" : model.kind === "sprott" ? "Polynomial shape" : model.kind === "tophat" ? "Step profile" : "Current peaking",
+          model.kind === "rfp" ? `&lambda;<sub>0</sub>a = ${fmt(model.lambda0a, 3)}`
+          : model.kind === "alpha" ? `&lambda;<sub>0</sub>a = ${fmt(model.lambda0a, 3)}, &alpha; = ${fmt(model.alphaExp, 2)}`
+          : model.kind === "sprott" ? `F = ${fmt(model.Fparam, 3)}, &Theta; = ${fmt(model.theta, 3)}`
+          : model.kind === "tophat" ? `q<sub>c</sub> = ${fmt(model.qCore, 3)}, c/a = ${fmt(model.coreFraction, 3)}`
+          : `&nu; = ${fmt(model.nu, 3)}`),
+        coeff("Plasma current", model.ip !== undefined ? `${fmt(model.ip / 1e6, 3)} MA` : `${fmt(model.ip / 1e6, 3)} MA`)
+      ].join("");
+      warningBox.innerHTML = model.kind === "rfp"
+        ? `The chosen branch <code>${model.m}/${model.n}</code> does not produce an internal Robinson resonance for this <code>&lambda;(r)</code> profile, so the outer matching construction is not active.`
+        : model.kind === "alpha"
+        ? `The chosen branch <code>${model.m}/${model.n}</code> does not produce an internal resonance for this alpha-profile <code>&lambda;(r)</code>, so the outer matching construction is not active.`
+        : model.kind === "tophat"
+        ? `The chosen branch <code>${model.m}/${model.n}</code> does not place the rational surface in the current-free annulus. The step-profile construction requires <code>q<sub>c</sub> &lt; m/n &lt; q(a)</code>.`
+        : `The chosen branch <code>${model.m}/${model.n}</code> does not intersect the smooth <code>q(r)</code> profile, so the lecture's resonant-surface tearing construction does not apply to it.`;
+    }
+
+    function updateControlVisibility() {
+      const modelName = controls.configModel.value;
+      const isTopHat = modelName === "tophat";
+      const isRfp = modelName === "rfp";
+      const isAlpha = modelName === "alpha";
+      const isSprott = modelName === "sprott";
+      const isRfpLike = isRfp || isAlpha || isSprott;
+      const changed = controls.configModel.value !== lastConfigModel;
+      if (changed) {
+        applyModelDefaults(modelName);
+      }
+      tokamakOnlyControls.forEach((el) => { el.style.display = isRfpLike || isTopHat ? "none" : ""; });
+      tophatOnlyControls.forEach((el) => { el.style.display = isTopHat ? "" : "none"; });
+      rfpOnlyControls.forEach((el) => { el.style.display = isRfp ? "" : "none"; });
+      alphaOnlyControls.forEach((el) => { el.style.display = isAlpha ? "" : "none"; });
+      sprottOnlyControls.forEach((el) => { el.style.display = isSprott ? "" : "none"; });
+      wallOnlyControls.forEach((el) => { el.style.display = controls.wallModel.value === "conducting" ? "" : "none"; });
+      controls.mmode.disabled = isRfpLike;
+      if (isTopHat) {
+        nmodeHelp.innerHTML = `The step-profile branch is valid only when the rational surface lies in the current-free annulus, so <code>q<sub>c</sub> &lt; m/n &lt; q(a)</code>.`;
+        qProfileHelp.innerHTML = `Inside the top-hat core the safety factor is flat at <em>q<sub>c</sub></em>; in the annulus it rises like <em>q(r)=q<sub>c</sub> r²/c²</em>, so the resonant surface is analytic.`;
+        profileHelp.innerHTML = `Away from the current step the outer equation reduces to Laplace’s equation. The only nontrivial matching besides the resonant layer is the jump at <em>r=c</em>, which the lecture works out exactly.`;
+        equationSummary.innerHTML = `<code>(1/r)(r&psi;')' - m²&psi;/r² = 0</code> in each region away from the current jump and the resonant surface. At the step <code>r=c</code>, the derivative obeys <code>[r&psi;'] = -2&psi;(c)/(1-c²/r<sub>s</sub>²)</code>, and the outer boundary uses either <code>&psi;&prime;(a)=-(m/a)&psi;(a)</code> or the conducting-shell form implied by <code>r<sub>w</sub></code>. The explorer then reports <code>&Delta;&prime; = (&psi;'/&psi;)<sub>+</sub> - (&psi;'/&psi;)<sub>-</sub></code> at <code>r=r<sub>s</sub></code>.`;
+      } else if (isRfp) {
+        controls.mmode.value = "1";
+        nmodeHelp.innerHTML = `The RFP branch uses the lecture’s usual <code>m=1</code> family and scans toroidal harmonics through the Robinson resonance condition <code>F(r)=0</code>.`;
+        qProfileHelp.innerHTML = `The resonant condition is now <em>q(r<sub>s</sub>) = -m/n</em>, reflecting the reversed-field convention used in the RFP lecture.`;
+        profileHelp.innerHTML = `The tearing drive now comes from the Robinson <code>&lambda;&prime;/F</code> term in the outer equation, so it is useful to see both the force-free pitch profile <em>&lambda;(r)</em> and the helical factor <em>F(r)</em>.`;
+        equationSummary.innerHTML = `<code>&psi;&Prime; + A(r)&psi; = 0</code>, with Robinson’s force-free coefficient <code>A(r)</code> built from <code>&lambda;(r)</code>, <code>B<sub>z</sub>(r)</code>, and <code>B<sub>&theta;</sub>(r)</code>. The singular drive enters through the <code>&lambda;&prime;/F</code> term, while the right branch uses either the no-wall or conducting-shell vacuum boundary condition at <code>r=a</code>. The explorer again reports <code>&Delta;&prime; = (&psi;&prime;/&psi;)<sub>+</sub> - (&psi;&prime;/&psi;)<sub>-</sub></code>.`;
+      } else if (isAlpha) {
+        controls.mmode.value = "1";
+        nmodeHelp.innerHTML = `The alpha-profile branch scans the usual RFP <code>m=1</code> family, now built from the phenomenological profile <code>&lambda;(r)=&lambda;<sub>0</sub>[1-(r/a)<sup>&alpha;</sup>]</code>.`;
+        qProfileHelp.innerHTML = `The resonant condition is again <em>q(r<sub>s</sub>) = -m/n</em>, but the equilibrium now broadens away from the exact Taylor state through the alpha-profile roll-off.`;
+        profileHelp.innerHTML = `This branch overlays the implied parallel current, the force-free pitch <em>&lambda;(r)</em>, and the helical factor <em>F(r)</em>, so changing <code>&alpha;</code> shows directly how edge roll-off shifts the tearing resonances.`;
+        equationSummary.innerHTML = `<code>&psi;&Prime; + A(r)&psi; = 0</code>, with the same Robinson-style force-free outer operator but now evaluated on the alpha-profile equilibrium <code>&lambda;(r)=&lambda;<sub>0</sub>[1-(r/a)<sup>&alpha;</sup>]</code>. The singular drive again enters through <code>&lambda;&prime;/F</code>, and the vacuum side is closed with either the no-wall or conducting-shell boundary condition at <code>r=a</code>. The explorer reports <code>&Delta;&prime; = (&psi;&prime;/&psi;)<sub>+</sub> - (&psi;&prime;/&psi;)<sub>-</sub></code>.`;
+      } else if (isSprott) {
+        controls.mmode.value = "1";
+        nmodeHelp.innerHTML = `The Sprott polynomial branch also scans the usual RFP <code>m=1</code> family, but now using the analytic polynomial profiles parameterized by <code>F</code> and <code>&Theta;</code>.`;
+        qProfileHelp.innerHTML = `The resonant condition is again <em>q(r<sub>s</sub>) = -m/n</em>, but the underlying equilibrium now comes from the modified polynomial function model rather than the Robinson <code>&lambda;(r)</code> profile.`;
+        profileHelp.innerHTML = `This branch overlays the polynomial-model parallel current, its implied <em>&lambda;(r)</em>, and the tearing resonance factor <em>F(r)</em>, so the effect of changing <code>F</code> and <code>&Theta;</code> is visible directly.`;
+        equationSummary.innerHTML = `<code>&psi;'' + (1/r)&psi;' - m²&psi;/r² - &mu;<sub>0</sub> m J'<sub>z</sub>(r)&psi;/[r F(r)] = 0</code>, evaluated on the Sprott-Shen polynomial RFP equilibrium. The resonance still sits at <code>F(r)=0</code>, and the right branch uses either the no-wall or conducting-shell vacuum boundary condition before the explorer reports <code>&Delta;&prime; = (&psi;'/&psi;)<sub>+</sub> - (&psi;'/&psi;)<sub>-</sub></code>.`;
+      } else {
+        nmodeHelp.innerHTML = `Modes are valid only when a resonant surface exists inside the plasma, that is, when <code>q(r<sub>s</sub>) = m/n</code>.`;
+        qProfileHelp.innerHTML = `The resonant condition <em>q(r<sub>s</sub>) = m/n</em> is read directly from the smooth profile implied by the current model.`;
+        profileHelp.innerHTML = `The tearing drive depends on the current gradient and on the helical bending term <em>F(r)</em>, while the plotted <em>&lambda;(r)</em> gives a compact measure of parallel current structure.`;
+        equationSummary.innerHTML = `<code>&psi;'' + (1/r)&psi;' - m²&psi;/r² - &mu;<sub>0</sub> m J'<sub>z</sub>(r)&psi;/[r F(r)] = 0</code>, with <code>F(r) = m B<sub>&theta;</sub>(r)/r - n B<sub>z</sub>/R<sub>0</sub></code>. The right branch closes with either <code>&psi;&prime;(a)=-(m/a)&psi;(a)</code> or the finite-wall vacuum-shell relation set by <code>r<sub>w</sub></code>, and the explorer then evaluates <code>&Delta;&prime; = (&psi;'/&psi;)<sub>+</sub> - (&psi;'/&psi;)<sub>-</sub></code> just outside the resistive layer.`;
+      }
+      if (changed) {
+        selectLeastStableBranch();
+      }
+      lastConfigModel = controls.configModel.value;
+    }
+
+    function updateLabels() {
+      updateControlVisibility();
+      valueLabels.aspect.innerHTML = fmt(parseFloat(controls.aspect.value), 2);
+      valueLabels.minorRadius.innerHTML = `${fmt(parseFloat(controls.minorRadius.value), 2)} m`;
+      valueLabels.b0.innerHTML = `${fmt(parseFloat(controls.b0.value), 2)} T`;
+      valueLabels.q0.innerHTML = fmt(parseFloat(controls.q0.value), 2);
+      valueLabels.qedge.innerHTML = fmt(parseFloat(controls.qedge.value), 2);
+      valueLabels.topHatQc.innerHTML = fmt(parseFloat(controls.topHatQc.value), 2);
+      valueLabels.topHatCoreFraction.innerHTML = fmt(parseFloat(controls.topHatCoreFraction.value), 2);
+      valueLabels.lambda0a.innerHTML = fmt(parseFloat(controls.lambda0a.value), 2);
+      valueLabels.coreFraction.innerHTML = fmt(parseFloat(controls.coreFraction.value), 2);
+      valueLabels.alphaLambda0a.innerHTML = fmt(parseFloat(controls.alphaLambda0a.value), 2);
+      valueLabels.alphaExponent.innerHTML = fmt(parseFloat(controls.alphaExponent.value), 1);
+      valueLabels.sprottF.innerHTML = fmt(parseFloat(controls.sprottF.value), 2);
+      valueLabels.sprottTheta.innerHTML = fmt(parseFloat(controls.sprottTheta.value), 2);
+      valueLabels.wallRadiusRatio.innerHTML = fmt(parseFloat(controls.wallRadiusRatio.value), 2);
+      valueLabels.mmode.innerHTML = String(parseInt(controls.mmode.value, 10));
+      valueLabels.nmode.innerHTML = String(parseInt(controls.nmode.value, 10));
+    }
+
+    function render() {
+      updateLabels();
+      const data = computeModeData();
+      updateLabels();
+      if (data.valid) {
+        renderValid(data);
+      } else {
+        renderInvalid(data.model);
+      }
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

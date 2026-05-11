@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 15 The Energy Principle</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_waves.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture14.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture16.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;15</span><br /><a 
+ id="x1-200015"></a>The Energy Principle</h2>
+<!--l. 15--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 15--><p class="noindent" ><span 
+class="ecbx-1095">The energy principle is the organizing theorem of ideal-MHD stability.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">Linearize the ideal equations about a static equilibrium satisfying the momentum
+   balance in Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>).
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">Use  the  frozen-in  constraint,  Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>),  to  express  the  perturbed  magnetic  field
+   entirely in terms of a fluid displacement \(\vect {\xi }\).
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The equilibrium is linearly stable in ideal MHD if the quadratic functional \(\delta W[\vect {\xi }]\) is positive
+   for every admissible displacement.</dd></dl>
+     </blockquote></div></div>
+<!--l. 23--><p class="noindent" >The importance of this lecture is hard to overstate. The earlier equilibrium lectures asked whether
+magnetic forces, pressure gradients, and geometry can balance. The energy principle asks the next
+question: if they do balance, does the plasma return when nudged, or does it find a lower-energy distortion
+and run away? The remarkable answer is that, for <span 
+class="ecti-1095">static </span>ideal-MHD equilibria, the entire linear stability
+problem can be recast as a variational problem.
+</p><!--l. 26--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 26--><p class="noindent" >Few  ideas  shaped  fusion  stability  theory  more  strongly  than  the  1958  papers  of
+     Bernstein, Frieman, Kruskal, and Kulsrud, together with Kruskal and Oberman, which
+     showed that ideal-MHD stability can be decided from the sign of a quadratic energy
+     functional <a 
+href="#Xbernstein1958_energy_principle">Bernstein et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xbernstein1958_energy_principle">1958</a>],&#x00A0;<a 
+href="#Xkruskal1958_stability">Kruskal and Oberman</a>&#x00A0;[<a 
+href="#Xkruskal1958_stability">1958</a>]. Newcomb soon turned
+     this  into  a  field-line-based  framework  for  diffuse  pinches  and  interchange  physics
+     <a 
+href="#Xnewcomb1960hydromagnetic-853">Newcomb</a>&#x00A0;[<a 
+href="#Xnewcomb1960hydromagnetic-853">1960</a>,&#x00A0;<a 
+href="lecture17.html#Xnewcomb1961convective">1961</a>],  and  Frieman&#8211;Rotenberg  later  generalized  the  formalism  to
+     equilibria with flow <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman and Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>]. It is one of the classic moments
+     in plasma theory: a messy set of coupled PDEs became a geometrically transparent
+     statement about whether a displacement raises or lowers the total potential energy.</p></blockquote></div></div>
+<!--l. 29--><p class="noindent" >This lecture stays with static equilibria. That is the setting in which the force operator is
+self-adjoint and the ideal-MHD stability question becomes especially clean. The price of that
+cleanliness is that dissipation, kinetic resonances, and equilibrium flow are all set aside for the
+moment.
+<a 
+ id="x1-2004r1"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">15.1   </span> <a 
+ id="x1-30001"></a>Displacement Formulation of Linearized Ideal MHD</h3>
+<!--l. 35--><p class="noindent" >We linearize about a time-independent equilibrium with background fields \(\rho (\vect {x})\), \(p(\vect {x})\), \(\B (\vect {x})\), and \(\J (\vect {x})\) satisfying Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>).
+                                                                                         
+                                                                                         
+Introduce a Lagrangian displacement <a id="eq-eq-EP_xi_decomp"></a><div class="math-display">\[\vect {\xi }(\vect {x},t) = \xi _\parallel \,\vect {b} + \vect {\xi }_\perp , \qquad \vect {b} \equiv \frac {\B }{B}. \tag{15.1}\]</div>
+Only the perpendicular part bends field lines. The parallel part matters for compressibility and for the
+bookkeeping of admissible perturbations, but it does not directly perturb the magnetic topology at first
+order.
+</p>
+<!--l. 51--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-40001"></a>Perturbed velocity.</span>
+The Eulerian velocity perturbation is simply <a id="eq-eq-EP_u1"></a><div class="math-display">\[\uvec _1 = \pp {\vect {\xi }}{t}. \tag{15.2}\]</div>
+</p>
+<!--l. 58--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-50001"></a>Perturbed magnetic field.</span>
+Starting from the ideal Ohm law, Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>), and Faraday&#8217;s law, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-faraday">1.10</a>), we have \[ \pp {\B _1}{t} = \curl (\uvec _1\times \B ). \] Using (<a href="lecture15.html#eq-eq-EP_u1">15.2</a>) and
+integrating once in time gives <a id="eq-eq-B1_def"></a><div class="math-display">\[\vect {Q} \equiv \B _1 = \curl (\vect {\xi }\times \B ) = \curl (\vect {\xi }_\perp \times \B ), \tag{15.3}\]</div>
+because \(\xi _\parallel \vect {b}\times \B =0\).
+</p><!--l. 78--><p class="noindent" >Now expand the curl using \[ \curl (\vect {A}\times \vect {C}) = (\vect {C}\cdot \grad )\vect {A} - (\vect {A}\cdot \grad )\vect {C} + \vect {A}\,\divergence \vect {C} - \vect {C}\,\divergence \vect {A}, \] with \(\vect {A}=\vect {\xi }_\perp \) and \(\vect {C}=\B \). Since \(\divergence \B =0\), <a id="eq-eq-B1_explicit"></a><div class="math-display">\[\boxed { \vect {Q} = (\B \cdot \grad )\vect {\xi }_\perp - (\vect {\xi }_\perp \cdot \grad )\B - \B \,\divergence \vect {\xi }_\perp . } \tag{15.4}\]</div>
+This is the basic magnetic perturbation formula used throughout ideal-MHD stability theory.
+</p>
+<!--l. 105--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-60001"></a>Perturbed pressure.</span>
+For adiabatic perturbations, the conservative pressure law derived earlier in Eq.&#x00A0;(<a href="lecture3.html#eq-eq-cons-pressure">3.11</a>) gives
+<a id="eq-eq-p1_def"></a><div class="math-display">\[p_1 = -\vect {\xi }\cdot \grad p -\gamma p\,\divergence \vect {\xi }. \tag{15.5}\]</div>
+The first term is advection of the equilibrium pressure profile. The second is ordinary adiabatic
+compression.
+</p>
+<!--l. 116--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-70001"></a>Perturbed density.</span>
+Starting from continuity, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), \[ \pp {\rho _1}{t} + \divergence (\rho \uvec _1)=0, \] substitute \(\uvec _1=\pp {\vect {\xi }}{t}\) and integrate once in time: <a id="eq-eq-EP_rho1_compact"></a><div class="math-display">\[\rho _1 = -\divergence (\rho \vect {\xi }). \tag{15.6}\]</div>
+Expanding the divergence gives <a id="eq-eq-rho1_def"></a><div class="math-display">\[\begin{aligned}\rho _1 &amp;= -\vect {\xi }\cdot \grad \rho -\rho \,\divergence \vect {\xi }.\end{aligned} \tag{15.7}\]</div>
+</p><!--l. 136--><p class="noindent" >Again the structure is simple: advection of the equilibrium density plus compressional change.
+<a 
+ id="x1-7001r3"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">15.2   </span> <a 
+ id="x1-80002"></a>The Linearized Force Operator</h3>
+<!--l. 142--><p class="noindent" >Start from the momentum equation in Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), written here with an optional gravitational potential \(\Phi _g\),
+<a id="eq-eq-EP_momentum_full"></a><div class="math-display">\[\rho \pp {\uvec }{t} = \J \times \B - \grad p - \rho \grad \Phi _g. \tag{15.8}\]</div>
+Linearization about the static equilibrium gives <a id="eq-eq-linear_momentum"></a><div class="math-display">\[\rho \pp {^2\vect {\xi }}{t^2} = \underbrace {\J _1\times \B }_{(1)} + \underbrace {\J \times \B _1}_{(2)} - \underbrace {\grad p_1}_{(3)} - \underbrace {\rho _1\grad \Phi _g}_{(4)}. \tag{15.9}\]</div>
+The perturbed current is <a id="eq-eq-EP_J1"></a><div class="math-display">\[\J _1 = \frac {1}{\muo }\curl \B _1 = \frac {1}{\muo }\curl \vect {Q}. \tag{15.10}\]</div>
+Substituting (<a href="lecture15.html#eq-eq-B1_def">15.3</a>), (<a href="lecture15.html#eq-eq-p1_def">15.5</a>), and (<a href="lecture15.html#eq-eq-rho1_def">15.7</a>) into (<a href="lecture15.html#eq-eq-linear_momentum">15.9</a>) yields <a id="eq-eq-F_operator"></a><div class="math-display">\[\rho \pp {^2\vect {\xi }}{t^2} = \vect {F}(\vect {\xi }), \tag{15.11}\]</div>
+with <a id="eq-eq-EP_force_expanded"></a><div class="math-display">\[\boxed { \vect {F}(\vect {\xi }) = \frac {1}{\muo }(\curl \vect {Q})\times \B + \J \times \vect {Q} + \grad \bigl (\vect {\xi }\cdot \grad p + \gamma p\,\divergence \vect {\xi }\bigr ) + \divergence (\rho \vect {\xi })\,\grad \Phi _g. } \tag{15.12}\]</div>
+This operator is linear in \(\vect {\xi }\). For static ideal-MHD equilibria it is also self-adjoint under the usual ideal
+boundary conditions, and that is the key structural fact behind the entire lecture.
+</p><!--l. 201--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 201--><p class="noindent" ><span 
+class="ecbx-1095">What is and is not being assumed. </span>The clean variational structure in this lecture
+     belongs to <span 
+class="ecti-1095">static ideal MHD</span>. Resistive MHD, kinetic theory, or equilibria with flow
+     require additional terms and, in general, destroy the simple Hermitian structure used
+     below.  The  Frieman&#8211;Rotenberg  generalization  is  the  right  extension  for  stationary
+     equilibria with flow <a 
+href="#Xfrieman1960_stationary_equilibria">Frieman and Rotenberg</a>&#x00A0;[<a 
+href="#Xfrieman1960_stationary_equilibria">1960</a>].</p></blockquote></div></div>
+<a 
+ id="x1-8001r8"></a>
+<h3 class="sectionHead"><span class="titlemark">15.3   </span> <a 
+ id="x1-90003"></a>From the Force Operator to a Potential-Energy Functional</h3>
+<!--l. 209--><p class="noindent" >Assume a normal-mode time dependence \[ \vect {\xi }(\vect {x},t)=\vect {\xi }(\vect {x})e^{-i\omega t}. \] Then Eq.&#x00A0;(<a href="lecture15.html#eq-eq-F_operator">15.11</a>) becomes an eigenvalue equation of the form
+<a id="eq-eq-lin_eom_operator_form"></a><div class="math-display">\[-\omega ^2\rho \vect {\xi } = \vect {F}(\vect {\xi }), \tag{15.13}\]</div>
+which can be solved in its own right. This suggests defining the bilinear "energy" form <a id="eq-eq-EP_bilinear_deltaW"></a><div class="math-display">\[\delta W(\vect {\eta },\vect {\xi }) \equiv -\frac 12\int _P \vect {\eta }^{*}\cdot \vect {F}(\vect {\xi })\,dV, \tag{15.14}\]</div>
+where \(P\) denotes the plasma region. The actual potential energy is the quadratic form <a id="eq-eq-EP_deltaW_quadratic"></a><div class="math-display">\[\delta W[\vect {\xi }]\equiv \delta W(\vect {\xi },\vect {\xi }). \tag{15.15}\]</div>
+Using (<a href="lecture15.html#eq-eq-lin_eom_operator_form">15.13</a>), <a id="eq-eq-EP_deltaW_mode"></a><div class="math-display">\[\delta W[\vect {\xi }] = \frac 12\omega ^2\int _P \rho |\vect {\xi }|^2\,dV. \tag{15.16}\]</div>
+The kinetic energy of the mode is therefore <a id="eq-eq-EP_K_equals_deltaW"></a><div class="math-display">\[K = \frac 12\omega ^2\int _P \rho |\vect {\xi }|^2\,dV = \delta W[\vect {\xi }]. \tag{15.17}\]</div>
+Equivalently, <a id="eq-eq-EP_rayleigh"></a><div class="math-display">\[\boxed { \omega ^2 = \frac {2\,\delta W[\vect {\xi }]}{\displaystyle \int _P \rho |\vect {\xi }|^2\,dV}. } \tag{15.18}\]</div>
+This is the Rayleigh quotient for ideal-MHD stability.
+</p><!--l. 260--><p class="noindent" >The logic is now transparent. If \(\delta W[\vect {\xi }]&gt;0\) for every admissible displacement, then every eigenvalue has \(\omega ^2&gt;0\) and the
+equilibrium is linearly stable. If one can find even a single admissible trial function for which \(\delta W&lt;0\), then the
+Rayleigh quotient is negative and the equilibrium is unstable.
+<a 
+ id="x1-9001r9"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">15.4   </span> <a 
+ id="x1-100004"></a>General Expression for \(\delta W\)</h3>
+<!--l. 266--><p class="noindent" >To derive the explicit form, it is convenient to suppress complex conjugation temporarily and work with a
+real displacement. The Hermitian form used for Fourier amplitudes is recovered at the end by replacing
+one factor by its complex conjugate.
+</p><!--l. 268--><p class="noindent" >From (<a href="lecture15.html#eq-eq-EP_bilinear_deltaW">15.14</a>), <a id="eq-eq-EP_deltaW_start"></a><div class="math-display">\[2\delta W = -\int _P \vect {\xi }\cdot \vect {F}(\vect {\xi })\,dV. \tag{15.19}\]</div>
+Substituting (<a href="lecture15.html#eq-eq-EP_force_expanded">15.12</a>) gives <a id="eq-eq-EP_deltaW_force_sub"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= -\int _P dV\,\vect {\xi }\cdot \left [ \frac {1}{\muo }(\curl \vect {Q})\times \B + \J \times \vect {Q} +\grad \bigl (\vect {\xi }\cdot \grad p + \gamma p\,\divergence \vect {\xi }\bigr ) +\divergence (\rho \vect {\xi })\,\grad \Phi _g \right ].\end{aligned} \tag{15.20}\]</div>
+</p><!--l. 289--><p class="noindent" >We now reduce this term by term.
+</p>
+<!--l. 291--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-110004"></a>Magnetic term.</span>
+Use the scalar triple-product identity: <div class="math-display">\[\begin{aligned}-\vect {\xi }\cdot \bigl [(\curl \vect {Q})\times \B \bigr ] &amp;= (\curl \vect {Q})\cdot (\vect {\xi }\times \B ).\end{aligned}\]</div>
+</p><!--l. 298--><p class="noindent" >Now apply \[ \divergence \bigl [\vect {Q}\times (\vect {\xi }\times \B )\bigr ] = (\vect {\xi }\times \B )\cdot \curl \vect {Q} - \vect {Q}\cdot \curl (\vect {\xi }\times \B ), \] and recall from (<a href="lecture15.html#eq-eq-B1_def">15.3</a>) that \(\vect {Q}=\curl (\vect {\xi }\times \B )\). Therefore <a id="eq-eq-EP_mag_identity"></a><div class="math-display">\[\begin{aligned}-\vect {\xi }\cdot \bigl [(\curl \vect {Q})\times \B \bigr ] &amp;= |\vect {Q}|^2 + \divergence \bigl [\vect {Q}\times (\vect {\xi }\times \B )\bigr ].\end{aligned} \tag{15.22}\]</div>
+</p><!--l. 315--><p class="noindent" >So the magnetic piece contributes a positive-definite volume term plus a surface term.
+</p>
+<!--l. 317--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-120004"></a>Pressure term.</span>
+Let \[ S\equiv \vect {\xi }\cdot \grad p + \gamma p\,\divergence \vect {\xi }, \qquad \text {so that} \qquad p_1=-S. \] Then <a id="eq-eq-EP_pressure_identity"></a><div class="math-display">\[\begin{aligned}-\vect {\xi }\cdot \grad S &amp;= -\divergence (S\vect {\xi }) + S\,\divergence \vect {\xi } \nonumber \\ &amp;= -\divergence (S\vect {\xi }) + (\vect {\xi }\cdot \grad p)\,\divergence \vect {\xi } + \gamma p\,(\divergence \vect {\xi })^2.\end{aligned} \tag{15.23}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 340--><p class="noindent" >Again the bulk part separates into a mixed pressure-gradient term and a positive compression
+term.
+</p>
+<!--l. 342--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-130004"></a>Gravity term.</span>
+Using (<a href="lecture15.html#eq-eq-rho1_def">15.7</a>), <a id="eq-eq-EP_gravity_identity"></a><div class="math-display">\[\begin{aligned}-\vect {\xi }\cdot \Bigl [\divergence (\rho \vect {\xi })\,\grad \Phi _g\Bigr ] &amp;= -(\vect {\xi }\cdot \grad \Phi _g)\,\divergence (\rho \vect {\xi }).\end{aligned} \tag{15.24}\]</div>
+</p><!--l. 350--><p class="noindent" >This is the term that later produces the gravitational interchange and magnetic-buoyancy contributions.
+For most of the lecture we will set \(\Phi _g=0\) to recover the standard ideal-MHD form.
+</p><!--l. 352--><p class="noindent" >Collecting (<a href="lecture15.html#eq-eq-EP_mag_identity">15.22</a>)&#8211;(<a href="lecture15.html#eq-eq-EP_gravity_identity">15.24</a>) gives <a id="eq-eq-deltaW_general"></a><div class="math-display">\[\begin{aligned}2\delta W &amp;= \int _P dV\Bigg [ \frac {|\vect {Q}|^2}{\muo } - \vect {\xi }\cdot (\J \times \vect {Q}) + \gamma p\,(\divergence \vect {\xi })^2 + (\vect {\xi }\cdot \grad p)\,\divergence \vect {\xi } - (\vect {\xi }\cdot \grad \Phi _g)\,\divergence (\rho \vect {\xi }) \Bigg ] \nonumber \\ &amp;\qquad + \int _S dS\,\hat {\vect {n}}\cdot \left [ \frac {1}{\muo }\vect {Q}\times (\vect {\xi }\times \B ) - \bigl (\vect {\xi }\cdot \grad p + \gamma p\,\divergence \vect {\xi }\bigr )\vect {\xi } \right ].\end{aligned} \tag{15.25}\]</div>
+</p><!--l. 378--><p class="noindent" >Here \(S\) is the plasma boundary and \(\hat {\vect {n}}\) is the outward normal.
+</p><!--l. 380--><p class="noindent" >On the interface, \[ \hat {\vect {n}}\cdot \bigl [\vect {Q}\times (\vect {\xi }\times \B )\bigr ] = (\vect {Q}\cdot \B )\,\xi _n - (\vect {Q}\cdot \hat {\vect {n}})(\vect {\xi }\cdot \B ), \qquad \xi _n\equiv \vect {\xi }\cdot \hat {\vect {n}}. \] For an ideal plasma&#8211;vacuum interface, the perturbed normal magnetic field vanishes on
+the moving boundary, so \(\vect {Q}\cdot \hat {\vect {n}}=0\). The surface term therefore reduces to <a id="eq-eq-EP_deltaW_surface_reduced"></a><div class="math-display">\[2\delta W = \int _P dV\, (\cdots ) + \int _S dS\,\xi _n \left [ \frac {\vect {Q}\cdot \B }{\muo } - \vect {\xi }\cdot \grad p - \gamma p\,\divergence \vect {\xi } \right ]. \tag{15.26}\]</div>
+This is the general quadratic form before the usual geometric rearrangement.
+<a 
+ id="x1-13001r10"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">15.5   </span> <a 
+ id="x1-140005"></a>The Intuitive Form of the Plasma, Surface, and Vacuum Terms</h3>
+<!--l. 412--><p class="noindent" >The expression above is correct but not yet very transparent. The standard &#8220;intuitive&#8221; form isolates the
+pieces associated with field-line bending, magnetic compression, plasma compression, current
+drive, and curvature. From here on we set \(\Phi _g=0\) and return to that physics later in the interchange
+lecture.
+</p><!--l. 414--><p class="noindent" >Write <a id="eq-eq-EP_deltaW_split"></a><div class="math-display">\[\delta W = \delta W_P + \delta W_S + \delta W_V, \tag{15.27}\]</div>
+where \(\delta W_P\) is the plasma contribution, \(\delta W_S\) the moving-boundary term, and \(\delta W_V\) the vacuum magnetic
+energy.
+</p>
+<!--l. 423--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-150005"></a>Useful identities.</span>
+Introduce the field-line curvature <a id="eq-eq-EP_kappa"></a><div class="math-display">\[\vect {\kappa } \equiv \vect {b}\cdot \grad \vect {b} = -\vect {b}\times \curl \vect {b}. \tag{15.28}\]</div>
+For a static isotropic equilibrium, the perpendicular force balance implies <a id="eq-eq-EP_gradp_identity"></a><div class="math-display">\[\grad p = -\grad _\perp \!\left (\frac {B^2}{2\muo }\right ) + \frac {B^2}{\muo }\vect {\kappa }. \tag{15.29}\]</div>
+Decompose the perturbed field as <a id="eq-eq-EP_Q_decomp"></a><div class="math-display">\[\vect {Q}=\vect {Q}_\perp + Q_\parallel \vect {b}, \tag{15.30}\]</div>
+with <a id="eq-eq-EP_Qperp"></a><div class="math-display">\[\vect {Q}_\perp = (\B \cdot \grad )\vect {\xi }_\perp . \tag{15.31}\]</div>
+We now derive the standard formula for \(Q_\parallel \).
+</p><!--l. 454--><p class="noindent" >Starting from (<a href="lecture15.html#eq-eq-B1_explicit">15.4</a>), take the component along \(\vect {b}\): <a id="eq-eq-EP_Qpar_step1"></a><div class="math-display">\[\begin{aligned}Q_\parallel &amp;= \vect {b}\cdot \vect {Q} \nonumber \\ &amp;= \vect {b}\cdot \curl (\vect {\xi }_\perp \times \B ) \nonumber \\ &amp;= -B\,\divergence \vect {\xi }_\perp -\vect {\xi }_\perp \cdot \grad B -B\,\vect {\xi }_\perp \cdot \vect {\kappa }.\end{aligned} \tag{15.32}\]</div>
+</p><!--l. 469--><p class="noindent" >Now use (<a href="lecture15.html#eq-eq-EP_gradp_identity">15.29</a>). Since \[ \vect {\xi }_\perp \cdot \grad p = -\vect {\xi }_\perp \cdot \grad \!\left (\frac {B^2}{2\muo }\right ) + \frac {B^2}{\muo }\vect {\xi }_\perp \cdot \vect {\kappa } = -\frac {B}{\muo }\vect {\xi }_\perp \cdot \grad B + \frac {B^2}{\muo }\vect {\xi }_\perp \cdot \vect {\kappa }, \] we obtain <a id="eq-eq-EP_xigradB"></a><div class="math-display">\[\vect {\xi }_\perp \cdot \grad B = -\muo \,\frac {\vect {\xi }_\perp \cdot \grad p}{B} + B\,\vect {\xi }_\perp \cdot \vect {\kappa }. \tag{15.33}\]</div>
+Substituting (<a href="lecture15.html#eq-eq-EP_xigradB">15.33</a>) into (<a href="lecture15.html#eq-eq-EP_Qpar_step1">15.32</a>) gives <a id="eq-eq-Qpar_rewrite"></a><div class="math-display">\[\boxed { Q_\parallel = -B\left (\divergence \vect {\xi }_\perp + 2\,\vect {\kappa }\cdot \vect {\xi }_\perp \right ) + \muo \,\frac {\vect {\xi }_\perp \cdot \grad p}{B}. } \tag{15.34}\]</div>
+</p>
+<!--l. 502--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-160005"></a>Current term.</span>
+Decompose the equilibrium current into parallel and perpendicular pieces, <a id="eq-eq-EP_J_decomp"></a><div class="math-display">\[\J = J_\parallel \vect {b} + \J _\perp , \qquad \J _\perp \times \B = \grad p. \tag{15.35}\]</div>
+Thus <a id="eq-eq-EP_Jperp"></a><div class="math-display">\[\J _\perp = \frac {\B \times \grad p}{B^2}. \tag{15.36}\]</div>
+Now expand <a id="eq-eq-JcrossQ_split"></a><div class="math-display">\[\begin{aligned}-\vect {\xi }_\perp \cdot (\J \times \vect {Q}) &amp;= -\vect {\xi }_\perp \cdot \bigl [(J_\parallel \vect {b})\times \vect {Q}\bigr ] - \vect {\xi }_\perp \cdot (\J _\perp \times \vect {Q}) \nonumber \\ &amp;= -\frac {J_\parallel }{B}(\vect {\xi }_\perp \times \B )\cdot \vect {Q}_\perp - \frac {Q_\parallel }{B}(\vect {\xi }_\perp \cdot \grad p).\end{aligned} \tag{15.37}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 529--><p class="noindent" >The first piece is the current-driven contribution that later becomes the kink term. The second will
+combine with the \(Q_\parallel ^2\) and pressure-gradient pieces.
+</p>
+<!--l. 531--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-170005"></a>Algebraic reduction of the compressional terms.</span>
+Define <a id="eq-eq-EP_DA_defs"></a><div class="math-display">\[D\equiv \divergence \vect {\xi }_\perp + 2\,\vect {\kappa }\cdot \vect {\xi }_\perp , \qquad A\equiv \vect {\xi }_\perp \cdot \grad p. \tag{15.38}\]</div>
+Then (<a href="lecture15.html#eq-eq-Qpar_rewrite">15.34</a>) becomes <a id="eq-eq-EP_Qpar_DA"></a><div class="math-display">\[Q_\parallel = -BD + \muo \frac {A}{B}. \tag{15.39}\]</div>
+Now collect the pieces of (<a href="lecture15.html#eq-eq-deltaW_general">15.25</a>) containing \(Q_\parallel \): <a id="eq-eq-plasma_algebra_bridge"></a><div class="math-display">\[\begin{aligned}\frac {Q_\parallel ^2}{\muo } - \frac {Q_\parallel }{B}A + A\,\divergence \vect {\xi }_\perp &amp;= \frac {1}{\muo }\left (-BD+\muo \frac {A}{B}\right )^2 - \left (-D+\muo \frac {A}{B^2}\right )A + A\,\divergence \vect {\xi }_\perp \nonumber \\ &amp;= \frac {B^2}{\muo }D^2 -DA + A\,\divergence \vect {\xi }_\perp \nonumber \\ &amp;= \frac {B^2}{\muo }\left (\divergence \vect {\xi }_\perp + 2\,\vect {\kappa }\cdot \vect {\xi }_\perp \right )^2 - 2(\vect {\xi }_\perp \cdot \grad p)(\vect {\xi }_\perp \cdot \vect {\kappa }).\end{aligned} \tag{15.40}\]</div>
+</p><!--l. 570--><p class="noindent" >This is the key algebraic step. The mixed terms rearrange themselves into a positive-definite
+magnetic-compression piece plus the pressure&#8211;curvature coupling.
+</p>
+<!--l. 572--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-180005"></a>Plasma contribution.</span>
+Restoring the Hermitian form for complex Fourier amplitudes, we obtain <a id="eq-eq-deltaW_plasma_expanded"></a><div class="math-display">\[\begin{aligned}\delta W_P = \frac 12\int _P dV\Bigg [ &amp; \underbrace {\frac {|\vect {Q}_\perp |^2}{\muo }}_{\text {field-line bending}} + \underbrace {\frac {B^2}{\muo } \left |\divergence \vect {\xi }_\perp + 2\,\vect {\xi }_\perp \cdot \vect {\kappa }\right |^2}_{\text {magnetic compression}} + \underbrace {\gamma p\,|\divergence \vect {\xi }|^2}_{\text {plasma compression}} \nonumber \\[0.5em] &amp; - \underbrace {2\,(\vect {\xi }_\perp \cdot \grad p) (\vect {\xi }_\perp ^{*}\cdot \vect {\kappa })}_{\text {pressure--curvature coupling}} - \underbrace {\frac {J_\parallel }{B} (\vect {\xi }_\perp ^{*}\times \B )\cdot \vect {Q}_\perp }_{\text {current-driven term}} \Bigg ].\end{aligned} \tag{15.41}\]</div>
+</p><!--l. 596--><p class="noindent" >This is the form one usually stares at when trying to guess what kind of instability is possible.
+</p>
+<!--l. 598--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-190005"></a>Surface contribution.</span>
+Now let the plasma region \(P\) be surrounded by a vacuum region \(V_{\rm vac}\), with interface \(S\) and outward
+normal \(\hat {\vect {n}}\) pointing from plasma into vacuum. Define \(\xi _n\equiv \vect {\xi }_\perp \cdot \hat {\vect {n}}\). The plasma surface term from (<a href="lecture15.html#eq-eq-EP_deltaW_surface_reduced">15.26</a>) is
+<a id="eq-eq-surface_plasma_raw"></a><div class="math-display">\[2\delta W_{S,{\rm pl}} = \int _S dS\,\xi _n \left ( p_{1,{\rm pl}} + \frac {\B \cdot \vect {Q}_{\rm pl}}{\muo } \right ). \tag{15.42}\]</div>
+In the vacuum region there is no pressure or current, so the corresponding magnetic contribution is
+<a id="eq-eq-surface_vac_raw"></a><div class="math-display">\[2\delta W_{\rm vac} = \int _{V_{\rm vac}} dV\,\frac {|\B _1|^2}{\muo } - \int _S dS\,\xi _n\,\frac {\B \cdot \vect {Q}_{\rm vac}}{\muo }. \tag{15.43}\]</div>
+The minus sign appears because the outward normal of the vacuum region is \(-\hat {\vect {n}}\) on the plasma boundary.
+The key boundary condition is continuity of the <span 
+class="ecti-1095">Lagrangian </span>total pressure across the moving interface:
+<a id="eq-eq-lagrangian_total_pressure_bc"></a><div class="math-display">\[\left [\left [ \Delta \!\left (p+\frac {B^2}{2\muo }\right ) \right ]\right ]_{\rm plasma}^{\rm vacuum} = 0, \qquad \Delta f = f_1 + \xi _n\,\hat {\vect {n}}\cdot \grad f. \tag{15.44}\]</div>
+Therefore, <a id="eq-eq-surface_pressure_jump"></a><div class="math-display">\[p_{1,{\rm pl}} + \frac {\B \cdot \vect {Q}_{\rm pl}}{\muo } - \frac {\B \cdot \vect {Q}_{\rm vac}}{\muo } = \xi _n\,\hat {\vect {n}}\cdot \left [\left [ \grad \!\left (p+\frac {B^2}{2\muo }\right ) \right ]\right ]_{\rm plasma}^{\rm vacuum}. \tag{15.45}\]</div>
+Substituting this into the combined plasma-plus-vacuum surface energy gives <a id="eq-eq-EP_surface_final"></a><div class="math-display">\[\boxed { \delta W_S = \frac 12\int _S dS\,\xi _n^2\, \hat {\vect {n}}\cdot \left [\left [ \grad \!\left (p+\frac {B^2}{2\muo }\right ) \right ]\right ]_{\rm plasma}^{\rm vacuum}. } \tag{15.46}\]</div>
+Equivalently, since \(d\vect {S}=\hat {\vect {n}}\,dS\) and \(\vect {\xi }_\perp =\xi _n\hat {\vect {n}}\) on the interface, <a id="eq-eq-EP_surface_vector"></a><div class="math-display">\[\delta W_S = \frac 12\int _S (d\vect {S}\cdot \vect {\xi }_\perp )\; \vect {\xi }_\perp \cdot \left [\left [ \grad \!\left (p+\frac {B^2}{2\muo }\right ) \right ]\right ]_{\rm plasma}^{\rm vacuum}. \tag{15.47}\]</div>
+</p>
+<!--l. 671--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-200005"></a>Vacuum contribution.</span>
+Finally, <a id="eq-eq-EP_vacuum_final"></a><div class="math-display">\[\boxed { \delta W_V = \frac 12\int _{V_{\rm vac}} dV\;\frac {|\B _1|^2}{\muo }, \qquad \curl \B _1=0 \quad \text {in vacuum}. } \tag{15.48}\]</div>
+This term is always positive. Vacuum magnetic energy cannot by itself drive an ideal instability; it can
+only add stabilizing cost or alter the balance when combined with the surface term.
+</p><!--l. 686--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 686--><p class="noindent" ><span 
+class="ecbx-1095">How to read the intuitive form. </span>The positive-definite terms are field-line bending,
+     magnetic compression, plasma compression, and vacuum magnetic energy. Instability
+     must  therefore  come  from  one  of  the  indefinite  pieces:  pressure&#8211;curvature  coupling,
+                                                                                         
+                                                                                         
+     parallel-current drive, or an unfavorable surface contribution. That bookkeeping is the
+     real practical value of the energy principle.</p></blockquote></div></div>
+<a 
+ id="x1-20001r14"></a>
+<h3 class="sectionHead"><span class="titlemark">15.6   </span> <a 
+ id="x1-210006"></a>Stability Criterion and the Variational Viewpoint</h3>
+<!--l. 694--><p class="noindent" >The formal criterion is now immediate: <a id="eq-eq-EP_stability_criterion"></a><div class="math-display">\[\boxed { \begin {array}{ll} \delta W[\vect {\xi }]&gt;0 &amp; \text {for all admissible } \vect {\xi } \quad \Longrightarrow \quad \text {stable},\\[0.4em] \delta W[\vect {\xi }]=0 &amp; \text {for some admissible } \vect {\xi } \quad \Longrightarrow \quad \text {marginal},\\[0.4em] \delta W[\vect {\xi }]&lt;0 &amp; \text {for some admissible } \vect {\xi } \quad \Longrightarrow \quad \text {unstable}. \end {array} } \tag{15.49}\]</div>
+</p><!--l. 709--><p class="noindent" >The power of Eq.&#x00A0;(<a href="lecture15.html#eq-eq-EP_rayleigh">15.18</a>) is that one does not need the exact eigenfunction to prove instability.
+Any admissible trial displacement with \(\delta W&lt;0\) is enough. Conversely, proving \(\delta W&gt;0\) for all admissible
+displacements is often difficult, but when it can be done it gives a global ideal-MHD stability
+theorem.
+</p><!--l. 711--><p class="noindent" >This is why the energy principle became the natural language of so many &#8220;classic problems&#8221; that follow in
+these notes. Kruskal&#8211;Shafranov, interchange, ballooning, and external-kink arguments are all, at bottom,
+carefully chosen ways of estimating the sign of \(\delta W\).
+<a 
+ id="x1-21001r21"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">15.7   </span> <a 
+ id="x1-220007"></a>Consequences of Self-Adjointness</h3>
+<!--l. 717--><p class="noindent" >Define the weighted inner product <a id="eq-eq-EP_weighted_inner"></a><div class="math-display">\[\langle \vect {\eta },\vect {\xi }\rangle _\rho \equiv \int _P \rho \,\vect {\eta }^{*}\cdot \vect {\xi }\,dV. \tag{15.50}\]</div>
+For static ideal-MHD equilibria, the force operator is self-adjoint under the usual ideal boundary
+conditions: <a id="eq-eq-selfadjoint_def"></a><div class="math-display">\[\boxed { \int _P \vect {\eta }^{*}\cdot \vect {F}(\vect {\xi })\,dV = \int _P \vect {F}(\vect {\eta })^{*}\cdot \vect {\xi }\,dV. } \tag{15.51}\]</div>
+This is the structural reason why the stability problem reduces to a real quadratic form.
+</p>
+<!--l. 735--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-230007"></a>Reality of \(\omega ^2\).</span>
+Take the inner product of (<a href="lecture15.html#eq-eq-lin_eom_operator_form">15.13</a>) with \(\vect {\xi }\): <a id="eq-eq-EP_reality1"></a><div class="math-display">\[\int _P \vect {\xi }^{*}\cdot \vect {F}(\vect {\xi })\,dV = -\omega ^2\int _P \rho |\vect {\xi }|^2\,dV. \tag{15.52}\]</div>
+Complex conjugation gives <a id="eq-eq-EP_reality2"></a><div class="math-display">\[\int _P \vect {F}(\vect {\xi })^{*}\cdot \vect {\xi }\,dV = -\omega ^{*2}\int _P \rho |\vect {\xi }|^2\,dV. \tag{15.53}\]</div>
+By self-adjointness, the left-hand sides of (<a href="lecture15.html#eq-eq-EP_reality1">15.52</a>) and (<a href="lecture15.html#eq-eq-EP_reality2">15.53</a>) are equal. Therefore <a id="eq-eq-EP_omega2_real"></a><div class="math-display">\[\omega ^{*2}=\omega ^2, \tag{15.54}\]</div>
+so \(\omega ^2\) is real.
+</p><!--l. 758--><p class="noindent" >This does <span 
+class="ecti-1095">not </span>mean that \(\omega \) itself must be real. Rather, </p>
+     <ul class="itemize1">
+     <li class="itemize">if \(\omega ^2&gt;0\), the motion is oscillatory;
+     </li>
+     <li class="itemize">if \(\omega ^2=0\), the mode is marginal;
+     </li>
+     <li class="itemize">if \(\omega ^2&lt;0\), then \(\omega =\pm i|\omega |\) and one obtains exponentially growing and decaying solutions.</li></ul>
+<!--l. 764--><p class="noindent" >In ideal MHD there is no damping in this static, self-adjoint problem.
+</p>
+<!--l. 766--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-240007"></a>Orthogonality of distinct eigenmodes.</span>
+Let \(\vect {\xi }_m\) and \(\vect {\xi }_n\) satisfy <a id="eq-eq-EP_two_modes"></a><div class="math-display">\[\vect {F}(\vect {\xi }_n) = -\omega _n^2\rho \vect {\xi }_n, \qquad \vect {F}(\vect {\xi }_m) = -\omega _m^2\rho \vect {\xi }_m. \tag{15.55}\]</div>
+Take the inner product of the first equation with \(\vect {\xi }_m\) and of the second with \(\vect {\xi }_n\), then subtract: <div class="math-display">\[\begin{aligned}-\omega _n^2\int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV + \omega _m^2\int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV &amp;= \int _P \vect {\xi }_m^{*}\cdot \vect {F}(\vect {\xi }_n)\,dV - \int _P \vect {F}(\vect {\xi }_m)^{*}\cdot \vect {\xi }_n\,dV \nonumber \\ &amp;=0,\end{aligned}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 786--><p class="noindent" >where the last equality follows from (<a href="lecture15.html#eq-eq-selfadjoint_def">15.51</a>). Hence, <a id="eq-eq-EP_orthog_step"></a><div class="math-display">\[(\omega _m^2-\omega _n^2) \int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV = 0. \tag{15.57}\]</div>
+If \(\omega _m^2\neq \omega _n^2\), then <a id="eq-eq-orthogonality"></a><div class="math-display">\[\boxed { \int _P \rho \,\vect {\xi }_m^{*}\cdot \vect {\xi }_n\,dV = 0. } \tag{15.58}\]</div>
+Distinct ideal-MHD eigenmodes are therefore orthogonal under the density weight.
+</p><!--l. 802--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">The energy principle replaces the linear stability PDEs by a quadratic functional \(\delta W[\vect {\xi }]\).
+   </li>
+   <li class="itemize">The sign of \(\delta W\) decides ideal-MHD stability for static equilibria.
+   </li>
+   <li class="itemize">Field-line                      bending,                      compression,                      and
+   vacuum energy are stabilizing; pressure&#8211;curvature, parallel current, and unfavorable
+   surface terms are the dangerous pieces.
+   </li>
+   <li class="itemize">The method is variational: a clever trial displacement can prove instability without
+   solving the full eigenvalue problem.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-250007"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes gnraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mmoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">moires de l&#8217;Acad</span><span 
+class="ecti-1095">mie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;quilibre et le mouvement intrieur des corps solides
+  ou fluides, lastiques ou non lastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">t</span><span 
+class="ecti-1095"> Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-260007"></a>Problems</h3>
+<a 
+ id="x1-26001r1"></a>
+<!--l. 815--><p class="noindent" ><span 
+class="ecbx-1095">Problem 15.1. Recovering the shear-Alfv</span><span 
+class="ecbx-1095">n wave from the energy principle</span>
+</p><!--l. 816--><p class="noindent" >Consider a uniform plasma with constant \(\rho \), constant \(p\), and equilibrium field \( \B =B_0\ez \) in an unbounded domain. Let
+the displacement be incompressible and transverse, \( \divergence \vect {\xi }=0 \) and \( \vect {\xi }=\vect {\xi }_\perp (z)e^{-i\omega t} \).
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture15.html#eq-eq-B1_def">15.3</a>), show that \[ \vect {Q}=B_0\dd {\vect {\xi }_\perp }{z}. \]
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">Evaluate \(\delta W\) explicitly and show that only the field-line-bending term survives.
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">Using Eq.&#x00A0;(<a href="lecture15.html#eq-eq-EP_rayleigh">15.18</a>), recover the shear-Alfvn dispersion relation \[ \omega ^2 = k_\parallel ^2 \frac {B_0^2}{\muo \rho }. \]</dd></dl>
+<a 
+ id="x1-26002r2"></a>
+<!--l. 842--><p class="noindent" ><span 
+class="ecbx-1095">Problem 15.2. Identifying the dangerous terms</span>
+</p><!--l. 843--><p class="noindent" >Take the intuitive form in Eq.&#x00A0;(<a href="lecture15.html#eq-eq-deltaW_plasma_expanded">15.41</a>) and discuss the sign of each contribution for the following
+limits.
+    </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+(a) </dt><dd 
+class="enumerate-enumitem">A straight magnetic field with \(\vect {\kappa }=0\) and \(J_\parallel =0\).
+    </dd><dt class="enumerate-enumitem">
+(b) </dt><dd 
+class="enumerate-enumitem">A curved equilibrium with finite pressure gradient but \(J_\parallel =0\).
+    </dd><dt class="enumerate-enumitem">
+(c) </dt><dd 
+class="enumerate-enumitem">A force-free equilibrium with \(\grad p=0\) but finite \(J_\parallel \).</dd></dl>
+<!--l. 849--><p class="noindent" >For each case, identify which instability class the energy principle suggests should be absent or
+possible.
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

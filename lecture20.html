@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 20 Magnetic Interchange</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture19.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture21.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;20</span><br /><a 
+ id="x1-200020"></a>Magnetic Interchange</h2>
+<!--l. 29--><p class="noindent" >Interchange modes are the cleanest place to see how equilibrium and stability talk to one another in MHD.
+They are the disturbances that try to <span 
+class="ecti-1095">exchange </span>neighboring flux tubes while doing as little field-line
+bending as possible. That makes them the natural magnetic analogue of buoyant overturning, and it is why
+the gravitational interchange problem of the previous lecture is such a useful warm-up. In one language the
+instability is driven by bad curvature; in another it is governed by the geometry of the volume per unit
+flux, usually written as \(V'(\psi )\). Both points of view are useful, and both will reappear later in the ballooning
+lecture.
+</p><!--l. 42--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 42--><p class="noindent" ><span 
+class="ecbx-1095">Big picture. </span>Magnetic interchange is an <span 
+class="ecti-1095">energy-principle </span>instability. The mode tries to
+     move plasma across flux surfaces while minimizing magnetic-line bending, so the sign of \(\delta W\)
+     is controlled primarily by curvature, pressure gradients, and the geometry of the volume
+     available to a flux tube. In a paraxial mirror this produces the classic flute criterion; in
+     a more global description it becomes the \(V'(\psi )\) criterion.</p></blockquote></div></div>
+<!--l. 52--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 52--><p class="noindent" >The classical mirror-interchange problem sits at the beginning of ideal-MHD stability
+     theory. Kruskal and Schwarzschild first showed how a magnetized plasma can suffer a
+     buoyancy-like instability even when the magnetic field is frozen into the fluid <a 
+href="#Xkruskal1954instability">Kruskal
+     and Schwarzschild</a>&#x00A0;[<a 
+href="#Xkruskal1954instability">1954</a>]. Rosenbluth and Longmire then made the mirror connection
+     explicit by interpreting bad magnetic curvature as an effective gravity and by showing
+     why  axisymmetric  mirrors  are  generically  vulnerable  to  flute  modes  <span 
+class="ecbx-1095">?</span>.  Newcomb&#8217;s
+     general stability formulation and the energy principle later placed these arguments on
+     a rigorous variational footing <span 
+class="ecbx-1095">?</span>. For mirrors this story remained central for decades,
+     because any serious mirror design had to contend with interchange from the start: either
+     by creating minimum-\(B\) geometry, by line-tying the ends, or by weighting the pressure
+     toward good-curvature regions, as in the sloshing-ion idea of Hinton and Rosenbluth
+     <span 
+class="ecbx-1095">?</span>. The modern axisymmetric treatment by Ryutov <span 
+class="ecti-1095">et al. </span>is especially useful because it
+     shows how the classical flute argument survives in a controlled paraxial expansion <span 
+class="ecbx-1095">?</span>.</p></blockquote></div></div>
+<!--l. 61--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 61--><p class="noindent" ><span 
+class="ecbx-1095">Where  this  lecture  stops. </span>The  interchange  mode  is  the  limit  in  which  field-line
+     bending is minimized. That is why the analysis can be so clean. Once parallel structure
+     and  bending  energy  become  essential,  one  is  already  moving  toward  the  ballooning
+     problem. We therefore keep the focus here on flute-like perturbations and use the lecture
+     as a bridge between equilibrium, the energy principle, and later ballooning theory.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2001r1"></a>
+<h3 class="sectionHead"><span class="titlemark">20.1   </span> <a 
+ id="x1-30001"></a>Curvature as an Effective Gravity</h3>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-30011"></a>
+                                                                                         
+                                                                                         
+<!--l. 71--><p class="noindent" ><img 
+src="figures/flute_interchange_instability_schematic.png" alt="PIC"  
+width="399" height="127"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.1: </span><span  
+class="content">Reminder that the gravitational interchange can be understood as charge build up
+and reinforced \(\vect {E}\times \vect {B}\) motion.</span></div><!--tex4ht:label?: x1-30011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 75--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-40001"></a>Single-particle picture.</span>
+The basic intuition is already visible at the guiding-center level. In a slowly varying magnetic field the
+curvature and grad-\(B\) drifts are <a id="eq-eq-magint-drift_general"></a><div class="math-display">\[\vect {v}_d = \frac {1}{qB^2}\, \B \times \left ( m v_\parallel ^2\,\vect {\kappa } + \mu \,\grad B \right ), \tag{20.1}\]</div>
+where <div class="math-display">\[\vect {\kappa } \equiv (\vect {b}\cdot \grad )\vect {b}\]</div>
+is the magnetic curvature. For a low-\(\beta \) plasma in which pressure is neglible for equilibrium <div class="math-display">\[\begin{aligned}\nabla \frac {B^2}{2 \mu _0} &amp; = \frac {B^2}{\mu _0} \vect {\kappa } \\ \nabla B &amp; = B \vect {\kappa }\end{aligned}\]</div>
+</p><!--l. 102--><p class="noindent" >with approximately thermal perpendicular and parallel energies, <div class="math-display">\[\mu B \sim \frac 12 m v_\perp ^2, \qquad m v_\parallel ^2 + \mu B \sim m v_\parallel ^2 + \frac 12 m v_\perp ^2,\]</div>
+so Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-drift_general">20.1</a>) suggests the effective acceleration <a id="eq-eq-magint-geff"></a><div class="math-display">\[\vect {g}_{\rm eff} \sim - \left (v_\parallel ^2 + \frac 12 v_\perp ^2\right )\vect {\kappa } \sim c_s^2\,\vect {\kappa } \sim \frac {c_s^2}{R_{\rm curv}}\,\hat {\vect {R}}. \tag{20.6}\]</div>
+This is the magnetic counterpart of the gravitational acceleration in the previous lecture. Bad curvature
+means that the effective gravity points from high pressure toward low pressure, so a pressure gradient can
+drive a buoyant interchange exactly as in the Rayleigh&#8211;Taylor problem.
+</p>
+<!--l. 125--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-50001"></a>The fluid criterion.</span>
+The single-particle picture is only a guide, but it points to the correct fluid quantity. When the plasma is
+pushed across the field, curvature enters the force balance through the same geometric combination that
+appeared in the anisotropic equilibrium lecture, namely \(\vect {\kappa }\cdot \grad p\). The local destabilizing tendency is therefore
+<a id="eq-eq-magint-localcriterion"></a><div class="math-display">\[\vect {\kappa }\cdot \grad p &gt; 0. \tag{20.7}\]</div>
+This should be read in parallel with the gravitational criterion of Lecture&#x00A0;18: replace the ordinary
+gravity \(\vect g\) by the effective gravity associated with curvature, and the interchange analogy becomes
+immediate.
+</p>
+<!--l. 138--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-60001"></a>Orbit-averaged drift and pressure weighting.</span>
+In a mirror one field line typically contains both good- and bad-curvature regions, so the orbit-averaged
+drift matters. For a single particle moving along a field line the net azimuthal displacement over one
+bounce is <a id="eq-eq-magint-particle_dtheta"></a><div class="math-display">\[\begin{aligned}\Delta \theta &amp;= \oint \frac {v_{d,\theta }}{r}\,dt = \oint \frac {v_{d,\theta }}{r}\,\frac {d\ell }{v_\parallel } \nonumber \\ &amp;= \oint \frac {\kappa }{qBr} \frac {mv_\parallel ^2 + \frac 12 m v_\perp ^2}{R_c} \frac {d\ell }{v_\parallel } \nonumber \\ &amp;= \oint \sqrt {m} \frac {\kappa }{qBr} \frac { 2 \varepsilon - \mu B \
+}{\sqrt {\varepsilon - \mu B}} d\ell\end{aligned} \tag{20.8}\]</div>
+</p><!--l. 163--><p class="noindent" >Now lets consider the number \(N(\mu ,\varepsilon ) \) on a field line with given \(\mu \) and \(\varepsilon \). The average drift will be \(\langle \Delta \phi \rangle = \int d \mu d\varepsilon N(\mu , \varepsilon ) \Delta \phi (\mu , \varepsilon )\). The distribution
+function "density" at any point must vary as <div class="math-display">\[f(\mu ,\varepsilon ,\ell ) = k N(\mu ,\varepsilon ) \frac {B}{v_\parallel }\]</div>
+where \(k\) is a constant. This follows directly from the real space divergence and the constancy of \(f v_\parallel dA = f \frac {v_\parallel }{B} d\Phi \) in a flux
+tube of flux \(d\Phi \).
+</p><!--l. 169--><p class="noindent" >A distribution function \(f(v_\parallel ,\mu )\) on the other hand, weights different parts of the field line differently, so the
+collective drift of a thin flux tube depends on how the pressure is distributed along the orbit. For a small
+flux tube of flux \(d\Phi \) the distribution-function average is <a id="eq-eq-magint-pressure_weighted_dtheta"></a><div class="math-display">\[\begin{aligned}N\,\langle \Delta \theta \rangle &amp;= d \Phi \frac {\sqrt {m}}{q} \int _1^2 d\ell \int d^3v\; f(v_\parallel ,\mu ) \frac {\kappa }{rB^2} \left (mv_\parallel ^2 + \frac 12 m v_\perp ^2\right ) \nonumber \\ &amp;= d \Phi \frac {\sqrt {m}}{q} \int _1^2 d\ell \; \frac {\kappa }{rB^2} \left (p_\parallel + p_\perp \right ).\end{aligned} \tag{20.10}\]</div>
+</p><!--l. 188--><p class="noindent" >where the limits of integration might span the maximum field in the throat of the mirror where \(\kappa = 0\). This is
+the first hint that the combination \(p_\parallel +p_\perp \) and its weighting along the field line will control the interchange drive.
+It also explains why highly anisotropic distributions can sometimes stabilize a nominally bad-curvature
+mirror by placing pressure in the good-curvature regions <span 
+class="ecbx-1095">?</span>. For isotropic plasmas the stability is governed
+by the integral <a id="eq-eq-interchange-kapparB2"></a><div class="math-display">\[\int _1^2 d\ell \; \frac {\kappa }{rB^2}, \tag{20.11}\]</div>
+we will return to this later.
+                                                                                         
+                                                                                         
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-60012"></a>
+                                                                                         
+                                                                                         
+<!--l. 200--><p class="noindent" ><img 
+src="figures/FluteMode.jpg" alt="PIC"  
+width="211" height="214"  /> <img 
+src="figures/m3_flute_rtheta_schematic.png" alt="PIC"  
+width="211" height="204"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.2: </span><span  
+class="content">A flute or interchange displacement exchanges neighboring flux tubes while minimizing
+field-line bending. That is why curvature and pressure gradients dominate its energetics.</span></div><!--tex4ht:label?: x1-60012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-6002r3"></a>
+<h3 class="sectionHead"><span class="titlemark">20.2   </span> <a 
+ id="x1-70002"></a>Paraxial Axisymmetric Mirror Geometry</h3>
+<!--l. 209--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-80002"></a>Flux coordinates in a thin mirror.</span>
+We now specialize to a paraxial axisymmetric mirror with radial scale \(r\) much smaller than the axial
+variation scale \(L\), <div class="math-display">\[\epsilon \equiv \frac {r}{L} \ll 1.\]</div>
+To lowest order the field is approximately axial, <div class="math-display">\[\B \simeq B(z)\,\hat {\vect z}, \qquad B=B(z),\]</div>
+and the usual axisymmetric flux function satisfies <div class="math-display">\[2\pi \psi \equiv \int _S \B \cdot d\vect S.\]</div>
+For a circle of radius \(r\) this gives <a id="eq-eq-paraxial_flux"></a><div class="math-display">\[2\pi \psi \simeq \pi r^2 B(z) \qquad \Longrightarrow \qquad \psi \simeq \frac {B(z)r^2}{2}, \tag{20.15}\]</div>
+so the radius of the flux surface \(\psi ={\rm const}\) is <a id="eq-eq-r_of_z_Psi"></a><div class="math-display">\[r(z;\psi ) = \sqrt {\frac {2\psi }{B(z)}}. \tag{20.16}\]</div>
+Equation&#x00A0;(<a href="lecture20.html#eq-eq-paraxial_flux">20.15</a>) is the same paraxial relation used earlier in the anisotropic-equilibrium lecture.
+</p>
+<!--l. 240--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-90002"></a>Curvature and normal derivatives.</span>
+The field-line curvature is <div class="math-display">\[\vect {\kappa } \equiv (\vect b\cdot \grad )\vect b, \qquad \kappa \equiv \vect {\kappa }\cdot \hat {\vect n},\]</div>
+where \(\hat {\vect n}\) points outward across the flux surfaces. For a low-\(\beta \) vacuum field, <a id="eq-eq-kappa_vac"></a><div class="math-display">\[\kappa \simeq \frac {1}{B}\pp {B}{n}, \tag{20.18}\]</div>
+which is the paraxial form of the more general curvature relations developed in Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-kappa_def">11.6</a>). Because
+Eq.&#x00A0;(<a href="lecture20.html#eq-eq-paraxial_flux">20.15</a>) implies <a id="eq-eq-magint-dn_dpsi"></a><div class="math-display">\[\pp {}{n} = \pp {\psi }{n}\pp {}{\psi } = rB\pp {}{\psi }, \tag{20.19}\]</div>
+Eq.&#x00A0;(<a href="lecture20.html#eq-eq-kappa_vac">20.18</a>) may also be written as <a id="eq-eq-magint-kappa_psi"></a><div class="math-display">\[\kappa = -rB^2\pp {}{\psi }\left (\frac {1}{B}\right ). \tag{20.20}\]</div>
+</p>
+<!--l. 275--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-100002"></a>Equilibrium identities.</span>
+The gyrotropic equilibrium relations derived in Lecture&#x00A0;11 will be used repeatedly below. Parallel balance
+is <a id="eq-eq-parallel_balance_lecture"></a><div class="math-display">\[\pp {p_\parallel }{\ell } = -\frac {p_\parallel -p_\perp }{B}\pp {B}{\ell }, \tag{20.21}\]</div>
+which is Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>), and perpendicular balance is <a id="eq-eq-equil_transverse_SI"></a><div class="math-display">\[\pp {}{n}\left (p_\perp + \frac {B^2}{2\muo }\right ) + \kappa \left (p_\parallel -p_\perp -\frac {B^2}{2\muo }\right ) = 0, \tag{20.22}\]</div>
+which is the paraxial form of Eq.&#x00A0;(<a href="lecture11.html#eq-eq-perp_balance">11.13</a>). These relations tell us that even before doing any linear stability
+analysis, curvature has already entered the equilibrium force balance. The instability problem
+asks whether a neighboring flux tube can lower the energy further by exploiting that same
+curvature.
+<a 
+ id="x1-10001r9"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">20.3   </span> <a 
+ id="x1-110003"></a>Flute Ordering and the Field-Line-Integrated Equation</h3>
+<!--l. 301--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-120003"></a>Why flute modes are special.</span>
+Interchange modes are characterized by short perpendicular structure and very weak parallel variation.
+Write the displacement as <div class="math-display">\[\vect \xi (\vect x,t) = \vect \xi (\vect x)\,e^{-i\omega t + i m\theta },\]</div>
+with large azimuthal mode number \(m\) and negligible field-line bending to leading order. In a low-\(\beta \) vacuum
+equilibrium, \(\J _0 = \curl \B /\muo \simeq 0\), so the linearized momentum equation becomes <a id="eq-eq-lin_momentum_SI_lecture"></a><div class="math-display">\[-\omega ^2 \rho \,\vect \xi = \delta \vect f + \delta \J \times \B , \tag{20.24}\]</div>
+where \(\delta \vect f \equiv -\divergence \delta \tens P\). This is the same force-balance operator already encountered in the energy-principle lecture, but
+now specialized to the flute limit where magnetic bending is deliberately minimized.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 322--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-130003"></a>Ideal induction and stream function.</span>
+The frozen-in condition from Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>) gives <a id="eq-eq-dB_ideal_lecture"></a><div class="math-display">\[\delta \B = \curl (\vect \xi \times \B ). \tag{20.25}\]</div>
+For the leading flute motion we set \(\delta \B \simeq 0\). Then <a id="eq-eq-xi_cross_B_phi"></a><div class="math-display">\[\curl (\vect \xi \times \B )=\vect 0 \qquad \Longrightarrow \qquad \vect \xi \times \B = \grad \varphi , \tag{20.26}\]</div>
+for a scalar stream function \(\varphi \). Taking the component along \(\B \) shows that <a id="eq-eq-phi_const_on_fieldline"></a><div class="math-display">\[\vect b\cdot \grad \varphi = 0, \tag{20.27}\]</div>
+so \(\varphi \) is constant along each field line. The perpendicular displacement is therefore <a id="eq-eq-xi_perp_phi"></a><div class="math-display">\[\vect \xi _\perp = \frac {\B \times \grad \varphi }{B^2}. \tag{20.28}\]</div>
+In paraxial cylindrical geometry, <a id="eq-eq-magint-xi_n"></a><div class="math-display">\[\xi _n = -\frac {1}{rB}\pp {\varphi }{\theta } = -\frac {i m}{rB}\,\varphi . \tag{20.29}\]</div>
+This is the basic kinematic ingredient behind the entire interchange reduction.
+</p>
+<!--l. 363--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-140003"></a>Perpendicular current.</span>
+Cross Eq.&#x00A0;(<a href="lecture20.html#eq-eq-lin_momentum_SI_lecture">20.24</a>) with \(\B /B^2\). The parallel part of the pressure force drops out, and one obtains the
+perpendicular perturbed current <a id="eq-eq-magint-dJperp"></a><div class="math-display">\[\delta \J _\perp = \omega ^2\rho \,\frac {\B \times \vect \xi }{B^2} + \frac {\B \times \grad \delta p_\perp }{B^2} + (\delta p_\parallel -\delta p_\perp ) \frac {\B \times \vect \kappa }{B^2}. \tag{20.30}\]</div>
+Using Eq.&#x00A0;(<a href="lecture20.html#eq-eq-xi_cross_B_phi">20.26</a>), <div class="math-display">\[\B \times \vect \xi = \grad \varphi ,\]</div>
+so the inertial term is simply proportional to \(\grad \varphi \). Equation&#x00A0;(<a href="lecture20.html#eq-eq-magint-dJperp">20.30</a>) already exhibits the three pieces of flute
+physics: polarization current, diamagnetic response, and curvature coupling.
+</p>
+<!--l. 386--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-150003"></a>Current continuity integrated along the field line.</span>
+Because charge is conserved, <div class="math-display">\[\divergence \delta \J = 0.\]</div>
+Write <div class="math-display">\[\delta \J = \delta J_\parallel \vect b + \delta \J _\perp .\]</div>
+Then <div class="math-display">\[\divergence (\delta J_\parallel \vect b) = B\pp {}{\ell }\left (\frac {\delta J_\parallel }{B}\right ),\]</div>
+so integrating along the field line gives <a id="eq-eq-delta_jpar_jump"></a><div class="math-display">\[\left (\frac {\delta J_\parallel }{B}\right )_2 - \left (\frac {\delta J_\parallel }{B}\right )_1 = \int _1^2 \frac {d\ell }{B}\,\divergence \delta \J _\perp . \tag{20.35}\]</div>
+This equation is important conceptually. For open or insulating ends the left-hand side vanishes; for
+line-tied or conducting ends it is the boundary channel through which the end condition modifies the
+interchange spectrum.
+</p>
+<!--l. 414--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-160003"></a>Divergence of the inertial term.</span>
+Using Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-dJperp">20.30</a>) together with Eq.&#x00A0;(<a href="lecture20.html#eq-eq-xi_cross_B_phi">20.26</a>), <a id="eq-eq-div_dj_SI"></a><div class="math-display">\[\divergence \delta \J _\perp = \omega ^2\divergence \left (\frac {\rho }{B^2}\grad \varphi \right ) + \divergence \left (\frac {\B }{B^2}\times \grad \delta p_\perp \right ) + \divergence \left [ (\delta p_\parallel -\delta p_\perp ) \frac {\B \times \vect \kappa }{B^2} \right ]. \tag{20.36}\]</div>
+The inertial term is the easiest to reduce. In paraxial cylindrical coordinates, <a id="eq-eq-magint-divinertial_r"></a><div class="math-display">\[\begin{aligned}\divergence \left (\frac {\rho }{B^2}\grad \varphi \right ) &amp;\simeq \frac {1}{r}\pp {}{r} \left (\frac {r\rho }{B^2}\pp {\varphi }{r}\right ) + \frac {1}{r^2}\pp {}{\theta } \left (\frac {\rho }{B^2}\pp {\varphi }{\theta }\right ) \nonumber \\ &amp;= \frac {1}{r}\pp {}{r} \left (\frac {r\rho }{B^2}\pp {\varphi }{r}\right ) - \frac {m^2\rho }{r^2B^2}\,\varphi .\end{aligned} \tag{20.37}\]</div>
+</p><!--l. 447--><p class="noindent" >Now use Eq.&#x00A0;(<a href="lecture20.html#eq-eq-paraxial_flux">20.15</a>), namely \(r\pp {}{r}=2\psi \pp {}{\psi }\). Then <div class="math-display">\[\begin{aligned}\frac {1}{r}\pp {}{r} \left (\frac {r\rho }{B^2}\pp {\varphi }{r}\right ) &amp;= \frac {1}{r}\pp {}{r} \left (\frac {r\rho }{B^2}\,rB\pp {\varphi }{\psi }\right ) \nonumber \\ &amp;= \frac {1}{r}\pp {}{r} \left (\frac {r^2\rho }{B}\pp {\varphi }{\psi }\right ) = \frac {1}{r}\pp {}{r} \left (\frac {2\rho \psi }{B^2}\pp {\varphi }{\psi }\right ) \nonumber \\ &amp;= \frac {2}{B}\pp {}{\psi } \left (\rho \psi \pp {\varphi }{\psi }\right ).\end{aligned}\]</div>
+</p><!--l. 467--><p class="noindent" >Likewise, <div class="math-display">\[\frac {m^2\rho }{r^2B^2}\,\varphi = \frac {m^2\rho }{2\psi B}\,\varphi .\]</div>
+Therefore <a id="eq-eq-magint-divinertial_psi"></a><div class="math-display">\[\divergence \left (\frac {\rho }{B^2}\grad \varphi \right ) = \frac {2}{B} \left [ \pp {}{\psi }\left (\rho \psi \pp {\varphi }{\psi }\right ) - \frac {m^2\rho }{4\psi }\,\varphi \right ]. \tag{20.40}\]</div>
+</p>
+<!--l. 486--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-170003"></a>Pressure contribution.</span>
+The pressure terms can also be reduced explicitly. Using <div class="math-display">\[\divergence (\vect A\times \vect C) = \vect C\cdot \curl \vect A - \vect A\cdot \curl \vect C,\]</div>
+with \(\vect A = \B /B^2\) and \(\vect C = \grad \delta p_\perp \) gives <div class="math-display">\[\divergence \left (\frac {\B }{B^2}\times \grad \delta p_\perp \right ) = \curl \left (\frac {\B }{B^2}\right )\cdot \grad \delta p_\perp ,\]</div>
+since \(\curl \grad \delta p_\perp = \vect 0\). For a vacuum field, <div class="math-display">\[\curl \left (\frac {\B }{B^2}\right ) = \grad \left (\frac {1}{B^2}\right )\times \B = \frac {2\B \times \grad B}{B^3},\]</div>
+so in paraxial geometry <a id="eq-eq-magint-pressure1"></a><div class="math-display">\[\divergence \left (\frac {\B }{B^2}\times \grad \delta p_\perp \right ) = \frac {2}{rB^2}\pp {B}{n}\pp {\delta p_\perp }{\theta }. \tag{20.44}\]</div>
+Similarly, <a id="eq-eq-magint-pressure2"></a><div class="math-display">\[\begin{aligned}\divergence \left [ (\delta p_\parallel -\delta p_\perp ) \frac {\B \times \vect \kappa }{B^2} \right ] &amp;= \frac {1}{rB^2}\pp {B}{n}\pp {}{\theta } \left (\delta p_\parallel -\delta p_\perp \right ).\end{aligned} \tag{20.45}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 527--><p class="noindent" >Adding Eqs.&#x00A0;(<a href="lecture20.html#eq-eq-magint-pressure1">20.44</a>) and (<a href="lecture20.html#eq-eq-magint-pressure2">20.45</a>) gives the compact result <a id="eq-eq-magint-pressuresumdiv"></a><div class="math-display">\[\divergence \left (\frac {\B }{B^2}\times \grad \delta p_\perp \right ) + \divergence \left [ (\delta p_\parallel -\delta p_\perp ) \frac {\B \times \vect \kappa }{B^2} \right ] = \frac {1}{rB^2}\pp {B}{n}\pp {}{\theta } \left (\delta p_\parallel +\delta p_\perp \right ). \tag{20.46}\]</div>
+The interchange mode therefore depends only on the combination <div class="math-display">\[P_\Sigma \equiv p_\parallel + p_\perp .\]</div>
+</p>
+<!--l. 545--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-180003"></a>Advection of the pressure sum.</span>
+Because flute motion moves an entire thin flux tube sideways with little parallel rearrangement, the leading
+perturbation of \(P_\Sigma \) is simply the sideways advection of the equilibrium profile: <a id="eq-eq-dp_sum_advected"></a><div class="math-display">\[\delta P_\Sigma \simeq -\xi _n\pp {P_\Sigma }{n}. \tag{20.48}\]</div>
+Using Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-xi_n">20.29</a>) and then Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-dn_dpsi">20.19</a>), <a id="eq-eq-dp_sum_phi"></a><div class="math-display">\[\begin{aligned}\delta P_\Sigma &amp;= -\left (-\frac {i m}{rB}\varphi \right )\pp {P_\Sigma }{n} \nonumber \\ &amp;= \frac {i m}{rB}\varphi \,\pp {P_\Sigma }{n} = i m\varphi \,\pp {P_\Sigma }{\psi }.\end{aligned} \tag{20.49}\]</div>
+</p><!--l. 566--><p class="noindent" >Substituting Eq.&#x00A0;(<a href="lecture20.html#eq-eq-dp_sum_phi">20.49</a>) into Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-pressuresumdiv">20.46</a>) and using \(\pp {B}{n}=\kappa B\) gives <a id="eq-eq-magint-pressure_drive_local"></a><div class="math-display">\[\text {pressure terms} = - m^2\,\frac {\kappa }{rB}\,\pp {P_\Sigma }{\psi }\,\varphi . \tag{20.50}\]</div>
+This is the local curvature-drive term. It has exactly the sign one expects: outward-decreasing pressure
+together with bad curvature is destabilizing.
+</p>
+<!--l. 577--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-190003"></a>Field-line-integrated eigenvalue equation.</span>
+Insert Eqs.&#x00A0;(<a href="lecture20.html#eq-eq-magint-divinertial_psi">20.40</a>) and (<a href="lecture20.html#eq-eq-magint-pressure_drive_local">20.50</a>) into Eq.&#x00A0;(<a href="lecture20.html#eq-eq-delta_jpar_jump">20.35</a>). Because \(\varphi \) is constant along the field line, all \(z\)-dependence
+sits inside the line integrals. Define <a id="eq-eq-I_def_SI"></a><div class="math-display">\[\begin{aligned}I(\psi ) &amp;\equiv \int _1^2 \frac {\rho (\psi ,\ell )}{2B^2(\psi ,\ell )}\,d\ell , \\[0.5em] D(\psi ) &amp;\equiv -\int _1^2 \frac {\kappa (\psi ,\ell )}{r(\psi ,\ell )B^2(\psi ,\ell )} \pp {P_\Sigma }{\psi }(\psi ,\ell ) \,d\ell .\end{aligned} \tag{20.51}\]</div>
+</p><!--l. 595--><p class="noindent" >Then the flute equation becomes <a id="eq-eq-ryutov_master_SI"></a><div class="math-display">\[i\omega \left [ \left (\frac {\delta J_\parallel }{B}\right )_2 - \left (\frac {\delta J_\parallel }{B}\right )_1 \right ] = \omega ^2 \left [ 4\pp {}{\psi }\left (I\psi \pp {\varphi }{\psi }\right ) - \frac {m^2 I}{\psi }\,\varphi \right ] - m^2 D\,\varphi . \tag{20.53}\]</div>
+Equation&#x00A0;(<a href="lecture20.html#eq-eq-ryutov_master_SI">20.53</a>) is the paraxial mirror interchange equation. It is the mirror analogue of the
+energy-principle form encountered in the previous two lectures: an inertial denominator weighted by \(I(\psi )\) and a
+drive weighted by the curvature integral \(D(\psi )\). With the sign convention of Eq.&#x00A0;(<a href="lecture20.html#eq-eq-D_def_SI">20.52</a>), bad curvature and an
+outward-decreasing \(P_\Sigma \) give \(D&gt;0\).
+<a 
+ id="x1-19001r13"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">20.4   </span> <a 
+ id="x1-200004"></a>Variational Form, Sharp-Boundary Mirrors, and Pressure Weighting</h3>
+<!--l. 620--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-210004"></a>Open ends and the variational principle.</span>
+For insulating or effectively open ends, <div class="math-display">\[\left (\frac {\delta J_\parallel }{B}\right )_1 = \left (\frac {\delta J_\parallel }{B}\right )_2 = 0,\]</div>
+so the left-hand side of Eq.&#x00A0;(<a href="lecture20.html#eq-eq-ryutov_master_SI">20.53</a>) vanishes. Multiply the remaining equation by \(\varphi ^*(\psi )\) and integrate from the
+axis to the plasma edge. Assuming the boundary terms vanish, <div class="math-display">\[\begin{aligned}0 &amp;= \omega ^2 \int d\psi \; \varphi ^* \left [ 4\pp {}{\psi }\left (I\psi \pp {\varphi }{\psi }\right ) - \frac {m^2 I}{\psi }\,\varphi \right ] - m^2\int d\psi \;D|\varphi |^2 \nonumber \\ &amp;= -\omega ^2 \int d\psi \; \left [ 4 I\psi \left |\pp {\varphi }{\psi }\right |^2 + \frac {m^2 I}{\psi }|\varphi |^2 \right ] - m^2\int d\psi \;D|\varphi |^2.\end{aligned}\]</div>
+</p><!--l. 657--><p class="noindent" >Therefore <a id="eq-eq-omega2_variational_SI"></a><div class="math-display">\[\omega ^2 = - m^2 \frac {\displaystyle \int d\psi \;D(\psi )|\varphi |^2} {\displaystyle \int d\psi \;\left [ 4I(\psi )\psi \left |\pp {\varphi }{\psi }\right |^2 + \frac {m^2 I(\psi )}{\psi }|\varphi |^2 \right ]}. \tag{20.56}\]</div>
+This is an energy principle in the same spirit as Eq.&#x00A0;(<a href="lecture15.html#eq-eq-EP_rayleigh">15.18</a>). The denominator is positive definite, so
+instability requires <div class="math-display">\[\int d\psi \;D(\psi )|\varphi |^2 &gt; 0.\]</div>
+The flute mode is therefore unstable whenever the weighted bad-curvature drive dominates.
+</p>
+<!--l. 677--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-220004"></a>Local high-\(m\) form.</span>
+If the mode is radially localized, the derivative term in Eq.&#x00A0;(<a href="lecture20.html#eq-eq-omega2_variational_SI">20.56</a>) is subdominant and the local dispersion
+relation becomes <div class="math-display">\[\begin{aligned}\omega ^2 &amp; \simeq -\frac {\psi D(\psi )}{I(\psi )} \nonumber \\ &amp; \sim \frac {B r^2 \frac {\kappa }{r\cancel {B^2} } \frac {\partial p}{\partial r } \frac {\partial r}{\partial \psi } \cancel {L}}{\frac {\rho }{2 \cancel {B^2} \cancel {L} }} \nonumber \\ &amp; \sim \frac {\frac { p}{L_p}}{R_{curv} \rho }\nonumber \\ &amp; \sim \frac {v_{Ti}^2}{r R_{curv}} \nonumber \\ &amp;\sim \frac {g}{L_p}\end{aligned}\]</div>
+</p><!--l. 686--><p class="noindent" >This is the simplest statement of the flute instability. A positive \(D\) gives \(\omega ^2&lt;0\), hence pure exponential growth.
+Recall Brunt Vasaila frequency \(N^2 \sim g / L_p \). The tendency of the fastest ideal modes to run to short perpendicular
+                                                                                         
+                                                                                         
+wavelength is one reason finite-Larmor-radius physics later becomes important. We will return to that
+regularization in the Roberts&#8211;Taylor and anisotropic-wave lectures.
+</p>
+<!--l. 691--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-230004"></a>Sharp-boundary mirror.</span>
+The sign of \(D\) is especially transparent when the pressure falls sharply to zero at the last closed surface. Let
+the plasma edge be \(r=a(z)\) on the flux surface \(\psi =\psi _a\). Since Eq.&#x00A0;(<a href="lecture20.html#eq-eq-paraxial_flux">20.15</a>) gives \(B(z)a^2(z)=2\psi _a\), one has <div class="math-display">\[\frac {1}{aB^2} = \frac {a^3}{4\psi _a^2}.\]</div>
+For a vacuum paraxial field the boundary curvature is approximately <div class="math-display">\[\kappa \simeq -\dd {^2 a}{z^2}.\]</div>
+If \(P_\Sigma \) is constant on the field line and drops to zero across a thin edge layer, then Eq.&#x00A0;(<a href="lecture20.html#eq-eq-D_def_SI">20.52</a>) gives
+<a id="eq-eq-magint-Dedge1"></a><div class="math-display">\[D_{\rm edge} \propto -\int _1^2 a^3(z)\dd {^2 a}{z^2}\,dz\;[P_\Sigma ], \tag{20.61}\]</div>
+where \([P_\Sigma ]\) is the pressure jump across the edge. Integrating by parts, <div class="math-display">\[\begin{aligned}-\int _1^2 a^3\dd {^2 a}{z^2}\,dz &amp;= -\left [a^3\dd {a}{z}\right ]_1^2 + 3\int _1^2 a^2\left (\dd {a}{z}\right )^2dz.\end{aligned}\]</div>
+</p><!--l. 722--><p class="noindent" >At the turning points of a symmetric mirror \(da/dz=0\), so the boundary term vanishes and <a id="eq-eq-magint-Dedge2"></a><div class="math-display">\[-\int _1^2 a^3\dd {^2 a}{z^2}\,dz = 3\int _1^2 a^2\left (\dd {a}{z}\right )^2dz &gt;0. \tag{20.63}\]</div>
+Thus an isotropic sharp-boundary axisymmetric mirror is generically interchange unstable. This is one of
+the classical reasons simple mirrors are so unforgiving.
+</p>
+<!--l. 733--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-240004"></a>Pressure weighting and sloshing ions.</span>
+The same calculation also shows how anisotropy or energetic trapped populations can help. Suppose the
+pressure weighting along the field line is \(P_\Sigma =P_\Sigma (a)\) rather than a constant. Then <div class="math-display">\[D \propto -\int _1^2 P_\Sigma (a)\,a^3\dd {^2 a}{z^2}\,dz.\]</div>
+Integrating by parts again gives <a id="eq-eq-magint-pressureweight"></a><div class="math-display">\[\begin{aligned}D &amp;= -\left [P_\Sigma a^3 \dd {a}{z}\right ]_1^2 + \int _1^2 \dd {a}{z}\,\dd {}{z}\left (P_\Sigma a^3\right )dz \nonumber \\ &amp;= \int _1^2 \left (\dd {a}{z}\right )^2 \dd {}{a}\left (P_\Sigma a^3\right )dz.\end{aligned} \tag{20.65}\]</div>
+</p><!--l. 756--><p class="noindent" >For ordinary isotropic pressure, \(\dd {}{a}(P_\Sigma a^3)&gt;0\) and the mode remains unstable. Stability demands instead that
+<a id="eq-eq-magint-pressureweight_criterion"></a><div class="math-display">\[\dd {}{a}\left (P_\Sigma a^3\right ) &lt; 0, \tag{20.66}\]</div>
+which means that the pressure must be concentrated strongly enough in the good-curvature regions. This
+is the logic behind sloshing-ion stabilization <span 
+class="ecbx-1095">?</span>.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-240013"></a>
+                                                                                         
+                                                                                         
+<!--l. 767--><p class="noindent" ><img 
+src="figures/SloshingIons.jpeg" alt="PIC"  
+width="352" height="352"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.3: </span><span  
+class="content">Pressure weighting along the field line can convert the same mirror geometry from
+interchange-unstable to interchange-stable if enough pressure is concentrated in the good-curvature
+regions <span 
+class="ecbx-1095">?</span>.</span></div><!--tex4ht:label?: x1-240013 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 772--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-250004"></a>End conditions and partial line-tying.</span>
+Equation&#x00A0;(<a href="lecture20.html#eq-eq-delta_jpar_jump">20.35</a>) also shows how end conditions modify the instability. For a high-\(m\) localized mode we may
+drop the radial-derivative term in Eq.&#x00A0;(<a href="lecture20.html#eq-eq-ryutov_master_SI">20.53</a>), obtaining <a id="eq-eq-line_tying_local_master"></a><div class="math-display">\[i\omega \left [ \left (\frac {\delta J_\parallel }{B}\right )_2 - \left (\frac {\delta J_\parallel }{B}\right )_1 \right ] = -\omega ^2\frac {m^2 I}{\psi }\,\varphi - m^2 D\,\varphi . \tag{20.67}\]</div>
+If each end is connected to a sheath or limiter with small-signal impedance \(Z_{\rm sh}\), then the linearized end
+response can be modeled as <a id="eq-eq-line_tying_sheath_bc"></a><div class="math-display">\[\delta J_{\parallel ,2} = +\frac {\varphi }{Z_{\rm sh}}, \qquad \delta J_{\parallel ,1} = -\frac {\varphi }{Z_{\rm sh}}. \tag{20.68}\]</div>
+For a symmetric mirror with end field \(B_{\rm end}\), <a id="eq-eq-line_tying_jump"></a><div class="math-display">\[\left (\frac {\delta J_\parallel }{B}\right )_2 - \left (\frac {\delta J_\parallel }{B}\right )_1 = \frac {2\varphi }{B_{\rm end}Z_{\rm sh}}. \tag{20.69}\]</div>
+Substituting into Eq.&#x00A0;(<a href="lecture20.html#eq-eq-line_tying_local_master">20.67</a>) yields <a id="eq-eq-line_tying_dispersion"></a><div class="math-display">\[\omega ^2 + i\Gamma _{\rm LT}\omega + \Gamma _0^2 = 0, \tag{20.70}\]</div>
+with <a id="eq-eq-line_tying_rates"></a><div class="math-display">\[\Gamma _0^2 \equiv \frac {\psi D}{I}, \qquad \Gamma _{\rm LT} \equiv \frac {2\psi }{m^2 I B_{\rm end} Z_{\rm sh}}. \tag{20.71}\]</div>
+For open ends \(\Gamma _{\rm LT}=0\) and one recovers \(\omega ^2=-\Gamma _0^2\). For strong line-tying, \(\Gamma _{\rm LT}\gg \Gamma _0\), the growth rate becomes <a id="eq-eq-line_tying_slowed_growth"></a><div class="math-display">\[\gamma \simeq \frac {\Gamma _0^2}{\Gamma _{\rm LT}}, \tag{20.72}\]</div>
+so line-tying does not change the ideal drive itself but can make the mode arbitrarily slow by providing the
+parallel current needed to short out the flute polarization.
+<a 
+ id="x1-25001r22"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">20.5   </span> <a 
+ id="x1-260005"></a>A Second Energy Principle: the \(V'(\psi )\) Criterion</h3>
+<!--l. 830--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-270005"></a>Why a second formulation is useful.</span>
+The mirror calculation above emphasizes local curvature and current continuity. There is, however, a more
+geometric way to express the same interchange physics. If the displacement really does exchange
+neighboring flux tubes with very little field-line bending, then the central quantity is the <span 
+class="ecti-1095">volume available</span>
+<span 
+class="ecti-1095">to a tube of given flux</span>. This is the origin of the \(V'(\psi )\) criterion. It is especially useful because it
+makes the instability look transparently like a buoyancy problem in a nontrivial magnetic
+geometry.
+</p>
+<!--l. 838--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-280005"></a>Volume per unit flux.</span>
+For an axisymmetric flux surface labeled by \(\psi \), let \(V(\psi )\) be the volume enclosed by that surface. A thin shell
+between \(\psi \) and \(\psi +d\psi \) has volume <div class="math-display">\[dV = 2\pi \,d\psi \oint \frac {d\ell }{B},\]</div>
+so <a id="eq-eq-magint-Vprime_def"></a><div class="math-display">\[V'(\psi ) \equiv \frac {dV}{d\psi } = 2\pi \oint \frac {d\ell }{B}. \tag{20.74}\]</div>
+Up to the conventional factor \(2\pi \), the same geometric content is carried by <a id="eq-eq-magint-U_def"></a><div class="math-display">\[U(\psi ) \equiv \oint \frac {d\ell }{B}. \tag{20.75}\]</div>
+The prime notation is traditional in equilibrium theory, so in this lecture it is natural to emphasize
+\(V'(\psi )\).
+</p>
+<!--l. 860--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-290005"></a>Flux-Tube Derivation of the Marginal Pressure Profile</span>
+The flux-tube argument used in the main text is worth writing out in full. Take a tube of flux \(d\psi \) with volume
+\(d V = V'(\psi )d\psi \). Adiabatic transport implies <div class="math-display">\[p(\psi )\,[V'(\psi )]^\gamma = p_\star (\psi +d\psi )\,[V'(\psi +d\psi )]^\gamma .\]</div>
+Therefore <div class="math-display">\[p_\star (\psi +d\psi ) = p(\psi ) \left [ \frac {V'(\psi )}{V'(\psi +d\psi )} \right ]^\gamma .\]</div>
+Expanding <div class="math-display">\[V'(\psi +d\psi )=V'(\psi )+\frac {d V'}{d\psi }d\psi ,\]</div>
+we have <div class="math-display">\[\begin{aligned}\left [\frac {V'(\psi )}{V'(\psi +d\psi )}\right ]^\gamma &amp;= \left [ 1+\frac {1}{V'}\frac {d V'}{d\psi }d\psi \right ]^{-\gamma } \nonumber \\ &amp;\simeq 1-\gamma \frac {1}{V'}\frac {d V'}{d\psi }d\psi .\end{aligned}\]</div>
+</p><!--l. 895--><p class="noindent" >Hence <div class="math-display">\[p_\star (\psi +d\psi ) \simeq p(\psi ) \left [ 1-\gamma \frac {1}{V'}\frac {d V'}{d\psi }d\psi \right ].\]</div>
+The ambient pressure at the new location is <div class="math-display">\[p(\psi +d\psi ) = p(\psi )+\frac {d p}{d\psi }d\psi .\]</div>
+                                                                                         
+                                                                                         
+Marginal stability means \(p_\star (\psi +d\psi )=p(\psi +d\psi )\), so <div class="math-display">\[\frac {d p}{d\psi } = -\gamma \frac {p}{V'}\frac {d V'}{d\psi }.\]</div>
+Dividing by \(p\) gives <div class="math-display">\[\frac {d\ln p}{d\psi } = -\gamma \frac {d\ln V'}{d\psi },\]</div>
+or <div class="math-display">\[p(\psi )\,[V'(\psi )]^\gamma = \mathrm {const}.\]</div>
+In terms of a midplane radius label \(r_0\), <div class="math-display">\[L_{p,\mathrm {crit}} \equiv -\frac {p}{\frac {dp}{d r_0}} = \frac {V'}{\gamma \, \frac {dV'}{d r_0}}.\]</div>
+</p>
+<!--l. 937--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-300005"></a>Interchanging two neighboring tubes.</span>
+Consider two thin neighboring flux tubes carrying the same infinitesimal flux \(d\Phi \) and centered at \(\psi \) and \(\psi +d\psi \). Their
+volumes are <div class="math-display">\[V_1 = U(\psi )\,d\Phi , \qquad V_2 = \left [U(\psi )+\pp {U}{\psi }d\psi \right ]d\Phi =\left [U(\psi )+\delta U \right ]d\Phi ,\]</div>
+and their pressures are <div class="math-display">\[p_1 = p(\psi ) = p, \qquad p_2 = p(\psi )+\pp {p}{\psi }d\psi = p + \delta p\]</div>
+Now interchange the two tubes. Each tube preserves its entropy, so the pressure of tube 1 after it occupies
+the volume \(V_2\) is <div class="math-display">\[p_1' = p_1\left (\frac {V_1}{V_2}\right )^\gamma ,\]</div>
+and similarly <div class="math-display">\[p_2' = p_2\left (\frac {V_2}{V_1}\right )^\gamma .\]</div>
+The thermal energy before the interchange is <div class="math-display">\[W_i = \frac {p_1V_1}{\gamma -1} + \frac {p_2V_2}{\gamma -1},\]</div>
+and after the interchange it is <div class="math-display">\[W_f = \frac {p_1'V_2}{\gamma -1} + \frac {p_2'V_1}{\gamma -1}.\]</div>
+Expanding to second order in \(d\psi \) gives <a id="eq-eq-dw"></a><div class="math-display">\[\begin{aligned}\Delta W \equiv W_f-W_i &amp; = \delta p \delta U + \gamma p \frac {(\delta U)^2}{U}  \\&amp; = (d\psi )^2 \frac {d}{d\psi }\ln \left [p\,U^\gamma \right ].\end{aligned} \tag{20.92}\]</div>
+</p><!--l. 977--><p class="noindent" >Since \(V'(\psi )=2\pi U(\psi )\) differs only by a constant factor, this may be written equally well as <a id="eq-eq-magint-deltaW_Vprime"></a><div class="math-display">\[\Delta W \propto \frac {d}{d\psi }\ln \left [p\,\bigl (V'(\psi )\bigr )^\gamma \right ]. \tag{20.94}\]</div>
+This is the geometric interchange energy principle. The role of \(V'(\psi )\) is completely analogous to the role of
+density stratification in ordinary buoyancy. Since the second term in Eq.&#x00A0;(<a href="lecture20.html#eq-eq-dw">20.92</a>) is manifestly positive, a
+sufficient condition for stability is that <div class="math-display">\[\pp {p}{\psi } \pp {V'}{\psi } &gt; 0\]</div>
+which in the general case in which \(p\) decreases outward requires the \(V'\) also decrease outward.
+</p><!--l. 992--><p class="noindent" >We can come to this same conclusion by returning to the particle drift picture. Combining the stability
+integral Eq.&#x00A0;(<a href="lecture20.html#eq-eq-interchange-kapparB2">20.11</a>) and the expression for \(\kappa \) from Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-kappa_psi">20.20</a>), the stability integral requires
+<div class="math-display">\[\int _1^2 \frac {\kappa }{rB^2} d\ell = \int _1^2 d\ell \frac {\partial }{\partial \psi } \frac {1}{B} = \frac {\partial }{\partial \psi } \int _1^2 \frac {d\ell }{B} &gt; 0.\]</div>
+For the plasma to gain outward directed energy, the volume must expand.
+</p>
+<!--l. 1007--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-310005"></a>Stability criterion.</span>
+The equilibrium is stable to such an interchange if \(\Delta W&gt;0\). Thus a sufficient instability condition is
+<a id="eq-eq-magint-Vprime_criterion"></a><div class="math-display">\[\frac {d}{d\psi }\ln \left [p\,\bigl (V'(\psi )\bigr )^\gamma \right ] &lt; 0 \qquad \text {when } V''(\psi )&gt;0. \tag{20.97}\]</div>
+Equivalently, <a id="eq-eq-magint-Vprime_logform"></a><div class="math-display">\[\frac {1}{p}\pp {p}{\psi } + \gamma \,\frac {1}{V'(\psi )}\pp {V'(\psi )}{\psi } &lt; 0. \tag{20.98}\]</div>
+This is exactly the same kind of statement as the gravitational energy principle: a sufficiently steep
+pressure gradient can overturn the magnetic buoyancy supplied by the geometry.
+</p>
+<!--l. 1027--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-320005"></a>Straight-current geometry.</span>
+For a straight current channel the field is approximately <div class="math-display">\[B_\theta = \frac {\muo I}{2\pi r}.\]</div>
+A magnetic field line is a circle of circumference \(2\pi r\), so <div class="math-display">\[U(r) = \oint \frac {d\ell }{B} = \frac {2\pi r}{B_\theta } \propto r^2,\]</div>
+and therefore <a id="eq-eq-magint-zpinchVprime"></a><div class="math-display">\[V'(r) \propto r^2. \tag{20.101}\]</div>
+Then Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-Vprime_logform">20.98</a>) becomes <div class="math-display">\[\frac {1}{p}\dd {p}{r} + \frac {2\gamma }{r} &lt; 0.\]</div>
+Defining the pressure scale length <div class="math-display">\[L_p \equiv -\frac {p}{dp/dr},\]</div>
+one obtains the familiar estimate <a id="eq-eq-magint-Lp_zpinch"></a><div class="math-display">\[L_p &gt; \frac {r}{2\gamma } \tag{20.104}\]</div>
+for marginal interchange stability. This is the same z-pinch intuition encountered from the local curvature
+point of view, but expressed in the cleaner geometric language of \(V'(\psi )\). This will be revisited in Lecture
+                                                                                         
+                                                                                         
+25.
+</p>
+<!--l. 1057--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-330005"></a>Dipole geometry and self-organization.</span>
+The \(V'(\psi )\) language is especially attractive in a dipole, where the flux geometry strongly expands outward.
+Dipoles can come in an open-field line geometry like for planets but also in closed-field line geometries like
+levitated dipoles. Assuming for now an axisymmetric point dipole moment \(m\) (perhaps suitable for
+magnetospheres), <div class="math-display">\[\psi (r,\theta ) = r A_\phi = \frac {\muo m\sin ^2\theta }{4\pi r},\]</div>
+with spherical coordinates \(r,\theta ,\phi \) A straightforward volume integral gives <a id="eq-eq-magint-dipoleVprime"></a><div class="math-display">\[V(\psi ) \propto R^3, \qquad V'(\psi ) \propto R^4, \tag{20.106}\]</div>
+where \(R\) is the equatorial crossing radius of each field line. Equation&#x00A0;(<a href="lecture20.html#eq-eq-magint-Vprime_logform">20.98</a>) then implies that the real space
+gradient of pressure in the equatorial plane is governed by <div class="math-display">\[\frac {1}{p}\dd {p}{R} + \frac {4\gamma }{R} &lt; 0.\]</div>
+Marginality therefore gives <a id="eq-eq-magint-dipolemarginal"></a><div class="math-display">\[p(R) \propto R^{-4\gamma }. \tag{20.108}\]</div>
+For a monatomic gas, \(\gamma =5/3\), so <div class="math-display">\[p(R) \propto R^{-20/3}.\]</div>
+This is a strong profile, but it carries an important physical message: interchange mixing can self-organize
+a plasma toward a nearly marginal state, just as ordinary convection tends to drive a stratified atmosphere
+toward \(N^2\approx 0\).
+</p>
+<!--l. 1091--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-340005"></a>Entropy mixing and marginality.</span>
+The same dipole example makes another point. If interchange turbulence mixes flux tubes
+efficiently, it is natural to expect not only pressure but particle content per unit flux to relax. If
+<div class="math-display">\[\rho V' = \text {const},\]</div>
+then <div class="math-display">\[\frac {1}{\rho }\dd {\rho }{R} + \frac {1}{V'}\dd {V'}{R} =0.\]</div>
+Combining this with the marginal pressure profile yields <div class="math-display">\[\dd {}{R}\left (\frac {p}{\rho ^\gamma }\right )=0,\]</div>
+so the entropy becomes approximately flat in radius. That is precisely the magnetic analogue of the way
+ordinary convection mixes an atmosphere toward constant entropy.
+</p>
+<!--l. 1113--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-350005"></a>How the two formulations fit together.</span>
+The local \(D(\psi )\) formulation and the global \(V'(\psi )\) formulation are not competitors. They are two views of the same
+ideal-MHD interchange physics. The \(D(\psi )\) form is better for paraxial mirrors, end conditions, and pressure
+weighting along the field line. The \(V'(\psi )\) form is better for seeing the underlying geometry and for making
+contact with the energy principle. In later lectures the ballooning problem will inherit both viewpoints: a
+local curvature drive and a global statement about how neighboring flux tubes gain or lose accessible
+volume.
+</p><!--l. 1122--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1122--><p class="noindent" ><span 
+class="ecbx-1095">Takeaway. </span>Interchange modes are ideal-MHD buoyancy modes. They minimize field-line
+     bending, so their stability is decided by curvature, pressure gradients, and flux-tube
+     geometry.  In  a  paraxial  mirror  the  drive  is  encoded  in  the  field-line  integral  \(D(\psi )\);  in  a
+     more geometric language it is encoded in \(V'(\psi )\). Simple axisymmetric mirrors are therefore
+     generically  unstable,  and  classical  mirror  stabilization  strategies&#8212;minimum-\(B\)  design,
+     pressure weighting, and line-tying&#8212;can all be understood as ways of changing the sign
+     or effectiveness of the same interchange energy principle.</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-35001r29"></a>
+<h3 class="sectionHead"><span class="titlemark">20.6   </span> <a 
+ id="x1-360006"></a>Bonus: Non-Paraxial, Interchange-Stable Axisymmetric Mirrors</h3>
+<!--l. 1132--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-370006"></a>From paraxial intuition to the full flux geometry.</span>
+The paraxial mirror analysis is useful for building intuition, but the WHAM geometry is better described
+by the exact flux-tube volume per unit flux, <div class="math-display">\[V'(\psi )=2\pi \oint \frac {d\ell }{B},\]</div>
+evaluated on the axisymmetric vacuum flux surfaces generated by the HTS mirror coils. In this
+non-paraxial treatment the outermost relevant surface is not chosen from a small-radius expansion,
+but from the separatrix itself. For the present WHAM coil set the midplane null occurs at
+<div class="math-display">\[R_X \simeq 1.412~\mathrm {m},\]</div>
+and we take the separatrix flux \(\psi _{\mathrm {sep}}=\psi (R_X,0)\) as the natural limiting surface.
+</p>
+<!--l. 1145--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-380006"></a>Interchange criterion.</span>
+The geometric interchange condition may be written as <div class="math-display">\[\frac {1}{p}\pp {p}{\psi } + \gamma \frac {1}{V'}\pp {V'}{\psi } &lt; 0,\]</div>
+or, in terms of the midplane radius label \(r_0\), <div class="math-display">\[L_{p,\mathrm {crit}}(r_0) = \frac {V'}{\gamma \, \dd {V'}{r_0}}.\]</div>
+The important point is that the exact WHAM flux geometry produces a very rapid increase in \(V'(\psi )\) as the
+separatrix is approached. That geometric expansion strongly relaxes the pressure-gradient constraint
+compared with the paraxial-core estimate.
+</p>
+<!--l. 1162--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-390006"></a>A hot-ion edge state.</span>
+To illustrate a non-paraxial WHAM case with a controlled core beta, we choose an edge state just inside
+the separatrix with <div class="math-display">\[n_{\mathrm {edge}} = 1.0\times 10^{17}~\mathrm {m^{-3}}, \qquad T_{e,\mathrm {edge}} = 12.3~\mathrm {eV}, \qquad T_{i,\mathrm {edge}} = 123.0~\mathrm {eV},\]</div>
+so that <div class="math-display">\[T_e:T_i = 1:10, \qquad p_{\mathrm {edge}} \simeq 2.17~\mathrm {Pa}.\]</div>
+We then integrate the marginal profile inward from the separatrix-limited edge using <div class="math-display">\[\dd {}{r_0}\ln p = -\frac {1}{L_{p,\mathrm {crit}}}.\]</div>
+To close the thermodynamics we additionally assume constant entropy, <div class="math-display">\[\frac {p}{n^\gamma }=\mathrm {const}, \qquad \gamma =\frac {5}{3},\]</div>
+and preserve the electron-to-ion temperature ratio throughout the profile.
+</p>
+<!--l. 1188--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-400006"></a>What the profiles show.</span>
+The resulting pressure profile remains modest in the core even though the geometric expansion near the
+separatrix is very strong. At the first sampled core point, \(r_0=0.02~\mathrm {m}\), the profile gives <div class="math-display">\[\beta (0)\approx 0.20, \qquad \beta (r_0\approx 1~\mathrm {m})\approx 0.57.\]</div>
+Thus the core and much of the mid-radius region remain in a regime where an MHD discussion based on
+the vacuum flux geometry is at least qualitatively sensible. The same run gives <div class="math-display">\[n(0.02~\mathrm {m}) \simeq 1.12\times 10^{19}~\mathrm {m^{-3}},\]</div>
+with hot-ion temperatures <div class="math-display">\[T_e(0.02~\mathrm {m}) \simeq 2.87\times 10^2~\mathrm {eV}, \qquad T_i(0.02~\mathrm {m}) \simeq 2.87\times 10^3~\mathrm {eV}.\]</div>
+Meanwhile the line-wise mirror ratio grows from about <div class="math-display">\[R_m \simeq 64\]</div>
+on axis to <div class="math-display">\[R_m \gtrsim 8\times 10^4\]</div>
+just inside the separatrix, reflecting the collapse of the midplane field near the null.
+</p>
+<!--l. 1217--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-410006"></a>Interpretation.</span>
+This non-paraxial construction shows that the exact \(V'(\psi )\) geometry of WHAM can support a much larger
+pressure buildup than one would infer from a purely paraxial estimate, while still allowing the core beta to
+remain below unity for a suitably chosen edge state. That is encouraging from the standpoint of
+                                                                                         
+                                                                                         
+interchange stability. At the same time, the very large values of \(V'\), mirror ratio, and \(\beta \) as the separatrix is
+approached are a warning sign: the outermost flux surfaces lie in a region where the vacuum
+field is becoming singular and the magnetic geometry is highly sensitive to finite-pressure
+corrections.
+</p>
+<!--l. 1222--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-420006"></a>What comes next.</span>
+For that reason this section should be viewed as a geometric and thermodynamic guide, not as the final
+equilibrium solution. The next step is to compute the full high-\(\beta \) MHD equilibrium and revisit
+the flux geometry self-consistently. That will determine how much of the large non-paraxial
+stabilization survives once the pressure modifies the field rather than simply filling a fixed vacuum
+geometry.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-420014"></a>
+                                                                                         
+                                                                                         
+<!--l. 1229--><p class="noindent" ><img 
+src="figures/wham_hts_vprime_profile_separatrix.png" alt="PIC"  
+width="469" height="320"  />
+<br />  </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.4:  </span><span  
+class="content">Non-paraxial  WHAM  separatrix  geometry,  the  exact  \(V'(\psi )\)  profile,  the  critical
+pressure-gradient scale length, and the marginal pressure profile obtained by integrating inward
+from the separatrix-limited edge state.</span></div><!--tex4ht:label?: x1-420014 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-420025"></a>
+                                                                                         
+                                                                                         
+<!--l. 1236--><p class="noindent" ><img 
+src="figures/wham_hts_vprime_profile_separatrix_beta_midplane.png" alt="PIC"  
+width="328" height="227"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.5: </span><span  
+class="content">Midplane beta profile for the hot-ion separatrix-limited case. Here so the core remains
+below unity while \(\beta \) rises rapidly near the separatrix as the midplane field collapses.</span></div><!--tex4ht:label?: x1-420025 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-420036"></a>
+                                                                                         
+                                                                                         
+<!--l. 1243--><p class="noindent" ><img 
+src="figures/wham_hts_vprime_profile_separatrix_thermodynamics.png" alt="PIC"  
+width="328" height="156"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.6: </span><span  
+class="content">Density and temperature profiles obtained from the marginal pressure profile under
+the constant-entropy closure with fixed \(T_e:T_i=1:10\).</span></div><!--tex4ht:label?: x1-420036 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-420047"></a>
+                                                                                         
+                                                                                         
+<!--l. 1250--><p class="noindent" ><img 
+src="figures/wham_hts_vprime_profile_separatrix_mirror_ratio.png" alt="PIC"  
+width="328" height="228"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;20.7: </span><span  
+class="content">Mirror ratio along the sampled WHAM flux tubes. The mirror ratio becomes extremely
+large as the separatrix is approached because the midplane field tends to zero at the null.</span></div><!--tex4ht:label?: x1-420047 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 1256--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 1256--><p class="noindent" >The mirror-interchange lecture has two complementary morals. In the paraxial problem
+     the drive is encoded in the orbit-weighted curvature integral \(D(\psi )\), which makes clear why
+     simple axisymmetric mirrors are generically interchange unstable and why line-tying or
+     pressure weighting can help. In the non-paraxial WHAM geometry the same physics is
+     reorganized by the exact flux-tube volume \(V'(\psi )\): strong separatrix expansion can greatly relax
+     the marginal pressure-gradient bound, but only until finite-\(\beta \) corrections to the magnetic
+     geometry become unavoidable.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-430006"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMaxwell1873"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> James&#x00A0;Clerk Maxwell.  <span 
+class="ecti-1095">A Treatise on Electricity and Magnetism</span>.  Clarendon Press, Oxford,
+  1873. 2 vols.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XArchimedes1897"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Archimedes. <span 
+class="ecti-1095">The Works of Archimedes</span>. Cambridge University Press, Cambridge, 1897. Contains
+  <span 
+class="ecti-1095">On Floating Bodies</span>, Books I&#8211;II.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBernoulli1738"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Daniel Bernoulli.  <span 
+class="ecti-1095">Hydrodynamica, sive de viribus et motibus fluidorum commentarii</span>.  Johann
+  Reinhold Dulsecker, Argentorati, 1738.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XEuler1757"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Leonhard Euler. Principes généraux du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie Royale</span>
+  <span 
+class="ecti-1095">des Sciences et des Belles-Lettres de Berlin</span>, 11:274&#8211;315, 1757.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XNavier1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Claude-Louis Navier. Mémoire sur les lois du mouvement des fluides. <span 
+class="ecti-1095">M</span><span 
+class="ecti-1095">émoires de l&#8217;Acad</span><span 
+class="ecti-1095">émie</span>
+  <span 
+class="ecti-1095">des Sciences de l&#8217;Institut de France</span>, 6, 1823. Read in 1822; the volume is commonly cited as 1823
+  and was issued in 1827.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XStokes1845"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> George&#x00A0;Gabriel Stokes. On the theories of the internal friction of fluids in motion, and of the
+  equilibrium and motion of elastic solids. <span 
+class="ecti-1095">Transactions of the Cambridge Philosophical Society</span>, 8:
+  287&#8211;319, 1845.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDarrigol2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Olivier Darrigol. <span 
+class="ecti-1095">Worlds of Flow: A History of Hydrodynamics from the Bernoullis to Prandtl</span>.
+  Oxford University Press, Oxford, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XTamburrino2024"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Tamburrino.  From navier to stokes: Commemorating the bicentenary of navier&#8217;s equation
+  on the lay of fluid motion. <span 
+class="ecti-1095">Fluids</span>, 9(1):15, 2024. doi:<a 
+href="https://doi.org/10.3390/fluids9010015" >10.3390/fluids9010015</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XCauchy1823"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Augustin-Louis Cauchy. Recherches sur l&#8217;équilibre et le mouvement intérieur des corps solides
+  ou fluides, élastiques ou non élastiques.  <span 
+class="ecti-1095">Bulletin de la Soci</span><span 
+class="ecti-1095">ét</span><span 
+class="ecti-1095">é Philomathique de Paris</span>, pages
+  9&#8211;13, 1823.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XGradRubin1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Harold Grad and H.&#x00A0;Rubin.  Hydromagnetic equilibria and force-free fields.  Technical report,
+  New York University, Institute of Mathematical Sciences, October 1958. Also circulated through
+  the 2nd International Conference on the Peaceful Uses of Atomic Energy, Geneva.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XShafranov1958"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;D. Shafranov. On magnetohydrodynamical equilibrium configurations. <span 
+class="ecti-1095">Soviet Physics JETP</span>,
+  6:545&#8211;554, 1958.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XAlfven1942"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150(3805):405&#8211;406,
+  1942.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBatchelor1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> G.&#x00A0;K. Batchelor. <span 
+class="ecti-1095">An Introduction to Fluid Dynamics</span>. Cambridge University Press, Cambridge,
+  1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XChandrasekhar1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XDavidson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;A. Davidson.   <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.   Cambridge University Press,
+  Cambridge, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XMolokovMoreauMoffatt2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  S.&#x00A0;Molokov,  R.&#x00A0;Moreau,  and  H.&#x00A0;K.  Moffatt,  editors.    <span 
+class="ecti-1095">Magnetohydrodynamics:  Historical</span>
+  <span 
+class="ecti-1095">Evolution and Trends</span>. Springer, Dordrecht, 2007.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-440006"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 20.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-dJperp">20.30</a>), re-derive Eq.&#x00A0;(<a href="lecture20.html#eq-eq-ryutov_master_SI">20.53</a>) carefully and check every sign in
+                the definition of \(D(\psi )\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 20.2.</span>  </dt><dd 
+class="enumerate-enumitem">Show explicitly that the sharp-boundary isotropic mirror gives \(D&gt;0\) by carrying out
+                the integration by parts in Eqs.&#x00A0;(<a href="lecture20.html#eq-eq-magint-Dedge1">20.61</a>)&#8211;(<a href="lecture20.html#eq-eq-magint-Dedge2">20.63</a>).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 20.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from the interchange of two neighboring flux tubes, derive Eq.&#x00A0;(<a href="lecture20.html#eq-eq-magint-deltaW_U">20.93</a>)
+                without skipping the second-order expansion.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 20.4.</span>  </dt><dd 
+class="enumerate-enumitem">Evaluate \(V'(\psi )\) for a large-aspect-ratio tokamak with circular surfaces and discuss why
+                pure interchange is harder to realize once line bending is included.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 20.5.</span>  </dt><dd 
+class="enumerate-enumitem">In  the  local  line-tying  model,  solve  Eq.&#x00A0;(<a href="lecture20.html#eq-eq-line_tying_dispersion">20.70</a>)  exactly  and  recover  the
+                slowed-growth limit Eq.&#x00A0;(<a href="lecture20.html#eq-eq-line_tying_slowed_growth">20.72</a>) for \(\Gamma _{\rm LT}\gg \Gamma _0\).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,21 @@
+{
+  "title": "Classic Problems in Magnetohydrodynamics: Interactive Web Edition",
+  "description": "Publish-only static website for the interactive web edition of Classic Problems in Magnetohydrodynamics. This archive contains deployable HTML lecture pages, browser-based physics explorers, figures, media assets, and the bundled PDF, but not the LaTeX manuscript or source build workflow.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Forest, Cary",
+      "affiliation": "University of Wisconsin\u2013Madison",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "magnetohydrodynamics",
+    "plasma physics",
+    "MHD stability",
+    "tokamak equilibria",
+    "interactive lecture notes"
+  ],
+  "notes": "Copyright (c) 2026 Cary Forest. All rights reserved. Public access to this archive does not grant permission to redistribute, adapt, or republish the material beyond applicable law and explicit written permission from the copyright holder.",
+  "access_right": "open"
+}

@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 44 Resistive Modes of a Sheet Pinch</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture43.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><span class="nav-next nav-disabled">Next Lecture &#8594;</span></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;44</span><br /><a 
+ id="x1-25900044"></a>Resistive Modes of a Sheet Pinch</h2>
+<!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 5--><p class="noindent" >The  slab  sheet  pinch  is  the  cleanest  place  to  see  that  &#8220;resistive  MHD&#8221;  is  not  just
+     one instability but a small family of related boundary-layer problems. In the classical
+     Furth&#8211;Killeen&#8211;Rosenbluth (FKR) picture, the same reduced equations support three
+     distinct branches: a long-wave <span 
+class="ecti-1095">tearing </span>mode that reconnects field lines and is governed
+     by the outer matching parameter \(\Delta '\); a short-wave <span 
+class="ecti-1095">rippling  </span>mode that corrugates the
+     current sheet without changing topology; and a low-\(g\) <span 
+class="ecti-1095">gravitational/interchange </span>branch
+     that survives even in the presence of magnetic shear.
+     </p><!--l. 13--><p class="noindent" >This  appendix  is  therefore  meant  to  complement  Lecture&#x00A0;30  and  Lecture&#x00A0;31.  The
+     cylindrical lectures carry the main physical development, but the slab problem is where
+     the boundary-layer logic is most transparent: non-local outer ideal matching for tearing,
+     local buoyancy-like drive for interchange, and a separate parity class for rippling.</p></blockquote></div></div>
+<!--l. 21--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 21--><p class="noindent" >The 1963 paper of Furth, Killeen, and Rosenbluth did more than derive the familiar
+     \(\eta ^{3/5}\)  tearing  growth  rate.  It  already  organized  the  resistive  sheet-pinch  problem  into
+     three  branches:  tearing,  rippling,  and  gravitational/interchange  <a 
+href="#XFurth1963FiniteResistivity">Furth  et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>].
+     That is a remarkably modern viewpoint. The tearing branch is the ancestor of the
+     matched-asymptotic calculations used throughout reconnection theory; the interchange
+     branch is the slab ancestor of the pressure-driven resistive modes discussed later in
+     cylindrical  geometry;  and  the  rippling  branch  is  an  early  reminder  that  transport
+     coefficients and parity matter, not just the ideal energy principle.
+     </p><!--l. 30--><p class="noindent" >Roberts  and  Taylor  soon  reinterpreted  the  gravitational  branch  in  a  way  that
+     made its connection to ordinary buoyancy and convection much clearer <a 
+href="#XRobertsTaylor1965GravityResistive">Roberts and
+     Taylor</a>&#x00A0;[<a 
+href="#XRobertsTaylor1965GravityResistive">1965</a>]. The step from slab gravity to cylindrical bad curvature was then made
+     by Coppi, Greene, and Johnson, who showed how the same logic reappears in a diffuse
+     linear pinch <a 
+href="#XCoppi1966ResistiveInstabilities">Coppi et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCoppi1966ResistiveInstabilities">1966</a>]. In that sense the slab appendix is historically small but
+     conceptually central: the later cylindrical lectures are refinements, not replacements.</p></blockquote></div></div>
+<!--l. 39--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 39--><p class="noindent" ><span 
+class="ecbx-1095">Do not blur the three branches.</span>
+     </p><!--l. 41--><p class="noindent" >Tearing is <span 
+class="ecti-1095">non-local</span>: it needs an outer ideal solution and the matching index \(\Delta '\). The
+     gravitational/interchange branch is <span 
+class="ecti-1095">local</span>: its drive is buoyancy-like and its canonical
+     scaling is \(\gamma \sim \eta ^{1/3}\), just as in Eq.&#x00A0;(<a href="lecture31.html#eq-eq-rint-eta13_scaling">31.15</a>). The rippling branch is different again: it depends on
+     current crossing resistivity gradients, so it is much more sensitive to transport closure
+     and is often suppressed once realistic thermal conduction is included <a 
+href="#XFurth1963FiniteResistivity">Furth et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>].</p></blockquote></div></div>
+                                                                                         
+                                                                                         
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-2590011"></a>
+                                                                                         
+                                                                                         
+<!--l. 51--><p class="noindent" ><img 
+src="figures/slabtearing.jpeg" alt="PIC"  
+width="385" height="385"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;44.1:  </span><span  
+class="content">Classical  sheet-pinch  geometry.  The  reconnecting  field  reverses  through  \(x=0\),  so  the
+resonant surface sits at the current-sheet center. Even-parity perturbations of the flux function \(\psi \)
+correspond to tearing parity and can form islands; odd-parity perturbations correspond to rippling
+or interchange parity and do not reconnect at leading order.</span></div><!--tex4ht:label?: x1-2590011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<a 
+ id="x1-259002r258"></a>
+<h3 class="sectionHead"><span class="titlemark">44.1   </span> <a 
+ id="x1-2600001"></a>Equilibrium and reduced slab equations</h3>
+<!--l. 62--><p class="noindent" >Consider a planar equilibrium with reconnecting field in the \(y\) direction and a uniform guide field in the \(z\)
+direction, <a id="eq-eq-slab-B0"></a><div class="math-display">\[\B _0 = B_y(x)\,\ey + B_z\,\ez , \qquad \J _0 = \frac {1}{\muo } B_y'(x)\,\ez . \tag{J.1}\]</div>
+If we also allow a uniform gravity \(g \, \ex \), then transverse force balance is <a id="eq-eq-slab-force_balance"></a><div class="math-display">\[\frac {d}{dx}\left (p_0 + \frac {B_y^2 + B_z^2}{2\muo }\right ) = \rho _0 g. \tag{J.2}\]</div>
+For the tearing problem we will set \(g=0\); for the gravitational/interchange branch we keep it. Perturbations are
+taken in the form <a id="eq-eq-slab-harmonic"></a><div class="math-display">\[\sim e^{\gamma t + i k y}, \tag{J.3}\]</div>
+and we use flux and stream functions defined by <a id="eq-eq-slab-streamflux"></a><div class="math-display">\[\B _1 = -\curl \!\left (\psi \,\ez \right ), \qquad \uvec _1 = -\curl \!\left (\phi \,\ez \right ). \tag{J.4}\]</div>
+These give <a id="eq-eq-slab-components"></a><div class="math-display">\[b_x = -ik\psi , \qquad b_y = \psi ', \qquad v_x = -ik\phi , \qquad v_y = \phi ', \tag{J.5}\]</div>
+and the perturbed sheet current is <a id="eq-eq-slab-j1z"></a><div class="math-display">\[\muo j_{1z} = \psi '' - k^2 \psi . \tag{J.6}\]</div>
+It is also convenient to introduce the radial displacement <a id="eq-eq-slab-xi_def"></a><div class="math-display">\[\xi (x) \equiv \frac {v_x}{\gamma } = -\frac {ik}{\gamma }\phi . \tag{J.7}\]</div>
+</p><!--l. 111--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 111--><p class="noindent" ><span 
+class="ecbx-1095">From the full linearized equations to the reduced sheet-pinch system.</span>
+     </p><!--l. 113--><p class="noindent" >Start from the linearized resistive-MHD equations, now allowing both gravity and a possibly
+     nonuniform magnetic diffusivity \(\eta _m(x)\equiv \eta (x)/\muo \): <a id="eq-eq-slab-tutorial_momentum"></a><div class="math-display">\[\begin{aligned}\rho _0 \gamma \uvec _1 &amp;= \J _1\times \B _0 + \J _0\times \B _1 - \nabla p_1 + \rho _1 g\,\ex ,  \\ \gamma \B _1 &amp;= \nabla \times (\uvec _1\times \B _0) - \nabla \times \bigl (\eta _m \nabla \times \B _1\bigr ),  \\ \gamma \rho _1 + v_x \rho _0' &amp;= 0, \qquad \nabla \cdot \uvec _1 = 0, \qquad \nabla \cdot \B _1 = 0.\end{aligned} \tag{J.8}\]</div>
+     </p><!--l. 132--><p class="noindent" >Take the \(\hat z\) component of the curl of Eq.&#x00A0;(J.8). The perturbed pressure is then annihilated, just
+     as in the tearing tutorial box in Lecture&#x00A0;30, and one obtains <a id="eq-eq-slab-phi_eq"></a><div class="math-display">\[\rho _0 \gamma \,(\phi ''-k^2\phi ) = \frac {ik B_y}{\muo }(\psi ''-k^2\psi ) - \frac {ik B_y''}{\muo }\,\psi + ik g\,\rho _1. \tag{J.11}\]</div>
+     The first term on the right is field-line bending, the second is the current-gradient drive
+     familiar from tearing, and the last is the buoyancy source.
+     </p><!--l. 145--><p class="noindent" >The induction equation gives a flux evolution law, <a id="eq-eq-slab-psi_eq_general"></a><div class="math-display">\[\gamma \psi = ik B_y\phi + \bigl (\eta _m\psi '\bigr )' - k^2\eta _m\psi . \tag{J.12}\]</div>
+     For constant diffusivity this reduces to <a id="eq-eq-slab-psi_eq_consteta"></a><div class="math-display">\[\gamma \psi = ik B_y\phi + \eta _m(\psi ''-k^2\psi ). \tag{J.13}\]</div>
+     Finally, incompressibility gives <a id="eq-eq-slab-rho1_xi"></a><div class="math-display">\[\rho _1 = -\rho _0'\xi . \tag{J.14}\]</div>
+     Equations (J.11), (J.12), and (J.14) are the slab analogue of the reduced cylindrical systems
+     derived in Lectures&#x00A0;30 and 31.</p></blockquote></div></div>
+<!--l. 166--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2610001"></a>What survives in each branch.</span>
+The three FKR branches are obtained by making different physical simplifications of the same system. If \(g=0\)
+and \(\eta _m' = 0\), one gets the standard tearing problem. If \(g=0\) but \(\eta _m'\neq 0\), odd-parity perturbations can be driven by current
+crossing the resistivity gradient, giving the rippling mode. If \(g\neq 0\) and \(\rho _0'\neq 0\), one obtains the resistive
+gravitational/interchange branch.
+<a 
+ id="x1-261001r267"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">44.2   </span> <a 
+ id="x1-2620002"></a>Outer ideal matching and the tearing branch</h3>
+<!--l. 175--><p class="noindent" >Set \(g=0\) and take \(\eta _m\) constant. Outside the thin resistive layer, inertia and resistivity are both negligible.
+Equation&#x00A0;(J.13) then gives <a id="eq-eq-slab-phi_outer"></a><div class="math-display">\[\phi = -\frac {\gamma }{ik B_y}\,\psi , \tag{J.15}\]</div>
+                                                                                         
+                                                                                         
+and substituting this into Eq.&#x00A0;(J.11) produces the ideal outer equation <a id="eq-eq-slab-outer_eq"></a><div class="math-display">\[\psi '' - \left (k^2 + \frac {B_y''}{B_y}\right )\psi = 0. \tag{J.16}\]</div>
+This is the slab version of the cylindrical outer equation Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_outer_general">30.17</a>). The singular point is the
+field-reversal surface, which we take at \(x=0\), so \(B_y(0)=0\).
+</p><!--l. 190--><p class="noindent" >The only information the inner layer needs from the outer ideal problem is the logarithmic jump parameter
+<a id="eq-eq-slab-delta_prime"></a><div class="math-display">\[\Delta ' \equiv \left .\frac {\psi '}{\psi }\right |_{0^-}^{0^+}, \tag{J.17}\]</div>
+which is the slab analogue of Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tearing_delta_def">30.2</a>). In the constant-\(\psi \) regime this is again the quantity that controls
+the classical tearing instability.
+</p>
+<!--l. 199--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2630002"></a>The Harris sheet.</span>
+For <a id="eq-eq-slab-harris"></a><div class="math-display">\[B_y(x) = B_0 \tanh \!\left (\frac {x}{a}\right ), \tag{J.18}\]</div>
+Eq.&#x00A0;(J.16) becomes <a id="eq-eq-slab-harris_outer"></a><div class="math-display">\[\psi '' - \left [k^2 - \frac {2}{a^2}\operatorname {sech}^2\!\left (\frac {x}{a}\right )\right ]\psi = 0. \tag{J.19}\]</div>
+The exact outer solution gives <a id="eq-eq-slab-harris_delta"></a><div class="math-display">\[\Delta ' a = 2\left (\frac {1}{ka} - ka\right ), \tag{J.20}\]</div>
+so the long-wave branch \(ka&lt;1\) is tearing-unstable and the short-wave branch \(ka&gt;1\) is stable. This is the slab
+counterpart of the worked analytic \(\Delta '\) examples in the cylindrical lecture.
+</p><!--l. 220--><div class="callout callout-tutorial"><div class="callout-title">Tutorial</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 220--><p class="noindent" ><span 
+class="ecbx-1095">Parity, islands, and why tearing is non-local.</span>
+     </p><!--l. 222--><p class="noindent" >For a symmetric reversing sheet, \(B_y(-x)=-B_y(x)\). The natural parity assignments are then <a id="eq-eq-slab-tear_parity"></a><div class="math-display">\[\begin{aligned}\text {tearing parity:} &amp;\qquad \psi (-x)=\psi (x), \qquad \phi (-x)=-\phi (x),  \\ \text {rippling/interchange parity:} &amp;\qquad \psi (-x)=-\psi (x), \qquad \phi (-x)=\phi (x).\end{aligned} \tag{J.21}\]</div>
+     </p><!--l. 230--><p class="noindent" >In tearing parity, the flux perturbation is finite at the resonant surface, <div class="math-display">\[\psi (0)\neq 0,\]</div>
+     so the perturbed magnetic topology contains a true island. In slab geometry the island width is
+     <a id="eq-eq-slab-island_width"></a><div class="math-display">\[w = 4\sqrt {\frac {|\psi (0)|}{|B_y'(0)|}}. \tag{J.24}\]</div>
+     Thus tearing is intrinsically topological: it needs a finite reconnecting flux at the resonant
+     surface. Since that flux is determined by matching to the outer ideal solution, the instability is
+     non-local and \(\Delta '\) is unavoidable.
+     </p><!--l. 243--><p class="noindent" >In the odd-parity branches, by contrast, \(\psi (0)=0\). The current sheet can corrugate or the plasma can
+     execute buoyant motions, but the magnetic topology does not change at leading order.
+     That is why the rippling and interchange branches should not be described as
+     &#8220;tearing with extra physics.&#8221; They are different parity classes of the same reduced
+     equations.</p></blockquote></div></div>
+<!--l. 249--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2640002"></a>Classical FKR scaling.</span>
+The full matching calculation was carried out in the cylindrical lecture, culminating in Eq.&#x00A0;(<a href="lecture30.html#eq-eq-tear_FKR_scaling">30.59</a>). In slab
+notation the same constant-\(\psi \) result is <a id="eq-eq-slab-FKR_scaling"></a><div class="math-display">\[\gamma \tau _A \sim S^{-3/5}(ka)^{2/5}(\Delta ' a)^{4/5}, \qquad \frac {\delta }{a} \sim S^{-2/5}(ka)^{-2/5}(\Delta ' a)^{1/5}, \tag{J.25}\]</div>
+where \(\tau _A=a/V_A\), \(\tau _R=a^2/\eta _m\), and \(S=\tau _R/\tau _A\). The important lesson for this appendix is not the numerical prefactor but the
+logic: outer ideal matching produces \(\Delta '\), while the inner resistive layer converts \(\Delta '\) into a growth
+rate.
+<a 
+ id="x1-264001r269"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">44.3   </span> <a 
+ id="x1-2650003"></a>The rippling branch</h3>
+<!--l. 264--><p class="noindent" >The rippling mode is easiest to understand by returning to the generalized induction equation (J.12).
+                                                                                         
+                                                                                         
+When \(\eta _m\) varies across the sheet, <a id="eq-eq-slab-eta_gradient_term"></a><div class="math-display">\[\bigl (\eta _m\psi '\bigr )' - k^2\eta _m\psi = \eta _m(\psi ''-k^2\psi ) + \eta _m'\psi '. \tag{J.26}\]</div>
+The extra term \(\eta _m'\psi '\) is the seed of the rippling branch. For odd parity, \(\psi \) is odd and \(\psi '\) is even, so a symmetric
+resistivity peak at the current sheet feeds back on an even stream function \(\phi \) without requiring
+\(\psi (0)\neq 0\).
+</p>
+<!--l. 275--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2660003"></a>Physical picture.</span>
+The sheet carries a strong equilibrium current \(J_{0z}\). An even displacement field corrugates that current sheet,
+moving current across the resistivity gradient. Because the local ohomic diffusion time differs on the two
+sides of the corrugation, diffusion supplies the phase shift that lets the perturbation grow. The current
+sheet therefore <span 
+class="ecti-1095">ripples </span>rather than reconnects.
+</p>
+<!--l. 282--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2670003"></a>What is and is not shared with tearing.</span>
+Like tearing, the rippling branch lives in a thin resistive layer, and in the original FKR ordering its growth
+rate has the same parametric scaling, <a id="eq-eq-slab-ripple_scaling"></a><div class="math-display">\[\gamma _{\rm ripple} \sim \tau _R^{-3/5}\tau _A^{-2/5}, \tag{J.27}\]</div>
+but the physics is different. There is no outer \(\Delta '\) bookkeeping because the mode is not island-forming.
+Moreover, because the drive comes through transport gradients, the branch is far more sensitive to thermal
+conduction and closure assumptions than the tearing branch. This is one reason it is discussed less often in
+modern reconnection discussions, despite already appearing in the original FKR paper <a 
+href="#XFurth1963FiniteResistivity">Furth
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>].
+<a 
+ id="x1-267001r272"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">44.4   </span> <a 
+ id="x1-2680004"></a>The gravitational and resistive-interchange branch</h3>
+<!--l. 297--><p class="noindent" >Now keep gravity and a density gradient. Using Eq.&#x00A0;(J.14), the buoyancy term in Eq.&#x00A0;(J.11) becomes
+<a id="eq-eq-slab-buoyancy_term"></a><div class="math-display">\[ikg\rho _1 = -ikg\rho _0'\xi . \tag{J.28}\]</div>
+Near the resonant surface, write <a id="eq-eq-slab-linear_By"></a><div class="math-display">\[B_y(x) \simeq B_s' x. \tag{J.29}\]</div>
+The field-line bending force is then proportional to \(x^2\), so shear strongly weakens the ideal magnetic restoring
+force right where the buoyancy drive is concentrated. This is precisely the same geometric lesson that later
+reappears in the cylindrical resistive-interchange problem.
+</p>
+<!--l. 312--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2690004"></a>Local parity.</span>
+The gravitational branch has interchange parity, <a id="eq-eq-slab-grav_parity"></a><div class="math-display">\[\phi (-x)=\phi (x), \qquad \psi (-x)=-\psi (x), \tag{J.30}\]</div>
+so it does not reconnect at leading order. The motion is buoyant or convective rather than tearing-like. In
+this sense the slab gravitational mode is the direct ancestor of the cylindrical interchange parity discussed
+around Eq.&#x00A0;(<a href="lecture31.html#eq-eq-rint-interchange_parity">31.45</a>).
+</p>
+<!--l. 324--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2700004"></a>Low-\(g\) resistive scaling.</span>
+The original FKR calculation found that, for weak enough gravity that the mode remains a genuine
+resistive boundary-layer problem, the growth rate scales as <a id="eq-eq-slab-grav_scaling"></a><div class="math-display">\[\gamma _{\rm grav} \sim \tau _R^{-1/3}\tau _H^{-2/3}, \tag{J.31}\]</div>
+with \(\tau _H\) the appropriate hydromagnetic transit time of the sheared layer <a 
+href="#XFurth1963FiniteResistivity">Furth et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>]. This is the slab
+precursor of the \(\eta ^{1/3}\) scaling written in cylindrical form in Eq.&#x00A0;(<a href="lecture31.html#eq-eq-rint-eta13_scaling">31.15</a>). As the buoyancy drive becomes
+stronger, the mode crosses over smoothly to the familiar ideal interchange/Rayleigh&#8211;Taylor
+                                                                                         
+                                                                                         
+limit.
+</p>
+<!--l. 337--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2710004"></a>Connection to the cylindrical resistive-interchange lecture.</span>
+In the slab problem, the destabilizing physics is explicit gravity acting on a density gradient. In the
+cylindrical pinch, gravity is replaced by bad curvature acting on the pressure gradient. The mathematical
+role is the same: a local buoyancy-like source competes with a magnetic restoring force that vanishes at the
+resonant surface. What the cylindrical lecture adds is the second parity class&#8212;the pressure-driven
+tearing-like branch&#8212;which can form islands even when the classical outer tearing index is
+negative.
+<a 
+ id="x1-271001r275"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">44.5   </span> <a 
+ id="x1-2720005"></a>FKR via Power Flow</h3>
+<!--l. 347--><p class="noindent" >We consider a Cartesian slab with equilibrium magnetic field <div class="math-display">\[\bm {B}_0 = B_0(x)\,\hat {\bm y} + B_{z0}\,\hat {\bm z},\]</div>
+and equilibrium current <div class="math-display">\[\bm {J}_0 = J_0(x)\,\hat {\bm z}, \qquad J_0 = \frac {1}{\mu _0}\frac {dB_0}{dx}.\]</div>
+Perturbations are taken of the form <div class="math-display">\[\sim e^{\gamma t + i k y},\]</div>
+with wavevector \(\bm {k}=k\hat {\bm y}\).
+</p><!--l. 363--><p class="noindent" >We assume incompressibility, <div class="math-display">\[\nabla \cdot \bm {v}_1=0,\]</div>
+and adopt a vector&#8211;potential representation for the perturbed velocity, <div class="math-display">\[\bm {v}_1=\nabla \times \phi \bm {e}_z\]</div>
+</p><!--l. 372--><p class="noindent" >Steps:
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   1. </dt><dd 
+class="enumerate-enumitem">Evaluate \(P = \int dV \bm {F} \cdot \bm {v}\), where \(\bm {F} = \bm {J}\times \bm {B} - \nabla p\). If \(P&gt;0\rightarrow \) instability.
+     </dd><dt class="enumerate-enumitem">
+   2. </dt><dd 
+class="enumerate-enumitem">Use scale separation for a boundary layer problem to connect "inner" to "outer" solution.
+     </dd><dt class="enumerate-enumitem">
+   3. </dt><dd 
+class="enumerate-enumitem">Use MHD eqn&#8217;s to relate \(\bm {v}_1\) and \(\bm {B}_1\) perturbations in inner region
+     </dd><dt class="enumerate-enumitem">
+   4. </dt><dd 
+class="enumerate-enumitem">Find growth rate, \(\gamma \), for linear solution.</dd></dl>
+<!--l. 381--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2730005"></a>Follow the Energy</span>
+The work done by the perturbed force is <div class="math-display">\[P=\int dV\,\bm {F}\cdot \bm {v}_1, \qquad \bm {F}=\bm {J}\times \bm {B}-\nabla p .\]</div>
+</p><!--l. 390--><p class="noindent" >Instability corresponds to \(P&gt;0\).
+</p><!--l. 392--><p class="noindent" >Using the vector identities <div class="math-display">\[\begin{aligned}P &amp;= \int dV\,\bm {F}\cdot \vect {v} \nonumber \\ &amp;= \int dV\,\bm {F}\cdot (\nabla \times \phi \vect {e}_z) \nonumber \\ &amp;= \int dV\,\phi \vect {e}_z \cdot (\nabla \times \bm {F}) + \oint d\bm {S}\cdot (\phi \vect {e}_z\times \bm {F}).\end{aligned}\]</div>
+</p><!--l. 404--><p class="noindent" >Assuming perturbations vanish at infinity, the surface term is zero.
+</p><!--l. 406--><p class="noindent" >Linearizing the force and using \(\nabla \cdot \bm {B}_1=0\), <div class="math-display">\[\vect {e}_z \cdot \nabla \times \bm {F}_1 = \vect {e}_z \cdot \nabla \times (\bm {J}_0\times \bm {B}_1 +\bm {J}_1\times \bm {B}_0 -\nabla p )\]</div>
+straightforward algebra yields <div class="math-display">\[\vect {e}_z \cdot \nabla \times \bm {F}_1 = -\frac {B_0}{\mu _0} \left [ B_{x1}'' - \left (k^2+\frac {B_0''}{B_0}\right )B_{x1} \right ].\]</div>
+</p><!--l. 419--><p class="noindent" >The velocity and magnetic perturbations are related through the induction equation, <div class="math-display">\[\partial _t \bm {B}_1 = \nabla \times (\bm {v}_1\times \bm {B}_0) - \frac {\eta }{\mu _0}\nabla ^2\bm {B}_1 .\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 428--><p class="noindent" >In the outer ideal region resistivity is negligible, giving <div class="math-display">\[\gamma B_{x1}=ikB_0 v_{x1},\]</div>
+so that <div class="math-display">\[\phi =\frac {v_{x1}}{ik} = \frac {\gamma }{k^2B_0}B_{x1}.\]</div>
+Substituting into the power integral gives <div class="math-display">\[P = \int _{-\infty }^{\infty }dx\, \frac {\gamma }{\mu _0 k^2} B_{x1} \left [ B_{x1}''- \left (k^2+\frac {B_0''}{B_0}\right )B_{x1} \right ].\]</div>
+</p>
+<!--l. 451--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2740005"></a>Outer Ideal Region and \(\Delta '\)</span>
+In the ideal outer region inertia is negligible and \(\bm {F}\approx 0\), so the governing equation becomes <div class="math-display">\[B_{x1}''- \left (k^2+\frac {B_0''}{B_0}\right )B_{x1}=0.\]</div>
+This equation is singular at the resonant surface \(x=0\), where \(B_0=0\) at \(x=0\). Hence, the contribution to power is
+concentrated in the inner region, and thus the energy flow from magnetic field into plasma is all in the
+inner layer: <div class="math-display">\[P = \int _{-\infty }^{\infty }[...]dx\ \simeq \int _{-\epsilon a}^{\epsilon a }[...]dx\]</div>
+</p><!--l. 464--><p class="noindent" >Across this layer:
+</p>
+     <ul class="itemize1">
+     <li class="itemize">\(B_{x1}\) is continuous,
+     </li>
+     <li class="itemize">\(dB_{x1}/dx\) is discontinuous due to the sheet current.
+     </li>
+     <li class="itemize">In the constant&#8211;\(\psi \) approximation we take \(B_{x1}\approx B_{x1}(0)\) across the inner layer.
+     </li>
+     <li class="itemize">expect gradients \(\frac {d}{dx}\) to dominate.</li></ul>
+<!--l. 473--><p class="noindent" ><div class="math-display">\[\begin{aligned}P &amp; \approx \int _{-\epsilon a}^{\epsilon a } \frac {\gamma }{\mu _0 k^2} B_{x1}(0) \frac {\partial ^2 B_{x1}}{\partial x^2} dx \\ &amp; = \frac {\gamma }{\mu _0 k^2} B_{x1}^2(0) \underbrace {\frac {1}{B_{x1}(0)} \left \{ \left .\frac {dB_{x1}}{dx}\right |_{\epsilon a} - \left . \frac {dB_{x1}}{dx}\right |_{-\epsilon a} \right \}}_{\equiv \Delta '}\end{aligned}\]</div>
+</p><!--l. 481--><p class="noindent" >Define the tearing stability parameter <div class="math-display">\[\Delta ' = \frac {1}{B_{x1}(0)} \left [ \left .\frac {dB_{x1}}{dx}\right |_{0^+} - \left .\frac {dB_{x1}}{dx}\right |_{0^-} \right ].\]</div>
+</p><!--l. 493--><p class="noindent" >Evaluating the power integral across the thin inner region gives <div class="math-display">\[P= \frac {\gamma B_{x1}^2(0)}{\mu _0 k^2}\Delta '.\]</div>
+</p><!--l. 499--><p class="noindent" >Thus <div class="math-display">\[\Delta '&gt;0 \quad \Rightarrow \quad P&gt;0,\]</div>
+which implies instability. First solved by Furth, Kileen and Rosenbluth, hence goes by "FKR" <a 
+href="#XFurth1963FiniteResistivity">Furth
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XFurth1963FiniteResistivity">1963</a>] Importantly, stability is determined entirely by the outer ideal solution; the growth rate
+depends on the inner region physics.
+</p>
+<!--l. 506--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2750005"></a>Solving for the Inner Resistive Layer</span>
+Inside the inner layer neither inertia nor resistivity can be neglected.
+</p><!--l. 510--><p class="noindent" >First, lets deal with inertia that we neglected in the linearized momentum equation: <div class="math-display">\[\begin{aligned}\hat {\bm {z}}\cdot \nabla \times \left [ \rho \frac {d\bm {v}}{dt} \right ] &amp; = \hat {\bm {z}}\cdot \nabla \times \left (\rho (\partial _t \bm {v} + \cancel { \bm {v} \cdot \nabla \bm {v}})\right ) \\ \rho \,\partial _t(\nabla \times \bm {v}_1)_z &amp; = \rho \gamma \left (\frac {dv_{y1}}{dx}-ikv_{x1}\right ),\end{aligned}\]</div>
+</p><!--l. 517--><p class="noindent" >and incompressibility implies <div class="math-display">\[v_{y1}=-\frac {1}{ik}\frac {dv_{x1}}{dx}.\]</div>
+so that <div class="math-display">\[\begin{aligned}\hat {\bm {z}}\cdot \nabla \times \left [ \rho \frac {d\bm {v}}{dt} \right ] &amp; = \rho \gamma \left (\frac {-1}{ik} \frac {d^2v_{x1}}{dx^2}-ikv_{x1}\right ), \\ &amp; = \frac {i \rho \gamma }{k} \left ( \frac {d^2v_{x1}}{dx^2}-k^2v_{x1}\right ).\end{aligned}\]</div>
+</p><!--l. 527--><p class="noindent" >Combining with previous result: <div class="math-display">\[\frac {i \rho \gamma }{k} \left ( \frac {d^2v_{x1}}{dx^2}-k^2v_{x1}\right )= -\frac {B_0}{\mu _0} \left [ B_{x1}'' - \left (k^2+\frac {B_0''}{B_0}\right )B_{x1} \right ].\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 536--><p class="noindent" >From the \(\hat {\bm {x}}\) component of the magnetic induction equation <div class="math-display">\[\hat {\bm {x}} \cdot \left [ \partial _t \bm {B}_1 = \nabla \times (\bm {v}_1 \times \bm {B}_0) - \frac {\eta }{\mu _0} \nabla ^2 \bm {B}_1\right ]\]</div>
+arrive at <div class="math-display">\[\gamma B_{x1} = i k B_0 v_{x1} + \frac {\eta }{\mu _0} \left ( B_{x1}^{\prime \prime } - k^2 B_{x1}\right )\]</div>
+</p><!--l. 546--><p class="noindent" >Combining with the induction equation, <div class="math-display">\[\gamma B_{x1} = ikB_0 v_{x1} + \frac {\eta }{\mu _0}\left (B_{x1}''-k^2B_{x1}\right ).\]</div>
+</p><!--l. 555--><p class="noindent" >Using the constant&#8211;\(\psi \) approximation and eliminating \(B_{x1}''\), one finds the inner-layer balance leading to the
+classical FKR scaling.
+</p><!--l. 567--><p class="noindent" ><div class="math-display">\[\rho \left (v_{x1}''-k^2 v_{x1}\right ) - \frac {k^2 B_0^2}{\gamma \eta }\,v_{x1} = \frac {ik}{\gamma \eta } \left ( \gamma -\frac {\eta }{\mu _0}\frac {B_0''}{B_0} \right ) B_{x1}(0)\]</div>
+Dimensional analysis for sheet width:
+</p><!--l. 570--><p class="noindent" >Note: <div class="math-display">\[B_0(x)\simeq B_0\frac {x}{a} \qquad \Rightarrow \qquad B_0(\pm \epsilon a)=\pm B_0\epsilon .\]</div>
+Also write <div class="math-display">\[\frac {d^2}{dx^2}\gg k^2 \qquad \text {in the sheet}.\]</div>
+
+</p><!--l. 590--><p class="noindent" ><div class="math-display">\[\frac {1}{(\epsilon a)^2} \sim \frac {k^2 \epsilon ^2 B_0^2}{\rho \gamma \eta } \qquad \text {or}\qquad \frac {1}{(\epsilon a)^4} \sim \frac {k^2 B_0^2}{\rho \gamma \eta a^2}.\]</div>
+Isolate growth rate by balancing power driven from ideal region with ohmic dissipation in the
+sheet.
+</p><!--l. 597--><p class="noindent" ><div class="math-display">\[P_\Omega =\int dV\,\eta J^2 \simeq \epsilon a\,\eta J_{z1}^2(0)\]</div>
+
+</p><!--l. 605--><p class="noindent" ><div class="math-display">\[\mu _0 J_{z1} = \frac {\partial B_{y1}}{\partial x} \sim \frac {B_{y1}(\epsilon a)-B_{y1}(-\epsilon a)}{\epsilon a}\]</div>
+</p><!--l. 607--><p class="noindent" >From \(\nabla \cdot \bm {B}_1=0\), <div class="math-display">\[ik B_{y1}=\frac {dB_{x1}}{dx}.\]</div>
+
+</p><!--l. 623--><p class="noindent" ><div class="math-display">\[\mu _0 J_{z1} \simeq \frac { \left .\dfrac {dB_{x1}}{dx}\right |_{\epsilon a} - \left .\dfrac {dB_{x1}}{dx}\right |_{-\epsilon a} } {ik\,\epsilon a} = \frac {B_{x1}(0)}{ik\,\epsilon a}\Delta '.\]</div>
+So that the total power (by this method) is <div class="math-display">\[P_\Omega = \frac {\epsilon a \eta }{\mu _0^2} \frac {B_{x1}^2(0) \Delta '^2}{k^2 \epsilon ^2 a^2}\]</div>
+</p>
+<!--l. 630--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-2760005"></a>FKR Growth Rate from Power Balance</span>
+Equating power input to resistive dissipation yields <div class="math-display">\[\frac {\gamma B_{x1}^2(0)}{\mu _0 k^2}\Delta ' = \frac {\epsilon a \eta }{\mu _0^2} \frac {B_{x1}^2(0) \Delta '^2}{k^2 \epsilon ^2 a^2}\]</div>
+so that the growth rate <div class="math-display">\[\gamma = \frac {\eta }{\mu _0}\frac {\Delta '}{\epsilon a}.\]</div>
+Using the previous result for \((\epsilon a)^4\) <div class="math-display">\[\gamma ^4 =(\eta /\mu _0)^4 \Delta '^4 \frac {k^2 B_0^2}{\rho \gamma \eta a^2}\]</div>
+Thus, <div class="math-display">\[\gamma = \left (\frac {k^2 B_0^2}{\mu _0\rho a^2}\right )^{1/5} \left (\frac {\eta }{\mu _0}\right )^{3/5} \Delta '^{4/5}.\]</div>
+Introducing the Alfvén time <div class="math-display">\[\tau _A=\frac {a}{V_A}=\frac {a\sqrt {\mu _0\rho }}{B_0},\]</div>
+the resistive diffusion time <div class="math-display">\[\tau _R=\frac {\mu _0 a^2}{\eta },\]</div>
+and the Lundquist number \(S=\tau _R/\tau _A\), the growth rate may be written <div class="math-display">\[\gamma \tau _A = (\Delta 'a)^{4/5}S^{-3/5}(ka)^{2/5}.\]</div>
+</p><!--l. 670--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 670--><p class="noindent" ><span 
+class="ecbx-1095">What this appendix should leave behind.</span>
+</p>
+     <ul class="itemize1">
+     <li class="itemize">The slab sheet pinch is the simplest matched-asymptotic resistive-MHD problem.
+     </li>
+     <li class="itemize">The tearing branch is even in \(\psi \), forms islands, and is governed by the non-local
+                                                                                         
+                                                                                         
+     matching parameter \(\Delta '\).
+     </li>
+     <li class="itemize">The rippling branch is odd in \(\psi \), does not reconnect at leading order, and is driven
+     by current crossing resistivity gradients.
+     </li>
+     <li class="itemize">The  gravitational  branch  is  also  odd  in  \(\psi \),  is  buoyancy-like,  and  exhibits  the
+     characteristic \(\eta ^{1/3}\) resistive-interchange scaling.
+     </li>
+     <li class="itemize">The cylindrical tearing and resistive-interchange lectures are best read as geometric
+     refinements of this same basic slab logic.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-2770005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xparker1958dynamics-d40"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> E&#x00A0;N Parker. Dynamics of the interplanetary gas and magnetic fields. <span 
+class="ecti-1095">The Astrophysical Journal</span>,
+  128:664, 1958. doi:<a 
+href="https://doi.org/10.1086/146579" >10.1086/146579</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfox2016solarprobe"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> N.&#x00A0;J. Fox, M.&#x00A0;C. Velli, S.&#x00A0;D. Bale, R.&#x00A0;Decker, A.&#x00A0;Driesman, R.&#x00A0;A. Howard, J.&#x00A0;C. Kasper,
+  J.&#x00A0;Kinnison, M.&#x00A0;Kusterer, P.&#x00A0;C. Liewer, D.&#x00A0;J. McComas, A.&#x00A0;Szabo, et&#x00A0;al.   The solar probe
+  plus mission: Humanity&#8217;s first visit to our star.   <span 
+class="ecti-1095">Space Science Reviews</span>, 204(1&#8211;4):7&#8211;48, 2016.
+  doi:<a 
+href="https://doi.org/10.1007/s11214-015-0211-6" >10.1007/s11214-015-0211-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkgo"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Ethan&#x00A0;E.  Peterson,  Douglass&#x00A0;A.  Endrizzi,  Matthew  Beidler,  Kyle&#x00A0;J.  Bunkers,  Michael
+  Clark,  Jan  Egedal,  Ken  Flanagan,  Karsten&#x00A0;J.  McCollam,  Jason  Milhone,  Joseph  Olson,
+  Carl&#x00A0;R.  Sovinec,  Roger  Waleffe,  John  Wallace,  and  Cary&#x00A0;B.  Forest.    A  laboratory  model
+  for the parker spiral and magnetized stellar winds.   <span 
+class="ecti-1095">Nature Physics</span>, 15(10):1095&#8211;1100, 2019.
+  doi:<a 
+href="https://doi.org/10.1038/s41567-019-0592-7" >10.1038/s41567-019-0592-7</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XWeberDavis1967SolarWind"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Edmund&#x00A0;J. Weber and Leverett Davis, Jr.  The angular momentum of the solar wind.  <span 
+class="ecti-1095">The</span>
+  <span 
+class="ecti-1095">Astrophysical Journal</span>, 148:217&#8211;227, 1967. doi:<a 
+href="https://doi.org/10.1086/149138" >10.1086/149138</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpeterson2021laminar-0f5"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Ethan&#x00A0;E.  Peterson,  Douglass&#x00A0;A.  Endrizzi,  Michael  Clark,  Jan  Egedal,  Kenneth  Flanagan,
+  Nuno&#x00A0;F. Loureiro, Jason Milhone, Joseph Olson, Carl&#x00A0;R. Sovinec, John Wallace, and Cary&#x00A0;B.
+  Forest.  Laminar and turbulent plasmoid ejection in a laboratory parker spiral current sheet.
+  <span 
+class="ecti-1095">Journal of Plasma Physics</span>, 87(4):905870410, 2021. doi:<a 
+href="https://doi.org/10.1017/s0022377821000775" >10.1017/s0022377821000775</a>.
+  </p>
+                                                                                         
+                                                                                         
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XHellinger2006Anisotropy"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;Hellinger, P.&#x00A0;Trávní&#x010D;ek, J.&#x00A0;C. Kasper, and A.&#x00A0;J. Lazarus. Solar wind proton temperature
+  anisotropy:  Linear  theory  and  WIND/SWE  observations.   <span 
+class="ecti-1095">Geophysical  Research  Letters</span>,  33:
+  L09101, 2006. doi:<a 
+href="https://doi.org/10.1029/2006GL025925" >10.1029/2006GL025925</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBale2009Anisotropy"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;D. Bale, J.&#x00A0;C. Kasper, G.&#x00A0;G. Howes, E.&#x00A0;Quataert, C.&#x00A0;Salem, and D.&#x00A0;Sundkvist. Magnetic
+  fluctuation power near proton temperature anisotropy instability thresholds in the solar wind.
+  <span 
+class="ecti-1095">Physical Review Letters</span>, 103:211101, 2009. doi:<a 
+href="https://doi.org/10.1103/PhysRevLett.103.211101" >10.1103/PhysRevLett.103.211101</a>.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-2780005"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 44.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting  from  Eqs.&#x00A0;(J.8)&#8211;(J.10),  derive  the  reduced  slab  equations  (J.11)  and
+                (J.12) in detail.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 44.2.</span>  </dt><dd 
+class="enumerate-enumitem">For the Harris sheet (J.18), solve the outer equation (J.19) and verify Eq.&#x00A0;(J.20).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 44.3.</span>  </dt><dd 
+class="enumerate-enumitem">Using the parity assignments (J.21) and (J.22), show directly from Eq.&#x00A0;(J.24) why
+                the tearing branch forms islands while the rippling and interchange branches do
+                not.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 44.4.</span>  </dt><dd 
+class="enumerate-enumitem">Recover  the  dimensional  estimates  in  Eqs.&#x00A0;(J.25)  and  (J.31)  by  balancing
+                induction, field-line bending, and either outer matching (for tearing) or buoyancy
+                (for the gravitational branch).</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+ 
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

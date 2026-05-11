@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 16 Alfvn Waves</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_waves.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture15.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture17.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;16</span><br /><a 
+ id="x1-2700016"></a>Alfvn Waves</h2>
+<!--l. 30--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 30--><p class="noindent" ><span 
+class="ecbx-1095">This lecture develops the wave spectrum of magnetized fluid theory.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">Starting  from  the  one-fluid  equations  introduced  in  Eqs.&#x00A0;(<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>)&#8211;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>),  a  uniform
+   plasma supports the shear Alfvn, fast, slow, and entropy modes.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The  shear  Alfvn  branch  is  the  one  that  survives  most  cleanly  in  nonuniform
+   geometry; later, in toroidal plasmas, it becomes the Alfvn continuum that underlies
+   TAE physics.
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">Replacing scalar pressure by the gyrotropic tensor of Eq.&#x00A0;(<a href="lecture6.html#eq-eq-cgl-pressuretensor">6.2</a>) shows how pressure
+   anisotropy  modifies  the  same  spectrum  and  foreshadows  the  firehose  and  mirror
+   instabilities.</dd></dl>
+     </blockquote></div></div>
+<!--l. 38--><p class="noindent" >The wave problem is where the geometry of MHD becomes dynamical. In static equilibrium one learns
+that field-line bending, compression, and pressure gradients all enter the force balance. In the wave
+problem the same terms become restoring forces. The result is one of the classic pieces of plasma physics:
+magnetic field lines behave neither like rigid rods nor like passive labels, but like elastic guides embedded
+in a compressible fluid.
+</p><!--l. 46--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 46--><p class="noindent" >Alfvn&#8217;s 1942 papers showed that a perfectly conducting fluid threaded by a magnetic
+     field supports transverse waves propagating along the field with speed \(v_A=B/\sqrt {\muo \rho }\) <a 
+href="lecture17.html#Xalfven1942existence">Alfvn</a>&#x00A0;[<a 
+href="lecture17.html#Xalfven1942existence">1942</a>].
+     That idea was important well beyond a single dispersion relation. It made concrete
+     the picture that magnetic field lines possess tension. Lundquist&#8217;s mercury experiment
+     and Lehnert&#8217;s liquid-sodium experiment then demonstrated directly that these waves
+     really propagate in conducting media <a 
+href="#Xlundquist1949_experimental_mhd_waves">Lundquist</a>&#x00A0;[<a 
+href="#Xlundquist1949_experimental_mhd_waves">1949</a>],&#x00A0;<a 
+href="#Xlehnert1954magnetohydrodynamic">Lehnert</a>&#x00A0;[<a 
+href="#Xlehnert1954magnetohydrodynamic">1954</a>]. The later CGL
+     extension of Chew, Goldberger, and Low asked what becomes of the same wave problem
+     when the pressure is no longer isotropic <a 
+href="lecture19.html#Xchew1956_boltzmann">Chew et&#x00A0;al.</a>&#x00A0;[<a 
+href="lecture19.html#Xchew1956_boltzmann">1956</a>]. That question is the doorway
+     from elementary MHD waves into anisotropic and kinetic plasma physics.</p></blockquote></div></div>
+<a 
+ id="x1-27004r22"></a>
+<h3 class="sectionHead"><span class="titlemark">16.1   </span> <a 
+ id="x1-280001"></a>Ideal-MHD waves in a uniform plasma</h3>
+<!--l. 63--><p class="noindent" >We begin with the ideal-MHD equations already introduced in the introductory lecture. Linearize
+Eqs.&#x00A0;(<a href="lecture1.html#eq-eq-intro-continuity">1.7</a>), (<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>), and (<a href="lecture1.html#eq-eq-intro-induction">1.13</a>) about the uniform equilibrium <a id="eq-eq-alfven-uniform_equilibrium"></a><div class="math-display">\[\B _0 = B_0 \vect {e}_z, \qquad \rho _0 = \text {const}, \qquad p_0 = \text {const}, \qquad \uvec _0 = 0. \tag{16.1}\]</div>
+Take perturbations proportional to <a id="eq-eq-alfven-plane_wave"></a><div class="math-display">\[e^{i(\vect {k}\cdot \vect {x}-\omega t)}, \qquad \vect {k}=k_\perp \vect {e}_x + k_\parallel \vect {e}_z, \qquad k^2 = k_\perp ^2 + k_\parallel ^2. \tag{16.2}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 87--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-290001"></a>Displacement formulation.</span>
+Write the perturbed velocity as <a id="eq-eq-alfven-u1_xi"></a><div class="math-display">\[\uvec _1 = \pp {\vect {\xi }}{t} = - i\omega \vect {\xi }. \tag{16.3}\]</div>
+Then the linearized continuity equation gives <a id="eq-eq-alfven-rho1"></a><div class="math-display">\[\rho _1 + \rho _0\, i\vect {k}\cdot \vect {\xi }=0, \qquad \Longrightarrow \qquad \rho _1 = - \rho _0\, i\vect {k}\cdot \vect {\xi }. \tag{16.4}\]</div>
+For adiabatic perturbations, <a id="eq-eq-alfven-p1"></a><div class="math-display">\[p_1 = - \gamma p_0\, i\vect {k}\cdot \vect {\xi }. \tag{16.5}\]</div>
+The induction equation is equivalent to the frozen-in relation of Eq.&#x00A0;(<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>), so <a id="eq-eq-alfven-B1_general"></a><div class="math-display">\[\B _1 = \curl (\vect {\xi }\times \B _0) = i\vect {k}\times (\vect {\xi }\times \B _0). \tag{16.6}\]</div>
+Use the triple-product identity to write <a id="eq-eq-alfven-B1_expanded"></a><div class="math-display">\[\B _1 = i\Bigl [ (\vect {k}\cdot \B _0)\vect {\xi } - (\vect {k}\cdot \vect {\xi })\B _0 \Bigr ]. \tag{16.7}\]</div>
+Since \(\B _0=B_0\vect {e}_z\), <a id="eq-eq-alfven-B1_components"></a><div class="math-display">\[\B _1 = iB_0 \begin {pmatrix} k_\parallel \xi _x \\ k_\parallel \xi _y \\ - k_\perp \xi _x \end {pmatrix}, \qquad \frac {B_{1\parallel }}{B_0} = - i k_\perp \xi _x, \qquad \frac {\B _{1\perp }}{B_0} = i k_\parallel \vect {\xi }_\perp . \tag{16.8}\]</div>
+</p>
+<!--l. 140--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-300001"></a>Fourier-space force operator.</span>
+Because the equilibrium is uniform, \(\J _0=0\), so the linearized momentum equation becomes <a id="eq-eq-alfven-momentum_linear"></a><div class="math-display">\[-\omega ^2 \rho _0 \vect {\xi } = \frac {1}{\muo }(i\vect {k}\times \B _1)\times \B _0 - i\vect {k}\,p_1. \tag{16.9}\]</div>
+Insert Eqs.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-p1">16.5</a>) and (<a href="lecture16.html#eq-eq-alfven-B1_expanded">16.7</a>): <a id="eq-eq-alfven-force_fourier"></a><div class="math-display">\[\begin{aligned}-\omega ^2 \rho _0 \vect {\xi } &amp;= -\gamma p_0\,\vect {k}\,(\vect {k}\cdot \vect {\xi }) - \frac {1}{\muo } \left [\vect {k}\times \bigl (\vect {k}\times (\vect {\xi }\times \B _0)\bigr )\right ]\times \B _0 \nonumber \\ &amp;= -\gamma p_0\,\vect {k}\,(\vect {k}\cdot \vect {\xi }) - \frac {B_0^2}{\muo } \left [ k_\parallel ^2 \vect {\xi }_\perp + \vect {k}_\perp (\vect {k}_\perp \cdot \vect {\xi }_\perp ) \right ].\end{aligned} \tag{16.10}\]</div>
+</p><!--l. 171--><p class="noindent" >Define <a id="eq-eq-alfven-speeds"></a><div class="math-display">\[c_s^2 \equiv \frac {\gamma p_0}{\rho _0}, \qquad v_A^2 \equiv \frac {B_0^2}{\muo \rho _0}. \tag{16.11}\]</div>
+Then Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-force_fourier">16.10</a>) becomes <a id="eq-eq-alfven-ideal_force"></a><div class="math-display">\[\boxed { -\omega ^2 \vect {\xi } = - c_s^2 \vect {k}\,(\vect {k}\cdot \vect {\xi }) - v_A^2 \left [ k_\parallel ^2 \vect {\xi }_\perp + \vect {k}_\perp (\vect {k}_\perp \cdot \vect {\xi }_\perp ) \right ]. } \tag{16.12}\]</div>
+</p>
+<!--l. 195--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-310001"></a>Wave matrix.</span>
+Choose coordinates so that \(\vect {k}\) lies in the \(x\)&#8211;\(z\) plane and write \(\vect {\xi }=(\xi _x,\xi _y,\xi _z)\). Equation (<a href="lecture16.html#eq-eq-alfven-ideal_force">16.12</a>) is <a id="eq-eq-alfven-ideal_eigenproblem"></a><div class="math-display">\[\left (\omega ^2 \tens {I} - \tens {K}_{\mathrm {MHD}}\right )\cdot \vect {\xi }=0, \tag{16.13}\]</div>
+with <a id="eq-eq-alfven-mhd_K"></a><div class="math-display">\[\boxed { \tens {K}_{\mathrm {MHD}} = c_s^2 \begin {pmatrix} k_\perp ^2 &amp; 0 &amp; k_\perp k_\parallel \\ 0 &amp; 0 &amp; 0 \\ k_\perp k_\parallel &amp; 0 &amp; k_\parallel ^2 \end {pmatrix} + v_A^2 \begin {pmatrix} k_\perp ^2+k_\parallel ^2 &amp; 0 &amp; 0 \\ 0 &amp; k_\parallel ^2 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end {pmatrix}. } \tag{16.14}\]</div>
+Equivalently, <a id="eq-eq-alfven-mhd_matrix"></a><div class="math-display">\[\boxed { \tens {M}_{\mathrm {MHD}} \equiv \omega ^2 \tens {I} - \tens {K}_{\mathrm {MHD}} = \begin {pmatrix} \omega ^2 - v_A^2 k^2 - c_s^2 k_\perp ^2 &amp; 0 &amp; -c_s^2 k_\perp k_\parallel \\ 0 &amp; \omega ^2 - v_A^2 k_\parallel ^2 &amp; 0 \\ -c_s^2 k_\perp k_\parallel &amp; 0 &amp; \omega ^2 - c_s^2 k_\parallel ^2 \end {pmatrix}. } \tag{16.15}\]</div>
+</p>
+<!--l. 239--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-320001"></a>Dispersion relation.</span>
+Nontrivial solutions require <div class="math-display">\[\det \tens {M}_{\mathrm {MHD}}=0.\]</div>
+Because the \(y\)-polarized block decouples, <a id="eq-eq-alfven-ideal_dispersion"></a><div class="math-display">\[\boxed { (\omega ^2-k_\parallel ^2 v_A^2) \Bigl [ \omega ^4 - (v_A^2+c_s^2)k^2 \omega ^2 + v_A^2 c_s^2 k_\parallel ^2 k^2 \Bigr ] =0. } \tag{16.17}\]</div>
+Thus the uniform ideal-MHD spectrum contains three propagating branches.
+</p>
+<!--l. 261--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-330001"></a>Shear Alfvn branch.</span>
+The decoupled \(y\)-polarized mode satisfies <a id="eq-eq-alfven-shear_branch"></a><div class="math-display">\[\boxed { \omega ^2 = k_\parallel ^2 v_A^2. } \tag{16.18}\]</div>
+Its eigenvector is <a id="eq-eq-alfven-shear_polarization"></a><div class="math-display">\[\vect {\xi } = \xi _y \vect {e}_y, \qquad \vect {k}\cdot \vect {\xi }=0, \tag{16.19}\]</div>
+so it is incompressible and is restored entirely by field-line tension.
+</p>
+<!--l. 278--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-340001"></a>Fast and slow branches.</span>
+The remaining \(x\)&#8211;\(z\) block yields <a id="eq-eq-alfven-fastslow"></a><div class="math-display">\[\boxed { \omega ^2 = \frac {k^2}{2} \left [ v_A^2+c_s^2 \pm \sqrt {(v_A^2+c_s^2)^2 - 4v_A^2 c_s^2 \cos ^2\theta } \right ], \qquad \cos \theta = \frac {k_\parallel }{k}. } \tag{16.20}\]</div>
+The polarization lies in the plane spanned by \(\vect {k}\) and \(\B _0\). From the first and third rows of Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-mhd_matrix">16.15</a>), <a id="eq-eq-alfven-pol1"></a><div class="math-display">\[\begin{aligned}\left (\omega ^2-v_A^2k^2-c_s^2k_\perp ^2\right )\xi _x - c_s^2 k_\perp k_\parallel \xi _z &amp;= 0,  \\ -c_s^2 k_\perp k_\parallel \xi _x + \left (\omega ^2-c_s^2k_\parallel ^2\right )\xi _z &amp;= 0.\end{aligned} \tag{16.21}\]</div>
+</p><!--l. 308--><p class="noindent" >Therefore <a id="eq-eq-alfven-pol_ratio"></a><div class="math-display">\[\boxed { \frac {\xi _z}{\xi _x} = \frac {c_s^2 k_\perp k_\parallel }{\omega ^2-c_s^2 k_\parallel ^2} = \frac {\omega ^2-v_A^2k^2-c_s^2k_\perp ^2}{c_s^2 k_\perp k_\parallel }. } \tag{16.23}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<div class="interactive-shell"><p class="interactive-title">Interactive Alfv&#233;n Polar Explorer</p><p class="interactive-caption">Open a browser companion to the lecture&#8217;s uniform-wave spectrum. The app scans the slow, shear-Alfv&#233;n, and fast branches from low-\(\beta\) to high-\(\beta\), and redraws the polar phase-speed diagram as the pressure ratio \(c_s^2/v_A^2\) changes.</p><p><a class="interactive-button" href="media/alfven_polar_explorer.html">Open the Alfv&#233;n polar explorer</a></p></div><hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-340011"></a>
+                                                                                         
+                                                                                         
+<!--l. 322--><p class="noindent" ><img 
+src="figures/alfven_wave_polar_branches.png" alt="PIC"  
+width="352" height="161"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;16.1: </span><span  
+class="content">Polar phase-speed diagram for the slow, shear-Alfvn, and fast branches in a uniform
+plasma.</span></div><!--tex4ht:label?: x1-340011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 327--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-350001"></a>Useful limits.</span>
+Several limits are worth recording explicitly. If \(k_\parallel =0\), then Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-shear_branch">16.18</a>) gives \(\omega =0\), so there is no propagating
+shear-Alfvn wave across the field in uniform ideal MHD. If \(k_\perp =0\), the \(x\)&#8211;\(z\) block diagonalizes and one recovers a
+sound wave \(\omega ^2=c_s^2k_\parallel ^2\) together with the Alfvn wave \(\omega ^2=v_A^2k_\parallel ^2\). In the low-\(\beta \) limit, \(v_A\gg c_s\), the fast mode approaches \(\omega ^2\simeq v_A^2 k^2\), while the slow
+mode becomes predominantly acoustic along the field.
+</p>
+<!--l. 337--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-360001"></a>Entropy mode.</span>
+Besides the propagating branches there is also a zero-frequency entropy mode. The linearized adiabatic law
+may be written as <a id="eq-eq-alfven-entropy_constraint"></a><div class="math-display">\[-i\omega \left (\frac {p_1}{p_0} - \gamma \frac {\rho _1}{\rho _0}\right )=0. \tag{16.24}\]</div>
+If \(\omega =0\), Eqs.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-rho1">16.4</a>) and (<a href="lecture16.html#eq-eq-alfven-B1_general">16.6</a>) force \(\uvec _1=\B _1=p_1=0\), but a stationary perturbation of entropy remains possible. This root does
+not propagate, but it is part of the full linear spectrum.
+</p>
+<!--l. 349--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-370001"></a>Bridge to the Alfvn continuum.</span>
+The uniform formula \(\omega ^2=k_\parallel ^2 v_A^2\) is the seed of a much more important result in nonuniform geometry. In a
+large-aspect-ratio tokamak, <a id="eq-eq-alfven-kparallel_tokamak"></a><div class="math-display">\[k_\parallel (\psi ) \simeq \frac {n-m/q(\psi )}{R_0}, \tag{16.25}\]</div>
+so the local shear-Alfvn relation becomes <a id="eq-eq-alfven-continuum_local"></a><div class="math-display">\[\boxed { \omega ^2 = k_\parallel ^2(\psi )\, v_A^2(\psi ). } \tag{16.26}\]</div>
+Each flux surface therefore carries its own natural shear-Alfvn frequency. That surface-by-surface
+resonance structure is the Alfvn continuum. Later, when toroidicity couples neighboring poloidal
+harmonics, gaps open in this continuum and toroidal Alfvn eigenmodes can live in those
+gaps.
+</p><!--l. 369--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 369--><p class="noindent" >The uniform-plasma calculation is the right starting point, but it does <span 
+class="ecti-1095">not </span>yet know
+     about continuum singularities, toroidal coupling, continuum damping, or gap modes.
+     Those are geometric effects that appear only when \(q(\psi )\), \(B(\psi )\), and \(v_A(\psi )\) vary across the plasma.</p></blockquote></div></div>
+<a 
+ id="x1-37001r28"></a>
+<h3 class="sectionHead"><span class="titlemark">16.2   </span> <a 
+ id="x1-380002"></a>CGL extension of the wave spectrum</h3>
+<!--l. 379--><p class="noindent" >The next question is whether the same wave problem survives when the pressure is anisotropic. In the
+CGL lecture the equilibrium stress was written as <a id="eq-eq-alfven-P0_cgl"></a><div class="math-display">\[\tens {P}_0 = p_{\perp 0}\,\tens {I} + \left (p_{\parallel 0}-p_{\perp 0}\right )\vect {b}\vect {b}, \tag{16.27}\]</div>
+with double-adiabatic closure derived from the invariants \(p_\perp /(nB)=\text {const}\) and \(p_\parallel B^2/n^3=\text {const}\).
+</p>
+<!--l. 392--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-390002"></a>Uniform anisotropic equilibrium.</span>
+Take the same uniform field geometry, <a id="eq-eq-alfven-cgl_uniform"></a><div class="math-display">\[\B _0 = B_0 \vect {e}_z, \qquad \rho _0,p_{\perp 0},p_{\parallel 0}=\text {const}, \qquad \vect {k}=k_\perp \vect {e}_x + k_\parallel \vect {e}_z. \tag{16.28}\]</div>
+Define the directional thermal speeds <a id="eq-eq-alfven-cgl_speeds"></a><div class="math-display">\[c_\perp ^2 \equiv \frac {p_{\perp 0}}{\rho _0}, \qquad c_\parallel ^2 \equiv \frac {p_{\parallel 0}}{\rho _0}. \tag{16.29}\]</div>
+Equation (<a href="lecture16.html#eq-eq-alfven-B1_components">16.8</a>) still holds, so <a id="eq-eq-alfven-b1"></a><div class="math-display">\[\frac {B_{1\parallel }}{B_0} = -i k_\perp \xi _x, \qquad \vect {b}_1 = \frac {\B _{1\perp }}{B_0} = i k_\parallel (\xi _x\vect {e}_x+\xi _y\vect {e}_y). \tag{16.30}\]</div>
+                                                                                         
+                                                                                         
+</p>
+<!--l. 418--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-400002"></a>Double-adiabatic pressure perturbations.</span>
+For a uniform equilibrium, Eulerian and Lagrangian perturbations coincide. Using the two adiabatic
+invariants, <a id="eq-eq-alfven-cgl_invariants"></a><div class="math-display">\[\frac {p_\perp }{nB}=\text {const}, \qquad \frac {p_\parallel B^2}{n^3}=\text {const}, \tag{16.31}\]</div>
+one finds <a id="eq-eq-alfven-pperp_cgl_start"></a><div class="math-display">\[\begin{aligned}\frac {p_{\perp 1}}{p_{\perp 0}} &amp;= \frac {B_{1\parallel }}{B_0} - \divergence \vect {\xi },  \\ \frac {p_{\parallel 1}}{p_{\parallel 0}} &amp;= -2\frac {B_{1\parallel }}{B_0} - 3\divergence \vect {\xi }.\end{aligned} \tag{16.32}\]</div>
+</p><!--l. 443--><p class="noindent" >Now <a id="eq-eq-alfven-divxi"></a><div class="math-display">\[\divergence \vect {\xi } = i\vect {k}\cdot \vect {\xi } = i k_\perp \xi _x + i k_\parallel \xi _z. \tag{16.34}\]</div>
+Insert Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-B1_components">16.8</a>) into Eqs.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-pperp_cgl_start">16.32</a>)&#8211;(<a href="lecture16.html#eq-eq-alfven-ppar_cgl_start">16.33</a>): <a id="eq-eq-alfven-pperp1"></a><div class="math-display">\[\begin{aligned}\frac {p_{\perp 1}}{p_{\perp 0}} &amp;= - i k_\perp \xi _x - \left (i k_\perp \xi _x + i k_\parallel \xi _z\right ) = -2 i k_\perp \xi _x - i k_\parallel \xi _z,  \\ \frac {p_{\parallel 1}}{p_{\parallel 0}} &amp;= 2 i k_\perp \xi _x - 3\left (i k_\perp \xi _x + i k_\parallel \xi _z\right ) = - i k_\perp \xi _x - 3 i k_\parallel \xi _z.\end{aligned} \tag{16.35}\]</div>
+</p>
+<!--l. 474--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-410002"></a>Perturbed pressure tensor.</span>
+Write <a id="eq-eq-alfven-P1_cgl"></a><div class="math-display">\[\tens {P}_1 = p_{\perp 1}\,\tens {I} + (p_{\parallel 1}-p_{\perp 1})\,\vect {b}\vect {b} + \left (p_{\parallel 0}-p_{\perp 0}\right )\left (\vect {b}_1\vect {b}+\vect {b}\vect {b}_1\right ). \tag{16.37}\]</div>
+Because \(\vect {b}=\vect {e}_z\), the only off-diagonal elements come from \(\vect {b}_1\vect {b}+\vect {b}\vect {b}_1\). Using Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-b1">16.30</a>), <a id="eq-eq-alfven-P1_offdiag"></a><div class="math-display">\[P_{1,xz}=P_{1,zx} = \left (p_{\parallel 0}-p_{\perp 0}\right )i k_\parallel \xi _x, \qquad P_{1,yz}=P_{1,zy} = \left (p_{\parallel 0}-p_{\perp 0}\right )i k_\parallel \xi _y. \tag{16.38}\]</div>
+Therefore <a id="eq-eq-alfven-divP_x"></a><div class="math-display">\[\begin{aligned}(\divergence \tens {P}_1)_x &amp;= i k_\perp p_{\perp 1} - \left (p_{\parallel 0}-p_{\perp 0}\right )k_\parallel ^2\xi _x,  \\ (\divergence \tens {P}_1)_y &amp;= - \left (p_{\parallel 0}-p_{\perp 0}\right )k_\parallel ^2\xi _y,  \\ (\divergence \tens {P}_1)_z &amp;= i k_\parallel p_{\parallel 1} - \left (p_{\parallel 0}-p_{\perp 0}\right )k_\perp k_\parallel \xi _x.\end{aligned} \tag{16.39}\]</div>
+</p>
+<!--l. 521--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-420002"></a>CGL wave matrix.</span>
+Collecting the pressure force \(-\divergence \tens {P}_1\) and the magnetic force from Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-force_fourier">16.10</a>), one finds <a id="eq-eq-alfven-cgl_eigenproblem"></a><div class="math-display">\[\left (\omega ^2 \tens {I} - \tens {K}_{\mathrm {CGL}}\right )\cdot \vect {\xi }=0, \tag{16.42}\]</div>
+with <a id="eq-eq-alfven-cgl_matrix"></a><div class="math-display">\[\boxed { \tens {K}_{\mathrm {CGL}} = \begin {pmatrix} v_A^2 k^2 + 2c_\perp ^2 k_\perp ^2 + (c_\perp ^2-c_\parallel ^2)k_\parallel ^2 &amp; 0 &amp; c_\perp ^2 k_\perp k_\parallel \\[6pt] 0 &amp; k_\parallel ^2\left (v_A^2 + c_\perp ^2-c_\parallel ^2\right ) &amp; 0 \\[6pt] c_\perp ^2 k_\perp k_\parallel &amp; 0 &amp; 3c_\parallel ^2 k_\parallel ^2 \end {pmatrix}. } \tag{16.43}\]</div>
+Equivalently, <a id="eq-eq-alfven-cgl_operator"></a><div class="math-display">\[\boxed { \omega ^2 \tens {I} - \tens {K}_{\mathrm {CGL}} = \begin {pmatrix} \omega ^2 - v_A^2 k^2 - 2c_\perp ^2 k_\perp ^2 - (c_\perp ^2-c_\parallel ^2)k_\parallel ^2 &amp; 0 &amp; - c_\perp ^2 k_\perp k_\parallel \\[6pt] 0 &amp; \omega ^2 - k_\parallel ^2\left (v_A^2+c_\perp ^2-c_\parallel ^2\right ) &amp; 0 \\[6pt] - c_\perp ^2 k_\perp k_\parallel &amp; 0 &amp; \omega ^2 - 3c_\parallel ^2 k_\parallel ^2 \end {pmatrix}. } \tag{16.44}\]</div>
+</p>
+<!--l. 583--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-430002"></a>Anisotropic shear-Alfvn branch.</span>
+The \(y\)-polarized mode again decouples: <a id="eq-eq-alfven-firehose_cgl"></a><div class="math-display">\[\boxed { \omega ^2 = k_\parallel ^2\left (v_A^2 + c_\perp ^2 - c_\parallel ^2\right ) = k_\parallel ^2 \frac {B_0^2/\muo + p_{\perp 0}-p_{\parallel 0}}{\rho _0}. } \tag{16.45}\]</div>
+This is the classic firehose result. The shear branch becomes unstable when <a id="eq-eq-alfven-firehose_threshold"></a><div class="math-display">\[\boxed { p_{\parallel 0}-p_{\perp 0} &gt; \frac {B_0^2}{\muo }. } \tag{16.46}\]</div>
+The physical point is simple and important: pressure anisotropy does not create a new restoring force here;
+it subtracts from the old one. The shear branch is controlled by field-line tension, and the firehose
+instability appears when that tension changes sign.
+</p>
+<!--l. 608--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-440002"></a>Compressional block.</span>
+The \(x\)&#8211;\(z\) block gives <a id="eq-eq-alfven-cgl_compressive"></a><div class="math-display">\[\boxed { \left [ \omega ^2 - \left ( v_A^2 k^2 + 2c_\perp ^2 k_\perp ^2 + (c_\perp ^2-c_\parallel ^2)k_\parallel ^2 \right ) \right ] \left (\omega ^2-3c_\parallel ^2 k_\parallel ^2\right ) - c_\perp ^4 k_\perp ^2 k_\parallel ^2 =0. } \tag{16.47}\]</div>
+Expand the first factor using \(k^2=k_\perp ^2+k_\parallel ^2\): <a id="eq-eq-alfven-cgl_expand_first"></a><div class="math-display">\[\begin{aligned}&amp; v_A^2 k^2 + 2c_\perp ^2 k_\perp ^2 + (c_\perp ^2-c_\parallel ^2)k_\parallel ^2 \nonumber \\ &amp;\qquad = k_\perp ^2(v_A^2+2c_\perp ^2) + k_\parallel ^2(v_A^2+c_\perp ^2-c_\parallel ^2).\end{aligned} \tag{16.48}\]</div>
+</p><!--l. 638--><p class="noindent" >Hence Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-cgl_compressive">16.47</a>) becomes <a id="eq-eq-alfven-cgl_compressive_expanded"></a><div class="math-display">\[\begin{aligned}0 &amp;= \omega ^4 - \omega ^2 \Bigl [ k_\perp ^2(v_A^2+2c_\perp ^2) + k_\parallel ^2(v_A^2+c_\perp ^2+2c_\parallel ^2) \Bigr ] \nonumber \\ &amp;\qquad + 3c_\parallel ^2 k_\parallel ^2 \Bigl [ k_\perp ^2(v_A^2+2c_\perp ^2) + k_\parallel ^2(v_A^2+c_\perp ^2-c_\parallel ^2) \Bigr ] - c_\perp ^4 k_\perp ^2 k_\parallel ^2 .\end{aligned} \tag{16.49}\]</div>
+</p>
+<!--l. 664--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-450002"></a>CGL mirror threshold.</span>
+At marginal stability one root passes through \(\omega ^2=0\), so the constant term of Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-cgl_compressive_expanded">16.49</a>) must vanish: <a id="eq-eq-alfven-cgl_marginal_start"></a><div class="math-display">\[\begin{aligned}0 &amp;= 3c_\parallel ^2 k_\parallel ^2 \Bigl [ k_\perp ^2(v_A^2+2c_\perp ^2) + k_\parallel ^2(v_A^2+c_\perp ^2-c_\parallel ^2) \Bigr ] - c_\perp ^4 k_\perp ^2 k_\parallel ^2 .\end{aligned} \tag{16.50}\]</div>
+                                                                                         
+                                                                                         
+</p><!--l. 680--><p class="noindent" >The mirror mode is oblique, so \(k_\parallel \neq 0\), and one may divide by \(k_\parallel ^2\): <a id="eq-eq-alfven-cgl_marginal_divided"></a><div class="math-display">\[\Bigl [ 3c_\parallel ^2(v_A^2+2c_\perp ^2)-c_\perp ^4 \Bigr ]k_\perp ^2 + 3c_\parallel ^2(v_A^2+c_\perp ^2-c_\parallel ^2)k_\parallel ^2 =0. \tag{16.51}\]</div>
+The threshold is first reached in the quasi-perpendicular limit \(k_\parallel /k_\perp \to 0\), so the coefficient of \(k_\perp ^2\) must vanish:
+<a id="eq-eq-alfven-cgl_marginal_coeff"></a><div class="math-display">\[c_\perp ^4 = 3c_\parallel ^2(v_A^2+2c_\perp ^2). \tag{16.52}\]</div>
+Multiply by \(\rho _0^2\) and restore the pressure variables: <a id="eq-eq-alfven-cgl_mirror_threshold_equal"></a><div class="math-display">\[p_{\perp 0}^2 = 3p_{\parallel 0} \left ( \frac {B_0^2}{\muo }+2p_{\perp 0} \right ). \tag{16.53}\]</div>
+Thus the CGL compressive branch becomes unstable when <a id="eq-eq-alfven-cgl_mirror_threshold"></a><div class="math-display">\[\boxed { \frac {p_{\perp 0}^2}{6p_{\parallel 0}} &gt; p_{\perp 0} + \frac {B_0^2}{2\muo }. } \tag{16.54}\]</div>
+</p><!--l. 718--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 718--><p class="noindent" >Equation (<a href="lecture16.html#eq-eq-alfven-cgl_mirror_threshold">16.54</a>) is historically important, but it is not the final mirror criterion. The
+     firehose threshold is already correct at the CGL level because it is basically a tension
+     balance. The mirror mode depends sensitively on the <span 
+class="ecti-1095">compressive </span>pressure response,
+     and  that  is  where  the  kinetic  closure  matters.  The  next  lecture  revisits  this  same
+     problem using drift-kinetic pressure perturbations and recovers the standard kinetic
+     mirror threshold.</p></blockquote></div></div>
+<!--l. 728--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 728--><p class="noindent" >The wave lecture teaches three lessons that will matter later.
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">The shear Alfvn branch, Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-shear_branch">16.18</a>), is the cleanest manifestation of magnetic
+   tension and becomes the Alfvn continuum in nonuniform plasmas.
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">The  fast  and  slow  branches  mix  magnetic  compression  with  ordinary  fluid
+   compression, and their polarizations are encoded in Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-pol_ratio">16.23</a>).
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">Pressure anisotropy does not create a separate theory of waves; it modifies the same
+   matrix problem. In that language the firehose instability is a sign change of the shear
+   branch, while the mirror instability belongs to the compressive block and therefore
+   tests the closure more severely.</dd></dl>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-460002"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XElsasser1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Walter&#x00A0;M. Elsasser. Hydromagnetic dynamo theory. <span 
+class="ecti-1095">Reviews of Modern Physics</span>, 28(2):135&#8211;163,
+  1956. doi:<a 
+href="https://doi.org/10.1103/RevModPhys.28.135" >10.1103/RevModPhys.28.135</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcowling1957mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> T.&#x00A0;G. Cowling. <span 
+class="ecti-1095">Magnetohydrodynamics</span>. Interscience Publishers, New York, 1957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchandrasekhar1961hydrodynamic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <span 
+class="ecti-1095">Advances in Applied Mechanics</span>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfreidberg1987ideal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jeffrey&#x00A0;P. Freidberg. <span 
+class="ecti-1095">Ideal Magnetohydrodynamics</span>. Plenum Press, New York, NY, USA, 1987.
+  ISBN 9780306425127.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSchnack2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dalton&#x00A0;D. Schnack. <span 
+class="ecti-1095">Lectures in Magnetohydrodynamics: With an Appendix on Extended MHD</span>,
+  volume 780 of <span 
+class="ecti-1095">Lecture Notes in Physics</span>. Springer, Berlin, Heidelberg, 2009. ISBN 9783642006876.
+  doi:<a 
+href="https://doi.org/10.1007/978-3-642-00688-3" >10.1007/978-3-642-00688-3</a>.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-470002"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-force_fourier">16.10</a>), derive the matrix (<a href="lecture16.html#eq-eq-alfven-mhd_matrix">16.15</a>) explicitly. Show every step
+                in the projection onto the \((x,y,z)\) basis.
+                                                                                         
+                                                                                         
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.2.</span>  </dt><dd 
+class="enumerate-enumitem">Using Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-pol_ratio">16.23</a>), show that in the low-\(\beta \) limit the slow branch is predominantly
+                polarized along \(\B _0\), whereas the fast branch is predominantly polarized along \(\vect {k}\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.3.</span>  </dt><dd 
+class="enumerate-enumitem">Derive Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-continuum_local">16.26</a>) for a large-aspect-ratio tokamak and explain why a radial
+                variation of \(q(\psi )\) turns one uniform frequency into a continuum.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.4.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eqs.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-pperp1">16.35</a>) and (<a href="lecture16.html#eq-eq-alfven-ppar1">16.36</a>), derive the CGL matrix (<a href="lecture16.html#eq-eq-alfven-cgl_matrix">16.43</a>). Check
+                carefully that the field-direction perturbation uses \(\vect {b}_1=\B _{1\perp }/B_0\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.5.</span>  </dt><dd 
+class="enumerate-enumitem">Show directly from Eq.&#x00A0;(<a href="lecture16.html#eq-eq-alfven-firehose_cgl">16.45</a>) that the firehose threshold is equivalent to the
+                statement that the effective field-line tension changes sign.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 16.6.</span>  </dt><dd 
+class="enumerate-enumitem">Repeat the derivation of the CGL compressive threshold (<a href="lecture16.html#eq-eq-alfven-cgl_mirror_threshold">16.54</a>) and identify
+                precisely the step where the quasi-perpendicular ordering is used.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

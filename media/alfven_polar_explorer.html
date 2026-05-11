@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alfvén Polar Branch Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --slow: #b64646;
+      --shear: #2f7d49;
+      --fast: #7059b8;
+      --gold: #b98a3d;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p { margin-top: 0; }
+    .lede {
+      max-width: 78ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel, .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer { padding: 1rem; }
+    .control { margin-bottom: 1rem; }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    select {
+      width: 100%;
+      border: 1px solid #cdd8df;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      background: #fcfeff;
+      color: #254458;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.92rem;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 66ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .panel { position: static; }
+      .profile-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Alfvén Polar Branch Explorer</h1>
+  <p class="lede">
+    This browser-side companion to the Alfvén-wave lecture scans the uniform ideal-MHD branches
+    from low-β to high-β using the exact dispersion relation for the shear, fast, and slow modes.
+    The polar plot displays phase speed as a function of propagation angle relative to the magnetic field,
+    while the smaller panels track how the parallel and perpendicular limits change as the pressure
+    becomes more or less important compared with magnetic tension.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="beta-ratio">Pressure ratio <span style="font-weight:500;">c_s² / v_A²</span></label>
+          <span class="value" id="beta-ratio-value"></span>
+        </div>
+        <input id="beta-ratio" type="range" min="0.01" max="4.00" step="0.01" value="0.20" />
+        <p class="help">This is the cleanest knob for the lecture’s polar plot: small values are low-β, order-unity values are mixed, and large values are pressure-dominated.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="angle-marker">Highlighted angle <span style="font-weight:500;">θ</span></label>
+          <span class="value" id="angle-marker-value"></span>
+        </div>
+        <input id="angle-marker" type="range" min="0" max="90" step="1" value="45" />
+        <p class="help">Used to mark one specific propagation direction on the polar plot and read off the three branch speeds there.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="polarization-branch">Polarization branch</label>
+        </div>
+        <select id="polarization-branch">
+          <option value="slow">Slow branch</option>
+          <option value="shear">Shear-Alfvén branch</option>
+          <option value="fast">Fast branch</option>
+        </select>
+        <p class="help">Shows the component structure of <code>δv</code> and <code>δB</code> for the selected branch at the highlighted angle.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The default setting is low-β enough that the fast branch is nearly isotropic at the Alfvén speed while the slow branch stays strongly field-aligned.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Slow, Shear-Alfvén, and Fast Branches</h2>
+          <p>
+            The large panel is the polar phase-speed diagram. The radius is the phase speed normalized
+            to <em>v<sub>A</sub></em>, and the polar angle is the propagation angle relative to the background
+            magnetic field. The two smaller panels show the directional cuts that matter most in the lecture:
+            along the field and across the field.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--slow);"><span class="swatch"></span>Slow branch</li>
+        <li style="color: var(--shear);"><span class="swatch"></span>Shear-Alfvén branch</li>
+        <li style="color: var(--fast);"><span class="swatch"></span>Fast branch</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="polar-plot" viewBox="0 0 760 420" aria-label="Polar phase-speed diagram"></svg>
+      </div>
+
+      <div class="profile-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+        <div class="profile-card">
+          <h3>Branch Speeds at the Highlighted Angle</h3>
+          <p>The marked direction shows how the three phase speeds separate for one chosen propagation angle.</p>
+          <svg id="angle-plot" viewBox="0 0 360 240" aria-label="Branch speeds at one propagation angle"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Parallel and Perpendicular Limits</h3>
+          <p>The lecture’s key limits are recovered directly: the parallel field-aligned branches and the across-field cutoff of the shear branch.</p>
+          <svg id="limit-plot" viewBox="0 0 360 240" aria-label="Parallel and perpendicular limits"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Wave Polarization</h3>
+          <p>These bars show the signed component structure of <code>δv</code> and <code>δB</code> for the selected branch, up to an overall normalization and common phase.</p>
+          <svg id="polarization-plot" viewBox="0 0 360 240" aria-label="Wave polarization components"></svg>
+        </div>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p>
+          The compressive branches follow the quadratic for the normalized phase-speed squared
+          <code>u = ω²/(k² v_A²)</code>,
+          <code>u² - (1 + c_s²/v_A²)u + (c_s²/v_A²) cos²θ = 0</code>.
+          The two roots are the slow and fast branches, while the shear-Alfvén branch is
+          <code>u = cos²θ</code>.
+        </p>
+        <p>
+          So the low-β limit gives a fast branch near <code>v_A</code>, a slow branch mostly along the field,
+          and the shear branch exactly controlled by field-line tension.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const controls = {
+      betaRatio: document.getElementById("beta-ratio"),
+      angleMarker: document.getElementById("angle-marker"),
+      polarizationBranch: document.getElementById("polarization-branch")
+    };
+
+    const labels = {
+      betaRatio: document.getElementById("beta-ratio-value"),
+      angleMarker: document.getElementById("angle-marker-value")
+    };
+
+    const polarPlot = document.getElementById("polar-plot");
+    const anglePlot = document.getElementById("angle-plot");
+    const limitPlot = document.getElementById("limit-plot");
+    const polarizationPlot = document.getElementById("polarization-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+    const warningBox = document.getElementById("warning-box");
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+      for (let i = 0; i <= tickCount; i += 1) {
+        const y = ymin + (i / tickCount) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function branchSpeeds(betaRatio, theta) {
+      const c = Math.cos(theta);
+      const a = 1 + betaRatio;
+      const disc = Math.sqrt(Math.max(a * a - 4 * betaRatio * c * c, 0));
+      const uFast = 0.5 * (a + disc);
+      const uSlow = Math.max(0, 0.5 * (a - disc));
+      const uShear = c * c;
+      return {
+        fast: Math.sqrt(uFast),
+        slow: Math.sqrt(uSlow),
+        shear: Math.sqrt(uShear)
+      };
+    }
+
+    function branchPolarization(betaRatio, theta, branchName) {
+      const c = Math.cos(theta);
+      const s = Math.sin(theta);
+      const speeds = branchSpeeds(betaRatio, theta);
+      let xi = { x: 0, y: 0, z: 0 };
+      let omega = speeds[branchName];
+
+      if (branchName === "shear") {
+        xi = { x: 0, y: 1, z: 0 };
+      } else {
+        const omega2 = omega * omega;
+        const denom = omega2 - betaRatio * c * c;
+        let zOverX;
+        if (Math.abs(denom) < 1e-8 || Math.abs(s * c) < 1e-8) {
+          zOverX = branchName === "slow" ? 1e6 * Math.sign(c || 1) : 0;
+        } else {
+          zOverX = (betaRatio * s * c) / denom;
+        }
+        xi = { x: 1, y: 0, z: zOverX };
+      }
+
+      const dv = {
+        x: omega * xi.x,
+        y: omega * xi.y,
+        z: omega * xi.z
+      };
+      const dB = {
+        x: c * xi.x,
+        y: c * xi.y,
+        z: -s * xi.x
+      };
+      const scale = Math.max(
+        Math.abs(dv.x), Math.abs(dv.y), Math.abs(dv.z),
+        Math.abs(dB.x), Math.abs(dB.y), Math.abs(dB.z),
+        1e-8
+      );
+      return {
+        xi,
+        dv,
+        dB,
+        normalized: {
+          dv: { x: dv.x / scale, y: dv.y / scale, z: dv.z / scale },
+          dB: { x: dB.x / scale, y: dB.y / scale, z: dB.z / scale }
+        }
+      };
+    }
+
+    function updateLabels() {
+      labels.betaRatio.innerHTML = fmt(parseFloat(controls.betaRatio.value), 2);
+      labels.angleMarker.innerHTML = `${parseInt(controls.angleMarker.value, 10)}°`;
+    }
+
+    function computeModel() {
+      const betaRatio = parseFloat(controls.betaRatio.value);
+      const angleDeg = parseInt(controls.angleMarker.value, 10);
+      const angleRad = angleDeg * Math.PI / 180;
+      const polarizationBranch = controls.polarizationBranch.value;
+      const highlighted = branchSpeeds(betaRatio, angleRad);
+      const parallel = branchSpeeds(betaRatio, 0);
+      const perpendicular = branchSpeeds(betaRatio, 0.5 * Math.PI);
+      const polarization = branchPolarization(betaRatio, angleRad, polarizationBranch);
+      return {
+        betaRatio,
+        angleDeg,
+        angleRad,
+        polarizationBranch,
+        highlighted,
+        parallel,
+        perpendicular,
+        polarization
+      };
+    }
+
+    function drawPolarPlot(model) {
+      const width = 760;
+      const height = 420;
+      const cx = 250;
+      const cy = 210;
+      const radius = 150;
+      const scaleMax = Math.max(1.2, Math.sqrt(1 + model.betaRatio) * 1.05);
+      let markup = "";
+
+      [0.25, 0.5, 0.75, 1.0].forEach((frac) => {
+        markup += `<circle cx="${cx}" cy="${cy}" r="${(radius * frac).toFixed(2)}" fill="none" stroke="#d7e3ea" stroke-width="1.2" />`;
+        markup += `<text x="${(cx + radius * frac + 8).toFixed(2)}" y="${(cy + 4).toFixed(2)}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="12" fill="#637a89">${fmt(scaleMax * frac, 2)}</text>`;
+      });
+      [0, 30, 60, 90, 120, 150].forEach((deg) => {
+        const phi = deg * Math.PI / 180;
+        const x = cx + radius * Math.cos(phi);
+        const y = cy - radius * Math.sin(phi);
+        markup += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" stroke="#d7e3ea" stroke-width="1.1" />`;
+      });
+      markup += `<line x1="${(cx - radius).toFixed(2)}" y1="${cy}" x2="${(cx + radius).toFixed(2)}" y2="${cy}" stroke="#c4d5df" stroke-width="1.3" />`;
+      markup += `<line x1="${cx}" y1="${(cy - radius).toFixed(2)}" x2="${cx}" y2="${(cy + radius).toFixed(2)}" stroke="#c4d5df" stroke-width="1.3" />`;
+      markup += `<text x="${(cx + radius + 20).toFixed(2)}" y="${(cy + 5).toFixed(2)}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#365466">k ∥ B₀</text>`;
+      markup += `<text x="${(cx - 10).toFixed(2)}" y="${(cy - radius - 12).toFixed(2)}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#365466">k ⟂ B₀</text>`;
+
+      function polarPath(values, color) {
+        const pts = [];
+        for (let i = 0; i <= 180; i += 1) {
+          const theta = i * Math.PI / 180;
+          const speed = values(theta) / scaleMax;
+          const x = cx + radius * speed * Math.cos(theta);
+          const y = cy - radius * speed * Math.sin(theta);
+          pts.push([x, y]);
+        }
+        return `<path d="${makePath(pts)}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+      }
+
+      markup += polarPath((theta) => branchSpeeds(model.betaRatio, theta).slow, "#b64646");
+      markup += polarPath((theta) => branchSpeeds(model.betaRatio, theta).shear, "#2f7d49");
+      markup += polarPath((theta) => branchSpeeds(model.betaRatio, theta).fast, "#7059b8");
+
+      const theta = model.angleRad;
+      [
+        { speed: model.highlighted.slow, color: "#b64646" },
+        { speed: model.highlighted.shear, color: "#2f7d49" },
+        { speed: model.highlighted.fast, color: "#7059b8" }
+      ].forEach((item) => {
+        const rr = radius * item.speed / scaleMax;
+        const x = cx + rr * Math.cos(theta);
+        const y = cy - rr * Math.sin(theta);
+        markup += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4.4" fill="${item.color}" />`;
+      });
+      const xDir = cx + radius * Math.cos(theta);
+      const yDir = cy - radius * Math.sin(theta);
+      markup += `<line x1="${cx}" y1="${cy}" x2="${xDir.toFixed(2)}" y2="${yDir.toFixed(2)}" stroke="#b98a3d" stroke-width="1.8" stroke-dasharray="6 5" />`;
+      markup += `<text x="${(xDir + 8).toFixed(2)}" y="${(yDir - 8).toFixed(2)}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#7b5f23">θ = ${model.angleDeg}°</text>`;
+      polarPlot.innerHTML = markup;
+    }
+
+    function drawAnglePlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const values = [model.highlighted.slow, model.highlighted.shear, model.highlighted.fast];
+      const labelsLocal = ["slow", "shear", "fast"];
+      const colors = ["#b64646", "#2f7d49", "#7059b8"];
+      const ymax = Math.max(...values, 1.1) * 1.08;
+      let markup = "";
+      markup += buildAxes(frame, "branch index", "v_ph / v_A", 0, ymax, 3);
+      values.forEach((value, idx) => {
+        const x = (idx + 0.5) / 3;
+        const px = xScale(frame, x);
+        const py = yScale(frame, value, 0, ymax);
+        markup += `<line x1="${px}" y1="${yScale(frame, 0, 0, ymax)}" x2="${px}" y2="${py}" stroke="${colors[idx]}" stroke-width="12" stroke-linecap="round" />`;
+        markup += `<text x="${px}" y="${frame.height - 14}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${labelsLocal[idx]}</text>`;
+      });
+      anglePlot.innerHTML = markup;
+    }
+
+    function drawLimitPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const ymax = Math.max(model.parallel.fast, model.parallel.slow, model.parallel.shear, 1.1) * 1.08;
+      let markup = "";
+      markup += buildAxes(frame, "direction", "v_ph / v_A", 0, ymax, 4);
+      const groups = [
+        { x: 0.25, values: [model.parallel.slow, model.parallel.shear, model.parallel.fast], label: "parallel" },
+        { x: 0.75, values: [model.perpendicular.slow, model.perpendicular.shear, model.perpendicular.fast], label: "perpendicular" }
+      ];
+      const offsets = [-0.06, 0, 0.06];
+      const colors = ["#b64646", "#2f7d49", "#7059b8"];
+      groups.forEach((group) => {
+        group.values.forEach((value, idx) => {
+          const x = group.x + offsets[idx];
+          const px = xScale(frame, x);
+          const py = yScale(frame, value, 0, ymax);
+          markup += `<line x1="${px}" y1="${yScale(frame, 0, 0, ymax)}" x2="${px}" y2="${py}" stroke="${colors[idx]}" stroke-width="8" stroke-linecap="round" />`;
+        });
+        markup += `<text x="${xScale(frame, group.x)}" y="${frame.height - 14}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${group.label}</text>`;
+      });
+      limitPlot.innerHTML = markup;
+    }
+
+    function drawPolarizationPlot(model) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const labelsLocal = ["δv_x", "δv_y", "δv_z", "δB_x", "δB_y", "δB_z"];
+      const values = [
+        model.polarization.normalized.dv.x,
+        model.polarization.normalized.dv.y,
+        model.polarization.normalized.dv.z,
+        model.polarization.normalized.dB.x,
+        model.polarization.normalized.dB.y,
+        model.polarization.normalized.dB.z
+      ];
+      let markup = "";
+      markup += buildAxes(frame, "component", "normalized signed amplitude", -1.05, 1.05, 4);
+      values.forEach((value, idx) => {
+        const x = (idx + 0.5) / 6;
+        const px = xScale(frame, x);
+        const py = yScale(frame, value, -1.05, 1.05);
+        const y0 = yScale(frame, 0, -1.05, 1.05);
+        const color = idx < 3 ? "#1f4e79" : "#b98a3d";
+        markup += `<line x1="${px}" y1="${y0}" x2="${px}" y2="${py}" stroke="${color}" stroke-width="10" stroke-linecap="round" />`;
+        markup += `<text x="${px}" y="${frame.height - 14}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="11" fill="#526977">${labelsLocal[idx]}</text>`;
+      });
+      polarizationPlot.innerHTML = markup;
+    }
+
+    function renderCards(model) {
+      statusGrid.innerHTML = [
+        card("β-like ratio", `c_s² / v_A² = ${fmt(model.betaRatio, 3)}`),
+        card("Highlighted angle", `θ = ${model.angleDeg}°`),
+        card("Polarization branch", `${model.polarizationBranch}`),
+        card("Slow branch", `v_ph / v_A = ${fmt(model.highlighted.slow, 4)}`),
+        card("Shear branch", `v_ph / v_A = ${fmt(model.highlighted.shear, 4)}`),
+        card("Fast branch", `v_ph / v_A = ${fmt(model.highlighted.fast, 4)}`),
+        card("Across-field shear limit", `At θ = 90°, the shear branch gives ${fmt(model.perpendicular.shear, 4)}.`)
+      ].join("");
+
+      coeffGrid.innerHTML = [
+        coeff("parallel slow", fmt(model.parallel.slow, 4)),
+        coeff("parallel shear", fmt(model.parallel.shear, 4)),
+        coeff("parallel fast", fmt(model.parallel.fast, 4)),
+        coeff("perpendicular slow", fmt(model.perpendicular.slow, 4)),
+        coeff("perpendicular shear", fmt(model.perpendicular.shear, 4)),
+        coeff("perpendicular fast", fmt(model.perpendicular.fast, 4)),
+        coeff("δv polarization", `(${fmt(model.polarization.normalized.dv.x, 2)}, ${fmt(model.polarization.normalized.dv.y, 2)}, ${fmt(model.polarization.normalized.dv.z, 2)})`),
+        coeff("δB polarization", `(${fmt(model.polarization.normalized.dB.x, 2)}, ${fmt(model.polarization.normalized.dB.y, 2)}, ${fmt(model.polarization.normalized.dB.z, 2)})`),
+        coeff("c_s / v_A", fmt(Math.sqrt(model.betaRatio), 4)),
+        coeff("angle", `${model.angleDeg}°`)
+      ].join("");
+    }
+
+    function updateWarning(model) {
+      if (model.betaRatio < 0.2) {
+        warningBox.innerHTML = "This is the low-β regime emphasized in the lecture: the fast branch is nearly magnetic-tension dominated, the slow branch is strongly field-aligned, and the shear branch remains exactly controlled by field-line tension.";
+      } else if (model.betaRatio > 1.2) {
+        warningBox.innerHTML = "Here pressure and magnetic tension are both important. The fast branch becomes increasingly sound-like in its largest speeds, while the slow branch broadens away from the strongly field-aligned low-β limit.";
+      } else {
+        warningBox.innerHTML = "This is the mixed regime where none of the three branches can be read off from the asymptotic low-β picture alone; the polar plot is the cleanest way to see the interpolation.";
+      }
+    }
+
+    function render() {
+      updateLabels();
+      const model = computeModel();
+      updateLabels();
+      drawPolarPlot(model);
+      drawAnglePlot(model);
+      drawLimitPlot(model);
+      drawPolarizationPlot(model);
+      renderCards(model);
+      updateWarning(model);
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+      control.addEventListener("change", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

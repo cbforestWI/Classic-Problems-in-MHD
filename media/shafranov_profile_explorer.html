@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shafranov Profile Explorer</title>
+  <style>
+    :root {
+      --ink: #20303a;
+      --muted: #5b7282;
+      --accent: #1f4e79;
+      --accent-soft: #dcecf7;
+      --target: #b64646;
+      --flux: #2d6ea8;
+      --lcfs: #17232e;
+      --gold: #b98a3d;
+      --green: #2f7d49;
+      --panel: #fbfcfd;
+      --border: #d8e3ea;
+      --bg: #f5f9fb;
+    }
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(194, 221, 238, 0.34), transparent 28%),
+        linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.4rem 3rem 1.4rem;
+      line-height: 1.55;
+    }
+    h1, h2, h3 {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      color: #163c5d;
+      line-height: 1.15;
+    }
+    h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: 2rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    .lede {
+      max-width: 74ch;
+      margin-bottom: 1.2rem;
+      color: #334a59;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+    .panel,
+    .viewer {
+      background: rgba(251, 252, 253, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(21, 49, 70, 0.08);
+    }
+    .panel {
+      padding: 1.15rem 1.05rem 1rem 1.05rem;
+      position: sticky;
+      top: 1rem;
+    }
+    .viewer {
+      padding: 1rem;
+    }
+    .control {
+      margin-bottom: 1rem;
+    }
+    .control-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+    .control label {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #23475f;
+    }
+    .value {
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .help {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.89rem;
+    }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .viewer-header p {
+      color: #4a6270;
+      max-width: 64ch;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      margin: 0.1rem 0 0.8rem 0;
+      padding: 0;
+      list-style: none;
+      color: #334d5d;
+      font-size: 0.92rem;
+    }
+    .legend span.swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 0;
+      vertical-align: middle;
+      margin-right: 0.35rem;
+      border-top: 3px solid currentColor;
+    }
+    .legend .dashed {
+      border-top-style: dashed;
+    }
+    .plot-frame {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .profile-card {
+      background: #fbfcfd;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.8rem 0.7rem 0.8rem;
+    }
+    .profile-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.98rem;
+    }
+    .profile-card p {
+      margin-bottom: 0.55rem;
+      color: #4f6675;
+      font-size: 0.9rem;
+    }
+    .mini-plot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: linear-gradient(180deg, #fcfeff 0%, #f5f9fb 100%);
+      border-radius: 10px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 0.95rem;
+    }
+    .status-card {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .status-card h3 {
+      margin: 0 0 0.28rem 0;
+      font-size: 0.92rem;
+      color: #274e67;
+    }
+    .status-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #415a69;
+    }
+    .coeff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.95rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+    }
+    .coeff-grid div {
+      background: #f7fafc;
+      border: 1px solid #dde7ee;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      color: #314957;
+    }
+    .equations {
+      margin-top: 1.1rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid #d9e4ec;
+      color: #425866;
+      font-size: 0.92rem;
+    }
+    .equations code {
+      background: #eef4f8;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      color: #1f4e79;
+    }
+    .warning {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid #edd3ae;
+      background: #fff6e8;
+      color: #78501f;
+      font-size: 0.9rem;
+    }
+    .footer-note {
+      margin-top: 0.9rem;
+      color: #59707f;
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        position: static;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Shafranov Profile Explorer</h1>
+  <p class="lede">
+    This browser-side companion to Problem 13.2 takes the large-aspect-ratio circular profiles
+    <em>p(r) = p̂ (1 - r²/a²)</em> and <em>j<sub>&phi;</sub>(r) = ĵ (1 - r²/a²)<sup>&nu;</sup></em>,
+    then enforces the lecture-style constraints on <em>q(0)</em>, <em>q(a)</em>, and <em>&beta;<sub>p</sub></em>.
+    The result is a compact way to inspect how the pressure/current peaking fixes <em>q(r)</em>,
+    the internal inductance <em>&ell;<sub>i</sub></em>, the Shafranov shift <em>&Delta;(r)</em>, the required vertical field,
+    and the boundary asymmetry factor.
+  </p>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="control">
+        <div class="control-header">
+          <label for="aspect">Major-radius ratio <span style="font-weight:500;">R<sub>0</sub>/a</span></label>
+          <span class="value" id="aspect-value"></span>
+        </div>
+        <input id="aspect" type="range" min="2.0" max="8.0" step="0.01" value="3.0" />
+        <p class="help">Keeps the model in the large-aspect-ratio regime while setting the logarithm in the vertical-field formula.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="minor-radius">Minor radius <span style="font-weight:500;">a</span></label>
+          <span class="value" id="minor-radius-value"></span>
+        </div>
+        <input id="minor-radius" type="range" min="0.20" max="2.00" step="0.01" value="0.60" />
+        <p class="help">Physical scale in meters. Together with <code>R<sub>0</sub>/a</code> it sets the major radius.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="b0">Toroidal field <span style="font-weight:500;">B<sub>0</sub></span></label>
+          <span class="value" id="b0-value"></span>
+        </div>
+        <input id="b0" type="range" min="0.20" max="8.00" step="0.01" value="2.20" />
+        <p class="help">Used with <code>q(a)</code> to infer the plasma current from the cylindrical edge relation.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="q0">On-axis safety factor <span style="font-weight:500;">q(0)</span></label>
+          <span class="value" id="q0-value"></span>
+        </div>
+        <input id="q0" type="range" min="0.70" max="2.50" step="0.01" value="1.00" />
+        <p class="help">Fixes the current-profile peaking through <code>&nu; = q(a)/q(0) - 1</code>.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="qedge">Edge safety factor <span style="font-weight:500;">q(a)</span></label>
+          <span class="value" id="qedge-value"></span>
+        </div>
+        <input id="qedge" type="range" min="1.20" max="8.00" step="0.01" value="3.00" />
+        <p class="help">Sets the total plasma current through the large-aspect-ratio cylindrical estimate.</p>
+      </div>
+
+      <div class="control">
+        <div class="control-header">
+          <label for="betap">Poloidal beta <span style="font-weight:500;">&beta;<sub>p</sub></span></label>
+          <span class="value" id="betap-value"></span>
+        </div>
+        <input id="betap" type="range" min="0.10" max="2.50" step="0.01" value="0.50" />
+        <p class="help">Sets the pressure amplitude, which then feeds the shift, asymmetry, and vertical-field requirements.</p>
+      </div>
+
+      <div class="warning" id="warning-box">
+        The sliders are currently matched to the lecture’s default exercise values: <code>q(0) ≈ 1</code>, <code>q(a) = 3</code>, and <code>&beta;<sub>p</sub> = 1/2</code>.
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-header">
+        <div>
+          <h2>Profile Families and Derived Equilibrium Quantities</h2>
+          <p>
+            The large panel compares the normalized pressure, toroidal-current, and poloidal-field profiles.
+            The smaller panels track the safety factor and the inward integration of the Shafranov-shift equation.
+            All reported numbers are computed directly from the chosen profile family, not entered by hand.
+          </p>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li style="color: var(--target);"><span class="swatch"></span>Normalized pressure</li>
+        <li style="color: var(--accent);"><span class="swatch"></span>Normalized current density</li>
+        <li style="color: var(--green);"><span class="swatch"></span>Normalized poloidal field</li>
+      </ul>
+
+      <div class="plot-frame">
+        <svg id="main-plot" viewBox="0 0 760 420" aria-label="Pressure, current, and poloidal field profiles"></svg>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3>Safety-Factor Profile</h3>
+          <p>The lecture’s profile ansatz implies a closed-form shape for <em>q(r)</em>, with the edge value fixed by the cylindrical estimate.</p>
+          <svg id="q-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="Safety factor profile"></svg>
+        </div>
+
+        <div class="profile-card">
+          <h3>Shafranov Shift</h3>
+          <p>The shift is obtained by integrating Eq. 13.48 inward from the fixed-boundary condition <em>&Delta;(a) = 0</em>.</p>
+          <svg id="delta-plot" class="mini-plot" viewBox="0 0 360 240" aria-label="Shafranov shift profile"></svg>
+        </div>
+      </div>
+
+      <div class="status-grid" id="status-grid"></div>
+      <div class="coeff-grid" id="coeff-grid"></div>
+
+      <div class="equations">
+        <p><strong>Model summary.</strong> The app uses the lecture’s circular large-aspect-ratio relations</p>
+        <p><code>p(r) = p̂ (1 - r²/a²)</code>, <code>j<sub>&phi;</sub>(r) = ĵ (1 - r²/a²)<sup>&nu;</sup></code>, <code>q(a) = 2&pi;a²B<sub>0</sub>/(&mu;<sub>0</sub>R<sub>0</sub>I<sub>p</sub>)</code>, and <code>B<sub>v</sub> = &mu;<sub>0</sub>I<sub>p</sub>[&beta;<sub>p</sub> + (&ell;<sub>i</sub> - 3)/2 + ln(8R<sub>0</sub>/a)]/(4&pi;R<sub>0</sub>)</code>.</p>
+      </div>
+
+      <p class="footer-note">
+        The geometry here is intentionally simple. That is what makes the combinations
+        <em>&beta;<sub>p</sub> + &ell;<sub>i</sub>/2</em>, the asymmetry factor, and the required vertical field appear so transparently.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const MU0 = 4 * Math.PI * 1e-7;
+
+    const controls = {
+      aspect: document.getElementById("aspect"),
+      minorRadius: document.getElementById("minor-radius"),
+      b0: document.getElementById("b0"),
+      q0: document.getElementById("q0"),
+      qedge: document.getElementById("qedge"),
+      betap: document.getElementById("betap")
+    };
+
+    const valueLabels = {
+      aspect: document.getElementById("aspect-value"),
+      minorRadius: document.getElementById("minor-radius-value"),
+      b0: document.getElementById("b0-value"),
+      q0: document.getElementById("q0-value"),
+      qedge: document.getElementById("qedge-value"),
+      betap: document.getElementById("betap-value")
+    };
+
+    const warningBox = document.getElementById("warning-box");
+    const mainPlot = document.getElementById("main-plot");
+    const qPlot = document.getElementById("q-plot");
+    const deltaPlot = document.getElementById("delta-plot");
+    const statusGrid = document.getElementById("status-grid");
+    const coeffGrid = document.getElementById("coeff-grid");
+
+    function fmt(value, digits = 3) {
+      return Number(value).toFixed(digits);
+    }
+
+    function fmtSci(value) {
+      if (value === 0) {
+        return "0";
+      }
+      const exponent = Math.floor(Math.log10(Math.abs(value)));
+      const mantissa = value / 10 ** exponent;
+      return `${mantissa.toFixed(3)} × 10<sup>${exponent}</sup>`;
+    }
+
+    function trapz(x, y) {
+      let total = 0;
+      for (let i = 1; i < x.length; i += 1) {
+        total += 0.5 * (y[i] + y[i - 1]) * (x[i] - x[i - 1]);
+      }
+      return total;
+    }
+
+    function cumulativeTrapz(x, y) {
+      const out = new Array(x.length).fill(0);
+      for (let i = 1; i < x.length; i += 1) {
+        out[i] = out[i - 1] + 0.5 * (y[i] + y[i - 1]) * (x[i] - x[i - 1]);
+      }
+      return out;
+    }
+
+    function interpolate(x, y, target) {
+      if (target <= x[0]) {
+        return y[0];
+      }
+      if (target >= x[x.length - 1]) {
+        return y[y.length - 1];
+      }
+      for (let i = 1; i < x.length; i += 1) {
+        if (target <= x[i]) {
+          const t = (target - x[i - 1]) / (x[i] - x[i - 1]);
+          return y[i - 1] + t * (y[i] - y[i - 1]);
+        }
+      }
+      return y[y.length - 1];
+    }
+
+    function makePath(points) {
+      return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+    }
+
+    function svgFrame(width, height, margins) {
+      const plotWidth = width - margins.left - margins.right;
+      const plotHeight = height - margins.top - margins.bottom;
+      return { width, height, margins, plotWidth, plotHeight };
+    }
+
+    function xScale(frame, x) {
+      return frame.margins.left + x * frame.plotWidth;
+    }
+
+    function yScale(frame, y, ymin, ymax) {
+      const t = (y - ymin) / (ymax - ymin || 1);
+      return frame.height - frame.margins.bottom - t * frame.plotHeight;
+    }
+
+    function buildAxes(frame, xLabel, yLabel, ymin, ymax, tickCount = 5) {
+      let axis = "";
+      axis += `<line x1="${frame.margins.left}" y1="${frame.height - frame.margins.bottom}" x2="${frame.width - frame.margins.right}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+      axis += `<line x1="${frame.margins.left}" y1="${frame.margins.top}" x2="${frame.margins.left}" y2="${frame.height - frame.margins.bottom}" stroke="#9bb0bf" stroke-width="1.2" />`;
+
+      for (let i = 0; i <= tickCount; i += 1) {
+        const x = i / tickCount;
+        const px = xScale(frame, x);
+        axis += `<line x1="${px}" y1="${frame.height - frame.margins.bottom}" x2="${px}" y2="${frame.height - frame.margins.bottom + 6}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<text x="${px}" y="${frame.height - 12}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${x.toFixed(1)}</text>`;
+      }
+
+      for (let i = 0; i <= tickCount; i += 1) {
+        const y = ymin + (i / tickCount) * (ymax - ymin);
+        const py = yScale(frame, y, ymin, ymax);
+        axis += `<line x1="${frame.margins.left - 6}" y1="${py}" x2="${frame.margins.left}" y2="${py}" stroke="#9bb0bf" stroke-width="1" />`;
+        axis += `<line x1="${frame.margins.left}" y1="${py}" x2="${frame.width - frame.margins.right}" y2="${py}" stroke="#e4edf3" stroke-width="1" />`;
+        axis += `<text x="${frame.margins.left - 10}" y="${py + 4}" text-anchor="end" font-family="Avenir Next, Gill Sans, sans-serif" font-size="13" fill="#526977">${y.toFixed(2)}</text>`;
+      }
+
+      axis += `<text x="${frame.margins.left + frame.plotWidth / 2}" y="${frame.height - 2}" text-anchor="middle" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${xLabel}</text>`;
+      axis += `<text x="18" y="${frame.margins.top + frame.plotHeight / 2}" text-anchor="middle" transform="rotate(-90 18 ${frame.margins.top + frame.plotHeight / 2})" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${yLabel}</text>`;
+      return axis;
+    }
+
+    function card(title, body) {
+      return `<div class="status-card"><h3>${title}</h3><p>${body}</p></div>`;
+    }
+
+    function coeff(title, body) {
+      return `<div><strong>${title}</strong><br />${body}</div>`;
+    }
+
+    function computeModel() {
+      let q0 = parseFloat(controls.q0.value);
+      let qedge = parseFloat(controls.qedge.value);
+      if (q0 >= qedge) {
+        q0 = qedge - 0.05;
+        controls.q0.value = q0.toFixed(2);
+      }
+
+      const aspect = parseFloat(controls.aspect.value);
+      const a = parseFloat(controls.minorRadius.value);
+      const b0 = parseFloat(controls.b0.value);
+      const betaPTarget = parseFloat(controls.betap.value);
+
+      const R0 = aspect * a;
+      const nu = qedge / q0 - 1;
+      const ip = (2 * Math.PI * a * a * b0) / (MU0 * R0 * qedge);
+      const jHat = ip * (nu + 1) / (Math.PI * a * a);
+      const bEdge = MU0 * ip / (2 * Math.PI * a);
+      const pHat = betaPTarget * bEdge * bEdge / MU0;
+
+      const points = 321;
+      const rho = [];
+      const radius = [];
+      const pressure = [];
+      const current = [];
+      const btheta = [];
+      const q = [];
+      const currentFraction = [];
+
+      for (let i = 0; i < points; i += 1) {
+        const s = i / (points - 1);
+        const r = a * s;
+        rho.push(s);
+        radius.push(r);
+        pressure.push(pHat * (1 - s * s));
+        current.push(jHat * Math.pow(1 - s * s, nu));
+        const enclosedFraction = 1 - Math.pow(1 - s * s, nu + 1);
+        currentFraction.push(enclosedFraction);
+        if (i === 0) {
+          btheta.push(0);
+          q.push(q0);
+        } else {
+          const bpol = bEdge * enclosedFraction / s;
+          btheta.push(bpol);
+          q.push(qedge * s * s / enclosedFraction);
+        }
+      }
+
+      const liIntegrand = radius.map((r, idx) => btheta[idx] * btheta[idx] * r);
+      const betaPIntegrand = radius.map((r, idx) => pressure[idx] * r);
+      const li = 2 * trapz(radius, liIntegrand) / (a * a * bEdge * bEdge);
+      const betaP = 4 * MU0 * trapz(radius, betaPIntegrand) / (a * a * bEdge * bEdge);
+      const lambda = betaP + li / 2 - 1;
+      const edgeAsymmetry = (a / R0) * lambda;
+      const bv = MU0 * ip * (betaP + (li - 3) / 2 + Math.log(8 * R0 / a)) / (4 * Math.PI * R0);
+
+      const shiftIntegrand = radius.map((r, idx) => 4 * MU0 * r * pressure[idx] + r * btheta[idx] * btheta[idx]);
+      const shiftIntegral = cumulativeTrapz(radius, shiftIntegrand);
+      const deltaPrime = new Array(points).fill(0);
+      for (let i = 1; i < points; i += 1) {
+        const r = radius[i];
+        const b2 = btheta[i] * btheta[i];
+        deltaPrime[i] = (2 * MU0 * r * pressure[i]) / (R0 * b2) - shiftIntegral[i] / (R0 * r * b2);
+      }
+
+      const delta = new Array(points).fill(0);
+      for (let i = points - 2; i >= 0; i -= 1) {
+        const dr = radius[i + 1] - radius[i];
+        delta[i] = delta[i + 1] - 0.5 * (deltaPrime[i + 1] + deltaPrime[i]) * dr;
+      }
+
+      const q95 = interpolate(rho, q, 0.95);
+      const deltaAxis = delta[0];
+      const delta95 = interpolate(rho, delta, 0.95);
+      const betaTProxy = 2 * MU0 * (2 * trapz(radius, betaPIntegrand) / (a * a)) / (b0 * b0);
+      const bvMillitesla = 1e3 * bv;
+
+      return {
+        aspect,
+        a,
+        b0,
+        R0,
+        q0,
+        qedge,
+        q95,
+        betaP,
+        betaTProxy,
+        nu,
+        ip,
+        jHat,
+        pHat,
+        bEdge,
+        li,
+        lambda,
+        edgeAsymmetry,
+        bv,
+        bvMillitesla,
+        deltaAxis,
+        delta95,
+        rho,
+        pressure,
+        current,
+        btheta,
+        q,
+        delta
+      };
+    }
+
+    function drawMainPlot(model) {
+      const frame = svgFrame(760, 420, { left: 62, right: 24, top: 22, bottom: 44 });
+      const maxB = Math.max(...model.btheta);
+      const currentNorm = model.current.map((value) => value / model.jHat);
+      const pressureNorm = model.pressure.map((value) => value / model.pHat);
+      const bthetaNorm = model.btheta.map((value) => value / maxB);
+      const ymin = 0;
+      const ymax = 1.05;
+
+      let markup = "";
+      markup += buildAxes(frame, "r / a", "Normalized profile", ymin, ymax, 5);
+
+      const series = [
+        { values: pressureNorm, color: "#b64646" },
+        { values: currentNorm, color: "#2d6ea8" },
+        { values: bthetaNorm, color: "#2f7d49" }
+      ];
+
+      series.forEach((seriesDef) => {
+        const path = makePath(model.rho.map((x, idx) => [xScale(frame, x), yScale(frame, seriesDef.values[idx], ymin, ymax)]));
+        markup += `<path d="${path}" fill="none" stroke="${seriesDef.color}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />`;
+      });
+
+      mainPlot.innerHTML = markup;
+    }
+
+    function drawSingleSeries(svg, x, y, color, yLabel, title, ymin = null, ymax = null) {
+      const frame = svgFrame(360, 240, { left: 60, right: 16, top: 18, bottom: 38 });
+      const yMin = ymin === null ? Math.min(...y) : ymin;
+      const yMax = ymax === null ? Math.max(...y) : ymax;
+      let markup = "";
+      markup += buildAxes(frame, "r / a", yLabel, yMin, yMax * 1.03 + (yMax === yMin ? 1 : 0), 4);
+      const path = makePath(x.map((value, idx) => [xScale(frame, value), yScale(frame, y[idx], yMin, yMax * 1.03 + (yMax === yMin ? 1 : 0))]));
+      markup += `<path d="${path}" fill="none" stroke="${color}" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" />`;
+      markup += `<text x="${frame.margins.left + 4}" y="${frame.margins.top - 2}" font-family="Avenir Next, Gill Sans, sans-serif" font-size="14" fill="#365466">${title}</text>`;
+      svg.innerHTML = markup;
+    }
+
+    function renderCards(model) {
+      statusGrid.innerHTML = [
+        card("Major radius", `R<sub>0</sub> = ${fmt(model.R0, 3)} m`),
+        card("Plasma current", `I<sub>p</sub> = ${fmt(model.ip / 1e6, 3)} MA`),
+        card("Current peaking", `&nu; = ${fmt(model.nu, 3)}`),
+        card("Poloidal field at edge", `B<sub>&theta;</sub>(a) = ${fmt(model.bEdge, 3)} T`),
+        card("Internal inductance", `&ell;<sub>i</sub> = ${fmt(model.li, 3)}`),
+        card("Poloidal beta", `&beta;<sub>p</sub> = ${fmt(model.betaP, 3)}`),
+        card("Vertical field", `B<sub>v</sub> = ${fmt(model.bvMillitesla, 2)} mT`),
+        card("Asymmetry factor", `&Lambda; = ${fmt(model.lambda, 3)}; edge modulation = ${fmt(model.edgeAsymmetry, 3)}`),
+        card("Magnetic-axis shift", `&Delta;<sub>s</sub>/a = ${fmt(model.deltaAxis / model.a, 3)}`),
+        card("Safety-factor check", `q(0.95a) = ${fmt(model.q95, 3)}`)
+      ].join("");
+
+      coeffGrid.innerHTML = [
+        coeff("p̂", `${fmtSci(model.pHat)} Pa`),
+        coeff("ĵ", `${fmtSci(model.jHat)} A m<sup>-2</sup>`),
+        coeff("q(a)", fmt(model.qedge, 3)),
+        coeff("q(0)", fmt(model.q0, 3)),
+        coeff("q(0.95a)", fmt(model.q95, 3)),
+        coeff("B<sub>v</sub>/B<sub>&theta;</sub>(a)", fmt(model.bv / model.bEdge, 4)),
+        coeff("&beta;<sub>t</sub> proxy", fmt(model.betaTProxy, 4)),
+        coeff("&Delta;(0.95a)/a", fmt(model.delta95 / model.a, 4))
+      ].join("");
+    }
+
+    function updateLabels() {
+      valueLabels.aspect.innerHTML = `${fmt(parseFloat(controls.aspect.value), 2)}`;
+      valueLabels.minorRadius.innerHTML = `${fmt(parseFloat(controls.minorRadius.value), 2)} m`;
+      valueLabels.b0.innerHTML = `${fmt(parseFloat(controls.b0.value), 2)} T`;
+      valueLabels.q0.innerHTML = fmt(parseFloat(controls.q0.value), 2);
+      valueLabels.qedge.innerHTML = fmt(parseFloat(controls.qedge.value), 2);
+      valueLabels.betap.innerHTML = fmt(parseFloat(controls.betap.value), 2);
+    }
+
+    function updateWarning(model) {
+      const matchesExercise =
+        Math.abs(model.q0 - 1.0) < 0.03 &&
+        Math.abs(model.qedge - 3.0) < 0.03 &&
+        Math.abs(model.betaP - 0.5) < 0.03;
+      if (matchesExercise) {
+        warningBox.innerHTML = 'The sliders are currently matched to the lecture’s default exercise values: <code>q(0) ≈ 1</code>, <code>q(a) = 3</code>, and <code>&beta;<sub>p</sub> = 1/2</code>.';
+      } else {
+        warningBox.innerHTML = `This profile family remains in the same lecture model, but it now explores a nearby case with <code>&nu; = ${fmt(model.nu, 3)}</code> and <code>B<sub>v</sub> = ${fmt(model.bvMillitesla, 2)} mT</code>.`;
+      }
+    }
+
+    function render() {
+      updateLabels();
+      const model = computeModel();
+      updateLabels();
+      updateWarning(model);
+      drawMainPlot(model);
+      drawSingleSeries(qPlot, model.rho, model.q, "#1f4e79", "q(r)", "Safety factor", 0, Math.max(...model.q) * 1.03);
+      const deltaNorm = model.delta.map((value) => value / model.a);
+      drawSingleSeries(deltaPlot, model.rho, deltaNorm, "#b98a3d", "Δ(r) / a", "Shafranov shift", Math.min(...deltaNorm) * 1.03, Math.max(...deltaNorm) * 1.03);
+      renderCards(model);
+    }
+
+    Object.values(controls).forEach((control) => {
+      control.addEventListener("input", render);
+    });
+
+    render();
+  </script>
+</body>
+</html>

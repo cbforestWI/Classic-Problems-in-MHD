@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 12 The Grad-Shafranov Equation and the Solov&#8217;ev Solution</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_equilibrium.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture11.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture13.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;12</span><br /><a 
+ id="x1-3900012"></a>The Grad&#8211;Shafranov Equation and the Solov&#8217;ev Solution</h2>
+<!--l. 16--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 16--><p class="noindent" ><span 
+class="ecbx-1095">Axisymmetry turns vector force balance into one scalar elliptic equation.</span>
+   </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">In the isotropic limit of the previous lecture, pressure becomes a flux function: \(p=p(\psi )\).
+   </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">Axisymmetry allows the magnetic field to be written in terms of one poloidal flux
+   function \(\psi (R,Z)\) and one toroidal-field function \(F(\psi )\).
+   </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">The Grad&#8211;Shafranov equation then determines the shape of flux surfaces once the
+   boundary and the free functions \(p(\psi )\) and \(F(\psi )\) are specified.</dd></dl>
+     </blockquote></div></div>
+<!--l. 24--><p class="noindent" >The previous lecture kept the pressure tensor general and asked what static balance looks like in a
+gyrotropic plasma. This lecture now makes two deliberate simplifications. First, we return to <span 
+class="ecti-1095">scalar</span>
+pressure, so that Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>) collapses to Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-ppsi">11.19</a>). Second, we impose axisymmetry. Those two choices
+are enough to reduce the vector equation \(\J \times \B =\grad p\) to a single second-order partial differential equation for the
+poloidal flux function.
+</p><!--l. 27--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 27--><p class="noindent" >The  Grad&#8211;Shafranov  equation  was  one  of  the  decisive  conceptual  advances  of
+     magnetic-confinement theory. Shafranov formulated the toroidal equilibrium problem in
+     a way that made the role of current, pressure, and geometry transparent, while Grad
+     emphasized the central importance of flux coordinates and the mathematical structure
+     of the axisymmetric confinement problem <a 
+href="#XShafranov1958JETP">Shafranov</a>&#x00A0;[<a 
+href="#XShafranov1958JETP">1958</a>,&#x00A0;<a 
+href="#XShafranov1960JETP">1960</a>,&#x00A0;<a 
+href="#XShafranov1966RvPP">1966</a>],&#x00A0;<a 
+href="#Xpxl">Grad</a>&#x00A0;[<a 
+href="#Xpxl">1967</a>].
+     Nearly every modern tokamak equilibrium code still lives inside this framework, even
+     when dressed up with sophisticated numerics and diagnostic constraints.</p></blockquote></div></div>
+<!--l. 32--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 32--><p class="noindent" ><span 
+class="ecbx-1095">This lecture is intentionally isotropic. </span>The fully anisotropic equilibrium problem
+     from the previous lecture does <span 
+class="ecti-1095">not </span>reduce to the same one-function equation. Once the
+     pressure depends separately on \(p_\perp \) and \(p_\parallel \), the structure of the equilibrium changes. Here we
+     are solving the classical isotropic axisymmetric problem.</p></blockquote></div></div>
+<a 
+ id="x1-39004r25"></a>
+                                                                                         
+                                                                                         
+<h3 class="sectionHead"><span class="titlemark">12.1   </span> <a 
+ id="x1-400001"></a>Axisymmetry and the flux function</h3>
+<!--l. 40--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-410001"></a>Represent the field so that divergence-free structure is automatic.</span>
+In cylindrical coordinates \((R,\phi ,Z)\), axisymmetry means \[ \pp {}{\phi }=0. \] A convenient representation of the magnetic field is
+<a id="eq-eq-GS_field"></a><div class="math-display">\[\boxed { \B = \grad \psi \times \grad \phi + F(R,Z)\,\grad \phi . } \tag{12.1}\]</div>
+Because \(\grad \phi =\ephi /R\), this may also be written as <a id="eq-eq-GS_Bcomponents"></a><div class="math-display">\[\B = -\frac {1}{R}\pp {\psi }{Z}\eR + \frac {F}{R}\ephi + \frac {1}{R}\pp {\psi }{R}\eZ . \tag{12.2}\]</div>
+The first and third terms are the poloidal field; the middle term is the toroidal field.
+</p>
+<!--l. 69--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-420001"></a>Why psi deserves to be called a flux function.</span>
+Contours of constant \(\psi \) in the \((R,Z)\) plane are magnetic surfaces. Indeed, <div class="math-display">\[\B \cdot \grad \psi = \left (\grad \psi \times \grad \phi \right )\cdot \grad \psi + F\,\grad \phi \cdot \grad \psi =0,\]</div>
+so field lines lie on \(\psi ={\rm constant}\). Up to the conventional factor of \(2\pi \), \(\psi \) is the poloidal magnetic flux enclosed by that
+surface.
+</p>
+<!--l. 81--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-430001"></a>Compute the current density from Ampre&#8217;s law.</span>
+Using Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>), <div class="math-display">\[\muo \J =\curl \B .\]</div>
+Insert Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_Bcomponents">12.2</a>). The toroidal component is <div class="math-display">\[\begin {aligned} \muo J_\phi &amp;= \pp {B_R}{Z}-\pp {B_Z}{R} \\ &amp;= -\pp {}{Z}\left (\frac {1}{R}\pp {\psi }{Z}\right ) - \pp {}{R}\left (\frac {1}{R}\pp {\psi }{R}\right ) \\ &amp;= -\frac {1}{R} \left [ R\pp {}{R}\left (\frac {1}{R}\pp {\psi }{R}\right ) + \pp {^2\psi }{Z^2} \right ]. \end {aligned}\]</div>
+This motivates the definition <a id="eq-eq-GS_operator"></a><div class="math-display">\[\boxed { \Delta ^\star \psi \equiv R\pp {}{R}\left (\frac {1}{R}\pp {\psi }{R}\right ) + \pp {^2\psi }{Z^2} = \pp {^2\psi }{R^2}-\frac {1}{R}\pp {\psi }{R}+\pp {^2\psi }{Z^2}. } \tag{12.6}\]</div>
+Hence <a id="eq-eq-GS_jphi"></a><div class="math-display">\[\boxed { J_\phi =-\frac {1}{\muo R}\Delta ^\star \psi . } \tag{12.7}\]</div>
+The poloidal current components come from the remaining curls: <a id="eq-eq-GS_jRjZ"></a><div class="math-display">\[J_R=-\frac {1}{\muo R}\pp {F}{Z}, \qquad J_Z=\frac {1}{\muo R}\pp {F}{R}, \tag{12.8}\]</div>
+so in vector form <a id="eq-eq-GS_current_vector"></a><div class="math-display">\[\muo \J = \frac {1}{R}\grad F\times \ephi - \frac {1}{R}\Delta ^\star \psi \,\ephi . \tag{12.9}\]</div>
+<a 
+ id="x1-43001r40"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">12.2   </span> <a 
+ id="x1-440002"></a>Derive the Grad&#8211;Shafranov equation step by step</h3>
+<!--l. 148--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-450002"></a>Start from isotropic static force balance.</span>
+For scalar pressure, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-momentum">1.8</a>) reduces in static equilibrium to <a id="eq-eq-GS_forcebalance"></a><div class="math-display">\[\J \times \B =\grad p. \tag{12.10}\]</div>
+This is the isotropic specialization of the more general equilibrium equation developed in the previous
+lecture.
+</p>
+<!--l. 156--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-460002"></a>First show that pressure is a flux function.</span>
+Dot Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_forcebalance">12.10</a>) with \(\B \): <div class="math-display">\[\B \cdot \grad p = \B \cdot (\J \times \B )=0.\]</div>
+Thus pressure is constant along field lines. Since field lines lie on \(\psi ={\rm constant}\), one concludes <a id="eq-eq-GS_ppsi"></a><div class="math-display">\[\boxed {p=p(\psi ).} \tag{12.12}\]</div>
+This is exactly the isotropic statement anticipated in Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-ppsi">11.19</a>).
+</p>
+<!--l. 170--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-470002"></a>Next show that the toroidal-field function is also a flux function.</span>
+The right-hand side of Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_forcebalance">12.10</a>) has no toroidal component, so the toroidal component of \(\J \times \B \) must vanish:
+<div class="math-display">\[(\J \times \B )_\phi =0.\]</div>
+Using Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_Bcomponents">12.2</a>) and (<a href="lecture12.html#eq-eq-GS_jRjZ">12.8</a>), <div class="math-display">\[\begin {aligned} (\J \times \B )_\phi &amp;= J_Z B_R - J_R B_Z \\ &amp;= \frac {1}{\muo R}\pp {F}{R} \left (-\frac {1}{R}\pp {\psi }{Z}\right ) - \left (-\frac {1}{\muo R}\pp {F}{Z}\right ) \frac {1}{R}\pp {\psi }{R} \\ &amp;= \frac {1}{\muo R^2} \left [ \pp {F}{Z}\pp {\psi }{R} - \pp {F}{R}\pp {\psi }{Z} \right ]. \end {aligned}\]</div>
+Therefore <div class="math-display">\[\pp {F}{Z}\pp {\psi }{R}-\pp {F}{R}\pp {\psi }{Z}=0.\]</div>
+                                                                                         
+                                                                                         
+The gradients \(\grad F\) and \(\grad \psi \) are therefore parallel, so <a id="eq-eq-GS_Fpsi"></a><div class="math-display">\[\boxed {F=F(\psi ).} \tag{12.16}\]</div>
+Once this is true, <a id="eq-eq-GS_gradF"></a><div class="math-display">\[\grad F = F'(\psi )\grad \psi . \tag{12.17}\]</div>
+</p>
+<!--l. 213--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-480002"></a>Now write the current in flux-surface form.</span>
+Equation&#x00A0;(<a href="lecture12.html#eq-eq-GS_current_vector">12.9</a>) becomes <a id="eq-eq-GS_current_psi"></a><div class="math-display">\[\J = \frac {F'(\psi )}{\muo R}\grad \psi \times \ephi - \frac {1}{\muo R}\Delta ^\star \psi \,\ephi . \tag{12.18}\]</div>
+It is useful to separate this into poloidal and toroidal pieces, <a id="eq-eq-GS_current_split"></a><div class="math-display">\[\J _p= \frac {F'(\psi )}{\muo R}\grad \psi \times \ephi , \qquad \J _\phi =-\frac {1}{\muo R}\Delta ^\star \psi \,\ephi . \tag{12.19}\]</div>
+Likewise, <a id="eq-eq-GS_B_split"></a><div class="math-display">\[\B _p= \frac {1}{R}\grad \psi \times \ephi , \qquad \B _\phi = \frac {F(\psi )}{R}\ephi . \tag{12.20}\]</div>
+</p>
+<!--l. 241--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-490002"></a>Compute the poloidal-current/toroidal-field term.</span>
+Using Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_current_split">12.19</a>) and (<a href="lecture12.html#eq-eq-GS_B_split">12.20</a>), <div class="math-display">\[\begin {aligned} \J _p\times \B _\phi &amp;= \left [ \frac {F'}{\muo R}\grad \psi \times \ephi \right ] \times \left [ \frac {F}{R}\ephi \right ] \\ &amp;= \frac {FF'}{\muo R^2} \left [(\grad \psi \times \ephi )\times \ephi \right ]. \end {aligned}\]</div>
+Because \(\grad \psi \cdot \ephi =0\), the vector identity \[ (\vect {a}\times \vect {b})\times \vect {b} = -\vect {a} \qquad (\vect {a}\cdot \vect {b}=0,\; \vect {b}\cdot \vect {b}=1) \] gives <a id="eq-eq-GS_cross1"></a><div class="math-display">\[\J _p\times \B _\phi = -\frac {FF'(\psi )}{\muo R^2}\grad \psi . \tag{12.22}\]</div>
+</p>
+<!--l. 276--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-500002"></a>Compute the toroidal-current/poloidal-field term.</span>
+Again from Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_current_split">12.19</a>) and (<a href="lecture12.html#eq-eq-GS_B_split">12.20</a>), <div class="math-display">\[\begin {aligned} \J _\phi \times \B _p &amp;= \left [ -\frac {1}{\muo R}\Delta ^\star \psi \,\ephi \right ] \times \left [ \frac {1}{R}\grad \psi \times \ephi \right ] \\ &amp;= -\frac {\Delta ^\star \psi }{\muo R^2} \left [\ephi \times (\grad \psi \times \ephi )\right ]. \end {aligned}\]</div>
+Now use \[ \vect {b}\times (\vect {a}\times \vect {b}) = \vect {a} \qquad (\vect {a}\cdot \vect {b}=0,\;\vect {b}\cdot \vect {b}=1), \] so <a id="eq-eq-GS_cross2"></a><div class="math-display">\[\J _\phi \times \B _p = -\frac {\Delta ^\star \psi }{\muo R^2}\grad \psi . \tag{12.24}\]</div>
+
+</p><!--l. 315--><p class="noindent" ><div class="math-display">\[\mu _0 \J _\phi = -\frac {\Delta ^\star \psi }{ R}.\]</div>
+</p>
+<!--l. 318--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-510002"></a>Add the two pieces and compare with the pressure gradient.</span>
+Since \(\J \times \B =\J _p\times \B _\phi + \J _\phi \times \B _p\), Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_cross1">12.22</a>) and (<a href="lecture12.html#eq-eq-GS_cross2">12.24</a>) give <a id="eq-eq-GS_force_gradpsi"></a><div class="math-display">\[\J \times \B = -\frac {1}{\muo R^2} \left [ \Delta ^\star \psi + F(\psi )F'(\psi ) \right ]\grad \psi . \tag{12.26}\]</div>
+But Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_ppsi">12.12</a>) implies <a id="eq-eq-GS_gradp"></a><div class="math-display">\[\grad p = p'(\psi )\grad \psi . \tag{12.27}\]</div>
+Equating Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_force_gradpsi">12.26</a>) and (<a href="lecture12.html#eq-eq-GS_gradp">12.27</a>) yields the Grad&#8211;Shafranov equation, <a id="eq-eq-GS_master"></a><div class="math-display">\[\boxed { \Delta ^\star \psi = -\muo R^2\,p'(\psi ) - F(\psi )F'(\psi ). } \tag{12.28}\]</div>
+This is the canonical axisymmetric equilibrium equation.
+</p>
+<!--l. 347--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-520002"></a>Read off the toroidal current density.</span>
+Combining Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>) with Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_jphi">12.7</a>) gives <a id="eq-eq-GS_jphi_profile"></a><div class="math-display">\[\boxed { J_\phi = R\,p'(\psi ) + \frac {F(\psi )F'(\psi )}{\muo R}. } \tag{12.29}\]</div>
+This is often a more intuitive way to think about the equation: choosing \(p(\psi )\) and \(F(\psi )\) specifies how toroidal
+current is distributed in order to satisfy force balance.
+<a 
+ id="x1-52001r44"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">12.3   </span> <a 
+ id="x1-530003"></a>Boundary data, free functions, and what it means to solve the equation</h3>
+<!--l. 365--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-540003"></a>Why the problem is elliptic.</span>
+The operator \(\Delta ^\star \) from Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_operator">12.6</a>) has the same second-derivative structure as a two-dimensional Laplacian,
+modified by the cylindrical geometry. Away from \(R=0\) it is elliptic, which is why the entire plasma column
+responds globally when one changes the source or the boundary.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 368--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-550003"></a>Fixed-boundary equilibria.</span>
+In the simplest case one prescribes the plasma domain \(\Omega \) and imposes <a id="eq-eq-GS_fixed_boundary"></a><div class="math-display">\[\psi = \psi _b \qquad \text {on } \partial \Omega . \tag{12.30}\]</div>
+The magnetic axis is then determined as an interior point where <a id="eq-eq-GS_magaxis"></a><div class="math-display">\[\grad \psi = 0. \tag{12.31}\]</div>
+This is the standard mathematical setting for analytic examples and many textbook calculations.
+</p>
+<!--l. 383--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-560003"></a>Free-boundary equilibria.</span>
+In experiments the plasma boundary is often not known in advance. Instead one writes <a id="eq-eq-GS_split_vacuum"></a><div class="math-display">\[\psi = \psi _{\rm plasma}+\psi _{\rm coils}, \tag{12.32}\]</div>
+and solves simultaneously for the plasma current and the last closed flux surface. This is where
+separatrices, X-points, and divertor geometries enter.
+</p>
+<!--l. 401--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-570003"></a>The free functions are physical input.</span>
+Equation&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>) does not determine \(p(\psi )\) or \(F(\psi )\); they must be supplied from modeling assumptions, transport
+calculations, or experimental constraints. A common parameterization is <a id="eq-eq-GS_profile_expansion"></a><div class="math-display">\[p'(\psi ) = -\sum _{k=0}^{N} a_k\psi ^k, \qquad F(\psi )F'(\psi ) = -\sum _{k=0}^{M} b_k\psi ^k. \tag{12.33}\]</div>
+Different choices generate different equilibrium families.
+<a 
+ id="x1-57001r53"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">12.4   </span> <a 
+ id="x1-580004"></a>Solovv equilibria and analytic shaping</h3>
+<!--l. 415--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-590004"></a>Choose constant source terms.</span>
+A particularly useful analytic family follows from the simple choice <a id="eq-eq-GS_solovev_profiles"></a><div class="math-display">\[p'(\psi )=-\frac {C_p}{\muo }, \qquad F(\psi )F'(\psi )=-C_F, \tag{12.34}\]</div>
+where \(C_p\) and \(C_F\) are constants. Then Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>) becomes <a id="eq-eq-GS_solovev_source"></a><div class="math-display">\[\Delta ^\star \psi = C_p R^2 + C_F. \tag{12.35}\]</div>
+</p>
+<!--l. 429--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-600004"></a>Find a particular solution by trial.</span>
+Try <div class="math-display">\[\psi _p = aR^4 + bZ^2.\]</div>
+Using Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_operator">12.6</a>), <a id="eq-eq-GS_operator_trials"></a><div class="math-display">\[\Delta ^\star (R^4)=8R^2, \qquad \Delta ^\star (Z^2)=2. \tag{12.37}\]</div>
+Therefore <div class="math-display">\[\Delta ^\star \psi _p = 8aR^2+2b.\]</div>
+Matching Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_solovev_source">12.35</a>) gives <div class="math-display">\[a=\frac {C_p}{8}, \qquad b=\frac {C_F}{2}.\]</div>
+So one particular solution is <a id="eq-eq-GS_solovev_particular"></a><div class="math-display">\[\psi _p = \frac {C_p}{8}R^4 + \frac {C_F}{2}Z^2. \tag{12.40}\]</div>
+</p>
+<!--l. 461--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-610004"></a>Add homogeneous solutions to shape the boundary.</span>
+The homogeneous equation \(\Delta ^\star \psi _h=0\) admits a polynomial family such as <a id="eq-eq-GS_solovev_homogeneous"></a><div class="math-display">\[\psi _h = c_0 + c_1 R^2 + c_2\left (R^4-4R^2Z^2\right ). \tag{12.41}\]</div>
+Hence a simple Solovv family is <a id="eq-eq-GS_solovev_family"></a><div class="math-display">\[\boxed { \psi (R,Z) = \frac {C_p}{8}R^4 + \frac {C_F}{2}Z^2 + c_0 + c_1 R^2 + c_2\left (R^4-4R^2Z^2\right ). } \tag{12.42}\]</div>
+These constants can be traded for more geometric quantities such as axis position, size, and
+elongation.
+</p>
+                                                                                         
+                                                                                         
+<!--l. 485--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-620004"></a>Special case: only externally imposed toroidal field.</span>
+If \(F'(\psi )=0\), then \(C_F=0\) and the toroidal-field function is constant and equal to the applied field. Equation&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>)
+reduces to <a id="eq-eq-GS_noFprime"></a><div class="math-display">\[\Delta ^\star \psi = -\muo R^2 p'(\psi ). \tag{12.43}\]</div>
+If \(p'\) is also constant, the particular solution collapses to the \(R^4\) piece alone and all shaping comes from the
+homogeneous additions. This is often the cleanest classroom example because one can see directly how
+pressure drives poloidal flux.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-620011"></a>
+                                                                                         
+                                                                                         
+<!--l. 496--><p class="noindent" ><img 
+src="figures/cerfon_freidberg_nstxu.png" alt="PIC"  
+width="375" height="331"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;12.1:  </span><span  
+class="content"><a 
+href="#Xcerfon2010freeboundary">Cerfon  and  Freidberg</a>&#x00A0;[<a 
+href="#Xcerfon2010freeboundary">2010</a>]  Solovev  equilibrium  fitted  to  a  smooth,  up-down
+symmetric plasma boundary with \(R_0/a=1.400\), \(\kappa =2.200\), \(\delta =0.450\), \(\alpha =0.000\), \(B_0=2 \mathrm {T}\), and \(I_p=1 \mathrm {MA}\). The black contour denotes the fitted \(U=0\) boundary, the
+dashed red curve is the target boundary, and the blue contours are interior flux surfaces used for
+profile post-processing. The fitted equilibrium has \(\beta _p=1.063\) and \(q_{0.95}=33.36\).</span></div><!--tex4ht:label?: x1-620011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" /><div class="interactive-shell"><p class="interactive-title">Interactive Cerfon Solver</p><p class="interactive-caption">Open a slider-driven browser explorer for the shaped Solov&#8217;ev fit. The app adjusts \(R_0/a\), \(\kappa\), \(\delta\), and the source-mix parameter \(\alpha\), then overlays the target boundary against the fitted \(U=0\) surface and interior flux contours.</p><p><a class="interactive-button" href="media/cerfon_equilibrium_explorer.html">Open the equilibrium explorer</a></p></div><div class="interactive-shell"><p class="interactive-title">Interactive PF-Coil Flux Explorer</p><p class="interactive-caption">Open a browser companion for the external coil set. ITER, SPARC, and DIII-D presets provide simplified central-solenoid, PF-shaping, divertor, vertical-field, and plasma-current contributions, and a checkmark table lets you decide which pieces build the total equilibrium and which single family is being contoured.</p><p><a class="interactive-button" href="media/pf_coil_flux_explorer.html">Open the coil-flux explorer</a></p></div>
+<!--l. 503--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-630004"></a>Most General Solution</span>
+One can extend the Solov&#8217;ev technique to include a broader collection of homogeneous solutions that make
+creating equilibria with different shapes quite general. Best to first non-dimensionalize and construct a
+particular solution. Write <div class="math-display">\[R=R_0 X, \qquad Z=R_0 Y, \qquad \psi = \psi _0 U(X,Y),\]</div>
+with \(\psi _0 = R_0^2(A+C R_0^2)\). Then Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>) becomes <a id="eq-eq-eqrecon-solovev_nd"></a><div class="math-display">\[X\pp {}{X}\!\left (\frac {1}{X}\pp {U}{X}\right ) + \pp {^2 U}{Y^2} = \alpha + (1-\alpha )X^2, \tag{12.45}\]</div>
+for a convenient parameter \(\alpha \): \(\alpha = 1 \) being all \(FF'\) and \(\alpha = 0\) being all \(p'\). A particular solution is <a id="eq-eq-eqrecon-Up"></a><div class="math-display">\[U_p(X,Y) = \frac {\alpha }{2}X^2 \ln X + \frac {1-\alpha }{8}X^4. \tag{12.46}\]</div>
+The homogeneous equation <div class="math-display">\[X\pp {}{X}\!\left (\frac {1}{X}\pp {U_H}{X}\right ) + \pp {^2 U_H}{Y^2} = 0\]</div>
+admits polynomial basis functions such as <div class="math-display">\[\begin {aligned} U_0 &amp;= 1, &amp; U_1 &amp;= X^2, \\ U_2 &amp;= Y^2-X^2\ln X, &amp; U_3 &amp;= X^4-4X^2Y^2, \\ U_4 &amp;= 2Y^4-9X^2Y^2+3X^4\ln X-12X^2Y^2\ln X, &amp; U_5 &amp;= X^6-12X^4Y^2+8X^2Y^4, \\ U_6 &amp;= 8Y^6-140X^2Y^4+75X^4Y^2 -15X^6\ln X \\ &amp; \phantom {=} +180X^4Y^2\ln X -120X^2Y^4\ln X. \end {aligned}\]</div>
+Hence one may write <a id="eq-eq-eqrecon-solovev_basis"></a><div class="math-display">\[U(X,Y)=U_p(X,Y)+\sum _{j=0}^{6} c_j U_j(X,Y). \tag{12.49}\]</div>
+This family is valuable because it is flexible enough to represent shaped equilibria while still being
+analytic.
+</p>
+<!--l. 574--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-640004"></a>Why Solov&#8217;ev equilibria are still useful.</span>
+They are analytically tractable, they expose how shaping enters the flux geometry, and they provide
+benchmark solutions for numerical codes. That is why they remain a classic problem in their own right and
+continue to appear in analytical work and code verification.
+<a 
+ id="x1-64001r58"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">12.5   </span> <a 
+ id="x1-650005"></a>Dynamic Equilibria: Toroidal Rotation</h3>
+<!--l. 579--><p class="noindent" >Allow purely toroidal flow, <div class="math-display">\[\uvec = R \Omega (R,Z) \grad \phi .\]</div>
+</p><!--l. 584--><p class="noindent" >The steady momentum equation becomes <a id="eq-eq-rot_momentum"></a><div class="math-display">\[\rho (\uvec \cdot \grad ) \uvec = \J \times \B - \grad p . \tag{12.51}\]</div>
+</p>
+<!--l. 593--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-660005"></a>Ferraro&#8217;s isorotation theorem</span>
+Ideal Ohm&#8217;s law, \[ \E + \uvec \times \B = 0, \] and \(\pp {\vect {B}}{t}\) implies \[ \curl (\uvec \times \B )=0. \]
+</p><!--l. 605--><p class="noindent" >For purely rotating plasmas \(\uvec = R^2 \Omega \grad \phi \), and <div class="math-display">\[\begin {aligned} \vect {u}\times \vect {B} &amp;= R^2 \Omega \nabla \phi \times \nabla \psi \times \nabla \phi \\ &amp;= \Omega \nabla \psi . \end {aligned}\]</div>
+Since \(\nabla \times \Omega \nabla \psi = \nabla \Omega \times \nabla \psi = 0\) it follows that <div class="math-display">\[\boxed { \Omega = \Omega (\psi ). }\]</div>
+</p>
+<!--l. 622--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670005"></a>Parallel force balance</span>
+Projecting (<a href="lecture12.html#eq-eq-rot_momentum">12.51</a>) along \(\B \) gives <div class="math-display">\[\frac {\partial p}{\partial \ell } + n m_i \Omega ^2(\psi ) R \frac {\partial R}{\partial \ell } = 0.\]</div>
+</p><!--l. 634--><p class="noindent" >Assuming \(T=T(\psi )\) and \(p=nT\), this integrates to <a id="eq-eq-GSRotation"></a><div class="math-display">\[\boxed { p(\psi ,R) = p_0(\psi ) \exp \!\left [ \frac {\Omega ^2(\psi )}{2 c_s^2(\psi )} (R^2 - R_0^2) \right ]. } \tag{12.55}\]</div>
+</p>
+                                                                                         
+                                                                                         
+<!--l. 648--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-680005"></a>Modified Grad&#8211;Shafranov equation</span>
+Because \(p=p(\psi ,R)\), <a id="eq-eq-GS_rotating"></a><div class="math-display">\[\boxed { \Delta ^\star \psi = -\muo R^2 \pp {}{\psi }p(\psi ,R) - F \pp {F}{\psi }. } \tag{12.56}\]</div>
+</p><!--l. 662--><p class="noindent" >Rotation modifies equilibrium implicitly through the \(R\)-dependent pressure profile, while Ferraro&#8217;s theorem
+ensures rigid rotation on each flux surface.
+</p><!--l. 668--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">In isotropic axisymmetric equilibrium, both \(p\) and \(F\) become functions of the flux \(\psi \).
+   </li>
+   <li class="itemize">The Grad&#8211;Shafranov equation, Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>), is the single PDE that enforces force
+   balance on flux surfaces.
+   </li>
+   <li class="itemize">Solving the equation requires three choices: a domain, boundary conditions, and the
+   free functions \(p(\psi )\) and \(F(\psi )\).
+   </li>
+   <li class="itemize">Analytic families such as Solovv equilibria are useful because they show how shaping
+   enters before one commits to full numerical reconstruction.</li></ul>
+     </blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-690005"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvn. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XElsasser1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Walter&#x00A0;M. Elsasser. Hydromagnetic dynamo theory. <span 
+class="ecti-1095">Reviews of Modern Physics</span>, 28(2):135&#8211;163,
+  1956. doi:<a 
+href="https://doi.org/10.1103/RevModPhys.28.135" >10.1103/RevModPhys.28.135</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcowling1957mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> T.&#x00A0;G. Cowling. <span 
+class="ecti-1095">Magnetohydrodynamics</span>. Interscience Publishers, New York, 1957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchandrasekhar1961hydrodynamic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;Chandrasekhar. <span 
+class="ecti-1095">Hydrodynamic and Hydromagnetic Stability</span>. Clarendon Press, Oxford, 1961.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <span 
+class="ecti-1095">Advances in Applied Mechanics</span>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkulsrud2005plasma"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Russell&#x00A0;M. Kulsrud. <span 
+class="ecti-1095">Plasma Physics for Astrophysics</span>. Princeton University Press, Princeton,
+  NJ, 2005. ISBN 9780691120737.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfreidberg1987ideal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jeffrey&#x00A0;P. Freidberg. <span 
+class="ecti-1095">Ideal Magnetohydrodynamics</span>. Plenum Press, New York, NY, USA, 1987.
+  ISBN 9780306425127.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSchnack2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dalton&#x00A0;D. Schnack. <span 
+class="ecti-1095">Lectures in Magnetohydrodynamics: With an Appendix on Extended MHD</span>,
+  volume 780 of <span 
+class="ecti-1095">Lecture Notes in Physics</span>. Springer, Berlin, Heidelberg, 2009. ISBN 9783642006876.
+  doi:<a 
+href="https://doi.org/10.1007/978-3-642-00688-3" >10.1007/978-3-642-00688-3</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+<h3 class="likesectionHead"><a 
+ id="x1-700005"></a>Problems</h3>
+<a 
+ id="x1-70001r1"></a>
+<!--l. 680--><p class="noindent" ><span 
+class="ecbx-1095">Problem 12.1. Derive the Grad&#8211;Shafranov equation from scratch</span>
+</p>
+<!--l. 682--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710001"></a>Part A.</span>
+Starting from Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_field">12.1</a>), derive Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_Bcomponents">12.2</a>).
+</p>
+<!--l. 684--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720001"></a>Part B.</span>
+Use Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) to derive Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_jphi">12.7</a>) and (<a href="lecture12.html#eq-eq-GS_jRjZ">12.8</a>). Do not skip the algebra that produces the operator
+\(\Delta ^\star \).
+</p>
+<!--l. 686--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-730001"></a>Part C.</span>
+Starting from Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_forcebalance">12.10</a>), show that \(p=p(\psi )\) and \(F=F(\psi )\).
+</p>
+<!--l. 688--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-740001"></a>Part D.</span>
+Reproduce Eqs.&#x00A0;(<a href="lecture12.html#eq-eq-GS_cross1">12.22</a>) and (<a href="lecture12.html#eq-eq-GS_cross2">12.24</a>), and hence derive Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_master">12.28</a>).
+<a 
+ id="x1-74001r2"></a>
+</p><!--l. 691--><p class="noindent" ><span 
+class="ecbx-1095">Problem 12.2. Solov</span><span 
+class="ecbx-1095">v equilibria and Green&#8217;s functions</span>
+</p>
+<!--l. 693--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750002"></a>Part A.</span>
+Verify Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_operator_trials">12.37</a>) directly by acting with \(\Delta ^\star \) on \(R^4\), \(Z^2\), and \(R^4-4R^2Z^2\).
+</p>
+<!--l. 695--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760002"></a>Part B.</span>
+Starting from Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_solovev_source">12.35</a>), derive the particular solution Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_solovev_particular">12.40</a>) and then verify the full family
+Eq.&#x00A0;(<a href="lecture12.html#eq-eq-GS_solovev_family">12.42</a>).
+</p>
+<!--l. 697--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-770002"></a>Part C.</span>
+For a toroidal current filament located at \((R_{\rm coil},Z_{\rm coil})\), derive the Green&#8217;s-function expression leading to Eq.&#x00A0;(<a href="lecture14.html#eq-eq-GS_green_integral">14.48</a>).
+Show where the complete elliptic integrals enter.
+</p>
+<!--l. 699--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-780002"></a>Part D.</span>
+Implement a simple code to plot contours of \(\psi \) for a dipole, quadrupole, and octupole arrangement of
+external coils, following the configurations described in the figure-caption discussion.
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+

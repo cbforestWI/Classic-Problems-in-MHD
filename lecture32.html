@@ -1,0 +1,1103 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 32 Magnetic Helicity, Relaxation, and Self-Organization</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_resistive.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture31.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture33.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;32</span><br /><a 
+ id="x1-6000032"></a>Magnetic Helicity, Relaxation, and Self-Organization</h2>
+<!--l. 7--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 7--><p class="noindent" >Magnetic helicity is the quantity that survives when ideal flux freezing is only weakly
+     broken. That makes it the natural organizing principle for magnetic relaxation. Magnetic
+     energy can be rapidly dissipated by reconnection and short-wavelength structure, but
+     helicity is much harder to remove because it measures the large-scale linkage, twist, and
+     writhe of the field.
+     </p><!--l. 12--><p class="noindent" >For toroidal current-carrying plasmas this is not just a topological curiosity. Inductive
+     drive tends to push the plasma toward a <span 
+class="ecti-1095">natural </span>current profile set by Ohm&#8217;s law and
+     the conductivity profile. That natural profile is often more peaked than the plasma
+     can stably support. Tearing, quasi-interchange, and related MHD activity then act as
+     a self-organization mechanism that broadens \(\lambda \equiv \muo \,\mathbf J\!\cdot \!\mathbf B/B^2\) back toward marginal stability. In that
+     sense, sawteeth, reversed-field-pinch relaxation, spheromak sustainment, flux pumping,
+     and non-solenoidal startup methods all belong to one family of ideas: helicity is injected
+     or approximately conserved, while the current profile reorganizes.</p></blockquote></div></div>
+<!--l. 23--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 23--><p class="noindent" >The  modern  story  begins  with  Elsasser,  who  emphasized  magnetic  linkage  in
+     dynamo  theory,  and  with  Woltjer,  who  proved  that  magnetic  helicity  is  conserved
+     in  ideal  MHD  and  that  the  minimum-energy  state  at  fixed  helicity  is  force
+     free   <a 
+href="lecture31.html#XElsasser1956">Elsasser</a>&#x00A0;[<a 
+href="lecture31.html#XElsasser1956">1956</a>],&#x00A0;<a 
+href="#XWoltjer1958a">Woltjer</a>&#x00A0;[<a 
+href="#XWoltjer1958a">1958a</a>,<a 
+href="#XWoltjer1958b">b</a>].   Kruskal   and   Kulsrud   gave   the   related
+     toroidal-surface formulation that later became standard in fusion applications <a 
+href="#XKruskalKulsrud1958">Kruskal
+     and Kulsrud</a>&#x00A0;[<a 
+href="#XKruskalKulsrud1958">1958</a>]. Taylor&#8217;s crucial step was to argue that in a weakly resistive plasma
+     reconnection can rapidly reduce magnetic energy while leaving the <span 
+class="ecti-1095">global </span>helicity almost
+     unchanged, so the plasma relaxes toward a constant-\(\lambda \) state <a 
+href="#XHelSelf:Taylor1974">Taylor</a>&#x00A0;[<a 
+href="#XHelSelf:Taylor1974">1974</a>]. That point
+     of  view  became  central  to  reversed-field  pinches,  spheromaks,  and  compact  toroids
+     <a 
+href="#XPrager1990TransportFluctuations">Prager</a>&#x00A0;[<a 
+href="#XPrager1990TransportFluctuations">1990</a>],&#x00A0;<a 
+href="#XOrtolani1993PlasmaRelaxation">Ortolani and Schnack</a>&#x00A0;[<a 
+href="#XOrtolani1993PlasmaRelaxation">1993</a>],&#x00A0;<a 
+href="#XHelSelf:Jarboe1994">Jarboe</a>&#x00A0;[<a 
+href="#XHelSelf:Jarboe1994">1994</a>].
+     </p><!--l. 33--><p class="noindent" >The same logic later reappeared inside tokamaks in a less dramatic but equally important
+     way. Jensen and Chu, and then Boozer, made explicit how helicity injection appears
+     in a torus through the loop-voltage times toroidal-flux bookkeeping that is natural for
+     transformer-driven plasmas <a 
+href="#XJensenChu1984">Jensen and Chu</a>&#x00A0;[<a 
+href="#XJensenChu1984">1984</a>],&#x00A0;<a 
+href="#XBoozer1986">Boozer</a>&#x00A0;[<a 
+href="#XBoozer1986">1986</a>]. Inductive current
+     diffusion  tends  to  peak  the  central  current  profile;  MHD  activity  then  broadens  it
+     again. Sawteeth are the classic example, but the same general idea underlies modern
+     flux-pumping and hybrid-scenario physics, where a saturated \((m,n)=(1,1)\) structure can maintain \(q_0\gtrsim 1\)
+     without periodic crash-recovery cycles <a 
+href="#XJardin2015">Jardin et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XJardin2015">2015</a>],&#x00A0;<a 
+href="#XKrebs2017">Krebs et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XKrebs2017">2017</a>],&#x00A0;<a 
+href="#XJardin2020">Jardin
+     et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XJardin2020">2020</a>].</p></blockquote></div></div>
+<!--l. 44--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 44--><p class="noindent" ><span 
+class="ecbx-1095">Two cautions matter here.</span>
+     </p><!--l. 46--><p class="noindent" >First, magnetic helicity is gauge dependent if magnetic flux crosses the boundary. For
+     open systems one should really use <span 
+class="ecti-1095">relative helicity</span>. In the derivations below we mostly
+     assume a closed or perfectly conducting boundary with \(\mathbf B\cdot \hat {\mathbf n}=0\), where ordinary helicity is well
+     posed.
+     </p><!--l. 51--><p class="noindent" >Second, \(\lambda =\muo \,\mathbf J\!\cdot \!\mathbf B/B^2\) is a very useful proxy for tearing drive, but it is not a complete stability
+     criterion. Tearing still depends on rational surfaces and matching indices such as \(\Delta '\), while
+     resistive-interchange activity also depends on pressure gradients and magnetic shear.
+     The point of this lecture is not that \(\lambda \) tells the whole story; it is that self-organization is
+     easiest to understand when one first asks what profile inductive relaxation is trying to
+     create.</p></blockquote></div></div>
+<a 
+ id="x1-60001r62"></a>
+<h3 class="sectionHead"><span class="titlemark">32.1   </span> <a 
+ id="x1-610001"></a>Helicity as an ideal invariant</h3>
+<!--l. 61--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-620001"></a>Definition and topological meaning.</span>
+Magnetic helicity is defined by <a id="eq-eq-hel-def"></a><div class="math-display">\[K \equiv \int _V \mathbf A\cdot \mathbf B\,dV, \qquad \mathbf B = \nabla \times \mathbf A. \tag{32.1}\]</div>
+It is not a pointwise thermodynamic variable; it is a global measure of how magnetic flux is linked, twisted,
+and writhed. The reason it matters in MHD is already implicit in the frozen-in discussion of Lecture&#x00A0;4
+ideal evolution preserves field-line connectivity [Eqs.&#x00A0;(<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>)&#8211;(<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>)], so topological quantities built from
+that connectivity are especially robust.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-620011"></a>
+                                                                                         
+                                                                                         
+<!--l. 77--><p class="noindent" ><img 
+src="figures/Helicity.jpeg" alt="PIC"  
+width="328" height="328"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;32.1: </span><span  
+class="content">A thin flux tube of flux \(d\Phi \). Helicity may be interpreted as a measure of the linkage,
+twist, and writhe carried by such flux tubes.</span></div><!--tex4ht:label?: x1-620011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 83--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-630001"></a>Flux-tube interpretation.</span>
+For a thin flux tube carrying flux \(d\Phi \), one may write <a id="eq-eq-hel-flux_tube"></a><div class="math-display">\[K = \int _V \mathbf A\cdot d\boldsymbol {\ell }\; B\,dS = \Psi \,d\Phi , \tag{32.2}\]</div>
+where \(\Psi \) is the poloidal or linking flux seen by that tube. Thus helicity counts flux weighted by
+linked flux. In axisymmetric toroidal geometry one may write, with the usual gauge choice \(A_\phi = \psi /R\),
+<a id="eq-eq-hel-axisymmetric"></a><div class="math-display">\[K = \int _V A_\phi B_\phi \,dV = \int _0^{\psi _{\rm wall}} \psi \, d\Phi _t = \int _0^{\psi _{\rm wall}} \psi \,q(\psi )\,d\psi , \tag{32.3}\]</div>
+where \(\Phi _t\) is the toroidal flux and \(q=d\Phi _t/d\psi \) in the standard axisymmetric notation. Equation&#x00A0;(<a href="lecture32.html#eq-eq-hel-axisymmetric">32.3</a>) is one clean way to
+see that helicity couples current-profile physics to magnetic topology.
+</p>
+<!--l. 103--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-640001"></a>Evolution equation.</span>
+Starting from <a id="eq-eq-hel-potentials"></a><div class="math-display">\[\mathbf E = -\pp {\mathbf A}{t} - \nabla \phi , \qquad \pp {\mathbf B}{t} = -\nabla \times \mathbf E, \tag{32.4}\]</div>
+one finds <div class="math-display">\[\begin{aligned}\pp {}{t}(\mathbf A\cdot \mathbf B) &amp;= \pp {\mathbf A}{t}\cdot \mathbf B + \mathbf A\cdot \pp {\mathbf B}{t} \nonumber \\ &amp;= (-\mathbf E-\nabla \phi )\cdot \mathbf B - \mathbf A\cdot (\nabla \times \mathbf E) \nonumber \\ &amp;= -\mathbf E\cdot \mathbf B - \nabla \phi \cdot \mathbf B -\left [\mathbf E\cdot (\nabla \times \mathbf A)-\nabla \cdot (\mathbf A\times \mathbf E)\right ] \nonumber \\ &amp;= -2\,\mathbf E\cdot \mathbf B - \nabla \cdot (\phi \mathbf B) + \nabla \cdot (\mathbf A\times \mathbf E).\end{aligned}\]</div>
+</p><!--l. 129--><p class="noindent" >Therefore <a id="eq-eq-hel-local_evolution"></a><div class="math-display">\[\pp {}{t}(\mathbf A\cdot \mathbf B) = -2\,\mathbf E\cdot \mathbf B + \nabla \cdot \left (\mathbf A\times \mathbf E-\phi \mathbf B\right ). \tag{32.6}\]</div>
+Integrating over the volume gives <a id="eq-eq-hel-global_evolution"></a><div class="math-display">\[\dv {K}{t} = -2\int _V \mathbf E\cdot \mathbf B\,dV + \oint _S\left (\mathbf A\times \mathbf E-\phi \mathbf B\right )\cdot d\mathbf S. \tag{32.7}\]</div>
+For a closed ideal system with \(\mathbf B\cdot \hat {\mathbf n}=0\) and a fixed-boundary gauge choice, the surface term vanishes. Then ideal
+MHD gives \(\mathbf E\cdot \mathbf B=0\) from Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), so <a id="eq-eq-hel-ideal_conservation"></a><div class="math-display">\[\dv {K}{t}=0. \tag{32.8}\]</div>
+This is the global statement behind the frozen-flux arguments of Lecture&#x00A0;4.
+</p>
+<!--l. 155--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-650001"></a>Resistive decay of energy and helicity.</span>
+If the only non-ideal effect retained in Ohm&#8217;s law is scalar resistivity, <div class="math-display">\[\mathbf E + \mathbf v\times \mathbf B = \eta \mathbf J,\]</div>
+then \(\mathbf E\cdot \mathbf B = \eta \,\mathbf J\cdot \mathbf B\). For a closed system, Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-global_evolution">32.7</a>) becomes <a id="eq-eq-hel-Kdot_resistive"></a><div class="math-display">\[\dv {K}{t} = -2\eta \int _V \mathbf J\cdot \mathbf B\,dV. \tag{32.10}\]</div>
+Likewise the magnetic energy <a id="eq-eq-hel-Wdef"></a><div class="math-display">\[W = \int _V \frac {B^2}{2\muo }\,dV \tag{32.11}\]</div>
+obeys <a id="eq-eq-hel-Wdot_resistive"></a><div class="math-display">\[\dv {W}{t} = -\eta \int _V J^2\,dV \tag{32.12}\]</div>
+when the boundary is closed and the flow does no net work on it.
+</p><!--l. 178--><p class="noindent" >A useful spectral cartoon is obtained by writing \(\tilde B = \sum _{\mathbf k} B_k e^{i\mathbf k\cdot \mathbf x}\). Then schematically <div class="math-display">\[W \sim \sum _k B_k^2, \qquad K \sim \sum _k \frac {B_k^2}{k},\]</div>
+so short-wavelength structure carries relatively more energy than helicity. Under resistive decay,
+<a id="eq-eq-hel-spectral_decay"></a><div class="math-display">\[\dv {W}{t}\sim -\eta \sum _k k^2 B_k^2, \qquad \dv {K}{t}\sim -2\eta \sum _k k B_k^2. \tag{32.14}\]</div>
+Thus small scales dissipate energy very efficiently while helicity is weighted more toward the large scales.
+This is the heuristic reason that Taylor relaxation works at all.
+<a 
+ id="x1-65001r69"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.2   </span> <a 
+ id="x1-660002"></a>Woltjer&#8211;Taylor relaxation</h3>
+<!--l. 197--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-670002"></a>Force-free equilibria.</span>
+A force-free equilibrium satisfies <div class="math-display">\[\mathbf J\times \mathbf B = 0,\]</div>
+so current flows parallel to the magnetic field: <a id="eq-eq-hel-forcefree_general"></a><div class="math-display">\[\nabla \times \mathbf B = \muo \mathbf J = \lambda (\mathbf x)\,\mathbf B. \tag{32.16}\]</div>
+In a general equilibrium \(\lambda \) may vary from surface to surface. Taylor&#8217;s claim is stronger: a weakly resistive
+plasma that relaxes rapidly while approximately conserving \(K\) should approach a state with <span 
+class="ecti-1095">constant</span>
+\(\lambda \).
+</p>
+                                                                                         
+                                                                                         
+<!--l. 211--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-680002"></a>Constrained minimization.</span>
+We therefore minimize the magnetic energy, <div class="math-display">\[W = \int _V \frac {B^2}{2\muo }\,dV,\]</div>
+subject to fixed helicity, <div class="math-display">\[K = \int _V \mathbf A\cdot \mathbf B\,dV = \text {const}.\]</div>
+Introduce the functional <a id="eq-eq-hel-functional"></a><div class="math-display">\[\mathcal F[\mathbf A] = \int _V \frac {B^2}{2\muo }\,dV - \frac {\lambda }{2\muo }\int _V \mathbf A\cdot \mathbf B\,dV. \tag{32.19}\]</div>
+Its variation is <div class="math-display">\[\begin{aligned}\delta \mathcal F &amp;= \frac {1}{\muo }\int _V \mathbf B\cdot (\nabla \times \delta \mathbf A)\,dV - \frac {\lambda }{2\muo }\,\delta \int _V \mathbf A\cdot \mathbf B\,dV.\end{aligned}\]</div>
+</p><!--l. 232--><p class="noindent" >Using <div class="math-display">\[\mathbf B\cdot (\nabla \times \delta \mathbf A) = \nabla \cdot (\mathbf B\times \delta \mathbf A) + \delta \mathbf A\cdot (\nabla \times \mathbf B)\]</div>
+and discarding the boundary term for a fixed conducting shell gives <div class="math-display">\[\delta W = \frac {1}{\muo }\int _V \delta \mathbf A\cdot (\nabla \times \mathbf B)\,dV + \frac {1}{\mu _0}\int _S (\delta \vect {A} \times \vect {B} ) \cdot \hat {\vect {n}} dS\]</div>
+Similarly, <div class="math-display">\[\begin{aligned}\delta K &amp;= \int _V (\nabla \times \delta \mathbf A)\cdot \mathbf A\,dV + \int _V \mathbf B\cdot \delta \mathbf A\,dV \nonumber \\ &amp;= \int _V \nabla \cdot (\mathbf A\times \delta \mathbf A)\,dV + 2\int _V \mathbf B\cdot \delta \mathbf A\,dV + \int _S (\vect {A}\times \delta \vect {A}) \cdot \hat {\vect {n}} dS \nonumber \\ &amp;= 2\int _V \mathbf B\cdot \delta \mathbf A\,dV, + \frac {1}{\mu _0}\int _S \left ( \hat {\vect {n}} \times \delta \vect {A} \right ) \cdot \left ( \vect {B} + \lambda \vect {A} \right ) dS\end{aligned}\]</div>
+</p><!--l. 253--><p class="noindent" >We can see the boundary term vanishes by noting that \(\hat {\vect {n}} \times \delta \vect {E} =- i \omega \hat {\vect {n}} \times \delta \vect {A}=0\) on a flux conserving boundary. Therefore
+<div class="math-display">\[\delta \mathcal F = \frac {1}{\muo }\int _V \delta \mathbf A\cdot \left (\nabla \times \mathbf B - \lambda \mathbf B\right )\,dV.\]</div>
+Since this must vanish for arbitrary \(\delta \mathbf A\), the Euler&#8211;Lagrange condition is <a id="eq-eq-hel-taylor_state"></a><div class="math-display">\[\nabla \times \mathbf B = \lambda \mathbf B, \tag{32.25}\]</div>
+with \(\lambda \) a spatial constant. This is the Taylor relaxed state.
+</p>
+<!--l. 265--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-690002"></a>Cylindrical Bessel family.</span>
+Inside a cylindrical conducting shell the constant-\(\lambda \) state has the familiar form <a id="eq-eq-hel-bessel_bz"></a><div class="math-display">\[\begin{aligned}B_z(r) &amp;= B_0 J_0(\lambda r), \\ B_\theta (r) &amp;= B_0 J_1(\lambda r), \\ B_r &amp;= 0.\end{aligned} \tag{32.26}\]</div>
+</p><!--l. 274--><p class="noindent" >Writing \(x=r/a\), \(\xi = \lambda a\), and \(A=R_0/a\), the safety factor becomes <a id="eq-eq-hel-q_bessel"></a><div class="math-display">\[q(x) = \frac {rB_z}{R_0 B_\theta } = \frac {x}{A}\,\frac {J_0(\xi x)}{J_1(\xi x)}, \qquad q_a = \frac {J_0(\xi )}{A J_1(\xi )}. \tag{32.29}\]</div>
+For \(\xi \) below the first zero of \(J_0\), \(q_a&gt;0\) and the profiles are tokamak-like. When \(\xi \) passes that zero, the edge toroidal
+field reverses and \(q_a\) becomes RFP-like. This continuous mapping is one reason the Bessel family forms such
+a useful bridge between tokamak-like and RFP-like profiles.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-690012"></a>
+                                                                                         
+                                                                                         
+<!--l. 295--><p class="noindent" > <img 
+src="figures/helicity_qa_mapping-.png" alt="PIC"  
+width="352" height="352"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;32.2: </span><span  
+class="content">Mapping from the Bessel parameter \(\xi =\lambda a\) to edge safety factor \(q_a\) in the cylindrical Taylor
+family. Positive \(q_a\) corresponds to tokamak-like profiles; crossing the first zero of \(J_0\) leads to RFP-like
+reversal.</span></div><!--tex4ht:label?: x1-690012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-690023"></a>
+                                                                                         
+                                                                                         
+<!--l. 306--><p class="noindent" > <img 
+src="figures/helicity_q_profiles-.png" alt="PIC"  
+width="352" height="352"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;32.3:  </span><span  
+class="content">Representative  \(q(r)\)  profiles  in  the  cylindrical  Bessel/Taylor  family.  The  window  \(0.5\lesssim q_a\lesssim 2\)
+corresponds to broad, relatively low-shear tokamak-like profiles, whereas \(q_a\approx 0\) and \(q_a&lt;0\) are progressively
+more RFP-like.</span></div><!--tex4ht:label?: x1-690023 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 308--><p class="noindent" >The same parameter \(\xi =\lambda a\) that labels the Taylor family also labels the shear. Broad tokamak-like states with \(0.5\lesssim q_a\lesssim 2\)
+have comparatively weak shear across much of the minor radius, while RFP-like states and strongly
+peaked-current tokamak states have much larger shear. That distinction matters below when we ask
+whether the <span 
+class="ecti-1095">natural </span>inductive profile already resembles a flat-\(\lambda \) state or whether MHD must reorganize
+it.
+<a 
+ id="x1-69003r75"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.3   </span> <a 
+ id="x1-700003"></a>Helicity content in a tokamak</h3>
+<!--l. 316--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710003"></a>Why the loop voltage can appear.</span>
+Equation&#x00A0;(<a href="lecture32.html#eq-eq-hel-global_evolution">32.7</a>) looks as though a closed conducting boundary would leave only the volume term \(-2\int \mathbf E\cdot \mathbf B\,dV\). That is
+correct for a simply connected volume. A tokamak is subtler because the plasma region is toroidal and
+therefore multiply connected: the vector potential has nontrivial toroidal and poloidal loop integrals
+that cannot be removed by a single-valued gauge. In that case the gauge-invariant quantity
+is not the naive \(K\) but the <span 
+class="ecti-1095">helicity content </span>of Boozer <a 
+href="#XBoozer1986">Boozer</a>&#x00A0;[<a 
+href="#XBoozer1986">1986</a>],&#x00A0;<a 
+href="#XJensenChu1984">Jensen and Chu</a>&#x00A0;[<a 
+href="#XJensenChu1984">1984</a>],
+<a id="eq-eq-hel-tokamak_content"></a><div class="math-display">\[K_0 \equiv \int _V \mathbf A\cdot \mathbf B\,dV - \Psi \,\Psi _p, \tag{32.30}\]</div>
+where \(\Psi \) is the toroidal flux enclosed by the wall and \(\Psi _p\) is the linked poloidal flux. More generally one writes
+the subtraction in terms of the poloidal and toroidal loop integrals of \(\mathbf A\), but Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-tokamak_content">32.30</a>) is the clean
+axisymmetric version.
+</p>
+<!--l. 331--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720003"></a>Evolution with solenoidal drive.</span>
+Let \(V_s\) denote the toroidal loop voltage produced by the central solenoid. Differentiating Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-tokamak_content">32.30</a>) and
+using Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-global_evolution">32.7</a>) gives <a id="eq-eq-hel-tokamak_content_evolution"></a><div class="math-display">\[\dv {K_0}{t} = 2V_s\Psi - 2\int _V \mathbf E\cdot \mathbf B\,dV - 2\oint _w \Phi _w\,\mathbf B\cdot d\mathbf a, \tag{32.31}\]</div>
+where \(\Phi _w\) is the electric potential on the wall. For an equipotential conducting wall with no open-field-line
+voltage drop, the last term vanishes. The important point is that the solenoidal loop voltage appears
+explicitly as a helicity-injection term \(2V_s\Psi \).
+</p>
+<!--l. 346--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-730003"></a>From \(\mathbf E\cdot \mathbf B\) to the plasma loop voltage.</span>
+On a set of closed magnetic surfaces one may write <a id="eq-eq-hel-stationary_E"></a><div class="math-display">\[\mathbf E = -\nabla \Phi + \frac {V_\ell (\psi )}{2\pi }\nabla \phi , \tag{32.32}\]</div>
+with \(V_\ell (\psi )\) chosen so that \(\Phi \) is single valued on each surface. Dotting with \(\mathbf B\) gives <div class="math-display">\[\mathbf E\cdot \mathbf B = -\mathbf B\cdot \nabla \Phi + \frac {V_\ell (\psi )}{2\pi }\,\mathbf B\cdot \nabla \phi .\]</div>
+The first term vanishes on a flux-surface average, so <a id="eq-eq-hel-EB_loop_voltage"></a><div class="math-display">\[\begin{aligned}\int _V \mathbf E\cdot \mathbf B\,dV &amp;= \int _V \frac {V_\ell (\psi )}{2\pi }\,\mathbf B\cdot \nabla \phi \,dV \nonumber \\ &amp;= \int _0^\Psi d\psi \int \frac {d\theta \,d\phi }{(2\pi )^2}\,V_\ell (\psi ) \nonumber \\ &amp;= \int _0^\Psi V_\ell (\psi )\,d\psi ,\end{aligned} \tag{32.34}\]</div>
+</p><!--l. 373--><p class="noindent" >because \((\mathbf B\cdot \nabla \phi /2\pi )\,dV=d\psi \,d\theta \,d\phi /(2\pi )^2\). Therefore <a id="eq-eq-hel-boozer_form"></a><div class="math-display">\[\dv {K_0}{t} = 2\int _0^\Psi \left [V_s - V_\ell (\psi )\right ]\,d\psi - 2\oint _w \Phi _w\,\mathbf B\cdot d\mathbf a. \tag{32.35}\]</div>
+If the plasma loop voltage is nearly constant across surfaces and the wall term vanishes, this reduces to
+<a id="eq-eq-hel-boozer_form_simple"></a><div class="math-display">\[\dv {K_0}{t}\approx 2\Psi \left (V_s - V_\ell \right ). \tag{32.36}\]</div>
+This is the tokamak form that often appears in helicity-conservation arguments.
+</p>
+<!--l. 389--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-740003"></a>No contradiction with ideal conservation.</span>
+There is no conflict between Eqs.&#x00A0;(<a href="lecture32.html#eq-eq-hel-ideal_conservation">32.8</a>) and (<a href="lecture32.html#eq-eq-hel-boozer_form">32.35</a>). Equation&#x00A0;(<a href="lecture32.html#eq-eq-hel-ideal_conservation">32.8</a>) refers to the ordinary helicity \(K\) in a
+simply connected closed system with no externally linked transformer flux. Equation&#x00A0;(<a href="lecture32.html#eq-eq-hel-boozer_form">32.35</a>) refers to the
+                                                                                         
+                                                                                         
+gauge-invariant helicity content \(K_0\) of a multiply connected torus, for which changing the linked
+solenoidal flux injects helicity through the term \(2V_s\Psi \). What looked like a pure boundary/gauge
+subtlety in Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-global_evolution">32.7</a>) becomes an explicit loop-voltage term once the toroidal topology is treated
+correctly.
+<a 
+ id="x1-74001r81"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.4   </span> <a 
+ id="x1-750004"></a>Inductive drive and the natural current profile</h3>
+<!--l. 401--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760004"></a>Surface-averaged Ohm&#8217;s law.</span>
+Reuse Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-stationary_E">32.32</a>) for a stationary axisymmetric discharge. Dotting Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) with \(\mathbf B\) gives <div class="math-display">\[\eta \,\mathbf J\cdot \mathbf B = \mathbf E\cdot \mathbf B.\]</div>
+Now flux-surface average. The electrostatic term disappears because \(\langle \mathbf B\cdot \nabla \Phi \rangle = 0\) on a closed surface, so one obtains
+the standard stationary-state condition <a id="eq-eq-hel-JB_stationary"></a><div class="math-display">\[\eta (\psi )\,\langle \mathbf J\cdot \mathbf B\rangle = \frac {V_\ell (\psi )}{2\pi }\,\langle \mathbf B\cdot \nabla \phi \rangle . \tag{32.38}\]</div>
+Equivalently, <a id="eq-eq-hel-JB_sigma"></a><div class="math-display">\[\langle \mathbf J\cdot \mathbf B\rangle = \sigma (\psi )\,\frac {V_\ell (\psi )}{2\pi }\,\langle \mathbf B\cdot \nabla \phi \rangle , \qquad \sigma \equiv \eta ^{-1}. \tag{32.39}\]</div>
+This is the current profile that inductive diffusion tries to build if no instability intervenes.
+</p>
+<!--l. 425--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-770004"></a>Definition of the natural profile.</span>
+Motivated by Taylor&#8217;s constant-\(\lambda \) state, define the surface-averaged proxy <a id="eq-eq-hel-lambda_nat"></a><div class="math-display">\[\lambda _{\rm nat}(\psi ) \equiv \muo \,\frac {\langle \mathbf J\cdot \mathbf B\rangle }{\langle B^2\rangle } = \muo \,\sigma (\psi )\,\frac {V_\ell (\psi )}{2\pi }\, \frac {\langle \mathbf B\cdot \nabla \phi \rangle }{\langle B^2\rangle }. \tag{32.40}\]</div>
+At large aspect ratio one may read this schematically as <a id="eq-eq-hel-lambda_nat_simple"></a><div class="math-display">\[\lambda _{\rm nat} \propto \sigma \,\frac {E_\phi B_\phi }{B^2}. \tag{32.41}\]</div>
+Equation&#x00A0;(<a href="lecture32.html#eq-eq-hel-lambda_nat">32.40</a>) is the central quantity of this lecture. It is the <span 
+class="ecti-1095">inductively relaxed current profile</span>: the
+profile the plasma would approach if current diffusion operated without tearing, quasi-interchange, or
+sawtooth-like reorganization.
+</p>
+<!--l. 445--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-780004"></a>Bessel-model evaluation.</span>
+In the cylindrical Taylor family of Eqs.&#x00A0;(<a href="lecture32.html#eq-eq-hel-bessel_bz">32.26</a>)&#8211;(<a href="lecture32.html#eq-eq-hel-bessel_bth">32.27</a>), \(\mathbf B\cdot \nabla \phi \) is proportional to \(B_z\), so Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-lambda_nat">32.40</a>) becomes
+<a id="eq-eq-hel-lambda_nat_bessel"></a><div class="math-display">\[\lambda _{\rm nat}(x) \propto \sigma (x) \frac {J_0(\xi x)}{J_0^2(\xi x)+J_1^2(\xi x)}. \tag{32.42}\]</div>
+To compare shapes rather than absolute normalization, it is convenient to define <a id="eq-eq-hel-lambda_hat"></a><div class="math-display">\[\hat \lambda _{\rm nat}(x) \equiv \frac {\lambda _{\rm nat}(x)}{\langle \lambda _{\rm nat}\rangle }, \tag{32.43}\]</div>
+where the average is weighted by cylindrical area. A perfectly aligned Taylor-like state would have
+\(\hat \lambda _{\rm nat}=1\).
+</p><!--l. 465--><p class="noindent" >For the conductivity we may consider two simple models. A flat electron-temperature profile gives
+<a id="eq-eq-hel-sigma_flat"></a><div class="math-display">\[\sigma _{\rm flat}(x)=\sigma _0, \tag{32.44}\]</div>
+whereas a peaked profile may be represented by <a id="eq-eq-hel-te_peaked"></a><div class="math-display">\[T_e(x)=T_{e,\rm edge} + \left (T_{e0}-T_{e,\rm edge}\right )(1-x^2)^2, \qquad \sigma (x)\propto T_e^{3/2}(x). \tag{32.45}\]</div>
+These two choices are enough to show the basic point.
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-780014"></a>
+                                                                                         
+                                                                                         
+<!--l. 490--><p class="noindent" > <img 
+src="figures/helicity_lambda_flat_sigma-.png" alt="PIC"  
+width="225" height="225"  />                                                                                                                     <img 
+src="figures/helicity_lambda_peaked_sigma-.png" alt="PIC"  
+width="225" height="225"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;32.4: </span><span  
+class="content">Normalized natural current-profile proxy \(\hat \lambda _{\rm nat}\) for the Bessel/Taylor family. Left: flat
+conductivity, corresponding to a flat \(T_e\) profile. Right: peaked conductivity, \(\sigma \propto T_e^{3/2}\), using Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-te_peaked">32.45</a>). The
+horizontal dashed line is the perfectly aligned constant-\(\lambda \) limit.</span></div><!--tex4ht:label?: x1-780014 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 492--><p class="noindent" >A particularly convenient scalar measure of misalignment is <a id="eq-eq-hel-alignment_metric"></a><div class="math-display">\[\mathcal A \equiv \left \langle \left (\hat \lambda _{\rm nat}-1\right )^2\right \rangle ^{1/2}, \tag{32.46}\]</div>
+again with cylindrical area weighting. In the Bessel model one finds a remarkably clean result: for flat \(\sigma \) and
+roughly <a id="eq-eq-hel-qa_alignment_window"></a><div class="math-display">\[0.5 \lesssim q_a \lesssim 2, \tag{32.47}\]</div>
+\(\hat \lambda _{\rm nat}\) is nearly flat. In other words, the natural inductive profile already lies close to the Taylor-like reference
+and there is little need for violent magnetic relaxation. By contrast, if \(T_e\) is strongly peaked or if the
+discharge is RFP-like with \(q_a\approx 0\) or negative, Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-lambda_nat_bessel">32.42</a>) becomes strongly peaked and can even turn negative
+near the edge. Then the plasma is being driven toward a current profile that is generically hostile to
+tearing stability, so self-organization is practically inevitable.
+</p>
+<!--l. 524--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-790004"></a>Why this matters for tearing and interchange.</span>
+The cylindrical tearing lecture showed that peaking of the parallel-current profile is exactly what provides
+free energy for \(\Delta '\)-driven island formation. The resistive-interchange lecture then showed that if pressure is
+also peaked and magnetic shear is low, pressure-driven parity can join the story as well. The present
+lecture provides the missing zeroth-order picture: before any instability appears, inductive relaxation is
+already pushing the system toward \(\lambda _{\rm nat}(\psi )\). Magnetic self-organization is what happens when the plasma refuses
+to stay on that natural profile.
+</p><!--l. 532--><p class="noindent" >This viewpoint is especially useful for the tokamak sawtooth problem. If a peaked \(T_e\) profile forces \(\lambda _{\rm nat}\) to peak
+strongly, the central safety factor is driven downward, and \((m,n)=(1,1)\) activity becomes unavoidable. Depending on
+the pressure profile and central shear, the nonlinear saturating structure may look more tearing-like,
+more resistive-interchange-like, or more quasi-interchange-like; in practice the distinction is
+often one of emphasis rather than of separate worlds. Conversely, when \(T_e\) is flat enough that
+Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-lambda_nat_bessel">32.42</a>) is already close to constant \(\lambda \), the plasma can live in a broad-current, low-sawtooth
+state.
+</p>
+<!--l. 540--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-800004"></a>Low shear versus strong shear.</span>
+The same comparison also clarifies why tearing and interchange often trade places rather than coexisting
+with equal strength. In the alignment window \(0.5\lesssim q_a\lesssim 2\), the current profile is broad and the shear is relatively flat;
+if the electron-temperature profile is also broad, the natural inductive state is already close to constant \(\lambda \)
+and there is little reason for a large sawtooth-like relaxation. Those same low-shear states are precisely the
+ones that are most vulnerable to resistive-interchange or quasi-interchange behavior if the pressure
+gradient is allowed to sharpen. By contrast, RFP-like states and tokamaks with strongly peaked current
+profiles generally have much stronger shear. That strong shear helps dramatically against interchange,
+but it comes with a more peaked \(\lambda _{\rm nat}\), so the price is a greater drive for tearing and magnetic
+relaxation.
+</p>
+<!--l. 552--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-810004"></a>A useful viewpoint.</span>
+A very compact way to say all of this is the following. Inductive systems are almost never trying to reach
+the marginally stable current profile. They are trying to reach the <span 
+class="ecti-1095">natural resistive </span>profile imposed by
+Ohm&#8217;s law and conductivity. Tearing, sawteeth, and flux pumping are the mechanisms that stop
+them.
+<a 
+ id="x1-81001r86"></a>
+                                                                                         
+                                                                                         
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.5   </span> <a 
+ id="x1-820005"></a>Experimental and modern perspective</h3>
+<!--l. 560--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-830005"></a>RFPs and spheromaks.</span>
+Reversed-field pinches and spheromaks are the cleanest laboratories for Taylor relaxation. There magnetic
+self-organization is not a small correction to an otherwise quiescent equilibrium; it is the main event. The
+Bessel family is therefore not just a classroom model but a genuine first approximation to
+the observed states, with relaxation repeatedly clamping the current profile near the edge
+of tearing marginality <a 
+href="#XPrager1990TransportFluctuations">Prager</a>&#x00A0;[<a 
+href="#XPrager1990TransportFluctuations">1990</a>],&#x00A0;<a 
+href="#XOrtolani1993PlasmaRelaxation">Ortolani and Schnack</a>&#x00A0;[<a 
+href="#XOrtolani1993PlasmaRelaxation">1993</a>],&#x00A0;<a 
+href="#XHelSelf:Jarboe1994">Jarboe</a>&#x00A0;[<a 
+href="#XHelSelf:Jarboe1994">1994</a>]. In that
+sense spheromaks are closely connected to the present discussion: they are systems in which
+helicity injection and magnetic relaxation are not side issues but the confinement principle
+itself.
+<a 
+ id="x1-83001r94"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.6   </span> <a 
+ id="x1-840006"></a>Energy and Helicity Dissipation</h3>
+<!--l. 572--><p class="noindent" >In resistive MHD its easily shown that <div class="math-display">\[\begin{aligned}\dv {W}{t} &amp;= -\eta \int _V J^2\,dV,\\ \dv {K}{t} &amp;= -2\eta \int \bm {J}\cdot \bm {B}\,dV.\end{aligned}\]</div>
+</p><!--l. 578--><p class="noindent" >Considering the characteristic decay times of the large scale field gives similar times scales for resistive
+decay of both magnetic energy and helicity <div class="math-display">\[\tau _W \sim \frac {\mu _0 a^2}{\eta }, \qquad \tau _K \sim \frac {\mu _0 a}{\eta \lambda },\]</div>
+so that <div class="math-display">\[\frac {\tau _W}{\tau _K}\sim \frac {1}{a\lambda } \sim 1\]</div>
+for typical RFP and spheromak parameters.
+</p><!--l. 590--><p class="noindent" >During relaxation, however, there is a broad spacial spectrum of modes generated. In the RFP, for
+example, the mode spectrum consists primarily of \(m=0,1\) modes and a broad range of \(n\) numbers. Figuratively,
+<div class="math-display">\[\tilde {B} = \sum _{\bf k} B_k \exp {i \vect {k}\cdot \vect {x}}\]</div>
+When considering the decay of the spectrum of modes <div class="math-display">\[\begin{aligned}\dv {W}{t} &amp;= -\eta \sum _k \int _V k^2 B_k^2 \,dV,\\ \dv {K}{t} &amp;= -2\eta \sum _k \int _V k B_k^2 \\\end{aligned}\]</div>
+</p><!--l. 599--><p class="noindent" >When the spectrum consists of considerable short wavelength "turbulence" (large \(k\) modes) Helicity wins
+out as the energy quickly dissipates. Thus magnetic energy dissipates much faster than helicity, justifying
+Taylor&#8217;s hypothesis.
+<a 
+ id="x1-84001r96"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.7   </span> <a 
+ id="x1-850007"></a>Beyond Taylor.</h3>
+<!--l. 605--><p class="noindent" >Real plasmas do not land on an exact global Taylor state. The relaxed profile is instead set by a
+competition between inductive peaking, finite conductivity gradients, and the requirement that the
+dominant tearing spectrum sit near marginality. In an RFP this means that the plasma is
+repeatedly peaked by Ohmic drive and then relaxed by reconnecting activity. The outcome is not \(\lambda (r)=\text {const}\)
+everywhere, but a broadened profile with residual structure, especially near the edge where \(T_e\) and \(\sigma \) fall
+rapidly.
+</p>
+<!--l. 612--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-860007"></a>The measured fluctuation-induced emf.</span>
+A useful way to say this is to write the mean parallel Ohm&#8217;s law as <a id="eq-eq-hel-turbulent_emf"></a><div class="math-display">\[E_\parallel + \mathcal E_\parallel = \eta J_\parallel , \qquad \mathcal E_\parallel \equiv \left \langle \tilde {\mathbf v}\times \tilde {\mathbf b}\right \rangle \cdot \frac {\mathbf B}{B}. \tag{32.56}\]</div>
+Classical MST measurements&#8212;first with edge probe correlations and later with direct spectroscopic
+                                                                                         
+                                                                                         
+measurements of the flow fluctuations&#8212;showed that \(\mathcal E_\parallel \) accounts for the &#8220;missing&#8221; term in the parallel Ohm&#8217;s
+law during relaxation events and, in appropriate regimes, between them as well <a 
+href="#XJiEtAl1994MHDDynamo">Ji et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XJiEtAl1994MHDDynamo">1994</a>],&#x00A0;<a 
+href="#XJiPrager2002AlphaDynamo">Ji and
+Prager</a>&#x00A0;[<a 
+href="#XJiPrager2002AlphaDynamo">2002</a>]. In other words, the correlated fluctuations do the profile-broadening work that a purely
+resistive equilibrium cannot do.
+</p><!--l. 627--><p class="noindent" >In mean-field language one would write <a id="eq-eq-hel-meanfield_emf"></a><div class="math-display">\[\mathcal E_\parallel \simeq \alpha _{\rm dyn} B - \beta \,\muo J_\parallel + \cdots , \tag{32.57}\]</div>
+so that \(\alpha _{\rm dyn}\) is the coefficient multiplying the mean field in the same way that the usual \(\alpha \) effect is written in
+solar and astrophysical mean-field theory. This is mathematically the same object that appears in the solar
+\(\alpha \Omega \) dynamo: the \(\Omega \) effect shears poloidal field into toroidal field, while the \(\alpha \) effect closes the loop by regenerating
+the complementary mean-field component <a 
+href="#XCameronDikpatiBrandenburg2017GlobalSolarDynamo">Cameron et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCameronDikpatiBrandenburg2017GlobalSolarDynamo">2017</a>]. The comparison to the present lecture is
+especially clean because <a id="eq-eq-hel-alpha_lambda_analogy"></a><div class="math-display">\[\frac {E_\parallel }{B} + \alpha _{\rm dyn} \;\simeq \; \eta \,\frac {J_\parallel }{B} = \frac {\eta }{\muo }\,\lambda . \tag{32.58}\]</div>
+Thus \(\alpha _{\rm dyn}\) enters the mean-field closure in essentially the same algebraic slot that \(\lambda \) occupies in the
+relaxation problem: \(\lambda \) measures the required field-aligned current per unit field, while \(\alpha _{\rm dyn}\) measures the
+fluctuation-induced emf per unit field.
+</p><!--l. 652--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 652--><p class="noindent" ><span 
+class="ecbx-1095">An opinion on terminology. </span>The formal analogy with mean-field dynamo theory is
+     real, and the RFP literature noticed it very early&#8212;apparently going back at least to
+     Gimblett and Watkins <a 
+href="#XGimblettWatkins1975MHDTurbulenceRFP">Gimblett and Watkins</a>&#x00A0;[<a 
+href="#XGimblettWatkins1975MHDTurbulenceRFP">1975</a>],&#x00A0;<a 
+href="#XJiPrager2002AlphaDynamo">Ji and Prager</a>&#x00A0;[<a 
+href="#XJiPrager2002AlphaDynamo">2002</a>]. But I would
+     still use the word <span 
+class="ecti-1095">dynamo </span>cautiously here. In the solar \(\alpha \Omega \) problem the large-scale magnetic
+     field energy is regenerated from mechanical free energy associated with convection and
+     differential rotation. In the RFP the external circuit has already supplied the helicity and
+     current drive; the measured \(\langle \tilde {\mathbf v}\times \tilde {\mathbf b}\rangle \) mainly redistributes current and flux so that the plasma can
+     remain near a marginally stable state. In fact, the magnetic energy explicitly decreases.
+     Calling this term a fluctuation-induced emf, or a relaxation emf, is therefore cleaner
+     than implying a self-excited astrophysical dynamo in the strict energetic sense. By the
+     same token, &#8220;flux pumping&#8221; in tokamaks is best viewed as closely related jargon for the
+     same kind of mean emf, not as a wholly separate mechanism.</p></blockquote></div></div>
+<!--l. 665--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-870007"></a>Profile models beyond the exact Taylor state.</span>
+Several phenomenological models are used once one gives up on a globally constant \(\lambda \): </p>
+     <ul class="itemize1">
+     <li class="itemize">Modified Bessel-function models,
+     </li>
+     <li class="itemize">Polynomial expansions for \(B(r)\),
+     </li>
+     <li class="itemize">so-called &#8220;\(\alpha \)-models&#8221; with <div class="math-display">\[\lambda (r)=\lambda _0(1-r^\alpha ),\]</div>
+     allowing finite pressure and edge gradients.</li></ul>
+<!--l. 676--><p class="noindent" >Here the profile-shape exponent \(\alpha \) is completely unrelated to the mean-field dynamo coefficient \(\alpha _{\rm dyn}\) in
+Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-meanfield_emf">32.57</a>).
+</p><!--l. 679--><p class="noindent" >These models reproduce observed MST/RFP profiles remarkably well, with typical shape exponents \(\alpha \simeq 4\). The
+plasma appears to self-organize toward states near tearing marginality, maintaining residual free energy
+that sustains turbulence and transport.
+                                                                                         
+                                                                                         
+</p>
+<!--l. 683--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-880007"></a>What survives from Taylor&#8217;s picture.</span>
+Taylor relaxation therefore remains the organizing principle, but no longer as a literal prediction of a
+globally constant-\(\lambda \) final state. What survives is the hierarchy of ideas: </p>
+     <ul class="itemize1">
+     <li class="itemize">Helicity is a comparatively robust invariant.
+     </li>
+     <li class="itemize">Magnetic energy is preferentially dissipated.
+     </li>
+     <li class="itemize">The plasma relaxes toward force-free or nearly force-free states.
+     </li>
+     <li class="itemize">Real devices hover near, rather than exactly on, the Taylor manifold.
+     </li>
+     <li class="itemize">The fluctuation-induced emf is the mechanism by which the system broadens a current profile
+     that inductive drive alone would otherwise overpeak.</li></ul>
+<!--l. 694--><p class="noindent" >Although idealized, this framework explains many of the universal features of self-organized, toroidal
+plasmas.
+</p><!--l. 697--><p class="noindent" >It is also worth noting that helicity conservation and its scale dependence reappear in MHD turbulence
+and in the mean-field dynamo problem addressed in Lecture&#x00A0;10. Turbulence is beyond our scope here; the
+point for present purposes is simply that the same \(\langle \tilde {\mathbf v}\times \tilde {\mathbf b}\rangle \) measured in RFPs is the laboratory cousin of the emf
+parameterized by the \(\alpha \) effect in astrophysical dynamo theory <a 
+href="#XJiPrager2002AlphaDynamo">Ji and Prager</a>&#x00A0;[<a 
+href="#XJiPrager2002AlphaDynamo">2002</a>],&#x00A0;<a 
+href="#XCameronDikpatiBrandenburg2017GlobalSolarDynamo">Cameron
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XCameronDikpatiBrandenburg2017GlobalSolarDynamo">2017</a>].
+<a 
+ id="x1-88001r97"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">32.8   </span> <a 
+ id="x1-890008"></a>Helicity Injection and Tokamak Startup</h3>
+<!--l. 705--><p class="noindent" >In toroidal current-carrying devices, helicity injection is most naturally viewed as the injection of linkage
+between toroidal and poloidal magnetic flux. In fact, the conventional tokamak transformer already does
+this: a loop voltage \(V_{\rm loop}\) acting on a plasma with toroidal flux \(\Phi _t\) injects helicity at a rate of order
+<div class="math-display">\[\dot K \sim 2 V_{\rm loop}\Phi _t,\]</div>
+up to the usual relative-helicity and boundary-flux conventions. From this viewpoint, non-solenoidal
+start-up methods are not different in kind from conventional inductive current drive; they are alternative
+ways of applying helicity flux to the torus <a 
+href="#XJensenChu1984">Jensen and Chu</a>&#x00A0;[<a 
+href="#XJensenChu1984">1984</a>],&#x00A0;<a 
+href="#XBoozer1986">Boozer</a>&#x00A0;[<a 
+href="#XBoozer1986">1986</a>],&#x00A0;<a 
+href="#XYoshida1990">Yoshida</a>&#x00A0;[<a 
+href="#XYoshida1990">1990</a>].
+</p><!--l. 711--><p class="noindent" >The earliest tokamak demonstrations of <span 
+class="ecti-1095">dc </span>helicity injection were carried out by Ono, Darrow, Forest,
+Park, Stix, and collaborators on ACT-1/CDX, where a low-energy electron beam from a biased cathode
+was launched along open helical field lines to an anode or limiter at vessel potential, producing
+and sustaining a tokamak discharge without transformer drive <a 
+href="#XOno1987">Ono et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XOno1987">1987</a>]. Subsequent
+CDX and CCT studies clarified the basic mechanism: when a dc voltage \(V_{\rm inj}\) is applied between
+electrodes linked by an injector flux \(\psi _{\rm inj}\), current follows the magnetic connection between the
+electrodes and injects helicity at a rate \(\dot K \sim 2V_{\rm inj}\psi _{\rm inj}\) <a 
+href="#XJensenChu1984">Jensen and Chu</a>&#x00A0;[<a 
+href="#XJensenChu1984">1984</a>],&#x00A0;<a 
+href="#XDarrow1990">Darrow et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XDarrow1990">1990</a>]. In
+point-source implementations the cathode is a localized edge emitter and the return is a limiter
+or vessel component; in coaxial implementations the two electrodes are typically inner and
+                                                                                         
+                                                                                         
+outer divertor or vessel surfaces separated by insulators, with open field lines linking them
+<a 
+href="#XRamanShevchenko2014">Raman and Shevchenko</a>&#x00A0;[<a 
+href="#XRamanShevchenko2014">2014</a>]. The common requirement is therefore geometric rather than
+technological: the biased electrodes must be pierced by the same magnetic flux so that the
+imposed voltage appears along field lines that can communicate with the toroidal current
+channel.
+</p><!--l. 713--><p class="noindent" >This Princeton line of work continued in CDX-U. Forest, Hwang, Ono, and Darrow showed that once
+sufficient current is generated, the plasma self-field can exceed the imposed vacuum poloidal field locally
+and produce closed flux surfaces in a small-aspect-ratio tokamak geometry <a 
+href="#XForest1992">Forest et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XForest1992">1992</a>]. Magnetic
+reconstructions by Hwang, Forest, Darrow, Greene, and Ono then quantified the resulting noninductive
+current profiles <a 
+href="#XHwang1992">Hwang et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHwang1992">1992</a>]. These papers are historically useful because they connect the original
+dc helicity-injection experiments to the later spherical-tokamak start-up, where, of course, bootstrap
+current is also <span 
+class="ecsl-1095">creating helicity</span>. Following CDX-U, a number of spherical tokamaks have continued to work
+on this reasearch: local helicity injection on Pegasus <a 
+href="#XHelSelf:Battaglia2011">Battaglia et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHelSelf:Battaglia2011">2011</a>], transient CHI on
+QUEST <a 
+href="#XHelSelf:Kuroda2024">Kuroda et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHelSelf:Kuroda2024">2024</a>], lower-hybrid/RF startup on TST-2 <a 
+href="#XHelSelf:Shinya2015">Shinya et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHelSelf:Shinya2015">2015</a>], and
+center-solenoid-free merging startup on UTST <a 
+href="#XHelSelf:Inomoto2015">Inomoto et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XHelSelf:Inomoto2015">2015</a>]. These are different experimental
+realizations of one common idea: inject linked flux and let the plasma relax into a current-carrying
+torus.
+</p><!--l. 720--><p class="noindent" >In <span 
+class="ecti-1095">ac </span>helicity injection, the same topological idea is retained, but the boundary drive is oscillatory rather
+than steady. Instead of maintaining a fixed dc bias between two electrodes, one oscillates the applied
+voltage and/or the linking flux so that the cycle-averaged product of voltage and linked flux is nonzero. In
+the formulations of Jensen and Chu and of Bellan, the required phase relation between the oscillating fields
+rectifies into a net parallel current drive <a 
+href="#XJensenChu1984">Jensen and Chu</a>&#x00A0;[<a 
+href="#XJensenChu1984">1984</a>],&#x00A0;<a 
+href="#XBellan1984">Bellan</a>&#x00A0;[<a 
+href="#XBellan1984">1984</a>,&#x00A0;<a 
+href="#XBellan1985">1985</a>]. In practice the
+oscillating drive must still act on field lines that connect the driven boundary region to the toroidal current
+channel; the hardware may therefore be external coils, moving or oscillating flux surfaces, or oscillatory
+boundary voltages rather than fixed dc electrodes. Thus the distinction between dc and ac helicity
+injection is mainly whether the boundary drive is steady or time-periodic; in both cases the physics
+relies on magnetic connection, helicity transport, and subsequent relaxation of the toroidal
+plasma.
+</p><!--l. 722--><p class="noindent" >Tokamak-oriented oscillating-flux experiments were explored on DIII-D by modulating the linked toroidal
+flux through programmed plasma shaping <a 
+href="#XYamaguchi1995">Yamaguchi et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XYamaguchi1995">1995</a>]. AC helicity injection has also been
+demonstrated in the reversed field pinch context; partial current sustainment was demonstrated
+on ZT-40 <a 
+href="#Xschoenberg1988oscillating-0ab">Schoenberg et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xschoenberg1988oscillating-0ab">1988</a>] and similar results were also found on MST <a 
+href="#Xmccollam2005oscillating-field-8f0">McCollam
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#Xmccollam2005oscillating-field-8f0">2005</a>].
+</p>
+<!--l. 726--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-900008"></a>Flux pumping and hybrid scenarios.</span>
+Modern flux-pumping work makes the self-organization picture especially sharp. In the nonlinear M3D-C\(^1\)
+calculations of Jardin, Ferraro, and Krebs, a saturated central \((1,1)\) quasi-interchange mode generates a
+dynamo loop voltage that broadens the current profile and keeps \(q_0\gtrsim 1\) in a stationary state <a 
+href="#XJardin2015">Jardin
+et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XJardin2015">2015</a>],&#x00A0;<a 
+href="#XKrebs2017">Krebs et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XKrebs2017">2017</a>],&#x00A0;<a 
+href="#XJardin2020">Jardin et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XJardin2020">2020</a>]. That outcome is exactly what this lecture
+suggests: the inductive system is trying to create a peaked \(\lambda _{\rm nat}\), while the plasma self-organizes to clamp the
+actual profile near marginal stability. This is one reason the language of flux pumping is so natural in the
+ITER-hybrid context: one is trying to hold a broad current profile without repeated sawtooth
+reorganization. The language changes from RFP relaxation to hybrid-tokamak flux pumping, but the
+physics rhyme is unmistakable.
+</p><!--l. 739--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 739--><p class="noindent" >Magnetic helicity is the slowly changing invariant that survives magnetic relaxation.
+     Taylor&#8217;s constant-\(\lambda \) state is therefore the natural reference state, but the more revealing
+     quantity for an inductively driven plasma is the <span 
+class="ecti-1095">natural </span>profile \(\lambda _{\rm nat}=\muo \langle \mathbf J\cdot \mathbf B\rangle /\langle B^2\rangle \), obtained from stationary
+     Ohm&#8217;s law. If that natural profile already aligns with a broad, tearing-stable state,
+     little  magnetic  reorganization  is  needed.  If  it  is  strongly  peaked,  the  plasma  must
+     self-organize through tearing, sawteeth, quasi-interchange, or flux pumping. Helicity is
+     the bookkeeping device; self-organization is the response.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-910008"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1950cosmical"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. <span 
+class="ecti-1095">Cosmical Electrodynamics</span>. Clarendon Press, Oxford, 1950.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xalfven1942existence"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hannes Alfvén. Existence of electromagnetic-hydrodynamic waves. <span 
+class="ecti-1095">Nature</span>, 150:405&#8211;406, 1942.
+  doi:<a 
+href="https://doi.org/10.1038/150405d0" >10.1038/150405d0</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1961convective"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.   Convective instability induced by gravity in a plasma with a frozen-in
+  magnetic field. <span 
+class="ecti-1095">Physics of Fluids</span>, 4:391&#8211;396, 1961. doi:<a 
+href="https://doi.org/10.1063/1.1706342" >10.1063/1.1706342</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnewcomb1962_lagrangian_hamiltonian_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> W.&#x00A0;A. Newcomb.  Lagrangian and hamiltonian methods in magnetohydrodynamics.  <span 
+class="ecti-1095">Nuclear</span>
+  <span 
+class="ecti-1095">Fusion Supplement, Part 2</span>, pages 451&#8211;463, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoffatt1978magnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  H.&#x00A0;K.  Moffatt.   <span 
+class="ecti-1095">Magnetic Field Generation in Electrically Conducting Fluids</span>.   Cambridge
+  University  Press,  Cambridge,  England;  New  York,  NY,  USA,  1978.   ISBN  9780521216401.
+  Cambridge Monographs on Mechanics and Applied Mathematics.
+</p>
+  </div>
+<h3 class="likesectionHead"><a 
+ id="x1-920008"></a>Problems</h3>
+                <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.1.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-potentials">32.4</a>), rederive Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-global_evolution">32.7</a>) carefully, keeping all surface terms.
+                Under what assumptions does it reduce to Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-Kdot_resistive">32.10</a>)?
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.2.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from the functional (<a href="lecture32.html#eq-eq-hel-functional">32.19</a>), verify explicitly that the factor of \(1/2\) in front
+                of the helicity term is the one that leads to the Euler&#8211;Lagrange equation (<a href="lecture32.html#eq-eq-hel-taylor_state">32.25</a>)
+                without extra numerical coefficients.
+                                                                                         
+                                                                                         
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.3.</span>  </dt><dd 
+class="enumerate-enumitem">Starting from Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-tokamak_content">32.30</a>), derive the loop-voltage form (<a href="lecture32.html#eq-eq-hel-boozer_form">32.35</a>). Show carefully
+                where  the  term  \(2V_s\Psi \)  enters  and  explain  why  this  does  not  contradict  the
+                ideal-conservation statement (<a href="lecture32.html#eq-eq-hel-ideal_conservation">32.8</a>).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.4.</span>  </dt><dd 
+class="enumerate-enumitem">For the Bessel family, derive Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-q_bessel">32.29</a>). Show that the first zero of \(J_0\) marks the
+                transition from tokamak-like \(q_a&gt;0\) to reversed-field-pinch-like \(q_a&lt;0\).
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.5.</span>  </dt><dd 
+class="enumerate-enumitem">Using Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-lambda_nat_bessel">32.42</a>), evaluate \(\hat \lambda _{\rm nat}(x)\) for a flat conductivity profile and \(q_a=1\). Show that it is
+                nearly constant.
+                </dd><dt class="enumerate-enumitem">
+<span 
+class="ecbx-1095">Problem 32.6.</span>  </dt><dd 
+class="enumerate-enumitem">Repeat  the  previous  problem  for  a  peaked  temperature  profile  of  the  form
+                Eq.&#x00A0;(<a href="lecture32.html#eq-eq-hel-te_peaked">32.45</a>). Discuss why the stronger peaking of \(\hat \lambda _{\rm nat}\) suggests a greater tendency
+                toward sawtooth-like or tearing-driven reorganization.</dd></dl>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 41 Ferritic thin wall and the ferromagnetic wall mode</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_final.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture40.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture42.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;41</span><br /><a 
+ id="x1-21300041"></a>Ferritic thin wall and the ferromagnetic wall mode</h2>
+<!--l. 5--><p class="noindent" >We can extend the same constant-\(\psi \) model to a wall with finite relative permeability <div class="math-display">\[\hat \mu \equiv \frac {\mu _w}{\mu _0} &gt; 1.\]</div>
+A ferritic wall has two competing effects. First, finite conductivity still allows eddy currents that oppose
+the perturbation. Second, the high permeability attracts and compresses the perturbed magnetic flux into
+the wall. The latter effect weakens the ideal-wall stabilization and tends to make the mode more
+unstable.
+</p><!--l. 11--><p class="noindent" >A convenient way to organize the matching is to characterize the plasma by the tearing-mode-style
+logarithmic derivative at the plasma edge, <div class="math-display">\[\boxed { \Delta _a^* \equiv \left .\frac {a}{m\psi _{\rm nw}}\frac {d\psi _{\rm nw}}{dr}\right |_{r=a} = \frac {1}{m}\left [ \left .\frac {a}{\delta B_{r,{\rm nw}}}\frac {d\delta B_{r,{\rm nw}}}{dr}\right |_{r=a} \right ], }\]</div>
+where \(\psi _{\rm nw}\) (equivalently \(\delta B_{r,{\rm nw}}\)) is taken from the plasma/no-wall solution and \(\delta B_r = i m\psi /r\). The point of this notation is that
+the plasma enters the exterior matching only through this single ratio: once \(\Delta _a^*\) is known at \(r=a\), the vacuum
+region, resistive wall, and ferritic wall can all be matched algebraically. For a generic exterior vacuum
+solution <div class="math-display">\[\psi (r)=Ar^m+\frac {C}{r^m},\]</div>
+one immediately finds <div class="math-display">\[\boxed { \frac {\Delta _a^*+1}{\Delta _a^*-1} = -\frac {A}{C}\,a^{2m}, }\]</div>
+so the combination \((\Delta _a^*+1)/(\Delta _a^*-1)\) simply measures the relative admixture of the growing and decaying vacuum
+harmonics. This is why it is such a convenient quantity for matching all the exterior regions.
+</p><!--l. 37--><p class="noindent" >For a cylindrical long-wavelength mode with poloidal number \(m\), the standard thin-wall ferromagnetic
+dispersion relation can be written as <a 
+href="#XKurita2003">Kurita et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XKurita2003">2003</a>],&#x00A0;<a 
+href="#XBergerson2008mwh">Bergerson et&#x00A0;al.</a>&#x00A0;[<a 
+href="#XBergerson2008mwh">2008</a>] <div class="math-display">\[\boxed { \frac {\Delta _a^*+1}{\Delta _a^*-1} = \frac {\gamma \tau _f-\dfrac {md}{2b}(\hat \mu -\hat \mu ^{-1})} {1+\gamma \tau _f+\dfrac {md}{2b}(\hat \mu +\hat \mu ^{-1}-2)} \left (\frac {a}{b}\right )^{2m}, }\]</div>
+where <div class="math-display">\[\boxed { \tau _f \equiv \frac {\mu _0 b d}{2m\eta _w}. }\]</div>
+Here \(\tau _f\) is written in the standard cylindrical ferromagnetic-wall convention; compared with the \(m=1\) wall time
+used above, it differs only by a numerical geometry factor. An important point is that the skin time
+entering the thin-wall equation is still proportional to \(\mu _0\), not \(\mu _w\): the local increase in magnetic
+diffusion time inside the ferritic material is compensated by the compression of the flux at the
+wall.
+</p><!--l. 55--><p class="noindent" >For later convenience define <div class="math-display">\[\alpha \equiv \frac {\Delta _a^*+1}{\Delta _a^*-1},\]</div>
+and neglect plasma inertia so that \(\alpha \) is independent of \(\gamma \), the growth rate can be written as <div class="math-display">\[\boxed { \gamma \tau _f = \Gamma _w + \Gamma _\mu , }\]</div>
+with the ordinary resistive-wall contribution <div class="math-display">\[\boxed { \Gamma _w = \frac {\alpha }{(a/b)^{2m}-\alpha }, }\]</div>
+and the ferritic correction <div class="math-display">\[\boxed { \Gamma _\mu = \left (\frac {md}{2b}\right ) \frac { \alpha (\hat \mu +\hat \mu ^{-1}-2) + (\hat \mu -\hat \mu ^{-1})(a/b)^{2m} }{(a/b)^{2m}-\alpha }. }\]</div>
+When \(\hat \mu =1\), the ferritic correction vanishes and the ordinary resistive wall mode is recovered. For \(\hat \mu &gt;1\), the extra
+term drives the mode in the unstable direction, so the growth rate is larger than for a non-ferritic
+resistive wall and the ideal-wall stability window is reduced. This is the <span 
+class="ecti-1095">ferromagnetic wall</span>
+<span 
+class="ecti-1095">mode</span>.
+</p><!--l. 86--><p class="noindent" >For weak ferritic response, \(\hat \mu =1+\epsilon \) with \(|\epsilon |\ll 1\), the leading correction is linear, <div class="math-display">\[\Gamma _\mu \simeq \left (\frac {md}{b}\right ) \frac {\epsilon \,(a/b)^{2m}}{(a/b)^{2m}-\alpha },\]</div>
+so even modest permeability shifts the resistive-wall growth rate.
+</p>
+<!--l. 95--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-21400041"></a>Physical interpretation</span>
+A nearby ideal conductor stabilizes the external kink by forcing the vacuum perturbation to vanish at the
+wall and thereby increasing the magnetic energy of the displacement. A resistive wall only
+maintains that constraint for a finite time \(\tau _w\), which produces the slow resistive wall mode. A
+ferritic wall, however, attracts the perturbed flux into the material and thereby reduces the
+efficacy of that ideal-wall stabilization. In this sense, the ferritic wall makes the physical wall
+look <span 
+class="ecti-1095">magnetically farther away</span>, so the mode is more unstable even though the wall remains
+conducting.
+</p><!--l. 100--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+                                                                                         
+                                                                                         
+     <!--l. 100--><p class="noindent" >Ferritic  material  does  not  simply  behave  like  a  better  conducting  wall.  Its  high
+     permeability  compresses  perturbed  flux  into  the  wall  and  weakens  the  ideal-wall
+     stabilization that would otherwise oppose the external kink. In the thin-wall model
+     this appears as the additive correction \(\Gamma _\mu \) to the usual resistive-wall growth rate, so the
+     ferromagnetic wall mode is the same RWM physics modified by magnetic permeability
+     rather than by conductivity alone.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-21500041"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <span 
+class="ecti-1095">Mathematisk-fysiske Meddelelser</span>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <span 
+class="ecti-1095">Matematisk-fysiske Meddelelser</span>, 15(7):1&#8211;45,
+  1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <span 
+class="ecti-1095">Advances in Applied Mechanics</span>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <span 
+class="ecti-1095">An Introduction to Magnetohydrodynamics</span>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshercliff1956flow-703"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;A. Shercliff. The flow of conducting fluids in circular pipes under transverse magnetic fields.
+  <span 
+class="ecti-1095">Journal of Fluid Mechanics</span>, 1(6):644&#8211;666, 1956. doi:<a 
+href="https://doi.org/10.1017/s0022112056000421" >10.1017/s0022112056000421</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhunt1965magnetohydrodynamic-809"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J&#x00A0;C&#x00A0;R Hunt.  Magnetohydrodynamic flow in rectangular ducts.  <span 
+class="ecti-1095">Journal of Fluid Mechanics</span>,
+  21(4):577&#8211;590, 1965. doi:<a 
+href="https://doi.org/10.1017/s0022112065000344" >10.1017/s0022112065000344</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

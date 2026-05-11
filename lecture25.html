@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Lecture 25 Suydam and Mercier: Local Pressure-Driven Stability Tests</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview_stability.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="preview-nav"><a class="nav-prev" href="lecture24.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture26.html">Next Lecture &#8594;</a></div>
+<h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;25</span><br /><a 
+ id="x1-14500025"></a>Suydam and Mercier: Local Pressure-Driven Stability Tests</h2>
+<!--l. 7--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 7--><p class="noindent" >With   Newcomb&#8217;s   reduction   in   hand,   the   first   internal   danger   is   a   localized
+     pressure-driven mode near a rational surface, where \(F(r_s)=0\) and field-line bending disappears.
+     Suydam gives the cylindrical criterion; Mercier gives the toroidal correction. These are
+     fixed-boundary tests: if they fail, the plasma is already unstable before any external-kink
+     calculation is relevant.</p></blockquote></div></div>
+<!--l. 15--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 15--><p class="noindent" >Newcomb&#8217;s 1960 paper is one of the classic stability papers in MHD because it did not
+     merely compute one growth rate or one threshold. It gave a framework. The localized
+     interchange  limit  near  a  rational  surface  is  the  part  now  associated  with  Suydam&#8217;s
+     criterion, while the toroidal generalization was clarified in the work of Mercier and in the
+     related local analyses of Greene, Johnson, and Shafranov [<a 
+href="#Xmercier1960necessary-a83">Mercier</a>,&#x00A0;<a 
+href="#Xmercier1960necessary-a83">1960</a>] <a 
+href="#Xmercier1964equilibrium">Mercier</a>&#x00A0;[<a 
+href="#Xmercier1964equilibrium">1964</a>]
+     <a 
+href="#Xgreene1962stability">Greene and Johnson</a>&#x00A0;[<a 
+href="#Xgreene1962stability">1962</a>] <a 
+href="#Xshafranov1968flute">Shafranov and Yurchenko</a>&#x00A0;[<a 
+href="#Xshafranov1968flute">1968</a>]. The global boundary-value
+     problem then became the natural language for internal and external kink stability. Later
+     cylindrical tokamak theory is, in large part, Newcomb&#8217;s framework specialized to the
+     large-aspect-ratio limit <a 
+href="#XShafranov1966RvPP">Shafranov</a>&#x00A0;[<a 
+href="#XShafranov1966RvPP">1966</a>],&#x00A0;<a 
+href="#Xfreidberg2014">Freidberg</a>&#x00A0;[<a 
+href="#Xfreidberg2014">2014</a>].</p></blockquote></div></div>
+<!--l. 31--><p class="noindent" >We now return to the reduced functional (<a href="lecture23.html#eq-eq-deltaW_f_g_form">23.92</a>). Near a rational surface the coefficient \(f(r)\propto F^2\) becomes small, so
+the dominant competition is between weakened line bending and pressure drive.
+<a 
+ id="x1-145001r142"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">25.1   </span> <a 
+ id="x1-1460001"></a>Suydam&#8217;s criterion</h3>
+<!--l. 38--><p class="noindent" >Focusing on internal modes we start with <div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } = \int _0^{a} \left [ f(r)\,|\xi '|^2+g(r)\,|\xi |^2 \right ]dr\]</div>
+</p>
+<!--l. 48--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1470001"></a>Localization near a rational surface.</span>
+Pressure-driven interchange-like perturbations localize near radii where field-line bending is weakest which
+is where <div class="math-display">\[f = \frac {rF^2}{k_0^2}\]</div>
+and <div class="math-display">\[F = \frac {m B_\theta }{r} + k B_z = \frac {B_z}{R_0}\left (\frac {m}{q(r)}-n\right )\]</div>
+<div class="math-display">\[k_0^2 = \frac {m^2}{a^2} + \frac {n^2}{R_0^2}\]</div>
+<a id="eq-eq-resonant_surface"></a><div class="math-display">\[F(r_s)=\B \cdot \bm {k}=0 \qquad \Longleftrightarrow \qquad q(r_s)=\frac {m}{n} \tag{25.5}\]</div>
+recalling that the field line bending energy is \(\delta W_{bend} \propto B^2 k_\parallel ^2 \xi ^2\) and so the rational surface is where \(k_\parallel = 0\) for the
+large-aspect-ratio sign convention \(k=-n/R_0\) used later. Expand <a id="eq-eq-F_linearize"></a><div class="math-display">\[F(r)\simeq F'(r_s)\,x, \qquad x\equiv r-r_s, \tag{25.6}\]</div>
+and assume \(\xi \) is sharply localized in \(x\). Examing <a id="eq-eq-suydam_g_local"></a><div class="math-display">\[g(r) = \underbrace {\frac {2k^2}{k_0^2}\,\muo p'}_{\text {pressure drive}} + \left (\frac {k_0^2r^2-1}{k_0^2r^2}\right )\cancelto {0}{rF^2} + \frac {2k^2}{r k_0^4} \left (kB_z-\frac {mB_\theta }{r}\right )\cancelto {0}{F}. \tag{25.7}\]</div>
+.
+                                                                                         
+                                                                                         
+</p><!--l. 90--><p class="noindent" >Then (<a href="lecture23.html#eq-eq-deltaW_f_g_form">23.92</a>) reduces to <a id="eq-eq-deltaW_local"></a><div class="math-display">\[\frac {\delta W}{2\pi ^2 R_0/\muo } \simeq \frac {r_s[F'(r_s)]^2}{k^2+m^2/r_s^2} \int _{-\infty }^{\infty } \left [ x^2\left (\pp {\xi }{x}\right )^2 - D_s\,\xi ^2 \right ]dx, \tag{25.8}\]</div>
+with <a id="eq-eq-Ds_def"></a><div class="math-display">\[D_s \equiv -\frac {2\muo k^2}{r_s[F'(r_s)]^2}\,p'(r_s). \tag{25.9}\]</div>
+</p>
+<!--l. 112--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1480001"></a>Connection to magnetic shear.</span>
+In the large-aspect-ratio ordering, <div class="math-display">\[q(r)=\frac {rB_z}{R_0 B_\theta }, \qquad k=-\frac {n}{R_0},\]</div>
+and at resonance \(q(r_s)=m/n\). One finds <a id="eq-eq-Fprime_qprime"></a><div class="math-display">\[F'(r_s) = -\frac {mB_z(r_s)}{R_0q^2(r_s)}\,q'(r_s) = -\frac {nB_z(r_s)}{R_0q(r_s)}\,q'(r_s). \tag{25.11}\]</div>
+Therefore <a id="eq-eq-Ds_q"></a><div class="math-display">\[D_s = -\frac {2\muo q^2(r_s)}{r_s B_z^2(r_s)\,[q'(r_s)]^2}\,p'(r_s). \tag{25.12}\]</div>
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x1-1480011"></a>
+                                                                                         
+                                                                                         
+<!--l. 139--><p class="noindent" ><img 
+src="figures/suydam_localized_mode_reference_pair.png" alt="PIC"  
+width="446" height="197"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;25.1: </span><span  
+class="content">Reference two-panel view of the local Suydam eigenfunction in a narrow neighborhood
+of the rational surface for \(D_s=50\), corresponding to \(k_r=\tfrac {1}{2}\sqrt {4D_s-1}=7.053\). Panel (a) shows the literal singular local branch \(\xi (x)=|x|^{-1/2}\cos (k_r\ln |x|)\) with
+\(c_1=0\) and \(c_2=1\), plotted on either side of the excluded singular point at \(x=0\). Panel (b) shows a desingularized
+companion constructed from the same log-oscillatory core, with a small inner regularization and
+mild outer taper so the oscillation packet remains finite while preserving the characteristic Suydam
+phase structure. </span></div><!--tex4ht:label?: x1-1480011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfigure" />
+<!--l. 146--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1490001"></a>Euler&#8211;Lagrange equation and the threshold.</span>
+Varying (<a href="lecture25.html#eq-eq-deltaW_local">25.8</a>) gives <a id="eq-eq-suydam_EL"></a><div class="math-display">\[\dd {}{x}\left (x^2\dd {\xi }{x}\right )+D_s\,\xi =0. \tag{25.13}\]</div>
+Try a power law \(\xi \sim x^p\). Then <a id="eq-eq-p_roots"></a><div class="math-display">\[p(p+1)+D_s=0, \qquad p=\frac {-1\pm \sqrt {1-4D_s}}{2}. \tag{25.14}\]</div>
+If \(D_s&gt;1/4\), the exponent is complex and the solution becomes log-oscillatory, <a id="eq-eq-log_osc_solution"></a><div class="math-display">\[\xi (x) = \frac {1}{|x|^{1/2}} \left [ c_1\sin \!\left (k_r\ln |x|\right ) + c_2\cos \!\left (k_r\ln |x|\right ) \right ], \qquad k_r=\frac {1}{2}\sqrt {4D_s-1}, \tag{25.15}\]</div>
+which signals interchange-like instabilityas shown in Fig. 25.1. Thus <a id="eq-eq-suydam_criterion_Ds"></a><div class="math-display">\[D_s\le \frac {1}{4} \tag{25.16}\]</div>
+is the local stability condition. Using (<a href="lecture25.html#eq-eq-Ds_q">25.12</a>), this becomes the usual Suydam form <a id="eq-eq-suydam_criterion_shear"></a><div class="math-display">\[\frac {r_s B_z^2(r_s)}{8\muo } \left (\frac {q'(r_s)}{q(r_s)}\right )^2 + p'(r_s) \ge 0, \tag{25.17}\]</div>
+or equivalently <div class="math-display">\[\left (\frac {r_s q'(r_s)}{q(r_s)}\right )^2 + \frac {8\muo r_s p'(r_s)}{B_z^2(r_s)} \ge 0.\]</div>
+Since \(p'&lt;0\) in the usual case, magnetic shear stabilizes by making the first term large.
+<a 
+ id="x1-149001r156"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">25.2   </span> <a 
+ id="x1-1500002"></a>Mercier&#8217;s toroidal correction</h3>
+<!--l. 206--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1510002"></a>Start from the same toroidal energy principle as ballooning.</span>
+The cleanest way to introduce Mercier is not to start from a different theory, but from the same
+axisymmetric tokamak energy functional used in Lecture&#x00A0;29. Equation&#x00A0;(<a href="lecture29.html#eq-eq-tokamak_deltaWf">29.6</a>) there is the exact
+two-dimensional ideal-MHD volume contribution in flux coordinates, and Appendix&#x00A0;I shows in detail how
+to eliminate \(\xi _\parallel \) and then reduce the problem to an \(X\)-only functional. For the present lecture we do <tspan font-family="ecti" font-size="1095">not </tspan>need to
+repeat that algebra. We simply borrow the result and specialize it to the local <tspan font-family="ecti" font-size="1095">pressure-driven</tspan>
+channel.
+</p><!--l. 216--><p class="noindent" >Concretely, we suppress the localized current-driven contribution by setting \(J_\parallel =0\) in the Mercier discussion.
+More precisely, in the appendix functional (I.76) this means dropping the \(\sigma ' \sim dJ_\parallel /d\Psi \) terms, so that only
+pressure-gradient and curvature drive remain. In the localized-mode ordering this gives the toroidal
+analogue of the Suydam functional, <a id="eq-eq-mercier-toroidal_deltaW"></a><div class="math-display">\[\begin {aligned} \delta W = \pi \int J\,d\Psi \,d\chi \Biggl [ &amp;\frac {B^2}{R^2B_p^2}\,|k_\parallel X|^2 + R^2B_p^2 \left | \frac {1}{n}\frac {\partial }{\partial \Psi }(k_\parallel X) \right |^2 \\[0.4em] &amp;\qquad - 2p' \left ( \frac {\kappa _n}{RB_p}|X|^2 - i\,\frac {\muo I_{\mathrm {pol}}\kappa _g}{B^2}\, X\,\frac {\partial X^*}{n\,\partial \Psi } \right ) \Biggr ], \end {aligned} \tag{25.19}\]</div>
+which is the form emphasized in Zohm&#8217;s notes. The new ingredients relative to the cylinder are the
+curvature components <a id="eq-eq-mercier-kappa_n"></a><div class="math-display">\[\begin{aligned}\kappa _n &amp;= \frac {RB_p}{B^2}\frac {\partial }{\partial \Psi } \left (\muo p+\frac {B^2}{2}\right ), \\ \kappa _g &amp;= -\frac {1}{JB_pB^2}\frac {\partial }{\partial \chi }\left (\frac {B^2}{2}\right ),\end{aligned} \tag{25.20}\]</div>
+</p><!--l. 260--><p class="noindent" >namely the normal curvature and the geodesic curvature.
+</p><!--l. 263--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 263--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Mercier as the toroidal completion of Suydam. </tspan>The point of (<a href="lecture25.html#eq-eq-mercier-toroidal_deltaW">25.19</a>) is structural.
+     In a cylinder, the pressure term is just a local number multiplying \(|X|^2\). In a torus, that same
+     pressure gradient couples to <tspan font-family="ecti" font-size="1095">curvature</tspan>, and curvature varies around the flux surface. So
+     the local criterion can no longer depend only on shear and \(p'\); it must also know how a field
+     line samples good and bad curvature as it winds around the torus. That is the physical
+     content of Mercier&#8217;s generalization.</p></blockquote></div></div>
+<!--l. 272--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1520002"></a>Localized interchange ansatz.</span>
+To isolate interchange-like modes, choose the phase so that it is constant along the equilibrium field line on
+the resonant surface \(\Psi =\Psi _0\): <a id="eq-eq-mercier-phase_choice"></a><div class="math-display">\[X(\Psi ,\chi ,\phi ) = \widehat X(\Psi ,\chi ) \exp \!\left \{ in\left [ \phi -\int _0^\chi \nu (\Psi _0,\chi ')\,d\chi ' \right ] \right \}. \tag{25.22}\]</div>
+                                                                                         
+                                                                                         
+This is the toroidal replacement for fixing a single helical phase in the screw pinch. The important
+difference is that the poloidal harmonic number is no longer a good quantum number by itself. Instead, the
+phase must follow the field-line pitch \(\nu (\Psi ,\chi )\).
+</p><!--l. 291--><p class="noindent" >Now localize sharply around the resonant surface by introducing <a id="eq-eq-mercier-local_ordering"></a><div class="math-display">\[x \equiv n^2(\Psi -\Psi _0), \qquad \widehat X(\Psi ,\chi ) = X_0(x)+\frac {1}{n}X_1(x,\chi )+\cdots . \tag{25.23}\]</div>
+The dominant piece \(X_0\) is a slowly varying envelope in the stretched radial coordinate, while \(X_1\) carries the
+poloidal sideband correction forced by toroidicity. Minimizing with respect to \(X_1\) produces a functional of
+exactly the same singular form as in the screw pinch, <a id="eq-eq-mercier-local_functional"></a><div class="math-display">\[\delta W = C_M \int _{-\infty }^{\infty } dx\, \left [ x^2\left (\frac {dX_0}{dx}\right )^2 - D_M\,X_0^2 \right ], \tag{25.24}\]</div>
+where the prefactor <a id="eq-eq-mercier-CM"></a><div class="math-display">\[C_M = \frac {\pi ^3}{n^2} \left (\frac {dq}{d\Psi _0}\right )^2 \left ( \oint \frac {\nu B^2}{B_p^2}\,d\chi \right )^{-1} \muo I_{\mathrm {pol}} \tag{25.25}\]</div>
+is positive and therefore does not affect the sign of \(\delta W\). All of the stability information sits in the toroidal
+index \(D_M\).
+</p>
+<!--l. 332--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1530002"></a>The Euler&#8211;Lagrange equation and the new effective potential.</span>
+Varying (<a href="lecture25.html#eq-eq-mercier-local_functional">25.24</a>) gives <a id="eq-eq-mercier-EL"></a><div class="math-display">\[\frac {d}{dx}\left ( x^2\frac {dX_0}{dx} \right ) + D_M\,X_0 = 0. \tag{25.26}\]</div>
+It is convenient to rewrite this in exactly the same notation as the singular local equation we used before:
+<a id="eq-eq-Uhat_from_DM"></a><div class="math-display">\[\hat U_M \equiv -D_M , \tag{25.27}\]</div>
+so that <a id="eq-eq-mercier_local_equation"></a><div class="math-display">\[\frac {d}{dx}\left ( x^2\frac {dX_0}{dx} \right ) - \hat U_M\,X_0 = 0. \tag{25.28}\]</div>
+This is the precise sense in which &#8220;our \(U_m\) now has extra terms.&#8221; The operator is the same singular
+Newcomb/Suydam operator, but the effective potential has been renormalized by toroidicity:
+<a id="eq-eq-mercier-U_split"></a><div class="math-display">\[\hat U_M = \underbrace {\hat U_S}_{\text {cylindrical pressure/shear}} + \underbrace {\Delta \hat U_{\kappa _n}}_{\text {normal curvature}} + \underbrace {\Delta \hat U_{\rm PS}}_{\text {geodesic/Pfirsch--Schl\"uter}}. \tag{25.29}\]</div>
+The cylinder had only the first piece. Mercier keeps the other two.
+</p><!--l. 376--><p class="noindent" >A geometric form of the Mercier index, following Zohm, is <a id="eq-eq-DM_local"></a><div class="math-display">\[D_M = \frac {\muo \,dp/d\Psi _0}{(dq/d\Psi _0)^2} \left \langle \frac {R^2B_p^2}{JB^2} \right \rangle ^{-2} \left [ 2\left \langle \frac {RB_p\kappa _n}{B^2}\right \rangle + \left \langle \frac {\Lambda _M}{B^4}\right \rangle - \left \langle \frac {1}{B^2}\right \rangle \left \langle \frac {\Lambda _M}{B^2}\right \rangle \right ], \tag{25.30}\]</div>
+with the surface average <a id="eq-eq-mercier-surface_average"></a><div class="math-display">\[\langle f\rangle \equiv \left ( \oint \frac {B^2}{R^2B_p^2}J\,d\chi \right )^{-1} \oint \frac {f B^2}{R^2B_p^2}J\,d\chi . \tag{25.31}\]</div>
+Here \(\Lambda _M\) is the standard Pfirsch&#8211;Schlüter/shear combination on the resonant surface. The crucial point is not
+the bookkeeping of \(\Lambda _M\), but the physics encoded by (<a href="lecture25.html#eq-eq-DM_local">25.30</a>): Mercier is driven by the <tspan font-family="ecti" font-size="1095">pressure</tspan>
+<tspan font-family="ecti" font-size="1095">gradient times curvature</tspan>. The first extra term is the surface-averaged normal curvature, while
+the remaining terms come from the parallel force balance that sets up the Pfirsch&#8211;Schlüter
+response.
+</p>
+<!--l. 412--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1540002"></a>The criterion itself.</span>
+Because (<a href="lecture25.html#eq-eq-mercier_local_equation">25.28</a>) has the same singular structure as the Suydam equation, the same indicial analysis
+applies. Trying <div class="math-display">\[X_0\sim |x|^p\]</div>
+gives <a id="eq-eq-mercier-indicial"></a><div class="math-display">\[p(p+1)+D_M=0. \tag{25.33}\]</div>
+Once again the transition from monotonic to log-oscillatory behavior occurs at <div class="math-display">\[D_M=\frac {1}{4}.\]</div>
+So the local ideal-MHD Mercier criterion is <a id="eq-eq-mercier_criterion_DM"></a><div class="math-display">\[D_M\le \frac {1}{4}. \tag{25.35}\]</div>
+Mathematically, this is the same threshold as Suydam. Physically, the difference is that \(D_M\) now contains
+toroidal curvature and Pfirsch&#8211;Schlüter structure.
+</p>
+<!--l. 435--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-1550002"></a>Reduction to the cylinder and to the circular tokamak.</span>
+The geometric formula (<a href="lecture25.html#eq-eq-DM_local">25.30</a>) makes the cylindrical limit easy to read. For a screw pinch with \(R=R_0\),
+\(B_p=B_\theta (r)\), and \(B\simeq B_z\), the Pfirsch&#8211;Schlüter/geodesic terms cancel, so one recovers the cylindrical Suydam
+index. In other words, Mercier really is the toroidal completion of Suydam, not a different local
+instability.
+</p><!--l. 442--><p class="noindent" >For a torus with cylindrical flux surfaces the criterion reduces to the familiar large-aspect-ratio form.
+                                                                                         
+                                                                                         
+Instability occurs when <a id="eq-eq-mercier-instability_circular"></a><div class="math-display">\[-\frac {8\muo p'}{r_{\rm res}B_z^2} \left (1-q^2\right ) &gt; \left (\frac {q'}{q}\right )^2, \tag{25.36}\]</div>
+or, equivalently, stability requires <a id="eq-eq-mercier_circular"></a><div class="math-display">\[\frac {r_{\rm res}B_z^2}{8\muo } \left (\frac {q'}{q}\right )^2 + p'(r_{\rm res})\left (1-q^2(r_{\rm res})\right ) \ge 0 . \tag{25.37}\]</div>
+So the cylindrical Suydam balance <a id="eq-eq-suydam_to_mercier"></a><div class="math-display">\[\underbrace { \frac {r_s B_z^2}{8\muo }\left (\frac {q'}{q}\right )^2+p' }_{\text {Suydam}} \qquad \longrightarrow \qquad \underbrace { \frac {r_s B_z^2}{8\muo }\left (\frac {q'}{q}\right )^2 + p'\left (1-q^2\right ) }_{\text {Mercier}} \tag{25.38}\]</div>
+acquires an explicitly toroidal correction. For the usual case \(p'&lt;0\), the factor \((1-q^2)\) shows immediately why
+toroidicity can stabilize localized interchange once \(q&gt;1\).
+</p><!--l. 478--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 478--><p class="noindent" >Mercier is <tspan font-family="ecti" font-size="1095">not </tspan>yet ballooning. In Mercier theory the phase is chosen to be constant along
+     the resonant field line, and the curvature drive is then averaged over the whole flux
+     surface. The ballooning lecture relaxes that restriction and lets the mode choose where
+     along the field line it wants to live. That is why the same pressure&#8211;curvature physics
+     that looks surface-averaged in (<a href="lecture25.html#eq-eq-mercier-toroidal_deltaW">25.19</a>) reappears as a strongly localized bad-curvature
+     drive in the ballooning equations (<a href="lecture29.html#eq-eq-balloon-deltaW">29.70</a>), (<a href="lecture29.html#eq-eq-balloon-ham_linear_limit">29.68</a>), and in the appendix bridge equation
+     (I.136).</p></blockquote></div></div>
+<!--l. 492--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 492--><p class="noindent" >There are really three local pressure-driven lectures hiding inside one story.
+     </p><!--l. 494--><p class="noindent" ><tspan font-family="ecti" font-size="1095">Suydam </tspan>is the cylindrical rational-surface test: can magnetic shear beat the local pressure
+     drive?
+     </p><!--l. 497--><p class="noindent" ><tspan font-family="ecti" font-size="1095">Mercier  </tspan>is  the  axisymmetric  toroidal  ideal-MHD  refinement:  the  same  singular
+     equation  reappears,  but  now  the  effective  potential  picks  up  normal-curvature  and
+     Pfirsch&#8211;Schlüter terms, so pressure drive must be judged together with how the field
+     line samples curvature around the torus.
+     </p><!--l. 502--><p class="noindent" ><tspan font-family="ecti" font-size="1095">Ballooning </tspan>comes next: instead of averaging the curvature over the surface, we let the
+     perturbation localize in the bad-curvature region, which leads to the field-line problem of
+     Lecture&#x00A0;29. And in the resistive interchange lecture, the <tspan font-family="ecti" font-size="1095">same </tspan>pressure&#8211;curvature drive
+     returns once more, but with finite resistivity relaxing the ideal frozen-in constraint at
+     the rational surface. So Mercier is the right bridge lecture: it is where curvature first
+     enters the local ideal-MHD criterion in a systematic toroidal way.</p></blockquote></div></div>
+<h3 class="likesectionHead"><a 
+ id="x1-1560002"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937hg-dynamics-60e"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;Hartmann.  Hg dynamics I: Theory of the laminar flow fo an electrically conducting liquid
+  in a homogeneous magnetic field". <tspan font-family="ecti" font-size="1095">Mathematisk-fysiske Meddelelser</tspan>, 15(6), 1937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhartmann1937mercury"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Julius Hartmann and Freimut Lazarus.  Hg-dynamics II: Experimental investigations on the
+  flow of mercury in a homogeneous magnetic gield".  <tspan font-family="ecti" font-size="1095">Matematisk-fysiske Meddelelser</tspan>, 15(7):1&#8211;45,
+  1937.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhide1962some-c81"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Raymond Hide and Paul&#x00A0;H. Roberts. Some elementary problems in magneto-hydrodynamics.
+  <tspan font-family="ecti" font-size="1095">Advances in Applied Mechanics</tspan>, 7:215&#8211;316, 1962. doi:<a 
+href="https://doi.org/10.1016/s0065-2156(08)70123-6" >10.1016/s0065-2156(08)70123-6</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xroberts1967intro_mhd"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> P.&#x00A0;H. Roberts.  <tspan font-family="ecti" font-size="1095">An Introduction to Magnetohydrodynamics</tspan>.  Longmans, London, UK, 1967.
+  ISBN 9780582447288.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshercliff1956flow-703"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J.&#x00A0;A. Shercliff. The flow of conducting fluids in circular pipes under transverse magnetic fields.
+  <tspan font-family="ecti" font-size="1095">Journal of Fluid Mechanics</tspan>, 1(6):644&#8211;666, 1956. doi:<a 
+href="https://doi.org/10.1017/s0022112056000421" >10.1017/s0022112056000421</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhunt1965magnetohydrodynamic-809"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> J&#x00A0;C&#x00A0;R Hunt.  Magnetohydrodynamic flow in rectangular ducts.  <tspan font-family="ecti" font-size="1095">Journal of Fluid Mechanics</tspan>,
+  21(4):577&#8211;590, 1965. doi:<a 
+href="https://doi.org/10.1017/s0022112065000344" >10.1017/s0022112065000344</a>.
+</p>
+  </div>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+

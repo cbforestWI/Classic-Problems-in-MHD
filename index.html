@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Classic Problems in Magnetohydrodynamics</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathjax,html --> 
+<meta name="src" content="main_html_mathjax_preview.tex" /> 
+<link rel="stylesheet" type="text/css" href="book.css" /> 
+<script src="mathjax_preview_macros.js"></script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+
+<style>
+html {
+  background:
+    radial-gradient(circle at top left, rgba(196, 221, 238, 0.38), transparent 32%),
+    linear-gradient(180deg, #f7fbfd 0%, #fbfcf8 100%);
+}
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 1.8rem 2.25rem 4rem 2.25rem;
+  color: #22303a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 15.75px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1em;
+}
+a {
+  color: #1f4e79;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+a:hover {
+  color: #163c5d;
+}
+h1, h2, h3, h4 {
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  color: #163c5d;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+h1.partHead {
+  margin-top: 2.8rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.25rem 1rem 1.25rem;
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fbfe 100%);
+  border: 1px solid #d8e6f1;
+  border-left: 7px solid #5b8db1;
+  border-radius: 12px;
+}
+h2.chapterHead,
+h2.likechapterHead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #d7e4ee;
+}
+h3.sectionHead {
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h4.likesubsectionHead,
+h4.subsectionHead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: #33576e;
+}
+.titlemark {
+  color: #5d7d93;
+  font-weight: 600;
+}
+.tableofcontents {
+  margin: 1.4rem 0 2rem 0;
+  padding: 1.2rem 1.3rem;
+  background: #fcfdf9;
+  border: 1px solid #dbe6cf;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.tableofcontents br {
+  line-height: 1.8;
+}
+.chapterToc,
+.partToc,
+.sectionToc {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+.partToc {
+  margin-top: 0.7rem;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #163c5d;
+}
+.chapterToc {
+  font-weight: 700;
+}
+.sectionToc {
+  color: #49677b;
+}
+.thebibliography {
+  margin-top: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+}
+.bibitem {
+  margin-bottom: 0.95rem;
+}
+.tabular,
+.center .tabular {
+  overflow-x: auto;
+}
+table.tabular {
+  min-width: 640px;
+}
+table.tabular td {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+div.flushright {
+  margin: 0.5rem 0 1.1rem 0;
+  color: #536c7c;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div.figure,
+.video-shell {
+  width: 80%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.video-shell video,
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  div.figure,
+  .video-shell {
+    width: 100%;
+  }
+}
+div.figure .caption {
+  margin-top: 0.85rem;
+  color: #415867;
+  font-size: 0.97rem;
+}
+.equation,
+.equation-star,
+.math-display,
+.par-math-display {
+  margin: 1rem 0;
+}
+.preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid #d6dce5;
+  background: rgba(238, 244, 248, 0.94);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.preview-nav a,
+.preview-nav span {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.preview-nav a {
+  text-decoration: none;
+  color: #1f4e79;
+  font-weight: 600;
+}
+.preview-nav .nav-disabled {
+  color: #8b97a5;
+}
+.preview-nav .nav-center {
+  margin: 0 auto;
+}
+.callout {
+  margin: 1.2rem 0 1.5rem 0;
+  padding: 0;
+  border: 1px solid #d6dce5;
+  border-left-width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 78, 121, 0.08);
+}
+.callout-title {
+  padding: 0.8rem 1rem 0.75rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.callout-body {
+  padding: 0.95rem 1rem 1rem 1rem;
+}
+.callout-body blockquote.quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.callout-body p:first-child {
+  margin-top: 0;
+}
+.callout-body p:last-child {
+  margin-bottom: 0;
+}
+.callout-body ul,
+.callout-body ol,
+.callout-body dl {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.callout-overview {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-overview .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-note {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-note .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.callout-historical-perspective {
+  background: #f7f1e7;
+  border-color: #b98a3d;
+}
+.callout-historical-perspective .callout-title {
+  background: #efe1c6;
+  color: #714d12;
+}
+.callout-caution {
+  background: #fff4e8;
+  border-color: #d07a18;
+}
+.callout-caution .callout-title {
+  background: #ffe4c7;
+  color: #8f4f00;
+}
+.callout-takeaways {
+  background: #eef8ef;
+  border-color: #4e9b5a;
+}
+.callout-takeaways .callout-title {
+  background: #dbefde;
+  color: #215c2b;
+}
+.callout-tutorial {
+  background: #f3efff;
+  border-color: #7059b8;
+}
+.callout-tutorial .callout-title {
+  background: #e4ddfb;
+  color: #4b3790;
+}
+.callout-opinion {
+  background: #fff1f6;
+  border-color: #bb5b83;
+}
+.callout-opinion .callout-title {
+  background: #ffe0ec;
+  color: #8d355f;
+}
+.callout-roadmap {
+  background: #eef6fb;
+  border-color: #78a9c9;
+}
+.callout-roadmap .callout-title {
+  background: #dcecf7;
+  color: #1f4e79;
+}
+.video-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0f1820;
+}
+.video-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+.video-title {
+  margin: 0 0 0.7rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #163c5d;
+}
+.video-caption {
+  margin: 0.8rem 0 0 0;
+  color: #536c7c;
+  font-size: 0.9rem;
+}
+.interactive-shell {
+  margin: 1.25rem 0 1.6rem 0;
+  padding: 1.05rem 1.1rem 1rem 1.1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #f2f8fc 100%);
+  border: 1px solid #d7e3ec;
+  border-left: 6px solid #4b7fa6;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(28, 58, 82, 0.08);
+}
+.interactive-title {
+  margin: 0 0 0.42rem 0;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #163c5d;
+  letter-spacing: 0.01em;
+}
+.interactive-caption {
+  margin: 0 0 0.8rem 0;
+  color: #4e6778;
+  font-size: 0.92rem;
+  line-height: 1.56;
+}
+.interactive-button {
+  display: inline-block;
+  padding: 0.64rem 1rem;
+  border-radius: 999px;
+  background: #1f4e79;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 24px rgba(31, 78, 121, 0.18);
+}
+.interactive-button:hover {
+  background: #163c5d;
+}
+</style>
+
+</head><body 
+><div class="tableofcontents" style="margin-top:2rem;">
+<h1 class="partHead" style="margin-top:0;"><span class="titlemark">Classic Problems in Magnetohydrodynamics</span></h1>
+<p><strong>HTML Book</strong></p>
+<p>This stitched web edition gathers the current stable lecture previews into one continuous reader with shared navigation, shared assets, and a single table of contents.</p>
+<p><a class="interactive-button" href="Classic_Problems_in_Magnetohydrodynamics.pdf">Open the PDF edition</a></p>
+</div>
+<div class="callout callout-overview">
+<div class="callout-title">Overview</div>
+<div class="callout-body"><blockquote class="quote">
+<p class="noindent">The current stitched edition covers Lectures 0 through 44, from the opening foundations through equilibrium, waves, kinetic MHD, interchange, kinks, TAEs, ballooning modes, tearing, helicity, reconnection, shocks, and the late-book appendices.</p>
+<p class="noindent">If you want a stable citation target or a printable version, use the <a href="Classic_Problems_in_Magnetohydrodynamics.pdf">PDF edition</a> linked above.</p>
+</blockquote></div>
+</div>
+<h2 class="likechapterHead"><a id="preview-contents"></a>Contents</h2>
+<div class="tableofcontents">
+<span class="partToc">Part I: Foundations</span><br />
+<span class="chapterToc"><a href="lecture0.html">Lecture 0 Impedance Matching: The Background You Already Have</a></span><br />
+<span class="chapterToc"><a href="lecture1.html">Lecture 1 Introduction</a></span><br />
+<span class="chapterToc"><a href="lecture2.html">Lecture 2 Resistive-Viscous MHD Equations</a></span><br />
+<span class="chapterToc"><a href="lecture3.html">Lecture 3 Conservative (Divergence) Form of MHD</a></span><br />
+<span class="chapterToc"><a href="lecture4.html">Lecture 4 Flux Freezing and the Ideal MHD Limit</a></span><br />
+<span class="chapterToc"><a href="lecture5.html">Lecture 5 Braginskii Closure and the Validity of MHD</a></span><br />
+<span class="chapterToc"><a href="lecture6.html">Lecture 6 CGL: Collisionless, Anisotropic MHD</a></span><br />
+<span class="partToc">Part II: Classical Examples and Applications</span><br />
+<span class="chapterToc"><a href="lecture7.html">Lecture 7 Hartmann Flow</a></span><br />
+<span class="chapterToc"><a href="lecture8.html">Lecture 8 The Solar Wind and Parker Spiral: Dynamic Equilibrium</a></span><br />
+<span class="chapterToc"><a href="lecture9.html">Lecture 9 Disc Driven Winds and Magnetic Towers</a></span><br />
+<span class="chapterToc"><a href="lecture10.html">Lecture 10 Dynamos</a></span><br />
+<span class="partToc">Part III: Equilibrium</span><br />
+<span class="chapterToc"><a href="lecture11.html">Lecture 11 Grad's Equilibrium Analysis</a></span><br />
+<span class="chapterToc"><a href="lecture12.html">Lecture 12 The Grad-Shafranov Equation and the Solov'ev Solution</a></span><br />
+<span class="chapterToc"><a href="lecture13.html">Lecture 13 The Shafranov Shift</a></span><br />
+<span class="chapterToc"><a href="lecture14.html">Lecture 14 Equilibrium Reconstruction and Properties</a></span><br />
+<span class="partToc">Part IV: Waves and the Energy Principle</span><br />
+<span class="chapterToc"><a href="lecture15.html">Lecture 15 The Energy Principle</a></span><br />
+<span class="chapterToc"><a href="lecture16.html">Lecture 16 Alfvn Waves</a></span><br />
+<span class="chapterToc"><a href="lecture17.html">Lecture 17 Kinetic MHD: Collisionless Pressure Response</a></span><br />
+<span class="chapterToc"><a href="lecture18.html">Lecture 18 Gravitational Interchange</a></span><br />
+<span class="chapterToc"><a href="lecture19.html">Lecture 19 The Magnetorotational Instability</a></span><br />
+<span class="partToc">Part V: Pressure- and Current-Driven Stability</span><br />
+<span class="chapterToc"><a href="lecture20.html">Lecture 20 Magnetic Interchange</a></span><br />
+<span class="chapterToc"><a href="lecture21.html">Lecture 21 FLR Stabilization: Roberts-Taylor Extended MHD</a></span><br />
+<span class="chapterToc"><a href="lecture22.html">Lecture 22 The Kruskal-Shafranov Kink Mode</a></span><br />
+<span class="chapterToc"><a href="lecture23.html">Lecture 23 Newcomb's Formulation for the Diffuse Pinch</a></span><br />
+<span class="chapterToc"><a href="lecture24.html">Lecture 24 External Kink Modes</a></span><br />
+<span class="chapterToc"><a href="lecture25.html">Lecture 25 Suydam and Mercier: Local Pressure-Driven Stability Tests</a></span><br />
+<span class="chapterToc"><a href="lecture26.html">Lecture 26 Rosenbluth, Dagazian and Rutherford: The cylindrical \(m=1\) Internal Kink</a></span><br />
+<span class="chapterToc"><a href="lecture27.html">Lecture 27 Bussac: The Toroidal \(n=1\) Internal Kink</a></span><br />
+<span class="chapterToc"><a href="lecture28.html">Lecture 28 Toroidal Alfvén Eigenmodes</a></span><br />
+<span class="chapterToc"><a href="lecture29.html">Lecture 29 Ballooning Modes</a></span><br />
+<span class="partToc">Part VI: Resistive Relaxation, Reconnection, and Self-Organization</span><br />
+<span class="chapterToc"><a href="lecture30.html">Lecture 30 Furth, Killeen and Rosenbluth: Tearing Modes</a></span><br />
+<span class="chapterToc"><a href="lecture31.html">Lecture 31 Coppi, Greene, and Johnson: Resistive Interchange</a></span><br />
+<span class="chapterToc"><a href="lecture32.html">Lecture 32 Magnetic Helicity, Relaxation, and Self-Organization</a></span><br />
+<span class="chapterToc"><a href="lecture33.html">Lecture 33 Magnetic Reconnection</a></span><br />
+<span class="partToc">Part VII: Shocks and Discontinuities</span><br />
+<span class="chapterToc"><a href="lecture34.html">Lecture 34 Shocks</a></span><br />
+<span class="partToc">Appendices: Advanced Topics and Appendices</span><br />
+<span class="chapterToc"><a href="lecture35.html">Lecture 35 Hydrostatic and Thermal Equilibrium of the Sun</a></span><br />
+<span class="chapterToc"><a href="lecture36.html">Lecture 36 Inertial Confinement Fusion: Adiabatic Compression and Shock Heating</a></span><br />
+<span class="chapterToc"><a href="lecture37.html">Lecture 37 Kinetic examples for \(p_\perp (\psi ,B)\) and \(p_\parallel (\psi ,B)\)</a></span><br />
+<span class="chapterToc"><a href="lecture38.html">Lecture 38 Self-Adjointness of the Ideal-MHD Force Operator</a></span><br />
+<span class="chapterToc"><a href="lecture39.html">Lecture 39 The Reversed-Field Pinch</a></span><br />
+<span class="chapterToc"><a href="lecture40.html">Lecture 40 Motion, Moving Walls, and Shear in MHD Stability</a></span><br />
+<span class="chapterToc"><a href="lecture41.html">Lecture 41 Ferritic thin wall and the ferromagnetic wall mode</a></span><br />
+<span class="chapterToc"><a href="lecture42.html">Lecture 42 Matched Inner Tearing-Mode Solution for \(y''=-x(1-xy)\)</a></span><br />
+<span class="chapterToc"><a href="lecture43.html">Lecture 43 The 2-D Toroidal Energy Principle and the High-\(n\) Ballooning Limit</a></span><br />
+<span class="chapterToc"><a href="lecture44.html">Lecture 44 Resistive Modes of a Sheet Pinch</a></span><br />
+</div></body></html> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+
+
