@@ -585,7 +585,7 @@ streamline/field line: \(\rho u_r r^2=\mathrm {const}\) and \(B_r r^2=\mathrm {c
 angular velocity \(\Omega _F \equiv r^{-1}(u_\phi -u_r B_\phi /B_r)\) (equal to the solar rotation rate in the original Weber&#8211;Davis model); the
 azimuthal momentum equation gives the total specific angular momentum \(L \equiv r\!\left (u_\phi -\frac {B_r B_\phi }{4\pi \rho u_r}\right )=r\!\left (u_\phi -\frac {B_\phi }{4\pi \kappa }\right )\); and integrating
 the radial equation gives a Bernoulli constant \(E \equiv \tfrac 12(u_r^2+u_\phi ^2)+h-\frac {GM_\odot }{r}-\Omega _F r \frac {B_\phi }{4\pi \kappa }\), with \(h=\int dp/\rho \) or \(h=\gamma p/[(\gamma -1)\rho ]\) for a polytrope. Regularity at the
-Alfvn point then yields the classic lever-arm relation \(L=\Omega _F r_A^2\), which makes explicit how the magnetic
+Alfv&eacute;n point then yields the classic lever-arm relation \(L=\Omega _F r_A^2\), which makes explicit how the magnetic
 field enforces near-corotation close to the Sun while extracting angular momentum from the
 wind.
 </p><!--l. 399--><p class="noindent" >We now restore magnetic field and rotation. The resulting model is still highly idealized, but it is enough
@@ -638,7 +638,7 @@ Equation (<a href="lecture8.html#eq-eq-sw-isorotation">8.55</a>) is the statemen
 </p>
 <!--l. 519--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1580003"></a>Solve for \(u_\phi \) and \(B_\phi \)</span>
-Define the radial Alfvn Mach number <a id="eq-eq-sw-MAdef"></a><div class="math-display">\[M_A^2 \equiv \frac {\muo \rho u_r^2}{B_r^2}. \tag{8.56}\]</div>
+Define the radial Alfv&eacute;n Mach number <a id="eq-eq-sw-MAdef"></a><div class="math-display">\[M_A^2 \equiv \frac {\muo \rho u_r^2}{B_r^2}. \tag{8.56}\]</div>
 Also write <a id="eq-eq-sw-qdef"></a><div class="math-display">\[q\equiv \frac {B_\phi }{B_r}. \tag{8.57}\]</div>
 Then (<a href="lecture8.html#eq-eq-sw-Lconst">8.48</a>) and (<a href="lecture8.html#eq-eq-sw-isorotation">8.55</a>) become <a id="eq-eq-sw-eq1_q"></a><div class="math-display">\[\begin{aligned}u_\phi - \frac {u_r q}{M_A^2} &amp;= \frac {L}{r},  \\ u_\phi - u_r q &amp;= \Omega _\odot r.\end{aligned} \tag{8.58}\]</div>
 </p><!--l. 541--><p class="noindent" >Subtract (<a href="lecture8.html#eq-eq-sw-eq2_q">8.59</a>) from (<a href="lecture8.html#eq-eq-sw-eq1_q">8.58</a>): <a id="eq-eq-sw-q_algebra1"></a><div class="math-display">\[u_r q\left (1-\frac {1}{M_A^2}\right )=\frac {L}{r}-\Omega _\odot r. \tag{8.60}\]</div>
@@ -665,12 +665,12 @@ class="content">Field lines viewed from top as derived from \(B_r\) and \(B_\phi
 </div><hr class="endfigure" />
 <!--l. 590--><p class="noindent" ><div class="video-shell"><p class="video-title">Parker Spiral Animation</p><p class="video-caption">Watch for how steady radial outflow and solar rotation combine to wind the magnetic field into a trailing spiral, with the field at Earth sitting at an intermediate angle rather than remaining purely radial.</p><img src="media/parker_spiral_animation.gif" alt="Animated Parker spiral geometry from the Sun to Earth" /><p class="video-caption">Animated geometry paired with the Parker-spiral derivation and the estimate of the spiral angle near 1 AU.</p></div> These
 expressions appear singular when \(M_A=1\). The singularity is removed only if the numerators vanish at the same
-radius. Define the Alfvn point by <a id="eq-eq-sw-alfven_point"></a><div class="math-display">\[u_r^2(r_A)=\frac {B_r^2(r_A)}{\muo \rho (r_A)} \qquad \Longleftrightarrow \qquad M_A(r_A)=1. \tag{8.65}\]</div>
+radius. Define the Alfv&eacute;n point by <a id="eq-eq-sw-alfven_point"></a><div class="math-display">\[u_r^2(r_A)=\frac {B_r^2(r_A)}{\muo \rho (r_A)} \qquad \Longleftrightarrow \qquad M_A(r_A)=1. \tag{8.65}\]</div>
 Regularity at \(r=r_A\) then requires <a id="eq-eq-sw-L_alfven"></a><div class="math-display">\[\frac {L}{r_A}-\Omega _\odot r_A = 0 \qquad \Longrightarrow \qquad L=\Omega _\odot r_A^2. \tag{8.66}\]</div>
 Substitute (<a href="lecture8.html#eq-eq-sw-L_alfven">8.66</a>) into (<a href="lecture8.html#eq-eq-sw-Bphi_general">8.62</a>) and (<a href="lecture8.html#eq-eq-sw-uphi_general">8.64</a>): <a id="eq-eq-sw-Bphi_final"></a><div class="math-display">\[\boxed { B_\phi = -\frac {B_r\Omega _\odot r}{u_r} \left [ \frac {1-r_A^2/r^2}{M_A^2-1} \right ]M_A^2, } \tag{8.67}\]</div>
 <a id="eq-eq-sw-uphi_final"></a><div class="math-display">\[\boxed { u_\phi = \Omega _\odot r \left [ \frac {M_A^2 r_A^2/r^2-1}{M_A^2-1} \right ]. } \tag{8.68}\]</div>
-</p><!--l. 629--><p class="noindent" >These formulas make the physics transparent. Inside the Alfvn radius, \(M_A\ll 1\) and the magnetic field
-enforces near-corotation, \(u_\phi \approx \Omega _\odot r\). Outside the Alfvn radius, \(M_A\gg 1\) and the plasma inertia dominates, giving <a id="eq-eq-sw-farfield_limits"></a><div class="math-display">\[u_\phi \approx \frac {\Omega _\odot r_A^2}{r}, \qquad B_\phi \approx -\frac {\Omega _\odot r}{u_r}B_r. \tag{8.69}\]</div>
+</p><!--l. 629--><p class="noindent" >These formulas make the physics transparent. Inside the Alfv&eacute;n radius, \(M_A\ll 1\) and the magnetic field
+enforces near-corotation, \(u_\phi \approx \Omega _\odot r\). Outside the Alfv&eacute;n radius, \(M_A\gg 1\) and the plasma inertia dominates, giving <a id="eq-eq-sw-farfield_limits"></a><div class="math-display">\[u_\phi \approx \frac {\Omega _\odot r_A^2}{r}, \qquad B_\phi \approx -\frac {\Omega _\odot r}{u_r}B_r. \tag{8.69}\]</div>
 </p>
 <!--l. 637--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1590003"></a>Maxwell stress and solar spindown</span>
@@ -678,7 +678,7 @@ The angular-momentum flux per unit solid angle is <a id="eq-eq-sw-FJ"></a><div c
 Use (<a href="lecture8.html#eq-eq-sw-Lconst">8.48</a>) to rewrite this as <a id="eq-eq-sw-FJ_KL"></a><div class="math-display">\[\begin{aligned}\mathcal {F}_J &amp;= \rho u_r r^2 \cdot r\left (u_\phi - \frac {B_r B_\phi }{\muo \rho u_r}\right ) \\ &amp;= K L.\end{aligned} \tag{8.72}\]</div>
 </p><!--l. 658--><p class="noindent" >Multiplying by \(4\pi \) gives the total torque, <a id="eq-eq-sw-Jdot_L"></a><div class="math-display">\[\dot J = 4\pi \mathcal {F}_J = 4\pi K L = \dot M_\odot L. \tag{8.73}\]</div>
 Using (<a href="lecture8.html#eq-eq-sw-L_alfven">8.66</a>), <a id="eq-eq-sw-Jdot_final"></a><div class="math-display">\[\boxed { \dot J = \dot M_\odot \,\Omega _\odot \,r_A^2. } \tag{8.74}\]</div>
-This is the standard magnetic-braking formula. The Alfvn radius acts as the effective lever arm: matter
+This is the standard magnetic-braking formula. The Alfv&eacute;n radius acts as the effective lever arm: matter
 leaves with modest azimuthal speed, but the magnetic field transmits the corotation torque out to \(r_A\) before
 the gas fully decouples.
 </p>
@@ -775,7 +775,7 @@ weakly collisional over much of the heliosphere. In that regime the pressure nee
 the later CGL/kinetic lectures become important.
 </p><!--l. 742--><p class="noindent" >A very simple scaling already shows why. In the collisionless double-adiabatic limit, <a id="eq-eq-sw-CGL_scalings"></a><div class="math-display">\[\frac {p_\perp }{\rho B}=\text {const}, \qquad \frac {p_\parallel B^2}{\rho ^3}=\text {const}. \tag{8.81}\]</div>
 For a nearly radial far-zone wind, <a id="eq-eq-sw-radial_scalings"></a><div class="math-display">\[B_r\propto r^{-2}, \qquad \rho u_r r^2=\text {const}. \tag{8.82}\]</div>
-If \(u_r\) is approximately constant once the wind is super-Alfvnic, then \(\rho \propto r^{-2}\) as well. Equation (<a href="lecture8.html#eq-eq-sw-CGL_scalings">8.81</a>) then implies
+If \(u_r\) is approximately constant once the wind is super-Alfv&eacute;nic, then \(\rho \propto r^{-2}\) as well. Equation (<a href="lecture8.html#eq-eq-sw-CGL_scalings">8.81</a>) then implies
 <a id="eq-eq-sw-anisotropy_growth"></a><div class="math-display">\[p_\perp \propto \rho B \propto r^{-4}, \qquad p_\parallel \propto \frac {\rho ^3}{B^2} \propto r^{-2}. \tag{8.83}\]</div>
 Therefore <a id="eq-eq-sw-anisotropy_ratio"></a><div class="math-display">\[\frac {p_\parallel }{p_\perp }\propto r^2. \tag{8.84}\]</div>
 So even if the pressure starts nearly isotropic near the Sun, radial expansion naturally drives anisotropy.
@@ -796,7 +796,7 @@ href="lecture8.html#XBale2009Anisotropy">2009</a>].
    <li class="itemize">In ideal MHD, frozen-in flux and solar rotation produce two key invariants: total
    specific angular momentum (<a href="lecture8.html#eq-eq-sw-Lconst">8.48</a>) and field-line corotation (<a href="lecture8.html#eq-eq-sw-isorotation">8.55</a>).
    </li>
-   <li class="itemize">The Alfvn radius is the magnetic lever arm. It sets both the Parker-spiral geometry
+   <li class="itemize">The Alfv&eacute;n radius is the magnetic lever arm. It sets both the Parker-spiral geometry
    and the stellar torque \(\dot J=\dot M_\odot \Omega _\odot r_A^2\).
    </li>
    <li class="itemize">The textbook Parker solution uses isotropic pressure, but heliospheric expansion
@@ -919,7 +919,7 @@ and using steady axisymmetry, show that <div class="math-display">\[u_\phi -\fra
 Explain the physical meaning of this relation.
 </p>
 <!--l. 868--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-1730001"></a>Part C: Alfvn point and stellar torque</span>
+ id="x1-1730001"></a>Part C: Alfv&eacute;n point and stellar torque</span>
 Define <div class="math-display">\[M_A^2=\frac {\muo \rho u_r^2}{B_r^2}.\]</div>
 </p>
 <!--l. 874--><p class="noindent" ><span class="likeparagraphHead"><a 
@@ -928,7 +928,7 @@ Solve the two equations from Part B for \(u_\phi \) and \(B_\phi \) in terms of 
 </p>
 <!--l. 877--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1750001"></a>C2.</span>
-Show that regularity at the Alfvn point \(M_A=1\) requires <div class="math-display">\[L=\Omega _\odot r_A^2.\]</div>
+Show that regularity at the Alfv&eacute;n point \(M_A=1\) requires <div class="math-display">\[L=\Omega _\odot r_A^2.\]</div>
 </p>
 <!--l. 883--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1760001"></a>C3.</span>
