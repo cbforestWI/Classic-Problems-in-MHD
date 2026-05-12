@@ -518,6 +518,51 @@ div.figure .caption {
   font-size: 0.92rem;
   line-height: 1.55;
 }
+.hero-meta {
+  margin-top: 1rem;
+  color: #5a7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.hero-meta strong {
+  color: #274a61;
+}
+.edition-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 0.95rem;
+  font-size: 0.92rem;
+}
+.edition-links a {
+  color: #1f5f88;
+  text-decoration: none;
+  font-weight: 600;
+}
+.edition-links a:hover {
+  text-decoration: underline;
+}
+.citation-shell {
+  margin: 1.2rem 0 1.6rem 0;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(180deg, #fbfcfd 0%, #f4f8fb 100%);
+  border: 1px solid #d8e3eb;
+  border-left: 5px solid #5b8db1;
+  border-radius: 14px;
+}
+.citation-shell h3 {
+  margin: 0 0 0.45rem 0;
+  font-size: 1rem;
+}
+.citation-shell p {
+  margin: 0.35rem 0;
+  color: #445d6a;
+  line-height: 1.62;
+}
+.citation-shell code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
 @media (max-width: 1100px) {
   .hero-grid,
   .path-grid,
@@ -541,10 +586,21 @@ div.figure .caption {
 <p>This web edition keeps that spirit, but adds interactive explorers, movies, and stitched navigation so the classic problems can be approached from several directions at once: derivation, geometry, experiment, and physical intuition.</p>
 <p>A theoretical result does not become fully intelligible until it has been reconstructed at least once. These notes are therefore organized around problems rather than formalism alone, and the algebra is carried far enough that the approximations, balances, and experimental consequences stay visible.</p>
 </div>
+<div class="hero-meta">
+<strong>Cary Forest</strong><br />
+Department of Physics, University of Wisconsin--Madison<br />
+Copyright &copy; 2026 Cary Forest. All rights reserved.
+</div>
 <div class="hero-actions">
 <a class="interactive-button" href="Classic_Problems_in_Magnetohydrodynamics.pdf">Open the PDF edition</a>
 <a class="hero-button-secondary" href="#preview-contents">Jump to contents</a>
 <a class="hero-button-secondary" href="lecture0.html">Start with Lecture 0</a>
+</div>
+<div class="edition-links">
+<a href="https://magnetohydrodynamics.physics.wisc.edu">Website</a>
+<a href="Classic_Problems_in_Magnetohydrodynamics.pdf">PDF</a>
+<a href="https://github.com/cbforestWI/Classic-Problems-in-MHD">GitHub</a>
+<a href="LICENSE">Rights and permissions</a>
 </div>
 </div>
 <div class="hero-side">
@@ -567,9 +623,15 @@ div.figure .caption {
 <div class="callout callout-overview">
 <div class="callout-title">Overview</div>
 <div class="callout-body"><blockquote class="quote">
-<p class="noindent">The current stitched edition covers Lectures 0 through 44, from the opening foundations through equilibrium, waves, kinetic MHD, interchange, kinks, TAEs, ballooning modes, tearing, helicity, reconnection, shocks, and the late-book appendices.</p>
-<p class="noindent">If you want a stable citation target or a printable version, use the <a href="Classic_Problems_in_Magnetohydrodynamics.pdf">PDF edition</a> linked above.</p>
+<p class="noindent">The current web edition covers Lectures 0 through 44, from the opening foundations through equilibrium, waves, kinetic MHD, interchange, kinks, TAEs, ballooning modes, tearing, helicity, reconnection, shocks, and the late-book appendices.</p>
+<p class="noindent">If you want a printable version, use the <a href="Classic_Problems_in_Magnetohydrodynamics.pdf">PDF edition</a> linked above. For a long-lived archive record, the intent is to cite the Zenodo concept DOI for this project once that DOI is minted.</p>
 </blockquote></div>
+</div>
+<div class="citation-shell">
+<h3>How to cite these notes</h3>
+<p><strong>Preferred citation:</strong> Cary Forest, <em>Classic Problems in Magnetohydrodynamics: Interactive Web Edition</em> (University of Wisconsin--Madison, 2026), <a href="https://magnetohydrodynamics.physics.wisc.edu">magnetohydrodynamics.physics.wisc.edu</a>.</p>
+<p><strong>Zenodo DOI:</strong> concept DOI pending. When the Zenodo archive is finalized, use the project-level concept DOI here for the web edition as a whole.</p>
+<p><strong>Source / release record:</strong> <a href="https://github.com/cbforestWI/Classic-Problems-in-MHD">github.com/cbforestWI/Classic-Problems-in-MHD</a></p>
 </div>
 <div class="art-strip">
 <div class="art-card"><img src="figures/cerfon_solovev_triptych.png" alt="Shaped flux surfaces and analytic equilibrium families" /><strong>Equilibrium and shaping</strong><span>Analytic Grad-Shafranov structure, shaping, reconstruction, and the geometry of confined plasmas.</span></div>
@@ -642,5 +704,4 @@ div.figure .caption {
                                                                                          
                                                                                          
                                                                                          
-
 
