@@ -10,7 +10,7 @@
 <meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <!-- xhtml,mathjax,html --> 
 <meta name="src" content="main_html_mathjax_preview.tex" /> 
-<link rel="stylesheet" type="text/css" href="book.css" /> 
+<link rel="stylesheet" type="text/css" href="main_html_mathjax_preview.css" /> 
 <script src="mathjax_preview_macros.js"></script> 
  <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
 
@@ -146,6 +146,9 @@ div.figure,
   margin-left: auto;
   margin-right: auto;
 }
+.figure-wide-lab {
+  width: 94%;
+}
 div.figure img {
   display: block;
   margin-left: auto;
@@ -161,6 +164,9 @@ div.figure img {
 @media (max-width: 1100px) {
   div.figure,
   .video-shell {
+    width: 100%;
+  }
+  .figure-wide-lab {
     width: 100%;
   }
 }
@@ -663,7 +669,8 @@ class="content">Field lines viewed from top as derived from \(B_r\) and \(B_\phi
                                                                                          
                                                                                          
 </div><hr class="endfigure" />
-<!--l. 590--><p class="noindent" ><div class="video-shell"><p class="video-title">Parker Spiral Animation</p><p class="video-caption">Watch for how steady radial outflow and solar rotation combine to wind the magnetic field into a trailing spiral, with the field at Earth sitting at an intermediate angle rather than remaining purely radial.</p><img src="media/parker_spiral_animation.gif" alt="Animated Parker spiral geometry from the Sun to Earth" /><p class="video-caption">Animated geometry paired with the Parker-spiral derivation and the estimate of the spiral angle near 1 AU.</p></div> These
+<!--l. 590--><p class="noindent" >An animation of the field-line topology is available at <a 
+href="http://doi.org/10.5281/zenodo.19363191" class="url" ><tspan font-family="ectt" font-size="1095">http://doi.org/10.5281/zenodo.19363191</tspan></a>. These
 expressions appear singular when \(M_A=1\). The singularity is removed only if the numerators vanish at the same
 radius. Define the Alfv&eacute;n point by <a id="eq-eq-sw-alfven_point"></a><div class="math-display">\[u_r^2(r_A)=\frac {B_r^2(r_A)}{\muo \rho (r_A)} \qquad \Longleftrightarrow \qquad M_A(r_A)=1. \tag{8.65}\]</div>
 Regularity at \(r=r_A\) then requires <a id="eq-eq-sw-L_alfven"></a><div class="math-display">\[\frac {L}{r_A}-\Omega _\odot r_A = 0 \qquad \Longrightarrow \qquad L=\Omega _\odot r_A^2. \tag{8.66}\]</div>
@@ -682,12 +689,7 @@ This is the standard magnetic-braking formula. The Alfv&eacute;n radius acts as 
 leaves with modest azimuthal speed, but the magnetic field transmits the corotation torque out to \(r_A\) before
 the gas fully decouples.
 </p>
-<hr class="figure" /><div class="figure" 
->
-                                                                                         
-                                                                                         
-<a 
- id="x1-1610013"></a>
+<hr class="figure" /><div class="figure figure-wide-lab"><a id="x1-1610013"></a>
                                                                                          
                                                                                          
 <!--l. 674--><p class="noindent" > <img 
@@ -743,12 +745,7 @@ href="lecture8.html#Xpeterson2021laminar-0f5">Peterson et&#x00A0;al.</a>&#x00A0;
 href="lecture8.html#Xpeterson2021laminar-0f5">2021</a>]. This is exactly the kind of cross-scale connection that makes MHD so
 powerful.
 </p>
-<hr class="figure" /><div class="figure" 
->
-                                                                                         
-                                                                                         
-<a 
- id="x1-1630014"></a>
+<hr class="figure" /><div class="figure figure-wide-lab"><a id="x1-1630014"></a>
                                                                                          
                                                                                          
 <!--l. 733--><p class="noindent" > <img 
