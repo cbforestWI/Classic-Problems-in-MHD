@@ -381,7 +381,7 @@ div.figure .caption {
 </head><body 
 ><div class="preview-nav"><a class="nav-prev" href="lecture9.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture11.html">Next Lecture &#8594;</a></div>
 <h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;10</span><br /><a 
- id="x1-22100010"></a>Dynamos</h2>
+ id="x1-22300010"></a>Dynamos</h2>
 <!--l. 5--><div class="callout callout-overview"><div class="callout-title">Overview</div><div class="callout-body"><blockquote class="quote">
      <!--l. 5--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Why this lecture matters. </tspan>A dynamo is not just &#8220;a magnetic field in motion.&#8221; It is a
      conducting flow that amplifies magnetic energy fast enough to outrun resistive diffusion. This
@@ -447,9 +447,9 @@ href="lecture10.html#Xparker1955hydromagnetic">1955</a>].
      astrophysical  rhetoric,  while  simultaneously  forcing  everyone  to  confront  threshold,
      saturation,  symmetry  breaking,  and  turbulence  as  dynamo  problems  in  their  own
      right [<a 
-href="lecture10.html#XStieglitzMueller2001">Stieglitz and Mller</a>,&#x00A0;<a 
+href="lecture10.html#XStieglitzMueller2001">Stieglitz and Müller</a>,&#x00A0;<a 
 href="lecture10.html#XStieglitzMueller2001">2001</a>,&#x00A0;<a 
-href="lecture10.html#XMuellerEtAl2008Karlsruhe">Mller et&#x00A0;al.</a>,&#x00A0;<a 
+href="lecture10.html#XMuellerEtAl2008Karlsruhe">Müller et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XMuellerEtAl2008Karlsruhe">2008</a>,&#x00A0;<a 
 href="lecture10.html#XMonchaux2007VKS">Monchaux et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XMonchaux2007VKS">2007</a>,&#x00A0;<a 
@@ -459,11 +459,11 @@ href="lecture10.html#XSpence2005">2005</a>,&#x00A0;<a
 href="lecture10.html#XNornberg2006">Nornberg et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XNornberg2006">2006</a>].</p></blockquote></div></div>
 <a 
- id="x1-221005r211"></a>
+ id="x1-223005r213"></a>
 <h3 class="sectionHead"><span class="titlemark">10.1   </span> <a 
- id="x1-2220001"></a>The kinematic dynamo problem</h3>
+ id="x1-2240001"></a>The kinematic dynamo problem</h3>
 <!--l. 29--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2230001"></a>Induction equation and the eigenvalue viewpoint.</span>
+ id="x1-2250001"></a>Induction equation and the eigenvalue viewpoint.</span>
 We start from the induction equation derived in the introduction, Eq.&#x00A0;(<a href="lecture1.html#eq-eq-intro-induction">1.13</a>): <div class="math-display">\[\pp {\B }{t} = \curl (\uvec \times \B ) - \curl (\eta \J ), \qquad \divergence \B = 0.\]</div>
 If the resistivity is spatially uniform, this becomes <a id="eq-eq-dyn-induction"></a><div class="math-display">\[\pp {\B }{t} = \curl (\uvec \times \B ) + \lambda \lap \B , \qquad \lambda \equiv \frac {\eta }{\muo }=\frac {1}{\muo \sigma }. \tag{10.2}\]</div>
 The <tspan font-family="ecti" font-size="1095">kinematic dynamo </tspan>approximation treats \(\uvec (\xvec ,t)\) as prescribed and neglects the Lorentz-force back reaction in
@@ -478,7 +478,7 @@ alone does not guarantee growth. A dynamo needs a velocity field that repeatedly
 the field, not just one that carries it around.
 </p>
 <!--l. 79--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2240001"></a>Why stretching matters: the magnetic-energy equation.</span>
+ id="x1-2260001"></a>Why stretching matters: the magnetic-energy equation.</span>
 The algebra becomes much clearer if we expand the induction term. Using the identity \[ \curl (\uvec \times \B ) = \uvec (\divergence \B ) - \B (\divergence \uvec ) + (\B \cdot \grad )\uvec - (\uvec \cdot \grad )\B , \] and imposing \(\divergence \B =0\), we
 obtain <a id="eq-eq-dyn-convective"></a><div class="math-display">\[\pp {\B }{t} + (\uvec \cdot \grad )\B + \B \,\divergence \uvec = (\B \cdot \grad )\uvec + \lambda \lap \B . \tag{10.5}\]</div>
 For incompressible flow, \(\divergence \uvec = 0\), so <a id="eq-eq-dyn-convective_incompressible"></a><div class="math-display">\[\pp {\B }{t} + (\uvec \cdot \grad )\B = (\B \cdot \grad )\uvec + \lambda \lap \B . \tag{10.6}\]</div>
@@ -502,7 +502,7 @@ average.
      stretching the field to small scales until the weak diffusion neglected in (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) becomes
      important again.</p></blockquote></div></div>
 <!--l. 184--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2250001"></a>Stretch&#8211;twist&#8211;fold as the irreducible cartoon.</span>
+ id="x1-2270001"></a>Stretch&#8211;twist&#8211;fold as the irreducible cartoon.</span>
 The most compact way to see why stretching matters is to compare magnetic evolution with the evolution
 of a material line element. In ideal incompressible MHD, (<a href="lecture10.html#eq-eq-dyn-convective_incompressible">10.6</a>) reduces to <a id="eq-eq-dyn-ideal_stretch"></a><div class="math-display">\[\frac {D\B }{Dt} = (\B \cdot \grad )\uvec . \tag{10.15}\]</div>
 A material line element \(\delta \xvec \) connecting two neighboring fluid parcels obeys <a id="eq-eq-dyn-lineelement"></a><div class="math-display">\[\frac {D\,\delta \xvec }{Dt} = (\delta \xvec \cdot \grad )\uvec . \tag{10.16}\]</div>
@@ -521,7 +521,7 @@ picture is therefore not a literal engineering blueprint. It is the minimal kine
 dynamo.
 </p>
 <!--l. 215--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2260001"></a>A smooth realization of stretch&#8211;twist&#8211;fold: the Dudley&#8211;James flow.</span>
+ id="x1-2280001"></a>A smooth realization of stretch&#8211;twist&#8211;fold: the Dudley&#8211;James flow.</span>
 Bullard and Gellman introduced the toroidal&#8211;poloidal decomposition that makes spherical kinematic
 calculations practical [<a 
 href="lecture10.html#Xbullard1954homogeneous-60a">Bullard and Gellman</a>,&#x00A0;<a 
@@ -551,15 +551,15 @@ ropes. A smooth, divergence-free flow in an ordinary sphere can realize the same
 continuously.
 </p>
 <!--l. 283--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2270001"></a>Experimental perspective.</span>
+ id="x1-2290001"></a>Experimental perspective.</span>
 Kinematic calculations mattered enormously for experiment because liquid-sodium facilities cannot reach
 arbitrarily large \(\mathrm {Rm}\). The flow has to be engineered to sit near threshold as efficiently as possible,
 but there are very different ways to do that. Karlsruhe deliberately realized a Roberts-type
 two-scale dynamo with helical channels, so the experiment was almost a direct embodiment
 of a mean-field calculation [<a 
-href="lecture10.html#XStieglitzMueller2001">Stieglitz and Mller</a>,&#x00A0;<a 
+href="lecture10.html#XStieglitzMueller2001">Stieglitz and Müller</a>,&#x00A0;<a 
 href="lecture10.html#XStieglitzMueller2001">2001</a>,&#x00A0;<a 
-href="lecture10.html#XMuellerEtAl2008Karlsruhe">Mller et&#x00A0;al.</a>,&#x00A0;<a 
+href="lecture10.html#XMuellerEtAl2008Karlsruhe">Müller et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XMuellerEtAl2008Karlsruhe">2008</a>]. The Madison
 Dynamo Experiment pursued a different philosophy: approximate a smooth spherical two-vortex
 flow strongly enough that the predicted magnetic eigenmodes become experimentally relevant
@@ -578,7 +578,7 @@ Karlsruhe.
                                                                                          
                                                                                          
 <a 
- id="x1-2270011"></a>
+ id="x1-2290011"></a>
                                                                                          
                                                                                          
 <!--l. 288--><p class="noindent" > <img 
@@ -593,7 +593,7 @@ became central parts of the story [<a
 href="lecture10.html#XSpence2005">Spence et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XSpence2005">2005</a>,&#x00A0;<a 
 href="lecture10.html#XNornberg2006">Nornberg et&#x00A0;al.</a>,&#x00A0;<a 
-href="lecture10.html#XNornberg2006">2006</a>].</span></div><!--tex4ht:label?: x1-2270011 -->
+href="lecture10.html#XNornberg2006">2006</a>].</span></div><!--tex4ht:label?: x1-2290011 -->
                                                                                          
                                                                                          
 </div><hr class="endfigure" /><div class="video-shell"><p class="video-title">Field-Line Movie</p><p class="video-caption">Watch for the three-dimensional stretching and return of field structures that make the Madison flow a smooth laboratory analogue of stretch&#8211;twist&#8211;fold dynamics.</p><video controls preload="metadata"><source src="media/field_line-2-440.mp4" type="video/mp4" />Your browser does not appear to support this video directly.</video><p class="video-caption">Movie clip associated with the Madison Dynamo Experiment discussion in this lecture.</p></div>
@@ -604,7 +604,7 @@ close enough to that kinematic target for the corresponding magnetic eigenmode t
 In that sense Madison is not a separate story from stretch&#8211;twist&#8211;fold. It is an attempt to
 realize a smooth three-dimensional stretch&#8211;twist&#8211;fold surrogate in sodium rather than on a
 blackboard.
-</p><!--l. 295--><p class="noindent" >VKS adds yet another twist. It achieved self-excitation in a violently turbulent von Krmn flow
+</p><!--l. 295--><p class="noindent" >VKS adds yet another twist. It achieved self-excitation in a violently turbulent von Kármán flow
 [<a 
 href="lecture10.html#XMonchaux2007VKS">Monchaux et&#x00A0;al.</a>,&#x00A0;<a 
 href="lecture10.html#XMonchaux2007VKS">2007</a>], but later analysis showed that the observed axisymmetric mode and the dynamo
@@ -629,11 +629,11 @@ and nonlinear saturation all became inseparable.
      intermittency, fluctuation-driven induction, and turbulent transport became part of the
      physics rather than just noise around a predetermined outcome.</p></blockquote></div></div>
 <a 
- id="x1-227002r231"></a>
+ id="x1-229002r233"></a>
 <h3 class="sectionHead"><span class="titlemark">10.2   </span> <a 
- id="x1-2280002"></a>Axisymmetry, flux functions, and Cowling&#8217;s theorem</h3>
+ id="x1-2300002"></a>Axisymmetry, flux functions, and Cowling&#8217;s theorem</h3>
 <!--l. 305--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2290002"></a>The Stokes function in axisymmetry.</span>
+ id="x1-2310002"></a>The Stokes function in axisymmetry.</span>
 Many geophysical and astrophysical systems are approximately axisymmetric, so it is natural to ask
 whether axisymmetry by itself can maintain a magnetic field. In cylindrical coordinates \((r,\phi ,z)\) with \(\pp {}{\phi }=0\), write
 <a id="eq-eq-dyn-decomp"></a><div class="math-display">\[\B = \B _p + B\,\vect {e}_\phi , \qquad \uvec = \uvec _p + r\Omega \,\vect {e}_\phi , \tag{10.25}\]</div>
@@ -645,13 +645,13 @@ Two immediate facts are worth checking explicitly. First, <div class="math-displ
                                                                                          
 is the poloidal magnetic flux through a circle of radius \(r\) at height \(z\). Second, <div class="math-display">\[\begin{aligned}\B _p\cdot \grad \psi &amp;= \left ( -\frac {1}{r}\pp {\psi }{z}\,\vect {e}_r + \frac {1}{r}\pp {\psi }{r}\,\vect {e}_z \right ) \cdot \left ( \pp {\psi }{r}\,\vect {e}_r + \pp {\psi }{z}\,\vect {e}_z \right ) \\[0.3em] &amp;= -\frac {1}{r}\pp {\psi }{z}\pp {\psi }{r} + \frac {1}{r}\pp {\psi }{r}\pp {\psi }{z} = 0,\end{aligned}\]</div>
 </p><!--l. 366--><p class="noindent" >so poloidal field lines lie on surfaces of constant \(\psi \).
-</p><!--l. 368--><p class="noindent" >Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) gives the toroidal current associated with \(\psi \): <a id="eq-eq-dyn-Jphi"></a><div class="math-display">\[\muo J_\phi = (\curl \B )_\phi = \pp {B_r}{z} - \pp {B_z}{r} = -\frac {1}{r}\Delta ^\star \psi , \tag{10.32}\]</div>
+</p><!--l. 368--><p class="noindent" >Ampère&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) gives the toroidal current associated with \(\psi \): <a id="eq-eq-dyn-Jphi"></a><div class="math-display">\[\muo J_\phi = (\curl \B )_\phi = \pp {B_r}{z} - \pp {B_z}{r} = -\frac {1}{r}\Delta ^\star \psi , \tag{10.32}\]</div>
 where <a id="eq-eq-dyn-DeltaStar"></a><div class="math-display">\[\Delta ^\star \psi \equiv r\pp {}{r} \left ( \frac {1}{r}\pp {\psi }{r} \right ) + \pp {^2 \psi }{z^2}. \tag{10.33}\]</div>
 This is the same operator that later appears in equilibrium theory. The toroidal current sources poloidal
 field; conversely, poloidal current sources toroidal field.
 </p>
 <!--l. 393--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2300002"></a>Derivation of the axisymmetric induction equations.</span>
+ id="x1-2320002"></a>Derivation of the axisymmetric induction equations.</span>
 The reason \(\psi \) is so useful is that the toroidal component of Ohm&#8217;s law immediately produces a scalar
 evolution equation. Start from (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>), \[ \E + \uvec \times \B = \eta \J , \] and take the \(\phi \) component. Because \(\vect {A} = \psi \grad \phi = (\psi /r)\vect {e}_\phi \), axisymmetry gives
 <a id="eq-eq-dyn-Ephi"></a><div class="math-display">\[E_\phi = -\pp {}{t}\left (\frac {\psi }{r}\right ) = -\frac {1}{r}\pp {\psi }{t}. \tag{10.34}\]</div>
@@ -672,7 +672,7 @@ Equation (<a href="lecture10.html#eq-eq-dyn-toroidal">10.40</a>) says that diffe
 (<a href="lecture10.html#eq-eq-dyn-psi">10.38</a>) says the reverse process is absent in strict axisymmetry.
 </p>
 <!--l. 506--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2310002"></a>Cowling&#8217;s theorem.</span>
+ id="x1-2330002"></a>Cowling&#8217;s theorem.</span>
 Cowling&#8217;s theorem may now be stated in its physically useful form:
      </p><blockquote class="quote">
      <!--l. 510--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Cowling&#8217;s theorem. </tspan>No purely axisymmetric flow can maintain a purely axisymmetric
@@ -692,12 +692,12 @@ with the correct cylindrical weighting, but the physical conclusion is already f
 axisymmetry there is diffusion of \(\psi \) and no source for \(\psi \). That is why an axisymmetric \(\Omega \) effect, by itself, never
 closes the loop.
 <a 
- id="x1-231001r238"></a>
+ id="x1-233001r240"></a>
 </p>
 <h3 class="sectionHead"><span class="titlemark">10.3   </span> <a 
- id="x1-2320003"></a>Mean-field closure and the alpha-Omega picture</h3>
+ id="x1-2340003"></a>Mean-field closure and the alpha-Omega picture</h3>
 <!--l. 555--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2330003"></a>Averaging and the turbulent electromotive force.</span>
+ id="x1-2350003"></a>Averaging and the turbulent electromotive force.</span>
 The way out of Cowling&#8217;s theorem is not to deny it, but to relax strict axisymmetry. Write \[ \uvec = \overline {\uvec } + \widetilde {\uvec }, \qquad \B = \overline {\B } + \widetilde {\B }, \] where the
 overbar denotes an average over fluctuations and \(\langle \widetilde {\uvec } \rangle = \langle \widetilde {\B }\rangle = 0\). Averaging (<a href="lecture10.html#eq-eq-dyn-induction">10.2</a>) gives <a id="eq-eq-dyn-mean_induction"></a><div class="math-display">\[\pp {\overline {\B }}{t} = \curl \!\left ( \overline {\uvec }\times \overline {\B } + \underbrace {\langle \widetilde {\uvec }\times \widetilde {\B }\rangle }_{\mathcal {E}} \right ) + \lambda \lap \overline {\B }, \qquad \divergence \overline {\B }=0. \tag{10.45}\]</div>
 The new object \[ \mathcal {E} \equiv \langle \widetilde {\uvec }\times \widetilde {\B }\rangle \] is the mean turbulent electromotive force. Under isotropic first-order smoothing, one
@@ -714,7 +714,7 @@ href="lecture10.html#XRahbarnia2012">Rahbarnia et&#x00A0;al.</a>,&#x00A0;<a
 href="lecture10.html#XRahbarnia2012">2012</a>].
 </p>
 <!--l. 599--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2340003"></a>The axisymmetric \(\alpha \)&#8211;\(\Omega \) equations.</span>
+ id="x1-2360003"></a>The axisymmetric \(\alpha \)&#8211;\(\Omega \) equations.</span>
 Absorb \(\beta \) into an effective diffusivity \(\lambda _T = \lambda + \beta \), and keep only the dominant source terms. Then the axisymmetric
 mean-field equations become <a id="eq-eq-dyn-meanpsi"></a><div class="math-display">\[\boxed { \pp {\psi }{t} + \uvec _p\cdot \grad \psi = \alpha r B + \lambda _T \Delta ^\star \psi , } \tag{10.48}\]</div>
 <a id="eq-eq-dyn-meanB"></a><div class="math-display">\[\boxed { \pp {B}{t} + r\,\uvec _p\cdot \grad \!\left (\frac {B}{r}\right ) = r\,\B _p\cdot \grad \Omega + \lambda _T\left (\lap -\frac {1}{r^2}\right )B . } \tag{10.49}\]</div>
@@ -726,7 +726,7 @@ the definition \(\vect {A} = \psi \grad \phi = (\psi /r)\vect {e}_\phi \), so th
                                                                                          
                                                                                          
 <a 
- id="x1-2340012"></a>
+ id="x1-2360012"></a>
                                                                                          
                                                                                          
 <!--l. 637--><p class="noindent" ><img 
@@ -735,12 +735,12 @@ width="352" height="209"  />
 <br /> </p><div class="caption" 
 ><span class="id">Figure&#x00A0;10.2: </span><span  
 class="content">The standard \(\alpha \)&#8211;\(\Omega \) cartoon: differential rotation winds poloidal field into toroidal field,
-while helical fluctuations regenerate poloidal flux from toroidal field.</span></div><!--tex4ht:label?: x1-2340012 -->
+while helical fluctuations regenerate poloidal flux from toroidal field.</span></div><!--tex4ht:label?: x1-2360012 -->
                                                                                          
                                                                                          
 </div><hr class="endfigure" />
 <!--l. 642--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2350003"></a>A local \(\alpha \)&#8211;\(\Omega \) estimate.</span>
+ id="x1-2370003"></a>A local \(\alpha \)&#8211;\(\Omega \) estimate.</span>
 A simple local model makes the competition between induction and diffusion almost embarrassingly
 transparent. Let \(A(x,t)\) be a local toroidal vector potential so that the mean poloidal field is obtained from \(A\), and
 let \(B(x,t)\) be the mean toroidal field. Suppose the large-scale shear is \(G \equiv \dd {U_y}{x}\), and retain only one spatial coordinate.
@@ -759,7 +759,7 @@ taking the square root explicitly: </p>
 <!--l. 683--><p class="noindent" >This is the local seed of Parker&#8217;s dynamo-wave picture.
 </p>
 <!--l. 685--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-2360003"></a>What to remember physically.</span>
+ id="x1-2380003"></a>What to remember physically.</span>
 The dynamo problem is not solved by one mechanism alone. Stretching without topology change piles field
 into ever smaller scales until diffusion wins. Diffusion without stretching simply erases the field. The
 classical success of mean-field theory was to show how symmetry-breaking fluctuations can systematically
@@ -793,7 +793,7 @@ class="enumerate-enumitem">The mean-field \(\alpha \)&#8211;\(\Omega \) model re
    EMF \(\mathcal {E}=\langle \widetilde {\uvec }\times \widetilde {\B }\rangle \), leading to (<a href="lecture10.html#eq-eq-dyn-meanpsi">10.48</a>)&#8211;(<a href="lecture10.html#eq-eq-dyn-meanB">10.49</a>).</dd></dl>
      </blockquote></div></div>
 <h3 class="likesectionHead"><a 
- id="x1-2370003"></a>Bibliography</h3>
+ id="x1-2390003"></a>Bibliography</h3>
   <div class="thebibliography">
   <p class="bibitem" ><span class="biblabel">
 <a 
@@ -849,13 +849,13 @@ href="https://doi.org/10.1086/146087" >10.1086/146087</a>.
   </p>
   <p class="bibitem" ><span class="biblabel">
 <a 
- id="XStieglitzMueller2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Robert Stieglitz and Ulrich Mller.  Experimental demonstration of a homogeneous two-scale
+ id="XStieglitzMueller2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Robert Stieglitz and Ulrich Müller.  Experimental demonstration of a homogeneous two-scale
   dynamo. <tspan font-family="ecti" font-size="1095">Physics of Fluids</tspan>, 13(3):561&#8211;564, 2001. doi:<a 
 href="https://doi.org/10.1063/1.1331315" >10.1063/1.1331315</a>.
   </p>
   <p class="bibitem" ><span class="biblabel">
 <a 
- id="XMuellerEtAl2008Karlsruhe"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ulrich Mller, Robert Stieglitz, Fritz&#x00A0;H. Busse, and Andreas Tilgner. The karlsruhe two-scale
+ id="XMuellerEtAl2008Karlsruhe"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ulrich Müller, Robert Stieglitz, Fritz&#x00A0;H. Busse, and Andreas Tilgner. The karlsruhe two-scale
   dynamo      experiment.               <tspan font-family="ecti" font-size="1095">Comptes     Rendus     Physique</tspan>,      9(7):729&#8211;740,      2008.
   doi:<a 
 href="https://doi.org/10.1016/j.crhy.2008.07.005" >10.1016/j.crhy.2008.07.005</a>.
@@ -898,8 +898,8 @@ href="https://doi.org/10.1063/pt.3.1166" >10.1063/pt.3.1166</a>.
   </p>
   <p class="bibitem" ><span class="biblabel">
 <a 
- id="XGiesecke2010VKS"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Andr Giesecke, Frank Stefani, and Gnter Gerbeth.  Role of soft-iron impellers on the mode
-  selection in the von krmn-sodium dynamo experiment.  <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 104:044503,
+ id="XGiesecke2010VKS"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> André Giesecke, Frank Stefani, and Günter Gerbeth.  Role of soft-iron impellers on the mode
+  selection in the von kármán-sodium dynamo experiment.  <tspan font-family="ecti" font-size="1095">Physical Review Letters</tspan>, 104:044503,
   2010. doi:<a 
 href="https://doi.org/10.1103/PhysRevLett.104.044503" >10.1103/PhysRevLett.104.044503</a>.
                                                                                          
@@ -909,7 +909,7 @@ href="https://doi.org/10.1103/PhysRevLett.104.044503" >10.1103/PhysRevLett.104.0
 <a 
  id="XRahbarnia2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Kian Rahbarnia, Benjamin&#x00A0;P Brown, Mike&#x00A0;M Clark, Elliot&#x00A0;J Kaplan, Mark&#x00A0;D Nornberg,
   Alex&#x00A0;M  Rasmus,  Nicholas&#x00A0;Zane  Taylor,  Cary&#x00A0;B  Forest,  Frank  Jenko,  Angelo  Limone,
-  Jean-Franois Pinton, Nicolas Plihon, and Gautier Verhille.  Direct observation of the turbulent
+  Jean-François Pinton, Nicolas Plihon, and Gautier Verhille.  Direct observation of the turbulent
   EMF and transport of magnetic field in a liquid sodium experiment. <tspan font-family="ecti" font-size="1095">The Astrophysical Journal</tspan>,
   759(2):80, 2012. doi:<a 
 href="https://doi.org/10.1088/0004-637x/759/2/80" >10.1088/0004-637x/759/2/80</a>.
@@ -918,9 +918,9 @@ href="https://doi.org/10.1088/0004-637x/759/2/80" >10.1088/0004-637x/759/2/80</a
                                                                                          
                                                                                          
 <h3 class="likesectionHead"><a 
- id="x1-2380003"></a>Problems</h3>
+ id="x1-2400003"></a>Problems</h3>
 <a 
- id="x1-238001r1"></a>
+ id="x1-240001r1"></a>
 <!--l. 702--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 10.1. Kinematic growth, Cowling&#8217;s theorem, and mean-field closure</tspan>
     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
 (a) </dt><dd 
@@ -930,7 +930,7 @@ class="enumerate-enumitem">Starting from the induction equation (<a href="lectur
     </dd><dt class="enumerate-enumitem">
 (b) </dt><dd 
 class="enumerate-enumitem">In axisymmetry, define the poloidal flux function by \[ \B _p = \curl (\psi \grad \phi ). \] Derive (<a href="lecture10.html#eq-eq-dyn-BrBz">10.28</a>) and show explicitly that \(\B _p\cdot \grad \psi =0\).
-    Then use Ampre&#8217;s law to derive (<a href="lecture10.html#eq-eq-dyn-Jphi">10.32</a>).
+    Then use Ampère&#8217;s law to derive (<a href="lecture10.html#eq-eq-dyn-Jphi">10.32</a>).
     </dd><dt class="enumerate-enumitem">
 (c) </dt><dd 
 class="enumerate-enumitem">Use the toroidal component of Ohm&#8217;s law to derive the axisymmetric flux equation (<a href="lecture10.html#eq-eq-dyn-psi">10.38</a>).

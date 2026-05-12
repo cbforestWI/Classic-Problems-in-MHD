@@ -409,10 +409,10 @@ magnetized enough to be anisotropic.
      by Chapman and Cowling [<a 
 href="lecture5.html#XChapmanCowling1952">Chapman and Cowling</a>,&#x00A0;<a 
 href="lecture5.html#XChapmanCowling1952">1952</a>]. For fully ionized plasmas,
-     important transport results already existed before the 1965 review: Spitzer and H&auml;rm
+     important transport results already existed before the 1965 review: Spitzer and Härm
      obtained the classic unmagnetized conductivity and heat-flow coefficients [<a 
 href="lecture5.html#XSpitzer1953TransportPhenomena">Spitzer and
-     H&auml;rm</a>,&#x00A0;<a 
+     Härm</a>,&#x00A0;<a 
 href="lecture5.html#XSpitzer1953TransportPhenomena">1953</a>],                                                                                 Braginskii&#8217;s
      own 1957/1958 paper extended the program to a two-temperature magnetized plasma
      [<a 
@@ -507,121 +507,122 @@ Define the symmetric traceless strain tensor
      </li>
      <li class="itemize">\(\eta _{3,4}\): gyroviscosity (formally viscous, but non-dissipative)</li></ul>
 <!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-675003"></a>Compact coordinate-free form of the full viscous stress</span>
-It is also useful to collect the full Braginskii stress into field-aligned tensor pieces rather than only Cartesian components. Define \[ \tens {I}_{\perp } \equiv \tens {I}-\vect {b}\vect {b}, \qquad W_{\parallel } \equiv \vect {b}\cdot \tens {W}\cdot \vect {b}, \qquad \tens {W}_{\perp } \equiv \tens {I}_{\perp }\cdot \tens {W}\cdot \tens {I}_{\perp } . \] Then one convenient decomposition is <div class="math-display">\[\begin{aligned}\tens {W}^{(0)} &amp;\equiv \frac {3}{2}\left (\vect {b}\vect {b}-\frac {\tens {I}}{3}\right )W_{\parallel }, \\ \tens {W}^{(1)} &amp;\equiv \tens {W}_{\perp } -\frac {1}{2}\tens {I}_{\perp }\,\mathrm {tr}(\tens {W}_{\perp }), \\ \tens {W}^{(2)} &amp;\equiv \tens {W}\cdot \vect {b}\vect {b} + \vect {b}\vect {b}\cdot \tens {W} - 2\vect {b}\vect {b}\,W_{\parallel }.\end{aligned}\]</div>
-With these definitions, the full viscous stress may be organized as <a id="eq-eq-brag-viscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi } = -\eta _0\,\tens {W}^{(0)} -\eta _1\,\tens {W}^{(1)} -\eta _2\,\tens {W}^{(2)} + \tens {\Pi }^{\mathrm {gv}}. } \tag{5.21}\]</div>
-where \(\tens {\Pi }^{\mathrm {gv}}\) contains the \(\eta _3\) and \(\eta _4\) finite-Larmor-radius pieces written below. For \(\vect {b}=\vect {e}_z\), \(\tens {W}^{(0)}\), \(\tens {W}^{(1)}\), and \(\tens {W}^{(2)}\) reduce exactly to the \(\eta _0\), \(\eta _1\), and \(\eta _2\) terms in the Cartesian formulas above.
+ id="x1-680003"></a>Compact coordinate-free form of the full viscous stress</span>
+It is also useful to collect the full Braginskii stress into field-aligned tensor pieces rather than only
+Cartesian components. Define \[ \tens {I}_{\perp } \equiv \tens {I}-\vect {b}\vect {b}, \qquad W_{\parallel } \equiv \vect {b}\cdot \tens {W}\cdot \vect {b}, \qquad \tens {W}_{\perp } \equiv \tens {I}_{\perp }\cdot \tens {W}\cdot \tens {I}_{\perp }. \] Then one convenient decomposition is <div class="math-display">\[\begin{aligned}\tens {W}^{(0)} &amp;\equiv \frac {3}{2}\left (\vect {b}\vect {b}-\frac {\tens {I}}{3}\right )W_{\parallel }, \\ \tens {W}^{(1)} &amp;\equiv \tens {W}_{\perp } -\frac {1}{2}\tens {I}_{\perp }\,\operatorname {tr}(\tens {W}_{\perp }), \\ \tens {W}^{(2)} &amp;\equiv \tens {W}\cdot \vect {b}\vect {b} \, +\vect {b}\vect {b}\cdot \tens {W} -2\vect {b}\vect {b}\,W_{\parallel }.\end{aligned}\]</div>
+</p><!--l. 279--><p class="noindent" >With these definitions, the full viscous stress may be organized as <a id="eq-eq-brag-viscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi } = -\eta _0\,\tens {W}^{(0)} -\eta _1\,\tens {W}^{(1)} -\eta _2\,\tens {W}^{(2)} +\tens {\Pi }^{\mathrm {gv}}, } \tag{5.24}\]</div>
+where \(\tens {\Pi }^{\mathrm {gv}}\) contains the \(\eta _3\) and \(\eta _4\) finite-Larmor-radius pieces written below. For \(\vect {b}=\vect {e}_z\), \(\tens {W}^{(0)}\), \(\tens {W}^{(1)}\), and \(\tens {W}^{(2)}\) reduce exactly to the \(\eta _0\), \(\eta _1\),
+and \(\eta _2\) terms in the Cartesian formulas above.
 </p>
-<!--l. 251--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-680003"></a>Compact form of the gyroviscous stress</span>
+<!--l. 293--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-690003"></a>Compact form of the gyroviscous stress</span>
 It is often useful to write only the non-dissipative part in coordinate-free form. Define \[ \tens {I}_{\perp } \equiv \tens {I}-\vect {b}\vect {b}, \qquad \bigl (\vect {b}\times \tens {W}\bigr )_{ij}\equiv \epsilon _{ik\ell } b_k W_{\ell j}, \qquad \bigl (\tens {W}\times \vect {b}\bigr )_{ij}\equiv W_{ik}\epsilon _{jk\ell } b_\ell . \] Then the
-gyroviscous contribution may be written as <a id="eq-eq-brag-gyroviscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi }^{\mathrm {gv}} = \frac {\eta _3}{2} \left ( \vect {b}\times \tens {W}\cdot \tens {I}_{\perp } - \tens {I}_{\perp }\cdot \tens {W}\times \vect {b} \right ) + \eta _4 \left ( \vect {b}\times \tens {W}\cdot \vect {b}\vect {b} - \vect {b}\vect {b}\cdot \tens {W}\times \vect {b} \right ). } \tag{5.21}\]</div>
+gyroviscous contribution may be written as <a id="eq-eq-brag-gyroviscouscompact"></a><div class="math-display">\[\boxed { \tens {\Pi }^{\mathrm {gv}} = \frac {\eta _3}{2} \left ( \vect {b}\times \tens {W}\cdot \tens {I}_{\perp } - \tens {I}_{\perp }\cdot \tens {W}\times \vect {b} \right ) + \eta _4 \left ( \vect {b}\times \tens {W}\cdot \vect {b}\vect {b} - \vect {b}\vect {b}\cdot \tens {W}\times \vect {b} \right ). } \tag{5.25}\]</div>
 For \(\vect {b}=\hat {z}\) this reduces to the Cartesian \(\eta _3\) and \(\eta _4\) terms written above. The interesting conceptual point is that these
+                                                                                         
+                                                                                         
 terms are not ordinary collisional viscosity: they are finite-Larmor-radius corrections that redistribute
 momentum through gyromotion, and in Braginskii theory they do not produce positive-definite viscous
 heating.
-</p><!--l. 285--><p class="noindent" >Likewise the heat flux takes the schematic form <a id="eq-eq-brag-heatflux"></a><div class="math-display">\[\boxed { \vect {q}_s = -\kappa _{\parallel s}\, \vect {b}\vect {b}\cdot \grad T_s - \kappa _{\perp s} \left ( \tens {I}-\vect {b}\vect {b} \right )\cdot \grad T_s - \kappa _{\wedge s}\, \vect {b}\times \grad T_s. } \tag{5.22}\]</div>
+</p><!--l. 327--><p class="noindent" >Likewise the heat flux takes the schematic form <a id="eq-eq-brag-heatflux"></a><div class="math-display">\[\boxed { \vect {q}_s = -\kappa _{\parallel s}\, \vect {b}\vect {b}\cdot \grad T_s - \kappa _{\perp s} \left ( \tens {I}-\vect {b}\vect {b} \right )\cdot \grad T_s - \kappa _{\wedge s}\, \vect {b}\times \grad T_s. } \tag{5.26}\]</div>
 The last term is the cross-field or &#8220;Righi&#8211;Leduc&#8221; heat flux. Its exact coefficient is not the main point
 here; the main point is that magnetization turns scalar transport coefficients into tensorial
 ones.
-</p><!--l. 305--><p class="noindent" >The dominant transport scalings are <a id="eq-eq-brag-viscscalings"></a><div class="math-display">\[\begin{aligned}\eta _{\parallel s} &amp;\sim p_s\tau _s, &amp; \eta _{\perp s} &amp;\sim \frac {p_s\tau _s}{1+(\omega _{cs}\tau _s)^2}, &amp; \eta _{\mathrm {gv},s} &amp;\sim \frac {p_s}{\omega _{cs}},  \\ \kappa _{\parallel s} &amp;\sim \frac {n_s T_s\tau _s}{m_s}, &amp; \kappa _{\perp s} &amp;\sim \kappa _{\parallel s}(\omega _{cs}\tau _s)^{-2}.\end{aligned} \tag{5.23}\]</div>
-                                                                                         
-                                                                                         
-</p><!--l. 329--><p class="noindent" >Thus parallel transport is usually much larger than perpendicular transport, while gyroviscous terms are
+</p><!--l. 347--><p class="noindent" >The dominant transport scalings are <a id="eq-eq-brag-viscscalings"></a><div class="math-display">\[\begin{aligned}\eta _{\parallel s} &amp;\sim p_s\tau _s, &amp; \eta _{\perp s} &amp;\sim \frac {p_s\tau _s}{1+(\omega _{cs}\tau _s)^2}, &amp; \eta _{\mathrm {gv},s} &amp;\sim \frac {p_s}{\omega _{cs}},  \\ \kappa _{\parallel s} &amp;\sim \frac {n_s T_s\tau _s}{m_s}, &amp; \kappa _{\perp s} &amp;\sim \kappa _{\parallel s}(\omega _{cs}\tau _s)^{-2}.\end{aligned} \tag{5.27}\]</div>
+</p><!--l. 371--><p class="noindent" >Thus parallel transport is usually much larger than perpendicular transport, while gyroviscous terms are
 nondissipative finite-Larmor-radius corrections.
-</p><!--l. 332--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
-     <!--l. 332--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Braginskii viscosity is not just Navier&#8211;Stokes viscosity with a magnetic field</tspan>
+</p><!--l. 374--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+     <!--l. 374--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Braginskii viscosity is not just Navier&#8211;Stokes viscosity with a magnetic field</tspan>
      <tspan font-family="ecbx" font-size="1095">pasted on top. </tspan>The decomposition in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>) means that a magnetized plasma has a
      preferred direction, so the closure retains the memory of the field geometry. That is
      the seed of later topics such as pressure anisotropy, mirror physics, firehose limits, and
      anisotropic damping.</p></blockquote></div></div>
 <a 
- id="x1-68001r69"></a>
-<div class="interactive-shell"><p class="interactive-title">Interactive Braginskii Formulary Calculator</p><p class="interactive-caption">Open a browser companion to the closure lecture. The calculator estimates gyro radii, skin depths, Coulomb mean free paths, Spitzer resistivity, Braginskii transport scales, Alfv&#233;n speed, magnetic Reynolds number, Lundquist number, and the regime checks that decide whether collisional single-fluid MHD is comfortable or already breaking down.</p><p><a class="interactive-button" href="media/braginskii_formulary_explorer.html">Open the formulary calculator</a></p></div>
+ id="x1-69001r69"></a>
 <h3 class="sectionHead"><span class="titlemark">5.4   </span> <a 
- id="x1-690004"></a>How One-Fluid MHD Emerges</h3>
-<!--l. 340--><p class="noindent" >The stress split used in Lecture&#x00A0;2, <div class="math-display">\[\tens {P}=p\,\tens {I}-\tens {\Pi },\]</div>
+ id="x1-700004"></a>How One-Fluid MHD Emerges</h3>
+<!--l. 382--><p class="noindent" >The stress split used in Lecture&#x00A0;2, <div class="math-display">\[\tens {P}=p\,\tens {I}-\tens {\Pi },\]</div>
 is the isotropized shadow of the more general tensor structure in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>). To recover the one-fluid
 MHD equations of Lectures&#x00A0;1&#8211;4, one needs several scale-separation assumptions in addition to
 quasi-neutrality.
 </p>
-<!--l. 346--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-700004"></a>Quasi-neutrality.</span>
-The Debye length must be small compared with the system scale: <a id="eq-eq-brag-quasineutral"></a><div class="math-display">\[k\lambda _D \ll 1. \tag{5.25}\]</div>
+<!--l. 388--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-710004"></a>Quasi-neutrality.</span>
+The Debye length must be small compared with the system scale: <a id="eq-eq-brag-quasineutral"></a><div class="math-display">\[k\lambda _D \ll 1. \tag{5.29}\]</div>
 </p>
-<!--l. 353--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-710004"></a>Fluidization.</span>
+<!--l. 395--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-720004"></a>Fluidization.</span>
 To justify a collisional closure of Braginskii type, the ion mean free path must be short and the dynamics
-slower than the collision rate: <a id="eq-eq-brag-fluidization"></a><div class="math-display">\[\frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \omega \tau _i\ll 1. \tag{5.26}\]</div>
+slower than the collision rate: <a id="eq-eq-brag-fluidization"></a><div class="math-display">\[\frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \omega \tau _i\ll 1. \tag{5.30}\]</div>
 </p>
-<!--l. 362--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-720004"></a>Magnetization and long wavelengths.</span>
-To stay well above Larmor-radius physics, <a id="eq-eq-brag-magnetized"></a><div class="math-display">\[\frac {\rho _i}{L}\ll 1, \qquad \frac {\omega }{\Omega _i}\ll 1. \tag{5.27}\]</div>
+<!--l. 404--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-730004"></a>Magnetization and long wavelengths.</span>
+To stay well above Larmor-radius physics, <a id="eq-eq-brag-magnetized"></a><div class="math-display">\[\frac {\rho _i}{L}\ll 1, \qquad \frac {\omega }{\Omega _i}\ll 1. \tag{5.31}\]</div>
 </p>
-<!--l. 371--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-730004"></a>Hall term.</span>
-Using Ampre&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) to estimate \(J\sim B/(\muo L)\), the Hall term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) satisfies <a id="eq-eq-brag-hallratio"></a><div class="math-display">\[\frac {|(\J \times \B )/(ne)|}{|\uvec \times \B |} \sim \frac {J}{neU} \sim \frac {d_i}{L}\frac {V_A}{U}, \tag{5.28}\]</div>
-where \[ d_i = \sqrt {\frac {m_i}{\muo n e^2}} = \frac {c}{\omega _{pi}}, \qquad V_A = \frac {B}{\sqrt {\muo \rho }}. \] If the bulk speed is Alfv&eacute;nic, \(U\sim V_A\), then the Hall correction is small when \(d_i/L\ll 1\).
+                                                                                         
+                                                                                         
+<!--l. 413--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-740004"></a>Hall term.</span>
+Using Ampère&#8217;s law (<a href="lecture1.html#eq-eq-intro-ampere">1.11</a>) to estimate \(J\sim B/(\muo L)\), the Hall term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) satisfies <a id="eq-eq-brag-hallratio"></a><div class="math-display">\[\frac {|(\J \times \B )/(ne)|}{|\uvec \times \B |} \sim \frac {J}{neU} \sim \frac {d_i}{L}\frac {V_A}{U}, \tag{5.32}\]</div>
+where \[ d_i = \sqrt {\frac {m_i}{\muo n e^2}} = \frac {c}{\omega _{pi}}, \qquad V_A = \frac {B}{\sqrt {\muo \rho }}. \] If the bulk speed is Alfvénic, \(U\sim V_A\), then the Hall correction is small when \(d_i/L\ll 1\).
 </p>
-<!--l. 393--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-740004"></a>Electron-pressure term.</span>
-A similar estimate gives <a id="eq-eq-brag-eperatio"></a><div class="math-display">\[\frac {|\grad p_e|/(ne)}{U B} \sim \frac {T_e}{e B L U} \sim \frac {\rho _s}{L}\frac {c_s}{U}, \tag{5.29}\]</div>
+<!--l. 435--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-750004"></a>Electron-pressure term.</span>
+A similar estimate gives <a id="eq-eq-brag-eperatio"></a><div class="math-display">\[\frac {|\grad p_e|/(ne)}{U B} \sim \frac {T_e}{e B L U} \sim \frac {\rho _s}{L}\frac {c_s}{U}, \tag{5.33}\]</div>
 where \(\rho _s=\sqrt {m_i T_e}/(eB)\) and \(c_s=\sqrt {T_e/m_i}\). For order-one Mach numbers and comparable ion and electron temperatures, this is again a
 small-gyroradius ordering.
-                                                                                         
-                                                                                         
 </p>
-<!--l. 405--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-750004"></a>Electron inertia.</span>
-Estimating \(\partial _t\J \sim \omega J\) and taking \(\omega \sim U/L\) gives <a id="eq-eq-brag-einertiaratio"></a><div class="math-display">\[\frac {m_e |\partial _t\J |/(ne^2)}{U B} \sim \frac {d_e^2}{L^2}, \qquad d_e = \sqrt {\frac {m_e}{\muo n e^2}} = \frac {c}{\omega _{pe}}. \tag{5.30}\]</div>
+<!--l. 447--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-760004"></a>Electron inertia.</span>
+Estimating \(\partial _t\J \sim \omega J\) and taking \(\omega \sim U/L\) gives <a id="eq-eq-brag-einertiaratio"></a><div class="math-display">\[\frac {m_e |\partial _t\J |/(ne^2)}{U B} \sim \frac {d_e^2}{L^2}, \qquad d_e = \sqrt {\frac {m_e}{\muo n e^2}} = \frac {c}{\omega _{pe}}. \tag{5.34}\]</div>
 </p>
-<!--l. 420--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-760004"></a>Resistivity.</span>
-The resistive term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) is small compared with \(\uvec \times \B \) when <a id="eq-eq-brag-resratio"></a><div class="math-display">\[\frac {\eta J}{U B} \sim \frac {\eta }{\muo U L} = \frac {1}{Rm} \ll 1, \tag{5.31}\]</div>
+<!--l. 462--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-770004"></a>Resistivity.</span>
+The resistive term in (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) is small compared with \(\uvec \times \B \) when <a id="eq-eq-brag-resratio"></a><div class="math-display">\[\frac {\eta J}{U B} \sim \frac {\eta }{\muo U L} = \frac {1}{Rm} \ll 1, \tag{5.35}\]</div>
 where \(Rm\) is the magnetic Reynolds number from (<a href="lecture4.html#eq-eq-flux-rm">4.3</a>).
-</p><!--l. 433--><p class="noindent" >Collecting the most familiar orderings, one arrives at the heuristic MHD checklist <a id="eq-eq-brag-checklist"></a><div class="math-display">\[\boxed { k\lambda _D\ll 1, \qquad \frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \frac {\rho _i}{L}\ll 1, \qquad \frac {d_i}{L}\ll 1, \qquad \frac {d_e^2}{L^2}\ll 1, } \tag{5.32}\]</div>
+</p><!--l. 475--><p class="noindent" >Collecting the most familiar orderings, one arrives at the heuristic MHD checklist <a id="eq-eq-brag-checklist"></a><div class="math-display">\[\boxed { k\lambda _D\ll 1, \qquad \frac {\lambda _{\mathrm {mfp},i}}{L}\ll 1, \qquad \frac {\rho _i}{L}\ll 1, \qquad \frac {d_i}{L}\ll 1, \qquad \frac {d_e^2}{L^2}\ll 1, } \tag{5.36}\]</div>
 with the additional condition \(Rm\gg 1\) if one wants the ideal limit and frozen-in flux (<a href="lecture4.html#eq-eq-flux-frozen">4.13</a>).
 <a 
- id="x1-76001r72"></a>
+ id="x1-77001r73"></a>
 </p>
 <h3 class="sectionHead"><span class="titlemark">5.5   </span> <a 
- id="x1-770005"></a>What Survives When Collisions Are Weak?</h3>
-<!--l. 454--><p class="noindent" >One subtle but important point is that MHD-like behavior can survive even when the collisional Braginskii
-ordering fails. In a collisionless but magnetized plasma, the double-adiabatic or CGL closure gives <a id="eq-eq-brag-cglperp"></a><div class="math-display">\[\begin{aligned}\frac {D}{Dt} \left ( \frac {p_\perp }{\rho B} \right ) &amp;= 0,  \\ \frac {D}{Dt} \left ( \frac {p_\parallel B^2}{\rho ^3} \right ) &amp;= 0.\end{aligned} \tag{5.33}\]</div>
-</p><!--l. 472--><p class="noindent" >These relations are already telling us that the right question is not simply whether MHD works,
+ id="x1-780005"></a>What Survives When Collisions Are Weak?</h3>
+<!--l. 496--><p class="noindent" >One subtle but important point is that MHD-like behavior can survive even when the collisional Braginskii
+ordering fails. In a collisionless but magnetized plasma, the double-adiabatic or CGL closure gives <a id="eq-eq-brag-cglperp"></a><div class="math-display">\[\begin{aligned}\frac {D}{Dt} \left ( \frac {p_\perp }{\rho B} \right ) &amp;= 0,  \\ \frac {D}{Dt} \left ( \frac {p_\parallel B^2}{\rho ^3} \right ) &amp;= 0.\end{aligned} \tag{5.37}\]</div>
+</p><!--l. 514--><p class="noindent" >These relations are already telling us that the right question is not simply whether MHD works,
 but which closure has replaced the isotropic pressure law (<a href="lecture3.html#eq-eq-cons-pressure">3.11</a>). In other words, large-scale
 magnetic evolution can still look fluid-like while thermodynamics and stability become decisively
 anisotropic.
 <a 
- id="x1-77001r80"></a>
+ id="x1-78001r81"></a>
 </p>
 <h3 class="sectionHead"><span class="titlemark">5.6   </span> <a 
- id="x1-780006"></a>Experimental Perspective</h3>
-<!--l. 478--><p class="noindent" >This lecture is one of the places where laboratory intuition matters most. In liquid-metal experiments the
+ id="x1-790006"></a>Experimental Perspective</h3>
+<!--l. 520--><p class="noindent" >This lecture is one of the places where laboratory intuition matters most. In liquid-metal experiments the
 conditions behind single-fluid resistive MHD are often satisfied so well that the model is almost the
 starting point. In magnetized plasma experiments the situation is subtler: the bulk flow may still obey the
 momentum and induction equations beautifully on the device scale, while parallel heat transport, pressure
 anisotropy, Hall corrections, or localized reconnection physics are already visible in special regions. The
 practical question is therefore not &#8220;MHD or nothing,&#8221; but rather &#8220;which reduced model is honest on the
 scale being measured?&#8221;
-</p><!--l. 480--><p class="noindent" >That perspective is especially useful for dynamos, self-organization experiments, and rotating
+</p><!--l. 522--><p class="noindent" >That perspective is especially useful for dynamos, self-organization experiments, and rotating
+                                                                                         
+                                                                                         
 plasma flows. Global evolution may be captured by MHD, but transport and topology change
 can still advertise the terms that were dropped on the way from (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) to (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and then to
 (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>).
-</p><!--l. 483--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+</p><!--l. 525--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
    <ul class="itemize1">
    <li class="itemize">MHD is not fundamental; it is a reduced moment system descended from (<a href="lecture5.html#eq-eq-brag-kinetic">5.1</a>).
-                                                                                         
-                                                                                         
    </li>
    <li class="itemize">Braginskii  closure  explains  why  transport  in  magnetized  plasmas  is  strongly
-   anisotropic, as in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>) and (<a href="lecture5.html#eq-eq-brag-heatflux">5.22</a>).
+   anisotropic, as in (<a href="lecture5.html#eq-eq-brag-pressuretensor">5.13</a>) and (<a href="lecture5.html#eq-eq-brag-heatflux">5.26</a>).
    </li>
    <li class="itemize">The road from generalized Ohm&#8217;s law (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) to resistive MHD (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and ideal MHD
    (<a href="lecture4.html#eq-eq-flux-idealohm">4.8</a>) is paved with explicit ordering assumptions, not wishful thinking.</li></ul>
      </blockquote></div></div>
 <h3 class="likesectionHead"><a 
- id="x1-790006"></a>Bibliography</h3>
+ id="x1-800006"></a>Bibliography</h3>
   <div class="thebibliography">
   <p class="bibitem" ><span class="biblabel">
 <a 
@@ -631,7 +632,7 @@ can still advertise the terms that were dropped on the way from (<a href="lectur
   </p>
   <p class="bibitem" ><span class="biblabel">
 <a 
- id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard H&auml;rm.  Transport phenomena in a completely ionized gas.
+ id="XSpitzer1953TransportPhenomena"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jr. Spitzer, Lyman and Richard Härm.  Transport phenomena in a completely ionized gas.
   <tspan font-family="ecti" font-size="1095">Physical Review</tspan>, 89(5):977&#8211;981, 1953. doi:<a 
 href="https://doi.org/10.1103/PhysRev.89.977" >10.1103/PhysRev.89.977</a>.
   </p>
@@ -652,6 +653,8 @@ href="https://doi.org/10.1063/1.1706096" >10.1063/1.1706096</a>.
   24(1):363&#8211;424, 1961. doi:<a 
 href="https://doi.org/10.1088/0034-4885/24/1/308" >10.1088/0034-4885/24/1/308</a>.
   </p>
+                                                                                         
+                                                                                         
   <p class="bibitem" ><span class="biblabel">
 <a 
  id="XSimonThompson1966Hydromagnetic"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> A.&#x00A0;Simon and W.&#x00A0;B. Thompson.  Hydromagnetic equations with viscosity for a collisionless
@@ -666,8 +669,6 @@ href="https://doi.org/10.1088/0368-3281/8/4/302" >10.1088/0368-3281/8/4/302</a>.
   <tspan font-family="ecti" font-size="1095">Society  of  London.  Series  A.  Mathematical  and  Physical  Sciences</tspan>,  236(1204):112&#8211;118,  1956.
   doi:<a 
 href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
-                                                                                         
-                                                                                         
   </p>
   <p class="bibitem" ><span class="biblabel">
 <a 
@@ -678,23 +679,23 @@ href="https://doi.org/10.1098/rspa.1956.0116" >10.1098/rspa.1956.0116</a>.
                                                                                          
                                                                                          
 <h3 class="likesectionHead"><a 
- id="x1-800006"></a>Problems</h3>
+ id="x1-810006"></a>Problems</h3>
 <a 
- id="x1-80001r1"></a>
-<!--l. 495--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.1. Braginskii Viscosity &#8212; Parallel vs.</tspan><tspan font-family="ecbx" font-size="1095">&#x00A0;Perpendicular Transport</tspan>
-</p><!--l. 497--><p class="noindent" >Consider a strongly magnetized, collisional plasma with \(\omega _c \tau \gg 1\), described by Braginskii viscosity.
+ id="x1-81001r1"></a>
+<!--l. 537--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.1. Braginskii Viscosity &#8212; Parallel vs.</tspan><tspan font-family="ecbx" font-size="1095">&#x00A0;Perpendicular Transport</tspan>
+</p><!--l. 539--><p class="noindent" >Consider a strongly magnetized, collisional plasma with \(\omega _c \tau \gg 1\), described by Braginskii viscosity.
     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
 (a) </dt><dd 
-class="enumerate-enumitem">Using the scalings in (<a href="lecture5.html#eq-eq-brag-viscscalings">5.23</a>), identify which transport coefficients correspond to parallel viscosity,
+class="enumerate-enumitem">Using the scalings in (<a href="lecture5.html#eq-eq-brag-viscscalings">5.27</a>), identify which transport coefficients correspond to parallel viscosity,
     perpendicular viscosity, and gyroviscosity.
     </dd><dt class="enumerate-enumitem">
 (b) </dt><dd 
-class="enumerate-enumitem">Consider a shear flow parallel to the magnetic field, \[ \uvec = u_\parallel (x,z)\,\vect {b} , \qquad \B =B\,\vect {e}_z . \] Show that the dominant viscous stress
+class="enumerate-enumitem">Consider a shear flow parallel to the magnetic field, \[ \uvec = u_\parallel (x,z)\,\vect {b}, \qquad \B =B\,\vect {e}_z. \] Show that the dominant viscous stress
     is proportional to \(\eta _{\parallel }\) and explain physically why perpendicular viscosity does not contribute at
     leading order.
     </dd><dt class="enumerate-enumitem">
 (c) </dt><dd 
-class="enumerate-enumitem">Now consider a shear flow perpendicular to the magnetic field, \[ \uvec = u_y(x)\,\vect {e}_y , \qquad \B =B\,\vect {e}_z . \] Estimate the magnitude of the
+class="enumerate-enumitem">Now consider a shear flow perpendicular to the magnetic field, \[ \uvec = u_y(x)\,\vect {e}_y, \qquad \B =B\,\vect {e}_z. \] Estimate the magnitude of the
     dissipative viscous force and show that it is smaller than the field-aligned viscous force by a
     factor of order \((\omega _c\tau )^{-2}\).
     </dd><dt class="enumerate-enumitem">
@@ -702,13 +703,13 @@ class="enumerate-enumitem">Now consider a shear flow perpendicular to the magnet
 class="enumerate-enumitem">Explain qualitatively why gyroviscosity is nondissipative even though it appears in the stress
     tensor.</dd></dl>
 <a 
- id="x1-80002r2"></a>
-<!--l. 528--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.2. From Generalized Ohm&#8217;s Law to Ideal MHD</tspan>
-</p><!--l. 530--><p class="noindent" >Starting from (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>):
+ id="x1-81002r2"></a>
+<!--l. 570--><p class="noindent" ><tspan font-family="ecbx" font-size="1095">Problem 5.2. From Generalized Ohm&#8217;s Law to Ideal MHD</tspan>
+</p><!--l. 572--><p class="noindent" >Starting from (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>):
     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
 (a) </dt><dd 
 class="enumerate-enumitem">Estimate the Hall, electron-pressure, electron-inertia, and resistive terms relative to \(\uvec \times \B \) using the
-    orderings in (<a href="lecture5.html#eq-eq-brag-hallratio">5.28</a>), (<a href="lecture5.html#eq-eq-brag-eperatio">5.29</a>), (<a href="lecture5.html#eq-eq-brag-einertiaratio">5.30</a>), and (<a href="lecture5.html#eq-eq-brag-resratio">5.31</a>).
+    orderings in (<a href="lecture5.html#eq-eq-brag-hallratio">5.32</a>), (<a href="lecture5.html#eq-eq-brag-eperatio">5.33</a>), (<a href="lecture5.html#eq-eq-brag-einertiaratio">5.34</a>), and (<a href="lecture5.html#eq-eq-brag-resratio">5.35</a>).
     </dd><dt class="enumerate-enumitem">
 (b) </dt><dd 
 class="enumerate-enumitem">State the conditions under which (<a href="lecture5.html#eq-eq-brag-genohm">5.10</a>) reduces first to the resistive MHD Ohm law (<a href="lecture1.html#eq-eq-intro-ohm">1.9</a>) and
@@ -729,3 +730,5 @@ class="enumerate-enumitem">Explain why frozen-in flux (<a href="lecture4.html#eq
                                                                                          
                                                                                          
                                                                                          
+
+
