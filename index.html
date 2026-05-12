@@ -379,7 +379,65 @@ div.figure .caption {
 </style>
 
 </head><body 
-><div class="hero-shell">
+><style>
+.art-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 980px;
+  margin: 1.5rem auto 1.9rem auto;
+}
+.art-card {
+  padding: 0.8rem 0.8rem 0.9rem 0.8rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.art-card img {
+  display: block;
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.65rem;
+}
+.art-card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #163c5d;
+  font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+}
+.art-card span {
+  display: block;
+  color: #536c7c;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.9rem 0;
+}
+.path-card, .hero-note {
+  padding: 0.95rem 1rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.path-card h3, .hero-note h3 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+}
+@media (max-width: 960px) {
+  .art-strip, .path-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<div class="hero-shell">
 <div class="hero-grid">
 <div>
 <span class="hero-kicker">Interactive Web Edition</span>
