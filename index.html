@@ -431,8 +431,32 @@ div.figure .caption {
   margin-top: 0;
   margin-bottom: 0.45rem;
 }
+.preface-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.95fr;
+  gap: 1rem;
+  margin: 0 0 1.9rem 0;
+}
+.preface-card, .reader-note {
+  padding: 1rem 1.05rem;
+  background: #fbfcfd;
+  border: 1px solid #d7e1e8;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(28, 58, 82, 0.06);
+}
+.preface-card h3, .reader-note h3 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+.reader-note {
+  background: #fffaf4;
+  border-color: #ead9b8;
+}
+.reader-note p:last-child, .preface-card p:last-child {
+  margin-bottom: 0;
+}
 @media (max-width: 960px) {
-  .art-strip, .path-grid {
+  .art-strip, .path-grid, .preface-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -493,6 +517,23 @@ Copyright &copy; 2026 Cary Forest. All rights reserved.
 <p><strong>Preferred citation:</strong> Cary Forest, <em>Classic Problems in Magnetohydrodynamics: Interactive Web Edition</em> (University of Wisconsin--Madison, 2026), <a href="https://magnetohydrodynamics.physics.wisc.edu">magnetohydrodynamics.physics.wisc.edu</a>, project DOI <a href="https://doi.org/10.5281/zenodo.20140830">10.5281/zenodo.20140830</a>.</p>
 <p><strong>Zenodo DOI:</strong> <a href="https://doi.org/10.5281/zenodo.20140830">10.5281/zenodo.20140830</a></p>
 <p><strong>Source / release record:</strong> <a href="https://github.com/cbforestWI/Classic-Problems-in-MHD">github.com/cbforestWI/Classic-Problems-in-MHD</a></p>
+</div>
+<div class="preface-grid">
+<div class="preface-card">
+<h3>From the preface</h3>
+<p>These notes grew out of graduate lectures organized around the idea that fusion, space physics, astrophysics, and liquid-metal MHD are not separate intellectual worlds. The same equations reappear in all of them; what changes is the dominant balance, the closure, and the physical intuition needed to use them well.</p>
+<p>I have also come to believe that a subject becomes memorable when it is organized around problems rather than around formalism alone. That is why these notes are built around flux freezing and its failure, equilibrium and force balance, waves, stability, dynamos, self-organization, reconnection, shocks, and the geometric and topological constraints that make magnetized fluids both elegant and dangerous.</p>
+</div>
+<div class="preface-card">
+<h3>Books, notes, and people I learned from</h3>
+<p>These lectures lean heavily on the classical literature and on a long line of excellent books and notes, especially Cowling, Chandrasekhar, Roberts, Hide, Moffatt, Kulsrud, Miyamoto, Freidberg, Schnack, Bellan, Wesson, Krall and Trivelpiece, and Zohm.</p>
+<p>They also reflect material learned from conversations, classes, blackboards, and draft notes, including ideas and derivations I learned from Dalton Schnack, Russell Kulsrud, Jeff Freidberg, Dmitri Ryutov, and many others.</p>
+</div>
+</div>
+<div class="reader-note">
+<h3>A note to readers</h3>
+<p>These notes are still evolving. Some lectures are more polished than others, some topics are treated in more depth than others, and there will certainly be mistakes, omissions, awkward explanations, and places where a clearer path through the physics is still needed.</p>
+<p>If you notice an error, a weak derivation, a broken reference, or have a suggestion for improving the notes or the web edition, please contact Cary Forest or open an issue through the <a href="https://github.com/cbforestWI/Classic-Problems-in-MHD">GitHub site repository</a>. Corrections and suggestions are genuinely welcome.</p>
 </div>
 <div class="art-strip">
 <div class="art-card"><img src="figures/cerfon_solovev_triptych.png" alt="Shaped flux surfaces and analytic equilibrium families" /><strong>Equilibrium and shaping</strong><span>Analytic Grad-Shafranov structure, shaping, reconstruction, and the geometry of confined plasmas.</span></div>
