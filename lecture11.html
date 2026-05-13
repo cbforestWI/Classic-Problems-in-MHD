@@ -529,12 +529,47 @@ is positive. Thus one requires <a id="eq-eq-firehosecondition"></a><div class="m
 This is the static sign condition behind firehose behavior.
 </p>
 <!--l. 302--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-150002"></a>Include steady parallel flow if needed.</span>
-A steady field-aligned flow adds an inertial curvature term \(-\rho u_\parallel ^2\vect {\kappa }\), so the effective coefficient becomes
-<div class="math-display">\[Q_{\rm flow} = \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2.\]</div>
-The corresponding condition is <a id="eq-eq-firehoseconditionwithflow"></a><div class="math-display">\[\boxed { \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2&gt;0. } \tag{11.22}\]</div>
-This is the form that later becomes relevant in the solar-wind context when the flow approaches the Alfv&eacute;n
-speed.
+ id="x1-150002"></a>Steady field-aligned flow: how dynamic balance differs from static balance.</span>
+The static lecture is the cleanest starting point, but it is worth seeing explicitly what changes once a
+steady parallel flow is allowed. Start from the steady momentum equation
+<div class="math-display">
+\[\rho (\vect {u}\cdot \grad )\vect {u}=-\divergence \tens {P}+\J \times \B,\]
+</div>
+and assume the flow is everywhere tangent to the magnetic field,
+<div class="math-display">
+\[\vect {u}=u_\parallel \vect {b}.\]
+</div>
+Then
+<div class="math-display">
+\[\begin {aligned} (\vect {u}\cdot \grad )\vect {u} &amp;= u_\parallel \pp {}{\ell }(u_\parallel \vect {b}) \\ &amp;= u_\parallel \pp {u_\parallel }{\ell }\,\vect {b} + u_\parallel ^2 (\vect {b}\cdot \grad )\vect {b} \\ &amp;= u_\parallel \pp {u_\parallel }{\ell }\,\vect {b} + u_\parallel ^2 \vect {\kappa }. \end {aligned}\]
+</div>
+So the inertial term has a parallel-acceleration piece and a curvature piece.
+</p><!--l. 308--><p class="noindent" >Substituting this into the already-split force balance gives
+<div class="math-display">
+\[\begin {aligned} 0 &amp;= -\grad _\perp \left (p_\perp + \frac {B^2}{2\muo }\right ) \\ &amp;\quad + \left (\frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2\right )\vect {\kappa } \\ &amp;\quad - \vect {b} \left [ \pp {p_\parallel }{\ell } + \frac {p_\perp -p_\parallel }{B}\pp {B}{\ell } + \rho u_\parallel \pp {u_\parallel }{\ell } \right ]. \end {aligned}\]
+</div>
+This is the dynamic analogue of Eq.&#x00A0;(<a href="lecture11.html#eq-eq-equilibrium-split_balance">11.10</a>). The parallel and perpendicular projections now differ from the static case in physically distinct ways.
+</p><!--l. 314--><p class="noindent" ><span class="likeparagraphHead"><a id="x1-155002"></a>Parallel balance with flow.</span>
+Projecting along \(\B \) yields
+<div class="math-display">
+\[\boxed { \pp {p_\parallel }{\ell } + \frac {p_\perp -p_\parallel }{B}\pp {B}{\ell } + \rho u_\parallel \pp {u_\parallel }{\ell } =0. }\]
+</div>
+Compared with Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>), the new ingredient is the streamwise inertial term \(\rho u_\parallel \,du_\parallel /d\ell \). So the parallel mirror-force balance no longer says that pressure forces alone must cancel; they must balance any acceleration or deceleration of the flow along the field.
+</p><!--l. 318--><p class="noindent" ><span class="likeparagraphHead"><a id="x1-157002"></a>Perpendicular balance with flow.</span>
+Projecting perpendicular to \(\B \) gives
+<div class="math-display">
+\[\grad _\perp \left (p_\perp +\frac {B^2}{2\muo }\right ) = \left (\frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2\right )\vect {\kappa }.\]
+</div>
+Here the flow enters only through the curvature term. The quantity multiplying \(\vect {\kappa }\) is the effective field-line tension in the presence of parallel motion,
+<div class="math-display">
+\[Q_{\rm flow} = \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2.\]
+</div>
+The extra \(-\rho u_\parallel ^2\) term is easy to interpret: a fluid element moving along a bent field line must be turned by the curvature, so the flow subtracts from the magnetic restoring force.
+</p><!--l. 322--><p class="noindent" ><span class="likeparagraphHead"><a id="x1-159002"></a>The sign condition with flow.</span>
+The corresponding firehose-like requirement is <a id="eq-eq-firehoseconditionwithflow"></a><div class="math-display">
+\[\boxed { \frac {B^2}{\muo }+p_\perp -p_\parallel -\rho u_\parallel ^2&gt;0. } \tag{11.22}\]
+</div>
+This is the form that later becomes especially relevant in open-field systems such as the solar wind, where the parallel flow can approach the Alfv&eacute;n speed and substantially weaken the effective tension.
 </p>
                                                                                          
                                                                                          
