@@ -555,6 +555,24 @@ Projecting along \(\B \) yields
 \[\boxed { \pp {p_\parallel }{\ell } + \frac {p_\perp -p_\parallel }{B}\pp {B}{\ell } + \rho u_\parallel \pp {u_\parallel }{\ell } =0. }\]
 </div>
 Compared with Eq.&#x00A0;(<a href="lecture11.html#eq-eq-parallel_balance">11.11</a>), the new ingredient is the streamwise inertial term \(\rho u_\parallel \,du_\parallel /d\ell \). So the parallel mirror-force balance no longer says that pressure forces alone must cancel; they must balance any acceleration or deceleration of the flow along the field.
+</p><!--l. 316--><p class="noindent" ><span class="likeparagraphHead"><a id="x1-156002"></a>If \(\rho u_\parallel /B\) is constant along the field line.</span>
+In many steady ideal-MHD settings one also has constant mass loading along a magnetic tube,
+<div class="math-display">
+\[\pp {}{\ell }\left (\frac {\rho u_\parallel }{B}\right )=0,\]
+</div>
+which implies
+<div class="math-display">
+\[\pp {}{\ell }(\rho u_\parallel )=\frac {\rho u_\parallel }{B}\pp {B}{\ell }.\]
+</div>
+Then the inertial term may be regrouped as
+<div class="math-display">
+\[\begin {aligned} \rho u_\parallel \pp {u_\parallel }{\ell } &amp;= \pp {}{\ell }(\rho u_\parallel ^2)-u_\parallel \pp {}{\ell }(\rho u_\parallel ) \\ &amp;= \pp {}{\ell }(\rho u_\parallel ^2)-\frac {\rho u_\parallel ^2}{B}\pp {B}{\ell }. \end {aligned}\]
+</div>
+Substituting this into the parallel balance gives
+<div class="math-display">
+\[\boxed { \pp {}{\ell }\left (p_\parallel +\rho u_\parallel ^2\right ) + \frac {p_\perp -p_\parallel -\rho u_\parallel ^2}{B}\pp {B}{\ell } =0. }\]
+</div>
+This form is useful because it shows immediately how the parallel flow modifies the coefficient of \(\partial B/\partial \ell\): the same \(\rho u_\parallel ^2\) that weakens perpendicular tension also enters the parallel mirror-force balance with the opposite sign inside the field-strength term.
 </p><!--l. 318--><p class="noindent" ><span class="likeparagraphHead"><a id="x1-157002"></a>Perpendicular balance with flow.</span>
 Projecting perpendicular to \(\B \) gives
 <div class="math-display">
