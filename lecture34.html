@@ -10,9 +10,19 @@
 <meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <!-- xhtml,mathjax,html --> 
 <meta name="src" content="main_html_mathjax_preview_final.tex" /> 
-<link rel="stylesheet" type="text/css" href="book.css" /> 
+<link rel="stylesheet" type="text/css" href="main_html_mathjax_preview_final.css" /> 
 <script src="mathjax_preview_macros.js"></script> 
  <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+<link rel="icon" type="image/png" href="figures/cerfon_solovev_triptych.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YDSC1GPL76"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YDSC1GPL76');
+</script>
 
 <style>
 html {
@@ -146,6 +156,12 @@ div.figure,
   margin-left: auto;
   margin-right: auto;
 }
+.figure-wide-lab {
+  width: 94%;
+}
+.figure-wide-parker {
+  width: 100%;
+}
 div.figure img {
   display: block;
   margin-left: auto;
@@ -161,6 +177,12 @@ div.figure img {
 @media (max-width: 1100px) {
   div.figure,
   .video-shell {
+    width: 100%;
+  }
+  .figure-wide-lab {
+    width: 100%;
+  }
+  .figure-wide-parker {
     width: 100%;
   }
 }
@@ -378,18 +400,8 @@ div.figure .caption {
 }
 </style>
 
-<link rel="icon" type="image/png" href="figures/cerfon_solovev_triptych.png" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YDSC1GPL76"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YDSC1GPL76');
-</script>
 </head><body 
-><div class="preview-nav"><a class="nav-prev" href="lecture33.html">&#8592; Previous Lecture</a><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture35.html">Next Lecture &#8594;</a></div>
+><div class="preview-nav"><span class="nav-prev nav-disabled">&#8592; Previous Lecture</span><a class="nav-center" href="index.html#preview-contents">Contents</a><a class="nav-next" href="lecture35.html">Next Lecture &#8594;</a></div>
 <h2 class="chapterHead"><span class="titlemark">Lecture&#x00A0;34</span><br /><a 
  id="x1-200034"></a>Shocks</h2>
 <!--l. 29--><p class="noindent" >In the lecture on conservative form we rewrote ideal MHD as a set of local conservation laws. Once the
@@ -1024,9 +1036,86 @@ class="ecbx-1095">Do  not  confuse  a  shock  with  every  sharp  front. </span>
 <a 
  id="x1-28001r27"></a>
 <h3 class="sectionHead"><span class="titlemark">34.7   </span> <a 
- id="x1-290007"></a>Experimental perspective</h3>
+ id="x1-290007"></a>Richtmyer&#8211;Meshkov as impulsive interchange</h3>
 <!--l. 610--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-300007"></a>Why shock experiments are hard.</span>
+ id="x1-300007"></a>The shock-driven version of Rayleigh&#8211;Taylor.</span>
+The gravitational-interchange lecture taught us to think about a displaced interface in terms of an effective
+gravity acting on a density jump. The Richtmyer&#8211;Meshkov (RM) instability is the impulsive version of
+that same physics. Instead of a sustained acceleration, a shock crosses a corrugated density interface and
+deposits a velocity kick into the interface. In that sense RM is not a separate branch of instability theory
+so much as the shock-driven entry point into later Rayleigh&#8211;Taylor or interchange growth
+<a 
+href="lecture34.html#Xbrouillette2002_rm">Brouillette</a>&#x00A0;(<a 
+href="lecture34.html#Xbrouillette2002_rm">2002</a>).
+</p><!--l. 619--><p class="noindent" >For an interface displacement \(\eta (x,t)\) with wavenumber \(k\) and Atwood number <div class="math-display">\[A \equiv \frac {\rho _h-\rho _l}{\rho _h+\rho _l},\]</div>
+the sustained-acceleration Rayleigh&#8211;Taylor model may be written schematically as <div class="math-display">\[\ddot {\eta } \sim A k\, g_{\rm eff}(t)\,\eta .\]</div>
+If \(g_{\rm eff}\) is approximately constant, one recovers the usual interchange or Rayleigh&#8211;Taylor problem. If instead
+the acceleration is concentrated into a short shock transit so that \(\int g_{\rm eff}\,dt=\Delta u\), then the same equation gives the
+Richtmyer impulse law <div class="math-display">\[\dot {\eta }(0^+) \simeq A\,k\,\Delta u\,\eta _0,\]</div>
+followed by the early-time growth <div class="math-display">\[\eta (t) \simeq \eta _0\left [1 + A\,k\,\Delta u\,t\right ].\]</div>
+The physical message is simple: a shock first seeds the interface by impulsive acceleration, and
+then any later sustained deceleration can continue the growth in the ordinary Rayleigh&#8211;Taylor
+sense.
+</p>
+<!--l. 642--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-310007"></a>Where the effective gravity points in a supernova or supernova remnant.</span>
+This sign question is worth making explicit. Let the ejecta/contact radius be \(R_c(t)\), with \(\er \) pointing outward.
+During free expansion, \(\ddot {R}_c\) can be small, but once the ejecta begin to decelerate against ambient gas one has
+<div class="math-display">\[\ddot {R}_c &lt; 0.\]</div>
+In the frame comoving with the decelerating contact discontinuity, the inertial body force therefore acts
+like an effective gravity <div class="math-display">\[\vect {g}_{\rm eff} = -\ddot {R}_c\,\er ,\]</div>
+which points outward. The denser shocked ejecta lies on the inner side of the contact, while
+the lighter shocked circumstellar or interstellar gas lies on the outer side. Thus the heavy
+fluid is &#8220;above&#8221; the light fluid with respect to the outward effective gravity, and the contact is
+Rayleigh&#8211;Taylor unstable. In core-collapse supernovae the same sequence occurs earlier at composition
+interfaces inside the star: shock passage gives an RM impulse, and the later deceleration by the
+reverse shock sustains Rayleigh&#8211;Taylor growth and mixing <a 
+href="lecture34.html#Xebisuzaki1989_sn1987a_rt">Ebisuzaki et&#x00A0;al.</a>&#x00A0;(<a 
+href="lecture34.html#Xebisuzaki1989_sn1987a_rt">1989</a>);&#x00A0;<a 
+href="lecture34.html#Xdraine1993_interstellar_shocks">Draine and
+McKee</a>&#x00A0;(<a 
+href="lecture34.html#Xdraine1993_interstellar_shocks">1993</a>).
+</p>
+<!--l. 662--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-320007"></a>Where RM enters inertial confinement fusion.</span>
+In inertial-confinement fusion, RM appears during the early shock-timing phase, when one or more
+shocks cross the ablator surface, the ablator&#8211;ice interface, or the ice&#8211;gas boundary. Each shock
+transit, and especially each reshock, deposits an interfacial velocity perturbation of the same
+form as the RM impulse law above. Later in the implosion, the capsule enters a sustained
+acceleration and then a deceleration phase, so the RM-seeded corrugations become the seeds for
+                                                                                         
+                                                                                         
+ablative or classical Rayleigh&#8211;Taylor growth. That is why ICF design treats shock timing,
+low-adiabat compression, and interface smoothness as one coupled stability problem rather
+than as unrelated topics <a 
+href="lecture36.html#Xlindl1998_icf">Lindl</a>&#x00A0;(<a 
+href="lecture36.html#Xlindl1998_icf">1998</a>);&#x00A0;<a 
+href="lecture36.html#Xlindl2004_physics_basis">Lindl et&#x00A0;al.</a>&#x00A0;(<a 
+href="lecture36.html#Xlindl2004_physics_basis">2004</a>);&#x00A0;<a 
+href="lecture34.html#Xgoncharov1999_ablative_rm">Goncharov</a>&#x00A0;(<a 
+href="lecture34.html#Xgoncharov1999_ablative_rm">1999</a>);&#x00A0;<a 
+href="lecture36.html#Xhurricane2023_icf_review">Hurricane
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="lecture36.html#Xhurricane2023_icf_review">2023</a>).
+</p><!--l. 674--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+   <ul class="itemize1">
+   <li class="itemize">Richtmyer&#8211;Meshkov is the impulsive, shock-driven limit of the same interface physics
+   that later appears as Rayleigh&#8211;Taylor or gravitational interchange.
+   </li>
+   <li class="itemize">In a decelerating supernova contact, the effective gravity in the comoving frame points
+   outward, so dense shocked ejecta sits above lighter shocked ambient plasma and is
+   Rayleigh&#8211;Taylor unstable.
+   </li>
+   <li class="itemize">In ICF, shock transit and reshock create the RM seed, while the later acceleration and
+   deceleration phases determine how much of that seed is amplified by Rayleigh&#8211;Taylor
+   growth.</li></ul>
+     </blockquote></div></div>
+<a 
+ id="x1-32001r30"></a>
+<h3 class="sectionHead"><span class="titlemark">34.8   </span> <a 
+ id="x1-330008"></a>Experimental perspective</h3>
+<!--l. 685--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-340008"></a>Why shock experiments are hard.</span>
 Laboratory studies of MHD shocks are challenging because one must produce a plasma that is
 simultaneously compressible, sufficiently magnetized, and driven fast enough to cross the relevant
 characteristic speed. In that sense shock experiments are more demanding than the classic liquid-metal
@@ -1035,8 +1124,8 @@ conductivity, whereas shock formation also requires a strong nonlinear drive and
 mechanism. Modern shock experiments therefore span laser-produced plasmas, pulsed-power devices, and
 large magnetized plasma facilities.
 </p>
-<!--l. 619--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-310007"></a>Wisconsin programme.</span>
+<!--l. 694--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-350008"></a>Wisconsin programme.</span>
 At Wisconsin, the WiPAL and WiPPL facilities described by Forest and collaborators provide a flexible
 setting for this programme <a 
 href="lecture34.html#Xforest2015_wipal">Forest et&#x00A0;al.</a>&#x00A0;(<a 
@@ -1048,14 +1137,16 @@ example of how a collisionless shock departs from the simplest single-fluid pict
 href="lecture34.html#Xendrizzi2021_supercritical_perpendicular_shocks">Endrizzi
 et&#x00A0;al.</a>&#x00A0;(<a 
 href="lecture34.html#Xendrizzi2021_supercritical_perpendicular_shocks">2021</a>).
-</p><!--l. 629--><p class="noindent" >A broader account is given in Endrizzi&#8217;s dissertation, which treated the formation of both parallel and
+</p><!--l. 704--><p class="noindent" >A broader account is given in Endrizzi&#8217;s dissertation, which treated the formation of both parallel and
 perpendicular collisionless shocks in the Big Red Ball and emphasized the bridge between MHD jump
 conditions and kinetic shock substructure <a 
 href="lecture34.html#Xendrizzi2021_parallel_perpendicular_thesis">Endrizzi</a>&#x00A0;(<a 
 href="lecture34.html#Xendrizzi2021_parallel_perpendicular_thesis">2021</a>).
+                                                                                         
+                                                                                         
 </p>
-<!--l. 634--><p class="noindent" ><span class="likeparagraphHead"><a 
- id="x1-320007"></a>Shocks in reconnection-driven flows.</span>
+<!--l. 709--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-360008"></a>Shocks in reconnection-driven flows.</span>
 On TREX, Olson, Egedal, Endrizzi, Forest and collaborators identified a shock interface between the
 far-upstream supersonic inflow and a region of magnetic-flux pileup during driven reconnection. There the
 shock is not merely incidental; it is part of the force balance that regulates the inflow and helps
@@ -1063,16 +1154,14 @@ connect the measured layer structure to the Rankine&#8211;Hugoniot constraints d
 href="lecture34.html#Xolson2021_shocked_flux_pileup">Olson
 et&#x00A0;al.</a>&#x00A0;(<a 
 href="lecture34.html#Xolson2021_shocked_flux_pileup">2021</a>).
-</p><!--l. 641--><p class="noindent" >Related Big Red Ball experiments have also characterized fast magnetosonic waves driven by
+</p><!--l. 716--><p class="noindent" >Related Big Red Ball experiments have also characterized fast magnetosonic waves driven by
 compact-toroid injection along an applied field. Those measurements do not yet constitute a fully
 developed shock, but they isolate the fast branch that, at larger amplitude, steepens into one of the
 standard MHD shock families <a 
 href="lecture34.html#Xchu2023_fast_magnetosonic_waves">Chu et&#x00A0;al.</a>&#x00A0;(<a 
 href="lecture34.html#Xchu2023_fast_magnetosonic_waves">2023</a>).
-</p><!--l. 648--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
+</p><!--l. 723--><div class="callout callout-takeaways"><div class="callout-title">Takeaways</div><div class="callout-body"><blockquote class="quote">
    <ul class="itemize1">
-                                                                                         
-                                                                                         
    <li class="itemize">The jump conditions for a shock come directly from the conservative fluxes of MHD.
    </li>
    <li class="itemize">Entropy production and evolutionary conditions are what distinguish a physical shock
@@ -1084,27 +1173,127 @@ href="lecture34.html#Xchu2023_fast_magnetosonic_waves">2023</a>).
    irreversibility come from non-ideal transport or kinetic physics.</li></ul>
      </blockquote></div></div>
 <h3 class="likesectionHead"><a 
- id="x1-330007"></a>Bibliography</h3>
-    <div class="thebibliography">
-<p class="bibitem" ><span class="biblabel"><a id="Xdehoffmann1950_mhd_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Frederic de&#x00A0;Hoffmann and Edward Teller. Magneto-hydrodynamic shocks. <span class="ecti-1095">Physical Review</span>, 80(4):692&#8211;703, 1950. doi:<a href="https://doi.org/10.1103/PhysRev.80.692" >10.1103/PhysRev.80.692</a>.
+ id="x1-370008"></a>Bibliography</h3>
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdehoffmann1950_mhd_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Frederic de&#x00A0;Hoffmann and Edward Teller. Magneto-hydrodynamic shocks. <span 
+class="ecti-1095">Physical Review</span>, 80
+  (4):692&#8211;703, 1950. doi:<a 
+href="https://doi.org/10.1103/PhysRev.80.692" >10.1103/PhysRev.80.692</a>.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xdraine1993_interstellar_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Bruce&#x00A0;T. Draine and Christopher&#x00A0;F. McKee. Theory of interstellar shocks. <span class="ecti-1095">Annual Review of Astronomy and Astrophysics</span>, 31:373&#8211;432, 1993. doi:<a href="https://doi.org/10.1146/annurev.aa.31.090193.002105" >10.1146/annurev.aa.31.090193.002105</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdraine1993_interstellar_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Bruce&#x00A0;T. Draine and Christopher&#x00A0;F. McKee. Theory of interstellar shocks. <span 
+class="ecti-1095">Annual Review of</span>
+  <span 
+class="ecti-1095">Astronomy and Astrophysics</span>, 31:373&#8211;432, 1993. doi:<a 
+href="https://doi.org/10.1146/annurev.aa.31.090193.002105" >10.1146/annurev.aa.31.090193.002105</a>.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xmarkovskii1996_mhd_discontinuities"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;A. Markovskii and B.&#x00A0;V. Somov. Magnetohydrodynamic discontinuities in space plasmas: Interrelation between stability and structure. <span class="ecti-1095">Space Science Reviews</span>, 78:443&#8211;506, 1996. doi:<a href="https://doi.org/10.1007/BF00171927" >10.1007/BF00171927</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmarkovskii1996_mhd_discontinuities"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> S.&#x00A0;A. Markovskii and B.&#x00A0;V. Somov.  Magnetohydrodynamic discontinuities in space plasmas:
+  Interrelation  between  stability  and  structure.     <span 
+class="ecti-1095">Space  Science  Reviews</span>,  78:443&#8211;506,  1996.
+  doi:<a 
+href="https://doi.org/10.1007/BF00171927" >10.1007/BF00171927</a>.
+                                                                                         
+                                                                                         
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xforest2015_wipal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> C.&#x00A0;B. Forest, K.&#x00A0;Flanagan, M.&#x00A0;Brookhart, M.&#x00A0;Clark, C.&#x00A0;M. Cooper, V.&#x00A0;D&eacute;sangles, J.&#x00A0;Egedal, D.&#x00A0;Endrizzi, I.&#x00A0;V. Khalzov, H.&#x00A0;Li, et&#x00A0;al. The wisconsin plasma astrophysics laboratory. <span class="ecti-1095">Journal of Plasma Physics</span>, 81(5):345810501, 2015. doi:<a href="https://doi.org/10.1017/S0022377815000975" >10.1017/S0022377815000975</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbrouillette2002_rm"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Martin Brouillette. The richtmyer&#8211;meshkov instability. <span 
+class="ecti-1095">Annual Review of Fluid Mechanics</span>, 34:
+  445&#8211;468, 2002. doi:<a 
+href="https://doi.org/10.1146/annurev.fluid.34.090101.162238" >10.1146/annurev.fluid.34.090101.162238</a>.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xendrizzi2021_supercritical_perpendicular_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Douglass Endrizzi, J.&#x00A0;Egedal, M.&#x00A0;Clark, K.&#x00A0;Flanagan, S.&#x00A0;Greess, J.&#x00A0;Milhone, A.&#x00A0;Millet-Ayala, J.&#x00A0;Olson, E.&#x00A0;E. Peterson, J.&#x00A0;Wallace, and C.&#x00A0;B. Forest. Laboratory resolved structure of supercritical perpendicular shocks. <span class="ecti-1095">Physical Review Letters</span>, 126(14):145001, 2021. doi:<a href="https://doi.org/10.1103/PhysRevLett.126.145001" >10.1103/PhysRevLett.126.145001</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xebisuzaki1989_sn1987a_rt"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Toshikazu Ebisuzaki, Toshio Shigeyama, and Ken&#8217;ichi Nomoto. Rayleigh&#8211;taylor instability and
+  mixing in SN 1987a. <span 
+class="ecti-1095">Astrophysical Journal Letters</span>, 344:L65&#8211;L68, 1989.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xendrizzi2021_parallel_perpendicular_thesis"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Douglass&#x00A0;A. Endrizzi. <span class="ecti-1095">The Formation of Parallel and Perpendicular Collisionless Shocks in the Big Red Ball</span>. PhD thesis, University of Wisconsin&#8211;Madison, 2021.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlindl1998_icf"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> John&#x00A0;D. Lindl.  <span 
+class="ecti-1095">Inertial Confinement Fusion: The Quest for Ignition and Energy Gain Using</span>
+  <span 
+class="ecti-1095">Indirect Drive</span>. Springer-Verlag, New York, 1998.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xolson2021_shocked_flux_pileup"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Joseph Olson, Jan Egedal, Michael Clark, Douglass&#x00A0;A. Endrizzi, Samuel Greess, Alexander Millet-Ayala, Rachel Myers, Ethan&#x00A0;E. Peterson, John Wallace, and Cary&#x00A0;B. Forest. Regulation of the normalized rate of driven magnetic reconnection through shocked flux pileup. <span class="ecti-1095">Journal of Plasma Physics</span>, 87(3):175870301, 2021. doi:<a href="https://doi.org/10.1017/S0022377821000659" >10.1017/S0022377821000659</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlindl2004_physics_basis"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> John&#x00A0;D. Lindl, Peter Amendt, Richard&#x00A0;L. Berger, S.&#x00A0;G. Glendinning, Siegfried&#x00A0;H. Glenzer,
+  Steven&#x00A0;W. Haan, Robert&#x00A0;L. Kauffman, Otto&#x00A0;L. Landen, and Larry&#x00A0;J. Suter. The physics basis
+  for ignition using indirect-drive targets on the national ignition facility.  <span 
+class="ecti-1095">Physics of Plasmas</span>, 11
+  (2):339&#8211;491, 2004. doi:<a 
+href="https://doi.org/10.1063/1.1578638" >10.1063/1.1578638</a>.
   </p>
-<p class="bibitem" ><span class="biblabel"><a id="Xchu2023_fast_magnetosonic_waves"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> F.&#x00A0;Chu, S.&#x00A0;J. Langendorf, J.&#x00A0;Olson, T.&#x00A0;Byvank, D.&#x00A0;A. Endrizzi, A.&#x00A0;L. LaJoie, K.&#x00A0;J. McCollam, and C.&#x00A0;B. Forest. Characterization of fast magnetosonic waves driven by compact toroid plasma injection along a magnetic field. <span class="ecti-1095">Physics of Plasmas</span>, 30(12):122110, 2023. doi:<a href="https://doi.org/10.1063/5.0174537" >10.1063/5.0174537</a>.
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgoncharov1999_ablative_rm"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> V.&#x00A0;N. Goncharov.   Theory of the ablative richtmyer&#8211;meshkov instability.   <span 
+class="ecti-1095">Physical Review</span>
+  <span 
+class="ecti-1095">Letters</span>, 82(10):2091&#8211;2094, 1999. doi:<a 
+href="https://doi.org/10.1103/PhysRevLett.82.2091" >10.1103/PhysRevLett.82.2091</a>.
   </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurricane2023_icf_review"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  O.&#x00A0;A.  Hurricane,  P.&#x00A0;K.  Patel,  R.&#x00A0;Betti,  et&#x00A0;al.   Physics  principles  of  inertial  confinement
+  fusion  and  U.S.  program  overview.      <span 
+class="ecti-1095">Reviews  of  Modern  Physics</span>,  95(2):025005,  2023.
+  doi:<a 
+href="https://doi.org/10.1103/RevModPhys.95.025005" >10.1103/RevModPhys.95.025005</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xforest2015_wipal"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> C.&#x00A0;B. Forest, K.&#x00A0;Flanagan, M.&#x00A0;Brookhart, M.&#x00A0;Clark, C.&#x00A0;M. Cooper, V.&#x00A0;Désangles, J.&#x00A0;Egedal,
+  D.&#x00A0;Endrizzi, I.&#x00A0;V. Khalzov, H.&#x00A0;Li, et&#x00A0;al. The wisconsin plasma astrophysics laboratory. <span 
+class="ecti-1095">Journal</span>
+  <span 
+class="ecti-1095">of Plasma Physics</span>, 81(5):345810501, 2015. doi:<a 
+href="https://doi.org/10.1017/S0022377815000975" >10.1017/S0022377815000975</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xendrizzi2021_supercritical_perpendicular_shocks"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Douglass Endrizzi, J.&#x00A0;Egedal, M.&#x00A0;Clark, K.&#x00A0;Flanagan, S.&#x00A0;Greess, J.&#x00A0;Milhone, A.&#x00A0;Millet-Ayala,
+  J.&#x00A0;Olson,  E.&#x00A0;E.  Peterson,  J.&#x00A0;Wallace,  and  C.&#x00A0;B.  Forest.     Laboratory  resolved  structure
+  of   supercritical   perpendicular   shocks.      <span 
+class="ecti-1095">Physical  Review  Letters</span>,   126(14):145001,   2021.
+  doi:<a 
+href="https://doi.org/10.1103/PhysRevLett.126.145001" >10.1103/PhysRevLett.126.145001</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xendrizzi2021_parallel_perpendicular_thesis"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Douglass&#x00A0;A. Endrizzi. <span 
+class="ecti-1095">The Formation of Parallel and Perpendicular Collisionless Shocks in the</span>
+  <span 
+class="ecti-1095">Big Red Ball</span>. PhD thesis, University of Wisconsin&#8211;Madison, 2021.
+                                                                                         
+                                                                                         
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xolson2021_shocked_flux_pileup"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Joseph Olson, Jan Egedal, Michael Clark, Douglass&#x00A0;A. Endrizzi, Samuel Greess, Alexander
+  Millet-Ayala, Rachel Myers, Ethan&#x00A0;E. Peterson, John Wallace, and Cary&#x00A0;B. Forest.  Regulation
+  of the normalized rate of driven magnetic reconnection through shocked flux pileup.  <span 
+class="ecti-1095">Journal of</span>
+  <span 
+class="ecti-1095">Plasma Physics</span>, 87(3):175870301, 2021. doi:<a 
+href="https://doi.org/10.1017/S0022377821000659" >10.1017/S0022377821000659</a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchu2023_fast_magnetosonic_waves"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  F.&#x00A0;Chu,  S.&#x00A0;J.  Langendorf,  J.&#x00A0;Olson,  T.&#x00A0;Byvank,  D.&#x00A0;A.  Endrizzi,  A.&#x00A0;L.  LaJoie,  K.&#x00A0;J.
+  McCollam, and C.&#x00A0;B. Forest.  Characterization of fast magnetosonic waves driven by compact
+  toroid  plasma  injection  along  a  magnetic  field.    <span 
+class="ecti-1095">Physics  of  Plasmas</span>,  30(12):122110,  2023.
+  doi:<a 
+href="https://doi.org/10.1063/5.0174537" >10.1063/5.0174537</a>.
+</p>
   </div>
 <h3 class="likesectionHead"><a 
- id="x1-340007"></a>Problems</h3>
+ id="x1-380008"></a>Problems</h3>
                 <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
 <span 
 class="ecbx-1095">Problem 34.1.</span>  </dt><dd 
