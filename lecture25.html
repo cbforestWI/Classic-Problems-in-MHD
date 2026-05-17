@@ -539,11 +539,25 @@ Newcomb/Suydam operator, but the effective potential has been renormalized by to
 The cylinder had only the first piece. Mercier keeps the other two.
 </p><!--l. 376--><p class="noindent" >A geometric form of the Mercier index, following Zohm, is <a id="eq-eq-DM_local"></a><div class="math-display">\[D_M = \frac {\muo \,dp/d\Psi _0}{(dq/d\Psi _0)^2} \left \langle \frac {R^2B_p^2}{JB^2} \right \rangle ^{-2} \left [ 2\left \langle \frac {RB_p\kappa _n}{B^2}\right \rangle + \left \langle \frac {\Lambda _M}{B^4}\right \rangle - \left \langle \frac {1}{B^2}\right \rangle \left \langle \frac {\Lambda _M}{B^2}\right \rangle \right ], \tag{25.30}\]</div>
 with the surface average <a id="eq-eq-mercier-surface_average"></a><div class="math-display">\[\langle f\rangle \equiv \left ( \oint \frac {B^2}{R^2B_p^2}J\,d\chi \right )^{-1} \oint \frac {f B^2}{R^2B_p^2}J\,d\chi . \tag{25.31}\]</div>
-Here \(\Lambda _M\) is the standard Pfirsch&#8211;Schlüter/shear combination on the resonant surface. The crucial point is not
-the bookkeeping of \(\Lambda _M\), but the physics encoded by (<a href="lecture25.html#eq-eq-DM_local">25.30</a>): Mercier is driven by the <tspan font-family="ecti" font-size="1095">pressure</tspan>
+Here \(\Lambda _M\) is the standard Pfirsch&#8211;Schl&uuml;ter/shear combination on the resonant surface. In practice,
+\(\Lambda_M\) is the bookkeeping device that collects the parallel-force-balance and sideband response around the torus.
+The crucial point is not the notation itself, but the physics encoded by (<a href="lecture25.html#eq-eq-DM_local">25.30</a>): Mercier is driven by the <tspan font-family="ecti" font-size="1095">pressure</tspan>
 <tspan font-family="ecti" font-size="1095">gradient times curvature</tspan>. The first extra term is the surface-averaged normal curvature, while
-the remaining terms come from the parallel force balance that sets up the Pfirsch&#8211;Schlüter
+the remaining terms come from the parallel force balance that sets up the Pfirsch&#8211;Schl&uuml;ter
 response.
+</p><!--l. 404--><p class="noindent" >One can connect this directly to Appendix I. In the notation used there, \(\nu(\Psi,\chi)\) is the straight-field-line pitch and \(q=(2\pi)^{-1}\oint \nu\,d\chi\). The exact Mercier definition is <a id="eq-eq-mercier_Lambda_exact_appendix"></a><div class="math-display">\[\Lambda_M\equiv \muo I\left(\nu^2\frac {dp}{d\Psi_0}-\frac {R^2B_p^2}{J}\frac {\partial \nu}{\partial \Psi_0}\right). \tag{25.31a}\]</div>
+This is the quantity that appears in the geometric combination \(\langle \Lambda_M/B^4\rangle-\langle B^{-2}\rangle\langle \Lambda_M/B^2\rangle\). It is not the normal-curvature term itself; that role is played separately by \(2\langle RB_p\kappa_n/B^2\rangle\). Rather, \(\Lambda_M\) packages the Pfirsch&#8211;Schl&uuml;ter/geodesic response through the field-line pitch \(\nu\) and its radial variation.
+</p><!--l. 404--><p class="noindent" >The same Appendix-I development also writes the parallel-current variation on a flux surface as <a id="eq-eq-mercier_PS_from_appendix"></a><div class="math-display">\[\frac {\muo J_\parallel}{B}=\frac {\muo \left\langle \J\cdot\B \right\rangle}{\left\langle B^2\right\rangle}+\muo p'F\left(\frac {1}{B^2}-\frac {1}{\left\langle B^2\right\rangle}\right). \tag{25.31b}\]</div>
+The second term is the Pfirsch&#8211;Schl&uuml;ter part. A convenient rewriting is therefore <a id="eq-eq-mercier_Lambda_from_appendix"></a><div class="math-display">\[\frac {\muo J_\parallel}{B}=\left(\frac {\muo J_\parallel}{B}\right)_{\rm avg}+\frac {\Lambda_M}{B^2}, \qquad \Lambda_M\equiv \muo p'F\left(1-\frac {B^2}{\left\langle B^2\right\rangle}\right). \tag{25.31c}\]</div>
+So Eq. \(25.31a\) is the exact Appendix-I Mercier definition, while Eq. \(25.31c\) is the same object rewritten in the form that enters the Mercier averages.
+</p><!--l. 404--><p class="noindent" >In the circular large-aspect-ratio limit, it is useful to make the algebra explicit rather than just quoting the result. On circular flux surfaces, \(\nu\simeq q\) to leading order, so the first term in <a href="lecture25.html#eq-eq-mercier_Lambda_exact_appendix">25.31a</a> is already proportional to \(q^2 dp/d\Psi_0\). The second term carries the magnetic shear through \(\partial \nu/\partial \Psi_0\simeq dq/d\Psi_0\). When those two pieces are inserted into the Mercier averages, the toroidal contribution reorganizes into a correction proportional to \(-q^2\) times the cylindrical Suydam drive. One may therefore write
+<a id="eq-eq-DM_split"></a><div class="math-display">\[D_M = D_s + \Delta D_{\rm tor}, \tag{25.32}\]</div>
+where \(D_s\) is the cylindrical Suydam drive and \(\Delta D_{\rm tor}\) is the toroidal correction. Since
+<a href="lecture25.html#eq-eq-DM_from_Ds">25.22</a> says \(D_M=D_s(1-q^2)\), the correction is
+<a id="eq-eq-DM_toroidal_piece"></a><div class="math-display">\[\Delta D_{\rm tor}=D_s(1-q^2)-D_s=-q^2D_s. \tag{25.32a}\]</div>
+So the Pfirsch&#8211;Schl&uuml;ter/geodesic contribution contributes exactly the extra \(-q^2D_s\) piece, and that is the direct algebraic origin of the \(1-q^2\) factor in the circular-tokamak Mercier parameter.
+</p><!--l. 411--><p class="noindent" >The same conclusion can be seen directly from the Appendix-I rewriting <a href="lecture25.html#eq-eq-mercier_Lambda_from_appendix">25.31c</a>. On a circular surface one expands <div class="math-display">\[B(\theta)\simeq B_0(1-\epsilon\cos\theta), \qquad \frac {1}{B^2}\simeq \frac {1}{B_0^2}(1+2\epsilon\cos\theta).\]</div>
+So the Pfirsch&#8211;Schl&uuml;ter variation is proportional to \(\epsilon\cos\theta\). That \(\cos\theta\) piece is exactly what drives the \(m\pm1\) sidebands. Because the exact Appendix-I coefficient contains the factor \(\nu^2\simeq q^2\), eliminating those sidebands produces the geodesic correction \(\Delta D_{\rm tor}=-q^2D_s\), which is the extra piece needed to turn the cylindrical Suydam drive into \(D_M=D_s(1-q^2)\).
 </p>
 <!--l. 412--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1540002"></a>The criterion itself.</span>
@@ -553,12 +567,12 @@ gives <a id="eq-eq-mercier-indicial"></a><div class="math-display">\[p(p+1)+D_M=
 Once again the transition from monotonic to log-oscillatory behavior occurs at <div class="math-display">\[D_M=\frac {1}{4}.\]</div>
 So the local ideal-MHD Mercier criterion is <a id="eq-eq-mercier_criterion_DM"></a><div class="math-display">\[D_M\le \frac {1}{4}. \tag{25.35}\]</div>
 Mathematically, this is the same threshold as Suydam. Physically, the difference is that \(D_M\) now contains
-toroidal curvature and Pfirsch&#8211;Schlüter structure.
+toroidal curvature and Pfirsch&#8211;Schl&uuml;ter structure.
 </p>
 <!--l. 435--><p class="noindent" ><span class="likeparagraphHead"><a 
  id="x1-1550002"></a>Reduction to the cylinder and to the circular tokamak.</span>
 The geometric formula (<a href="lecture25.html#eq-eq-DM_local">25.30</a>) makes the cylindrical limit easy to read. For a screw pinch with \(R=R_0\),
-\(B_p=B_\theta (r)\), and \(B\simeq B_z\), the Pfirsch&#8211;Schlüter/geodesic terms cancel, so one recovers the cylindrical Suydam
+\(B_p=B_\theta (r)\), and \(B\simeq B_z\), the Pfirsch&#8211;Schl&uuml;ter/geodesic terms cancel, so one recovers the cylindrical Suydam
 index. In other words, Mercier really is the toroidal completion of Suydam, not a different local
 instability.
 </p><!--l. 442--><p class="noindent" >For a torus with cylindrical flux surfaces the criterion reduces to the familiar large-aspect-ratio form.
@@ -583,7 +597,7 @@ toroidicity can stabilize localized interchange once \(q&gt;1\).
      drive?
      </p><!--l. 497--><p class="noindent" ><tspan font-family="ecti" font-size="1095">Mercier  </tspan>is  the  axisymmetric  toroidal  ideal-MHD  refinement:  the  same  singular
      equation  reappears,  but  now  the  effective  potential  picks  up  normal-curvature  and
-     Pfirsch&#8211;Schlüter terms, so pressure drive must be judged together with how the field
+     Pfirsch&#8211;Schl&uuml;ter terms, so pressure drive must be judged together with how the field
      line samples curvature around the torus.
      </p><!--l. 502--><p class="noindent" ><tspan font-family="ecti" font-size="1095">Ballooning </tspan>comes next: instead of averaging the curvature over the surface, we let the
      perturbation localize in the bad-curvature region, which leads to the field-line problem of
