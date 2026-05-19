@@ -4,7 +4,15 @@
 <!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
 <html xmlns="http://www.w3.org/1999/xhtml"  
 > 
-<head><title>Lecture 17 Kinetic MHD: Collisionless Pressure Response</title> 
+<head><title>Kinetic MHD: Collisionless Pressure Response | Classic Problems in MHD</title>
+<meta name="description" content="Graduate MHD lecture on Kinetic MHD: Collisionless Pressure Response. Derivations, history, and experiments from Cary Forest's interactive web edition." />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<link rel="canonical" href="https://magnetohydrodynamics.physics.wisc.edu/lecture17.html" />
+<meta property="og:title" content="Kinetic MHD: Collisionless Pressure Response | Classic Problems in MHD" />
+<meta property="og:description" content="Graduate MHD lecture on Kinetic MHD: Collisionless Pressure Response. Derivations, history, and experiments from Cary Forest's interactive web edition." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://magnetohydrodynamics.physics.wisc.edu/lecture17.html" />
+<meta name="description" content="Graduate MHD lecture on Kinetic MHD: Collisionless Pressure Response. Detailed derivations, historical context, experimental interpretation, and references." />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
@@ -410,7 +418,12 @@ class="enumerate-enumitem">The new physics enters through the collisionless pres
 3. </dt><dd 
 class="enumerate-enumitem">The main lesson is beautifully sharp: the firehose mode is already visible in anisotropic
    fluid theory, while the mirror mode is the place where the kinetic closure changes the
-   quantitative answer.</dd></dl>
+   quantitative answer.
+   </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">A useful bonus is that restoring the appropriate pieces of generalized Ohm&#8217;s law shows
+   how two-fluid and kinetic effects begin to feed into inertial Alfv&#xe9;n waves, kinetic
+   Alfv&#xe9;n waves, and eventually Hall and FLR corrections.</dd></dl>
      </blockquote></div></div>
 <!--l. 39--><div class="callout callout-historical-perspective"><div class="callout-title">Historical Perspective</div><div class="callout-body"><blockquote class="quote">
      <!--l. 39--><p class="noindent" >The  CGL  closure  showed  in  1956  that  a  magnetized  collisionless  plasma  can  still
@@ -627,7 +640,145 @@ href="lecture17.html#XBale2009Anisotropy">Bale et&#x00A0;al.</a>&#x00A0;(<a
 href="lecture17.html#XBale2009Anisotropy">2009</a>). That is a beautiful confirmation of the kinetic-MHD point of
 view: the plasma evolves under low-frequency MHD-like dynamics, but kinetic microinstabilities regulate
 the pressure tensor.
-</p><!--l. 584--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
+<!--l. bridge--><p class="noindent" ><span class="likeparagraphHead"><a 
+ id="x1-kawbridge"></a>Bridge to inertial and kinetic Alfv&#xe9;n waves.</span>
+This is the natural next step after the mirror and firehose discussion: keep the same Alfv&#xe9;nic geometry, but now add back the leading two-fluid terms in generalized Ohm's law. That is where inertial Alfv&#xe9;n waves, kinetic Alfv&#xe9;n waves, and eventually FLR corrections start to appear. In the collisionless isotropic limit, the needed parallel Ohm law is,
+</p><div class="math-display">\[
+E_\parallel
+=
+-\frac{T_e}{e}\vect{b}\cdot\grad\!\left(\frac{\delta n}{n_0}\right)
+-\frac{m_e}{n_0 e^2}\pp{J_\parallel}{t}.
+\]</div>
+<!--l. bridge--><p class="noindent" >Choose the usual shear-Alfv&#xe9;n polarization
+</p><div class="math-display">\[
+\delta \B = \delta B_y \vect{e}_y,\qquad
+\uvec_\perp = u_y \vect{e}_y,\qquad
+\delta B_y = - i k_\perp A_\parallel,\qquad
+E_\parallel = - i k_\parallel \Phi + i\omega A_\parallel.
+\]</div>
+<!--l. bridge--><p class="noindent" >The same motion may be written in displacement form as
+</p><div class="math-display">\[
+u_y = -i\omega \xi_y = \frac{i k_\perp \Phi}{B_0},
+\qquad
+\xi_y = -\frac{k_\perp}{\omega B_0}\Phi,
+\qquad
+\delta B_y = i k_\parallel B_0 \xi_y.
+\]</div>
+<!--l. bridge--><p class="noindent" >So this is the same shear-Alfv&#xe9;n geometry already encoded in Eq. 17.2, just written with
+\(\Phi\), \(A_\parallel\), and \(\xi_y\) together. The perpendicular force balance may then be written directly in velocity form,
+</p><div class="math-display">\[
+-i\omega \rho_0 u_y
+=
+\frac{B_0}{\muo} i k_\parallel \delta B_y,
+\]</div>
+<!--l. bridge--><p class="noindent" >which, together with the potential representation above, gives
+</p><div class="math-display">\[
+\Phi
+=
+\frac{k_\parallel v_A^2}{\omega}A_\parallel.
+\]</div>
+<!--l. bridge--><p class="noindent" >For \(k_\perp \gg k_\parallel\), ion polarization supplies the density response. The key point is that in a
+uniform field the perpendicular ion motion has two parts,
+</p><div class="math-display">\[
+\vect{u}_{i\perp} = \vect{u}_E + \vect{u}_p.
+\]</div>
+<!--l. bridge--><p class="noindent" >Here \(\vect{u}_E\) is the \(E\times B\) drift and \(\vect{u}_p\) is the ion polarization drift. In this
+shear-Alfv\'en reduction we take \(\vect{A}=A_\parallel \vect{b}_0\), so the inductive field
+\(-\partial_t \vect{A}\) is parallel to \(\vect{B}_0\). Thus the perpendicular electric field comes only from the
+electrostatic part, \(\vect{E}_\perp = -\grad_\perp \Phi\), which is why \(A_\parallel\) does not enter
+\(\delta n/n_0\) directly. It enters only indirectly through the perpendicular force-balance relation
+\(\Phi = (k_\parallel v_A^2/\omega)A_\parallel\).
+</p>
+<!--l. bridge--><p class="noindent" >In a uniform field the \(E\times B\) motion is incompressible, \(\divergence \vect{u}_E = 0\), so the
+perpendicular density response comes from the ion polarization current
+\(\vect{J}_{\rm pol}=e n_0 \vect{u}_p\), not from the bulk \(E\times B\) motion itself. Using the polarization drift and ion continuity,
+</p><div class="math-display">\[
+\omega \delta n = n_0 k_\perp u_{px},
+\qquad
+u_{px} = -\frac{\omega k_\perp \Phi}{\Omega_i B_0},
+\]</div>
+<!--l. bridge--><p class="noindent" >one first gets the raw continuity result
+</p><div class="math-display">\[
+\frac{\delta n}{n_0}
+=
+-\frac{k_\perp^2 e\Phi}{m_i\Omega_i^2}.
+\]</div>
+<!--l. bridge--><p class="noindent" >The same statement may be written as quasineutral current continuity,
+\(\divergence \vect{J}=0\), with the divergence of \(\vect{J}_{\rm pol}\) balanced by the parallel electron current.
+That is, the polarization current cannot begin or end locally, so its divergence must be compensated by
+\(J_\parallel\), which in this ordering is carried mainly by electrons.
+</p>
+<!--l. bridge--><p class="noindent" >The temperature \(T_e\) does not come from ion continuity by itself. It is introduced so the polarization-density response is
+written in the same normalization as the adiabatic electron response. In the electromagnetic case, that response is
+</p><div class="math-display">\[
+\frac{\delta n}{n_0}
+=
+-k_\perp^2 \rho_s^2 \frac{e\Phi}{T_e},
+\qquad
+\rho_s^2 \equiv \frac{T_e}{m_i\Omega_i^2}
+=
+\frac{c_s^2}{\Omega_i^2},
+\qquad
+c_s^2 \equiv \frac{T_e}{m_i}.
+\]</div>
+<!--l. bridge--><p class="noindent" >The same adiabatic electron response in the electromagnetic case is
+</p><div class="math-display">\[
+\frac{\delta n}{n_0}
+=
+\frac{e}{T_e}\left(\Phi-\frac{\omega}{k_\parallel}A_\parallel\right),
+\]</div>
+<!--l. bridge--><p class="noindent" >since \(E_\parallel = -ik_\parallel \Phi + i\omega A_\parallel\). In the fully electromagnetic problem the
+adiabatic electrons respond to the gauge-invariant parallel potential
+\(\Phi-\omega A_\parallel/k_\parallel\), not to \(\Phi\) alone. The simpler form
+\(\delta n/n_0 \simeq e\Phi/T_e\) is the additional electrostatic or weak-inductive limit
+\(|\omega A_\parallel/k_\parallel| \ll |\Phi|\). That extra approximation is not made in the derivation below:
+\(A_\parallel\) is kept explicitly in Ohm's law and only then eliminated using the coupled equations. This is also what
+identifies \(\rho_s\) as the ion-sound gyroradius. The clean physical origin of the
+perpendicular density response is \(\divergence \vect{J}=0\), with \(\divergence \vect{J}_{\rm pol}\) compensated by
+parallel current.
+</p>
+<!--l. bridge--><p class="noindent" >Insert that into the parallel Ohm law. Writing
+\(d_e^2 \equiv m_e/(\muo n_0 e^2)\), one obtains
+</p><div class="math-display">\[
+\omega A_\parallel \left(1+k_\perp^2 d_e^2\right)
+=
+k_\parallel \Phi \left(1+k_\perp^2 \rho_s^2\right).
+\]</div>
+<!--l. bridge--><p class="noindent" >Now substitute \(\Phi = (k_\parallel v_A^2/\omega)A_\parallel\):
+</p><div class="math-display">\[
+\omega A_\parallel \left(1+k_\perp^2 d_e^2\right)
+=
+\frac{k_\parallel^2 v_A^2}{\omega}\left(1+k_\perp^2 \rho_s^2\right)A_\parallel.
+\]</div>
+<!--l. bridge--><p class="noindent" >Cancel \(A_\parallel\), multiply by \(\omega\), and obtain the standard unified result
+</p><div class="math-display">\[
+\boxed{
+\omega^2
+=
+k_\parallel^2 v_A^2
+\frac{1+k_\perp^2 \rho_s^2}
+{1+k_\perp^2 d_e^2}.
+}
+\]</div>
+<!--l. bridge--><p class="noindent" >This contains two familiar limits:
+</p><div class="math-display">\[
+\text{inertial Alfv&#xe9;n:}\qquad
+\omega^2 \simeq \frac{k_\parallel^2 v_A^2}{1+k_\perp^2 d_e^2},
+\qquad
+k_\perp^2 \rho_s^2 \ll k_\perp^2 d_e^2,
+\]</div>
+<div class="math-display">\[
+\text{kinetic Alfv&#xe9;n:}\qquad
+\omega^2 \simeq k_\parallel^2 v_A^2\left(1+k_\perp^2 \rho_s^2\right),
+\qquad
+k_\perp^2 d_e^2 \ll k_\perp^2 \rho_s^2.
+\]</div>
+<!--l. bridge--><p class="noindent" >The geometry remains that of a shear Alfv&#xe9;n wave, and the names ``inertial'' and
+``kinetic'' simply identify which part of the parallel closure is supporting \(E_\parallel\).
+This is also the point where restoring more of generalized Ohm's law begins to lead
+beyond strict kinetic MHD toward Hall and FLR corrections.
+</p>
+<!--l. 584--><div class="callout callout-caution"><div class="callout-title">Caution</div><div class="callout-body"><blockquote class="quote">
      <!--l. 584--><p class="noindent" >Kinetic MHD is still a reduced theory. It assumes \(\omega \ll \Omega _i\) and \(k_\perp \rho _i\ll 1\). Once finite-Larmor-radius
      corrections,  cyclotron  resonances,  or  strongly  non-Maxwellian  particle  populations
      become essential, one must go beyond kinetic MHD as well.</p></blockquote></div></div>
@@ -715,5 +866,3 @@ class="enumerate-enumitem">Repeat  the  derivation  of  the  slow-ordering  pres
                                                                                          
                                                                                          
                                                                                          
-
-
